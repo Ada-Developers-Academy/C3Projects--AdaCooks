@@ -19,7 +19,7 @@ We're doing this to make the final project easier to code review. Because the ba
 - x a new rails 4.2.2 application.
 - x [rspec](https://github.com/rspec/rspec-rails) setup in document format (hint: use a .rspec config file and the `rspec_rails` gem)
 - x [factory_girl](https://github.com/thoughtbot/factory_girl_rails) included and set up to work with rspec (hint: use the `factory_girl_rails` gem)
-- code coverage reporting (hint: user simplecov)
+- x code coverage reporting (hint: user simplecov)
 
 ## User Stories
 
