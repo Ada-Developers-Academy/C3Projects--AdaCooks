@@ -1,6 +1,17 @@
 # Carly and Elsa's Ada Cooks!
 The goal of this project is to build an online cookbook application where users can manage Recipes and Ingredients, create Cookbook collections of different Recipes, and keep track of their Ingredients.
 
+## Project Notes:
+- Required Gems:
+-- bcrypt
+-- better_errors
+-- bootstrap-sass
+-- factory_girl_rails
+-- pry-rails
+-- simplecov
+-- rspec-rails
+-- traceroute
+
 ## Learning Goals
 - Explore advanced ActiveRecord relationships like `has_many through:` and `has_and_belongs_to_many`.
 - Explore controlling access to functionality based on User state and/or role.
