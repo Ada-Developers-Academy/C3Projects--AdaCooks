@@ -5,4 +5,8 @@ class User < ActiveRecord::Base
   has_many :recipes
   has_many :cookbooks
   has_many :ingredients
+
+  # Validations
+  validates :name, presence: true, uniqueness: true
+  validaties :email, presence: true, uniqueness: true
 end
