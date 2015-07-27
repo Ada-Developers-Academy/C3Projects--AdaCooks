@@ -1,0 +1,17 @@
+<h3>Create a New User Account</h3>
+
+<%= form_for @user do |f| %>
+
+  <div class="form-group">
+    <%= f.label :username, "Username" %>
+    <%= f.text_field :username, class: "form-control" %>
+
+    <%= f.label :password %>
+    <%= f.password_field :password, class: "form-control" %>
+
+    <%= f.label :password_confirmation, "Password Confirmation" %>
+    <%= f.password_field :password_confirmation, class: "form-control" %>
+
+    <%= f.submit "Submit", class: "btn btn-default" %>
+  </div>
+<% end %>
