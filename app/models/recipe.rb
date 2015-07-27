@@ -1,6 +1,11 @@
 class Recipe < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 
+  belongs_to :user
+  has_and_belongs_to_many :ingredients
+  has_and_belongs_to_many :cookbooks
+
+
   # uploader = AvatarUploader.new
   # uploader.store!(my_file)
   # uploader.retrieve_from_store!('my_file.png')
