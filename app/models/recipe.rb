@@ -9,7 +9,6 @@ class Recipe < ActiveRecord::Base
   validates :preparation, presence: true
   validates_with RecipeValidator
 
-
 # Scopes _______________________________________________________________
   scope :alpha_order, -> { order('name ASC') }
 end
