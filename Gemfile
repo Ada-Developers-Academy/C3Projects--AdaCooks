@@ -51,5 +51,8 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'pry-rails'
-  gem 'rspec'
+  gem 'rspec-rails', '~> 3.0'
+  gem 'simplecov', require: false
+  gem "factory_girl_rails", "~> 4.0"
+
 end
