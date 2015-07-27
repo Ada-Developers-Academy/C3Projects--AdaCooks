@@ -11,10 +11,10 @@ RSpec.describe Ingredient, type: :model do
 
     it "name must be unique" do
       ingredient1 = create :ingredient, name: "ingredient"
-      ingredient2 = create :ingredient, name: "ingredient"
+      ingredient2 = build :ingredient, name: "ingredient"
       expect(ingredient2).to_not be_valid
-      # expect(ingredient.error.keys).to include(:name)
-      # expect(Ingredient.count).to eq 1
+      expect(ingredient2.errors.keys).to include(:name)
+      expect(Ingredient.count).to eq 1
     end
   end # end describe
 end #end class
