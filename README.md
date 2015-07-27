@@ -1,3 +1,6 @@
+Pair programming! @acmei & @knguyen0710
+Anita & Kyna 
+
 # Ada Cooks!
 The goal of this project is to build an online cookbook application where users can manage Recipes and Ingredients, create Cookbook collections of different Recipes, and keep track of their Ingredients.
 
