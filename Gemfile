@@ -6,6 +6,9 @@ gem "bootstrap-sass"
 # for secure passwords
 gem "bcrypt"
 
+# for uploading images
+gem "carrierwave"
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
