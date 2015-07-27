@@ -32,7 +32,7 @@ We're doing this to make the final project easier to code review. Because the ba
   - view an alphabetical list of all Ingedients
   - view the details of an individual Ingredient, including...
     - a list of links to Recipes associated with the Ingredient
-    
+
 ### As an anonymous User I can...
 - register a new User account
 - Log In to an existing User account
@@ -42,7 +42,7 @@ We're doing this to make the final project easier to code review. Because the ba
 - __Cookbooks__
   - See a list of Cookbooks I've already created, including...
     - The number of Recipes associated with the Cookbook
-    - The number of unique Recipes associated with the Cookbook
+    - The number of unique Ingredients associated with the Cookbook
   - See the details of a specific Cookbook, including...
     - a list of links to the Recipes associated with the Cookbook
     - a link to remove (unassociate) a Recipe from the Cookbook. This does not destroy the Recipe.
