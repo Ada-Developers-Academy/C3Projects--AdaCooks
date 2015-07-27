@@ -12,6 +12,42 @@ The goal of this project is to build an online cookbook application where users 
 -- rspec-rails
 -- traceroute
 
+## Data Models
+--------------
+### Users
+- name:string
+- email:string
+- password
+- password_digest
+has_many :cookbooks
+has_many :recipes
+has_many :ingredients
+
+### Cookbooks
+- name:string
+- description:text
+belongs_to :user
+has_and_belongs_to_many :recipes
+has_many :ingredients, through :recipes
+
+### Recipes
+- name:string
+- description:text
+- preparation:text
+- image:blob
+belongs_to :user
+has_and_belongs_to_many :cookbooks
+has_and_belongs_to_many :ingredients
+
+
+### Ingredients
+- name:string
+- description:text
+- image:blob
+belongs_to :user
+has_and_belongs_to_many :recipes
+
+
 ## Learning Goals
 - Explore advanced ActiveRecord relationships like `has_many through:` and `has_and_belongs_to_many`.
 - Explore controlling access to functionality based on User state and/or role.
