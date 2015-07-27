@@ -15,11 +15,11 @@ We are going to try something new with this project. When you've accomplished al
 We're doing this to make the final project easier to code review. Because the baseline includes all of the Rails setup and boilerplate, issuing (and merging) a PR at the beginning will remove those files from the Pull Request interface for the PR you'll open at the end of the project.
 
 ### The baseline requirements are...
-- a ruby-gemset and ruby-version.
-- a new rails 4.2.2 application.
-- [rspec](https://github.com/rspec/rspec-rails) setup in document format (hint: use a .rspec config file and the `rspec_rails` gem)
-- [factory_girl](https://github.com/thoughtbot/factory_girl_rails) included and set up to work with rspec (hint: use the `factory_girl_rails` gem)
-- code coverage reporting (hint: user simplecov)
+- x a ruby-gemset and ruby-version.
+- x a new rails 4.2.2 application.
+- x [rspec](https://github.com/rspec/rspec-rails) setup in document format (hint: use a .rspec config file and the `rspec_rails` gem)
+- x [factory_girl](https://github.com/thoughtbot/factory_girl_rails) included and set up to work with rspec (hint: use the `factory_girl_rails` gem)
+- x code coverage reporting (hint: user simplecov)
 
 ## User Stories
 
