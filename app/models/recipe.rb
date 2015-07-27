@@ -1,5 +1,6 @@
 class Recipe < ActiveRecord::Base
-  belongs_to :ingredient
-  belongs_to :cookbook
+# ASSOCIATIONS ----------------------------------------
+  has_many :ingredients
+  has_and_belongs_to_many :cookbooks
   belongs_to :user
 end
