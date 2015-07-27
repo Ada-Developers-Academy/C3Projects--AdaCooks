@@ -3,4 +3,11 @@ FactoryGirl.define do
     name "Chicken Fingers"
     prep "1. Cut chicken into fingers 2. Bread and Fry"
   end
+
+  factory :user do
+    name "a name"
+    email "email@example.com"
+    password "foobar"
+    password_confirmation "foobar"
+  end
 end
