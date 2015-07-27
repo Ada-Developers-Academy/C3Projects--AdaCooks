@@ -9,12 +9,16 @@ RSpec.describe Ingredient, type: :model do
       expect(ingredient.errors.keys).to include(:name)
     end
 
-    it "name bust be unique" do
-      let(:ingredient1) { create :ingredient }
-      let(:ingredient2) { create :ingredient }
-
-      expect(ingredients.count).to eq 1
+    it "name must be unique" do
+      ingredient1 = create :ingredient, name: "ingredient"
+      ingredient2 = create :ingredient, name: "ingredient"
       expect(ingredient2).to_not be_valid
+      # expect(ingredient.error.keys).to include(:name)
+      # expect(Ingredient.count).to eq 1
     end
   end # end describe
 end #end class
+
+
+# build - news it up but doesn't save it
+# create - news it up and saves it
