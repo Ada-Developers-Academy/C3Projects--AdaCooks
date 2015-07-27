@@ -1,0 +1,10 @@
+<%= form_for ingredient do |f| %>
+
+<%= f.label :name, "#{name_desc}" %>
+<%= f.text_field :name, class: "form_field", autofocus: true, placeholder: name_placeholder, value: name_value %>
+
+<%= f.label :image, "#{image_desc}" %>
+<%= f.file_field :image, class: "form_field", placeholder: image_placeholder, value: image_value %>
+
+<%= f.submit submit_button, class: "btn" %>
+<% end %>

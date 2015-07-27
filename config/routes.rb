@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   root 'user#index'
 
-  resources :user, :recipe, :ingredient, :cookbook
+  resources :user, :recipe, :ingredients, :cookbook
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
