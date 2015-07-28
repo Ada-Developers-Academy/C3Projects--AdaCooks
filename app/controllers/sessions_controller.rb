@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(params[:session][:password])
       session[:user_id] = @user
-    #  redirect to somewhere
+      redirect_to user_path(@user)
     else
       flash.now[:error] = "Incorrect Username/password combination, Please Try again"
       render :new
