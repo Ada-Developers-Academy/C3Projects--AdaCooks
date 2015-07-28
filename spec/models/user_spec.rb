@@ -46,7 +46,7 @@ RSpec.describe User, type: :model do
     end
 
     it "requires password to be present (nonblank)" do
-      new_user.password = new_user.password_confirmation = " " * 6
+      new_user.password = new_user.password_confirmation = " " * 10
 
       expect(new_user).to be_invalid
       expect(new_user.errors.keys).to include(:password)
