@@ -1,4 +1,22 @@
 Rails.application.routes.draw do
+  root 'home#index'
+
+  resources :users, only: [:show] do
+    GET 'dash', on: :member
+    resources :cookbooks # cookbooks will always be attached to a user
+      # index, show, new, create, edit, update, destroy
+    resources :recipes do # recipes aren't necessarily attached to a cookbook
+      # index, show, new, create, edit, update, destroy
+      resources :steps, except: [:index, :show]
+        # new, create, edit, update, destroy
+    end
+  end
+
+  resources :ingredients
+    # index, show, new, create, edit*, update*, destroy*
+    # * only for owner
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
