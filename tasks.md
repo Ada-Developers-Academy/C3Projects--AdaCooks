@@ -22,7 +22,7 @@ TODO
     - a list of links to Recipes associated with the Ingredient
 
 ### As an anonymous User I can...
-- register a new User account
+- register a new User account _IN PROGRESS: bew_
 - Log In to an existing User account
 
 ### As a Logged In User I can...
