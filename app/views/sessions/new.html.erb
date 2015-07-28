@@ -1,1 +1,20 @@
-<h2>Login</h2>
+<h1>Login</h1>
+<div>
+  <% if flash.now[:login_error] %>
+    <%= flash.now[:login_error] %>
+  <% end %>
+<div>
+<%= form_for :session, url: login_path do |f| %>
+<legend>User Info</legend>
+  <fieldset>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.submit "LOGIN" %>
+</fieldset>
+
+<% end %>
+
