@@ -1,11 +1,10 @@
 class User < ActiveRecord::Base
-	has_secure_password # what does this do again…?
+	has_secure_password # enables use of bcrypt
 
 # Associations -----------------------------------------------------------------
 	has_many :cookbooks
 
 # Validations ------------------------------------------------------------------
-	validates :username, presence: true, uniqueness: true
-	validates :email, presence: true, uniqueness: true
-	validates :password, presence: true, uniqueness: true
+	validates :username, :email,                 presence: true, uniqueness: true
+	validates :password, :password_confirmation, presence: true
 end
