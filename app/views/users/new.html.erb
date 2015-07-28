@@ -1,5 +1,9 @@
 <h2>Register</h2>
 
+<p class="text-danger form-errors">
+	<%= flash[:notice] %>
+</p>
+
 <%= form_for @user do |f| %>
 
 	<!-- style these errors and reformat phrase  -->
@@ -39,6 +43,10 @@
 		<%= f.text_field :password_confirmation %>
 	</div>
 
-	<%= f.submit 'Register', class: 'btn btn-primary' %>
+	<% unless session[:user_id] %>
+		<%= f.submit 'Register', class: 'btn btn-primary' %>
+	<% else %>
+		<%= f.submit 'Register', { class: 'btn btn-primary', disabled: 'disabled' } %>
+	<% end %>
 
 <% end %>
