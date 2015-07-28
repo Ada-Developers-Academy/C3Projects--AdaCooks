@@ -3,13 +3,18 @@ require 'rails_helper'
 RSpec.describe Recipe, type: :model do
   describe "model validations" do
     # try this, not sure if it'll work. If not, run separately.
-    [:name, :preparation].each do |required_attribute|
-      it "requires #{required_attribute}" do
-        recipe = build(:recipe, required_attribute: nil)
+    it "requires a name" do
+      recipe = build :recipe, name: nil
 
-        expect(recipe).to_not be_valid
-        expect(recipe.errors.keys).to include(required_attribute)
-      end
+      expect(recipe).to_not be_valid
+      expect(recipe.errors.keys).to include(:name)
+    end
+
+    it "requires a preparation" do
+      recipe = build :recipe, preparation: nil
+
+      expect(recipe).to_not be_valid
+      expect(recipe.errors.keys).to include(:preparation)
     end
 
     it "must be associated with a user" do
