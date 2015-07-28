@@ -1,8 +1,9 @@
 class Ingredient < ActiveRecord::Base
   # mount_uploader :avatar, AvatarUploader # FIXME: we didn't do this right?
+  belongs_to :user # FIXME user relationship test
+  has_and_belongs_to_many :recipes # FIXME: recipes relationship test
 
-  belongs_to :user
-  has_and_belongs_to_many :recipes
+  scope :alphabetized, -> { order("name ASC") } # FIXME: test alphabetized scope
 
 
   # uploader = AvatarUploader.new
