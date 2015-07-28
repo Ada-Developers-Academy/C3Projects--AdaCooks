@@ -47,3 +47,16 @@ recipes.each do |recipe_params|
   new_recipe.preparation = "1. Heat cream, add to yolks to temper. 2. Freeze in ice cream maker. 3. Enjoy!"
   new_recipe.save
 end
+
+cookbooks = [
+  { name: "Ice Creams I Have Loved", description: "a walk down memory lane", user_id: 1 },
+  { name: "Sorbet 4 Daze", description: "non-dairy treats for the lactose intolerant", user_id: 1 },
+  { name: "Gelato to Da Max", description: "Hawaiian-Italian fusion desserts", user_id: 2 },
+  { name: "Frozen Desserts", description: "ice cream, gelato, sorbet, sherbet, kulfi, etc.", user_id: 2 },
+  { name: "I Scream, You Scream", description: "we all scream, of ice cream", user_id: 3 },
+  { name: "The Dao of Ice Cream", description: "reaching enlightenment via massive consumption of ice cream", user_id: 3 }
+]
+
+cookbooks.each do |cookbook_params|
+  Cookbook.create(cookbook_params)
+end
