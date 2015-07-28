@@ -1,14 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>C3ProjectsAdacooks</title>
+  <title>Eat Me!</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="container">
+    <header class="jumbotron">
+      <h1 class="top">Eat Me!</h1>
+      <nav class="navbar navbar-default">
+        <%= link_to "Recipes", root_path %>
+        <%= link_to "Ingredients", root_path %>
+      </nav>
+    </header>
 
-<%= yield %>
+    <main class="container">
+      <%= yield %>
+    </main>
 
+    <footer>
+      <nav class="navbar navbar-default">
+        <%= link_to "Top", "#top" %>
+        <%= link_to "Recipes", root_path %>
+        <%= link_to "Ingredients", root_path %>
+      </nav>
+    </footer>
+  </div>
 </body>
 </html>
