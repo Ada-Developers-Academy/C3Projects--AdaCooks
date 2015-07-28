@@ -5,5 +5,5 @@ class Recipe < ActiveRecord::Base
   belongs_to :user
 
   # Validations ----------------------------------------------------------------
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
 end
