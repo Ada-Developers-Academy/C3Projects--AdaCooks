@@ -8,5 +8,7 @@ class Recipe < ActiveRecord::Base
   # Validations
   validates :name, presence: true
   validates :preparation, presence: true
-  validates :ingredients, presence: true, uniqueness: true
+
+  # look up join table validations when we get a sec
+  # validates :ingredients, presence: true, uniqueness: true
 end

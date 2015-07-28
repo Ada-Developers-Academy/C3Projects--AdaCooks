@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150728004532) do
+ActiveRecord::Schema.define(version: 20150728010144) do
 
   create_table "cookbooks", force: :cascade do |t|
     t.string   "name"
@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(version: 20150728004532) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "cookbooks_recipes", id: false, force: :cascade do |t|
+    t.integer "cookbook_id", null: false
+    t.integer "recipe_id",   null: false
+  end
+
+  add_index "cookbooks_recipes", ["cookbook_id", "recipe_id"], name: "index_cookbooks_recipes_on_cookbook_id_and_recipe_id"
+  add_index "cookbooks_recipes", ["recipe_id", "cookbook_id"], name: "index_cookbooks_recipes_on_recipe_id_and_cookbook_id"
+
   create_table "ingredients", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
@@ -28,6 +36,14 @@ ActiveRecord::Schema.define(version: 20150728004532) do
     t.datetime "updated_at", null: false
     t.string   "image"
   end
+
+  create_table "ingredients_recipes", id: false, force: :cascade do |t|
+    t.integer "recipe_id",     null: false
+    t.integer "ingredient_id", null: false
+  end
+
+  add_index "ingredients_recipes", ["ingredient_id", "recipe_id"], name: "index_ingredients_recipes_on_ingredient_id_and_recipe_id"
+  add_index "ingredients_recipes", ["recipe_id", "ingredient_id"], name: "index_ingredients_recipes_on_recipe_id_and_ingredient_id"
 
   create_table "recipes", force: :cascade do |t|
     t.string   "name"

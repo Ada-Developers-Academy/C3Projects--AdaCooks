@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :cookbooks
   has_many :ingredients
 
-  # Validations
+  #Validations
   validates :name, presence: true, uniqueness: true
-  validaties :email, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
 end
