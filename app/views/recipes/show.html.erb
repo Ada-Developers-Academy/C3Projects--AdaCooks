@@ -1,0 +1,9 @@
+<h1> <%= @recipe.name %> </h1>
+<h4> Submitted by: <%= link_to "#{@recipe.user.username}", user_path(@recipe.user.id) %> </h4>
+
+<h6>IMAGE GOES HERE</h6>
+
+<ul>
+  <li> <%= @recipe.description %> </li>
+  <li> <%= @recipe.steps %> </li>
+</ul>
