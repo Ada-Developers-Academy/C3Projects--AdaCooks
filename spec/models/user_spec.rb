@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
+
   describe "model validations" do
     it "Requires that a cookbook name be present" do
       user = build :user, name: nil
@@ -40,4 +41,5 @@ RSpec.describe User, type: :model do
       expect(user.errors.keys).to include(:email)
     end
   end
+
 end
