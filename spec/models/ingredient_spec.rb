@@ -28,8 +28,46 @@ RSpec.describe Ingredient, type: :model do
   end
 
   describe "model validations" do
-    pending "name validations"
-    pending "user_id validations"
+    context "name" do
+      it "requires a name to be valid" do
+        valid_ingredient = build :ingredient, name: "potato potato potato"
+        expect(valid_ingredient).to be_valid
+        expect(valid_ingredient.errors.keys).not_to include(:name)
+
+        invalid_ingredient = build :ingredient, name: nil
+        expect(invalid_ingredient).not_to be_valid
+        expect(invalid_ingredient.errors.keys).to include(:name)
+      end
+    end
+
+    context "user_id" do
+      it "requires a user_id to be valid" do
+        valid_ingredient = build :ingredient, user_id: "1"
+        expect(valid_ingredient).to be_valid
+        expect(valid_ingredient.errors.keys).not_to include(:user_id)
+
+        invalid_ingredient = build :ingredient, user_id: nil
+        expect(invalid_ingredient).not_to be_valid
+        expect(invalid_ingredient.errors.keys).to include(:user_id)
+      end
+
+      it "must be an integer value greater than zero" do
+        valid_user_ids = ["1", "25", "1000"]
+        valid_user_ids.each do |user_id|
+          ingredient = build :ingredient, user_id: user_id
+          expect(ingredient).to be_valid
+          expect(ingredient.errors.keys).not_to include(:user_id)
+        end
+
+        invalid_user_ids = ["0.25", "-40", "three", { user_id: "1" }]
+        invalid_user_ids.each do |user_id|
+          ingredient = build :ingredient, user_id: user_id
+          expect(ingredient).not_to be_valid
+          expect(ingredient.errors.keys).to include(:user_id)
+        end
+      end
+    end
+
     pending "avatar validations"
   end
 
