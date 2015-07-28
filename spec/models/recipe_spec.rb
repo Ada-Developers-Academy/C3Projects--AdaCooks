@@ -21,6 +21,7 @@ RSpec.describe Recipe, type: :model do
 
       it "allows a recipe with a unique name" do
         recipe = build :recipe, name: "sweet cream ice cream"
+        recipe.valid?
         expect(recipe.errors.keys).to_not include :name
       end
     end
@@ -39,11 +40,13 @@ RSpec.describe Recipe, type: :model do
 
     it "does not require a description" do
       recipe = build :recipe, description: nil
+      recipe.valid?
       expect(recipe.errors.keys).to_not include :description
     end
 
     it "does not require an image" do
       recipe = build :recipe, image: nil
+      recipe.valid?
       expect(recipe.errors.keys).to_not include :image
     end
   end
