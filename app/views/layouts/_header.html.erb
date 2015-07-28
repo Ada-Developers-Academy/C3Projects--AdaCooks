@@ -12,9 +12,9 @@
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cookbooks<b class="caret"></b></a>
         <ul class="dropdown-menu">
-<!--           < @cookbooks.each do |cookbook| %>
-            <li>< link_to cookbook.name.titlecase, "#" %></li>
-          < end %> -->
+          <% @cookbooks.each do |cookbook| %>
+            <li><%= link_to cookbook.name.titlecase, "#" %></li>
+          <% end %>
         </ul>
       </li>
 
@@ -23,7 +23,7 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Recipes<b class="caret"></b></a>
         <ul class="dropdown-menu">
           <% @recipes.each do |recipe| %>
-            <li><% link_to recipe.name.titlecase, "#" %></li>
+            <li><%= link_to recipe.name.titlecase, "#" %></li>
           <% end %>
         </ul>
       </li>
@@ -33,7 +33,7 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ingredients<b class="caret"></b></a>
         <ul class="dropdown-menu">
           <% @ingredients.each do |ingredient| %>
-            <li><% link_to ingredient.name.titlecase, "#" %></li>
+            <li><%= link_to ingredient.name.titlecase, "#" %></li>
           <% end %>
         </ul>
       </li>
