@@ -6,7 +6,21 @@ RSpec.describe SessionsController, type: :controller do
     @user = User.create(username: "penguin", password: "unigoat", password_confirmation: "unigoat")
   end
 
-describe "POST #create" do
+  describe "GET #new" do
+    before :each do
+      get :new
+    end
+
+    it "responds with an HTTP 200 status" do
+      expect(response).to have_http_status(200)
+    end
+
+    it "renders the new template" do
+      expect(response).to render_template("new")
+    end
+  end
+
+  describe "POST #create" do
     context "with valid params" do
 
       let (:valid_params) do
@@ -32,7 +46,7 @@ describe "POST #create" do
     end
   end
 
-  describe "delete #DESTROY" do
+  describe "DELETE #destroy" do
     before(:each) do
       session[:user_id] = @user.id
       delete :destroy
