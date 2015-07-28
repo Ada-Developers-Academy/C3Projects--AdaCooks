@@ -81,7 +81,7 @@ ingredients = [
   { name: "vanilla bean" },
   { name: "toasted walnuts" },
   { name: "honey" },
-  { name: "fresh raspberries" },
+  { name: "fresh raspberries" }
 ]
 
 ingredients.each do |ingredient_params|
