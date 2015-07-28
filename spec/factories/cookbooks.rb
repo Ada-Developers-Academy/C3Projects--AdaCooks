@@ -1,9 +1,7 @@
 FactoryGirl.define do
   factory :cookbook do
-    name ""
-description "MyString"
-string "MyString"
-user nil
+    name "Delicious Snacks"
+    description "MyString"
+    user nil
   end
-
 end
