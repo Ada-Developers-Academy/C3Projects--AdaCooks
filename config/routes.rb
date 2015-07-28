@@ -28,6 +28,11 @@ Rails.application.routes.draw do
 
   resources :users
 
+  get '/signup'    =>  'users#new',       as: 'signup'
+  get '/login'     =>  'sessions#new',    as: 'login'
+  post '/login'    =>  'sessions#create'
+  delete '/logout' => 'sessions#destroy', as: 'logout'
+
   # Example resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales
