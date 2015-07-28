@@ -1,4 +1,4 @@
-# Ada Cooks!
+# Ada Cooks! - Corinne and Elia
 The goal of this project is to build an online cookbook application where users can manage Recipes and Ingredients, create Cookbook collections of different Recipes, and keep track of their Ingredients.
 
 ## Learning Goals
@@ -25,14 +25,14 @@ We're doing this to make the final project easier to code review. Because the ba
 - search by the name of an Ingredient and get related Recipes back.
 - __Recipes__
   - view an alphabetical list of all Recipes
-  - view the details of a Recipe, inluding...
+  - view the details of a Recipe, including...
     - a link to the User profile of the person who created the Recipe
-    - links to the Ingridient profile for all associated Ingredients
+    - links to the Ingredient profile for all associated Ingredients
 - __Ingredients__
-  - view an alphabetical list of all Ingedients
+  - view an alphabetical list of all Ingredients
   - view the details of an individual Ingredient, including...
     - a list of links to Recipes associated with the Ingredient
-    
+
 ### As an anonymous User I can...
 - register a new User account
 - Log In to an existing User account
@@ -42,7 +42,7 @@ We're doing this to make the final project easier to code review. Because the ba
 - __Cookbooks__
   - See a list of Cookbooks I've already created, including...
     - The number of Recipes associated with the Cookbook
-    - The number of unique Recipes associated with the Cookbook
+    - The number of unique Ingredients associated with the Cookbook
   - See the details of a specific Cookbook, including...
     - a list of links to the Recipes associated with the Cookbook
     - a link to remove (unassociate) a Recipe from the Cookbook. This does not destroy the Recipe.
@@ -63,7 +63,7 @@ We're doing this to make the final project easier to code review. Because the ba
     - Changing the `name`, `description`, uploaded image, and/or `preparation`
     - Removing or Adding Ingredients
   - Destroy an existing Recipe that I created
-    - Destroying a Recipe __does not__ destroy the Ingrdients, just the associations
+    - Destroying a Recipe __does not__ destroy the Ingredients, just the associations
   - From a Recipe's detail page, I can save the Recipe to an existing Cookbook
 - __Ingredients__
   - Create an Ingredient with...
