@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'home#index'
+  root 'welcome#index'
 
   resources :users, only: [:show] do
     get 'dash', on: :member
