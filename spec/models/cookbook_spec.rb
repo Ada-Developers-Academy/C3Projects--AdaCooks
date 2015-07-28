@@ -7,5 +7,17 @@ RSpec.describe Cookbook, type: :model do
       cookbook.valid?
       expect(cookbook.errors.keys).to include :name
     end
+
+    it "requires that a user_id be present" do
+      cookbook = build :cookbook, user_id: nil
+      cookbook.valid?
+      expect(cookbook.errors.keys).to include :user_id
+    end
+
+    it "does not require a description" do
+      cookbook = build :cookbook, description: nil
+      cookbook.valid?
+      expect(cookbook.errors.keys).to_not include :description
+    end
   end
 end
