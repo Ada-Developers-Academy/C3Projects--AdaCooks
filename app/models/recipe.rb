@@ -7,7 +7,7 @@ class Recipe < ActiveRecord::Base
 # Validations __________________________________________________________
   validates :name, presence: true
   validates :preparation, presence: true
-  validates_with RecipeValidator, :on => :update
+  validates_with RecipeValidator
 
 # Scopes _______________________________________________________________
   scope :alpha_order, -> { order('name ASC') }
