@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150727234620) do
+ActiveRecord::Schema.define(version: 20150728062027) do
 
   create_table "cookbooks", force: :cascade do |t|
     t.string   "name",        null: false
@@ -38,6 +38,14 @@ ActiveRecord::Schema.define(version: 20150727234620) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "ingredients_recipes", force: :cascade do |t|
+    t.integer "recipe_id"
+    t.integer "ingredient_id"
+  end
+
+  add_index "ingredients_recipes", ["ingredient_id"], name: "index_ingredients_recipes_on_ingredient_id"
+  add_index "ingredients_recipes", ["recipe_id"], name: "index_ingredients_recipes_on_recipe_id"
+
   create_table "recipes", force: :cascade do |t|
     t.string   "name",        null: false
     t.text     "description"
@@ -49,14 +57,6 @@ ActiveRecord::Schema.define(version: 20150727234620) do
   end
 
   add_index "recipes", ["user_id"], name: "index_recipes_on_user_id"
-
-  create_table "recipes_ingredients", id: false, force: :cascade do |t|
-    t.integer "recipe_id"
-    t.integer "ingredient_id"
-  end
-
-  add_index "recipes_ingredients", ["ingredient_id"], name: "index_recipes_ingredients_on_ingredient_id"
-  add_index "recipes_ingredients", ["recipe_id"], name: "index_recipes_ingredients_on_recipe_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "username",        null: false
