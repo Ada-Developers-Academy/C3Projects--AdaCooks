@@ -1,8 +1,17 @@
 class Ingredient < ActiveRecord::Base
-  # mount_uploader :avatar, AvatarUploader # FIXME: we didn't do this right?
-
+  # Associations ---------------------------------------------------------------
   belongs_to :user
   has_and_belongs_to_many :recipes
+
+  # Validations ----------------------------------------------------------------
+  validates :name, presence: true
+  validates :user_id, presence: true, numericality: { only_integer: true, greater_than: 0 }
+
+  # Scopes ---------------------------------------------------------------------
+  scope :alphabetized, -> { order("name ASC") }
+
+  # Mounted Objects ------------------------------------------------------------
+  # mount_uploader :avatar, AvatarUploader # FIXME: we didn't do this right?
 
 
   # uploader = AvatarUploader.new
