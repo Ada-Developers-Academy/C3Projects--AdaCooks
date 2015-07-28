@@ -14,4 +14,5 @@ RSpec.describe Recipe, type: :model do
       expect(recipe.errors.keys).to include(:prep)
     end
   end
+
 end

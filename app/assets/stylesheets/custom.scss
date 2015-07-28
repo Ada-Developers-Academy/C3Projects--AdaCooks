@@ -1,2 +1,18 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+/* colors */
+
+$error: #F00;
+
+
+/* forms */
+
+.errors {
+  color: $error;
+}
+
+label.required:after {
+    content: " *";
+    color: $error;
+}
