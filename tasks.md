@@ -2,7 +2,7 @@ IDEAS
 - Let's add seed data as we need it -- e.g. if I'm going to work on the ingredients controller, that'd be a good time to create the seed data for it.
 
 TODO
-- Fix rspec _IN PROGRESS: anw_
+- Fix rspec _IN PROGRESS: anw_ **PR OPENED**
 
 ## User Stories
 
