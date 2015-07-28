@@ -2,6 +2,9 @@
 
 <%= form_for @user do |f| %>
 
+	<p class="form-error">
+		<%= error_check_for(:username) %>
+	</p>
 	<div class="form-group">
 		<%= f.label :username %>
 		<%= f.text_field :username %>
