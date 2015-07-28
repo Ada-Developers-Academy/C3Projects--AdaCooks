@@ -14,7 +14,11 @@ RSpec.describe Ingredient, type: :model do
       ingredient1
       same_ingredient = build :ingredient, name: "sugar"
       expect(same_ingredient).to_not be_valid
-      
+      expect(same_ingredient.errors.keys).to include (:name)
     end
+  end
+
+  describe "GET #index" do
+    
   end
 end

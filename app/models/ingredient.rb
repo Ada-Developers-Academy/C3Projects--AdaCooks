@@ -1,12 +1,11 @@
 class Ingredient < ActiveRecord::Base
 # ASSOCIATIONS -------------------------------------
-  belongs_to :recipe
-  belongs_to :cookbook
+  has_and_belongs_to_many :recipes
+  belongs_to :cookbooks
 
 # VALIDATIONS --------------------------------------
   validates :name, presence: true, uniqueness: true
 
 # SCOPES -------------------------------------------
-  # scope
-
+  score :alphabetical, -> { sort }
 end
