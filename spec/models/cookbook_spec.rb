@@ -20,4 +20,8 @@ RSpec.describe Cookbook, type: :model do
         # read factory girl documentation for this
       end
     end
+
+    describe "model validations" do
+
+    end
   end
