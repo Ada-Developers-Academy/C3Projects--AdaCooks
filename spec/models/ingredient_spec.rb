@@ -36,4 +36,15 @@ RSpec.describe Ingredient, type: :model do
       expect(recipe.ingredients.count).to eq 1
     end
   end
+
+  describe "scopes" do
+    it "sorts the ingredients in alphabetical order by name" do
+      %w(Yam Banana Fig Yogurt Fruit Apple Penguin).each do |name|
+        create(:ingredient, name: name)
+      end
+
+      expect(Ingredient.alpha_order.first.name).to eq "Apple"
+      expect(Ingredient.alpha_order.last.name).to eq "Yogurt"
+    end
+  end
 end
