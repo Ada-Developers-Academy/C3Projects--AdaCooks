@@ -26,6 +26,9 @@ ActiveRecord::Schema.define(version: 20150727233514) do
     t.integer "recipe_id"
   end
 
+  add_index "cookbooks_recipes", ["cookbook_id"], name: "index_cookbooks_recipes_on_cookbook_id"
+  add_index "cookbooks_recipes", ["recipe_id"], name: "index_cookbooks_recipes_on_recipe_id"
+
   create_table "ingredients", force: :cascade do |t|
     t.string   "name",       null: false
     t.string   "image"
@@ -33,6 +36,14 @@ ActiveRecord::Schema.define(version: 20150727233514) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "ingredients_recipes", id: false, force: :cascade do |t|
+    t.integer "ingredient_id"
+    t.integer "recipe_id"
+  end
+
+  add_index "ingredients_recipes", ["ingredient_id"], name: "index_ingredients_recipes_on_ingredient_id"
+  add_index "ingredients_recipes", ["recipe_id"], name: "index_ingredients_recipes_on_recipe_id"
 
   create_table "recipes", force: :cascade do |t|
     t.string   "name",        null: false
@@ -42,11 +53,6 @@ ActiveRecord::Schema.define(version: 20150727233514) do
     t.integer  "user_id",     null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-  end
-
-  create_table "recipes_ingredients", id: false, force: :cascade do |t|
-    t.integer "recipe_id"
-    t.integer "ingredient_id"
   end
 
   create_table "users", force: :cascade do |t|

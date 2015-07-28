@@ -59,8 +59,8 @@ users = [
     email: 'sam@sam.sam',
     password: 'samsamsam',
     password_confirmation: 'samsamsam'},
-  { name: 'pusheen',
-    description: "kitty@meow.com",
+  { username: 'pusheen',
+    email: "kitty@meow.com",
     password: 'kittycat',
     password_confirmation: 'kittycat'},
 ]
@@ -69,10 +69,10 @@ users.each do |user|
   User.create(user)
 end
 
-Ingredient.all.each do |ingredient|
-  recipe.ingredients << Recipe.all.sample(0..3)
+Recipe.all.each do |recipe|
+  recipe.ingredients << Ingredient.all.sample(0..3)
 end
 
-Recipe.all.each do |recipe|
-  cookbook.recipes << Cookbook.all.sample(0..3)
+Cookbook.all.each do |cookbook|
+  cookbook.recipes << Recipe.all.sample(0..3)
 end
