@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show] do
     GET 'dash', on: :member
   end
+  resources :sessions, only: [:new, :create, :destroy]
 
   resources :cookbooks # cookbooks will always be attached to a user
     # index, show, new, create, edit, update, destroy
@@ -12,7 +13,6 @@ Rails.application.routes.draw do
     resources :steps, except: [:index, :show]
       # new, create, edit, update, destroy
   end
-
   resources :ingredients
     # index, show, new, create, edit*, update*, destroy*
     # * only for owner
