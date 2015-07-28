@@ -1,7 +1,7 @@
 class Ingredient < ActiveRecord::Base
 
 # Associations______________________________________________________________
-  has_and_belongs_to_many :recipies
+  has_and_belongs_to_many :recipes
 
 # Validations __________________________________________________________
   validates :name, presence: true, uniqueness: true
