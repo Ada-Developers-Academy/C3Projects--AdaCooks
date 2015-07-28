@@ -2,17 +2,21 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
 	describe "#create" do
+		let(:user_params) { { :user => { username: "drinkmaster", email: "sample@email.com", password: "password", password_confirmation: "password" } } }
+
 		it "instantiates a new User object" do
-			user = create :user
-			expect(User.all).to include(user) # `expect(user).to exist` failed - why?
+			post :create, user_params
+			expect(User.all.count).to eq 1
+		end
+
+		it "assigns the user_id for the session" do
+			post :create, user_params
+			expect(session[:user_id]).to eq 1
 		end
 
 		it "redirects to user's page if information is valid" do
-			user_params = { :user => { name: 'Toastee', email: 'toastee@flavaflav.com', password: 'jentoof', password_confirmation: 'jentoof' } }
 			post :create, user_params
-
 			expect(subject).to redirect_to(:action => :show, :id => assigns(:user).id)
-			# error: Expected response to be a <redirect>, but was <200> - whyy?
 		end
 
 		it "renders :new view if the information is invalid" do
