@@ -3,4 +3,7 @@ class Recipe < ActiveRecord::Base
   has_many :ingredients, through: :recipe_ingredients
 
   belongs_to :user
+
+  # Validations ----------------------------------------------------------------
+  validates :name, presence: true
 end
