@@ -13,8 +13,14 @@ FactoryGirl.define do
 
   factory :user do
     username 'pusheen'
-    description 'kitty@meow.com'
+    email 'kitty@meow.com'
     password 'kittycat'
     password_confirmation 'kittycat'
+  end
+
+  factory :cookbook do
+    name 'Cookies'
+    description 'Cookies are yummy.'
+    user_id 1
   end
 end
