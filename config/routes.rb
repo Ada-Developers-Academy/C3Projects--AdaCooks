@@ -3,18 +3,21 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show] do
     GET 'dash', on: :member
-    resources :cookbooks # cookbooks will always be attached to a user
-      # index, show, new, create, edit, update, destroy
-    resources :recipes do # recipes aren't necessarily attached to a cookbook
-      # index, show, new, create, edit, update, destroy
-      resources :steps, except: [:index, :show]
-        # new, create, edit, update, destroy
-    end
+  end
+
+  resources :cookbooks # cookbooks will always be attached to a user
+    # index, show, new, create, edit, update, destroy
+  resources :recipes do # recipes aren't necessarily attached to a cookbook
+    # index, show, new, create, edit, update, destroy
+    resources :steps, except: [:index, :show]
+      # new, create, edit, update, destroy
   end
 
   resources :ingredients
     # index, show, new, create, edit*, update*, destroy*
     # * only for owner
+
+  # MAY NEED MEASUREMENT ROUTE?
 
 
   # The priority is based upon order of creation: first created -> highest priority.
