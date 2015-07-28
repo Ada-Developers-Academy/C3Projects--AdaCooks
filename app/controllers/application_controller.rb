@@ -10,12 +10,14 @@ class ApplicationController < ActionController::Base
 
   ERRORS = {
     login_error: "Invalid login. Please try again!",
-    login_required: "You must be logged in to view this page!"
+    login_required: "You must be logged in to view this page!",
+    account_exists: "You already have an account!",
+    unsuccessful_signup: "There was a problem with your signup info. Please try again!"
   }
 
   def require_login
     unless session[:user_id]
-      redirect_to login_path, flash: { errors: ERRORS[:login_required] } 
+      redirect_to login_path, flash: { errors: ERRORS[:login_required] }
     end
   end
 end

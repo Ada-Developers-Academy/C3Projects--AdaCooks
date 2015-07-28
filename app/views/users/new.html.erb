@@ -1,0 +1,24 @@
+<h1>Sign Up!</h1>
+
+<%= form_for @user do |f| %>
+  <fieldset>
+    <div class="form-group">
+      <%= f.label :username %>
+      <%= f.text_field :username, class: "form-control", required: true %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email, class: "form-control", required: true %>
+
+      <%= f.label :image, 'Profile Photo' %>
+      <%= f.file_field :image, class: "form-control" %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: "form-control", required: true %>
+
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, class: "form-control", required: true %>
+    </div>
+  </fieldset>
+
+  <%= f.submit "Create", class: "btn btn-success" %>
+<% end %>
