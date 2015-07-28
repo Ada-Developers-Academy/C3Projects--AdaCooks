@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :ingredient do
     name "MyString"
-description "MyText"
-image ""
+    description "MyText"
+    image ""
   end
 
 end
