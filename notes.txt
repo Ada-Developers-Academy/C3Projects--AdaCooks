@@ -2,14 +2,14 @@ DISCUSS PRs
 DISCUSS ROUTINE FEEDBACK TIME
 
 Models:
-  Cookbooks
-    has_and_belongs_to_many :recipes
-    belongs_to :user
-    has_many :ingredients, through: :recipes
+  Cookbooks ✓
+    has_and_belongs_to_many :recipes ✓
+    belongs_to :user ✓
+    has_many :ingredients, through: :recipes ✓ (THROUGH MEASURMENTS?)
 
-    name:string, required: true
-    description:text
-    user_id:integer
+    name:string, required: true ✓
+    description:text ✓
+    user_id:integer ✓
 
   Cookbooks_Recipes (MIGRATION ONLY)
     t.belongs_to :cookbook, index: true, required: true
@@ -54,14 +54,14 @@ Models:
     name:string, required: true
     image:string (DEFAULT????)
 
-  Users
-    has_many :cookbooks
-    has_many :recipes
-    has_secure_password
+  Users ✓
+    has_many :cookbooks ✓
+    has_many :recipes ✓
+    has_secure_password ✓
 
-    email:string, required: true
-    password_digest:string, required: true
-    bio:text
+    email:string, required: true ✓
+    password_digest:string, required: true ✓
+    bio:text ✓
 
   Reviews
     belongs_to :recipe
