@@ -6,7 +6,8 @@ gem "bootstrap-sass"
 # for secure passwords
 gem "bcrypt"
 
-# for uploading images
+# for uploading & processing images
+gem "mini_magick"
 gem "carrierwave"
 
 
