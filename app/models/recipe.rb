@@ -11,4 +11,5 @@ class Recipe < ActiveRecord::Base
 
   # look up join table validations when we get a sec
   # validates :ingredients, presence: true, uniqueness: true
+  # Elsa's answer: probably custom validations on create
 end
