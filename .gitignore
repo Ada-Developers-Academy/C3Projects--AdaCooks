@@ -15,3 +15,7 @@
 /log/*
 !/log/.keep
 /tmp
+
+app/models/.DS_Store
+coverage/
+db/schema.rb

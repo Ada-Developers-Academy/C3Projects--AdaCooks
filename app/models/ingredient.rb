@@ -1,6 +1,6 @@
 class Ingredient < ActiveRecord::Base
 
-# associations______________________________________________________________
+# Associations______________________________________________________________
   has_and_belongs_to_many :recipies
 
 # Validations __________________________________________________________
