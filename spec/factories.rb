@@ -1,11 +1,11 @@
 FactoryGirl.define do
-  # sequence(:name) { |n| "Example title #{n}" }
+  # sequence(:name) { |n| "Example name #{n}" }
 
   factory :cookbook do
     name "Snacks"
     description "Snacks on snacks"
     user_id 1
-    recipe
+    # recipe
     end
 
   factory :user do
@@ -17,7 +17,7 @@ FactoryGirl.define do
   factory :ingredient do
     name "yams"
     user_id 1
-    recipe
+    # recipe
   end
 
   factory :recipe do
@@ -25,8 +25,8 @@ FactoryGirl.define do
     description "This is really tasty"
     preparation "Honestly this is just a roasted yam"
     user_id 1
-    ingredient
-    cookbook
+    # ingredient
+    # cookbook
   end
 
 
