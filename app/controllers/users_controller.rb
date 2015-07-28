@@ -22,7 +22,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(id: params[:id])
+    @user = User.find(session[:user_id])
+    @cookbooks = Cookbook.all
   end
 
 
