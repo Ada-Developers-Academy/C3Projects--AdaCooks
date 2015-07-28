@@ -1,10 +1,11 @@
 FactoryGirl.define do
   factory :recipe do
-    name ""
-    description "MyString"
-    string "MyString"
-    image_url ""
-    preparation ""
+    name "Pizza"
+    description "delicious"
+    image_url "an image url"
+    preparation "tomato, crust, cheese, meat"
     cookbook nil
+    ingredients { |a| [a.association(:ingredient)] }
   end
 end
+

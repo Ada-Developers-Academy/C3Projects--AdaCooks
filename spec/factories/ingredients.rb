@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :ingredient do
-    name ""
-    image_url "MyString"
+    name "Tomato"
+    image_url "a picture"
   end
 end
