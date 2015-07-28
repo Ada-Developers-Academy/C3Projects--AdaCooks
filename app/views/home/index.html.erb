@@ -1,0 +1,7 @@
+<h1>Hi There</h1>
+<%=link_to "new user", new_user_path %>
+
+<%= @recipies.each do |recipe| %>
+  <%= recipe.name %>
+  <%= recipe.rec_photo %>
+<%end %>
