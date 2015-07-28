@@ -1,1 +1,27 @@
-<h2> TESTING </h2>
+<h2> Ingredients Index </h2>
+<%= link_to "Add an Ingredient", new_ingredient_path %>
+
+<table class = "table table-hover table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Image
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @ingredients.alphabetical_ingredients.each do |ingredient| %>
+      <tr>
+        <td>
+          <%= link_to ingredient.name, ingredient_path(ingredient.id) %>
+        </td>
+        <td>
+          <%= image_tag ingredient.image_url, class: "img-circle img-sm" %>
+        </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

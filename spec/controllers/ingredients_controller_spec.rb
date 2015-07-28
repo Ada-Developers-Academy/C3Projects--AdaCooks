@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe IngredientsController, type: :controller do
+let(:ingredient1) { create :ingredient, name: 'ingredient' }
+
  describe "GET index" do
    it "responds successfully with an HTTP 200 status code" do
      get :index
@@ -15,7 +17,6 @@ RSpec.describe IngredientsController, type: :controller do
  end
 
  describe "GET #show" do
-  let(:ingredient1) { create :ingredient, name: 'ingredient' }
    it "responds successfully with an HTTP 200 status code" do
      get :show, id: ingredient1.id
      expect(response).to be_success
@@ -30,7 +31,6 @@ RSpec.describe IngredientsController, type: :controller do
 
 
   describe "GET #new" do
-    let(:ingredient1) { create :ingredient, name: 'ingredient' }
     it "responds successfully with an HTTP 200 status code" do
       get :new, id: ingredient1.id
       expect(response).to be_success
@@ -85,7 +85,6 @@ RSpec.describe IngredientsController, type: :controller do
 
 
   describe "GET #edit" do
-    let(:ingredient1) { create :ingredient, name: 'ingredient' }
     it "responds successfully with an HTTP 200 status code" do
       get :edit, id: ingredient1.id
       expect(response).to be_success
@@ -93,14 +92,12 @@ RSpec.describe IngredientsController, type: :controller do
     end
 
     it "displays information related to the given record" do
-      ingredient1 = Ingredient.create(name: "ingredient")
       get :edit, id: ingredient1.id
       expect(ingredient1.name).to eq 'ingredient'
     end
   end # end of describe block
 
   describe "PUT #edit" do
-    let(:ingredient1) { create :ingredient, name: 'ingredient' }
     it "updates an existing record" do
       post :update, id: ingredient1, ingredient: { name: "yummy stuff" }
       ingredient1.reload
@@ -109,11 +106,8 @@ RSpec.describe IngredientsController, type: :controller do
   end #end of describe block
 
   describe "DELETE #destroy" do
-    let(:ingredient1) { create :ingredient, name: 'ingredient' }
     it "deletes the given story game record" do
     expect(Ingredient.count).to eq 0
     end
   end
 end
-
-#### can I clean this up by doing a before_each do?  

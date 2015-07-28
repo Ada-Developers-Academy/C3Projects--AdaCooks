@@ -1,10 +1,15 @@
-<%= form_for ingredient do |f| %>
-
+<%= form_for ingredient, multipart: true do |f| %>
+<div class = "form-group">
 <%= f.label :name, "#{name_desc}" %>
 <%= f.text_field :name, class: "form_field", autofocus: true, placeholder: name_placeholder, value: name_value %>
+</div>
 
+<div class = "form-group">
 <%= f.label :image, "#{image_desc}" %>
 <%= f.file_field :image, class: "form_field", placeholder: image_placeholder, value: image_value %>
+</div>
 
+<div class = "form-group">
 <%= f.submit submit_button, class: "btn btn-default" %>
 <% end %>
+</div>
