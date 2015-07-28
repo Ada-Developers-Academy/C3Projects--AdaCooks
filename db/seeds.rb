@@ -70,9 +70,9 @@ users.each do |user|
 end
 
 Recipe.all.each do |recipe|
-  recipe.ingredients << Ingredient.all.sample(0..3)
+  recipe.ingredients << Ingredient.all.sample(rand(0..3))
 end
 
 Cookbook.all.each do |cookbook|
-  cookbook.recipes << Recipe.all.sample(0..3)
+  cookbook.recipes << Recipe.all.sample(rand(0..3))
 end
