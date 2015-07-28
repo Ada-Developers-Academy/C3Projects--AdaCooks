@@ -44,3 +44,5 @@ CSV.foreach("db/cookbooks.csv", headers: true) do |row|
   user_id: row[2]
   )
 end
+
+ingredients_recipes = {}
