@@ -3,6 +3,6 @@ FactoryGirl.define do
     name "recipe name"
     description "recipe description"
     preparation "recipe preparation"
-    image nil # because how?
+    image ""
   end
 end

@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :cookbook do
-    name "cookbook name"
-    description "cookbook description"
+    name "MyString"
+    description "MyText"
   end
 end
