@@ -28,3 +28,4 @@ Recipes
 Cookbooks
 Users
 Sessions
+Home
