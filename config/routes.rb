@@ -1,4 +1,56 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+
+  get 'sessions/create'
+
+  get 'sessions/destroy'
+
+  get 'cookbooks/index'
+
+  get 'cookbooks/show'
+
+  get 'cookbooks/new'
+
+  get 'cookbooks/create'
+
+  get 'cookbooks/edit'
+
+  get 'cookbooks/update'
+
+  get 'cookbooks/destroy'
+
+  get 'ingredients/index'
+
+  get 'ingredients/show'
+
+  get 'ingredients/new'
+
+  get 'ingredients/create'
+
+  get 'ingredients/edit'
+
+  get 'ingredients/update'
+
+  get 'ingredients/destroy'
+
+  get 'recipes/index'
+
+  get 'recipes/show'
+
+  get 'recipes/new'
+
+  get 'recipes/create'
+
+  get 'recipes/update'
+
+  get 'recipes/destroy'
+
+  get 'users/new'
+
+  get 'users/create'
+
+  get 'users/show'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
