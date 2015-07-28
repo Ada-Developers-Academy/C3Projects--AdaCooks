@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  root 'home#index'
+  root 'welcome#index'
 
   resources :users, only: [:show] do
-    GET 'dash', on: :member
+    get 'dash', on: :member
   end
 
   resources :cookbooks # cookbooks will always be attached to a user
