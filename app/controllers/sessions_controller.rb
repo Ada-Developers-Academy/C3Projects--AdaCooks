@@ -1,6 +1,8 @@
 class SessionsController < ApplicationController
 
-  def new; end
+  def new
+    @user = User.new
+  end
 
   def create
     @user = User.find_by(email: params[:session][:email])
@@ -9,7 +11,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to user_path(@user.id)
     else
-      flash.now[:error] = "Incorrect User/Password"
+      flash.now[:error] = "Incorrect email & password combination. Please try again."
       render 'new'
     end
   end
