@@ -60,3 +60,31 @@ cookbooks = [
 cookbooks.each do |cookbook_params|
   Cookbook.create(cookbook_params)
 end
+
+ingredients = [
+  { name: "heavy cream" },
+  { name: "vanilla" },
+  { name: "white sugar" },
+  { name: "maple syrup" },
+  { name: "egg yolks" },
+  { name: "whole milk" },
+  { name: "caramel" },
+  { name: "fleur de sel" },
+  { name: "lavendar" },
+  { name: "lemon juice" },
+  { name: "wild blackberries" },
+  { name: "fresh chevre" },
+  { name: "toasted hazelnuts" },
+  { name: "unsweetened chocolate" },
+  { name: "cocoa powder" },
+  { name: "fresh mint leaves" },
+  { name: "vanilla bean" },
+  { name: "toasted walnuts" },
+  { name: "honey" },
+  { name: "fresh raspberries" },
+]
+
+ingredients.each do |ingredient_params|
+  Ingredient.create(ingredient_params)  
+end
+
