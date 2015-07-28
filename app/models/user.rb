@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
   has_many :ingredients
   has_many :recipes
 
+  # Mounted Objects
+  mount_uploader :image, ImageUploader
+
   # Validations
   # VALID_EMAIL_REGEX = /\A[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\Z/i
 
