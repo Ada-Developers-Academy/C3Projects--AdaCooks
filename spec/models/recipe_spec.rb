@@ -1,5 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Recipe, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "scopes" do
+    describe "self.alpha_order" do
+      it "sorts the recipes in alphabetical order by name" do
+        %w(Happy Lovely Pig Darling Appetite Bumpkin).each do |name|
+          create(:recipe, name: name)
+        end
+
+        expect(Recipe.alpha_order.first.name).to eq "Appetite"
+      end
+    end
+  end
 end
