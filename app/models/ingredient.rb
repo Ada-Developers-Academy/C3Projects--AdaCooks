@@ -1,5 +1,4 @@
 class Ingredient < ActiveRecord::Base
-  def index
-  @ingredients = Ingredient.all
-  end
+  has_and_belongs_to_many :recipes
+
 end
