@@ -47,3 +47,44 @@ recipes.each do |recipe_params|
   new_recipe.preparation = "1. Heat cream, add to yolks to temper. 2. Freeze in ice cream maker. 3. Enjoy!"
   new_recipe.save
 end
+
+cookbooks = [
+  { name: "Ice Creams I Have Loved", description: "a walk down memory lane", user_id: 1 },
+  { name: "Sorbet 4 Daze", description: "non-dairy treats for the lactose intolerant", user_id: 1 },
+  { name: "Gelato to Da Max", description: "Hawaiian-Italian fusion desserts", user_id: 2 },
+  { name: "Frozen Desserts", description: "ice cream, gelato, sorbet, sherbet, kulfi, etc.", user_id: 2 },
+  { name: "I Scream, You Scream", description: "we all scream, of ice cream", user_id: 3 },
+  { name: "The Dao of Ice Cream", description: "reaching enlightenment via massive consumption of ice cream", user_id: 3 }
+]
+
+cookbooks.each do |cookbook_params|
+  Cookbook.create(cookbook_params)
+end
+
+ingredients = [
+  { name: "heavy cream" },
+  { name: "vanilla" },
+  { name: "white sugar" },
+  { name: "maple syrup" },
+  { name: "egg yolks" },
+  { name: "whole milk" },
+  { name: "caramel" },
+  { name: "fleur de sel" },
+  { name: "lavendar" },
+  { name: "lemon juice" },
+  { name: "wild blackberries" },
+  { name: "fresh chevre" },
+  { name: "toasted hazelnuts" },
+  { name: "unsweetened chocolate" },
+  { name: "cocoa powder" },
+  { name: "fresh mint leaves" },
+  { name: "vanilla bean" },
+  { name: "toasted walnuts" },
+  { name: "honey" },
+  { name: "fresh raspberries" },
+]
+
+ingredients.each do |ingredient_params|
+  Ingredient.create(ingredient_params)  
+end
+
