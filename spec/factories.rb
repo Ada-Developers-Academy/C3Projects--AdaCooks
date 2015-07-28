@@ -1,5 +1,4 @@
 FactoryGirl.define do
-  # sequence(:name) { |n| "Example name #{n}" }
 
   factory :cookbook do
     name "Snacks"
@@ -28,6 +27,4 @@ FactoryGirl.define do
     # ingredient
     # cookbook
   end
-
-
 end
