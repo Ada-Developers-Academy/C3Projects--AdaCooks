@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :user do 
     resources :ingredients
+    resources :recipes
     resources :cookbooks do
       resources :recipes
     end
