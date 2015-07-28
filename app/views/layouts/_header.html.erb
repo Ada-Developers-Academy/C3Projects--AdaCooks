@@ -22,9 +22,9 @@
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Recipes<b class="caret"></b></a>
         <ul class="dropdown-menu">
-<!--           < @recipes.each do |recipe| %>
-            <li>< link_to recipe.name.titlecase, "#" %></li>
-          < end %> -->
+          <% @recipes.each do |recipe| %>
+            <li><% link_to recipe.name.titlecase, "#" %></li>
+          <% end %>
         </ul>
       </li>
 
@@ -32,9 +32,9 @@
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ingredients<b class="caret"></b></a>
         <ul class="dropdown-menu">
-<!--           < @recipes.each do |recipe| %>
-            <li>< link_to recipe.name.titlecase, "#" %></li>
-          < end %> -->
+          <% @ingredients.each do |ingredient| %>
+            <li><% link_to ingredient.name.titlecase, "#" %></li>
+          <% end %>
         </ul>
       </li>
     </ul>
@@ -46,7 +46,7 @@
         <li><%= link_to "Sign Up", new_user_path, class: "navbar-link" %></li>
       <% else %>
         <li><%= button_to "Logout", logout_path, method: :delete, class: "btn btn-default navbar-btn" %></li>
-        <li><%= link_to @user.name, user_path(session[:user_id]), class: "navbar-link" %></li>
+        <li><%= link_to "User Profile", user_path(session[:user_id]), class: "navbar-link" %></li>
       <% end %>
     </ul>
 
