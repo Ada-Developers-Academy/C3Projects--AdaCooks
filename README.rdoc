@@ -1,5 +1,10 @@
 == README
 
+ImageMagick is required to run this.
+  How to Install: in command line "brew install imagemagick"
+
+
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
