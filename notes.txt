@@ -9,50 +9,50 @@ Models:
 
     name:string, required: true ✓
     description:text ✓
-    user_id:integer ✓
+    user_id:integer, required: true ✓
 
-  Cookbooks_Recipes (MIGRATION ONLY)
-    t.belongs_to :cookbook, index: true, required: true
-    t.belongs_to :recipe, index: true, required: true
+  Cookbooks_Recipes (MIGRATION ONLY) ✓
+    t.belongs_to :cookbook, index: true, required: true ✓
+    t.belongs_to :recipe, index: true, required: true ✓
 
-  Recipes
-    has_and_belongs_to_many :cookbooks
-    has_many :ingredients, through: :measurements
-    belongs_to :user
-    has_many :reviews
-    has_many :steps
-    mount_uploader :image, ImageUploader
+  Recipes ✓
+    has_and_belongs_to_many :cookbooks ✓
+    has_many :ingredients, through: :measurements ✓
+    belongs_to :user ✓
+    has_many :reviews ✓
+    has_many :steps ✓
+    mount_uploader :image, ImageUploader ✓
 
-    name:string, required: true
-    description:text
-    image:string (DEFAULT????)
-    preparation:text, required: true
-    user_id:integer
+    name:string, required: true ✓
+    description:text ✓
+    image:string (DEFAULT????) ✓
+    preparation:text, required: true ✓
+    user_id:integer, required: true ✓
 
-  Steps
-    belongs_to :recipe
-    has_many :measurements
+  Steps ✓
+    belongs_to :recipe ✓
+    has_many :measurements ✓
 
-    number:integer, required: true
-    directions:text, required: true
-    recipe_id:integer, required: true
+    number:integer, required: true ✓
+    directions:text, required: true ✓
+    recipe_id:integer, required: true ✓
 
-  Measurements
-    belongs_to :step
-    belongs_to :ingredient
+  Measurements ✓
+    belongs_to :step ✓
+    belongs_to :ingredient ✓
 
-    amount:string, required: true
-    ingredient_id:integer, required: true
-    step_id:integer, required: true
-    recipe_id:integer, required: true
+    amount:string, required: true ✓
+    ingredient_id:integer, required: true ✓
+    step_id:integer, required: true ✓
+    recipe_id:integer, required: true ✓
 
-  Ingredients
-    has_many :recipes, through: :measurements
-    has_many :measurements
-    mount_uploader :image, ImageUploader
+  Ingredients ✓
+    has_many :recipes, through: :measurements ✓
+    has_many :measurements ✓
+    mount_uploader :image, ImageUploader ✓
 
-    name:string, required: true
-    image:string (DEFAULT????)
+    name:string, required: true ✓
+    image:string (DEFAULT????) ✓
 
   Users ✓
     has_many :cookbooks ✓
@@ -63,12 +63,12 @@ Models:
     password_digest:string, required: true ✓
     bio:text ✓
 
-  Reviews
-    belongs_to :recipe
+  # Reviews
+  #   belongs_to :recipe
 
-    recipe_id:integer, required: true
-    rating:integer, required: true
-    description:text
+  #   recipe_id:integer, required: true
+  #   rating:integer, required: true
+  #   description:text
 
 
 Controllers:
