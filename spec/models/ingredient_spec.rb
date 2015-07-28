@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Ingredient, type: :model do
-<<<<<<< HEAD
   describe "model validations" do
     let(:invalid_ingredient) {build :ingredient, name: nil}
     let(:ingredient1) {create :ingredient}
@@ -14,10 +13,8 @@ RSpec.describe Ingredient, type: :model do
     it "name must be unique" do
       ingredient1
       same_ingredient = build :ingredient, name: "sugar"
-
       expect(same_ingredient).to_not be_valid
+      
     end
   end
-=======
->>>>>>> acw+khn/master
 end
