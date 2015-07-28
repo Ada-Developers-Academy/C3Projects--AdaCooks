@@ -1,10 +1,22 @@
 class UsersController < ApplicationController
   before_action :require_login, only: [:show]
+
+  def index
+
+  end
+
   def new
     @user = User.new
   end
 
   def create
+    @user = User.new(user_params[:user])
+
+    if @user.save
+      redirect_to login_url
+    else
+      redirect_to signup_path
+    end
 
   end
 
@@ -12,9 +24,6 @@ class UsersController < ApplicationController
     @user = User.find(id: params[:id])
   end
 
-  def index
-
-  end
 
 private
 

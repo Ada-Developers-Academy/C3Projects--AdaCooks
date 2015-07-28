@@ -7,10 +7,10 @@
 <div>
   <ul>
     <%= @recipes.each do |recipe| %>
-      <li> <%= image_tag(@recipe.image) %> </li>
-      <li> <%= @recipe.name %> </li>
-      <li> By <%= @recipe.user.name %> </li>
-      <li> <%= @recipe.description %> </li>
+      <li> <%= image_tag(recipe.image) %> </li>
+      <li> <%= recipe.name %> </li>
+
+      <li> <%= recipe.description %> </li>
     <% end %>
   </ul>
 </div>
