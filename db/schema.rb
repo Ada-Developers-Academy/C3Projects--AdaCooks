@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150728223622) do
+=======
+ActiveRecord::Schema.define(version: 20150728224357) do
+>>>>>>> sessions-7-28
 
   create_table "cookbooks", force: :cascade do |t|
     t.string   "name",        null: false
@@ -55,8 +59,8 @@ ActiveRecord::Schema.define(version: 20150728223622) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",        null: false
-    t.string   "password_digest", null: false
+    t.string   "username"
+    t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
