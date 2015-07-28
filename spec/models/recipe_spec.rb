@@ -24,5 +24,11 @@ RSpec.describe Recipe, type: :model do
         expect(recipe.errors.keys).to_not include :name
       end
     end
+
+    it "requires that a preparation be present" do
+      recipe = build :recipe, preparation: nil
+      expect(recipe).to_not be_valid
+      expect(recipe.errors.keys).to include :preparation
+    end
   end
 end

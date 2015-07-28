@@ -6,4 +6,5 @@ class Recipe < ActiveRecord::Base
 
   # Validations ----------------------------------------------------------------
   validates :name, presence: true, uniqueness: true
+  validates :preparation, presence: true
 end
