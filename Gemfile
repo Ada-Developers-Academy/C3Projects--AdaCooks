@@ -28,6 +28,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'mini_magick', '~> 4.2.7'
 gem 'carrierwave', '~> 0.10.0'
 
 # Use Unicorn as the app server

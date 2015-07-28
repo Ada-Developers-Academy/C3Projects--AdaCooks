@@ -17,4 +17,5 @@
 /tmp
 
 
-coverage
+coverage/
+public/uploads/
