@@ -1,0 +1,17 @@
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="collapse navbar-collapse">
+
+			<!-- login/logout -->
+			<div class="navbar-right">
+				<% unless session[:user_id] %>
+					<%= link_to 'Login', sessions_path, class: 'btn btn-primary' %>
+				<% else %>
+					Hi, user!
+					<%= link_to 'Logout', session_path(session[:user_id]), method: :delete, class: 'btn btn-primary' %>
+				<% end %>
+			</div>
+
+		</div>
+	</div>
+</nav>
