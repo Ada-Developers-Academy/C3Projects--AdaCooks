@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe Recipe, type: :model do
   describe "database relationships" do
     it "belongs to a user" do
-      recipe = build :recipe
-      user = build :user
+      user = create :user
+      recipe = create :recipe, user_id: user.id
 
       expect(recipe.user).to eq(user)
     end
