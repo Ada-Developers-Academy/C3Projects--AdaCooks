@@ -5,5 +5,6 @@ class Cookbook < ActiveRecord::Base
   has_many :ingredients, through: :recipes
 
   # Validations ----------------------------------------------
+  validates :name, presence: true, uniqueness: true     
 
 end

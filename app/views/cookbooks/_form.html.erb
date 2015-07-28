@@ -2,16 +2,17 @@
   <div class="col-md-6 col-md-offset-3">
 
     <h1><%= title %></h1>
-    <% if flash.now[:error] %>
-      <p class="errors"><%= flash.now[:error] %></p>
-    <% end %>
 
     <%= form_for item, html: {class: "form-group"}  do |f| %>
+    <%= render partial: 'shared/error_messages', locals: { any_errors: @cookbook.errors.any?,
+                                                           count_errors: @cookbook.errors.count,
+                                                           messages: @cookbook.errors.full_messages } 
+    %>
       
       <%= f.label :name, class: 'required' %>
       <%= f.text_field :name, class: 'form-control form-group' %>
 
-      <%= f.label :desc, "Description", class: 'required' %>
+      <%= f.label :desc, "Description" %>
       <%= f.text_field :desc, class: 'form-control form-group' %>
 
       <%= f.hidden_field :user_id %>
