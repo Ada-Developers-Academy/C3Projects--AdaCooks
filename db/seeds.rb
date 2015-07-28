@@ -7,7 +7,7 @@ require 'csv'
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-CSV.foreach("db/users.csv"), headers: true) do |row|
+CSV.foreach("db/users.csv", headers: true) do |row|
 
   User.create(
   name: row[0],
