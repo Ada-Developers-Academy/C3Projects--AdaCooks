@@ -44,5 +44,12 @@ CSV.foreach("db/cookbooks.csv", headers: true) do |row|
   user_id: row[2]
   )
 end
+ # 1 - 4 recipes.
+ingredients_recipes = {1 => [21, 46, 18, 12, 20, 22, 11, 19], 2 => [23, 6, 12, 11, 24, 8, 13, 26, 25], 3 => [16, 47, 27, 28, 3, 17, 29, 48, 30, 31, 32, 33, 6, 34, 35, 41, 36, 37, 38], 4 => [39, 40, 37, 41, 42, 2, 28, 49, 50, 44, 45]}
 
-ingredients_recipes = {}
+ingredients_recipes.each do |k, v|
+  recipe = Recipe.find(k)
+  v.each do |ingredient|
+    recipe.ingredients << Ingredient.find(ingredient)
+  end
+end
