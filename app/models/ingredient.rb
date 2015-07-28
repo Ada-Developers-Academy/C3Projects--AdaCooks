@@ -7,5 +7,5 @@ class Ingredient < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
 
 # SCOPES -------------------------------------------
-  score :alphabetical, -> { sort }
+  scope :alphabetical, -> { sort_by {|i| i.name} }
 end
