@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  # before_filter :authorize, only: [:dashboard]
+  
   def new
     @user = User.new
   end
