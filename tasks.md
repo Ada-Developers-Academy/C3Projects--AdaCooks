@@ -1,8 +1,14 @@
 IDEAS
 - Let's add seed data as we need it -- e.g. if I'm going to work on the ingredients controller, that'd be a good time to create the seed data for it.
 
+SEED DATA STATUS:
+- recipes seeds _IN PROGRESS: anw_
+
 TODO
-- Fix rspec _IN PROGRESS: anw_ **PR OPENED**
+- Add model validations for recipes
+- Add model validations for ingredients
+- Add model validations for cookbooks
+- Add model validations for users
 
 ## User Stories
 
@@ -19,7 +25,7 @@ TODO
     - a list of links to Recipes associated with the Ingredient
 
 ### As an anonymous User I can...
-- register a new User account
+- register a new User account _IN PROGRESS: bew_
 - Log In to an existing User account
 
 ### As a Logged In User I can...
