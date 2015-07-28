@@ -89,20 +89,34 @@ ingredients.each do |ingredient_params|
 end
 
 recipe_ingredients = [
-  { recipe_id: 1, ingredient_id: 2 },
-  { recipe_id: 1, ingredient_id: 4 },
-  { recipe_id: 1, ingredient_id: 1 },
-  { recipe_id: 2, ingredient_id: 5 },
-  { recipe_id: 2, ingredient_id: 2 },
-  { recipe_id: 2, ingredient_id: 7 },
-  { recipe_id: 3, ingredient_id: 3 },
-  { recipe_id: 3, ingredient_id: 4 },
-  { recipe_id: 3, ingredient_id: 6 },
-  { recipe_id: 4, ingredient_id: 1 },
-  { recipe_id: 4, ingredient_id: 5 },
-  { recipe_id: 4, ingredient_id: 3 }
+  { recipe_id: 1, ingredient_id: 2, quantity: "2", measurement_id: 1 },
+  { recipe_id: 1, ingredient_id: 4, quantity: "1/2", measurement_id: 2 },
+  { recipe_id: 1, ingredient_id: 1, quantity: "3", measurement_id: 3 },
+  { recipe_id: 2, ingredient_id: 5, quantity: "0.5", measurement_id: 4 },
+  { recipe_id: 2, ingredient_id: 2, quantity: "half", measurement_id: 5 },
+  { recipe_id: 2, ingredient_id: 7, quantity: "5", measurement_id: 6 },
+  { recipe_id: 3, ingredient_id: 3, quantity: "1", measurement_id: 7 },
+  { recipe_id: 3, ingredient_id: 4, quantity: "2", measurement_id: 8 },
+  { recipe_id: 3, ingredient_id: 6, quantity: "4", measurement_id: 9 },
+  { recipe_id: 4, ingredient_id: 1, quantity: "100", measurement_id: 10 },
+  { recipe_id: 4, ingredient_id: 5, quantity: "4", measurement_id: 11 },
+  { recipe_id: 4, ingredient_id: 3, quantity: "2", measurement_id: 1 }
 ]
 
 recipe_ingredients.each do |recipe_ingredient_params|
   RecipeIngredient.create(recipe_ingredient_params)
 end
+
+measurements = [
+  { unit: "dab" },
+  { unit: "cup" },
+  { unit: "tsp" },
+  { unit: "TBSP" },
+  { unit: "pinch" },
+  { unit: "sprinkle" },
+  { unit: "gram" },
+  { unit: "pound" },
+  { unit: "cc" },
+  { unit: "handful" },
+  { unit: "ounce" }
+]
