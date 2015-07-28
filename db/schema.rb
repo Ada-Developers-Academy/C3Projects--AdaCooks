@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20150728212006) do
     t.string   "description"
     t.string   "image"
     t.string   "preparation"
-    t.integer  "user_id"
+    t.integer  "user_id", null: false
   end
 
   create_table "users", force: :cascade do |t|
