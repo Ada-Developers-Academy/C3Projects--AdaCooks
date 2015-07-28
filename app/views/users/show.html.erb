@@ -1,2 +1,21 @@
 <h1>Account Page</h1>
-<%= link_to "Logout", logout_path, method: :destroy, class: "btn btn-default" %>
+<%= link_to "Logout", logout_path, method: :delete, class: "btn btn-default" %>
+
+<h4>Hello <%= @user.name %>!</h4>
+
+<h3>Cookbooks</h3>
+<table class='table'>
+  <tr>
+    <th>Cookbook Name</th>
+    <th>Recipes</th>
+    <th>Ingredients</th>
+  </tr>
+<% @user.cookbooks.each do |cookbook| %>
+  <tr>
+   <td><%= cookbook.name %></td>
+   <td><%= cookbook.recipes.count %></td>
+   <td><%= cookbook.ingredients.count %></td>
+  </tr>
+  <% end %>
+</table>
+
