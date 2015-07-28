@@ -19,19 +19,19 @@ class SessionsController < ApplicationController
 			@user = User.find_by(username: params[:session][:username])
 			return true
 		else
-			redirect_to new_user_path
 			flash[:notice] = "We couldn't find an account with that username.\nWhy not create a new account?"
+			redirect_to new_user_path
 			return # exits the action
 		end
 	end
 
 	def authenticate
-		if @user && @user.authenticate(params[:session][:password])
+		if @user.authsenticate(params[:session][:password])
 			return true
 		else
-			redirect_to sessions_path
 			flash[:error] = "Sorry, your username or password did not match our records."
-			return # exists the action
+			redirect_to sessions_path
+			return # exits the action
 		end
 	end
 end
