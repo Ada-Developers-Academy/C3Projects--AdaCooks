@@ -3,7 +3,7 @@ class CreateCookbooks < ActiveRecord::Migration
     create_table :cookbooks do |t|
       t.string :name, required: true
       t.text :description
-      t.integer :user_id
+      t.integer :user_id, required: true, index: true
 
       t.timestamps null: false
     end
