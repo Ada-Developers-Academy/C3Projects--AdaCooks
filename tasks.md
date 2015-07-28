@@ -3,6 +3,10 @@ IDEAS
 
 TODO
 - Fix rspec _IN PROGRESS: anw_ **PR OPENED**
+- Add model validations for recipes
+- Add model validations for ingredients
+- Add model validations for cookbooks
+- Add model validations for users
 
 ## User Stories
 
