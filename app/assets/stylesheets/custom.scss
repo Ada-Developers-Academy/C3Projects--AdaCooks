@@ -4,7 +4,59 @@
 /* colors */
 
 $error: #F00;
+$gray-medium-light: #EAEAEA;
 
+/* universal */
+
+.content {
+  padding-top: 35px;
+}
+
+.center {
+  text-align: center;
+  h1 {
+    margin-bottom: 10px;
+  }
+}
+
+/* navigation ------------------------------------------------- */
+
+.navbar-brand { 
+  font-size: 1.8em;
+}
+
+.navbar-right {
+ margin-right: 15px;
+}
+
+/* footer ----------------------------------------------------- */
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin top by nav height */
+  margin-top: 63px;
+
+  /* Margin bottom by footer height */
+  margin-bottom: 70px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 50px;
+  border-top: 1px solid $gray-medium-light;
+  background-color: #000;
+}
+
+.container .text-muted {
+  font-size: 0.85em;
+  margin: 16px 0;
+  text-align: center;
+}
 
 /* forms */
 
