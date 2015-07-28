@@ -15,10 +15,19 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
-  resources :users, only: [:new, :create]
-  # custom dashboard
+  resources :users, only: [:create] do
+    member do
+      get 'dashboard'
+    end
+  end
 
-  resources :sessions, only: [:new, :create, :destroy]
+
+
+  # resources :sessions, only: [:new, :create, :destroy]
+  get '/login', to: 'sessions#new', as: 'login'
+  post    '/login',   to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy', as: 'logout'
+
 
   resources :cookbooks
 
