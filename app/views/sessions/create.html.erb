@@ -1,0 +1,26 @@
+<h2>Login</h2>
+
+<%= form_for(:session, url: sesssion_index_path) do |f| %>
+
+	<!-- style these errors and reformat phrase  -->
+	<p class="text-danger form-errors">
+		<%= error_check(:username) %>
+	</p>
+
+	<div class="form-group">
+		<%= f.label :username %>
+		<%= f.text_field :username %>
+	</div>
+
+	<p class="text-danger form-errors">
+		<%= error_check(:password) %>
+	</p>
+
+	<div class="form-group">
+		<%= f.label :password %>
+		<%= f.text_field :password %>
+	</div>
+
+	<%= f.submit 'Log In', class: 'btn btn-primary' %>
+
+<% end %>
