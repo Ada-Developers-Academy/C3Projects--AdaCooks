@@ -1,5 +1,29 @@
 require 'rails_helper'
 
 RSpec.describe Ingredient, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  # presence and uniqueness of name
+  describe "model validations" do
+    it "requires a name" do
+      ingredient = build(:ingredient, name: nil)
+
+      expect(ingredient).to_not be_valid
+      expect(ingredient.errors.keys).to include(:name)
+    end
+
+    it "name must be unique" do
+      create(:ingredient)
+      ingredient2 = create(:ingredient)
+
+      expect(ingredient2).to_not be_valid
+      expect(Ingredient.count).to be 1
+      expect(ingredient2.errors.keys).to include(:name)
+    end
+
+    it "must be associated with a user" do
+      ingredient = build(:ingredient, user_id: nil)
+
+      expect(ingredient).to_not be_valid
+      expect(ingredient.errors.keys).to include(:user_id)
+    end
+  end
 end
