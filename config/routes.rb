@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     get 'dash', on: :member
   end
 
-  resources :sessions, only: [:create, :destroy]
+  resources :sessions, only: [:new, :create, :destroy]
 
   resources :cookbooks # cookbooks will always be attached to a user
 
