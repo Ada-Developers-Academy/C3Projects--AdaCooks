@@ -1,7 +1,7 @@
 <div class="container">
-  <h1>Welcome, <%= @user.name %></h1>
+  <h1>Welcome, <%= @user.username %></h1>
   <%= button_to "New Recipe", new_recipe_path %>
-  <%= button_to "New Cookbook", new_bookbook_path %>
+  <%= button_to "New Cookbook", new_cookbook_path %>
 
   <table class="table">
     <tr>
@@ -16,7 +16,7 @@
       <tr>
         <td> <%= image %> </td>
         <td> <h3><%= book.name %></h3> </td>
-        <td><%= button_to "Delete", method: "delete", cookbook_path %></td>
+        <td><%= button_to "Delete", cookbook_path, method: "delete" %></td>
       </tr>
       <tr>
         <td><%= book.description %></td>
