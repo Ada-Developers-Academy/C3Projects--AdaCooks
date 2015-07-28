@@ -1,5 +1,7 @@
-class Recipe < ActiveRecord::Base
-  mount_uploader :avatar, AvatarUploader
+require "carrierwave/orm/activerecord" # TODO: figure out how image uploader works
+
+class Recipe < ActiveRecord::Base # OPTIMIZE: the image uploader
+  # mount_uploader :avatar, AvatarUploader # FIXME: we didn't do this right?
 
   belongs_to :user
   has_and_belongs_to_many :ingredients
