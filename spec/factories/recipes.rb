@@ -6,11 +6,5 @@ FactoryGirl.define do
     preparation "tomato, crust, cheese, meat"
     cookbook nil
   end
-
-  factory :ingredients do
-    recipes {[FactoryGirl.create(:recipe)]}
-    name "Tomato"
-    image_url "a picture"
-  end
 end
 
