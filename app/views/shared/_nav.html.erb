@@ -5,6 +5,13 @@
     <a name="#top"></a>
     <li><%= button_to "View All Recipes", recipes_path, class: "btn btn-info navbar-btn"  %></li>
     <li><%= button_to "View All Ingredients", ingredients_path, class: "btn btn-info navbar-btn" %></li>
+    <li>
+      <%= form_for @search do |f| %>
+        <%= f.label :search %>
+        <%= f.text_area :search, class: "form-control" %>
+        <%= f.submit "Search", class: "btn btn-default" %>
+      <% end %>
+    </li>
     <% if session[:user_id].nil?  %>
       <li><%= button_to "Login", login_path, method: :get, class: "btn btn-info navbar-btn" %></li>
       <li><%= link_to "Sign Up", new_user_path, class: "navbar-link" %></li>
