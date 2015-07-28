@@ -35,7 +35,7 @@ recipes = [
   { name: "Lemon sorbet", description: "light, crisp, and refreshing citrus",
     image: "", user_id: 3 },
   { name: "Raspberry chevre ice cream", description: "goat's milk ice cream with chunks of mild chevre and a raspberry ribbon",
-    image: "", user_id: 3 }
+    image: "", user_id: 3 },
   { name: "Wild blackberry ice cream", description: "fresh fruit bursting with flavor in a sweet cream base",
     image: "", user_id: 3 },
   { name: "Maple walnut ice cream", description: "earthy and rich with sweet tree sap",
@@ -89,18 +89,18 @@ ingredients.each do |ingredient_params|
 end
 
 recipe_ingredients = [
-  {recipe_id: 1, ingredient_id: 2},
-  {recipe_id: 1, ingredient_id: 4},
-  {recipe_id: 1, ingredient_id: 1},
-  {recipe_id: 2, ingredient_id: 5},
-  {recipe_id: 2, ingredient_id: 2},
-  {recipe_id: 2, ingredient_id: 7},
-  {recipe_id: 3, ingredient_id: 3},
-  {recipe_id: 3, ingredient_id: 4},
-  {recipe_id: 3, ingredient_id: 6},
-  {recipe_id: 4, ingredient_id: 1},
-  {recipe_id: 4, ingredient_id: 5},
-  {recipe_id: 4, ingredient_id: 3}
+  { recipe_id: 1, ingredient_id: 2 },
+  { recipe_id: 1, ingredient_id: 4 },
+  { recipe_id: 1, ingredient_id: 1 },
+  { recipe_id: 2, ingredient_id: 5 },
+  { recipe_id: 2, ingredient_id: 2 },
+  { recipe_id: 2, ingredient_id: 7 },
+  { recipe_id: 3, ingredient_id: 3 },
+  { recipe_id: 3, ingredient_id: 4 },
+  { recipe_id: 3, ingredient_id: 6 },
+  { recipe_id: 4, ingredient_id: 1 },
+  { recipe_id: 4, ingredient_id: 5 },
+  { recipe_id: 4, ingredient_id: 3 }
 ]
 
 recipe_ingredients.each do |recipe_ingredient_params|
