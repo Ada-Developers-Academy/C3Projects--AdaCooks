@@ -55,4 +55,18 @@ RSpec.describe SessionsController, type: :controller do
 			end
 		end
 	end
+
+	describe "DELETE #destroy" do
+		context "user tries to log out" do
+			it "the session is reset" do
+				delete :destroy, id: 1
+				expect(session[:user_id]).to eq nil
+			end
+
+			it "the user is redirected to the homepage" do
+				delete :destroy, id: 1
+				expect(subject).to redirect_to root_path
+			end
+		end
+	end
 end
