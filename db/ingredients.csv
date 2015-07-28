@@ -2,7 +2,7 @@ name,image_url
 basil,basil.png
 broccoli,broccoli.png
 cabbage,cabbage.png
-carot,carot.png
+carrot,carrot.png
 corn,corn.png
 garlic,garlic.png
 ginger,ginger.png
@@ -37,3 +37,10 @@ crunchy peanunt butter,peanut_butter.png
 fish sauce,fish_sauce.png
 soy sauce,soy_sauce.png
 tamarind paste,tamarind_paste.png
+brown rice miso paste,miso_paste.png
+brown rice vinegar,rice_vinegar.png
+lime,lime.png
+soy yogurt,soy_yogurt.png
+sesame seeds,sesame_seeds.png
+avocado,avocado.png
+white beams,beams.png

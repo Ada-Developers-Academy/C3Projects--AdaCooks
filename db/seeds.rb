@@ -35,3 +35,12 @@ CSV.foreach("db/recipes.csv", headers: true) do |row|
   cookbook_id: row[4]
   )
 end
+
+CSV.foreach("db/cookbooks.csv", headers: true) do |row|
+
+  Cookbook.create(
+  name: row[0],
+  description: row[1],
+  user_id: row[2]
+  )
+end
