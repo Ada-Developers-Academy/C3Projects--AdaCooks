@@ -36,5 +36,15 @@ RSpec.describe Recipe, type: :model do
       expect(recipe).to_not be_valid
       expect(recipe.errors.keys).to include :user_id
     end
+
+    it "does not require a description" do
+      recipe = build :recipe, description: nil
+      expect(recipe.errors.keys).to_not include :description
+    end
+
+    it "does not require an image" do
+      recipe = build :recipe, image: nil
+      expect(recipe.errors.keys).to_not include :image
+    end
   end
 end
