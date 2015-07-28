@@ -4,7 +4,7 @@ RSpec.describe Recipe, type: :model do
   context "validations" do
     it "requires that a name be present" do
       recipe = build :recipe, name: nil
-      expect(recipe).to_not be_valid
+      recipe.valid?
       expect(recipe.errors.keys).to include :name
     end
 
@@ -15,7 +15,7 @@ RSpec.describe Recipe, type: :model do
 
       it "requires that a name be unique" do
         recipe = build :recipe
-        expect(recipe).to_not be_valid
+        recipe.valid?
         expect(recipe.errors.keys).to include :name
       end
 
@@ -28,13 +28,13 @@ RSpec.describe Recipe, type: :model do
 
     it "requires that a preparation be present" do
       recipe = build :recipe, preparation: nil
-      expect(recipe).to_not be_valid
+      recipe.valid?
       expect(recipe.errors.keys).to include :preparation
     end
 
     it "requires that a user_id be present" do
       recipe = build :recipe, user_id: nil
-      expect(recipe).to_not be_valid
+      recipe.valid?
       expect(recipe.errors.keys).to include :user_id
     end
 
