@@ -31,20 +31,23 @@ ingredients = [
   {name: "Vanilla Extract"},
 
 ]
-
+i = {}
 ingredients.each do |ingredient|
-  Ingredient.create ingredient
+  ar_obj = Ingredient.create ingredient
+  i[ar_obj.name] = ar_obj.id
+  # key = "honey", value = honey id
 end
 
 
 ingredients_recipes = {
-  1 => [1, 2, 3, 4, 6],
+  1 => [i["Honey"], 2, 3, 4, 6],
+  # 1 = recipe, [ingred]
   2 => [5],
 }
 
 
 recipe = Recipe.find(1)
-recipe.ingredients << Ingredient.find(1)
+recipe.ingredients << Ingredient.find(i["Honey"])
 recipe.ingredients << Ingredient.find(2)
 recipe.ingredients << Ingredient.find(3)
 recipe.ingredients << Ingredient.find(4)
