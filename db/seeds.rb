@@ -33,7 +33,8 @@ CSV.foreach("db/recipes.csv", headers: true) do |row|
 
    Ingredient.create(
      name: row[0],
-     image: row[1]
+     image: row[1],
+     user_id: row[2]
    )
   end
 

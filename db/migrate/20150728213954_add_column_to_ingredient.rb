@@ -1,5 +1,5 @@
 class AddColumnToIngredient < ActiveRecord::Migration
   def change
-    add_column :ingredient, :user, :references
+    add_reference :ingredients, :user, index: true
   end
 end
