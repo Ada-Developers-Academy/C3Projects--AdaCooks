@@ -4,5 +4,5 @@
     <small>Your source for all things sweet and frozen</small>
   </h1>
 
-  <p>Welcome, <%= @current_user ? @current_user.username : "guest" %>!</p>
+  <p>Welcome, <%= session[:user_id] ? User.find(session[:user_id]).username : "guest" %>!</p>
 </div>
