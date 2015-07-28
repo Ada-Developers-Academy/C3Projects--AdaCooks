@@ -3,12 +3,14 @@ class CookbooksController < ApplicationController
   before_action :logged_in?
   before_action :get_cookbook, only: [:show, :edit, :update, :destroy]
 
+  # Display cookbook(s)
   def index
     @cookbooks = Cookbook.all
   end
 
   def show; end
 
+  # Add a new cookbook
   def new
     @cookbook = Cookbook.new
   end
@@ -22,6 +24,7 @@ class CookbooksController < ApplicationController
     end
   end
 
+  # Edit an existing cookbook
   def edit; end
 
   def update
@@ -30,6 +33,7 @@ class CookbooksController < ApplicationController
     redirect_to user_path
   end
 
+  # Delete a cookbook
   def destroy
     @cookbook.destroy
 
