@@ -31,13 +31,12 @@ RSpec.describe User, type: :model do
       expect(user.recipes.count).to eq(1)
     end
 
-    # FAILING BY WANTING A DESCRIPTION FOR INGREDIENT
-    # it "has many ingredients" do
-    #   user = create :user, id: 1
-    #   create :ingredient, user_id: 1
-    #
-    #   expect(user.ingredients.count).to eq(1)
-    # end
+    it "has many ingredients" do
+      user = create :user, id: 1
+      create :ingredient, user_id: 1
+
+      expect(user.ingredients.count).to eq(1)
+    end
 
   end # associations
 end

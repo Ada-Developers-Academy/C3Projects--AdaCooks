@@ -234,7 +234,6 @@
         1,
         1,
         null,
-        null,
         null
       ],
       "/Users/elsa/ada/projects/project-forks/C3Projects--AdaCooks/spec/factories/ingredients.rb": [
@@ -242,8 +241,6 @@
         1,
         1,
         1,
-        1,
-        null,
         null,
         null
       ],
@@ -255,7 +252,6 @@
         1,
         1,
         null,
-        null,
         null
       ],
       "/Users/elsa/ada/projects/project-forks/C3Projects--AdaCooks/spec/factories/users.rb": [
@@ -264,7 +260,7 @@
         1,
         1,
         1,
-        null,
+        1,
         null,
         null
       ],
@@ -431,6 +427,13 @@
         1,
         null,
         null,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
         null,
         1,
         1,
@@ -438,6 +441,24 @@
         1,
         null,
         1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        null,
         null,
         null,
         null,
@@ -498,7 +519,7 @@
         1,
         1,
         null,
-        0,
+        1,
         null,
         null,
         null,
@@ -519,6 +540,6 @@
         null
       ]
     },
-    "timestamp": 1438061446
+    "timestamp": 1438117388
   }
 }
