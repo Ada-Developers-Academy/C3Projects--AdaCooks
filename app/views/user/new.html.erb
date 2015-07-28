@@ -1,0 +1,15 @@
+<%= form_for @user, url: user_index_path, method: :post do |f| %>
+
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+
+
+  <%= f.submit %>
+<% end %>
+
