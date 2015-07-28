@@ -30,5 +30,11 @@ RSpec.describe Recipe, type: :model do
       expect(recipe).to_not be_valid
       expect(recipe.errors.keys).to include :preparation
     end
+
+    it "requires that a user_id be present" do
+      recipe = build :recipe, user_id: nil
+      expect(recipe).to_not be_valid
+      expect(recipe.errors.keys).to include :user_id
+    end
   end
 end
