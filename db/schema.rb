@@ -26,6 +26,9 @@ ActiveRecord::Schema.define(version: 20150728161247) do
     t.integer "cookbook_id", null: false
   end
 
+  add_index "cookbooks_recipes", ["cookbook_id", "recipe_id"], name: "index_cookbooks_recipes_on_cookbook_id_and_recipe_id"
+  add_index "cookbooks_recipes", ["recipe_id", "cookbook_id"], name: "index_cookbooks_recipes_on_recipe_id_and_cookbook_id"
+
   create_table "ingredients", force: :cascade do |t|
     t.string   "name",       null: false
     t.string   "image"

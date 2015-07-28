@@ -3,4 +3,6 @@
     Cream &amp; Ice
     <small>Your source for all things sweet and frozen</small>
   </h1>
+
+  <p>Welcome, <%= session[:user_id] ? User.find(session[:user_id]).username : "guest" %>!</p>
 </div>
