@@ -20,8 +20,9 @@ cookbooks.each do |book|
 end
 # Users -------------------------------
 users = [
-  {username: "wangg", password: 1234, password_confirmation: 1234},
-  {username: "brittz", password: 1234, password_confirmation: 1234}
+  {username: "wangg", password_digest: 1234},
+  {username: "brittz", password_digest: 1234}
+  # when seeding users, store pw as 'password_digest'
 ]
 
 users.each do |user|
@@ -165,12 +166,12 @@ recipe.ingredients << Ingredient.find(i["Oil"])
 
 book = Cookbook.find(1)
 # Dessert
-recipe.cookbooks << Recipe.find(id: 1)
-recipe.cookbooks << Recipe.find(id: 2)
-recipe.cookbooks << Recipe.find(id: 5)
-recipe.cookbooks << Recipe.find(id: 6)
+recipe.cookbooks << Recipe.find(1)
+recipe.cookbooks << Recipe.find(2)
+recipe.cookbooks << Recipe.find(5)
+recipe.cookbooks << Recipe.find(6)
 
 book = Cookbook.find(2)
 # My Favorites
-recipe.cookbooks << Recipe.find(id: 3)
-recipe.cookbooks << Recipe.find(id: 4)
+recipe.cookbooks << Recipe.find(3)
+recipe.cookbooks << Recipe.find(4)
