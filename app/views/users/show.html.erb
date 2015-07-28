@@ -2,4 +2,26 @@
   <h1>Welcome, <%= @user.name %></h1>
   <%= button_to "New Recipe", new_recipe_path %>
   <%= button_to "New Cookbook", new_bookbook_path %>
+
+  <table class="table">
+    <tr>
+      <th>
+        <td>photo</td>
+        <td>Cookbook</td>
+        <td>No. Recipes</td>
+        <td>Delete</td>
+      </th>
+    </tr>
+    <% @cookbooks.each do |book| %>
+      <tr>
+        <td> <%= image %> </td>
+        <td> <h3><%= book.name %></h3> </td>
+        <td><%= button_to "Delete", method: "delete", cookbook_path %></td>
+      </tr>
+      <tr>
+        <td><%= book.description %></td>
+        <td><%= book.ingredients %> ingredients</td>
+      </tr>
+    <% end %>
+  </table>
 </div>
