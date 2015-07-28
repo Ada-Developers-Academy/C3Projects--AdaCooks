@@ -1,6 +1,13 @@
-<%= @ingredient.name %>
-<%= image_tag @ingredient.image_url, class: "img-md img-circle" %>
-<%= link_to "Edit", edit_ingredient_path(@ingredient.id), class: "btn btn-default" %>
-<%= link_to "Delete", ingredient_path(@ingredient.id), class: "btn btn-default", :method => :delete %>
+<h2 class="txt-center"><%= @ingredient.name %></h2>
+<%= image_tag @ingredient.image_url, class: "img-md img-circle img-center" %>
+
+<br>
+
+<%= link_to "Edit", edit_ingredient_path(@ingredient.id), class: "btn btn-default btn-center" %>
+<%= link_to "Delete", ingredient_path(@ingredient.id), class: "btn btn-default btn-center", :method => :delete %>
+
+<br>
+
+# Edit and Delete will only be available if ingredient.user_id matches session user_id
 
 <%= link_to "Return to Ingredients Index", ingredients_path %>

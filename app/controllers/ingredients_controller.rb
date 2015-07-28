@@ -7,6 +7,7 @@ class IngredientsController < ApplicationController
   def show
     @ingredient_id = params[:id]
     @ingredient = Ingredient.find(@ingredient_id)
+    @recipes = @ingredient.recipe
   end
 
   def new
@@ -18,7 +19,7 @@ class IngredientsController < ApplicationController
     if @ingredient.save
       redirect_to ingredient_path(@ingredient.id)
     else
-      flash[:error] = "Invalid Entry. Ingredient name is required and must be unique"
+      flash[:error] 
       redirect_to new_ingredient_path
     end
   end
@@ -47,6 +48,6 @@ class IngredientsController < ApplicationController
   private
 
   def ingredient_params
-    params.permit(ingredient: [:name, :image])
+    params.permit(ingredient: [:name, :image, :user_id])
   end
 end

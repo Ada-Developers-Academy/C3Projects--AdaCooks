@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryGirl.define do  
 
   factory :ingredient do
     name "An ingredient"
@@ -11,4 +11,10 @@ FactoryGirl.define do
 		password 'jentoof'
 		password_confirmation 'jentoof'
 	end
+
+  factory :cookbook do
+    name 'Cookbook'
+    description 'description'
+    user_id 1
+  end
 end
