@@ -1,6 +1,6 @@
 class CookbooksController < ApplicationController
-  include ApplicationHelper
-  before_action :logged_in?
+  before_action :require_login
+  before_action :define_user
   before_action :get_cookbook, only: [:show, :edit, :update, :destroy]
 
   # Display cookbook(s)

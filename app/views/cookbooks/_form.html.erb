@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+
+    <h1><%= title %></h1>
+    <% if flash.now[:error] %>
+      <p class="errors"><%= flash.now[:error] %></p>
+    <% end %>
+
+    <%= form_for item, html: {class: "form-group"}  do |f| %>
+      
+      <%= f.label :name, class: 'required' %>
+      <%= f.text_field :name, class: 'form-control form-group' %>
+
+      <%= f.label :desc, "Description", class: 'required' %>
+      <%= f.text_field :desc, class: 'form-control form-group' %>
+
+      <%= f.hidden_field :user_id %>
+
+      <%= f.submit class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
