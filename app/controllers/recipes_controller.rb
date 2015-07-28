@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   def index
-    @recipes = Recipe.all.order(:name) # TODO: write scope
+    @recipes = Recipe.alphabetized # TODO: write scope
   end
 
   def new

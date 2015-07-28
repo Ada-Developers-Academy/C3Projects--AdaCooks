@@ -23,4 +23,5 @@ class Recipe < ActiveRecord::Base # OPTIMIZE: the image uploader
   # u.avatar.url # => '/url/to/file.png'
   # u.avatar.current_path # 'path/to/file.png'
   # u.avatar_indentifier # 'file.png'
+  scope :alphabetized, -> { order(:name) }
 end
