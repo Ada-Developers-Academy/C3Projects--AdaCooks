@@ -9,8 +9,8 @@ class SessionsController < ApplicationController
       flash[:messages] = MESSAGES[:successful_login]
       redirect_to root_path
     else
-      flash.now[:errors] = ERRORS[:login_error]
-      render :new
+      flash[:errors] = ERRORS[:login_error]
+      redirect_to :back
     end
   end
 

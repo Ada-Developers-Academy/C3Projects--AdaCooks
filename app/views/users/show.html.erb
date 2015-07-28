@@ -1,0 +1,12 @@
+<h1>User Profile for <%= @user.username %></h1>
+<div class="row">
+  <div class="col-sm-8 col-md-4">
+    <div class="thumbnail">
+      <%= image_tag @user.image_url(:small), alt: "User Profile Photo" %>
+      <div class="caption">
+        <h3><%= @user.username %></h3>
+        <p>Email: <%= @user.email %></p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -18,8 +18,15 @@
     <%= render partial: "shared/login_bar" %>
   </header>
   <div class="container-fluid">
-    <%= yield %>
+    <% if flash[:messages] %>
+      <h5 class="alert alert-success"><%= flash[:messages] %></h5>
+    <% end %>
 
+    <% if flash[:errors] %>
+      <h5 class="alert alert-warning"><%= flash[:errors] %></h5>
+    <% end %>
+
+    <%= yield %>
   </div>
 </body>
 </html>
