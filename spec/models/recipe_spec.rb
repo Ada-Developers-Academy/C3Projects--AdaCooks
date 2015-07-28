@@ -41,10 +41,67 @@ RSpec.describe Recipe, type: :model do
   end
 
   describe "model validations" do
-    pending "name validation"
-    pending "steps validation"
-    pending "description validation"
+    it "requires a name" do
+      recipe = create :recipe, name: "yes"
+
+      expect(recipe).to be_valid
+      expect(Recipe.count).to eq(1)
+    end
+
+    it "does not create a recipe without a name" do
+      invalid_recipe = build :recipe, name: nil
+
+      expect(invalid_recipe).not_to be_valid
+      expect(invalid_recipe.errors.keys).to include(:name)
+    end
+
+    it "requires steps" do
+      recipe = create :recipe, steps: "some steps"
+
+      expect(recipe).to be_valid
+      expect(Recipe.count).to eq(1)
+    end
+
+    it "does not create a recipe without steps" do
+      invalid_recipe = build :recipe, steps: nil
+
+      expect(invalid_recipe).not_to be_valid
+      expect(invalid_recipe.errors.keys).to include(:steps)
+    end
+
+    it "requires a user_id" do
+      recipe = create :recipe, user_id: 1
+
+      expect(recipe).not_to be_valid
+      expect(Recipe.count).to eq(1)
+    end
+
+    it "does not create a recipe without a user_id" do
+      invalid_recipe = build :recipe, user_id: nil
+
+      expect(invalid_recipe).not_to be_valid
+      expect(invalid_recipe.errors.keys).to include(:user_id)
+    end
+
+    it "requires an integer for user_id" do
+      invalid_recipe = build :recipe, user_id: "no"
+
+      expect(invalid_recipe).not_to be_valid
+      expect(invalid_recipe.errors.keys).to include(:user_id)
+    end
+
     pending "avatar/image"
-    pending "user_id validations"
+  end
+
+  describe "model scopes" do
+    it ".alphabetized puts recipes in alphabetical order" do
+      recipe3 = create :recipe, name: "c"
+      recipe1 = create :recipe, name: "a"
+      recipe2 = create :recipe, name: "b"
+
+      sorted_recipes = [recipe1, recipe2, recipe3]
+
+      expect(Recipe.alphabetized).to eq(sorted_recipes)
+    end
   end
 end
