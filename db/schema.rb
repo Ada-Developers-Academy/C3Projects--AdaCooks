@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150727234632) do
+ActiveRecord::Schema.define(version: 20150728000427) do
 
   create_table "cookbooks", force: :cascade do |t|
     t.string   "name",        null: false
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20150727234632) do
 
   create_table "recipes", force: :cascade do |t|
     t.string   "name",        null: false
-    t.string   "steps",       null: false
+    t.text     "steps",       null: false
     t.string   "description"
     t.string   "avatar"
     t.integer  "user_id",     null: false
