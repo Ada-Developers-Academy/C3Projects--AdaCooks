@@ -19,16 +19,29 @@ class IngredientsController < ApplicationController
       redirect_to ingredient_path(@ingredient.id)
     else
       flash[:error] = "Invalid Entry. Ingredient name is required and must be unique"
+      redirect_to new_ingredient_path
     end
   end
 
   def edit
+    @ingredient_id = params[:id]
+    @ingredient = Ingredient.find(@ingredient_id)
   end
 
   def update
+    @ingredient_id = params[:id]
+    @ingredient = Ingredient.find(@ingredient_id)
+    @ingredient.update(ingredient_params[:ingredient])
+
+    redirect_to ingredient_path(@ingredient_id)
   end
 
   def destroy
+    @ingredient_id = params[:id]
+    @ingredient = Ingredient.find(@ingredient_id)
+    @ingredient.destroy
+
+    redirect_to ingredients_path
   end
 
   private

@@ -1,2 +1,4 @@
 <%= @ingredient.name %>
-<%= @ingredient.image %>
+<%= image_tag("#{@ingredient.image}") %>
+<%= link_to "Edit", edit_ingredient_path(@ingredient.id), class: "btn btn-default" %>
+<%= link_to "Delete", ingredient_path(@ingredient.id), class: "btn btn-default", :method => :delete %>
