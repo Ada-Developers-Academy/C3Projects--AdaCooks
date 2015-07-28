@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Ingredient, type: :model do
+<<<<<<< HEAD
+  # pending "add some examples to (or delete) #{__FILE__}"
+end
+=======
 
     before :each do
       @ingredient = build :ingredient, user_id: 1
@@ -49,3 +53,4 @@ RSpec.describe Ingredient, type: :model do
     end
 
   end
+>>>>>>> d07e2e83622366d5a534cb0a3401d3389e61d275

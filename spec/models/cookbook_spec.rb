@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Cookbook, type: :model do
+<<<<<<< HEAD
+  # pending "add some examples to (or delete) #{__FILE__}"
+end
+=======
     before :each do
       @cookbook = build :cookbook, id: 1, user_id: 1
     end
@@ -55,3 +59,4 @@ RSpec.describe Cookbook, type: :model do
       end
     end
   end
+>>>>>>> d07e2e83622366d5a534cb0a3401d3389e61d275

@@ -1,9 +1,8 @@
 FactoryGirl.define do
   factory :recipe do
-    name "MyString"
-description "MyText"
-preparation "MyText"
-image ""
+    name "recipe name"
+    description "recipe description"
+    preparation "recipe preparation"
+    image ""
   end
-
 end
