@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to login_url
     else
-      redirect_to users_path
+      redirect_to signup_path
     end
 
   end

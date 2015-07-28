@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   # sessions paths
-  # get    "/signup" => 'users#new', as: 'signup'
+  get    "/signup" => 'users#new', as: 'signup'
   get    "/login", to: "sessions#new", as: 'login'
   post   "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy", as: 'logout'
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :recipes
   resources :cookbooks
   resources :ingredients
-  resources :users
+  resources :users, except: [:new]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
