@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       get 'dashboard'
     end
   end
+  get '/register', to: 'users#new', as: 'register'
 
 
 

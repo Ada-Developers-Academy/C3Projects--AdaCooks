@@ -1,8 +1,12 @@
-<h1>Hi!</h1>
+<h2>Home</h2>
 
 <!-- link to login -->
 <!-- link to logout -->
-<!-- link to register -->
-<!-- link to dashboard -->
+<p>
+  <%= link_to "Register", register_path, class: "btn btn-primary" %>
+</p>
+<p>
+  <%= link_to "Dashboard",  dashboard_user_path(@user), class: "btn btn-primary" %>
+</p>
 
 <!-- search bar -->

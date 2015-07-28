@@ -13,3 +13,46 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+html {
+  background: #ddd
+}
+
+body {
+  max-width: 970px;
+  margin: auto;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+#main-container {
+  min-height: 100vh;
+}
+
+.form-control {
+  max-width: 250px;
+}
+
+.fit-width {
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.inline-form {
+  display: inline-block;
+}
+
+.field_with_errors {
+  display: block;
+}
+
+.label {
+  font-size: 100%;
+  padding: 4px 10px;
+  vertical-align: middle;
+}
+
+.form-label {
+  display: block;
+}
