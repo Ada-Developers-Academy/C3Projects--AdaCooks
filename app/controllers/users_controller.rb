@@ -10,12 +10,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params[:user])
+    @user = User.new(user_params)
+    @user.save
 
     if @user.save
       redirect_to login_url
     else
-      redirect_to signup_path
+      redirect_to users_path
     end
 
   end
@@ -28,6 +29,6 @@ class UsersController < ApplicationController
 private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:username, :password, :password_confirmation)
   end
 end

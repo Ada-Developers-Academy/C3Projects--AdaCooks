@@ -1,5 +1,5 @@
 <h1> Register with us! </h1>
-<%= form_for :user, url: "/users" do |f| %>
+<%= form_for @user do |f| %>
 <div class="form-group">
   <%= f.label :username, "User Name" %>
   <%= f.text_field :username, class: "form-control" %>

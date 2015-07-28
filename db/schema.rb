@@ -11,16 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20150728223622) do
-=======
 ActiveRecord::Schema.define(version: 20150728224357) do
->>>>>>> sessions-7-28
 
   create_table "cookbooks", force: :cascade do |t|
     t.string   "name",        null: false
     t.string   "description"
-    t.string   "user_id"
+    t.string   "user_id",     null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
