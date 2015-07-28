@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   def index
-    @recipes = Recipe.all.order(:name)
+    @recipes = Recipe.all.order(:name) # TODO: write scope
   end
 
   def new
@@ -17,6 +17,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    # TODO: Add in image to view, fix ingredient path
   end
 
   def destroy
