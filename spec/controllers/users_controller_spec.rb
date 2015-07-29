@@ -35,7 +35,6 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-
   describe "POST #create" do
     context "valid params" do
       it "creates a Cookbook record" do
