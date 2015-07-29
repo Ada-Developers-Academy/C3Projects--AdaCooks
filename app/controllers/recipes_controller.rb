@@ -1,17 +1,16 @@
 class RecipesController < ApplicationController
+  before_action :find_recipe, only: [ :show, :edit, :update ]
+  before_action :get_recipe_associations, only: [ :new, :edit ]
 
   def index
     @recipes = Recipe.order(:name)
   end
 
-  def show
-    @recipe = Recipe.find(params[:id])
-  end
+  def show; end
 
   def new
     @recipe = Recipe.new
     @ingredients = Ingredient.all
-    @cookbooks = Cookbook.where(user_id: session[:user_id])
   end
 
   def create
@@ -26,10 +25,15 @@ class RecipesController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
+    @recipe.update(create_recipe_params)
+    @recipe.ingredient_ids = [] unless params[:recipe][:ingredient_ids]
+    @recipe.cookbook_ids = [] unless params[:recipe][:cookbook_ids]
+    @recipe.save
+
+    redirect_to recipe_path(@recipe.id)
   end
 
   def destroy
@@ -48,5 +52,12 @@ class RecipesController < ApplicationController
     )
   end
 
+  def find_recipe
+    @recipe = Recipe.find(params[:id])
+  end
 
+  def get_recipe_associations
+    @ingredients = Ingredient.all
+    @cookbooks = Cookbook.where(user_id: session[:user_id])
+  end
 end

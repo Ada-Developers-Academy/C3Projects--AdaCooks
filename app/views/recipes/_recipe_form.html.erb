@@ -33,10 +33,17 @@
       <div class="col-sm-12">
         <div class="button-group" role="group">
           <% @ingredients.each do |ingredient| %>
-            <div class="btn btn-default">
-              <%= check_box_tag "recipe[ingredient_ids][]", ingredient.id %>
-              <%= link_to ingredient.name, ingredient_path(ingredient.id) %>
-            </div>
+            <% unless @recipe.ingredients.include?(ingredient) %>
+              <div class="btn btn-default">
+                <%= check_box_tag "recipe[ingredient_ids][]", ingredient.id %>
+                <%= link_to ingredient.name, ingredient_path(ingredient.id) %>
+              </div>
+            <% else %>
+              <div class="btn btn-default">
+                <%= check_box_tag "recipe[ingredient_ids][]", ingredient.id, checked = true %>
+                <%= link_to ingredient.name, ingredient_path(ingredient.id) %>
+              </div>
+            <% end %>
           <% end %>
         </div>
       </div>
@@ -57,16 +64,23 @@
       <div class="col-sm-12">
         <div class="button-group" role="group">
           <% @cookbooks.each do |cookbook| %>
-            <div class="btn btn-default">
-              <%= check_box_tag "recipe[cookbook_ids][]", cookbook.id %>
-              <%= link_to cookbook.name, cookbook_path(cookbook.id) %>
-            </div>
+            <% unless @recipe.cookbooks.include?(cookbook) %>
+              <div class="btn btn-default">
+                <%= check_box_tag "recipe[cookbook_ids][]", cookbook.id %>
+                <%= link_to cookbook.name, cookbook_path(cookbook.id) %>
+              </div>
+            <% else %>
+              <div class="btn btn-default">
+                <%= check_box_tag "recipe[cookbook_ids][]", cookbook.id, checked = true %>
+                <%= link_to cookbook.name, cookbook_path(cookbook.id) %>
+              </div>
+            <% end %>
           <% end %>
         </div>
       </div>
     </div>
   </div>
-  <%= f.submit "Create", class: "btn btn-success" %>
+  <%= f.submit class: "btn btn-success" %>
 
 <% end %>
 <hr>
