@@ -43,7 +43,8 @@ recipes = [
     name: "Yam Chips",
     description: "Yam Chips",
     preparation: "Slice yam in thin slices using mandolin. Toss with rest of ingredients. Lay flat on foil and put it in the oven. Bake until crispy.",
-    user_id: 1
+    user_id: 1,
+    image: "yam_chips.jpg"
   },
 
   {

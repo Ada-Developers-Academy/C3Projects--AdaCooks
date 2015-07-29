@@ -1,5 +1,31 @@
-<%= render partial: "shared/show", locals: { type: "Recipe"} %>
 
 view the details of a Recipe, inluding...
 a link to the User profile of the person who created the Recipe
 links to the Ingridient profile for all associated Ingredients
+string   "name"
+t.string   "description"
+t.string   "image"
+t.string   "preparation"
+t.integer  "user_id"
+
+<div="container">
+  <h1> <%= @recipe.name %> Details </h1>
+  <h2>By <%= link_to "#{@user}", user_path(@recipe.user_id) %> </h2>
+
+  <table class="table">
+    <tr>
+        <td>Picture</td>
+        <td>Ingredients</td>
+        <td>Description</td>
+    </tr>
+    <tr>
+      <td class="thumbnails"> <%= image_tag(@recipe.image)%> </td>
+      <td> <%= @recipe.ingredients.each do |ingred| %>
+        <%= link_to "#{ingred.name}", ingredient_path(ingred.id) %>
+      <% end %>
+      </td>
+
+      <td> <%= @recipe.description %></td>
+    </tr>
+  </table>
+</div>
