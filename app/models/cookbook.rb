@@ -9,4 +9,13 @@ class Cookbook < ActiveRecord::Base
 
   # Scopes ---------------------------------------------------------------------
   scope :alphabetical, -> { order("name") }
+
+  def unique_ingredient_count
+    ingredient_list = []
+    recipes.each do |recipe|
+      ingredient_list << recipe.ingredients.pluck
+    end
+    ingredient_list = ingredient_list.flatten.uniq
+    return ingredient_list.count
+  end
 end
