@@ -62,26 +62,26 @@ cookbooks.each do |cookbook_params|
 end
 
 ingredients = [
-  { name: "heavy cream" },
-  { name: "vanilla" },
-  { name: "white sugar" },
-  { name: "maple syrup" },
-  { name: "egg yolks" },
-  { name: "whole milk" },
-  { name: "caramel" },
-  { name: "fleur de sel" },
-  { name: "lavendar" },
-  { name: "lemon juice" },
-  { name: "wild blackberries" },
-  { name: "fresh chevre" },
-  { name: "toasted hazelnuts" },
-  { name: "unsweetened chocolate" },
-  { name: "cocoa powder" },
-  { name: "fresh mint leaves" },
-  { name: "vanilla bean" },
-  { name: "toasted walnuts" },
-  { name: "honey" },
-  { name: "fresh raspberries" }
+  { user_id: 1, name: "heavy cream" },
+  { user_id: 1, name: "vanilla" },
+  { user_id: 1, name: "white sugar" },
+  { user_id: 1, name: "maple syrup" },
+  { user_id: 1, name: "egg yolks" },
+  { user_id: 1, name: "whole milk" },
+  { user_id: 1, name: "caramel" },
+  { user_id: 2, name: "fleur de sel" },
+  { user_id: 2, name: "lavendar" },
+  { user_id: 2, name: "lemon juice" },
+  { user_id: 2, name: "wild blackberries" },
+  { user_id: 2, name: "fresh chevre" },
+  { user_id: 2, name: "toasted hazelnuts" },
+  { user_id: 3, name: "unsweetened chocolate" },
+  { user_id: 3, name: "cocoa powder" },
+  { user_id: 3, name: "fresh mint leaves" },
+  { user_id: 3, name: "vanilla bean" },
+  { user_id: 3, name: "toasted walnuts" },
+  { user_id: 3, name: "honey" },
+  { user_id: 3, name: "fresh raspberries" }
 ]
 
 ingredients.each do |ingredient_params|
@@ -100,7 +100,31 @@ recipe_ingredients = [
   { recipe_id: 3, ingredient_id: 6, quantity: "4", measurement_id: 9 },
   { recipe_id: 4, ingredient_id: 1, quantity: "100", measurement_id: 10 },
   { recipe_id: 4, ingredient_id: 5, quantity: "4", measurement_id: 11 },
-  { recipe_id: 4, ingredient_id: 3, quantity: "2", measurement_id: 1 }
+  { recipe_id: 4, ingredient_id: 3, quantity: "2", measurement_id: 1 },
+  { recipe_id: 5, ingredient_id: 3, quantity: "2", measurement_id: 2 },
+  { recipe_id: 5, ingredient_id: 3, quantity: "2", measurement_id: 3 },
+  { recipe_id: 5, ingredient_id: 3, quantity: "2", measurement_id: 4 },
+  { recipe_id: 6, ingredient_id: 3, quantity: "2", measurement_id: 5 },
+  { recipe_id: 6, ingredient_id: 3, quantity: "2", measurement_id: 6 },
+  { recipe_id: 6, ingredient_id: 3, quantity: "2", measurement_id: 7 },
+  { recipe_id: 7, ingredient_id: 3, quantity: "2", measurement_id: 8 },
+  { recipe_id: 7, ingredient_id: 3, quantity: "2", measurement_id: 9 },
+  { recipe_id: 7, ingredient_id: 3, quantity: "2", measurement_id: 10 },
+  { recipe_id: 8, ingredient_id: 3, quantity: "2", measurement_id: 11 },
+  { recipe_id: 8, ingredient_id: 3, quantity: "2", measurement_id: 1 },
+  { recipe_id: 8, ingredient_id: 3, quantity: "2", measurement_id: 2 },
+  { recipe_id: 9, ingredient_id: 3, quantity: "2", measurement_id: 3 },
+  { recipe_id: 9, ingredient_id: 3, quantity: "2", measurement_id: 2 },
+  { recipe_id: 9, ingredient_id: 3, quantity: "2", measurement_id: 4 },
+  { recipe_id: 10, ingredient_id: 3, quantity: "2", measurement_id: 3 },
+  { recipe_id: 10, ingredient_id: 3, quantity: "2", measurement_id: 4 },
+  { recipe_id: 10, ingredient_id: 3, quantity: "2", measurement_id: 2 },
+  { recipe_id: 11, ingredient_id: 3, quantity: "2", measurement_id: 1 },
+  { recipe_id: 11, ingredient_id: 3, quantity: "2", measurement_id: 2 },
+  { recipe_id: 11, ingredient_id: 3, quantity: "2", measurement_id: 6 },
+  { recipe_id: 12, ingredient_id: 3, quantity: "2", measurement_id: 1 },
+  { recipe_id: 12, ingredient_id: 3, quantity: "2", measurement_id: 8 },
+  { recipe_id: 12, ingredient_id: 3, quantity: "2", measurement_id: 9 }
 ]
 
 recipe_ingredients.each do |recipe_ingredient_params|
@@ -120,3 +144,14 @@ measurements = [
   { unit: "handful" },
   { unit: "ounce" }
 ]
+
+measurements.each do |measurement_params|
+  Measurement.create(measurement_params)
+end
+
+cookbook1, cookbook2, cookbook3, cookbook4 = Cookbook.all
+
+cookbook1.recipes << Recipe.find([1,3,5,7,9,11])
+cookbook2.recipes << Recipe.find([1,3,5,8,10,12])
+cookbook3.recipes << Recipe.find([2,4,6,7,9,11])
+cookbook4.recipes << Recipe.find([2,4,6,8,10,12])
