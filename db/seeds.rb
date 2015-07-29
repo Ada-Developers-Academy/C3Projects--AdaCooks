@@ -18,17 +18,21 @@ CSV.foreach("db/cookbooks.csv", headers: true) do |row|
 end
 
 CSV.foreach("db/ingredients.csv", headers: true) do |row|
+  image_path = "app/assets/images/" + row[1]
+
   Ingredient.create(
     name: row[0],
-    image: row[1]
+    image: open(image_path)
   )
 end
 
 CSV.foreach("db/recipes.csv", headers: true) do |row|
+  image_path = "app/assets/images/" + row[2]
+
   Recipe.create(
     name: row[0],
     desc: row[1],
-    image: row[2],
+    image: open(image_path),
     prep: row[3],
     cookbook_id: row[4],
     user_id: row[5]

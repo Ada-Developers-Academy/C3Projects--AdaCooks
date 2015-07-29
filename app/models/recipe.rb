@@ -11,4 +11,7 @@ class Recipe < ActiveRecord::Base
 
 # SCOPES ----------------------------------------------
   # scope :find_recipe, ->
+
+# MOUNT UPLOADER --------------------------------------
+  mount_uploader :image, ImageUploader
 end
