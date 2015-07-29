@@ -28,7 +28,6 @@ class RecipesController < ApplicationController
 
   def recipe_save_guard(recipe)
     if recipe.save
-
       redirect_to dashboard_user_path(params[:user_id])
     else
       flash.now[:error] = "Please enter valid stuff"
