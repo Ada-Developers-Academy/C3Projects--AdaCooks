@@ -11,5 +11,5 @@
   <%= render partial: 'recipe', collection: @recipes %>
 </ul>
 
-<%= link_to 'Delete cookbook', user_cookbook_path(@current_user, @cookbook), method: :delete, 
+<%= link_to 'Delete cookbook', cookbook_path(@cookbook), method: :delete, 
   class: "btn btn-danger", role: "button" %>
