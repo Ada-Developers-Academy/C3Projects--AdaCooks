@@ -7,11 +7,44 @@ require 'CSV'
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+CSV.foreach("db/seed_data_cookbooks.csv", { encoding: "UTF-8", headers: true, header_converters: :symbol, converters: :all}) do |row|
+    image_path = "app/assets/images/" + row[:image]
+
+    Cookbook.create(
+      name: row[:name],
+      description: row[:description],
+      user_id: row[:user_id],
+      image: open(image_path)
+      )
+end
+
 CSV.foreach("db/seed_data_ingredients.csv", { encoding: "UTF-8", headers: true, header_converters: :symbol, converters: :all}) do |row|
     image_path = "app/assets/images/" + row[:image]
 
     Ingredient.create(
       name: row[:name],
+      image: open(image_path)
+      )
+end
+
+CSV.foreach("db/seed_data_recipes.csv", { encoding: "UTF-8", headers: true, header_converters: :symbol, converters: :all}) do |row|
+    image_path = "app/assets/images/" + row[:image]
+
+    Recipe.create(
+      name: row[:name],
+      description: row[:description],
+      image: open(image_path),
+      preparation: row[:preparation]
+      )
+end
+
+CSV.foreach("db/seed_data_users.csv", { encoding: "UTF-8", headers: true, header_converters: :symbol, converters: :all}) do |row|
+    image_path = "app/assets/images/" + row[:image]
+
+    User.create(
+      username: row[:username],
+      password: row[:password],
+      password_confirmation: row[:password_confirmation],
       image: open(image_path)
       )
 end
