@@ -5,4 +5,8 @@ class Recipe < ActiveRecord::Base
 
 # Validations ------------------------------------------------------------------
 	validates :name, :description, :prep, presence: true
+
+# Scopes -----------------------------------------------------------------------
+	# returns ALL recipes
+	scope :alphabetize, -> { Recipe.order(name: :asc) }
 end
