@@ -1,31 +1,20 @@
 <div class="container marketing">
+  <h1>Welcome back, <%= @user.name %>!</h1>
+  <hr class="featurette-divider">
+  <h3><mark>Cookbooks:</mark></h3>
 
-  <h1>Account Page</h1>
-  <%= link_to "Logout", logout_path, method: :delete, class: "btn btn-default" %>
+  <div class="row">
+    <% @user.cookbooks.each do |cookbook| %>
+      <div class="col-md-4">
+        <p class="lead"><%= cookbook.name %>: <small>Recipes <%= cookbook.recipes.count %> Ingredients <%= cookbook.ingredients.count %></small></p>
 
-  <h4>Hello <%= @user.name %>!</h4>
-
-  <%= link_to "Create a New Cookbook", new_cookbook_path, class: "btn btn-default" %>
-
-  <h3>Cookbooks</h3>
-
-  <% @user.cookbooks.each do |cookbook| %>
-  <div class="book">
-    <div class="row">
-      <div class="col-md-12">
-        <h4><%= cookbook.name %></h4><small>Recipes <%= cookbook.recipes.count %> Ingredients <%= cookbook.ingredients.count %></small>
+        <% cookbook.recipes.each do |recipe| %>
+          <%= image_tag recipe.image_url, class:"img-circle", size: "250x250" %>
+          <h2><%= recipe.name %></h2>
+          <p><%= recipe.description %></p>
+          <p><%= link_to "View details", recipe_path(recipe.id), class: "btn btn-default" %></p>
+        <% end %>
       </div>
-
-      <% cookbook.recipes.each do |recipe| %>
-        <div class="row">
-          <div class="col-sm-8 col-md-offset-4">
-            <p><%= link_to "#{recipe.name}", recipe_path(recipe) %></p>
-            <p><%= image_tag recipe.image_url, class: "img-circle", size: "160x160" %></p>
-          </div>
-        </div>
-
-      <% end %>
-    </div>
+    <% end %>
   </div>
-  <% end %>
 </div>
