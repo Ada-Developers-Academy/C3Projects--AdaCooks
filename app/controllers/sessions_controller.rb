@@ -1,16 +1,15 @@
 class SessionsController < ApplicationController
+  before_action :assign_user, only: [:create]
 
   def new
   end
 
   def create
-    @user = User.find_by(email: params[:session][:email])
 
     unless @user.nil?
       if @user.authenticate(params[:session][:password])
         session[:user_id] = @user.id
-        redirect_to root_path
-        # TODO Don't know how to redirect back, that'd be better. Lookup.
+        redirect_to :back
       else
         flash[:alert] = "Invalid password."
         render :new
@@ -25,6 +24,12 @@ class SessionsController < ApplicationController
   def destory
     session[:user_id] = nil
     redirect_to root_path
+  end
+  
+  private
+  
+  def assign_user
+    @user = User.find_by(email: params[:session][:email])
   end
 
 end
