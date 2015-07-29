@@ -1,9 +1,9 @@
 class IngredientsController < ApplicationController
-  before_action :require_login, except: [:index]
+  before_action :require_login, except: [:index, :show]
   before_action :find_ingredient, only: [:show, :edit, :update, :destroy]
 
   def index
-    @ingredients = Ingredient.all.alphabetical
+    @ingredients = Ingredient.all.sort_by {|i| i.name}
   end
 
   def show
@@ -12,6 +12,8 @@ class IngredientsController < ApplicationController
 
   def new
     @ingredient = Ingredient.new
+    @url = ingredients_path
+    @method = :post
   end
 
   def create
@@ -24,7 +26,8 @@ class IngredientsController < ApplicationController
   end
 
   def edit
-    render :new
+    @url = ingredient_path
+    @method = :patch
   end
 
   def update

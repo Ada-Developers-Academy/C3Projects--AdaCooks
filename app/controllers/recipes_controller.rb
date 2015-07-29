@@ -13,6 +13,8 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    @url = recipes_path
+    @method = :post
   end
 
   def create
@@ -25,7 +27,8 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    render :new
+    @url = recipe_path(@recipe)
+    @method = :patch
   end
 
   def update
