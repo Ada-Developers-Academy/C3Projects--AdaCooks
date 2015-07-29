@@ -24,4 +24,9 @@ RSpec.describe RecipesHelper, type: :helper do
       expect(recipe_ingredients_count(recipe)).to include("s")
     end
   end
+
+  # FIXME: test random_recipe_name
+  describe "random_recipe_name" do
+    pending "NOTE: I'm not sure how to properly write a unit test for this"
+  end
 end
