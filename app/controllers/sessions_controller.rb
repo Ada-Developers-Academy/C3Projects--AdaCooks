@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
 	end
 
 	def authenticate
-		if @user.authsenticate(params[:session][:password])
+		if @user.authenticate(params[:session][:password])
 			return true
 		else
 			flash[:error] = "Sorry, your username or password did not match our records."
