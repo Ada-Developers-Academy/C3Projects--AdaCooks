@@ -12,8 +12,8 @@ RSpec.describe Recipe, type: :model do
     it "has and belongs to many ingredients" do
       recipe = create :recipe
       ingredient1 = create :ingredient
-      ingredient2 = create :ingredient
-      ingredient3 = create :ingredient
+      ingredient2 = create :ingredient, name: "unique name"
+      ingredient3 = create :ingredient, name: "another unique name"
 
       all_ingredients = [ingredient1, ingredient2, ingredient3]
 

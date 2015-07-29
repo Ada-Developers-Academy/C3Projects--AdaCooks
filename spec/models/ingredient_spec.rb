@@ -4,7 +4,7 @@ RSpec.describe Ingredient, type: :model do
   describe "database relationships" do
     it "belongs to a user" do
       user1 = create :user
-      user2 = create :user
+      user2 = create :user, username: "unique", email: "also@unique.email"
       ingredient = create :ingredient, user_id: user1.id
 
       expect(ingredient.user).to eq(user1)
