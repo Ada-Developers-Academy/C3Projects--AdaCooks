@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     unless @user.nil?
       if @user.authenticate(params[:session][:password])
         session[:user_id] = @user.id
-        redirect_to :back
+        redirect_to root_path
       else
         flash[:alert] = "Invalid password."
         render :new
@@ -21,14 +21,14 @@ class SessionsController < ApplicationController
 
   end
 
-  def destory
+  def destroy
     session[:user_id] = nil
     flash.now[:success] = "You have successfully logged out. Congradulations!"
     redirect_to root_path
   end
-  
+
   private
-  
+
   def assign_user
     @user = User.find_by(email: params[:session][:email])
   end
