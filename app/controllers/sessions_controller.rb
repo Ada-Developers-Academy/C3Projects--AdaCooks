@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       redirect_to root_path
     else
       flash[:errors] = ERRORS[:login_error]
-      redirect_to :back
+      redirect_to root_path #TODO: Change this path, could not get :back to test at this time (HTTPS REFERER??)
     end
   end
 
