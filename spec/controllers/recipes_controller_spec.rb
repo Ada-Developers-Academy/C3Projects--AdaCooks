@@ -13,7 +13,7 @@ RSpec.describe RecipesController, type: :controller do
 			expect(assigns(:recipes).count).to eq Recipe.count
 		end
 
-		it "lists the recipes alphabetically" do
+		it "lists the recipes alphabetically by name" do
 			get :index
 
 			title_order = []
