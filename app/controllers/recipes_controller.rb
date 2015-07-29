@@ -8,7 +8,8 @@ class RecipesController < ApplicationController
     @recipe = Recipe.create(recipe_params)
 
     if @recipe.save
-      redirect_to dashboard_user_path(session[:user_id])
+
+      redirect_to dashboard_user_path(params[:user_id])
     else
       flash.now[:error] = "Please enter valid stuff"
 

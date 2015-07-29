@@ -32,7 +32,7 @@ Rails.application.routes.draw do
 
   resources :cookbooks
 
-  resources :users do
+  resources :users, only: [] do
     resources :recipes, only: [:new, :create]
   end
 

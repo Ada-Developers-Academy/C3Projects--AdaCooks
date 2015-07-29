@@ -3,7 +3,7 @@
 <% end %>
 
 <h1>New Recipe</h1>
-<%= form_for @recipe, url: user_recipes_path(params[:user_id]), html: { class: "form" } do |f| %>
+<%= form_for @recipe, url: user_recipes_path(session[:user_id]), html: { class: "form" } do |f| %>
   <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :name, required: true, autofocus: true, class: "form-control" %>
@@ -19,10 +19,10 @@
     <%= f.text_area :preparation, class: "form-control" %>
   </div>
 
-  <% f.hidden_field :user_id, :value => session[:user_id] %>
+  <%= f.hidden_field :user_id, :value => params[:user_id] %>
 
   <!-- needs ingredients fields -->
   <!-- needs option to add to cookbook -->
 
-  <%= f.submit "Add Recipe", class: "btn btn-primary" %>
+  <%= f.submit "Add Recipe", method: :post, class: "btn btn-primary" %>
 <% end %>
