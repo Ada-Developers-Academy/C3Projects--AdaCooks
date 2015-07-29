@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
   before_action :find_recipe, only: [:show, :edit, :update, :destroy]
 
   def index
-    @recipes = Recipes.all.sort_by {|recipe| recipe.name}
+    @recipes = Recipe.all.sort_by {|recipe| recipe.name}
   end
 
   def show
@@ -13,6 +13,8 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    @url = recipes_path
+    @method = :post
   end
 
   def create
@@ -25,7 +27,8 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    render :new
+    @url = recipe_path(@recipe)
+    @method = :patch
   end
 
   def update

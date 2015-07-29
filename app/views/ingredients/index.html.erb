@@ -1,0 +1,12 @@
+<h1> Ingredients </h1>
+<% alphabet = %w(A B C D E F G H I J K L M N O P Q R S T U V W X Y Z) %>
+<% @ingredients.each do |ingredient| %>
+  <% alphabet.each do |letter| %>
+    <% if ingredient.name.first.upcase == letter %>
+      <strong><%= letter %></strong>
+      <%= link_to ingredient.name, ingredient_path(ingredient), method: :get %>
+    <% else %>
+      <strong><%= letter %></strong>
+    <% end %>
+  <% end %>
+<% end %>
