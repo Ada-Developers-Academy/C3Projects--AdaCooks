@@ -1,22 +1,19 @@
-<div class="col-sm-4 no-float center-block">
-	<h2>Welcome Back, ya Lush!</h2>
-	<br>
+<h2>Login</h2>
 
-	<%= form_for(:session, url: sessions_path) do |f| %>
+<%= form_for(:session, url: sessions_path) do |f| %>
 
-		<!-- add +  style these errors and reformat phrase  -->
+	<!-- add +  style these errors and reformat phrase  -->
 
-		<div class="form-group">
-			<%= f.label :username %>
-			<%= f.text_field :username, class: 'form-control' %>
-		</div>
+	<div class="form-group">
+		<%= f.label :username %>
+		<%= f.text_field :username %>
+	</div>
 
-		<div class="form-group">
-			<%= f.label :password %>
-			<%= f.password_field :password, class: 'form-control' %>
-		</div>
+	<div class="form-group">
+		<%= f.label :password %>
+		<%= f.text_field :password %>
+	</div>
 
-		<%= f.submit 'Log In', class: 'btn btn-primary' %>
+	<%= f.submit 'Log In', class: 'btn btn-primary' %>
 
-	<% end %>
-</div>
+<% end %>
