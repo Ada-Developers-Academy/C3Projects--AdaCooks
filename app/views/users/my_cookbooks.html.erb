@@ -1,19 +1,19 @@
 <div class="row">
   <ul class="nav nav-tabs nav-justified">
-    <li role="presentation" class="active">
+    <li role="presentation">
       <%= link_to 'Recipes', my_recipes_path %>
     </li>
-    <li role="presentation">
+    <li role="presentation" class="active">
       <%= link_to 'Cookbooks', my_cookbooks_path %>
     </li>
   </ul>
 
-  <h3>My Recipes</h3>
+  <h3>My Cookbooks</h3>
 
   <ul class="list-group">
-    <% @recipes.each do |recipe| %>
+    <% @cookbooks.each do |cookbook| %>
       <li class="list-group-item">
-        <%= link_to recipe.name, recipe %>
+        <%= link_to cookbook.name, cookbook %>
       </li>
     <% end %>
   </ul>

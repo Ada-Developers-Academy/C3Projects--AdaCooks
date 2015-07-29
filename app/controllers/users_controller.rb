@@ -23,6 +23,7 @@ class UsersController < ApplicationController
   end
 
   def my_cookbooks
+    @cookbooks = @current_user.cookbooks.alphabetical
   end
 
   private
