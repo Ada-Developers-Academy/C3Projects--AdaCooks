@@ -1,12 +1,16 @@
 <h2>Your Cookbooks</h2>
 
-<ul>
-  <%= @cookbooks.each do |cookbook| %>
-    <li>
-      <%= link_to cookbook.name, cookbook_path(cookbook) %>
-      <%= link_to "\u2716", cookbook_path(cookbook), method: "delete" %>
-    </li>
-  <% end %>
-</ul>
+<% if @cookbooks.nil? %>
+  <p>You have no cookbooks. :(</p>
+<% else %>
+  <ul>
+    <% @cookbooks.each do |cookbook| %>
+      <li>
+        <%= link_to cookbook.name, cookbook_path(cookbook) %>
+        <%= link_to "\u2716", cookbook_path(cookbook), method: "delete" %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
 
-<% link_to "ADD", new_cookbook_path, class: "btn btn-primary" %>
+<%= link_to "ADD", new_cookbook_path, class: "btn btn-primary" %>

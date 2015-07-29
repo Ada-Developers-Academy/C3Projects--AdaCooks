@@ -10,7 +10,7 @@ class CookbooksController < ApplicationController
   # end
 
   def index
-    @cookbook = Cookbook.all # TODO SHOULD BE ALPHABETICAL?
+    @cookbooks = Cookbook.by_user(session[:user_id]) # TODO SHOULD BE ALPHABETICAL?
   end
 
   def new
