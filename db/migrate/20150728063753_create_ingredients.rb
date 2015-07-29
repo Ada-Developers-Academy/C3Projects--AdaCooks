@@ -4,7 +4,7 @@ class CreateIngredients < ActiveRecord::Migration
 
       t.string :name
       t.string :image
-      t.integer :recipe_id
+ 
 
       t.timestamps null: false
     end
