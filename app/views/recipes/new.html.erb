@@ -1,0 +1,25 @@
+<h1>Make history with a new concoction!</h1>
+
+<% render "recipe_form" %>
+
+<%= form_for @recipe do |f| %>
+  <div class="form-group">
+    <fieldset>
+      <legend><h2>Recipe details</h2></legend>
+      <%= f.label, :name, "Name" %>
+      <%= f.text_field, :name, :required => true, class: "form-control" %>
+
+      <%= f.label, :description, "Description"  %>
+      <%= f.text_field, :description, class: "form-control" %>
+
+      <%= f.label, :image, "Image" %>
+      <%= f.file_field, :image, class: "form-control" %>
+
+      <%= f.label, :preparation, "preparation" %>
+      <%= f.text_area, :preparation, :required => true, class: "form-control" %>
+
+      <%= f.submit "Submit", class="btn btn-default" %>
+    </fieldset>
+
+  </div>
+<% end %>
