@@ -1,0 +1,13 @@
+<%= render partial: 'shared/flash_messages' %>
+
+<h3><%= @cookbook.name %></h3>
+<!-- in future, redirect to user_path(@owner) -->
+<p>Created by: <%= link_to @owner.username, root_path %></p>
+
+<p><%= @cookbook.description %></p>
+
+<h4>Recipes:</h4>
+
+<ul class="list-group">
+  <%= render partial: 'recipe', collection: @recipes %>
+</ul>
