@@ -12,7 +12,7 @@ TODO
 ### As any User, I can...
 - search by the name of an Ingredient and get related Recipes back.
 - __Recipes__
-  - view an alphabetical list of all Recipes _IN PROGRESS: anw_
+  - view an alphabetical list of all Recipes _IN PROGRESS: anw_ *PR OPENED*
   - view the details of a Recipe, inluding...
     - a link to the User profile of the person who created the Recipe
     - links to the Ingridient profile for all associated Ingredients
