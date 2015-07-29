@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   resources :recipes, :ingredients
   resources :sessions, only: [:new, :create, :destroy]
 
-
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
