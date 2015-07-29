@@ -1,0 +1,11 @@
+<h1> <%= @cookbook.name %> </h1>
+
+<h3>Recipes</h3>
+
+<table class="table">
+  <% @recipes.each do |recipe| %>
+    <tr>
+      <td> <%= link_to "#{recipe.name}", recipe_path(recipe.id) %></td>
+    </tr>
+  <% end %>
+</table>
