@@ -1,5 +1,6 @@
 class CookbooksController < ApplicationController
   before_action :require_user_login
+  before_action :set_cookbook, only: [:edit, :show, :destroy]
 
   def index
     @user = User.find(params[:user_id])
@@ -17,7 +18,6 @@ class CookbooksController < ApplicationController
   end
 
   def edit
-    @cookbook = Cookbook.find(params[:id])
   end
 
   def update
@@ -27,12 +27,17 @@ class CookbooksController < ApplicationController
   end
 
   def show
-    @cookbook = Cookbook.find(params[:id])
     @recipes = @cookbook.recipes
   end
 
   def destroy
+    associated_recipes = @cookbook.recipes
+
     Cookbook.destroy(params[:id])
+
+    # forces recipe entry to reload so that recipes.cookbooks no longer shows
+    # association with deleted cookbook (SQL caches the old association)
+    associated_recipes.each { |recipe| recipe.reload }
 
     redirect_to user_cookbooks_path(session[:user_id])
   end
@@ -43,5 +48,9 @@ class CookbooksController < ApplicationController
       create_params[:user_id] = session[:user_id]
 
       return create_params
+    end
+
+    def set_cookbook
+      @cookbook = Cookbook.find(params[:id])
     end
 end
