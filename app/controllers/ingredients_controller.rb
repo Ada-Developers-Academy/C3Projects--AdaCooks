@@ -11,6 +11,7 @@ def index
 end
 
 def show
+  @recipes = Recipes.find(params[:ingredient_id]) 
 end
 
 def new
@@ -42,7 +43,7 @@ private
 #params ------------------------------------------------------------------------------
 
 def ingredient_params
-  params.require(:ingredient).permit(:name, :image)
+  params.require(:ingredient).permit(:name, :image, :ingredient_id)
 end
 
 end

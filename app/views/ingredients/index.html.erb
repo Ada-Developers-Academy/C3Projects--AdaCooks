@@ -1,1 +1,7 @@
-index.html.erb
+
+<%@images.each do |image| %>
+  <ul>
+    <li> <%= image_tag(ingredient.image) %> </li>
+    <li> <%= ingredient.name %> </li>
+  </ul> 
+<% end %> 
