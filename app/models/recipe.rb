@@ -5,4 +5,6 @@ class Recipe < ActiveRecord::Base
   has_many :steps
   belongs_to :user
   mount_uploader :image, ImageUploader
+
+  scope :by_name, -> { order(:name) }
 end
