@@ -8,6 +8,3 @@
 <% end %>
 
 <h3>Here are your Ingredients: </h3>
-<% @user.ingredients.each do |ingredient|%>
-<%= link_to(image_tag(ingredient.image_url(:thumb)), ingredient(ingredient.id)) %>
-<% end %>
