@@ -2,8 +2,16 @@
   <div class="col-md-8">
     <h1> <%= @recipe.name %></h1>
     <p><%= image_tag @recipe.image_url(:display) %></p>
-    <!-- Place image link here -->
     <p>Description: <%= @recipe.description %></p>
+
+    <ul class="list-group">
+      <% @ingredient_lines.each do |line| %>
+        <li class="list-group-item">
+            <%= "#{line.quantity} #{line.measurement.unit} #{line.ingredient.name}" %>
+        </li>
+      <% end %>
+    </ul>
+
     <p>Preparation: <%= @recipe.preparation %></p>
     <p>Recipe by: <%= link_to @recipe.user.username, "" %>
     <!-- This link needs to be filled in with the future user show path -->
