@@ -5,11 +5,6 @@
   <%= @cookbook.description %>
 </p>
 
-<h3>Owner</h3>
-<p>
-  <%= @owner %>
-</p>
-
 <h3>Recipes</h3>
 <table class="table table-bordered table-hover">
   <thead>
@@ -27,3 +22,7 @@
     <% end %>
   </tbody>
 </table>
+
+<p>
+  <%= link_to "Back to Dashboard", dashboard_user_path(@user), class: "btn btn-default" %>
+</p>

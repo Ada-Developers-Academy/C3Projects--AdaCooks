@@ -1,7 +1,7 @@
 class CookbooksController < ApplicationController
   def show
+    @user = User.find(params[:user_id])
     @cookbook = Cookbook.find(params[:id])
-    @owner = User.find(@cookbook.user_id).name
     @recipes = @cookbook.recipes
   end
 
