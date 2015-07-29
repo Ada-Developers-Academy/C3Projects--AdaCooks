@@ -4,6 +4,8 @@ class IngredientsController < ApplicationController
     @ingredients = Ingredient.alpha_order
   end
 
-
+  def show
+    @ingredient = Ingredient.find(params[:id])
+  end
 
 end
