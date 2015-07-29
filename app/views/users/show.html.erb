@@ -6,16 +6,19 @@
 
   <div class="row">
     <% @cookbooks.each do |cookbook| %>
-      <div class="col-md-4">
+      <div class="col-md-5">
 
         <%= image_tag cookbook.photo_url, class:"img-circle", size: "220x200" %>
         <h2><%= cookbook.name %></h2>
         <p>Recipes: <%= cookbook.recipes.count %> Ingredients: <%= cookbook.ingredients.count %></p>
+      <div class="btn-toolbar">
         <p><%= link_to "View details", cookbook_path(cookbook.id), class: "btn btn-default" %>
-        <%= link_to "Delete this cookbook", cookbook_path(cookbook), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure you want to delete this?"} %></p>
+        <%= link_to "Delete Cookbook", cookbook_path(cookbook), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure you want to delete this?"} %>
+        <%= link_to "Add New Recipe", new_recipe_path, class: "btn btn-default"  %></p>
+        <br>
+        <br>
+        </div>
      </div>
-
-
     <% end %>
 
   </div>
