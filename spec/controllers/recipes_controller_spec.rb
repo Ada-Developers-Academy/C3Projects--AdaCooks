@@ -16,4 +16,21 @@ RSpec.describe RecipesController, type: :controller do
       expect(assigns(:recipes)).to match_array([recipe1, recipe2])
     end
   end
+
+  describe "GET #show" do
+    before(:each) do
+      @recipe = create :recipe, name: "taiyaki"
+    end
+
+    it "renders the show template" do
+      get :show, id: @recipe
+      expect(response).to render_template :show
+    end
+
+    it "displays the correct recipe" do
+      get :show, :id => 1
+      expect(assigns(:recipe)).to eq(@recipe)
+    end
+
+  end
 end
