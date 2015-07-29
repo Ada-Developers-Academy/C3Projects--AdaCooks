@@ -1,0 +1,16 @@
+<h1> Register with us! </h1>
+<%= form_for @user do |f| %>
+<div class="form-group">
+  <%= f.label :username, "User Name" %>
+  <%= f.text_field :username, class: "form-control" %>
+
+  <%= f.label :password, "Password" %>
+  <%= f.password_field :password, class: "form-control"%>
+
+  <%= f.label :password_confirmation, "Password Confirmation" %>
+  <%= f.password_field :password_confirmation, class: "form-control" %>
+
+  <br>
+  <%= f.submit "Submit", class: "btn btn-default"  %>
+</div>
+<% end %>
