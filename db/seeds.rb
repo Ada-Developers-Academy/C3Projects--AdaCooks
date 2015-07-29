@@ -25,7 +25,8 @@ CSV.foreach("db/seed_data_recipes.csv", { encoding: "UTF-8", headers: true, head
       name: row[:name],
       description: row[:description],
       image: open(image_path),
-      preparation: row[:preparation]
+      preparation: row[:preparation],
+      user_id: row[:user_id]
       )
 
     r.cookbooks << Cookbook.find_by_name(row[:cookbook_name])
