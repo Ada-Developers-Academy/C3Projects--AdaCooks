@@ -1,0 +1,14 @@
+<%= form_for @cookbook do |f|  %>
+  <div class="form-group">
+    <fieldset>
+      <legend><h2>Add a Cookbook!</h2></legend>
+      <%= f.label :name, "Cookbook Name" %>
+      <%= f.text_field :name %>
+
+      <%= f.label :description, "Cookbook Description" %>
+      <%= f.text_area :description %>
+
+    </fieldset>
+    <%= f.submit "Submit", class: "btn btn-default"%>
+  </div>
+  <% end %>

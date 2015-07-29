@@ -3,6 +3,7 @@ class CookbooksController < ApplicationController
   end
 
   def new
+    @cookbook = Cookbook.new
   end
 
   def create
@@ -18,7 +19,7 @@ class CookbooksController < ApplicationController
 
   private
 
-  def recipe_params
-    params.require(:cookbook).permit(:name, :description, {:recipe_ids => [] })
+  def cookbook_params
+    params.require(:cookbook).permit(:name, :description)
   end
 end
