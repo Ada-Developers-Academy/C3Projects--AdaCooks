@@ -1,3 +1,22 @@
 <% @recipes.each do |recipe| %>
-  <%= recipe.name %>
+  <div class="media list-group">
+    <div class="media-left col-sm-1">
+      <a href="#">
+        <%= image_tag recipe.image_url(:thumb), alt: "#{recipe.name}", class: "media-object" %>
+      </a>
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading"><%= recipe.name %></h4>
+      <p><%= recipe.description %></p>
+      <p>Chef: <%= link_to recipe.user.username, user_path(recipe.user_id) %></p>
+    </div>
+    <div class="media-right">
+      <%= link_to "Edit Recipe", edit_recipe_path(recipe.id), class: 'btn btn-default' %>
+    </div>
+    <hr>
+  </div>
+<% end %>
+
+<% if session[:user_id] %>
+  <%= link_to "Add a New Recipe", new_recipe_path, class: 'btn btn-primary' %>
 <% end %>
