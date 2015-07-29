@@ -1,3 +1,4 @@
+<%= render partial: 'shared/flash_messages' %>
 
 <%= form_for @recipe do |f| %>
   <div class="form-group">
@@ -11,6 +12,9 @@
 
       <%= f.label :image, "Image" %>
       <%= f.file_field :image, class: "form-control" %>
+
+      <%= f.label :preparation, "preparation" %>
+      <%= f.text_area :preparation, :required => true, class: "form-control" %>
 
       <%# f.fields_for :recipe_ingredients, class: "form-inline" do |ri| %>
         <!-- <div class="form-group"> -->
@@ -29,8 +33,6 @@
           <%# ri.hidden_field :recipe_id, value: @recipe_id %>
       <%# end %>
 
-      <%# f.label :preparation, "preparation" %>
-      <%# f.text_area :preparation, :required => true, class: "form-control" %>
 
       <%= f.submit "Submit", class: "btn btn-default"%>
     </fieldset>
