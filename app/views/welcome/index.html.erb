@@ -3,5 +3,5 @@
 <h3><%= session[:user_id] %></h3>
 
 <%= link_to "Browse All Recipes", recipes_path, class: "btn btn-default" %>
-<%= link_to "Browse By Ingredient" %>
-<%= link_to "Browse By Chef" %>
+<%= link_to "Browse By Ingredient", ingredients_path, class: "btn btn-default"%>
+<%= link_to "Browse By Chef", users_path, class: "btn btn-default"%>

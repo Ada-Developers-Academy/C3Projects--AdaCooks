@@ -1,0 +1,11 @@
+<h1>Meet the Chefs of Yummaholic!</h1>
+<div class="container-fluid">
+<% @users.each do |user| %>
+<div class="col-xs-6 col-md-4">
+  <%= link_to(image_tag(user.image_url(:thumb)), user_path(user)) %>
+  <br>
+  <%= user.username %>
+</div>
+
+<% end %>
+</div>

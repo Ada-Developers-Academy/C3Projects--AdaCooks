@@ -1,5 +1,13 @@
 class UsersController < ApplicationController
 
+  def index
+    @users = User.all.order('username ASC')
+  end
+
+  def show
+
+  end
+
   def new
     @user = User.new
   end
@@ -17,7 +25,7 @@ class UsersController < ApplicationController
   end
 
 ###############################
-  private 
+  private
 
   def create_params
     params.permit(user: [:username, :password, :password_confirmation, :image])
