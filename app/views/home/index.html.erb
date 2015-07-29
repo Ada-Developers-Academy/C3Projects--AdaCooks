@@ -2,5 +2,11 @@
   <div class="container">
     <h1>Hambre</h1>
     <p>¿Tienes Hambre? Satisfy your cravings with our mouth-watering recipes.</p>
+
+    <%= form_tag({controller:'recipes', action: 'search'}, method: "get") do %>
+      <%= text_field_tag :search, params[:search], id: 'search_field', placeholder: "Search by Ingredient", class: "form-group form-control" %>
+      <%= submit_tag "Search", name: nil, class: "btn btn-default" %>
+    <% end %>
+
   </div>
 </div>
