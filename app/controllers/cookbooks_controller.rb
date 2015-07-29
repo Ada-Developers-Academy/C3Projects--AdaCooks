@@ -4,5 +4,6 @@ class CookbooksController < ApplicationController
   def show
     @cookbook = Cookbook.find(params[:id])
     @recipes = @cookbook.recipes
+    @recipe_count = @recipes.count
   end
 end
