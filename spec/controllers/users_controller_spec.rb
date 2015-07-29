@@ -6,7 +6,7 @@ RSpec.describe UsersController, type: :controller do
       user = create :user
       get :show, id: user.id
     end
-    
+
     it "responds successfully with an HTTP 200 status code" do
       expect(response).to be_success
       expect(response).to have_http_status(200)
@@ -33,6 +33,7 @@ RSpec.describe UsersController, type: :controller do
 
     context "user logged in" do
       before :each do
+        create :user
         session[:user_id] = 1
         get :new
       end
