@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
   before_action :find_recipe, only: [:show, :edit, :update, :destroy]
 
   def index
-    @recipes = Recipes.all.sort_by {|recipe| recipe.name}
+    @recipes = Recipe.all.sort_by {|recipe| recipe.name}
   end
 
   def show
