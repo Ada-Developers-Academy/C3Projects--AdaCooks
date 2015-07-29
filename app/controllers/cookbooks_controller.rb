@@ -6,10 +6,17 @@ class CookbooksController < ApplicationController
   end
 
   def new
+    @user = User.find(params[:user_id])
     @cookbook = Cookbook.new
   end
 
   def create
+    @cookbook = Cookbook.create(cookbook_params)
+    if @cookbook.save
+      redirect_to dashboard_user_path(@cookbook.user)
+    else
+      render :new
+    end
   end
 
   private
