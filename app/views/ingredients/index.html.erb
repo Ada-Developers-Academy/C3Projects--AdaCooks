@@ -1,2 +1,11 @@
-<h1>Ingredients#index</h1>
-<p>Find me in app/views/ingredients/index.html.erb</p>
+<h1><center>Ingredients</h1>
+  <div class="table">
+    <% @ingredients.each do |ingredient| %>
+    <tr>
+        <dt><h2><%= ingredient.name.capitalize %></h2></dt>
+    </tr>
+    <tr>
+      <td><%= image_tag ingredient.image_url, class: "img-circle", size: '550x500' %></td>
+    </dl>
+      <% end %>
+  </div>
