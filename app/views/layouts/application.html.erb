@@ -10,11 +10,8 @@
   <div class="container">
     <header class="jumbotron">
       <h1 class="top">Eat Me!</h1>
-      <% professionals = ["doctors", "dentists", "psychiatrists", "engineers",
-        "bus drivers", "artists", "musicians", "grad students", "professors",
-        "teachers", "lifeguards", "firefighters", "nurses", "architects"] %>
       <p>
-        <%= professionals.sample.capitalize %> use more <%= random_ingredient_name %>
+        <%= random_profession_name %> prefer more <%= random_ingredient_name %>
         in their <%= random_recipe_name %> than any other ingredient!
       </p>
       <%= link_to "Home", root_path, class: "btn btn-default" %>
