@@ -1,5 +1,6 @@
 class IngredientsController < ApplicationController
   before_action :set_ingredient, only: :show
+  before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @ingredients = Ingredient.alphabetized

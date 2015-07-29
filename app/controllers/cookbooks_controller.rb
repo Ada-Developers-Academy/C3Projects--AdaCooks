@@ -1,4 +1,6 @@
 class CookbooksController < ApplicationController
+  before_action :require_user_login
+
   def index
     @cookbooks = User.find(params[:user_id]).cookbooks
   end
