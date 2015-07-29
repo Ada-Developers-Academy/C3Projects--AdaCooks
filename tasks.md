@@ -1,9 +1,6 @@
 IDEAS
 - Let's add seed data as we need it -- e.g. if I'm going to work on the ingredients controller, that'd be a good time to create the seed data for it.
 
-SEED DATA STATUS:
-- recipes seeds _IN PROGRESS: anw_
-
 TODO
 - Add model validations for recipes
 - Add model validations for ingredients
