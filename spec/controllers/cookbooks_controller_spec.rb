@@ -23,12 +23,12 @@ RSpec.describe CookbooksController, type: :controller do
       end
     end
 
-    context "Logged in users can only edit and delete their own ingredients" do
+    context "Logged in users can only edit and delete their own cookbooks" do
       before :each do
         @logged_in_user = create :user
         @other_user = create :user, username: "other_user"
         session[:user_id] = @logged_in_user.id
-        @ingredient = create :ingredient
+        @cookbook = create :cookbook
       end
 
       it "renders the #edit view" do
