@@ -1,12 +1,6 @@
 <div class="container">
 
-  <h1> All the Ingredients!</h1>
-  <ol>
-    <% @ingredients.each do |ingredient| %>
-      <li>
-        <%= ingredient.image %><%= ingredient.name %>
-    <% end %>
-      </li>
-  </ol>
+  <%= render partial: "shared/index", locals: { collection: @ingredients, link: "ingredients" } %>
+
 
 </div>
