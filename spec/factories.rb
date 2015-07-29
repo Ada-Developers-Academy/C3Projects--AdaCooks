@@ -1,5 +1,13 @@
 FactoryGirl.define do  
 
+  factory :recipe do
+    name 'Oprah\'s Skinny Martini'
+    description 'A low-cal drink that might kill your liver, but won\'t stretch that waistline!'
+    prep "Mix one oz gin with one oz vodka.\nDone."
+    cookbook_id 1
+  end
+
+
   factory :ingredient do
     name "An ingredient"
     image ""
