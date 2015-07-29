@@ -16,7 +16,7 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(create_recipe_params)
-    @recipe.user = params[:user_id]
+    @recipe.user_id = session[:user_id]
 
     if @recipe.save
       redirect_to root_path, notice: "Recipe added!"
@@ -43,6 +43,8 @@ class RecipesController < ApplicationController
       :description,
       :preparation,
       :image,
+      ingredient_ids: [],
+      cookbook_ids: []
     )
   end
 
