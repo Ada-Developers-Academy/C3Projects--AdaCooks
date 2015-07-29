@@ -20,13 +20,30 @@ class CookbooksController < ApplicationController
   end
 
   def destroy
-    # raise
     user = User.find(params[:user_id])
     cookbook = Cookbook.find(params[:id])
     if user.id == cookbook.user_id
-      cookbook.destroy  
+      cookbook.destroy
       redirect_to dashboard_user_path(user)
     end
+  end
+
+  def destroy_recipe_assoc
+    user = User.find(params[:user_id])
+    cookbook = Cookbook.find(params[:cookbook_id])
+    recipe = Recipe.find(params[:recipe_id])
+
+    if recipe
+      cookbook.recipes.destroy(recipe)
+    end
+
+    redirect_to dashboard_user_path(user)
+    # post = Post.find(params[:post][:id])
+    #  category = post.categories.find(params[:category][:id])
+    #
+    #  if category
+    #     post.categories.delete(category)
+    #  end
   end
 
   private

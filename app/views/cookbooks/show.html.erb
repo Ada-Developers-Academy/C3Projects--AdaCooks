@@ -11,8 +11,24 @@
 </p>
 
 <h3>Recipes</h3>
-<div class="list-group">
+<!-- <div class="list-group">
   <% @recipes.each do |recipe| %>
   <button type="button" class="list-group-item"><%= link_to recipe.name, recipe_path(recipe) %></button>
   <% end %>
-</div>
+</div> -->
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Recipe</th>
+      <th>Remove</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @recipes.each do |recipe| %>
+    <tr>
+      <td><%= link_to recipe.name, recipe_path(recipe) %></td>
+      <td><%= link_to "X", destroy_recipe_assoc_path(user_id: params[:user_id], cookbook_id: @cookbook, recipe_id: recipe), method: :delete, class: "btn btn-danger" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
