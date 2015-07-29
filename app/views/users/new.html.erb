@@ -1,6 +1,6 @@
 <h2>Register</h2>
 
-<% form_for @user do |f| %>
+<%= form_for @user do |f| %>
 
   <div class="form-group">
     <%= f.label :username %>
@@ -15,7 +15,7 @@
     <%= f.label :password_confirmation, "Password Confirmation" %>
     <%= f.text_field :password_confirmation, class: "form-control" %>
 
-    <%= f.submit, "Create", class: "btn btn-primary" %>
+    <%= f.submit "Create", class: "btn btn-primary" %>
   </div>
 
 <% end %>
