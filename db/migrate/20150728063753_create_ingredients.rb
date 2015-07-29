@@ -4,6 +4,7 @@ class CreateIngredients < ActiveRecord::Migration
 
       t.string :name
       t.string :image
+ 
 
       t.timestamps null: false
     end

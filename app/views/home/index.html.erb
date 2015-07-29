@@ -1,7 +1,8 @@
 <h1>Hi There</h1>
 <%=link_to "new user", new_user_path %>
+<%= link_to "new recipe", new_user_recipe_path %>
 
-<%= @recipies.each do |recipe| %>
+<%= @recipes.each do |recipe| %>
   <%= recipe.name %>
-  <%= recipe.rec_photo %>
+  <%= recipe.image %>
 <%end %>

@@ -13,8 +13,11 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/recipe/:id' => 'recipes#show', as: :recipe
+
   resources :ingredients
   resources :cookbooks
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
