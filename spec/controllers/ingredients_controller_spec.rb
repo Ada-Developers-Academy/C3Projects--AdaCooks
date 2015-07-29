@@ -20,10 +20,10 @@ RSpec.describe IngredientsController, type: :controller do
   describe "Logging in creates more access" do
 
     context "you can't access #new anonymously" do
-      it "get #new redirects anonymous user to home" do
+      it "get #new redirects anonymous user to login" do
         get :new
 
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to login_path
         expect(response).to have_http_status(302)
       end
     end
