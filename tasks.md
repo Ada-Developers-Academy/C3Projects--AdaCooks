@@ -1,30 +1,18 @@
-# Ada Cooks! - Ashley & Brandi
-The goal of this project is to build an online cookbook application where users can manage Recipes and Ingredients, create Cookbook collections of different Recipes, and keep track of their Ingredients.
+IDEAS
+- Let's add seed data as we need it -- e.g. if I'm going to work on the ingredients controller, that'd be a good time to create the seed data for it.
 
-## Learning Goals
-- Explore advanced ActiveRecord relationships like `has_many through:` and `has_and_belongs_to_many`.
-- Explore controlling access to functionality based on User state and/or role.
-- Explore working with image uploads with [CarrierWave](https://github.com/carrierwaveuploader/carrierwave).
-- Explore object factories using [factory_girl](https://github.com/thoughtbot/factory_girl_rails) as a means of simplifying object setup in tests.
-
-## Project Baseline
-We are going to try something new with this project. When you've accomplished all of the baseline requirements, please issue a PR back to the project master. We will review and merge your baseline, but you don't need to wait for that to happen before helping your classmates and moving onto the project requirements.
-
-We're doing this to make the final project easier to code review. Because the baseline includes all of the Rails setup and boilerplate, issuing (and merging) a PR at the beginning will remove those files from the Pull Request interface for the PR you'll open at the end of the project.
-
-### The baseline requirements are...
-- a ruby-gemset and ruby-version.
-- a new rails 4.2.2 application.
-- [rspec](https://github.com/rspec/rspec-rails) setup in document format (hint: use a .rspec config file and the `rspec_rails` gem)
-- [factory_girl](https://github.com/thoughtbot/factory_girl_rails) included and set up to work with rspec (hint: use the `factory_girl_rails` gem)
-- code coverage reporting (hint: user simplecov)
+TODO
+- Add model validations for recipes
+- Add model validations for ingredients
+- Add model validations for cookbooks
+- Add model validations for users
 
 ## User Stories
 
 ### As any User, I can...
 - search by the name of an Ingredient and get related Recipes back.
 - __Recipes__
-  - view an alphabetical list of all Recipes
+  - view an alphabetical list of all Recipes _IN PROGRESS: anw_
   - view the details of a Recipe, inluding...
     - a link to the User profile of the person who created the Recipe
     - links to the Ingridient profile for all associated Ingredients
@@ -34,7 +22,7 @@ We're doing this to make the final project easier to code review. Because the ba
     - a list of links to Recipes associated with the Ingredient
 
 ### As an anonymous User I can...
-- register a new User account
+- register a new User account _IN PROGRESS: bew_
 - Log In to an existing User account
 
 ### As a Logged In User I can...
