@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   root 'home#root'
 
-  get "/login", to: "sessions#new", as: "login"
+  get "/login", to: "sessions#login"
   post "/login", to: "sessions#create"
-  delete "/logout", to: "sessions#destroy", as: "logout"
-  get "/signup", to: "users#new", as: "signup"
+  delete "/logout", to: "sessions#logout"
+  get "/signup", to: "users#signup"
   post "/signup", to: "users#create"
 
   resources :recipes, only: [:index, :show, :new]

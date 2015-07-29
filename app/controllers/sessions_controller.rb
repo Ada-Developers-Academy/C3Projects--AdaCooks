@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  def new # login form
+  def login
   end
 
   def create # actually logging in
@@ -10,11 +10,11 @@ class SessionsController < ApplicationController
       redirect_to user_cookbooks_path(user)
     else
       flash.now[:error] = "Invalid username or password. Please try again."
-      render :new
+      render :login
     end
   end
 
-  def destroy # logout
+  def logout
     session[:user_id] = nil
     redirect_to root_path
   end
