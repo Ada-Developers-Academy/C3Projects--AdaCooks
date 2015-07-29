@@ -1,5 +1,7 @@
 class CookbooksController < ApplicationController
 
+  # before_action :login_required
+
   def index
     @cookbooks = Cookbook.all
   end

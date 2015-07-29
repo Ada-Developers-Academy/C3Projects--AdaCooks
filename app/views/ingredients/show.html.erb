@@ -3,11 +3,13 @@
 
 <br>
 
-<%= link_to "Edit", edit_ingredient_path(@ingredient.id), class: "btn btn-default btn-center" %>
-<%= link_to "Delete", ingredient_path(@ingredient.id), class: "btn btn-default btn-center", :method => :delete %>
+<% if @user %>
+  <% if @user.id == @ingredient.user_id %>
+    <%= link_to "Edit", edit_ingredient_path(@ingredient.id), class: "btn btn-default btn-center" %>
+    <%= link_to "Delete", ingredient_path(@ingredient.id), class: "btn btn-default btn-center", :method => :delete %>
+  <% end %>
+<% end %>
 
 <br>
 
-# Edit and Delete will only be available if ingredient.user_id matches session user_id
-
-<%= link_to "Return to Ingredients Index", ingredients_path %>
+<%= link_to "Return to Ingredients Index", ingredients_path, class: "txt-center" %>

@@ -1,11 +1,13 @@
 class Ingredient < ActiveRecord::Base
   belongs_to :recipe
 
+# -------------VALIDATIONS----------------------
   validates :name, presence: true, uniqueness: true
 
   mount_uploader :image, ImageUploader
 
-  def self.alphabetical_ingredients
+  # -------------SCOPES----------------------
+  def self.alphabetize
     order('name')
   end
 end

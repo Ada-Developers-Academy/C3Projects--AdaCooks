@@ -7,18 +7,24 @@
         Name
       </th>
       <th>
-        Description
+        Edit
+      </th>
+      <th>
+        Delete
       </th>
     </tr>
   </thead>
   <tbody>
-    <% @cookbooks.each do |cookbook| %>
+    <% @cookbooks.alphabetize.each do |cookbook| %>
       <tr>
         <td>
           <%= cookbook.name %>
         </td>
         <td>
-          <%= cookbook.description %>
+          <%=  %>
+        </td>
+        <td>
+          <%=  %>
         </td>
     </tr>
   <% end %>

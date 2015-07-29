@@ -1,5 +1,10 @@
 <h2> Ingredients Index </h2>
-<%= link_to "+ Add an Ingredient", new_ingredient_path %>
+
+<% if @user %>
+  <% if @user.id == @ingredient.user_id %>
+    <%= link_to "+ Add an Ingredient", new_ingredient_path %>
+  <% end %>
+<% end %>
 
 <table class = "table table-hover table-bordered table-striped table-condensed">
   <thead>
@@ -10,10 +15,20 @@
       <th>
         Image
       </th>
+      <% if @user %>
+        <% if @user.id == @ingredient.user_id %>
+        <th>
+          Edit
+        </th>
+        <th>
+          Delete
+        </th>
+        <% end %>
+      <% end %>
     </tr>
   </thead>
   <tbody>
-    <% @ingredients.alphabetical_ingredients.each do |ingredient| %>
+    <% @ingredients.alphabetize.each do |ingredient| %>
       <tr>
         <td>
           <%= link_to ingredient.name, ingredient_path(ingredient.id) %>
@@ -21,6 +36,16 @@
         <td>
           <%= image_tag ingredient.image_url, class: "img-circle img-sm" %>
         </td>
+        <% if @user %>
+          <% if @user.id == @ingredient.user_id %>
+          <td>
+            <%= link_to "Edit", edit_ingredient_path(@ingredient.id) %>
+          </td>
+          <td>
+            <%= link_to "Delete", ingredient_path(@ingredient.id), :method => :delete %>
+          </td>
+          <% end %>
+        <% end %>
     </tr>
   <% end %>
   </tbody>

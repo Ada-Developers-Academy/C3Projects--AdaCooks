@@ -1,4 +1,5 @@
 class IngredientsController < ApplicationController
+  before_action :login_required, except: [:index, :show]
 
   def index
     @ingredients = Ingredient.all
@@ -19,7 +20,7 @@ class IngredientsController < ApplicationController
     if @ingredient.save
       redirect_to ingredient_path(@ingredient.id)
     else
-      flash[:error] 
+      flash[:error]
       redirect_to new_ingredient_path
     end
   end
