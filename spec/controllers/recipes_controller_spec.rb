@@ -44,7 +44,7 @@ RSpec.describe RecipesController, type: :controller do
     context "valid params" do
 
       let(:valid_params) do
-        {name: "gnarly fake banana", preparation: "Don't make it, you monster."}
+        {name: "gnarly fake banana", preparation: "Don't make it, you monster.", user_id: 1}
       end
 
       it "creates a new recipes" do
