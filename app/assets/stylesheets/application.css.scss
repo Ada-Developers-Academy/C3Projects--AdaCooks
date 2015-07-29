@@ -17,12 +17,13 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+// two-column styles
+
  .columns {
    -webkit-column-count: 2; /* Chrome, Safari, Opera */
    -moz-column-count: 2; /* Firefox */
    column-count: 2;
- }
-
- .columns ul {
-   margin: 0;
+   ul {
+     margin: 0;
+   }
  }
