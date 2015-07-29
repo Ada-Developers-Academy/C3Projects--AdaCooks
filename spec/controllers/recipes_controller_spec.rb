@@ -48,6 +48,7 @@ RSpec.describe RecipesController, type: :controller do
       end
 
       it "creates a new recipes" do
+        @current_user = create :user
         post :create, :recipe => valid_params
         expect(Recipe.count).to eq 1
       end
