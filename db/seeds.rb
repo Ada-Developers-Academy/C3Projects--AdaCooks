@@ -100,7 +100,31 @@ recipe_ingredients = [
   { recipe_id: 3, ingredient_id: 6, quantity: "4", measurement_id: 9 },
   { recipe_id: 4, ingredient_id: 1, quantity: "100", measurement_id: 10 },
   { recipe_id: 4, ingredient_id: 5, quantity: "4", measurement_id: 11 },
-  { recipe_id: 4, ingredient_id: 3, quantity: "2", measurement_id: 1 }
+  { recipe_id: 4, ingredient_id: 3, quantity: "2", measurement_id: 1 },
+  { recipe_id: 5, ingredient_id: 3, quantity: "2", measurement_id: 2 },
+  { recipe_id: 5, ingredient_id: 3, quantity: "2", measurement_id: 3 },
+  { recipe_id: 5, ingredient_id: 3, quantity: "2", measurement_id: 4 },
+  { recipe_id: 6, ingredient_id: 3, quantity: "2", measurement_id: 5 },
+  { recipe_id: 6, ingredient_id: 3, quantity: "2", measurement_id: 6 },
+  { recipe_id: 6, ingredient_id: 3, quantity: "2", measurement_id: 7 },
+  { recipe_id: 7, ingredient_id: 3, quantity: "2", measurement_id: 8 },
+  { recipe_id: 7, ingredient_id: 3, quantity: "2", measurement_id: 9 },
+  { recipe_id: 7, ingredient_id: 3, quantity: "2", measurement_id: 10 },
+  { recipe_id: 8, ingredient_id: 3, quantity: "2", measurement_id: 11 },
+  { recipe_id: 8, ingredient_id: 3, quantity: "2", measurement_id: 1 },
+  { recipe_id: 8, ingredient_id: 3, quantity: "2", measurement_id: 2 },
+  { recipe_id: 9, ingredient_id: 3, quantity: "2", measurement_id: 3 },
+  { recipe_id: 9, ingredient_id: 3, quantity: "2", measurement_id: 2 },
+  { recipe_id: 9, ingredient_id: 3, quantity: "2", measurement_id: 4 },
+  { recipe_id: 10, ingredient_id: 3, quantity: "2", measurement_id: 3 },
+  { recipe_id: 10, ingredient_id: 3, quantity: "2", measurement_id: 4 },
+  { recipe_id: 10, ingredient_id: 3, quantity: "2", measurement_id: 2 },
+  { recipe_id: 11, ingredient_id: 3, quantity: "2", measurement_id: 1 },
+  { recipe_id: 11, ingredient_id: 3, quantity: "2", measurement_id: 2 },
+  { recipe_id: 11, ingredient_id: 3, quantity: "2", measurement_id: 6 },
+  { recipe_id: 12, ingredient_id: 3, quantity: "2", measurement_id: 1 },
+  { recipe_id: 12, ingredient_id: 3, quantity: "2", measurement_id: 8 },
+  { recipe_id: 12, ingredient_id: 3, quantity: "2", measurement_id: 9 }
 ]
 
 recipe_ingredients.each do |recipe_ingredient_params|
@@ -120,6 +144,10 @@ measurements = [
   { unit: "handful" },
   { unit: "ounce" }
 ]
+
+measurements.each do |measurement_params|
+  Measurement.create(measurement_params)
+end
 
 recipes_cookbooks = [
   { recipe_id: 1, cookbook_id: 1 },
