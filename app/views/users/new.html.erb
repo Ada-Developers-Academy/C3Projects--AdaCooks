@@ -1,4 +1,4 @@
-<h3>Create a New User Account</h3>
+<h3>New Chef Account</h3>
 
 <%= form_for @user do |f| %>
 
@@ -12,6 +12,9 @@
     <%= f.label :password_confirmation, "Password Confirmation" %>
     <%= f.password_field :password_confirmation, class: "form-control" %>
 
-    <%= f.submit "Submit", class: "btn btn-default" %>
+    <%= f.label :image, "Profile Picture" %>
+    <%= f.file_field :image %>
+
+    <%= f.submit "Create Account", class: "btn btn-default" %>
   </div>
 <% end %>
