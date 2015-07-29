@@ -1,10 +1,13 @@
-<h1> All the Ingredients!</h1>
-<table>
-<tr>
-  <td>
-    <% @ingredients.each do |ingredient| %>
-      <%= ingredient.photo_url %><%= ingredient.name %>
-    <% end %>
-  </td>
-</tr>
-</table>
+<div class="container">
+
+  <h1> All the Ingredients!</h1>
+  <table>
+  <tr>
+    <td>
+      <% @ingredients.each do |ingredient| %>
+        <%= ingredient.photo_url %><%= ingredient.name %>
+      <% end %>
+    </td>
+  </tr>
+  </table>
+</div>
