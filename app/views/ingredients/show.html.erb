@@ -1,6 +1,14 @@
+<%= render partial: 'shared/flash_messages' %>
+
 <h3><%= @ingredient.name %></h3>
 
-<%# image_tag %>
+<%= image_tag @ingredient.image_url(:display) %>
+
+
+<p>
+  <%= link_to 'Edit', edit_ingredient_path(@ingredient), role: "button", 
+    class: "btn btn-primary" %>
+</p>
 
 <h4>Used in these recipes:</h4>
 

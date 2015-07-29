@@ -1,5 +1,5 @@
 class IngredientsController < ApplicationController
-  before_action :set_ingredient, only: [:show, :edit]
+  before_action :set_ingredient, only: [:show, :edit, :update]
   before_action :current_user, only: [:create]
 
   MESSAGES = {
@@ -21,10 +21,21 @@ class IngredientsController < ApplicationController
 
     if @ingredient.save
       flash[:success] = MESSAGES[:create_success]
-      redirect_to ingredient_path(@ingredient)
+      redirect_to @ingredient
     else
       flash[:errors] = MESSAGES[:create_fail]
       render :new
+    end
+  end
+
+  def update
+    @ingredient.update(ingredient_params)
+    if @ingredient.save
+      flash[:success] = MESSAGES[:update_success]
+      redirect_to @ingredient
+    else
+      flash[:errors] = MESSAGES[:update_fail]
+      render :edit
     end
   end
 

@@ -71,6 +71,40 @@ RSpec.describe IngredientsController, type: :controller do
     end
   end
 
+  describe "PUT #update" do
+    let(:ingredient) { create :ingredient }
+
+    context "valid params" do
+      before :each do
+        put :update, id: ingredient, ingredient: { name: 'updated name' }
+        ingredient.reload
+      end
+
+      it "updates an ingredient with valid params" do
+        expect(ingredient.name).to eq "updated name"
+      end
+
+      it "redirects to ingredient#show" do
+        expect(response).to redirect_to ingredient_path(ingredient)        
+      end
+    end
+
+    context "invalid params" do # missing name
+      before :each do
+        put :update, id: ingredient, ingredient: { name: nil }
+        ingredient.reload
+      end
+
+      it "does not update a ingredient with invalid params" do
+        expect(ingredient.name).to_not be_nil
+      end
+
+      it "renders the :edit template" do
+        expect(response).to render_template "edit"
+      end
+    end
+  end
+
   describe "GET #show" do
     let(:ingredient) { create :ingredient }
 
