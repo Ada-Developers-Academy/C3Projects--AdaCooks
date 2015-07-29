@@ -93,5 +93,23 @@ RSpec.describe UsersController, type: :controller do
         expect(flash[:errors]).to include(ApplicationController::ERRORS[:registration_error])
       end
     end
+
+    context "valid new user" do
+      before :each do
+        post :create, user: attributes_for(:user)
+      end
+
+      it "adds the new user to the db" do
+        expect(User.count).to eq 1
+      end
+
+      it "redirects to the users dashboard" do
+        expect(subject).to redirect_to user_path(id: User.first.id)
+      end
+
+      it "signs them into a session" do
+        expect(session[:user_id]).to eq User.first.id
+      end
+    end
   end
 end
