@@ -10,4 +10,7 @@ class Recipe < ActiveRecord::Base
   validates :preparation, presence: true
   # is this the best way to test associations??
   validates :user_id, presence: true
+
+  # Scopes ----------------------------------------------------------------
+  scope :newest, -> (total) { order("created_at DESC").limit(total)}
 end

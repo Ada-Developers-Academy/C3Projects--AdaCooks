@@ -50,4 +50,17 @@ RSpec.describe Recipe, type: :model do
       expect(recipe.errors.keys).to_not include :image
     end
   end
+
+  context "scopes" do
+    before :each do
+      @recipe1 = create :recipe
+      @recipe2 = create :recipe, name: "sand"
+      @recipe3 = create :recipe, name: "mystery jelly bean"
+    end
+
+    it "selects the two newest receipes" do
+      correct_order = [@recipe3, @recipe2]
+      expect(Recipe.newest(2)).to eq correct_order
+    end
+  end
 end
