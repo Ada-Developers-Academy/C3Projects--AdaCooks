@@ -23,3 +23,6 @@ CSV.foreach("db/cookbook2.csv", { encoding: "UTF-8", headers: true, header_conve
     Cookbook.create(row.to_hash)
 end
 
+dog_meat = Ingredient.create(name: "dog meat")
+stew = Recipe.create(name: "dog meat stew", preparation: "1. Stew dog meat. 2. Choke.")
+stew.ingredients << dog_meat
