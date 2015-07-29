@@ -1,0 +1,10 @@
+<% if data_type.errors.any? %>
+  <div class="has_error">
+    The form contains <%= pluralize(data_type.errors.count, "error") %> Please see below.
+  </div>
+  <ul>
+  <% data_type.errors.full_messages.each do |msg| %>
+    <li class="list-unstyled error"><%= msg %></li>
+  <% end %>
+  </ul>
+<% end %>
