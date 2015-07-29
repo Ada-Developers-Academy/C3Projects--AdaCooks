@@ -1,36 +1,36 @@
-name ,image
-Spinach,spinach.jpg
-Quinoa,quinoa.jpg
-Black Beans,blackbeans.jpg
-Corn,corn.jpg
-Diced Onion,diced_onion.jpg
-Cilantro,cilantro.jpg
-Diced Tomatoes,diced_tomatoes.jpg
-Lime Zest,lime_zest.jpg
-Diced Avocado,diced_avocado.jpg
-Italian Viniagrette,italian_viniagrette.jpg
-Cherry Tomatoes,cherry_tomatoes.jpg
-Fresh Basil,basil.jpg
-Ciliegine Mozzarella,ciliegine_mozzarella.jpg
-Olive Oil,olive_oil.jpg
-Balsamic Vinegar,balsamic_vinegar.jpg
-Pepper,pepper.jpg
-Penne Pasta,penne.jpg
-Shredded Chicken,shredded_chicken.jpg
-Tomato Basil Sauce,tomato_basil_sauce.jpg
-Shredded Mozzarella,shredded_mozzarella.jpg
-Grated Parmesan Cheese,grated_parmesan.jpg
-Mustard,mustard.png
-Eggs,eggs.jpg
-Paprika,paprika.jpg
-Chives,chives.jpg
-Chocolate Fettuccine,choc_fettuccine.jpg
-Nutella,nutella.jpg
-Heavy Cream,cream.jpg
-Butter,butter.jpg
-Raspberries,raspberries.jpg
-Italian Sausage,sausage.png
-Beef Broth,broth.png
-Potatoes,potato.jpg
-Kale,kale.jpg
-White Onion,onion.jpg
+name ,image,recipe_name
+Spinach,spinach.jpg,Southwestern Quinoa Salad
+Quinoa,quinoa.jpg,Southwestern Quinoa Salad
+Black Beans,blackbeans.jpg,Southwestern Quinoa Salad
+Corn,corn.jpg,Southwestern Quinoa Salad
+Diced Onion,diced_onion.jpg,Southwestern Quinoa Salad
+Cilantro,cilantro.jpg,Southwestern Quinoa Salad
+Diced Tomatoes,diced_tomatoes.jpg,Southwestern Quinoa Salad
+Lime Zest,lime_zest.jpg,Southwestern Quinoa Salad
+Diced Avocado,diced_avocado.jpg,Southwestern Quinoa Salad
+Italian Viniagrette,italian_viniagrette.jpg,Southwestern Quinoa Salad
+Cherry Tomatoes,cherry_tomatoes.jpg,Caprese Skewers
+Fresh Basil,basil.jpg,Caprese Skewers
+Ciliegine Mozzarella,ciliegine_mozzarella.jpg,Caprese Skewers
+Olive Oil,olive_oil.jpg,Caprese Skewers
+Balsamic Vinegar,balsamic_vinegar.jpg,Caprese Skewers
+Pepper,pepper.jpg,Caprese Skewers
+Penne Pasta,penne.jpg,Chicken Parmesan Baked Ziti
+Shredded Chicken,shredded_chicken.jpg,Chicken Parmesan Baked Ziti
+Tomato Basil Sauce,tomato_basil_sauce.jpg,Chicken Parmesan Baked Ziti
+Shredded Mozzarella,shredded_mozzarella.jpg,Chicken Parmesan Baked Ziti
+Grated Parmesan Cheese,grated_parmesan.jpg,Chicken Parmesan Baked Ziti
+Mustard,mustard.png,Deviled Eggs
+Eggs,eggs.jpg,Deviled Eggs
+Paprika,paprika.jpg,Deviled Eggs
+Chives,chives.jpg,Deviled Eggs
+Chocolate Fettuccine,choc_fettuccine.jpg,Chocolate Nutella Dessert Pasta
+Nutella,nutella.jpg,Chocolate Nutella Dessert Pasta
+Heavy Cream,cream.jpg,Chocolate Nutella Dessert Pasta
+Butter,butter.jpg,Chocolate Nutella Dessert Pasta
+Raspberries,raspberries.jpg,Chocolate Nutella Dessert Pasta
+Italian Sausage,sausage.png,Tuscan Soup
+Beef Broth,broth.png,Tuscan Soup
+Potatoes,potato.jpg,Tuscan Soup
+Kale,kale.jpg,Tuscan Soup
+White Onion,onion.jpg,Tuscan Soup

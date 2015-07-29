@@ -18,25 +18,31 @@ CSV.foreach("db/seed_data_cookbooks.csv", { encoding: "UTF-8", headers: true, he
       )
 end
 
-CSV.foreach("db/seed_data_ingredients.csv", { encoding: "UTF-8", headers: true, header_converters: :symbol, converters: :all}) do |row|
-    image_path = "app/assets/images/" + row[:image]
-
-    Ingredient.create(
-      name: row[:name],
-      image: open(image_path)
-      )
-end
-
 CSV.foreach("db/seed_data_recipes.csv", { encoding: "UTF-8", headers: true, header_converters: :symbol, converters: :all}) do |row|
     image_path = "app/assets/images/" + row[:image]
 
-    Recipe.create(
+    r = Recipe.create(
       name: row[:name],
       description: row[:description],
       image: open(image_path),
       preparation: row[:preparation]
       )
+
+    r.cookbooks << Cookbook.find_by_name(row[:cookbook_name])
 end
+
+CSV.foreach("db/seed_data_ingredients.csv", { encoding: "UTF-8", headers: true, header_converters: :symbol, converters: :all}) do |row|
+    image_path = "app/assets/images/" + row[:image]
+
+    i = Ingredient.create(
+      name: row[:name],
+      image: open(image_path)
+      )
+
+    i.recipes << Recipe.find_by_name(row[:recipe_name])
+
+end
+
 
 CSV.foreach("db/seed_data_users.csv", { encoding: "UTF-8", headers: true, header_converters: :symbol, converters: :all}) do |row|
     image_path = "app/assets/images/" + row[:image]
@@ -48,3 +54,4 @@ CSV.foreach("db/seed_data_users.csv", { encoding: "UTF-8", headers: true, header
       image: open(image_path)
       )
 end
+
