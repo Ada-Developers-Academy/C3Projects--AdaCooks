@@ -20,6 +20,12 @@ $gray-medium-light: #EAEAEA;
   }
 }
 
+/* typography ------------------------------------------------- */
+
+h1 {
+  font-family: 'Unica One', cursive;
+}
+
 /* navigation ------------------------------------------------- */
 
 .navbar-brand { 
@@ -58,6 +64,12 @@ $gray-medium-light: #EAEAEA;
   color: #FFF;
   font-family: 'Reenie Beanie', cursive;
   font-size: 2.7em;
+}
+
+/* user profile ----------------------------------------------- */
+
+aside {
+  
 }
 
 /* footer ----------------------------------------------------- */
