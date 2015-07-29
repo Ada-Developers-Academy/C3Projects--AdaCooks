@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
+    before_action :require_login, only: [:show]
+    before_action :registered_user, only: [:new]
+
+
   def show
-    @user = User.find(params[:id])
+    @user = User.find(session[:user_id])
     @cookbooks = @user.cookbooks
 
   end

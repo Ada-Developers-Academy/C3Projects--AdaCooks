@@ -1,4 +1,6 @@
 class RecipesController < ApplicationController
+  before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
+
   def index
     @recipes = Recipe.alpha_order
     raise
