@@ -1,14 +1,12 @@
-<h1>INGREDIENTS</h1>
+<h1>All Ingredients</h1>
 
-<table class="table table-condensed table-striped">
-  <tr>
-    <th>Ingredient</th>
-    <th># Recipes Used In</th>
-  </tr>
-  <% @ingredients.each do |ingredient| %>
-    <tr>
-      <td><%= link_to ingredient.name, ingredient_path(ingredient) %></td>
-      <td><%= ingredient.recipes.count %></td>
-    </tr>
-  <% end %>
-</table>
+<div class="columns">
+  <ul>
+    <% @ingredients.each do |ingredient| %>
+      <li>
+        <%= link_to ingredient.name, ingredient_path(ingredient) %>
+        <%= ingredient_recipes_count(ingredient) %>
+      </li>
+    <% end %>
+  </ul>
+</div>
