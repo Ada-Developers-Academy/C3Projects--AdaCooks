@@ -2,8 +2,8 @@ class UsersController < ApplicationController
 	def index; end
 
 	def new
-		# guard against logged in users from registering
 		@user = User.new
+		flash[:notice] = "You're already logged in." if session[:user_id]
 	end
 
 	def create
