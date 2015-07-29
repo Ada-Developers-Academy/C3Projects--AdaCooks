@@ -11,8 +11,8 @@ class CookbooksController < ApplicationController
 
   def create
     cookbook = Cookbook.create(create_params[:cookbook])
-    cookbook.user_id = User.find(session[:user_id])
     user = User.find(session[:user_id])
+    cookbook.user_id = user.id
 
     if cookbook.save
       redirect_to user_path(user)
