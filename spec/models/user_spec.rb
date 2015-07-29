@@ -2,21 +2,29 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe "database relationships" do
+    # OPTIMIZE: these let statements by creating another factory for each
     let(:user) { create :user }
+    let(:another_user) { create :user, username: "another_user", email: "another@user.user" }
     let(:cookbook) { create :cookbook, user_id: user.id }
+    let(:another_cookbook) { create :cookbook, user_id: another_user.id }
     let(:recipe) { create :recipe, user_id: user.id }
+    let(:another_recipe) { create :recipe, user_id: another_user.id }
     let(:ingredient) { create :ingredient, user_id: user.id }
+    let(:another_ingredient) { create :ingredient, name: "another ingredient", user_id: another_user.id }
 
     it "has many cookbooks" do
       expect(user.cookbooks).to include(cookbook)
+      expect(user.cookbooks).not_to include(another_cookbook)
     end
 
     it "has many recipes" do
       expect(user.recipes).to include(recipe)
+      expect(user.recipes).not_to include(another_recipe)
     end
 
     it "has many ingredients" do
       expect(user.ingredients).to include(ingredient)
+      expect(user.ingredients).not_to include(another_ingredient)
     end
   end
 
@@ -79,10 +87,30 @@ RSpec.describe User, type: :model do
   end
 
   describe "instance methods" do
+    let(:user) { create :user }
+    let(:ingredient) { create :ingredient }
+    let(:recipe) { create :recipe }
+
     context "#has_ingredients?" do
+      it "returns true if a user has ingredients" do
+        expect(user.ingredients).to include(ingredient)
+        expect(user.has_ingredients?).to eq(true)
+      end
+
+      it "and false otherwise" do
+        expect(user.has_ingredients?).to eq(false)
+      end
     end
 
     context "#has_recipes?" do
+      it "returns true if a user has recipes" do
+        expect(user.recipes).to include(recipe)
+        expect(user.has_recipes?).to eq(true)
+      end
+
+      it "and false otherwise" do
+        expect(user.has_recipes?).to eq(false)
+      end
     end
   end
 end
