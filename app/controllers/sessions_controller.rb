@@ -8,14 +8,12 @@ class SessionsController < ApplicationController
     if @user.nil?
       flash[:alert] = "#{params[:session][:email]} is not a registered email address."
       render :new
+    elsif @user.authenticate(params[:session][:password])
+      session[:user_id] = @user.id
+      redirect_to root_path
     else
-      if @user.authenticate(params[:session][:password])
-        session[:user_id] = @user.id
-        redirect_to root_path
-      else
-        flash[:alert] = "Invalid password."
-        render :new
-      end
+      flash[:alert] = "Invalid password."
+      render :new
     end
   end
 
