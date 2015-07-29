@@ -9,6 +9,9 @@ class Recipe < ActiveRecord::Base
   validates :preparation, presence: true
   validates_with RecipeValidator, :on => :update
 
+# Mounted Objects------------------------------------------------------------
+  mount_uploader :image, ImageUploader
+
 # Scopes _______________________________________________________________
   scope :alpha_order, -> { order('name ASC') }
 end

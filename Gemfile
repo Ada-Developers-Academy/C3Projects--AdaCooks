@@ -25,6 +25,9 @@ gem 'bcrypt'
 
 gem 'bootstrap-sass', '~> 3.3.5'
 
+gem 'mini_magick'
+gem 'carrierwave'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

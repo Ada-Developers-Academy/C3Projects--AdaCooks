@@ -1,2 +1,43 @@
-<h1>Recipes#new</h1>
-<p>Find me in app/views/recipes/new.html.erb</p>
+<h1>Add a New Recipe</h1>
+
+<div class="form-group">
+  <fieldset>
+    <%= form_for @recipe do |f| %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, required: true, class: "form-control" %>
+
+      <%= f.label :description %>
+      <%= f.text_area :description, class: "form-control" %>
+
+      <%= f.label :preparation %>
+      <%= f.text_area :preparation, class: "form-control" %>
+
+      <%= f.label :image, "Recipe Photo" %>
+      <%= f.file_field :image %>
+
+      <%= f.hidden_field  :cookbook_id, :value => params[:cookbook_id] %>
+
+      <%= f.label :ingredients %><br>
+      <%= collection_check_boxes(:recipe, :ingredient_ids, Ingredient.all, :id, :name) do |b| %>
+        <%= b.label class: "checkbox-inline" do %>
+          <%= b.check_box + b.text.capitalize %>
+        <% end %>
+      <% end %>
+  <br>
+  <br>
+
+      <%= f.fields_for :ingredients do |ingredient| %>
+        <%= ingredient.label :name %>
+        <%= ingredient.text_field :name%>
+        <% end %>
+
+  <br>
+  <br>
+
+      <%= f.submit "Create New Recipe", class: "btn btn-primary" %>
+
+    <% end %>
+
+  </fieldset>
+</div>
