@@ -1,7 +1,7 @@
 class CookbooksController < ApplicationController
   before_action :require_login
 
-  def index
+  def index # NOTE THIS LOGIC NEEDS TO GO INTO THE RECIPE & INGREDIENTS NOT COOKBOOKS AUGH
     if params[:id].nil?
       @cookbook = Cookbook.all # TODO THIS HAS TO BE ALPHABETICAL
     else
