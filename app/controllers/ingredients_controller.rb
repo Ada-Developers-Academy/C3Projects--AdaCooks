@@ -11,7 +11,7 @@ def index
 end
 
 def show
-  @recipes = Recipes.find(params[:ingredient_id]) 
+  @recipes = Recipes.where(params[:ingredient_id]) 
 end
 
 def new
