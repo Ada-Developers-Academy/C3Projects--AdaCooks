@@ -6,14 +6,16 @@ class ApplicationController < ActionController::Base
 
   MESSAGES = {
     successful_login: "You have successfully logged in! Nice work!",
-    successful_logout: "You have logged out. We'll miss you."
+    successful_logout: "You have logged out. We'll miss you.",
+    
   }
 
   ERRORS = {
     login_error: "Invalid login. Please try again!",
     login_required: "You must be logged in to view this page!",
     account_exists: "You already have an account!",
-    unsuccessful_signup: "There was a problem with your signup info. Please try again!"
+    unsuccessful_signup: "There was a problem with your signup info. Please try again!",
+    unsuccessful_save: "Could not save. Please check the information and try again."
   }
 
   def require_login
