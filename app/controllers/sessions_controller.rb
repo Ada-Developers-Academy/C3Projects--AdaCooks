@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
 
   private
 
-      def set_user
+    def set_user
       @user = User.find_by(username: params[:session][:username])
-      end
+    end
 end
