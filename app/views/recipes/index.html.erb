@@ -1,5 +1,7 @@
 <h1> All the Recipes</h1>
 
 <% @recipes.each do |recipe| %>
-  <%= recipe.photo_url %><%= recipe.name %>
+
+<%= recipe.image %><%= link_to recipe.name, recipe_path(recipe) %>
+
 <% end %>

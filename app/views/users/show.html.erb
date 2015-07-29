@@ -12,15 +12,14 @@
         <td>Delete</td>
       </th>
     </tr>
-    <% @cookbooks.each do |book| %>
+    <% @cookbooks.each do |cookbook| %>
       <tr>
-        <td> <%= image %> </td>
-        <td> <h3><%= book.name %></h3> </td>
+        <td> <h3><%= cookbook.name %></h3> </td>
         <td><%= button_to "Delete", cookbook_path, method: "delete" %></td>
       </tr>
       <tr>
-        <td><%= book.description %></td>
-        <td><%= book.ingredients %> ingredients</td>
+        <td><%= cookbook.description %></td>
+        <td><%= cookbook.recipes %> ingredients</td>
       </tr>
     <% end %>
   </table>

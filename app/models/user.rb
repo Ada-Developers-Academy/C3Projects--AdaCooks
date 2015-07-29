@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   # Associations ----------------------------------
   has_many :cookbooks
+  has_many :recipes
 
   has_secure_password
 
