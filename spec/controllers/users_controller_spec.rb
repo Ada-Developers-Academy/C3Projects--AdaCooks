@@ -2,17 +2,17 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
   describe "GET #show" do
-    it "responds successfully with an HTTP 200 status code" do
+    before :each do
       user = create :user
       get :show, id: user.id
-
+    end
+    
+    it "responds successfully with an HTTP 200 status code" do
       expect(response).to be_success
       expect(response).to have_http_status(200)
     end
 
-    it "renders the new view" do
-      user = create :user
-      get :show, id: user.id
+    it "renders the show view" do
       expect(response).to render_template("show")
     end
   end
@@ -32,17 +32,16 @@ RSpec.describe UsersController, type: :controller do
     end
 
     context "user logged in" do
-      it "redirects logged in user to home page" do
+      before :each do
         session[:user_id] = 1
         get :new
+      end
 
+      it "redirects logged in user to home page" do
         expect(response).to redirect_to(root_path)
       end
 
       it "flashes error message" do
-        session[:user_id] = 1
-        get :new
-
         expect(flash[:errors]).to include("You already have an account!")
       end
     end
@@ -50,24 +49,20 @@ RSpec.describe UsersController, type: :controller do
 
   describe "POST #create" do
     context "valid user params" do
-      it "creates a user" do
+      before :each do
         build :user
         post :create, user: attributes_for(:user)
+      end
 
+      it "creates a user" do
         expect(User.count).to eq 1
       end
 
       it "redirects to the home page" do
-        build :user
-        post :create, user: attributes_for(:user)
-
         expect(subject).to redirect_to(root_path)
       end
 
       it "creates a session" do
-        build :user
-        post :create, user: attributes_for(:user)
-
         expect(session[:user_id]).to eq 1
       end
     end
