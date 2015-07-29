@@ -24,6 +24,10 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
 
     @ingredients = Ingredient.all.order(:name)
+
+    user = User.find(session[:user_id])
+
+    @cookbooks = user.cookbooks
   end
 
   def update
@@ -56,7 +60,11 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(
-      :name, :description, :preparation,
-      :user_id, { :ingredient_ids => [], :cookbook_ids => [] })
+      :name,
+      :description,
+      :preparation,
+      :user_id,
+      ingredient_ids: [],
+      cookbook_ids:[])
   end
 end

@@ -20,15 +20,18 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :cookbook_ids, "Cookbooks" %>
+    <%= f.collection_select( :cookbook_ids[], @cookbooks, :id, :name, options = {prompt: "Select a Cookbook (optional)"}, class: "form-control") %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :ingredient_ids, "Ingredients" %>
     <%= f.collection_check_boxes( :ingredient_ids, @ingredients, :id, :name, checked: @recipe.ingredients.map(&:id), class: "form-control" ) %>
     <!-- may want to change this to some sort of search function as well -->
   </div>
 
-  <%= f.hidden_field :user_id, :value => params[:user_id] %>
 
-  <!-- needs ingredients fields -->
-  <!-- needs option to add to cookbook -->
+  <%= f.hidden_field :user_id, :value => params[:user_id] %>
 
   <%= f.submit "Update Recipe", method: :patch, class: "btn btn-primary" %>
 <% end %>
