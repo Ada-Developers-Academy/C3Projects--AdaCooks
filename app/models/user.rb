@@ -6,16 +6,16 @@ class User < ActiveRecord::Base
 
   # Validations ----------------------------------------------------------------
   has_secure_password
-  validates :username, presence: true, uniqueness: true
-  validates :email, presence: true, uniqueness: true
+  validates :username, presence: true, uniqueness: true # FIXME: add spec for uniqueness
+  validates :email, presence: true, uniqueness: true # FIXME: add spec for uniqueness
   validates :password_digest, presence: true
 
   # Instance Methods -----------------------------------------------------------
-  def has_recipes? # FIXME: test #has_recipes
+  def has_recipes?
     recipes && recipes.length > 0
   end
 
-  def has_ingredients? # FIXME: test #has_ingredients
+  def has_ingredients?
     ingredients && ingredients.length > 0
   end
 end
