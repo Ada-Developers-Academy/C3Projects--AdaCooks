@@ -1,2 +1,16 @@
-<h1>Ingredients#index</h1>
-<p>Find me in app/views/ingredients/index.html.erb</p>
+<div class="container marketing">
+  <h1>Ingredients</h1>
+  <hr class="featurette-divider">
+
+    <div class="row">
+      <% @ingredients.each do |ingredient| %>
+      <div class="col-lg-3">
+        <p class="lead"><%= ingredient.name.capitalize %></p>
+        <%= link_to ingredient_path(ingredient.id) do %>
+          <%= image_tag ingredient.image_url, class: "img-circle", size: '200x200'  %>
+          <% end %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+</div>

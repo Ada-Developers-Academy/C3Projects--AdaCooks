@@ -1,0 +1,25 @@
+<div class="navbar-wrapper">
+  <div class="container">
+
+    <nav class="navbar navbar-inverse navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <%= link_to "All Recipes", recipes_path,  class: "navbar-brand" %> </a>
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><%= link_to "Home", root_path %></li>
+            <li><%= link_to "Ingredients", ingredients_path %></li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#contact">Login</a></li>
+            <li><a href="#contact">Sign up</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </nav>
+  </div>
+</div>
