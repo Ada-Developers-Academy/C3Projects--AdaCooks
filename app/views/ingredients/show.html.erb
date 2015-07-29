@@ -1,1 +1,20 @@
-<%= render partial: "shared/show", locals: { type: "Ingredient"} %>
+<div="container">
+  <h1> <%= @ingredient.name %> Details </h1>
+  <table class="table">
+    <tr>
+      <th>
+        <td>Picture</td>
+        <td>Name</td>
+        <td>Recipes</td>
+      </th>
+    </tr>
+    <tr>
+      <td class="thumbnails"><%= image_tag(@ingredient.image)%> </td>
+      <td> <%= @ingredient.name %></td>
+      <td><% @ingredient.recipes.each do |recipe| %>
+        <%= link_to "#{recipe.name}", recipe_path(recipe.id) %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>
