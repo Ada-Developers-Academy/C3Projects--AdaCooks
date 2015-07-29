@@ -35,6 +35,10 @@ class RecipesController < ApplicationController
 
     recipe.update(recipe_params)
 
+    if params[:recipe][:cookbook_ids].present?
+      recipe.cookbooks << Cookbook.find(params[:recipe][:cookbook_ids])
+    end
+
     recipe_save_guard(recipe)
   end
 
@@ -65,6 +69,6 @@ class RecipesController < ApplicationController
       :preparation,
       :user_id,
       ingredient_ids: [],
-      cookbook_ids:[])
+      cookbook_ids: [])
   end
 end
