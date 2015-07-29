@@ -14,7 +14,7 @@
 
   <td><%= link_to "Edit", edit_user_ingredient_path(session[:user_id], ingredient.id) %></td>
 
-  <td><%= link_to "Delete Ingredient", user_ingredient_path(session[:user_id], ingredient.id), method: :delete, class: "btn btn-danger" %></td>
+  <td><%= link_to "Delete Ingredient", user_ingredient_path(session[:user_id], ingredient.id), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-danger" %></td>
   </tr>
   <% end %>
 </table>

@@ -30,6 +30,14 @@ class RecipesController < ApplicationController
     recipe_save_guard(@recipe)
   end
 
+  def destroy
+    recipe = Recipe.find(params[:id])
+
+    recipe.destroy
+
+    redirect_to :back
+  end
+
   def recipe_save_guard(recipe)
     if recipe.save
       redirect_to dashboard_user_path(params[:user_id])
