@@ -2,6 +2,13 @@ class SessionsController < ApplicationController
   before_action :assign_user, only: [:create]
 
   def new
+    if session[:user_id].nil?
+      render :new
+    # if the user IS logged in, don't let them sign in again
+    else
+      flash[:warning] = "You are already logged in, silly!"
+      redirect_to root_path
+    end
   end
 
   def create
