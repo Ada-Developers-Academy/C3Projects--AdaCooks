@@ -1,5 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Measurement, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "validations" do
+    it "requires that a name be present" do
+      measurement = build :measurement, unit: nil
+      measurement.valid?
+      expect(measurement.errors.keys).to include :unit
+    end
+  end
 end
