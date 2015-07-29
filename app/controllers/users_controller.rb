@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: :show
 
+  def new; end # signup form
+
+  def create; end
+
   def show; end
 
   private
