@@ -41,7 +41,7 @@ class CookbooksController < ApplicationController
 
   def show
     @owner = User.find(@cookbook.user_id)
-    @recipes = @cookbook.recipes # add scope? newest first?
+    @recipes = @cookbook.recipes.desc_by_update
   end
 
   def destroy
@@ -54,6 +54,20 @@ class CookbooksController < ApplicationController
       flash[:success] = MESSAGES[:destroy_success]
       redirect_to root_path #user_path(@current_user)
     end
+  end
+
+  def remove_recipe
+    # cookbook = Cookbook.find(params[:id])
+    recipe = @cookbook.recipes.find(params[:id])
+    raise
+    if recipe && @cookbook
+      @cookbook.recipes.delete(recipe)
+      recipe.cookbooks.delete(@cookbook)
+      flash[:success] = MESSAGES[:remove_success]
+    else
+      flash[:error] = MESSAGES[:remove_fail]
+    end
+      redirect_to user_cookbook_path(@user, @cookbook)
   end
 
   private
