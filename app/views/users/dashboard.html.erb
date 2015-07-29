@@ -5,10 +5,16 @@
   Hello, <%= @user.name %>
 </p>
 
-<%= link_to "New Recipe", new_user_recipe_path(session[:user_id]) %>
+<%= link_to "Add New Recipe", new_user_recipe_path(session[:user_id]) %>
 
-<ul>
+
+<table>
+  <th>Recipe</th>
+  <th>Edit Recipe</th>
 <% @recipes.each do |recipe| %>
-  <li><%= recipe.name %></li>
+<tr>
+  <td><%= recipe.name %></td>
+  <td><%= link_to "Edit Recipe", edit_user_recipe_path(session[:user_id], recipe.id) %></td>
+  </tr>
   <% end %>
-</ul>
+</table>

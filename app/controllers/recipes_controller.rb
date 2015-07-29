@@ -7,7 +7,23 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.create(recipe_params)
 
-    if @recipe.save
+    recipe_save_guard(@recipe)
+  end
+
+  def edit
+    @recipe = Recipe.find(params[:id])
+  end
+
+  def update
+    @recipe = Recipe.find(params[:id])
+
+    @recipe.update(recipe_params)
+
+    recipe_save_guard(@recipe)
+  end
+
+  def recipe_save_guard(recipe)
+    if recipe.save
 
       redirect_to dashboard_user_path(params[:user_id])
     else
