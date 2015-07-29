@@ -18,6 +18,5 @@ FactoryGirl.define do
   factory :cookbook do
     name "Book Name"
     desc "A book with recipes"
-    user_id 1
   end
 end
