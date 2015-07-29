@@ -35,12 +35,16 @@ Rails.application.routes.draw do
 
   resources :users, only: [] do
     resources :recipes, only: [:new, :create, :edit, :update]
+
     resources :cookbooks, only: [:show, :new, :create, :edit, :update]
+
+    resources :ingredients, only: [:new, :create, :edit, :update, :index, :destroy]
   end
 
   resources :recipes, only: [:show]
 
   resources :ingredients, only: [:show]
+
 
 
   # Example resource route with options:
