@@ -4,4 +4,8 @@ FactoryGirl.define do
       # do we need a user_id???
   end
 
+  factory :ingredient_params do
+    # can we do this?
+  end
+
 end
