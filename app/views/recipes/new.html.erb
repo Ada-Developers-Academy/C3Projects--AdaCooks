@@ -4,7 +4,7 @@
 
   <div class="form-group">
     <%= f.label :name, "Name" %>
-    <%= f.text_field :name, class: "form-control" %>
+    <%= f.text_field :name, class: "form-control", :required => true %>
 
     <%= f.label :description, "Description" %>
     <%= f.text_field :description, class: "form-control" %>
@@ -12,7 +12,7 @@
     <span>Ingredients:</span>
     <br>
     <div class="row">
-        <%= f.collection_check_boxes(:ingredients, @ingredients, :id, :name) do |i|%>
+        <%= f.collection_check_boxes(:ingredients, @ingredients, :id, :name, :required => true) do |i|%>
             <div class="col-md-1">
                 <%= i.check_box %>
             </div>
@@ -24,7 +24,7 @@
     </div>
     <br>
     <%= f.label :preparation, "Preparation" %>
-    <%= f.text_area :preparation, class: "form-control" %>
+    <%= f.text_area :preparation, class: "form-control", :required => true %>
 
     <%= f.label :image, "Recipe Image" %>
     <%= f.file_field :image%>
