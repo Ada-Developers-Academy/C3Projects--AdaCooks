@@ -14,8 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in_user
-    user = User.find(session[:user_id])
-    redirect_to user_path(user), flash: {error: MESSAGES[:already_logged_in]} if session[:user_id]
+    redirect_to "/users/#{session[:user_id]}", flash: {error: MESSAGES[:already_logged_in]} if session[:user_id]
   end
 
   def registered_user
