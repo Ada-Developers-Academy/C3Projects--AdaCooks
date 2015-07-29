@@ -1,0 +1,11 @@
+<h1> This page has all the ingredients! </h1>
+<div class="container-fluid">
+<% @ingredients.each do |ingredient| %>
+<div class="col-xs-6 col-md-4">
+  <%= link_to(image_tag(ingredient.image_url(:thumb)), ingredient_path(ingredient)) %>
+  <br>
+  <%= ingredient.name %>
+</div>
+
+<% end %>
+</div>
