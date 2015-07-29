@@ -4,6 +4,9 @@ class Ingredient < ActiveRecord::Base
   has_many :recipes, through: :recipe_ingredients
   belongs_to :user
 
+  # Mounted Objects -------------------------------------------------------------
+  mount_uploader :image, ImageUploader
+  
   # Validations ----------------------------------------------------------------
   validates :name, presence: true, uniqueness: true
 end

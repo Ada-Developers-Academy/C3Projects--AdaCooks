@@ -11,6 +11,9 @@ class Recipe < ActiveRecord::Base
   # is this the best way to test associations??
   validates :user_id, presence: true
 
+  # Mounted Objects -------------------------------------------------------------
+  mount_uploader :image, ImageUploader
+
   # Scopes ----------------------------------------------------------------
   # refactor: have :newest chain from :desc_by_update
   scope :newest, -> (total) { order("created_at DESC").limit(total) }
