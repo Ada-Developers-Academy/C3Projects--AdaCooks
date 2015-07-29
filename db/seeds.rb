@@ -149,41 +149,73 @@ measurements.each do |measurement_params|
   Measurement.create(measurement_params)
 end
 
-recipes_cookbooks = [
-  { recipe_id: 1, cookbook_id: 1 },
-  { recipe_id: 2, cookbook_id: 1 },
-  { recipe_id: 3, cookbook_id: 1 },
-  { recipe_id: 4, cookbook_id: 1 },
-  { recipe_id: 5, cookbook_id: 1 },
-  { recipe_id: 6, cookbook_id: 1 },
-  { recipe_id: 7, cookbook_id: 2 },
-  { recipe_id: 8, cookbook_id: 2 },
-  { recipe_id: 9, cookbook_id: 2 },
-  { recipe_id: 10, cookbook_id: 2 },
-  { recipe_id: 11, cookbook_id: 2 },
-  { recipe_id: 12, cookbook_id: 2 },
-  { recipe_id: 1, cookbook_id: 3 },
-  { recipe_id: 2, cookbook_id: 3 },
-  { recipe_id: 3, cookbook_id: 3 },
-  { recipe_id: 4, cookbook_id: 3 },
-  { recipe_id: 5, cookbook_id: 3 },
-  { recipe_id: 6, cookbook_id: 3 },
-  { recipe_id: 7, cookbook_id: 4 },
-  { recipe_id: 8, cookbook_id: 4 },
-  { recipe_id: 9, cookbook_id: 4 },
-  { recipe_id: 10, cookbook_id: 4 },
-  { recipe_id: 11, cookbook_id: 4 },
-  { recipe_id: 12, cookbook_id: 4 },
-  { recipe_id: 1, cookbook_id: 5 },
-  { recipe_id: 2, cookbook_id: 5 },
-  { recipe_id: 3, cookbook_id: 5 },
-  { recipe_id: 4, cookbook_id: 5 },
-  { recipe_id: 5, cookbook_id: 5 },
-  { recipe_id: 6, cookbook_id: 5 },
-  { recipe_id: 7, cookbook_id: 6 },
-  { recipe_id: 8, cookbook_id: 6 },
-  { recipe_id: 9, cookbook_id: 6 },
-  { recipe_id: 10, cookbook_id: 6 },
-  { recipe_id: 11, cookbook_id: 6 },
-  { recipe_id: 12, cookbook_id: 6 }
-]
+cookbook1, cookbook2, cookbook3, cookbook4 = Cookbook.all
+
+cookbook1.recipes << Recipe.find([1,3,5,7,9,11])
+cookbook2.recipes << Recipe.find([1,3,5,8,10,12])
+cookbook3.recipes << Recipe.find([2,4,6,7,9,11])
+cookbook4.recipes << Recipe.find([2,4,6,8,10,12])
+
+# first_odd_recipes = Recipe.find([1,3,5])
+# first_even_recipes = Recipe.find([2,4,6])
+# second_odd_recipes = Recipe.find([7,9,11])
+# second_even_recipes = Recipe.find([8,10,12])
+
+# [first_odd_recipes, second_odd_recipes].each do |recipe_set|
+#   cookbook1.recipes << recipe_set
+# end
+# cookbook1.save
+
+# [first_odd_recipes, second_even_recipes].each do |recipe_set|
+#   cookbook2.recipes << recipe_set
+# end
+# cookbook2.save
+
+# [first_even_recipes, second_odd_recipes].each do |recipe_set|
+#   cookbook3.recipes << recipe_set
+# end
+# cookbook3.save
+
+# [first_even_recipes, second_even_recipes].each do |recipe set|
+#   cookbook4.recipes << recipe_set
+# end
+# cookbook4.save  
+
+# recipes_cookbooks = [
+#   { recipe_id: 1, cookbook_id: 1 },
+#   { recipe_id: 2, cookbook_id: 1 },
+#   { recipe_id: 3, cookbook_id: 1 },
+#   { recipe_id: 4, cookbook_id: 1 },
+#   { recipe_id: 5, cookbook_id: 1 },
+#   { recipe_id: 6, cookbook_id: 1 },
+#   { recipe_id: 7, cookbook_id: 2 },
+#   { recipe_id: 8, cookbook_id: 2 },
+#   { recipe_id: 9, cookbook_id: 2 },
+#   { recipe_id: 10, cookbook_id: 2 },
+#   { recipe_id: 11, cookbook_id: 2 },
+#   { recipe_id: 12, cookbook_id: 2 },
+#   { recipe_id: 1, cookbook_id: 3 },
+#   { recipe_id: 2, cookbook_id: 3 },
+#   { recipe_id: 3, cookbook_id: 3 },
+#   { recipe_id: 4, cookbook_id: 3 },
+#   { recipe_id: 5, cookbook_id: 3 },
+#   { recipe_id: 6, cookbook_id: 3 },
+#   { recipe_id: 7, cookbook_id: 4 },
+#   { recipe_id: 8, cookbook_id: 4 },
+#   { recipe_id: 9, cookbook_id: 4 },
+#   { recipe_id: 10, cookbook_id: 4 },
+#   { recipe_id: 11, cookbook_id: 4 },
+#   { recipe_id: 12, cookbook_id: 4 },
+#   { recipe_id: 1, cookbook_id: 5 },
+#   { recipe_id: 2, cookbook_id: 5 },
+#   { recipe_id: 3, cookbook_id: 5 },
+#   { recipe_id: 4, cookbook_id: 5 },
+#   { recipe_id: 5, cookbook_id: 5 },
+#   { recipe_id: 6, cookbook_id: 5 },
+#   { recipe_id: 7, cookbook_id: 6 },
+#   { recipe_id: 8, cookbook_id: 6 },
+#   { recipe_id: 9, cookbook_id: 6 },
+#   { recipe_id: 10, cookbook_id: 6 },
+#   { recipe_id: 11, cookbook_id: 6 },
+#   { recipe_id: 12, cookbook_id: 6 }
+# ]
