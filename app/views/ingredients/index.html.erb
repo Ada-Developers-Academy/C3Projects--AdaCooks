@@ -1,0 +1,28 @@
+<h3 class="text-center">Ingredients</h3>
+<% if session[:user_id] %>
+  <div class="text-center">
+    <%= link_to "Add a New Ingredient", new_ingredient_path, class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<% @ingredients.each do |ingredient| %>
+  <div class="media list-group">
+    <div class="media-left col-sm-1">
+      <a href="#">
+        <%= image_tag ingredient.image_url(:thumb), alt: "#{ingredient.name}", class: "media-object" %>
+      </a>
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading">
+        <%= link_to ingredient.name, ingredient_path(ingredient.id) %>
+      </h4>
+      <p>Chef: <%= link_to ingredient.user.username, user_path(ingredient.user_id) %></p>
+    </div>
+    <% if session[:user_id] %>
+      <div class="media-right">
+        <%= link_to "Edit Ingredient", edit_ingredient_path(ingredient.id), class: 'btn btn-default' %>
+      </div>
+    <% end %>
+    <hr>
+  </div>
+<% end %>
