@@ -1,6 +1,12 @@
 <h2>Home</h2>
 
 <p>
+  <pre>
+    <%= params %>
+  </pre>
+</p>
+
+<p>
   <%= link_to "Login", login_path, class: "btn btn-primary" %>
 </p>
 
@@ -19,10 +25,10 @@
 <br>
 
 <p>
-  <%= form_for "/search", method: "get", html: { class: "form" } do |f| %>
+  <%= form_for "search", method: "get", html: { class: "form" } do |f| %>
     <div class="form-group inline-form">
-      <%= f.label :q, "Search Ingredients:" %>
-      <%= f.search_field :q, class: "form-control", placeholder: "bacon" %>
+      <%= f.label :query, "Search Ingredients:" %>
+      <%= f.search_field :query, class: "form-control", placeholder: "bacon" %>
     </div>
     <%= f.submit "Search", class: "btn btn-default" %>
   <% end %>

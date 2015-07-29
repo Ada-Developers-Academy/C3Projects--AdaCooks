@@ -23,9 +23,6 @@ CSV.foreach("db/cookbook2.csv", { encoding: "UTF-8", headers: true, header_conve
     Cookbook.create(row.to_hash)
 end
 
-# u = User.create(:first_name => "admin", :email => "admin@domain.com", :password => "admin")
-# u.roles << Role.find_by_name("super_admin")
-
-king_jies_lake_of_wine = Recipe.find(4)
-wine = Ingredient.create(name: "wine", user_id: 2)
-king_jies_lake_of_wine.ingredients << wine
+dog_meat = Ingredient.create(name: "dog meat")
+stew = Recipe.create(name: "dog meat stew", preparation: "1. Stew dog meat. 2. Choke.")
+stew.ingredients << dog_meat
