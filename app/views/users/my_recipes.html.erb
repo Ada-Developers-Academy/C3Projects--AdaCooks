@@ -1,0 +1,21 @@
+<div class="row">
+  <ul class="nav nav-tabs nav-justified">
+    <li role="presentation" class="active">
+      <%= link_to 'Recipes', my_recipes_path %>
+    </li>
+    <li role="presentation">
+      <%= link_to 'Cookbooks', my_cookbooks_path %>
+    </li>
+  </ul>
+
+  <h3>Your Recipes</h3>
+
+  <ul class="list-group">
+    <% @recipes.each do |recipe| %>
+      <li class="list-group-item">
+        <%= link_to recipe.name, recipe %>
+      </li>
+    <% end %>
+  </ul>
+
+</div>

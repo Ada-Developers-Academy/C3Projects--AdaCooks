@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   # before_filter :authorize, only: [:dashboard]
+  before_action :current_user, only: [:my_recipes, :my_cookbooks]
   
   def new
     @user = User.new
@@ -15,6 +16,13 @@ class UsersController < ApplicationController
     else
       render :new
     end
+  end
+
+  def my_recipes
+    @recipes = @current_user.recipes.desc_by_update
+  end
+
+  def my_cookbooks
   end
 
   private
