@@ -1,0 +1,12 @@
+<h2>Your Cookbooks</h2>
+
+<ul>
+  <%= @cookbooks.each do |cookbook| %>
+    <li>
+      <%= link_to cookbook.name, cookbook_path(cookbook) %>
+      <%= link_to "\u2716", cookbook_path(cookbook), method: "delete" %>
+    </li>
+  <% end %>
+</ul>
+
+<% link_to "ADD", new_cookbook_path, class: "btn btn-primary" %>
