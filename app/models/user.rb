@@ -11,4 +11,6 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
   # validates :user_photo
   #Scopes------------------------------------------------------------------------
+  #Mounted Objects---------------------------------------------------------------
+  mount_uploader :image, ImageUploader
 end

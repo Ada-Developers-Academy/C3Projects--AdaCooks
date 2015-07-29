@@ -5,7 +5,7 @@ class CreateRecipes < ActiveRecord::Migration
       t.string :name
       t.string :description
       t.string :instructions
-      t.string :rec_photo
+      t.string :image
       t.integer :user_id
 
       t.timestamps null: false

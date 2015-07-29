@@ -9,4 +9,6 @@ class Recipe < ActiveRecord::Base
   validates :instructions, presence: true
   # validates :ing_photo
   #Scopes------------------------------------------------------------------------
+  #Mounted Objects---------------------------------------------------------------
+  mount_uploader :image, ImageUploader
 end
