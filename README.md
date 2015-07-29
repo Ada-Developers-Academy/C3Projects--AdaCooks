@@ -22,9 +22,9 @@ We're doing this to make the final project easier to code review. Because the ba
 ## User Stories
 
 ### As any User, I can...
-- search by the name of an Ingredient and get related Recipes back.
+- √ search by the name of an Ingredient and get related Recipes back.
 - __Recipes__
-  - view an alphabetical list of all Recipes
+  - √ view an alphabetical list of all Recipes
   - view the details of a Recipe, inluding...
     - a link to the User profile of the person who created the Recipe
     - links to the Ingridient profile for all associated Ingredients

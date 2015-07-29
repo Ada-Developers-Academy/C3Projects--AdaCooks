@@ -1,0 +1,31 @@
+<div class="container marketing">
+  <% @ingredients.each do |ingredient| %>
+  <h1>Recipes with <%= ingredient.name %></h1>
+  <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 col-md-push-5">
+        <h2 class="featurette-heading"></h2>
+      </div>
+      <div class="col-md-5 col-md-pull-7">
+
+        <%= image_tag ingredient.photo_url, class:"img-circle", size: "300x300" %>
+      </div>
+    </div>
+
+    <% if ingredient.recipes.count != 0 %>
+      <p class="lead">See recipes with <%= ingredient.name%>: </p>
+      <% ingredient.recipes.each do |recipe| %>
+
+        <hr class="featurette-divider">
+        <div class="row featurette">
+          <div class="col-md-12">
+            <p class="lead"><%= link_to recipe.name, recipe_path(recipe) %></p>
+          </div>
+        </div>
+        <% end %>
+      <% else %>
+        <p class="lead">Unfortunately, there's no recipes with <%=ingredient.name %></p>
+    <% end %>
+  <% end %>
+</div>

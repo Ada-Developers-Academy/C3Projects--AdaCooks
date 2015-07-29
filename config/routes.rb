@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   delete "/logout" => "sessions#destroy", as: 'logout'
 
   get "ingredient/:id/recipes" => "recipes#index", as: "ingredient_recipes"
-
+  get '/search' => 'ingredients#search'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
