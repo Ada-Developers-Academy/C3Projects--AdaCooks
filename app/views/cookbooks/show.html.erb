@@ -11,3 +11,6 @@
 <ul class="list-group">
   <%= render partial: 'recipe', collection: @recipes %>
 </ul>
+
+<%= link_to 'Delete cookbook', cookbook_path(@cookbook), method: :delete, 
+  class: "btn btn-danger", role: "button" %>
