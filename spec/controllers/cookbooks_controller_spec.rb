@@ -129,6 +129,8 @@ RSpec.describe CookbooksController, type: :controller do
       expect(Cookbook.count).to eq 0
     end
 
+    # the recipes are not deleted
+
     # uncomment when the user show is created
     # it "redirects to the user show page" do
     #   expect(response).to redirect_to user_path(cookbook.user)
