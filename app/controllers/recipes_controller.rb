@@ -22,6 +22,14 @@ class RecipesController < ApplicationController
     end
   end
 
+  def destroy
+    @recipe = Recipe.find(params[:id])
+    @recipe.destroy
+
+  end
+
+  end
+
   private
 
   def recipe_params
