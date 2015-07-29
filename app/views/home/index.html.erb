@@ -2,9 +2,11 @@
   <div class="container">
     <h1>Hambre</h1>
     <p>¿Tienes Hambre? Satisfy your cravings with our mouth-watering recipes.</p>
-    <%= form_tag({controller:'ingredients', action: 'search'}, method: :get) do %>
-    <%= text_field_tag :search, params[:search], id: 'search_field', placeholder: "Search by Ingredient" %>
-    <%= submit_tag "Search" %>
-    <% end %>
+    <div class="form-group search">
+      <%= form_tag({controller:'ingredients', action: 'search'}, method: :get, role: "search", class: "form-inline") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search by Ingredient", class: "form-control" %>
+        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+      <% end %>
+    </div>
   </div>
 </div>
