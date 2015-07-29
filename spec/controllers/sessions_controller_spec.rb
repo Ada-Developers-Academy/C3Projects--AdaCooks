@@ -2,8 +2,10 @@ require 'rails_helper'
 
 RSpec.describe SessionsController, type: :controller do
   before(:each) do
-    @user = User.create(id: 2, username: "myspacerox", password: "2002", password_confirmation: "2002")
+    @user = create(:user)
+    session[:user_id] = @user.id
   end
+
   after(:each) do
     @user.destroy
   end
@@ -25,7 +27,6 @@ RSpec.describe SessionsController, type: :controller do
 
   describe "DELETE #destroy" do
     it "allows user to log out" do
-      session[:user_id] = @user.id
       delete :destroy
       expect(session[:user_id]).to eq(nil)
     end
