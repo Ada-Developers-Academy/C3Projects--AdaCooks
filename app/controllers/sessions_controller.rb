@@ -5,8 +5,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-
-    unless @user.nil?
+    if @user.nil?
+      flash[:alert] = "#{params[:session][:email]} is not a registered email address."
+      render :new
+    else
       if @user.authenticate(params[:session][:password])
         session[:user_id] = @user.id
         redirect_to root_path
@@ -14,11 +16,7 @@ class SessionsController < ApplicationController
         flash[:alert] = "Invalid password."
         render :new
       end
-    else
-      flash[:alert] = "#{params[:session][:email]} is not a registered email address."
-      render :new
     end
-
   end
 
   def destroy
