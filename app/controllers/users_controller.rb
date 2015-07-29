@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
+	before_action :login_required, except: [:new, :create]
+
 	def index; end
 
 	def new
-		# guard against logged in users from registering
 		@user = User.new
+		flash[:notice] = "You're already logged in." if session[:user_id]
 	end
 
 	def create

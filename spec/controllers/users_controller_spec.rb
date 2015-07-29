@@ -1,7 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-	describe "#create" do
+
+	describe "GET #new" do
+		it "receives a flash error if the user is already logged in" do
+			session[:user_id] = 1
+			get :new
+
+			expect(flash[:notice]).to_not be nil
+		end
+	end
+
+	describe "POST #create" do
 		let(:user_params) { { :user => { username: "drinkmaster", email: "sample@email.com", password: "password", password_confirmation: "password" } } }
 
 		it "instantiates a new User object" do
