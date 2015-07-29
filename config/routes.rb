@@ -38,8 +38,9 @@ Rails.application.routes.draw do
     resources :cookbooks, only: [:show, :new, :create, :edit, :update]
   end
 
+  resources :recipes, only: [:show]
 
-  resources :ingredients
+  resources :ingredients, only: [:show]
 
 
   # Example resource route with options:
