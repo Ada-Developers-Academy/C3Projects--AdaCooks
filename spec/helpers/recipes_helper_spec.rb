@@ -25,8 +25,10 @@ RSpec.describe RecipesHelper, type: :helper do
     end
   end
 
-  # FIXME: test random_recipe_name
   describe "random_recipe_name" do
-    pending "NOTE: I'm not sure how to properly write a unit test for this"
+    it "selects a random recipe's name" do
+      recipe
+      expect(random_recipe_name).to eq(recipe.name)
+    end
   end
 end

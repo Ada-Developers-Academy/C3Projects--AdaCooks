@@ -30,7 +30,7 @@ RSpec.describe Cookbook, type: :model do
       recipe = create :recipe
 
       ingredient1 = create :ingredient
-      ingredient2 = create :ingredient
+      ingredient2 = create :ingredient, name: "some other unique name"
 
       all_ingredients = [ingredient1, ingredient2]
 

@@ -1,5 +1,12 @@
 Shanna + Jeri
 
+possible color ideas (these colors apparently linked to stimulating hunger):
+- turqoise
+- green
+- yellow
+- orange
+- red
+
 # Ada Cooks!
 The goal of this project is to build an online cookbook application where users can manage Recipes and Ingredients, create Cookbook collections of different Recipes, and keep track of their Ingredients.
 
