@@ -1,11 +1,11 @@
 class RecipesController < ApplicationController
 
   def index
-    # @recipes = Recipe.all
-    # raise
-
-
     @recipes = Recipe.order(:name)
+  end
+
+  def show
+    @recipe = Recipe.find(params[:id])
   end
 
 end

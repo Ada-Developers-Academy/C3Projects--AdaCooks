@@ -1,0 +1,24 @@
+<% if session[:user_id] %>
+  <div class="text-right">
+    <%= link_to "Edit Recipe", edit_recipe_path(@recipe.id), class: 'btn btn-primary' %>
+    <%= link_to "Delete Recipe", recipe_path(@recipe.id), method: :delete, class: 'btn btn-danger' %>
+  </div>
+<% end %>
+
+<div class="col-sm-3">
+  <%= image_tag @recipe.image_url(:medium), alt: "#{@recipe.name}", class: "img-responsive" %>
+</div>
+
+<div class="col-sm-9">
+  <h1><%= @recipe.name %></h1>
+  <p><%= @recipe.description %></p>
+  <div class="btn-group" role="group" aria-label="ingredient-buttons">
+    <h3>Ingredients:</h3>
+    <% @recipe.ingredients.each do |ingredient| %>
+      <%= link_to ingredient.name, ingredient_path(ingredient.id), class: "btn btn-default" %>
+    <% end %>
+  </div>
+  <div>
+    <h3>Preparation: </h3><p><%= @recipe.preparation %></p>
+  </div>
+</div>
