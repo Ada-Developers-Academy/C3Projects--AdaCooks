@@ -62,26 +62,26 @@ cookbooks.each do |cookbook_params|
 end
 
 ingredients = [
-  { name: "heavy cream" },
-  { name: "vanilla" },
-  { name: "white sugar" },
-  { name: "maple syrup" },
-  { name: "egg yolks" },
-  { name: "whole milk" },
-  { name: "caramel" },
-  { name: "fleur de sel" },
-  { name: "lavendar" },
-  { name: "lemon juice" },
-  { name: "wild blackberries" },
-  { name: "fresh chevre" },
-  { name: "toasted hazelnuts" },
-  { name: "unsweetened chocolate" },
-  { name: "cocoa powder" },
-  { name: "fresh mint leaves" },
-  { name: "vanilla bean" },
-  { name: "toasted walnuts" },
-  { name: "honey" },
-  { name: "fresh raspberries" }
+  { user_id: 1, name: "heavy cream" },
+  { user_id: 1, name: "vanilla" },
+  { user_id: 1, name: "white sugar" },
+  { user_id: 1, name: "maple syrup" },
+  { user_id: 1, name: "egg yolks" },
+  { user_id: 1, name: "whole milk" },
+  { user_id: 1, name: "caramel" },
+  { user_id: 2, name: "fleur de sel" },
+  { user_id: 2, name: "lavendar" },
+  { user_id: 2, name: "lemon juice" },
+  { user_id: 2, name: "wild blackberries" },
+  { user_id: 2, name: "fresh chevre" },
+  { user_id: 2, name: "toasted hazelnuts" },
+  { user_id: 3, name: "unsweetened chocolate" },
+  { user_id: 3, name: "cocoa powder" },
+  { user_id: 3, name: "fresh mint leaves" },
+  { user_id: 3, name: "vanilla bean" },
+  { user_id: 3, name: "toasted walnuts" },
+  { user_id: 3, name: "honey" },
+  { user_id: 3, name: "fresh raspberries" }
 ]
 
 ingredients.each do |ingredient_params|
