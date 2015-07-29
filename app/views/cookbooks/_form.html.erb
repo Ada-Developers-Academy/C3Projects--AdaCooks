@@ -1,6 +1,6 @@
 <%= render partial: 'shared/flash_messages' %>
 
-<%= form_for [@current_user, @cookbook], method: method_name, class: "form" do |f| %>
+<%= form_for @cookbook, method: method_name, class: "form" do |f| %>
   <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :name, class: "form-control" %>
