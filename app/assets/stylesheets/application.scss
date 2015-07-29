@@ -14,3 +14,17 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.recipe_tiles {
+  height: 200px;
+  padding: 20px;
+}
+
+.recipe_tiles h4 {
+  text-align: center;
+}
+
+.recipe_tiles img {
+  display: block;
+  margin: 0 auto;
+}
