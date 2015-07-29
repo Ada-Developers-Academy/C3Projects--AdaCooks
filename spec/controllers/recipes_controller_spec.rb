@@ -78,5 +78,15 @@ RSpec.describe RecipesController, type: :controller do
         expect(response).to redirect_to(@recipe)
       end
     end
+
+    describe "DELETE #destroy" do
+
+      it "deletes a recipe" do
+        recipe = create :recipe
+        delete :destroy, :id => recipe.id
+        expect(Recipe.count).to eq 0
+      end
+
+    end
   end
 end
