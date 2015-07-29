@@ -10,7 +10,7 @@
     <div class="col-sm-6 col-md-4">
       <div class="thumbnail">
         <p><%= link_to recipe.name, recipe_path(recipe) %></p>
-        <p><%= image_tag("", class: "img-rounded") %></p>
+        <p><%= image_tag recipe.image_url(:thumb) %></p>
         <!-- Update with image path -->
       </div>
     </div>
