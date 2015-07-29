@@ -1,5 +1,14 @@
 require 'csv'
 
+CSV.foreach("db/users.csv", headers: true) do |row|
+  User.create(
+    name: row[0],
+    email: row[1],
+    password: row[2],
+    password_confirmation: row[3]
+    )
+end
+
 CSV.foreach("db/cookbooks.csv", headers: true) do |row|
   Cookbook.create(
     name: row[0],

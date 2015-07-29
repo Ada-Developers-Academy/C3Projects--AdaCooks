@@ -19,7 +19,7 @@
         <li><%= button_to "Create Account", new_user_path, method: :get, class: "btn btn-default navbar-btn" %></li>
       <% else %>
         <li><%= button_to "Logout", logout_path, method: :delete, class: "btn btn-info navbar-btn" %></li>
-        <li><%= button_to @user.name, user_path(session[:user_id]), method: :get, class: "btn btn-default navbar-btn" %></li>
+        <li><%= button_to "User Profile", user_path(session[:user_id]), method: :get, class: "btn btn-default navbar-btn" %></li>
       <% end %>
     </ul>
 
