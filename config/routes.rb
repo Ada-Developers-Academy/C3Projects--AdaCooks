@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :ingredients
   
   resources :users, except: [:new, :create]
-  get 'dashboard', to: 'users#dashboard', as: 'dashboard'
+  get 'my_recipes', to: 'users#my_recipes', as: 'my_recipes'
+  get 'my_cookbooks', to: 'users#my_cookbooks', as: 'my_cookbooks'
 
 end

@@ -6,4 +6,7 @@ class Cookbook < ActiveRecord::Base
   # Validations ----------------------------------------------------------------
   validates :name, presence: true
   validates :user_id, presence: true
+
+  # Scopes ---------------------------------------------------------------------
+  scope :alphabetical, -> { order("name") }
 end
