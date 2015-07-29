@@ -1,7 +1,8 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url(//fonts.googleapis.com/css?family=Unica+One);
 
-/* colors */
+/* colors ---------------------------------------------------- */
 
 $error: #F00;
 $gray-medium-light: #EAEAEA;
@@ -22,7 +23,8 @@ $gray-medium-light: #EAEAEA;
 /* navigation ------------------------------------------------- */
 
 .navbar-brand { 
-  font-size: 1.8em;
+  font-family: 'Unica One', cursive;
+  font-size: 2em;
 }
 
 .navbar-right {
@@ -31,6 +33,29 @@ $gray-medium-light: #EAEAEA;
 
 .btn-info {
   margin-right: 10px;
+}
+
+/* homepage --------------------------------------------------- */
+
+.jumbotron {
+  width: 100%;
+  height: 550px;
+  margin-top: -45px;
+  background: image-url("jumbo.jpg") no-repeat center left;
+  background-size: cover;
+  border-bottom: 3px solid $gray-light;
+}
+
+.jumbotron h1 {
+  color: #FFF;
+  font-family: 'Unica One', cursive;
+  font-size: 10em;
+  font-weight: bold;
+  text-shadow: 3px 3px 2px #000;
+}
+
+.jumbotron p {
+  color: #FFF;
 }
 
 /* footer ----------------------------------------------------- */
@@ -52,8 +77,6 @@ body {
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 50px;
-  border-top: 1px solid $gray-medium-light;
-  background-color: #000;
 }
 
 .container .text-muted {
@@ -62,7 +85,7 @@ body {
   text-align: center;
 }
 
-/* forms */
+/* forms ------------------------------------------------------ */
 
 .errors {
   color: $error;

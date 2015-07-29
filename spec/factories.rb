@@ -14,4 +14,9 @@ FactoryGirl.define do
   factory :ingredient do
     name "sugar"
   end
+
+  factory :cookbook do
+    name "Book Name"
+    desc "A book with recipes"
+  end
 end
