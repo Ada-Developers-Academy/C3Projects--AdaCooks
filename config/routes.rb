@@ -32,7 +32,10 @@ Rails.application.routes.draw do
 
   resources :cookbooks
 
-  resources :recipes
+  resources :users do
+    resources :recipes, only: [:new, :create]
+  end
+
 
   resources :ingredients
 

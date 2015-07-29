@@ -5,3 +5,5 @@
   Hello, <%= @user.name %>
 </p>
 
+<%= link_to "New Recipe", new_user_recipe_path(session[:user_id]) %>
+
