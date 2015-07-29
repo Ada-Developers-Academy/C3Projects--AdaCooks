@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20150729181614) do
   create_table "cookbooks", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
-    t.string   "image_url"
+    t.string   "photo_url"
     t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20150729181614) do
 
   create_table "ingredients", force: :cascade do |t|
     t.string   "name"
-    t.string   "image_url"
+    t.string   "photo_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20150729181614) do
   create_table "recipes", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
-    t.string   "image_url"
+    t.string   "photo_url"
     t.string   "preparation"
     t.integer  "cookbook_id"
     t.datetime "created_at",  null: false

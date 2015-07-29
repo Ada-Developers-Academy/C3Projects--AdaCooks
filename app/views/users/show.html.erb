@@ -8,7 +8,7 @@
     <% @cookbooks.each do |cookbook| %>
       <div class="col-md-4">
 
-        <%= image_tag cookbook.image_url, class:"img-circle", size: "220x200" %>
+        <%= image_tag cookbook.photo_url, class:"img-circle", size: "220x200" %>
         <h2><%= cookbook.name %></h2>
         <p>Recipes: <%= cookbook.recipes.count %> Ingredients: <%= cookbook.ingredients.count %></p>
         <p><%= link_to "View details", cookbook_path(cookbook.id), class: "btn btn-default" %>

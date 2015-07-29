@@ -3,7 +3,7 @@ class CreateRecipes < ActiveRecord::Migration
     create_table :recipes do |t|
       t.string :name
       t.string :description
-      t.string :image_url
+      t.string :photo_url
       t.string :preparation
       t.references :cookbook, index: true, foreign_key: true
 

@@ -3,7 +3,7 @@ class CreateCookbooks < ActiveRecord::Migration
     create_table :cookbooks do |t|
       t.string :name
       t.string :description
-      t.string :image_url
+      t.string :photo_url
       t.references :user, index: true, foreign_key: true
 
       t.timestamps null: false

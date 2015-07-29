@@ -7,7 +7,7 @@
       <div class="col-lg-3">
         <p class="lead"><%= ingredient.name.capitalize %></p>
         <%= link_to ingredient_path(ingredient.id) do %>
-          <%= image_tag ingredient.image_url, class: "img-circle", size: '200x200'  %>
+          <%= image_tag ingredient.photo_url, class: "img-circle", size: '200x200'  %>
           <% end %>
         </div>
         <% end %>

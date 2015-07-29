@@ -21,7 +21,7 @@ CSV.foreach("db/ingredients.csv", headers: true) do |row|
 
   Ingredient.create(
   name: row[0],
-  image_url: row[1]
+  photo_url: row[1]
   )
 end
 
@@ -30,7 +30,7 @@ CSV.foreach("db/recipes.csv", headers: true) do |row|
   Recipe.create(
   name: row[0],
   description: row[1],
-  image_url: row[2],
+  photo_url: row[2],
   preparation: row[3],
   cookbook_id: row[4]
   )
@@ -41,7 +41,7 @@ CSV.foreach("db/cookbooks.csv", headers: true) do |row|
   Cookbook.create(
   name: row[0],
   description: row[1],
-  image_url: row[2],
+  photo_url: row[2],
   user_id: row[3]
   )
 end

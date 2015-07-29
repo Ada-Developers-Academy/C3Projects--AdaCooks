@@ -5,7 +5,7 @@
   <div class="row">
     <% @recipes.each do |recipe|  %>
       <div class="col-lg-4">
-        <%= image_tag recipe.image_url, class:"img-circle", size: "250x250" %>
+        <%= image_tag recipe.photo_url, class:"img-circle", size: "250x250" %>
         <h2><%= recipe.name %></h2>
         <p><%= recipe.description %></p>
         <p><%= link_to "View details", recipe_path(recipe.id), class: "btn btn-default" %></p>
