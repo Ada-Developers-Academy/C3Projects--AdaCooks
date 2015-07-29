@@ -7,7 +7,11 @@
   <div class="row">
     <% @cookbook.recipes.each do |recipe| %>
       <div class="col-md-4">
+      <% if recipe.photo_url %>
         <%= image_tag recipe.photo_url, class:"img-circle", size: "250x250" %>
+      <% else %>
+        <%= image_tag recipe.image_url, class:"img-circle", size: "250x250"  %>
+      <% end %>
         <h2><%= recipe.name %></h2>
         <p><%= recipe.description %></p>
         <p><%= link_to "View details", recipe_path(recipe.id), class: "btn btn-default" %>

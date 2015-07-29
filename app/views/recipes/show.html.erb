@@ -10,7 +10,11 @@
 
     </div>
     <div class="col-md-5 col-md-pull-7">
-      <%= image_tag @recipe.photo_url, class:"img-circle", size: "300x300" %>
+      <% if @recipe.photo_url %>
+        <%= image_tag @recipe.photo_url, class:"img-circle", size: "300x300" %>
+      <% else %>
+        <%= image_tag @recipe.image_url, class: "img-circle", size: '100x100'%>
+      <% end %>
     </div>
   </div>
 
@@ -30,11 +34,7 @@
       <p class="lead"><mark>INGREDIENTS: </mark></p>
       <% @recipe.ingredients.each do |ingredient| %>
         <%= link_to ingredient_path(ingredient.id) do %>
-        <% if ingredient.photo_url %>
           <%= image_tag ingredient.photo_url, class: "img-circle", size: '100x100'%>
-          <% else %>
-            <%= image_tag ingredient.image_url, class: "img-circle", size: '100x100'%>
-          <% end %>
         <% end %>
       <% end %>
     </div>
