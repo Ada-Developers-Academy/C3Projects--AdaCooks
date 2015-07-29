@@ -16,7 +16,7 @@ class CookbooksController < ApplicationController
     end
   end
 
-  def destory
+  def destroy
     cookbook = Cookbook.find(params[:id])
     cookbook.destroy
     redirect_to cookbooks_path
