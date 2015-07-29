@@ -19,8 +19,13 @@
     <%= f.text_area :preparation, class: "form-control" %>
   </div>
 
-<div class="form-group">
-    <%= f.label :ingredient_ids %>
+  <div class="form-group">
+    <%= f.label :cookbook_ids, "Cookbooks" %>
+    <%= f.collection_select( :cookbook_ids, @cookbooks, :id, :name, { selected: @recipe.cookbook_ids }, options = {prompt: "Select a Cookbook (optional)"}, class: "form-control") %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :ingredient_ids, 'Ingredients' %>
     <%= f.collection_check_boxes( :ingredient_ids, @ingredients, :id, :name, class: "form-control" ) %>
     <!-- may want to change this to some sort of search function as well -->
   </div>

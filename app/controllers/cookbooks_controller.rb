@@ -12,10 +12,21 @@ class CookbooksController < ApplicationController
   def create
   end
 
+  def update
+    cookbook = Cookbook.find(params[:id])
+
+    cookbook.update
+  end
+
   private
 
   def cookbook_params
-    params.require(:cookbook).permit(:name, :description, :user_id)
+    params.require(:cookbook).permit(
+      :name,
+      :description,
+      :user_id,
+      :ingredients,
+      recipe_ids: [])
   end
 
 end

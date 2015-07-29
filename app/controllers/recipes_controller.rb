@@ -4,6 +4,10 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new
 
     @ingredients = Ingredient.all.order(:name)
+
+    user = User.find(session[:user_id])
+
+    @cookbooks = user.cookbooks
   end
 
   def create
@@ -20,14 +24,30 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
 
     @ingredients = Ingredient.all.order(:name)
+
+    user = User.find(session[:user_id])
+
+    @cookbooks = user.cookbooks
   end
 
   def update
-    @recipe = Recipe.find(params[:id])
+    recipe = Recipe.find(params[:id])
 
-    @recipe.update(recipe_params)
+    recipe.update(recipe_params)
 
-    recipe_save_guard(@recipe)
+    if params[:recipe][:cookbook_ids].present?
+      recipe.cookbooks << Cookbook.find(params[:recipe][:cookbook_ids])
+    end
+
+    recipe_save_guard(recipe)
+  end
+
+  def destroy
+    recipe = Recipe.find(params[:id])
+
+    recipe.destroy
+
+    redirect_to :back
   end
 
   def recipe_save_guard(recipe)
@@ -44,7 +64,11 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(
-      :name, :description, :preparation,
-      :user_id, { :ingredient_ids => [], :cookbook_ids => [] })
+      :name,
+      :description,
+      :preparation,
+      :user_id,
+      ingredient_ids: [],
+      cookbook_ids: [])
   end
 end
