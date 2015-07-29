@@ -1,0 +1,35 @@
+<% if flash.now[:error] %>
+  <%= flash.now[:error] %>
+<% end %>
+
+<h1>Edit Recipe</h1>
+<%= form_for @recipe, url: user_recipe_path(session[:user_id], @recipe.id), html: { class: "form" } do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, required: true, autofocus: true, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_area :description, required: true, autofocus: true, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :preparation %>
+    <%= f.text_area :preparation, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :ingredients %>
+    <%= f.collection_check_boxes( :ingredients, @ingredients, :id, :name, checked: @recipe.ingredients.map(&:id), class: "form-control" ) %>
+    <!-- may want to change this to some sort of search function as well -->
+  </div>
+
+
+  <%= f.hidden_field :user_id, :value => params[:user_id] %>
+
+  <!-- needs ingredients fields -->
+  <!-- needs option to add to cookbook -->
+
+  <%= f.submit "Update Recipe", method: :patch, class: "btn btn-primary" %>
+<% end %>

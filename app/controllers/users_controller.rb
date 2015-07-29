@@ -16,11 +16,13 @@ class UsersController < ApplicationController
 
   def dashboard
     @user = User.find(session[:user_id])
+
+    @recipes = @user.recipes
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :recipes)
   end
 end
