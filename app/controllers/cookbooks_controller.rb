@@ -10,12 +10,12 @@ class CookbooksController < ApplicationController
   end
 
   def create
-    @cookbook = Cookbook.create(create_params[:cookbook])
-    @cookbook.user_id = User.find(session[:user_id])
-    @user = User.find(session[:user_id])
+    cookbook = Cookbook.create(create_params[:cookbook])
+    cookbook.user_id = User.find(session[:user_id])
+    user = User.find(session[:user_id])
 
-    if @cookbook.save
-      redirect_to user_path(@user)
+    if cookbook.save
+      redirect_to user_path(user)
     else
       render :new
     end

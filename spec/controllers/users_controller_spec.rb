@@ -33,17 +33,20 @@ RSpec.describe UsersController, type: :controller do
 
 
   describe "GET #show" do
+    before :each do
+      @user = create :user
+    end
+
     it "returns http success" do
-      user = create :user
       get :show, :id => 1
+
       expect(response).to have_http_status(:success)
     end
 
     it "loads a user into @user" do
-      user = create :user
       get :show, :id => 1
 
-      expect(assigns(:user)).to eq(user)
+      expect(assigns(:user)).to eq(@user)
     end
   end
 end
