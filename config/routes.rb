@@ -31,12 +31,21 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy', as: 'logout'
 
 
-  resources :cookbooks
+  # resources :cookbooks
 
   resources :users, only: [] do
     resources :recipes, only: [:new, :create, :edit, :update]
+
+    resources :cookbooks, only: [:show, :new, :create, :edit, :update]
+
     resources :ingredients, only: [:new, :create, :edit, :update, :index, :destroy]
   end
+
+  resources :recipes, only: [:show]
+
+  resources :ingredients, only: [:show]
+
+
 
   # Example resource route with options:
   #   resources :products do

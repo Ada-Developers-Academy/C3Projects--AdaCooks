@@ -1,0 +1,18 @@
+<h2><%= @cookbook.name %></h2>
+
+<h3>Description</h3>
+<p>
+  <%= @cookbook.description %>
+</p>
+
+<h3>Owner</h3>
+<p>
+  <%= @owner %>
+</p>
+
+<h3>Recipes</h3>
+<div class="list-group">
+  <% @recipes.each do |recipe| %>
+  <button type="button" class="list-group-item"><%= link_to recipe.name, recipe_path(recipe) %></button>
+  <% end %>
+</div>
