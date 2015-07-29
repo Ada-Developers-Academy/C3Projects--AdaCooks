@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   resources :users, only: [:show] do
     resources :cookbooks
   end
+
+  delete 'cookbooks/:cookbook_id/recipes/:id/remove', to: 'cookbooks#remove_recipe', as: 'remove_recipe'
 end
