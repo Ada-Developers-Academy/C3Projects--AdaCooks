@@ -97,4 +97,20 @@ RSpec.describe CookbooksController, type: :controller do
       end
     end
   end
+
+  describe "GET #show" do
+    let(:cookbook) { create :cookbook }
+
+    before :each do
+      get :show, id: cookbook
+    end
+
+    it "responds with an HTTP 200 status" do
+      expect(response).to have_http_status 200
+    end
+
+    it "renders the show template" do
+      expect(response).to render_template "show"
+    end
+  end
 end

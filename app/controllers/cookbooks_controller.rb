@@ -1,5 +1,5 @@
 class CookbooksController < ApplicationController
-  before_action :set_cookbook, only: [:edit, :update]
+  before_action :set_cookbook, only: [:edit, :update, :show]
 
   MESSAGES = {
     create_success: "You have successfully created a new cookbook.",
@@ -25,12 +25,7 @@ class CookbooksController < ApplicationController
     end
   end
 
-  def edit
-    # @cookbook = Cookbook.find(params[:id])
-  end
-
   def update
-    # @cookbook = Cookbook.find(params[:id])
     @cookbook.update(cookbook_params)
     if @cookbook.save
       flash[:success] = MESSAGES[:update_success]
@@ -39,6 +34,11 @@ class CookbooksController < ApplicationController
       flash[:errors] = MESSAGES[:update_fail]
       render :edit
     end
+  end
+
+  def show
+    @owner = User.find(@cookbook.user_id)
+    @recipes = @cookbook.recipes # add scope? newest first?
   end
 
   private
