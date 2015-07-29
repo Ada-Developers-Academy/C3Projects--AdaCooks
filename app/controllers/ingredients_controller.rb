@@ -5,9 +5,27 @@ class IngredientsController < ApplicationController
   end
 
   def create
-    @ingredient = Ingredient.create(ingredients_params)
+    ingredient = Ingredient.create(ingredients_params)
 
-    ingredient_save_guard(@ingredient)
+    ingredient_save_guard(ingredient)
+  end
+
+  def index
+    user = User.find(session[:user_id])
+
+    @ingredients = user.ingredients.order(:name)
+  end
+
+  def edit
+    @ingredient = Ingredient.find(params[:id])
+  end
+
+  def update
+    ingredient = Ingredient.find(params[:id])
+
+    ingredient.update(ingredients_params)
+
+    ingredient_save_guard(ingredient)
   end
 
   def show

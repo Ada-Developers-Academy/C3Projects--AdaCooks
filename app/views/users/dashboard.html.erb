@@ -5,9 +5,9 @@
   Hello, <%= @user.name %>
 </p>
 
-<%= link_to "Add New Ingredient", new_user_ingredient_path(session[:user_id]), class: "btn btn-primary" %>
-
 <%= link_to "Add New Recipe", new_user_recipe_path(session[:user_id]), class: "btn btn-primary" %>
+
+<%= link_to "My Ingredients", user_ingredients_path(session[:user_id]), class: "btn btn-primary" %>
 
 <table>
   <th>Recipes</th>
