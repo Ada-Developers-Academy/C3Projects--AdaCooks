@@ -1,0 +1,13 @@
+<h1> <%= @cookbook.name %> </h1>
+<%= link_to "Edit", class: "btn btn-default" %>
+
+<h3>Recipes</h3>
+
+<table class="table">
+  <% @recipes.each do |recipe| %>
+    <tr>
+      <td><%= link_to "#{recipe.name}", recipe_path(recipe.id) %></td>
+      <td><%= link_to "Remove recipe", class: "btn btn-default" %></td>
+    </tr>
+  <% end %>
+</table>

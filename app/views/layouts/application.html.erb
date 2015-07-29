@@ -14,8 +14,8 @@
         "bus drivers", "artists", "musicians", "grad students", "professors",
         "teachers", "lifeguards", "firefighters", "nurses", "architects"] %>
       <p>
-        <%= professionals.sample.capitalize %> use more <%= Ingredient.all.sample.name %>
-        in their <%= Recipe.all.sample.name %> than any other ingredient!
+        <%= professionals.sample.capitalize %> use more <%= random_ingredient_name %>
+        in their <%= random_recipe_name %> than any other ingredient!
       </p>
       <%= link_to "Home", root_path, class: "btn btn-default" %>
       <%= link_to "Recipes", recipes_path, class: "btn btn-default" %>

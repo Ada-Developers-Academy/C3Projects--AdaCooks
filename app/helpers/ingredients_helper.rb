@@ -4,4 +4,8 @@ module IngredientsHelper
     output += "s" unless ingredient.recipes.count == 1
     output += ")"
   end
+
+  def random_ingredient_name
+    Ingredient.all.sample.name
+  end
 end
