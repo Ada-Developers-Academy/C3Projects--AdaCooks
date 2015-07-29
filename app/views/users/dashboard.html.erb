@@ -5,7 +5,7 @@
 
 <h3>Your Recipes:</h3>
 
-<%= link_to "Create a New Recipe", new_recipe_path, class: "btn btn-default" %>
+<%= link_to "Create a New Recipe", new_user_recipe_path(params[:user_id]), class: "btn btn-default" %>
 
 <table class="table">
   <% @recipes.each do |recipe| %>
