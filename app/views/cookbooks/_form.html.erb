@@ -1,0 +1,21 @@
+<div class="container">
+  <h2><center><%= @form_type %> Your Cookbook</h2>
+
+<div class="form-group">
+    <%= form_for @cookbook, html: {class: "form"} do |f| %>
+  <div class="col-md-4 col-md-offset-2">
+    <%= render partial: "shared/error_messages", locals: { data_type: @cookbook } %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
+
+      <%= f.label :description %>
+      <%= f.file_field :description, class: "form-control" %>
+
+      <%= f.hidden_field :user_id, value: session[:user_id] %>
+    <br><br>
+    <%= f.submit class: "btn btn-default" %>
+  <% end %>
+  </div>
+ </div>
+</div>
