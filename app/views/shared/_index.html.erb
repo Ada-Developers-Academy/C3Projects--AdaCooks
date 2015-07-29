@@ -1,0 +1,7 @@
+<h1>All the <%= collection.name.pluralize %> </h1>
+
+<% collection.each do |separate| %>
+
+<p><%= link_to separate.name, "/#{link}/#{separate.id}" %></p>
+
+<% end %>
