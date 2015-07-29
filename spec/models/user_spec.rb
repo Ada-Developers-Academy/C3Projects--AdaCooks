@@ -6,6 +6,7 @@ RSpec.describe User, type: :model do
 
   context "creating a new user" do
     describe "validates" do
+      let(:user) { create :user }
 
       it "username is required" do
         user = build :user, username: nil
@@ -36,7 +37,7 @@ RSpec.describe User, type: :model do
       end
 
       it "username and email are both unique" do
-        create :user
+        user
         user2 = build :user
 
         expect(user2).to_not be_valid
