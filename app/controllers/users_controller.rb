@@ -7,7 +7,7 @@ class UsersController < ApplicationController
       render :new
     # if the user IS logged in, don't let them make a new account
     else
-      flash[:alert] = "You can't make a new account while you're currently logged in."
+      flash[:warning] = "You can't make a new account while you're currently logged in."
       redirect_to root_path
     end
   end
@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      flash[:success] = "Thank you for creating an account with us!"
       session[:user_id] = @user.id # creates a session - they are logged in
       redirect_to dash_user_path(@user)
     else # if they entered invalid info
