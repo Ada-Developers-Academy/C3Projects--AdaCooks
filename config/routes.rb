@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
   root 'welcome#index'
 
-  resources :users, only: [:show] do
+  resources :users, only: [:show, :new, :create] do
     get 'dash', on: :member
   end
 
-  resources :sessions, only: [:create, :destroy]
-  get 'register', to: "sessions#new"
+  resources :sessions, only: [:new, :create, :destroy]
 
   resources :cookbooks # cookbooks will always be attached to a user
 
