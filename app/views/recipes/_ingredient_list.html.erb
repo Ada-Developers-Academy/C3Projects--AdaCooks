@@ -1,0 +1,7 @@
+<ul class="list-group">
+  <% @ingredient_lines.each do |line| %>
+    <li class="list-group-item">
+        <%= "#{line.quantity} #{line.measurement.unit} #{line.ingredient.name}" %>
+    </li>
+  <% end %>
+</ul>
