@@ -132,6 +132,8 @@ RSpec.describe CookbooksController, type: :controller do
     let(:cookbook) { create :cookbook }
 
     before :each do
+      recipe = create :recipe
+      cookbook.recipes << recipe
       delete :destroy, id: cookbook
     end
 
@@ -140,10 +142,26 @@ RSpec.describe CookbooksController, type: :controller do
     end
 
     # the recipes are not deleted
+    it "does not delete the associated recipes" do
+      expect(Recipe.count).to eq 1
+    end
 
     # uncomment when the user show is created
     # it "redirects to the user show page" do
     #   expect(response).to redirect_to user_path(cookbook.user)
     # end
   end
+
+  # describe "DELETE #remove_recipe" do
+  #   let(:cookbook) { create :cookbook }
+  #   before :each do
+  #     recipe = create :recipe
+  #     cookbook.recipes << recipe
+  #     delete :remove_recipe, cookbook_id: cookbook, id: recipe
+  #   end
+
+  #   it "removes the association between cookbook and recipe" do
+  #     expect(cookbook.recipes.count).to eq 0
+  #   end
+  # end
 end
