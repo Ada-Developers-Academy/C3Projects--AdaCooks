@@ -1,0 +1,8 @@
+<h3>All Recipes</h3>
+
+<% @recipes.each do |recipe| %>
+  <div>
+    <%= image_tag recipe.image_url(:thumb) %>
+    <h4><%= recipe.name %></h4>
+  </div>
+<% end %>

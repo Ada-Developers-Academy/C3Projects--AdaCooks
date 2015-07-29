@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   #   end
 
   resources :users
+  resources :recipes
 
   get '/signup'    =>  'users#new',       as: 'signup'
   get '/login'     =>  'sessions#new',    as: 'login'
