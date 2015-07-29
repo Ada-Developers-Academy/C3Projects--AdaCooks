@@ -22,22 +22,22 @@ end
 
 # ingredients ------------------------------------------------------------------
 ingredients_params = {
-  apples: { name: "Apples" },
-  cinnamon: { name: "Cinnamon" },
-  white_sugar: { name: "White Sugar" },
-  rolled_oats: { name: "Rolled Oats" },
-  olive_oil: { name: "Olive Oil" },
-  milk: { name: "Milk" },
-  oreos: { name: "Oreos" },
-  vanilla: { name: "Vanilla Extract" },
-  butter: { name: "Butter" },
-  eggs: { name: "Eggs" },
-  cocoa_powder: { name: "Unsweetend Cocoa Powder" },
-  whole_wheat_flour: { name: "Whole Wheat Flour" },
-  salt: { name: "Salt" },
-  baking_powder: { name: "Baking Powder" },
-  honey: { name: "Honey" },
-  powdered_sugar: { name: "Powdered Sugar" }
+  apples: { name: "Apples", user_id: users[:gurl].id },
+  cinnamon: { name: "Cinnamon", user_id: users[:gurl].id },
+  white_sugar: { name: "White Sugar", user_id: users[:gurl].id },
+  rolled_oats: { name: "Rolled Oats", user_id: users[:gurl].id },
+  olive_oil: { name: "Olive Oil", user_id: users[:gurl].id },
+  milk: { name: "Milk", user_id: users[:gurl].id },
+  oreos: { name: "Oreos", user_id: users[:gurl].id },
+  vanilla: { name: "Vanilla Extract", user_id: users[:gurl].id },
+  butter: { name: "Butter", user_id: users[:gurl].id },
+  eggs: { name: "Eggs", user_id: users[:gurl].id },
+  cocoa_powder: { name: "Unsweetend Cocoa Powder", user_id: users[:gurl].id },
+  whole_wheat_flour: { name: "Whole Wheat Flour", user_id: users[:gurl].id },
+  salt: { name: "Salt", user_id: users[:gurl].id },
+  baking_powder: { name: "Baking Powder", user_id: users[:gurl].id },
+  honey: { name: "Honey", user_id: users[:gurl].id },
+  powdered_sugar: { name: "Powdered Sugar", user_id: users[:gurl].id }
 }
 
 ingredients = {}
