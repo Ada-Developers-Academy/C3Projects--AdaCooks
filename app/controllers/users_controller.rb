@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_action :login_required, except: [:new, :index, :create]
+	before_action :login_required, except: [:index, :new, :create]
 
 	def index
 	end

@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
 
+	def new; end
+
 	def create # logging in
 		if identify_user && authenticate
 			session[:user_id] = @user.id
