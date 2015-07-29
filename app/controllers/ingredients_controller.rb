@@ -4,7 +4,7 @@ class IngredientsController < ApplicationController
   end
 
   def show
-    find_ingredient
+    @type = find_ingredient
   end
 
   def new
