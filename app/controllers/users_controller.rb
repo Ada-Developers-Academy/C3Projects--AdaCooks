@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
+    @cookbooks = @user.cookbooks
+
   end
 
   def new
