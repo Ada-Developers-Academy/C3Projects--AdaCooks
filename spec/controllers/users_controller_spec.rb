@@ -22,7 +22,19 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe "GET #new" do
+    before :each do
+      get :new
+    end
 
+    it "renders the new view (form)" do
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+      expect(subject).to render_template(:new)
+    end
+
+    it "news up a user" do
+      expect(assigns(:user)).to be_a User
+    end
   end
 
   describe "POST #create" do
