@@ -5,7 +5,12 @@ RSpec.describe ApplicationController, type: :controller do
       def require_login_test
         require_login
       end
+
+      def logged_in_test
+        logged_in
+      end
     end
+
   describe "#require_login" do
     before :each do
       @user = create :user
@@ -27,7 +32,7 @@ RSpec.describe ApplicationController, type: :controller do
 
     context "user not logged in" do
       before :each do
-        get :require_login_test, session: { user_id: nil }
+        get :require_login_test#, session: { user_id: nil }
       end
 
       it "flashes error message" do
@@ -38,5 +43,8 @@ RSpec.describe ApplicationController, type: :controller do
         expect(response).to redirect_to login_path
       end
     end
+  end
+  describe "#logged_in" do
+    
   end
 end
