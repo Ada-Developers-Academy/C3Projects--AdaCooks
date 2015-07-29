@@ -1,6 +1,14 @@
 class RecipesController < ApplicationController
   def index
     @recipes = Recipe.all
+
+    if params[:search]
+      @recipes = Recipe.search(params[:search])
+      render :results
+    else
+      @recipes = Recipe.all
+      render :index
+    end
   end
 
   def new
@@ -27,7 +35,7 @@ class RecipesController < ApplicationController
     @recipe.destroy
 
   end
-  
+
 
   private
 
