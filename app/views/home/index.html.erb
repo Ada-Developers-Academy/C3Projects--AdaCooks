@@ -8,3 +8,27 @@
     <% end %>
   </div>
 </div>
+
+<h3 class="center">Recipes</h3>
+<div class="container center">
+  <% @recipes.each do |recipe| %>
+    <div class="col-md-4">
+      <%= image_tag(recipe.image, class: "img-homepage") %>
+      <p class="img-name"><%= link_to(recipe.name, recipe_path(recipe.id)) %></p>
+      <p class="img-desc"><%= recipe.desc %></p>
+    </div>
+  <% end %>
+</div>
+
+<!-- Ingredient images -->
+<h3 class="center">Ingredients</h3>
+<div class="container center">
+  <% @ingredients.each do |ingredient| %>
+    <div class="col-md-4">
+      <%= image_tag(ingredient.image, class: "img-homepage") %>
+      <p class="img-name"><%= link_to(ingredient.name, ingredient_path(ingredient.id)) %></p>
+    </div>
+  <% end %>
+</div>
+
+
