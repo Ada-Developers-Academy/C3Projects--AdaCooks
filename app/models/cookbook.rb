@@ -7,4 +7,10 @@ class Cookbook < ActiveRecord::Base
 
 # Validations ________________________________________________________________
   validates :name, presence: true
+
+
+# Scopes _____________________________________________________________________
+
+scope :user_cookbooks, -> (user) { where(user_id: "#{user.id}") }
+
 end

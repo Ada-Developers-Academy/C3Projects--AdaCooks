@@ -24,13 +24,16 @@ RSpec.describe CookbooksController, type: :controller do
   end
 
   describe "GET #create" do
+
     before :each do
       user = create :user, id: 2
       session[:user_id] = 2
     end
+
     context "with valid params" do
 
-      let (:params) { create :cookbook }
+      let (:params) do { name: "name", description: "some stuff", user_id: 2 }
+      end
 
       it "creates a new Cookbook record" do
         post :create, :cookbook => params
@@ -40,7 +43,8 @@ RSpec.describe CookbooksController, type: :controller do
     end
 
     context "with invalid cookbook params" do
-      let (:bad_book) { build :cookbook, name: nil }
+      let (:bad_book) do { description: "some stuff", user_id: 2 }
+      end
 
       it "doesn't create a new cookbook" do
         post :create, :cookbook => bad_book

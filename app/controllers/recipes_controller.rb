@@ -10,10 +10,21 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    @user = User.find(session[:user_id])
   end
 
   def create
+    recipe = Recipe.create(create_params)
+    user = User.find(session[:user_id])
 
+    if recipe.save
+
+      redirect_to user_path(user)
+    else
+
+      render 'new'
+
+    end
   end
 
   def edit
@@ -33,7 +44,7 @@ class RecipesController < ApplicationController
   private
 
   def create_params
-    params.permit(recipe: [:name, :description, :image, :preparation,
-      :cookbook_id])
+    params.require(:recipe).permit(:name, :description, :image, :preparation,
+      :cookbook_id, {:ingredient_ids => [] }, ingredient: [:name, :image])
   end
 end

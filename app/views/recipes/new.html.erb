@@ -13,10 +13,18 @@
       <%= f.label :preparation %>
       <%= f.text_area :preparation, class: "form-control" %>
 
+      <br>
+
       <%= f.label :image, "Recipe Photo" %>
       <%= f.file_field :image %>
 
-      <%= f.hidden_field  :cookbook_id, :value => params[:cookbook_id] %>
+      <br>
+
+      <%= f.label :cookbook %>
+      <%= f.collection_select :cookbook_id, Cookbook.user_cookbooks(@user), :id, :name, include_blank: "None" %>
+
+      <br>
+      <br>
 
       <%= f.label :ingredients %><br>
       <%= collection_check_boxes(:recipe, :ingredient_ids, Ingredient.all, :id, :name) do |b| %>
@@ -24,12 +32,15 @@
           <%= b.check_box + b.text.capitalize %>
         <% end %>
       <% end %>
-  <br>
-  <br>
 
+  <br>
+  <br>
       <%= f.fields_for :ingredients do |ingredient| %>
-        <%= ingredient.label :name %>
-        <%= ingredient.text_field :name%>
+        <%= ingredient.label "Add a new ingredient:" %>
+        <%= ingredient.text_field :name, class: "form-control"%>
+
+        <%= ingredient.label :image %>
+        <%= ingredient.file_field :image %>
         <% end %>
 
   <br>
