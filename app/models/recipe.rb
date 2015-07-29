@@ -7,7 +7,7 @@ class Recipe < ActiveRecord::Base
   # Validations ----------------------------------------------------------------
   validates :name, presence: true
   validates :preparation, presence: true
-  validates_with RecipeValidator, :on => :update
+  # validates_with RecipeValidator, :on => :update
 
   # Mounted Objects_____________________________________________________________
   # mount_uploader :image, ImageUploader #instance of class image uploader
