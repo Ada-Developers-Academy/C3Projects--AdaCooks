@@ -12,7 +12,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20150730161450) do
-
   create_table "cookbooks", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
@@ -39,6 +38,7 @@ ActiveRecord::Schema.define(version: 20150730161450) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "recipes", force: :cascade do |t|
     t.string   "name",        null: false
     t.string   "description", null: false
@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 20150730161450) do
     t.datetime "updated_at",  null: false
   end
 
+=======
+>>>>>>> Fixed duplicate :recipe in factories and re-migrated.
 =======
 >>>>>>> Fixed duplicate :recipe in factories and re-migrated.
   create_table "users", force: :cascade do |t|
