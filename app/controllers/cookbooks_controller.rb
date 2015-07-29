@@ -1,5 +1,5 @@
 class CookbooksController < ApplicationController
-  before_action :set_cookbook, only: [:edit, :update, :show]
+  before_action :set_cookbook, only: [:edit, :update, :show, :destroy]
 
   MESSAGES = {
     create_success: "You have successfully created a new cookbook.",
@@ -39,6 +39,12 @@ class CookbooksController < ApplicationController
   def show
     @owner = User.find(@cookbook.user_id)
     @recipes = @cookbook.recipes # add scope? newest first?
+  end
+
+  def destroy
+    @cookbook.destroy
+
+    redirect_to root_path #user_path(@current_user)
   end
 
   private
