@@ -1,0 +1,21 @@
+<h1>My Ingredients</h1>
+
+<%= link_to "Add New Ingredient", new_user_ingredient_path(session[:user_id]), class: "btn btn-primary" %>
+
+<%= link_to "Back to Dashboard", dashboard_user_path(session[:user_id]), class: "btn btn-primary" %>
+
+<table>
+  <th>Ingredients</th>
+  <th>Edit</th>
+  <th>Delete?</th>
+<% @ingredients.each do |ingredient| %>
+<tr>
+  <td><%= ingredient.name %></td>
+
+  <td><%= link_to "Edit", edit_user_ingredient_path(session[:user_id], ingredient.id) %></td>
+
+  <td><%= link_to "Delete Ingredient", user_ingredient_path(session[:user_id], ingredient.id), method: :delete, class: "btn btn-danger" %></td>
+  </tr>
+  <% end %>
+</table>
+
