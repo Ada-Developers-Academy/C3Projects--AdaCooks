@@ -3,6 +3,7 @@ class CookbooksController < ApplicationController
   end
 
   def show
+    @cookbook = Cookbook.find(params[:id])
   end
 
   def new
