@@ -1,7 +1,11 @@
 <div class="container marketing">
-  <h1>Welcome back, <%= @user.name %>!</h1>
-  <p><%= link_to "Create a New Cookbook", new_cookbook_path, class: "btn btn-default" %>
-  <%= link_to "Add New Recipe", new_recipe_path, class: "btn btn-default"  %></p>
+  <% if session[:user_id] %>
+    <h1>Welcome back, <%= @user.name %>!</h1>
+    <p><%= link_to "Create a New Cookbook", new_cookbook_path, class: "btn btn-default" %>
+      <%= link_to "Add New Recipe", new_recipe_path, class: "btn btn-default"  %></p>
+  <% else %>
+    <h1><%= @user.name %> cookbooks</h1>
+  <% end %>
 
   <hr class="featurette-divider">
 
@@ -16,9 +20,11 @@
         <p>Recipes: <%= cookbook.recipes.count %> Ingredients: <%= cookbook.ingredients.count %></p>
       <div class="btn-toolbar">
         <p><%= link_to "View details", cookbook_path(cookbook.id), class: "btn btn-default" %>
-        <%= link_to "Delete Cookbook", cookbook_path(cookbook), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure you want to delete this?"} %></p>
-        <br>
-        <br>
+        <% if session[:user_id] %>
+          <%= link_to "Delete Cookbook", cookbook_path(cookbook), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure you want to delete this?"} %></p>
+          <br>
+          <br>
+        <% end %>
         </div>
      </div>
     <% end %>
