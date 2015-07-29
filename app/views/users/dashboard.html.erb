@@ -19,8 +19,9 @@
 </table>
 
 <h3>Cookbooks</h3>
-<%# link_to "Add New Cookbook" %>
-
+<p>
+  <%= link_to "Add New Cookbook", new_user_cookbook_path(@user), class: "btn btn-default" %>
+</p>
 <table class="table table-bordered table-hover">
   <thead>
     <tr>
