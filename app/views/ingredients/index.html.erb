@@ -1,9 +1,7 @@
 <h2> Ingredients Index </h2>
 
-<% if @user %>
-  <% if @user.id == @ingredient.user_id %>
+<% if session[:user_id] %>
     <%= link_to "+ Add an Ingredient", new_ingredient_path %>
-  <% end %>
 <% end %>
 
 <table class = "table table-hover table-bordered table-striped table-condensed">
@@ -15,15 +13,13 @@
       <th>
         Image
       </th>
-      <% if @user %>
-        <% if @user.id == @ingredient.user_id %>
+      <% if session[:user_id] %>
         <th>
           Edit
         </th>
         <th>
           Delete
         </th>
-        <% end %>
       <% end %>
     </tr>
   </thead>
@@ -36,15 +32,20 @@
         <td>
           <%= image_tag ingredient.image_url, class: "img-circle img-sm" %>
         </td>
-        <% if @user %>
-          <% if @user.id == @ingredient.user_id %>
-          <td>
-            <%= link_to "Edit", edit_ingredient_path(@ingredient.id) %>
-          </td>
-          <td>
-            <%= link_to "Delete", ingredient_path(@ingredient.id), :method => :delete %>
-          </td>
-          <% end %>
+        <% if session[:user_id] %>
+            <% if session[:user_id] == ingredient.user_id %>
+              <td>
+                <%= link_to "Edit", edit_ingredient_path(ingredient.id) %>
+              </td>
+              <td>
+                <%= link_to "Delete", ingredient_path(ingredient.id), :method => :delete %>
+              </td>
+            <% else %>
+              <td>
+              </td>
+              <td>
+              </td>
+            <% end %>
         <% end %>
     </tr>
   <% end %>
