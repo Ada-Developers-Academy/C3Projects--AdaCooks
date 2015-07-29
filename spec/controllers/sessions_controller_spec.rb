@@ -2,10 +2,11 @@ require 'rails_helper'
 
 RSpec.describe SessionsController, type: :controller do
 	describe "POST #create" do
-		before :all do
+		# 'cause before :all sucks butt
+		before :each do
 			create :user
 		end
-		
+
 		let(:params) { { :session => { username: 'Toastee', password: 'jentoof' } } }
 		let(:bad_params) { { :session => { username: 'Hemingway', password: 'havana' } } }
 		let(:bad_password_params) { { :session => { username: 'Toastee', password: 'flav' } } }
