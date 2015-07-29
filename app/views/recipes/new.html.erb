@@ -1,0 +1,48 @@
+<h2>Create a New Recipe</h2>
+
+<%= form_for @recipe do |f| %>
+	<div class="form-group">
+		<%= f.label :name, 'Recipe Name' %>
+		<%= f.text_field :name %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :description %>
+		<%= f.text_area :description %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :image_url, 'Recipe Image' %>
+		<%= f.file_field :image_url %>
+	</div>
+
+	<!-- ingredients -->
+	<%= f.fields_for :recipe_ingredients do |ingredients| %>
+		<div class="form-group">
+			<%= ingredients.label :quantity %>
+			<%= ingredients.text_field :quantity %>
+		</div>
+
+		<div class="form-group">
+			<%= ingredients.label :measurement %>
+			<%= ingredients.select(:measurement, options_for_select(@measurements_array)) %>
+		</div>
+
+		<div class="form-group">
+			<%= ingredients.label :ingredient_name, "Ingredient" %>
+			<%= ingredients.text_field :ingredient_name %>
+		</div>
+	<% end %>
+
+	<div class="form-group">
+		<%= f.label :prep %>
+		<%= f.text_area :prep %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :cookbook_id, 'Cook Book' %>
+		<%= f.select(:cookbook_id, options_for_select(@cookbooks_array)) %>
+	</div>
+
+	<%= f.submit "Create Recipe", class: 'btn btn-primary' %>
+<% end %>
