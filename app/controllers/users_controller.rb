@@ -16,6 +16,8 @@ class UsersController < ApplicationController
 
   def dashboard
     @user = User.find(session[:user_id])
+
+    @recipes = @user.recipes.order(:name)
   end
 
   private

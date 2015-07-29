@@ -7,7 +7,13 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.create(recipe_params)
 
-    redirect_to dashboard_user_path(session[:user_id])
+    if @recipe.save
+      redirect_to dashboard_user_path(session[:user_id])
+    else
+      flash.now[:error] = "Please enter valid stuff"
+
+      redirect_to :back
+    end
   end
 
   private

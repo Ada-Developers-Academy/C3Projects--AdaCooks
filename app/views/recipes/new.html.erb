@@ -1,3 +1,7 @@
+<% if flash.now[:error] %>
+  <%= flash.now[:error] %>
+<% end %>
+
 <h1>New Recipe</h1>
 <%= form_for @recipe, url: user_recipes_path(params[:user_id]), html: { class: "form" } do |f| %>
   <div class="form-group">
@@ -15,10 +19,10 @@
     <%= f.text_area :preparation, class: "form-control" %>
   </div>
 
+  <% f.hidden_field :user_id, :value => session[:user_id] %>
+
   <!-- needs ingredients fields -->
   <!-- needs option to add to cookbook -->
-
-  <% f.hidden_field :user_id, :value => params[:user_id] %>
 
   <%= f.submit "Add Recipe", class: "btn btn-primary" %>
 <% end %>

@@ -7,3 +7,8 @@
 
 <%= link_to "New Recipe", new_user_recipe_path(session[:user_id]) %>
 
+<ul>
+<% @recipes.each do |recipe| %>
+  <li><%= recipe.name %></li>
+  <% end %>
+</ul>
