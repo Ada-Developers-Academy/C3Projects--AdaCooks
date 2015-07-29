@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_login, only: [:show]
 
+
   def index
 
   end
@@ -26,6 +27,9 @@ class UsersController < ApplicationController
     @cookbooks = Cookbook.all
   end
 
+  def view
+    @user = User.find(params[:id])
+  end
 
 private
 

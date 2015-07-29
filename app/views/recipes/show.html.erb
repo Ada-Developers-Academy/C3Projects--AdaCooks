@@ -10,7 +10,7 @@ t.integer  "user_id"
 
 <div="container">
   <h1> <%= @recipe.name %> Details </h1>
-  <h2>By <%= link_to "#{@user}", user_path(@recipe.user_id) %> </h2>
+  <h2>By <%= link_to "#{@user}", view_user_path(@recipe.user_id) %> </h2>
 
   <table class="table">
     <tr>
