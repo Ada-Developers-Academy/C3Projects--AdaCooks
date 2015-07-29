@@ -51,4 +51,20 @@ RSpec.describe SessionsController, type: :controller do
       end
     end
   end
+
+  describe "Delete #destroy is logout" do
+    before :each do
+      @user = create :user
+      post :create, session: {username: @user.username, password: @user.password}
+      delete :destroy
+    end
+
+    it "sets session user_id to nil" do
+      expect(session[:user_id]).to be nil
+    end
+
+    it "redirects to the root path" do
+      expect(response).to redirect_to root_path
+    end
+  end  
 end
