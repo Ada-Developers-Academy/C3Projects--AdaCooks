@@ -1,0 +1,23 @@
+<h1>My Cookbooks</h1>
+
+<%= link_to "Add Cookbook", class: "btn btn-default" %>
+
+<table class="table">
+  <tr>
+    <th>Cookbook</th>
+    <th># of Recipes</th>
+    <th># of Unique Recipes</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @cookbooks.each do |cookbook| %>
+    <tr>
+      <td><%= link_to "#{cookbook.name}", user_cookbook_path(cookbook.user.id, cookbook.id) %></td>
+      <td><%= cookbook.recipes.count %></td>
+      <td><%= cookbook.recipes.uniq.count %></td>
+      <td><%= link_to "Edit", class: "btn btn-default" %></td>
+      <td><%= link_to "Delete", class: "btn btn-default" %></td>
+    </tr>
+  <% end %>
+</table>
