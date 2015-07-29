@@ -18,7 +18,7 @@ class CookbooksController < ApplicationController
   def create
     @cookbook = Cookbook.new(cookbook_params)
     if @cookbook.save
-      redirect_to user_path
+      redirect_to user_path(session[:user_id])
     else
       render new_cookbook_path
     end
