@@ -1,0 +1,25 @@
+<%= form_for @recipe, url: @url, method: @method do |f| %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :desc %>
+  <%= f.text_area :desc %>
+
+  <%= f.label :image %>
+  <%= f.file_field :image %>
+
+  <%= f.label :prep %>
+  <%= f.text_area :prep %>
+
+  <%= f.collection_select :ingredient_ids, Ingredient.all, :id, :name, {}, {multiple: true} %>
+
+  <%= f.fields_for :ingredients_attributes do |ingredient_fields| %>
+    <%= ingredient_fields.label :name %>
+    New Ingredient: <%= ingredient_fields.text_field :name %>
+    <% end %>
+
+
+  <%= f.submit %>
+
+<% end %>

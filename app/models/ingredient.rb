@@ -9,6 +9,11 @@ class Ingredient < ActiveRecord::Base
 # SCOPES -------------------------------------------
   scope :alphabetical, -> { sort_by {|i| i.name} }
 
+# MOUNTED OBJECTS ----------------------------------
+  # mount_uploader :image, ImageUploader
+
+# METHODS ------------------------------------------
+
   def self.search(query)
     where("name LIKE ?", "%#{query}%")
   end

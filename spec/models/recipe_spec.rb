@@ -15,4 +15,16 @@ RSpec.describe Recipe, type: :model do
     end
   end
 
+  describe "scope" do
+    let(:recipe2) {create :recipe}
+    let(:recipe1) {create :recipe, name: "Fish Fingers"}
+    let(:recipe3) {create :recipe, name: "Fry Fingers"}
+
+    it "sorts all the recipes by alphabetical order" do
+      recipe3
+      correct_order = [recipe2, recipe1, recipe3]
+      expect(Recipe.all.sort_by {|i| i.name}).to eq(correct_order)
+    end
+  end
+
 end

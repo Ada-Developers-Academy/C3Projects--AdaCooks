@@ -18,6 +18,9 @@ class RecipesController < ApplicationController
   end
 
   def create
+    # @ingredient = Ingredient.new(ingredient_params)
+    @recipe = Recipe.new(recipe_params)
+    raise
     if @recipe.save
       redirect_to recipes_path, notice: "Recipe successfully added chef!"
     else
@@ -52,6 +55,10 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:name, :desc, :prep, :image, :cookbook_id, :user_id)
+    params.require(:recipe).permit(:name, :desc, :prep, :image, :cookbook_id, :user_id, :ingredient_ids, ingredients_attributes: [:name])
   end
+
+  # def ingredient_params
+    # params.require(recipe: :ingredient).permit(:name, :image)
+  # end
 end
