@@ -18,13 +18,34 @@ class CookbooksController < ApplicationController
   end
 
   def create
-    @cookbook = Cookbook.new(cookbook_params[:cookbook])
+    @cookbook = Cookbook.create(cookbook_params[:cookbook])
     if @cookbook.save
-      redirect_to user_cookbook_path(@cookbook.id)
+      redirect_to user_cookbook_path(@cookbook.user_id, @cookbook.id)
     else
       flash[:error]
       redirect_to new_user_cookbook_path
     end
+  end
+
+  def edit
+    @cookbook_id = params[:id]
+    @cookbook = Cookbook.find(@cookbook_id)
+  end
+
+  def create
+    @cookbook_id = params[:id]
+    @cookbook = Cookbook.find(@cookbook_id)
+    @cookbook.update(cookbook_params[:cookbook])
+
+    redirect_to user_cookbook_path(@cookbook.user_id, @cookbook_id)
+  end
+
+  def destroy
+    @cookbook_id = params[:id]
+    @cookbook = Cookbook.find(@cookbook_id)
+    @cookbook.destroy
+
+    redirect_to user_cookbooks_path(session[:user_id])
   end
 
   private

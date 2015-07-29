@@ -1,5 +1,5 @@
 <h2>My Cookbooks</h2>
-
+<p> <%= link_to "Create a New Cookbook", new_user_cookbook_path(session[:user_id]) %></p>
 <table class = "table table-hover table-bordered table-striped table-condensed">
   <thead>
     <tr>
@@ -21,10 +21,10 @@
           <%= link_to "#{cookbook.name}", user_cookbook_path(@user.id, cookbook.id) %>
         </td>
         <td>
-          <%=  %>
+          <%= link_to "Edit", edit_user_cookbook_path(session[:user_id], cookbook.id) %>
         </td>
         <td>
-          <%=  %>
+          <%= link_to "Delete", user_cookbook_path(cookbook.user_id, cookbook.id), :method => :delete %>
         </td>
     </tr>
   <% end %>
