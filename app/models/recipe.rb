@@ -11,5 +11,7 @@ class Recipe < ActiveRecord::Base
   validates :user_id, presence: true
 
   # Scopes ----------------------------------------------------------------
-  scope :newest, -> (total) { order("created_at DESC").limit(total)}
+  # refactor: have :newest chain from :desc_by_update
+  scope :newest, -> (total) { order("created_at DESC").limit(total) }
+  scope :desc_by_update, -> { order("updated_at DESC") }
 end
