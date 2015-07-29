@@ -24,6 +24,10 @@ class RecipesController < ApplicationController
     end
   end
 
+  def edit
+    @recipe_name = @recipe.name.titlecase
+  end
+
   def update
     @recipe.update(recipe_params)
 
