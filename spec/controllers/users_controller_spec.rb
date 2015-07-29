@@ -9,12 +9,11 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-  # describe "POST #create" do
-  #   let(:user) { create :user, id: 1 }
-  #   it "redirects to the :dashboard view" do
-  #     post :create, user
+  describe "POST #create" do
+    subject { post :create, :user => { name: "User", email: "soandso@so.com", password: "soandso", password_confirmation: "soandso", id: 1} }
 
-  #     expect(subject).to redirect_to(dashboard_user_path(assigns()))
-  #   end
-  #end
+    it "redirects to the :dashboard view" do
+      expect(subject).to redirect_to("/users/#{assigns(:user).id}/dashboard")
+    end
+  end
 end
