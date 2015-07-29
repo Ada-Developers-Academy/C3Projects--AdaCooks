@@ -1,0 +1,15 @@
+<h2><%= @recipe.name %></h2>
+<p>User: <%= @recipe.user.username %><%# link_to @recipe.user.username, user_path(@recipe.user) %></p>
+
+<ol>
+  <% @recipe.steps.each do |step| %>
+    <li class=""><%# TODO: fill in class; format this in the CSS %>
+      <ul>
+        <% step.measurements.each do |measurement| %>
+          <li class=""><%= measurement.amount %> <%= measurement.ingredient.name %></li><%# TODO: fill in class; format this in the CSS %>
+        <% end %>
+      </ul>
+      <%= step.directions %>
+    </li>
+  <% end %>
+</ol>
