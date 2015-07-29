@@ -35,7 +35,7 @@ class CookbooksController < ApplicationController
 
     Cookbook.destroy(params[:id])
 
-    # forces recipe entry to reload so that recipes.cookbooks no longer shows
+    # forces recipe entry to reload so that recipe.cookbooks no longer shows
     # association with deleted cookbook (SQL caches the old association)
     associated_recipes.each { |recipe| recipe.reload }
 
