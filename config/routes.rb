@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   resources :ingredients
   resources :cookbooks
 
+  get '/login' => 'sessions#new', as: :login
+  post '/login' => 'sessions#create'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

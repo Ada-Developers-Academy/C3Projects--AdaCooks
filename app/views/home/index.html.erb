@@ -1,8 +1,13 @@
 <h1>Hi There</h1>
+<%= link_to "Login", login_path %>
 <%=link_to "new user", new_user_path %>
-<%= link_to "new recipe", new_user_recipe_path %>
+<% unless session[:user_id].nil? %>
+<%= link_to "new recipe", new_user_recipe_path(session[:user_id])%>
+<% end %>
 
+<% unless @recipes.nil? %>
 <%= @recipes.each do |recipe| %>
   <%= recipe.name %>
   <%= recipe.image %>
 <%end %>
+<% end %>
