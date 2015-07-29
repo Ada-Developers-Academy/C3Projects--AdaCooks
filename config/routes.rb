@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   post '/signin', to: 'sessions#create'
   delete '/signout', to: 'sessions#destroy', as: 'signout'
 
-  resources :cookbooks, only: [:new, :create, :edit, :update]
+  resources :cookbooks, only: [:new, :create, :edit, :update, :show]
 end
