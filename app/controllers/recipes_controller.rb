@@ -2,6 +2,8 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+
+    @ingredients = Ingredient.all.order(:name)
   end
 
   def create
@@ -12,6 +14,8 @@ class RecipesController < ApplicationController
 
   def edit
     @recipe = Recipe.find(params[:id])
+
+    @ingredients = Ingredient.all.order(:name)
   end
 
   def update
@@ -38,6 +42,6 @@ class RecipesController < ApplicationController
   def recipe_params
     params.require(:recipe).permit(
       :name, :description, :preparation,
-      :user_id)
+      :user_id, :ingredients, :cookbooks)
   end
 end

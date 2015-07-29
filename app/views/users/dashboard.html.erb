@@ -9,12 +9,12 @@
 
 
 <table>
-  <th>Recipe</th>
-  <th>Edit Recipe</th>
+  <th>Recipes</th>
+  <th>Edit</th>
 <% @recipes.each do |recipe| %>
 <tr>
   <td><%= recipe.name %></td>
-  <td><%= link_to "Edit Recipe", edit_user_recipe_path(session[:user_id], recipe.id) %></td>
+  <td><%= link_to "Edit", edit_user_recipe_path(session[:user_id], recipe.id) %></td>
   </tr>
   <% end %>
 </table>

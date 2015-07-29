@@ -19,6 +19,13 @@
     <%= f.text_area :preparation, class: "form-control" %>
   </div>
 
+  <div class="form-group">
+    <%= f.label :ingredients %>
+    <%= f.collection_check_boxes( :ingredients, @ingredients, :id, :name, checked: @recipe.ingredients.map(&:id), class: "form-control" ) %>
+    <!-- may want to change this to some sort of search function as well -->
+  </div>
+
+
   <%= f.hidden_field :user_id, :value => params[:user_id] %>
 
   <!-- needs ingredients fields -->
