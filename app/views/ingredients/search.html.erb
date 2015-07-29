@@ -13,14 +13,19 @@
       </div>
     </div>
 
-    <% ingredient.recipes.each do |recipe| %>
-      <hr class="featurette-divider">
+    <% if ingredient.recipes.count != 0 %>
+      <p class="lead">See recipes with <%= ingredient.name%>: </p>
+      <% ingredient.recipes.each do |recipe| %>
 
-      <div class="row featurette">
-        <div class="col-md-12">
-          <p class="lead"><%= link_to recipe.name, recipe_path(recipe) %></p>
+        <hr class="featurette-divider">
+        <div class="row featurette">
+          <div class="col-md-12">
+            <p class="lead"><%= link_to recipe.name, recipe_path(recipe) %></p>
+          </div>
+        </div>
+        <% end %>
+      <% else %>
+        <p class="lead">Unfortunately, there's no recipes with <%=ingredient.name %></p>
     <% end %>
-      </div>
-    </div>
-    <% end %>
+  <% end %>
 </div>
