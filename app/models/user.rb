@@ -9,8 +9,9 @@ class User < ActiveRecord::Base
   validates :username, uniqueness: true
   validates :password, presence: true
   validates :password_confirmation, presence: true
-  # validates :user_photo
+
   #Scopes------------------------------------------------------------------------
   #Mounted Objects---------------------------------------------------------------
   mount_uploader :image, ImageUploader
+
 end
