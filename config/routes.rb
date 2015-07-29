@@ -7,10 +7,9 @@ Rails.application.routes.draw do
   resources :users do
     resources :cookbooks
   end
-  resources :recipes, :ingredients
 
   resources :recipes, :ingredients
-  resources :sessions, only: [:create, :destroy]
+  resources :sessions, only: [:new, :create, :destroy]
 
 
   # You can have the root of your site routed with "root"
