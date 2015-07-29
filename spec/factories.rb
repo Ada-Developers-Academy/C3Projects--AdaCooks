@@ -1,4 +1,7 @@
-FactoryGirl.define do
+FactoryGirl.define do  factory :recipe_ingredient do
+    
+  end
+
 
   factory :recipe do
     name 'Oprah\'s Skinny Martini'
