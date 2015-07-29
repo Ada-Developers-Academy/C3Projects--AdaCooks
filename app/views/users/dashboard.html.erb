@@ -1,4 +1,4 @@
-<h1>Dashboard</h1>
+<h2>Dashboard</h2>
 <%= link_to "Logout", logout_path, method: :delete %>
 
 <p>
@@ -18,3 +18,24 @@
   <% end %>
 </table>
 
+<h3>Cookbooks</h3>
+<%# link_to "Add New Cookbook" %>
+
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Recipes</th>
+      <th>Ingredients</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cookbooks.each do |cookbook| %>
+    <tr>
+      <td><%= link_to cookbook.name, cookbook_path %></td>
+      <td><span class="badge"><%= cookbook.recipes.count %></span></td>
+      <td><span class="badge"><%= cookbook.ingredients.count %></span></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

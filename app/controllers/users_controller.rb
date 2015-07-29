@@ -18,6 +18,7 @@ class UsersController < ApplicationController
     @user = User.find(session[:user_id])
 
     @recipes = @user.recipes
+    @cookbooks = @user.cookbooks
   end
 
   private
