@@ -3,7 +3,7 @@
 <div class="row">
   <% @recipes.each do |recipe| %>
     <div class="recipe_tiles col-md-3">
-      <%= image_tag recipe.image_url(:thumb) %>
+      <%= link_to(image_tag(recipe.image_url(:thumb)), recipe_path(recipe.id)) %>
       <h4><%= recipe.name %></h4>
     </div>
   <% end %>
