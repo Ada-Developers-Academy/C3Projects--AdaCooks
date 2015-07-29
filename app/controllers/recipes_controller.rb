@@ -27,8 +27,7 @@ class RecipesController < ApplicationController
     @recipe.destroy
 
   end
-
-  end
+  
 
   private
 
