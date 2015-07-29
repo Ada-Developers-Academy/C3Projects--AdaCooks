@@ -39,20 +39,30 @@ ActiveRecord::Schema.define(version: 20150730161450) do
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "recipes", force: :cascade do |t|
     t.string   "name",        null: false
     t.string   "description", null: false
     t.string   "image"
+=======
+  create_table "recipes", force: :cascade do |t|
+    t.string   "name",        null: false
+    t.string   "description", null: false
+    t.string   "image_url"
+>>>>>>> New migration.
     t.string   "prep",        null: false
     t.integer  "cookbook_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
+<<<<<<< HEAD
 =======
 >>>>>>> Fixed duplicate :recipe in factories and re-migrated.
 =======
 >>>>>>> Fixed duplicate :recipe in factories and re-migrated.
+=======
+>>>>>>> New migration.
   create_table "users", force: :cascade do |t|
     t.string   "username",        null: false
     t.string   "email",           null: false
