@@ -12,6 +12,7 @@ class IngredientsController < ApplicationController
   end
 
   def create
+
   end
 
   def edit

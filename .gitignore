@@ -18,3 +18,8 @@
 
 app/models/.DS_Store
 coverage/
+
+
+app/assets/.DS_Store
+
+public/uploads/

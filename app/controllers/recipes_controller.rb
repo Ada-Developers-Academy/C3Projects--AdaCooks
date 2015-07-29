@@ -3,7 +3,6 @@ class RecipesController < ApplicationController
 
   def index
     @recipes = Recipe.alpha_order
-    raise
   end
 
   def show
@@ -13,17 +12,19 @@ class RecipesController < ApplicationController
   def new
     @recipe = Recipe.new
     @user = User.find(session[:user_id])
+
+    1.times { @recipe.ingredients.build}
   end
 
   def create
-    recipe = Recipe.create(create_params)
-    user = User.find(session[:user_id])
+    @recipe = Recipe.create(create_params)
+    @user = User.find(session[:user_id])
 
-    if recipe.save
+    if @recipe.save
 
-      redirect_to user_path(user)
+      redirect_to user_path(@user)
     else
-
+      raise
       render 'new'
 
     end
@@ -37,16 +38,17 @@ class RecipesController < ApplicationController
 
   def destroy
     recipe = Recipe.find(params[:id])
+    cookbook = recipe.cookbook_id
     recipe.destroy
-    user = User.find(recipe.user_id)
 
-    redirect_to user_path(user)
+
+    redirect_to cookbook_path(cookbook)
   end
 
   private
 
   def create_params
     params.require(:recipe).permit(:name, :description, :image, :preparation,
-      :cookbook_id, {:ingredient_ids => [] }, ingredient: [:name, :image])
+      :cookbook_id, {:ingredient_ids => [] }, ingredients: [:name, :image])
   end
 end
