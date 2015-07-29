@@ -1,0 +1,20 @@
+<h1>
+  <%= @ingredient.name.upcase %>
+  <small>Created by: <%= link_to @ingredient.user.username, user_path(@ingredient.user) %></small>
+</h1>
+
+<% if @ingredient.avatar %>
+  <%= image_tag @ingredient.avatar_url %>
+<% end %>
+
+<p><%= @ingredient.name %> is used in the following recipes:</p>
+<ul>
+<% if @ingredient.recipes && @ingredient.recipes.count > 0 %>
+  <% @ingredient.recipes.each do |recipe| %>
+    <li><%= link_to recipe.name, recipe_path %></li>
+  <% end %>
+<% else %>
+  <li>It's not used in any recipes yet. ;_;</li>
+  <li>Add a new one <%= link_to "here", new_recipe_path %>!</li>
+<% end %>
+</ul>

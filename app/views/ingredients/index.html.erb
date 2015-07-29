@@ -1,0 +1,12 @@
+<h1>All Ingredients</h1>
+
+<div class="columns">
+  <ul>
+    <% @ingredients.each do |ingredient| %>
+      <li>
+        <%= link_to ingredient.name, ingredient_path(ingredient) %>
+        <%= ingredient_recipes_count(ingredient) %>
+      </li>
+    <% end %>
+  </ul>
+</div>

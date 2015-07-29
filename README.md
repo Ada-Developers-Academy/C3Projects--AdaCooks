@@ -1,3 +1,12 @@
+Shanna + Jeri
+
+possible color ideas (these colors apparently linked to stimulating hunger):
+- turqoise
+- green
+- yellow
+- orange
+- red
+
 # Ada Cooks!
 The goal of this project is to build an online cookbook application where users can manage Recipes and Ingredients, create Cookbook collections of different Recipes, and keep track of their Ingredients.
 
@@ -32,7 +41,7 @@ We're doing this to make the final project easier to code review. Because the ba
   - view an alphabetical list of all Ingedients
   - view the details of an individual Ingredient, including...
     - a list of links to Recipes associated with the Ingredient
-    
+
 ### As an anonymous User I can...
 - register a new User account
 - Log In to an existing User account
