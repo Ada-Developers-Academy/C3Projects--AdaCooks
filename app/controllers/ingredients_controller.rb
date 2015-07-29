@@ -1,5 +1,5 @@
 class IngredientsController < ApplicationController
-  before_action :require_login, except: [:index, :show]
+  before_action :require_login, except: [:index, :show, :search]
   before_action :find_ingredient, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -43,6 +43,11 @@ class IngredientsController < ApplicationController
     @ingredient = Ingredient.find(params[:id])
     @ingredient.destroy
     redirect_to ingredients_path
+  end
+
+  def search
+    @ingredients = Ingredient.search params[:search]
+    render :search_results
   end
 
 private

@@ -8,4 +8,8 @@ class Ingredient < ActiveRecord::Base
 
 # SCOPES -------------------------------------------
   scope :alphabetical, -> { sort_by {|i| i.name} }
+
+  def self.search(query)
+    where("name LIKE ?", "%#{query}%")
+  end
 end
