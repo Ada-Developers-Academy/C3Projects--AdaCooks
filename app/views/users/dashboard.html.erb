@@ -1,4 +1,7 @@
-<h1>Welcome to your Dashboard!</h1>
+
+<h1>Hello <%= @user.username %>! Welcome to your Dashboard!</h1>
+
+<h3>Your Cookbooks:</h3>
 
 <h3>Your Recipes:</h3>
 
@@ -14,3 +17,9 @@
     </tr>
   <% end %>
 </table>
+
+<h3>Your Ingredients: </h3>
+
+<% @user.ingredients.each do |ingredient|%>
+<%= link_to(image_tag(ingredient.image_url(:thumb)), ingredient(ingredient.id)) %>
+<% end %>
