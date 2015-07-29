@@ -91,11 +91,11 @@ end
 
 ingredients = [
 
-  {name: "Coconut Milk"},
-  {name: "Cocoa Powder"},
+  {name: "Coconut Milk", image: "coconut_milk.jpg"},
+  {name: "Cocoa Powder", image: "cocoa-powder.jpg"},
   {name: "Honey"},
   {name: "Almond Butter"},
-  {name: "Yams"},
+  {name: "Yams", image: "yam.jpg"},
   {name: "Vanilla Extract"},
   {name: "Chicken"},
   {name: "Salsa"},
@@ -108,7 +108,7 @@ ingredients = [
   {name: "Chocolate Chip"},
   {name: "Flour"},
   {name: "Baking Powder"},
-  {name: "Oil"}
+  {name: "Oil", image: "olive-oil.jpg"}
 
 ]
 i = {}
@@ -166,12 +166,12 @@ recipe.ingredients << Ingredient.find(i["Oil"])
 
 book = Cookbook.find(1)
 # Dessert
-recipe.cookbooks << Recipe.find(1)
-recipe.cookbooks << Recipe.find(2)
-recipe.cookbooks << Recipe.find(5)
-recipe.cookbooks << Recipe.find(6)
+book.recipes << Recipe.find(1)
+book.recipes << Recipe.find(2)
+book.recipes << Recipe.find(5)
+book.recipes << Recipe.find(6)
 
 book = Cookbook.find(2)
 # My Favorites
-recipe.cookbooks << Recipe.find(3)
-recipe.cookbooks << Recipe.find(4)
+book.recipes << Recipe.find(3)
+book.recipes << Recipe.find(4)
