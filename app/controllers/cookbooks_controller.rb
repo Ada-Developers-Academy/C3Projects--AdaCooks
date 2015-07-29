@@ -37,7 +37,7 @@ class CookbooksController < ApplicationController
       cookbook.recipes.destroy(recipe)
     end
 
-    redirect_to dashboard_user_path(user)
+    redirect_to user_cookbook_path(user, cookbook)
     # post = Post.find(params[:post][:id])
     #  category = post.categories.find(params[:category][:id])
     #
