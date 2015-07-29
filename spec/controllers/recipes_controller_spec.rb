@@ -37,7 +37,20 @@ RSpec.describe RecipesController, type: :controller do
   describe "GET #new" do
     it "renders the new template" do
       get :new
-      expect(response).to render_template("index")
+      expect(response).to render_template("new")
+    end
+  end
+  describe "POST #create" do
+    context "valid params" do
+
+      let(:valid_params) do
+        {name: "gnarly fake banana", preparation: "Don't make it, you monster."}
+      end
+
+      it "creates a new recipes" do
+        post :create, :recipe => valid_params
+        expect(Recipe.count).to eq 1
+      end
     end
   end
 end
