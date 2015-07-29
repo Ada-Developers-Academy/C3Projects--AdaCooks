@@ -64,11 +64,14 @@ RSpec.describe CookbooksController, type: :controller do
 #     end
 #   end
 
-#   describe "GET #destroy" do
-#     it "returns http success" do
-#       get :destroy
-#       expect(response).to have_http_status(:success)
-#     end
-#   end
+  describe "DELETE #destroy" do
+    it "deletes a cookbook record from the database" do
+      user = create :user, id: 2
+      cookbook = create :cookbook
+      get :destroy, :id => 1
+
+      expect(Cookbook.count).to eq (0)
+    end
+  end
 
 end
