@@ -13,7 +13,7 @@ CSV.foreach("db/cookbooks.csv", headers: true) do |row|
   Cookbook.create(
     name: row[0],
     desc: row[1],
-    user_id: [2]
+    user_id: row[2]
   )
 end
 
