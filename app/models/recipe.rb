@@ -7,6 +7,6 @@ class Recipe < ActiveRecord::Base
 	validates :name, :description, :prep, presence: true
 
 # Scopes -----------------------------------------------------------------------
-	# returns ALL recipes
+	# returns ALL recipes - do I want that, really…?
 	scope :alphabetize, -> { Recipe.order(name: :asc) }
 end
