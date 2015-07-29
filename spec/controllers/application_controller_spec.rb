@@ -12,13 +12,16 @@ RSpec.describe ApplicationController, type: :controller do
     end
 
   describe "#require_login" do
-    before :each do
-      @user = create :user
-      routes.draw { get "require_login_test" => "anonymous#require_login_test" }
-    end
+    # before :each do
+    #   @user = create :user
+    #   routes.draw { get "require_login_test" => "anonymous#require_login_test" }
+    # end
 
     context "user logged in" do
       before :each do
+        @user = create :user
+        binding.pry
+        routes.draw { get "require_login_test" => "anonymous#require_login_test" }
         get :require_login_test, session: { user_id: @user.id }
       end
 
@@ -44,7 +47,36 @@ RSpec.describe ApplicationController, type: :controller do
       end
     end
   end
+
   describe "#logged_in" do
-    
+    before :each do
+      @user1 = create :user
+      @user2 = create :user, username: 'happy', email: 'happy@happy.com'
+
+      session[:user_id] = @user1.id
+      routes.draw { get "logged_in_test" => "anonymous#logged_in_test" }
+    end
+
+    it "assigns @user to the user in the session" do
+      get :logged_in_test
+
+      expect(assigns(:user)).to eq @user1
+    end
+
+    context "the logged in user is the user we're looking at" do
+      it "redirects to home page" do
+        get :logged_in_test, params: { user_id: @user1.id }
+
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    context "the logged in user is not the user we're looking at" do
+      it "redirects to the logged in user's home page" do
+        get :logged_in_test, params: { user_id: @user2.id }
+
+        expect(response).to redirect_to root_path
+      end
+    end
   end
 end
