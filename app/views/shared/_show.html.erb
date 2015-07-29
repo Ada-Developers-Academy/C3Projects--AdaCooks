@@ -1,5 +1,21 @@
 <div="container">
-  <h1> <%= type %> Page </h1>
-  <%= @type.image %>
-  <%= @type.name %>
+  <h1> <%= type.capitalize %> Details </h1>
+  <table class="table">
+    <tr>
+      <th>
+        <td>Picture</td>
+        <td>Name</td>
+        <td>Recipes</td>
+      </th>
+    </tr>
+    <tr>
+      <td class="thumbnails"><%= image_tag(@type.image)%> </td>
+      <td> <%= @type.name %></td>
+
+      <td><%= @type.recipes.each do |recipe| %>
+        <%= recipe.name %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
 </div>
