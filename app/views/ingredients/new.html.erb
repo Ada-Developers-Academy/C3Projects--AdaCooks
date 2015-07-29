@@ -1,1 +1,13 @@
-new.html.erb
+<h1>Add a New Ingredient</h1>
+
+<%= form_for @ingredient, url: , params[:id]) do |f| %>
+  <fieldset>
+    <legend>Product Details</legend>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :image %>
+      <%= f.text_field :image %>
+  </fieldset>
+  <%= f.submit %>
+<% end %>

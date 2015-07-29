@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20150728071836) do
   create_table "ingredients", force: :cascade do |t|
     t.string   "name"
     t.string   "image"
+    t.integer  "recipe_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -39,8 +40,9 @@ ActiveRecord::Schema.define(version: 20150728071836) do
     t.string   "instructions"
     t.string   "image"
     t.integer  "user_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "ingredient_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "users", force: :cascade do |t|

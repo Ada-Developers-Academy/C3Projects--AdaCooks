@@ -11,5 +11,6 @@
   <%= f.label :rec_photo %>
   <%= f.file_field :rec_photo %>
 
-  <%= f.submit %>
+
+  <%= f.submit, "Add ingredients", new_user_ingredient_path(session[:user_id]) %>
 <% end %>
