@@ -12,6 +12,10 @@ class RecipesController < ApplicationController
     recipe_save_guard(@recipe)
   end
 
+  def show
+    @recipe = Recipe.find(params[:id])
+  end
+
   def edit
     @recipe = Recipe.find(params[:id])
 
