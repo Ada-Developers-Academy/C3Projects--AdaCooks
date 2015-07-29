@@ -1,6 +1,6 @@
 class CookbooksController < ApplicationController
   before_action :set_cookbook, only: [:edit, :update, :show, :destroy]
-  before_action :current_user, only: [:edit, :update, :show, :destroy]
+  before_action :current_user, only: [:create]
 
   MESSAGES = {
     create_success: "You have successfully created a new cookbook.",
@@ -17,12 +17,11 @@ class CookbooksController < ApplicationController
 
   def create
     @cookbook = Cookbook.new(cookbook_params)
-    # @cookbook.user = @current_user
+    @cookbook.user = @current_user
 
     if @cookbook.save
       flash[:success] = MESSAGES[:create_success]
-      # redirect_to cookbook_path
-      redirect_to root_path
+      redirect_to cookbook_path(@cookbook)
     else
       flash[:errors] = MESSAGES[:create_fail]
       render :new
@@ -33,7 +32,7 @@ class CookbooksController < ApplicationController
     @cookbook.update(cookbook_params)
     if @cookbook.save
       flash[:success] = MESSAGES[:update_success]
-      redirect_to root_path # @cookbook
+      redirect_to @cookbook
     else
       flash[:errors] = MESSAGES[:update_fail]
       render :edit
