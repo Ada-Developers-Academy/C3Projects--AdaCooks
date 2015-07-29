@@ -1,5 +1,5 @@
-name,description,user_id
-Easy cookbook recipes,"Real easy to cook best recipes are now in one great cookbook of simple but mouthwatering meals.",1
-Simple summer salads,"Super Summer Salad Recipes!",2
-Vegetable Salads,"Broccoli salads. Corn salads. Tomato salads. Green salads. And salad dressings, of course. Get endless flavor combos for fresh vegetable salads.",3
-Taste of home,"Salads are perfect for summer picnics, barbecues, pool parties, or every day light eating! Happy Summer Salad Eating!",4
+name,description,image_url,user_id
+Easy cookbook recipes,"Real easy to cook best recipes are now in one great cookbook of simple but mouthwatering meals.",salads1.png,1
+Simple summer salads,"Super Summer Salad Recipes!",salads2.png,2
+Vegetable Salads,"Broccoli salads. Corn salads. Tomato salads. Green salads. And salad dressings, of course. Get endless flavor combos for fresh vegetable salads.",salads3.png,3
+Taste of home,"Salads are perfect for summer picnics, barbecues, pool parties, or every day light eating! Happy Summer Salad Eating!",salads4.png,4

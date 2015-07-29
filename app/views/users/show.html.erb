@@ -1,24 +1,22 @@
 <div class="container marketing">
   <h1>Welcome back, <%= @user.name %>!</h1>
+  <p><%= link_to "Create a New Cookbook", new_cookbook_path, class: "btn btn-default" %></p>
   <hr class="featurette-divider">
   <h3><mark>Cookbooks:</mark></h3>
 
   <div class="row">
     <% @cookbooks.each do |cookbook| %>
       <div class="col-md-4">
-        <p class="lead"><%= cookbook.name %>: <small>Recipes <%= cookbook.recipes.count %> Ingredients <%= cookbook.ingredients.count %></small></p>
 
-        <% cookbook.recipes.each do |recipe| %>
-          <%= image_tag recipe.image_url, class:"img-circle", size: "250x250" %>
-          <h2><%= recipe.name %></h2>
-          <p><%= recipe.description %></p>
-          <p><%= link_to "View details", recipe_path(recipe.id), class: "btn btn-default" %></p>
-        <% end %>
+        <%= image_tag cookbook.image_url, class:"img-circle", size: "220x200" %>
+        <h2><%= cookbook.name %></h2>
+        <p>Recipes: <%= cookbook.recipes.count %> Ingredients: <%= cookbook.ingredients.count %></p>
+        <p><%= link_to "View details", cookbook_path(cookbook.id), class: "btn btn-default" %>
+        <%= link_to "Delete this cookbook", cookbook_path(cookbook), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure you want to delete this?"} %></p>
      </div>
 
-      <%= link_to "Delete this cookbook", cookbook_path(cookbook), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure you want to delete this?"} %>
 
     <% end %>
 
-  <%= link_to "Create a New Cookbook", new_cookbook_path, class: "btn btn-default" %>
+  </div>
 </div>
