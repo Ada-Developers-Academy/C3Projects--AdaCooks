@@ -1,6 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
+  describe "GET #show" do
+    before :each do
+      @user = create(:user)
+      get :show, id: 1
+    end
+
+    it "renders the user show page" do
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+      expect(subject).to render_template(:show)
+    end
+
+    it "assigns @user" do
+      expect(assigns(:user).id).to eq @user.id
+    end
+  end
+
   describe "GET #new" do
     before :each do
       get :new
