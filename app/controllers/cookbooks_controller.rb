@@ -1,7 +1,7 @@
 class CookbooksController < ApplicationController
   before_action :require_login
   before_action :define_user
-  before_action :get_cookbook, only: [:show, :edit, :update, :destroy]
+  before_action :find_cookbook, only: [:show, :edit, :update, :destroy]
 
   # Display cookbook(s)
   def index
@@ -44,7 +44,7 @@ end
 
 private
 
-  def get_cookbook
+  def find_cookbook
     @cookbook = Cookbook.find(params[:id])
   end
 
