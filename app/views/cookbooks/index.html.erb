@@ -12,7 +12,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @cookbooks.each do |cookbook| %>
+    <% @cookbooks.alphabetize.each do |cookbook| %>
       <tr>
         <td>
           <%= cookbook.name %>
