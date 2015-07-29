@@ -16,7 +16,6 @@ RSpec.describe RecipesController, type: :controller do
       expect(all_recipes.count).to eq 2
     end
 
-
   end
 
 end
