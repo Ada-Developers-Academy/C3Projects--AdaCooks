@@ -35,7 +35,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [] do
     resources :recipes, only: [:new, :create, :edit, :update]
-    resources :ingredients, only: [:new, :create, :edit, :update, :index]
+    resources :ingredients, only: [:new, :create, :edit, :update, :index, :destroy]
   end
 
   # Example resource route with options:

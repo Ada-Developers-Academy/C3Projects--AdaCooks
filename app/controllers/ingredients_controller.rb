@@ -34,6 +34,14 @@ class IngredientsController < ApplicationController
     @recipes = @ingredient.recipes
   end
 
+  def destroy
+    ingredient = Ingredient.find(params[:id])
+
+    ingredient.destroy
+
+    redirect_to user_ingredients_path(session[:user_id])
+  end
+
   def ingredient_save_guard(ingredient)
     if ingredient.save
       redirect_to dashboard_user_path(params[:user_id])
