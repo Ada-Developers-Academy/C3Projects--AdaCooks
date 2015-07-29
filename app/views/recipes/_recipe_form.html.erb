@@ -12,25 +12,25 @@
       <%= f.label :image, "Image" %>
       <%= f.file_field :image, class: "form-control" %>
 
-      <%= f.fields_for :recipe_ingredients, class: "form-inline" do |ri| %>
-        <div class="form-group">
-          <%= ri.label :quantity %>
-          <%= ri.text_field :quantity, class: "form-control" %>
-        </div>
+      <%# f.fields_for :recipe_ingredients, class: "form-inline" do |ri| %>
+        <!-- <div class="form-group"> -->
+          <%# ri.label :quantity %>
+          <%# ri.text_field :quantity, class: "form-control" %>
+        <!-- </div> -->
 
-        <div class="form-group">
-          <%= ri.label :measurement_id %>
-          <%= ri.collection_select(:measurement_id, Measurement.all, :id, :unit, prompt: "select" ) %>
-        </div>
-        <div class="form-group">
-          <%= ri.label :ingredient_id, class: "form-label" %>
-          <%= ri.collection_select(:ingredient_id, Ingredient.all, :id, :name, prompt: "select" ) %>
-        </div>
-          <%= ri.hidden_field :recipe_id, value: @recipe_id %>
-      <% end %>
+        <!-- <div class="form-group"> -->
+          <%# ri.label :measurement_id %>
+          <%# ri.collection_select(:measurement_id, Measurement.all, :id, :unit, prompt: "select" ) %>
+        <!-- </div> -->
+        <!-- <div class="form-group"> -->
+          <%# ri.label :ingredient_id, class: "form-label" %>
+          <%# ri.collection_select(:ingredient_id, Ingredient.all, :id, :name, prompt: "select" ) %>
+        <!-- </div> -->
+          <%# ri.hidden_field :recipe_id, value: @recipe_id %>
+      <%# end %>
 
-      <%= f.label :preparation, "preparation" %>
-      <%= f.text_area :preparation, :required => true, class: "form-control" %>
+      <%# f.label :preparation, "preparation" %>
+      <%# f.text_area :preparation, :required => true, class: "form-control" %>
 
       <%= f.submit "Submit", class: "btn btn-default"%>
     </fieldset>
