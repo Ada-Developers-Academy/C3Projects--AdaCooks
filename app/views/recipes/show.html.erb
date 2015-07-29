@@ -4,13 +4,7 @@
     <p><%= image_tag @recipe.image_url(:display) %></p>
     <p>Description: <%= @recipe.description %></p>
 
-    <ul class="list-group">
-      <% @ingredient_lines.each do |line| %>
-        <li class="list-group-item">
-            <%= "#{line.quantity} #{line.measurement.unit} #{line.ingredient.name}" %>
-        </li>
-      <% end %>
-    </ul>
+    <%= render 'ingredient_list' %>
 
     <p>Preparation: <%= @recipe.preparation %></p>
     <p>Recipe by: <%= link_to @recipe.user.username, "" %>
