@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20150730161450) do
     t.datetime "updated_at",    null: false
   end
 
+<<<<<<< HEAD
   create_table "recipes", force: :cascade do |t|
     t.string   "name",        null: false
     t.string   "description", null: false
@@ -48,6 +49,8 @@ ActiveRecord::Schema.define(version: 20150730161450) do
     t.datetime "updated_at",  null: false
   end
 
+=======
+>>>>>>> Fixed duplicate :recipe in factories and re-migrated.
   create_table "users", force: :cascade do |t|
     t.string   "username",        null: false
     t.string   "email",           null: false
