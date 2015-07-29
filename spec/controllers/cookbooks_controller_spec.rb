@@ -7,7 +7,7 @@ RSpec.describe CookbooksController, type: :controller do
 
   describe "GET #new" do
     before :each do
-      get :new, user_id: @user
+      get :new
     end
 
     it "responds with an HTTP 200 status" do
@@ -22,23 +22,30 @@ RSpec.describe CookbooksController, type: :controller do
   describe "POST #create" do
     context "valid params" do
       let(:valid_params) do
-        { name: "a name", description: "a description", user_id: 1 }
+        { name: "a name", description: "a description" }
+      end
+
+      before :each do
+        session[:user_id] = @user.id
+        post :create, cookbook: valid_params
       end
 
       it "creates a new cookbook" do
-        post :create, user_id: @user, cookbook: valid_params
         expect(Cookbook.count).to eq 1
       end
-    # write test for redirect to cookbook#show when dashboard is created
+
+      it "redirects to the new cookbook #show" do
+        expect(response).to redirect_to cookbook_path(Cookbook.first)
+      end
     end
 
     context "invalid params" do
       let(:invalid_params) do
-        { name: "a name", description: "a description", user_id: nil }
+        { name: nil, description: "a description" } # missing name
       end
 
       before :each do
-        post :create, user_id: @user, cookbook: invalid_params
+        post :create, cookbook: invalid_params
       end
 
       it "does not create a new cookbook" do
@@ -53,8 +60,9 @@ RSpec.describe CookbooksController, type: :controller do
 
   describe "GET #edit" do
     let(:cookbook) { create :cookbook }
+
     before :each do
-      get :edit, user_id: @user, id: cookbook
+      get :edit, id: cookbook
     end
 
     it "responds with an HTTP 200 status" do
@@ -71,29 +79,31 @@ RSpec.describe CookbooksController, type: :controller do
 
     context "valid params" do
       before :each do
-        put :update, user_id: @user, id: cookbook, cookbook: { 
-          name: 'updated name', description: 'updated description', user_id: 1
+        put :update, id: cookbook, cookbook: { 
+          name: 'updated name', description: 'updated description'
         }
+        cookbook.reload
       end
 
       it "updates an cookbook with valid params" do
-        cookbook.reload
         expect(cookbook.name).to eq "updated name"
       end
 
-      # write test for redirect to cookbook#show when view exists
+      it "redirects to cookbook#show" do
+        expect(response).to redirect_to cookbook_path(cookbook)        
+      end
     end
 
-    context "invalid params" do # missing user_id
+    context "invalid params" do # missing name
       before :each do
-        put :update, user_id: @user, id: cookbook, cookbook: {
-          name: 'updated name', description: 'updated description', user_id: nil
+        put :update, id: cookbook, cookbook: {
+          name: nil, description: 'updated description'
         }
+        cookbook.reload
       end
 
       it "does not update a cookbook with invalid params" do
-        cookbook.reload
-        expect(cookbook.name).to_not eq "updated name"
+        expect(cookbook.description).to_not eq "updated description"
       end
 
       it "renders the :edit template" do
@@ -106,7 +116,7 @@ RSpec.describe CookbooksController, type: :controller do
     let(:cookbook) { create :cookbook }
 
     before :each do
-      get :show, user_id: @user, id: cookbook
+      get :show, id: cookbook
     end
 
     it "responds with an HTTP 200 status" do
@@ -122,7 +132,7 @@ RSpec.describe CookbooksController, type: :controller do
     let(:cookbook) { create :cookbook }
 
     before :each do
-      delete :destroy, user_id: @user, id: cookbook
+      delete :destroy, id: cookbook
     end
 
     it "deletes the cookbook" do
