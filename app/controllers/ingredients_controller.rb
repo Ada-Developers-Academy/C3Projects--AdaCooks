@@ -4,4 +4,10 @@ class IngredientsController < ApplicationController
     @ingredient = Ingredient.find(params[:id])
     @recipes = @ingredient.recipes
   end
+
+  private
+
+  def ingredients_params
+    params.require(:ingredient).permit(:name, :user_id, { :recipe_ids => [] }
+  end
 end
