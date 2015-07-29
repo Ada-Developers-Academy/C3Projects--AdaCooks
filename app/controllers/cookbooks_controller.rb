@@ -16,6 +16,12 @@ class CookbooksController < ApplicationController
     end
   end
 
+  def destory
+    cookbook = Cookbook.find(params[:id])
+    cookbook.destroy
+    redirect_to cookbooks_path
+  end
+
   private
 
   def cookbook_params
