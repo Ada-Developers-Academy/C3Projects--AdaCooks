@@ -1,5 +1,5 @@
 module RecipesHelper
-  def recipe_ingredients_count(recipe) # FIXME: test recipe_ingredients_count
+  def recipe_ingredients_count(recipe)
     output = "(#{ recipe.ingredients.count } ingredient"
     output += "s" unless recipe.ingredients.count == 1
     output += ")"
