@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   post '/login'    =>  'sessions#create'
   delete '/logout' => 'sessions#destroy', as: 'logout'
 
+  resources :ingredients
   # Example resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales
