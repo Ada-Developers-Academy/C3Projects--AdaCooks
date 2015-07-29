@@ -1,24 +1,26 @@
-<h1>Sign up for an account</h1>
+<div class="container marketing">
 
-  <div class="form-group">
-    <fieldset>
-    <%=  form_for @user do |f| %>
+  <h1>Sign up for an account</h1>
 
-      <%= f.label :name %>
-      <%= f.text_field :name, required: true, class: "form-control" %>
+    <div class="form-group">
+      <fieldset>
+        <%=  form_for @user do |f| %>
 
-      <%= f.label :email %>
-      <%= f.text_field :email, required: true, class: "form-control" %>
+        <%= f.label :name %>
+        <%= f.text_field :name, required: true, class: "form-control" %>
 
-      <%= f.label :password %>
-      <%= f.password_field :password, required: true, class: "form-control" %>
+        <%= f.label :email %>
+        <%= f.text_field :email, required: true, class: "form-control" %>
 
-      <%= f.label :password_conformation %>
-      <%= f.password_field :password_conformation, required: true, class: "form-control" %>
-    <br>
-      <%= f.submit "Create Account", class: "btn btn-default" %>
+        <%= f.label :password %>
+        <%= f.password_field :password, required: true, class: "form-control" %>
 
-    <% end %>
-    </fieldset>
-  </div>
+        <%= f.label :password_conformation %>
+        <%= f.password_field :password_conformation, required: true, class: "form-control" %>
+        <br>
+        <%= f.submit "Create Account", class: "btn btn-default" %>
 
+        <% end %>
+      </fieldset>
+    </div>
+</div>

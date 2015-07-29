@@ -14,11 +14,15 @@
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#contact">Login</a></li>
-            <li><a href="#contact">Sign up</a></li>
+            <% if session[:user_id].nil?  %>
+              <li><%= link_to "Login", login_path, method: :get %></li>
+              <li><%= link_to "Sign up", new_user_path, method: :get %></li>
+            <% else %>
+              <li><%= link_to "Logout", logout_path, method: :delete %></li>
+              <li><%= link_to "Your account", user_path(session[:user_id]) %></li>
+            <% end %>
           </ul>
         </div>
-
       </div>
     </nav>
   </div>

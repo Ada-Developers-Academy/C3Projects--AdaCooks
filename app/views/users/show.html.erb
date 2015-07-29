@@ -1,31 +1,31 @@
-<h1>Account Page</h1>
-<%= link_to "Logout", logout_path, method: :delete, class: "btn btn-default" %>
+<div class="container marketing">
 
-<h4>Hello <%= @user.name %>!</h4>
+  <h1>Account Page</h1>
+  <%= link_to "Logout", logout_path, method: :delete, class: "btn btn-default" %>
 
-<%= link_to "Create a New Cookbook", new_cookbook_path, class: "btn btn-default" %>
+  <h4>Hello <%= @user.name %>!</h4>
 
-<h3>Cookbooks</h3>
+  <%= link_to "Create a New Cookbook", new_cookbook_path, class: "btn btn-default" %>
 
-<% @user.cookbooks.each do |cookbook| %>
-<div class="book">
- <div class="row">
-  <div class="col-md-12">
-    <h4><%= cookbook.name %></h4><small>Recipes <%= cookbook.recipes.count %> Ingredients <%= cookbook.ingredients.count %></small>
-  </div>
+  <h3>Cookbooks</h3>
 
+  <% @user.cookbooks.each do |cookbook| %>
+  <div class="book">
+    <div class="row">
+      <div class="col-md-12">
+        <h4><%= cookbook.name %></h4><small>Recipes <%= cookbook.recipes.count %> Ingredients <%= cookbook.ingredients.count %></small>
+      </div>
 
-    <% cookbook.recipes.each do |recipe| %>
-      <div class="row">
-        <div class="col-sm-8 col-md-offset-4">
-          <p><%= link_to "#{recipe.name}", recipe_path(recipe) %></p>
-          <p><%= image_tag recipe.image_url, class: "img-circle", size: "160x160" %></p>
+      <% cookbook.recipes.each do |recipe| %>
+        <div class="row">
+          <div class="col-sm-8 col-md-offset-4">
+            <p><%= link_to "#{recipe.name}", recipe_path(recipe) %></p>
+            <p><%= image_tag recipe.image_url, class: "img-circle", size: "160x160" %></p>
+          </div>
         </div>
-      </div>
 
-    <% end %>
-      </div>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
 </div>
-<% end %>
-
-
