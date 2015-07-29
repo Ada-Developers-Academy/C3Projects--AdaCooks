@@ -35,11 +35,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [] do
     resources :recipes, only: [:new, :create, :edit, :update]
+    resources :ingredients, only: [:new, :create, :edit, :update]
   end
-
-
-  resources :ingredients
-
 
   # Example resource route with options:
   #   resources :products do
