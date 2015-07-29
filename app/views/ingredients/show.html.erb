@@ -1,0 +1,12 @@
+<h2><%= @ingredient.name %></h2>
+
+<p>
+  <!-- @ingredient.image -->
+</p>
+
+<h3>Recipes</h3>
+<div class="list-group">
+  <% @recipes.each do |recipe| %>
+  <button type="button" class="list-group-item"><%= link_to recipe.name, recipe_path(recipe) %></button>
+  <% end %>
+</div>

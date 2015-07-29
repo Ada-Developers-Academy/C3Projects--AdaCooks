@@ -15,19 +15,42 @@
     <%= link_to "Dashboard",  dashboard_user_path(@user), class: "btn btn-primary" %>
   </p>
 <% end %>
+<br>
+<br>
 
-<!-- search bar -->
-
-<h3>Recipes</h3>
-<ul>
-  <% @recipes.each do |recipe| %>
-  <li><%= link_to recipe.name, recipe_path(recipe) %></li>
+<p>
+  <%= form_for "/search", method: "get", html: { class: "form" } do |f| %>
+    <div class="form-group inline-form">
+      <%= f.label :q, "Search Ingredients:" %>
+      <%= f.search_field :q, class: "form-control", placeholder: "bacon" %>
+    </div>
+    <%= f.submit "Search", class: "btn btn-default" %>
   <% end %>
-</ul>
+</p>
 
-<h3>Ingredients</h3>
-<ul>
-  <% @ingredients.each do |ingredient| %>
-  <li><%= link_to ingredient.name, ingredient_path(ingredient) %></li>
-  <% end %>
-</ul>
+<% if params[:search] %>
+  <h3>Related Recipes</h3>
+  <div class="list-group">
+    <% @search_results.each do |recipe| %>
+    <button type="button" class="list-group-item"><%= link_to recipe.name, recipe_path(recipe) %></button>
+    <% end %>
+<% end %>
+
+<div class="row">
+  <div class="col-lg-6">
+    <h3>All Recipes</h3>
+    <div class="list-group">
+      <% @recipes.each do |recipe| %>
+      <button type="button" class="list-group-item"><%= link_to recipe.name, recipe_path(recipe) %></button>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <h3>All Ingredients</h3>
+    <div class="list-group">
+      <% @ingredients.each do |ingredient| %>
+      <button type="button" class="list-group-item"><%= link_to ingredient.name, ingredient_path(ingredient) %></button>
+      <% end %>
+    </div>
+  </div>
+</div>
