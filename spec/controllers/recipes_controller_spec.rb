@@ -66,14 +66,17 @@ RSpec.describe RecipesController, type: :controller do
 
       before(:each) do
         @recipe = create :recipe, name: "gnarly fake banana"
-        patch :edit, :id => 1, :recipe => new_params
+        patch :update, :id => 1, :recipe => new_params
         @recipe.reload
       end
 
       it "updates a record with new preparation details" do
-        expect(@recipe.name).to eq(new_params[:name])
+        expect(@recipe.preparation).to eq(new_params[:preparation])
+      end
+
+      it "redirects to the show page after updating a recipe" do
+        expect(response).to redirect_to(@recipe)
       end
     end
-
   end
 end
