@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20150729002801) do
     t.string   "description", null: false
     t.string   "image_url"
     t.string   "prep",        null: false
-    t.integer  "cookbook_id", null: false
+    t.integer  "cookbook_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
