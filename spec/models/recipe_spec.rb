@@ -72,7 +72,7 @@ RSpec.describe Recipe, type: :model do
     it "requires a user_id" do
       recipe = create :recipe, user_id: 1
 
-      expect(recipe).not_to be_valid
+      expect(recipe).to be_valid
       expect(Recipe.count).to eq(1)
     end
 
