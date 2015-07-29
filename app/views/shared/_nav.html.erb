@@ -11,6 +11,14 @@
           <ul class="nav navbar-nav">
             <li class="active"><%= link_to "Home", root_path %></li>
             <li><%= link_to "Ingredients", ingredients_path %></li>
+            <li>
+              <p>
+                <%= form_tag({ controller: "ingredients", action: "search"}, method: "get", class: "search") do %>
+                  <%= text_field_tag :search, params[:search], id: 'search_field', placeholder: 'Search Ingredients' %>
+                    <%= submit_tag "Search" %>
+                <% end %>
+              </p>
+            </li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right">

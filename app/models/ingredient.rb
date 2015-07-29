@@ -8,4 +8,5 @@ class Ingredient < ActiveRecord::Base
 
 # Scopes _______________________________________________________________
   scope :alpha_order, -> { order('name ASC') }
+  scope :search, ->(search) { where("name like ?", "%#{search}%")}
 end

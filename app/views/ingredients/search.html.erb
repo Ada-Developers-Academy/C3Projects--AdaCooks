@@ -1,0 +1,23 @@
+<div class="container marketing">
+  <%= @ingredients.each do |ingredient| %>
+  <h1><%= ingredient.name %></h1>
+  <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 col-md-push-5">
+        <h2 class="featurette-heading"></h2>
+      </div>
+      <div class="col-md-5 col-md-pull-7">
+        <%= image_tag ingredient.photo_url, class:"img-circle", size: "300x300" %>
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-12">
+        <p class="lead"><%= link_to "See recipes with #{ingredient.name}", ingredient_recipes_path(ingredient.id) %></p>
+      </div>
+    </div>
+    <% end %>
+</div>

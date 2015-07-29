@@ -7,6 +7,10 @@ class IngredientsController < ApplicationController
     @ingredient = Ingredient.find(params[:id])
   end
 
+  def search
+     @ingredients = Ingredient.search(params[:search])
+   end
+
   def new
     @ingredient = Ingredient.new
   end
