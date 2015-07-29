@@ -1,7 +1,7 @@
 class CookbooksController < ApplicationController
 
   before_action :login_required
-  before_action :belongs_to_user, except: [:index]
+  before_action :belongs_to_user, except: [:index, :new]
 
   def index
     @user = User.find(session[:user_id])
@@ -15,6 +15,16 @@ class CookbooksController < ApplicationController
 
   def new
     @cookbook = Cookbook.new(cookbook_params[:cookbook])
+  end
+
+  def create
+    @cookbook = Cookbook.new(cookbook_params[:cookbook])
+    if @cookbook.save
+      redirect_to user_cookbook_path(@cookbook.id)
+    else
+      flash[:error]
+      redirect_to new_user_cookbook_path
+    end
   end
 
   private

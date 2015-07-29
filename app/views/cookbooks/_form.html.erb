@@ -1,4 +1,4 @@
-<%= form_for cookbook, url: user_cookbooks_path(@user.id), method: :post do |f| %>
+<%= form_for user_cookbooks_path(params[:user_id]) do |f| %>
 <div class = "form-group">
   <%= f.label :name, "#{name_desc}" %>
   <%= f.text_field :name, class: "form-field", autofocus: true, placeholder: name_placeholder, value: name_value %>
