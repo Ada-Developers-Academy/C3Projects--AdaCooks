@@ -7,5 +7,6 @@
     <p>Preparation: <%= @recipe.preparation %></p>
     <p>Recipe by: <%= link_to @recipe.user.username, "" %>
     <!-- This link needs to be filled in with the future user show path -->
+    <p><%= link_to "Edit this recipe", edit_recipe_path(@recipe), class: "btn btn-default" %></p>
   </div>
 </div>

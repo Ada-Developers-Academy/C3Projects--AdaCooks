@@ -2,8 +2,11 @@ require 'rails_helper'
 
 RSpec.describe RecipesController, type: :controller do
 
-  describe "GET #index" do
+  before(:each) do
+    @user = create :user
+  end
 
+  describe "GET #index" do
     it "renders the index template" do
       get :index
       expect(response).to render_template("index")
@@ -32,5 +35,48 @@ RSpec.describe RecipesController, type: :controller do
       expect(assigns(:recipe)).to eq(@recipe)
     end
 
+  end
+
+  describe "GET #new" do
+    it "renders the new template" do
+      get :new
+      expect(response).to render_template("new")
+    end
+  end
+  describe "POST #create" do
+    context "valid params" do
+
+      let(:valid_params) do
+        {name: "gnarly fake banana", preparation: "Don't make it, you monster.", user_id: 1}
+      end
+      before(:each) do
+        session[:user_id] = @user.id
+        post :create, :recipe => valid_params
+      end
+
+      it "creates a new recipe" do
+        expect(Recipe.count).to eq 1
+      end
+    end
+
+    describe "PATCH #update" do
+      let(:new_params) do
+        {preparation: "I tried to make this, and the chemicals melted my kitchen counter." }
+      end
+
+      before(:each) do
+        @recipe = create :recipe, name: "gnarly fake banana"
+        patch :update, :id => 1, :recipe => new_params
+        @recipe.reload
+      end
+
+      it "updates a record with new preparation details" do
+        expect(@recipe.preparation).to eq(new_params[:preparation])
+      end
+
+      it "redirects to the show page after updating a recipe" do
+        expect(response).to redirect_to(@recipe)
+      end
+    end
   end
 end
