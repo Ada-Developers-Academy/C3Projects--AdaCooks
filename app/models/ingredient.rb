@@ -4,7 +4,7 @@ class Ingredient < ActiveRecord::Base
   belongs_to :user
   #Validations-------------------------------------------------------------------
   validates :name, presence: true, uniqueness: true
-  # validates :image
+ 
   #Scopes------------------------------------------------------------------------
   #Mounted Objects---------------------------------------------------------------
   mount_uploader :image, ImageUploader
