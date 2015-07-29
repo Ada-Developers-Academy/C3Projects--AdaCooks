@@ -4,6 +4,10 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new
 
     @ingredients = Ingredient.all.order(:name)
+
+    user = User.find(session[:user_id])
+
+    @cookbooks = user.cookbooks
   end
 
   def create
@@ -23,11 +27,11 @@ class RecipesController < ApplicationController
   end
 
   def update
-    @recipe = Recipe.find(params[:id])
+    recipe = Recipe.find(params[:id])
 
-    @recipe.update(recipe_params)
+    recipe.update(recipe_params)
 
-    recipe_save_guard(@recipe)
+    recipe_save_guard(recipe)
   end
 
   def destroy
