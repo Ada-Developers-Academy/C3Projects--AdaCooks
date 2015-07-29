@@ -1,8 +1,7 @@
 <%= render partial: 'shared/flash_messages' %>
 
 <h3><%= @cookbook.name %></h3>
-<!-- in future, redirect to user_path(@owner) -->
-<p>Created by: <%= link_to @owner.username, root_path %></p>
+<p>Created by: <%= link_to @owner.username, user_path(@owner) %></p>
 
 <p><%= @cookbook.description %></p>
 
@@ -12,5 +11,5 @@
   <%= render partial: 'recipe', collection: @recipes %>
 </ul>
 
-<%= link_to 'Delete cookbook', cookbook_path(@cookbook), method: :delete, 
+<%= link_to 'Delete cookbook', user_cookbook_path(@current_user, @cookbook), method: :delete, 
   class: "btn btn-danger", role: "button" %>
