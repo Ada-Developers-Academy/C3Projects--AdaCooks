@@ -1,6 +1,7 @@
-<h1>This is the home page!</h1>
+<h1>Yummaholics</h1>
+<h4>Feed Your Food Addiction</h4>
 <h3><%= session[:user_id] %></h3>
 
-<%= link_to "Browse All Recipes", recipes_path %>
+<%= link_to "Browse All Recipes", recipes_path, class: "btn btn-default" %>
 <%= link_to "Browse By Ingredient" %>
 <%= link_to "Browse By Chef" %>
