@@ -1,6 +1,6 @@
 class IngredientsController < ApplicationController
   def index
-    @ingredients = Ingredient.all
+    @ingredients = Ingredient.all.alphabet
   end
 
   def show
@@ -14,7 +14,7 @@ class IngredientsController < ApplicationController
   def create
     @ingredient = Ingredient.new(ingredient_params)
     if @ingredient.save
-      redirect_to album_path(@ingredient)
+      redirect_to ingredient_path(@ingredient)
     else
       render :new
     end
@@ -23,6 +23,8 @@ class IngredientsController < ApplicationController
   def destroy
     find_ingredient
     @ingredient.destroy
+
+    redirect_to root_path
   end
 
   private

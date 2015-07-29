@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 RSpec.describe Ingredient, type: :model do
   context "name validation" do
     let(:pine) {create :ingredient}
@@ -26,5 +25,19 @@ RSpec.describe Ingredient, type: :model do
       # I don't know why above isn't working
       expect(pine2).to_not be_valid
     end
-  end
+  end # name validation
+
+  # context "alpha scope" do
+  #   before(:each) do
+  #     @j = create(:ingredient, name: "Jerky"),
+  #     @b = create(:ingredient, name: "Bacon"),
+  #     @p = create(:ingredient),
+  #     @a = create(:ingredient, name: "Apple")
+  #
+  #   end
+  #   it "orders ingredients alphabetically" do
+  #     order = [@a, @b, @j, @p]
+  #     expect(Ingredient.all.alphabet).to eq(order)
+  #   end
+  # end
 end # describe
