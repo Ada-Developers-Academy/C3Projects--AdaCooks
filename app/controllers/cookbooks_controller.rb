@@ -17,9 +17,13 @@ class CookbooksController < ApplicationController
   end
 
   def edit
+    @cookbook = Cookbook.find(params[:id])
   end
 
   def update
+    @cookbook = Cookbook.update(params[:id], create_params)
+
+    redirect_to user_cookbook_path(session[:user_id], @cookbook.id)
   end
 
   def show

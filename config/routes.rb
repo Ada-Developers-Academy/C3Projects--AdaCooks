@@ -12,6 +12,6 @@ Rails.application.routes.draw do
 
   resources :users, only: [] do
     get "", to: "users#show", as: "" # OPTIMIZE: Figure this out later
-    resources :cookbooks, only: [:index, :show, :new, :create]
+    resources :cookbooks
   end
 end

@@ -13,10 +13,10 @@
 
   <% @cookbooks.each do |cookbook| %>
     <tr>
-      <td><%= link_to "#{cookbook.name}", user_cookbook_path(cookbook.user.id, cookbook.id) %></td>
+      <td><%= link_to "#{cookbook.name}", user_cookbook_path(session[:user_id], cookbook.id) %></td>
       <td><%= cookbook.recipes.count %></td>
       <td><%= cookbook.recipes.uniq.count %></td>
-      <td><%= link_to "Edit", class: "btn btn-default" %></td>
+      <td><%= link_to "Edit", edit_user_cookbook_path(session[:user_id], cookbook.id), class: "btn btn-default" %></td>
       <td><%= link_to "Delete", class: "btn btn-default" %></td>
     </tr>
   <% end %>
