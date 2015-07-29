@@ -5,25 +5,4 @@
   </div>
 <% end %>
 
-<% @recipes.each do |recipe| %>
-  <div class="media list-group">
-    <div class="media-left col-sm-1">
-      <a href="#">
-        <%= image_tag recipe.image_url(:thumb), alt: "#{recipe.name}", class: "media-object" %>
-      </a>
-    </div>
-    <div class="media-body">
-      <h4 class="media-heading">
-        <%= link_to recipe.name, recipe_path(recipe.id) %>
-      </h4>
-      <p><%= recipe.description %></p>
-      <p>Chef: <%= link_to recipe.user.username, user_path(recipe.user_id) %></p>
-    </div>
-    <% if session[:user_id] %>
-      <div class="media-right">
-        <%= link_to "Edit Recipe", edit_recipe_path(recipe.id), class: 'btn btn-default' %>
-      </div>
-    <% end %>
-    <hr>
-  </div>
-<% end %>
+<%= render partial: "shared/recipes" %>
