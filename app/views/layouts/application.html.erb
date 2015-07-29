@@ -10,6 +10,14 @@
   <div class="container">
     <header class="jumbotron">
       <h1 class="top">Eat Me!</h1>
+      <% professionals = ["doctors", "dentists", "psychiatrists", "engineers",
+        "bus drivers", "artists", "musicians", "grad students", "professors",
+        "teachers", "lifeguards", "firefighters", "nurses", "architects"] %>
+      <p>
+        <%= professionals.sample.capitalize %> use more <%= Ingredient.all.sample.name %>
+        in their <%= Recipe.all.sample.name %> than any other ingredient!
+      </p>
+      <%= link_to "Home", root_path, class: "btn btn-default" %>
       <%= link_to "Recipes", recipes_path, class: "btn btn-default" %>
       <%= link_to "Ingredients", ingredients_path, class: "btn btn-default" %>
     </header>
@@ -21,6 +29,7 @@
     <footer>
       <nav class="navbar navbar-default">
         <%= link_to "Top", "#top", class: "btn btn-default" %>
+        <%= link_to "Home", root_path, class: "btn btn-default" %>
         <%= link_to "Recipes", recipes_path, class: "btn btn-default", class: "btn btn-default" %>
         <%= link_to "Ingredients", ingredients_path, class: "btn btn-default" %>
       </nav>
