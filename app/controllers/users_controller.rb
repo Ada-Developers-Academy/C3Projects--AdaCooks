@@ -25,6 +25,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def dashboard
+    if session[:user_id] == params[:user_id].to_i
+      @user = User.find(params[:user_id])
+
+    else
+      flash[:error] = "You don't have access to this Dashboard"
+      redirect_to root_path
+    end
+
+  end
+
 ###############################
   private
 
