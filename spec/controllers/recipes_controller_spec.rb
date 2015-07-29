@@ -2,8 +2,11 @@ require 'rails_helper'
 
 RSpec.describe RecipesController, type: :controller do
 
-  describe "GET #index" do
+  before(:each) do
+    @user = create :user
+  end
 
+  describe "GET #index" do
     it "renders the index template" do
       get :index
       expect(response).to render_template("index")
@@ -46,10 +49,12 @@ RSpec.describe RecipesController, type: :controller do
       let(:valid_params) do
         {name: "gnarly fake banana", preparation: "Don't make it, you monster.", user_id: 1}
       end
-
-      it "creates a new recipes" do
-        @current_user = create :user
+      before(:each) do
+        session[:user_id] = @user.id
         post :create, :recipe => valid_params
+      end
+
+      it "creates a new recipe" do
         expect(Recipe.count).to eq 1
       end
     end
