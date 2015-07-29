@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :new, :create] do
     get 'dash', on: :member
+    resources :recipes, only: [:index]
   end
 
   resources :sessions, only: [:new, :create, :destroy]

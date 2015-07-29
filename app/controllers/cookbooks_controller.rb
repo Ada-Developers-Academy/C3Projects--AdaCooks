@@ -1,6 +1,14 @@
 class CookbooksController < ApplicationController
   before_action :require_login
 
+  def index
+    if params[:id].nil?
+      @cookbook = Cookbook.all # TODO THIS HAS TO BE ALPHABETICAL
+    else
+      @cookbook = Cookbook.where(user_id: params[:id]) # TODO ALSO ALPHABETICAL
+    end
+  end
+
   def new
     @cookbook = Cookbook.new
   end
