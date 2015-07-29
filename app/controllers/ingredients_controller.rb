@@ -10,8 +10,12 @@ def index
   @ingredients = Ingredient.order(:name)
 end
 
+def index_by_id
+  @ingredients = Ingredient.where(params[:user_id])
+end
+
 def show
-  @recipes = Recipes.where(params[:ingredient_id]) 
+  @recipes = @ingredient.recipes
 end
 
 def new
@@ -43,7 +47,7 @@ private
 #params ------------------------------------------------------------------------------
 
 def ingredient_params
-  params.require(:ingredient).permit(:name, :image, :ingredient_id)
+  params.require(:ingredient).permit(:name, :image, :ingredient_id, :user_id)
 end
 
 end

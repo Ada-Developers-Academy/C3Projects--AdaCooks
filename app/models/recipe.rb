@@ -5,9 +5,8 @@ class Recipe < ActiveRecord::Base
   belongs_to :user
   #Validations-------------------------------------------------------------------
   validates :name, presence: true
-  # validates :description
   validates :instructions, presence: true
-  # validates :ing_photo
+
   #Scopes------------------------------------------------------------------------
   #Mounted Objects---------------------------------------------------------------
   mount_uploader :image, ImageUploader
