@@ -5,5 +5,8 @@ class Ingredient < ActiveRecord::Base
   # Validations ------------------------------------
   validates :name, presence: true, uniqueness: true
 
+  # Scopes -----------------------------------------
+  scope :alphabet, -> { order(:name) }
+
 
 end
