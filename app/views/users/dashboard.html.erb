@@ -1,1 +1,16 @@
 <h1>Welcome to your Dashboard!</h1>
+
+<h3>Your Recipes:</h3>
+
+<%= link_to "Create a New Recipe", new_recipe_path, class: "btn btn-default" %>
+
+<table class="table">
+  <% @recipes.each do |recipe| %>
+    <tr>
+      <td><%= image_tag recipe.image_url(:thumb) %></td>
+      <td><%= link_to recipe.name, recipe_path(recipe.id) %></td>
+      <td><%= link_to "Edit", edit_recipe_path(recipe.id), class: "btn btn-default" %></td>
+      <td><%= link_to "X", recipe_path(recipe.id), method: :delete, class: "btn btn-danger" %></td>
+    </tr>
+  <% end %>
+</table>
