@@ -3,6 +3,9 @@ require 'rails_helper'
 RSpec.describe CookbooksController, type: :controller do
   let(:user) { create :user}
   let(:cookbook) { create :cookbook, name: "Cookbook", user_id: 1 }
+  before(:each) do 
+    session[:user_id] = 1
+  end
 
   describe "GET index" do
     it "responds successfully with an HTTP 200 status code" do

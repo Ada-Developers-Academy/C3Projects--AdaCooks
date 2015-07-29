@@ -18,7 +18,7 @@
     <% @cookbooks.alphabetize.each do |cookbook| %>
       <tr>
         <td>
-          <%= cookbook.name %>
+          <%= link_to "#{cookbook.name}", user_cookbook_path(@user.id, cookbook.id) %>
         </td>
         <td>
           <%=  %>

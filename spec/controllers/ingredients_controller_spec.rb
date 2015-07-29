@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe IngredientsController, type: :controller do
 let(:ingredient1) { create :ingredient, name: 'ingredient' }
+before(:each) do
+  session[:user_id] = 1
+end
+
  describe "GET index" do
    it "responds successfully with an HTTP 200 status code" do
      get :index
@@ -81,20 +85,6 @@ let(:ingredient1) { create :ingredient, name: 'ingredient' }
       end
     end #end of context
   end #end of describe block
-
-
-  describe "GET #edit" do
-    it "responds successfully with an HTTP 200 status code" do
-      get :edit, id: ingredient1.id
-      expect(response).to be_success
-      expect(response).to have_http_status(200)
-    end
-
-    it "displays information related to the given record" do
-      get :edit, id: ingredient1.id
-      expect(ingredient1.name).to eq 'ingredient'
-    end
-  end # end of describe block
 
   describe "PUT #edit" do
     it "updates an existing record" do

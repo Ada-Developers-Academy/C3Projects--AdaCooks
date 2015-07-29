@@ -1,6 +1,7 @@
 class CookbooksController < ApplicationController
 
   before_action :login_required
+  before_action :belongs_to_user, except: [:index]
 
   def index
     @user = User.find(session[:user_id])
@@ -20,5 +21,12 @@ class CookbooksController < ApplicationController
 
   def cookbook_params
     params.permit(cookbook: [:name, :user_id, :description])
+  end
+
+  def belongs_to_user
+  @cookbook = Cookbook.find(params[:id])
+    if @cookbook.user_id != session[:user_id]
+      redirect_to user_path(@cookbook.user_id)
+    end
   end
 end
