@@ -17,7 +17,7 @@
       <td><%= cookbook.recipes.count %></td>
       <td><%= cookbook.recipes.uniq.count %></td>
       <td><%= link_to "Edit", edit_user_cookbook_path(session[:user_id], cookbook.id), class: "btn btn-default" %></td>
-      <td><%= link_to "Delete", class: "btn btn-default" %></td>
+      <td><%= link_to "Delete", user_cookbook_path(session[:user_id], cookbook.id), method: "delete", class: "btn btn-default", data: { confirm: "Are you sure you want to delete?" }  %></td>
     </tr>
   <% end %>
 </table>

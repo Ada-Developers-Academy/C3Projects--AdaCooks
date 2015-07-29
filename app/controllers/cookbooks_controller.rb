@@ -13,7 +13,7 @@ class CookbooksController < ApplicationController
   def create
     @cookbook = Cookbook.create(create_params)
 
-    redirect_to user_cookbooks_path(session[:user_id])
+    redirect_to user_cookbook_path(session[:user_id], @cookbook.id)
   end
 
   def edit
@@ -32,6 +32,9 @@ class CookbooksController < ApplicationController
   end
 
   def destroy
+    Cookbook.destroy(params[:id])
+
+    redirect_to user_cookbooks_path(session[:user_id])
   end
 
   private
