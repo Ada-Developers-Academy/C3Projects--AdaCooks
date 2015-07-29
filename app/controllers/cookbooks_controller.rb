@@ -17,6 +17,7 @@ class CookbooksController < ApplicationController
 
   def create
     @cookbook = Cookbook.new(cookbook_params)
+    # @cookbook.user = @current_user
 
     if @cookbook.save
       flash[:success] = MESSAGES[:create_success]
