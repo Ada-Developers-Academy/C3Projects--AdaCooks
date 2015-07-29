@@ -38,12 +38,6 @@ class CookbooksController < ApplicationController
     end
 
     redirect_to user_cookbook_path(user, cookbook)
-    # post = Post.find(params[:post][:id])
-    #  category = post.categories.find(params[:category][:id])
-    #
-    #  if category
-    #     post.categories.delete(category)
-    #  end
   end
 
   private
