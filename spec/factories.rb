@@ -12,7 +12,7 @@ FactoryGirl.define do
     prep "Mix one oz gin with one oz vodka.\nDone."
     cookbook_id 1
   end
-
+  
   factory :ingredient do
     name "An ingredient"
     image ""
