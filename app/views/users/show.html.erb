@@ -1,3 +1,10 @@
 <h1><%= @user.username %></h1>
 <br>
 <%= image_tag @user.image_url %>
+
+ <h4> Here are the recipes <%= @user.username %> has created: </h4>
+<% @recipes.each do |recipe| %>
+<%= link_to(image_tag(recipe.image_url(:thumb)), recipe_path(recipe.id)) %>
+<br>
+<%= recipe.name %>
+<% end %>
