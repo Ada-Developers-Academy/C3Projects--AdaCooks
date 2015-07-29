@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   resources :recipes, only: [:index, :show, :new]
   resources :ingredients, only: [:index, :show]
 
-  resources :users, only: [:show] do
+  resources :users, only: [] do
+    get "", to: "users#show", as: "" # OPTIMIZE: Figure this out later
     resources :cookbooks, only: [:index, :show]
   end
 end
