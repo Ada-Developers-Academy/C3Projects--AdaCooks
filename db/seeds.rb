@@ -149,9 +149,11 @@ measurements.each do |measurement_params|
   Measurement.create(measurement_params)
 end
 
-cookbook1, cookbook2, cookbook3, cookbook4 = Cookbook.all
+cookbook1, cookbook2, cookbook3, cookbook4, cookbook5, cookbook6 = Cookbook.all
 
 cookbook1.recipes << Recipe.find([1,3,5,7,9,11])
 cookbook2.recipes << Recipe.find([1,3,5,8,10,12])
 cookbook3.recipes << Recipe.find([2,4,6,7,9,11])
 cookbook4.recipes << Recipe.find([2,4,6,8,10,12])
+cookbook5.recipes << Recipe.find([1,7,4,12])
+cookbook6.recipes << Recipe.find([2,8,5,11])
