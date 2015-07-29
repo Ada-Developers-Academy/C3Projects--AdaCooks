@@ -1,54 +1,57 @@
-<h1>Add a New Recipe</h1>
+<div class="container marketing">
 
-<div class="form-group">
-  <fieldset>
-    <%= form_for @recipe do |f| %>
+  <h1>Add a New Recipe</h1>
 
-      <%= f.label :name %>
-      <%= f.text_field :name, required: true, class: "form-control" %>
+  <div class="form-group">
+    <fieldset>
+      <%= form_for @recipe do |f| %>
 
-      <%= f.label :description %>
-      <%= f.text_area :description, class: "form-control" %>
+        <%= f.label :name %>
+        <%= f.text_field :name, required: true, class: "form-control" %>
 
-      <%= f.label :preparation %>
-      <%= f.text_area :preparation, class: "form-control" %>
+        <%= f.label :description %>
+        <%= f.text_area :description, class: "form-control" %>
 
-      <br>
+        <%= f.label :preparation %>
+        <%= f.text_area :preparation, class: "form-control" %>
 
-      <%= f.label :image, "Recipe Photo" %>
-      <%= f.file_field :image %>
+        <br>
 
-      <br>
+        <%= f.label :image, "Recipe Photo" %>
+        <%= f.file_field :image %>
 
-      <%= f.label :cookbook %>
-      <%= f.collection_select :cookbook_id, Cookbook.user_cookbooks(@user), :id, :name, include_blank: "None" %>
+        <br>
 
-      <br>
-      <br>
+        <%= f.label :cookbook %>
+        <%= f.collection_select :cookbook_id, Cookbook.user_cookbooks(@user), :id, :name, include_blank: "None" %>
 
-      <%= f.label :ingredients %><br>
-      <%= collection_check_boxes(:recipe, :ingredient_ids, Ingredient.all, :id, :name) do |b| %>
-        <%= b.label class: "checkbox-inline" do %>
-          <%= b.check_box + b.text.capitalize %>
-        <% end %>
-      <% end %>
+        <br>
+        <br>
 
-  <br>
-  <br>
-      <%= f.fields_for :ingredients do |ingredient| %>
-        <%= ingredient.label "Add a new ingredient:" %>
-        <%= ingredient.text_field :name, class: "form-control"%>
+        <%= f.label :ingredients %><br>
+        <%= collection_check_boxes(:recipe, :ingredient_ids, Ingredient.all, :id, :name) do |b| %>
+          <%= b.label class: "checkbox-inline" do %>
+            <%= b.check_box + b.text.capitalize %>
+            <% end %>
+            <% end %>
 
-        <%= ingredient.label :image %>
-        <%= ingredient.file_field :image %>
-        <% end %>
+            <br>
+            <br>
+            <%= f.fields_for :ingredients do |ingredient| %>
+            <%= ingredient.label "Add a new ingredient:" %>
+            <%= ingredient.text_field :name, class: "form-control"%>
 
-  <br>
-  <br>
+            <%= ingredient.label :image %>
+            <%= ingredient.file_field :image %>
+            <% end %>
 
-      <%= f.submit "Create New Recipe", class: "btn btn-primary" %>
+            <br>
+            <br>
 
-    <% end %>
+            <%= f.submit "Create New Recipe", class: "btn btn-primary" %>
 
-  </fieldset>
+            <% end %>
+
+          </fieldset>
+        </div>
 </div>
