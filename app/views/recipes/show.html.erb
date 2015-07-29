@@ -1,2 +1,32 @@
-<h1>Recipes#show</h1>
-<p>Find me in app/views/recipes/show.html.erb</p>
+<h1><center><%= @recipe.name %></h1>
+  <div class="row featurette">
+    <div class="col-md-7 col-md-push-5">
+      <h2 class="featurette-heading"></h2>
+      <p class="lead"><%= @recipe.description %></p>
+    </div>
+    <div class="col-md-5 col-md-pull-7">
+      <%= image_tag @recipe.image_url, class:"img-circle", size: "300x300" %>
+    </div>
+  </div>
+
+<hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-12">
+      <p class="lead"><mark>PREPARATION: </mark></p>
+      <p><%= @recipe.preparation %></p>
+    </div>
+  </div>
+
+<hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-12">
+      <p class="lead"><mark>INGEDIENTS: </mark></p>
+      <% @recipe.ingredients.each do |ingredient| %>
+        <%= image_tag ingredient.image_url, class: "img-circle", size: '100x100'%>
+      <% end %>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
