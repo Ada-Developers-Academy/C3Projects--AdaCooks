@@ -3,19 +3,29 @@
 
 <h4>Hello <%= @user.name %>!</h4>
 
+<%= link_to "Create a New Cookbook", new_cookbook_path, class: "btn btn-default" %>
+
 <h3>Cookbooks</h3>
-<table class='table'>
-  <tr>
-    <th>Cookbook Name</th>
-    <th>Recipes</th>
-    <th>Ingredients</th>
-  </tr>
+
 <% @user.cookbooks.each do |cookbook| %>
-  <tr>
-   <td><%= cookbook.name %></td>
-   <td><%= cookbook.recipes.count %></td>
-   <td><%= cookbook.ingredients.count %></td>
-  </tr>
-  <% end %>
-</table>
+<div class="book">
+ <div class="row">
+  <div class="col-md-12">
+    <h4><%= cookbook.name %></h4><small>Recipes <%= cookbook.recipes.count %> Ingredients <%= cookbook.ingredients.count %></small>
+  </div>
+
+
+    <% cookbook.recipes.each do |recipe| %>
+      <div class="row">
+        <div class="col-sm-8 col-md-offset-4">
+          <p><%= link_to "#{recipe.name}", recipe_path(recipe) %></p>
+          <p><%= image_tag recipe.image_url, class: "img-circle", size: "160x160" %></p>
+        </div>
+      </div>
+
+    <% end %>
+      </div>
+</div>
+<% end %>
+
 

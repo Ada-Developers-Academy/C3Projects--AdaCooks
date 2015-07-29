@@ -9,18 +9,41 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-  describe "GET #create" do
-    it "returns http success" do
-      get :create
-      expect(response).to have_http_status(:success)
+  describe "POST #create" do
+    context "with valid user params" do
+
+      let (:params) { create :user }
+
+      it "creates a new user" do
+        post :create, :user => params
+        expect(User.count).to eq(1)
+      end
+    end
+
+    context "with invalid user params" do
+      let (:yuck_user) { build :user, password_confirmation: "nope"}
+
+      it "doesn't create a new user" do
+        post :create, :user => yuck_user
+
+        expect(response).to redirect_to(new_user_path)
+      end
     end
   end
+
 
   describe "GET #show" do
     it "returns http success" do
-      get :show
+      user = create :user
+      get :show, :id => 1
       expect(response).to have_http_status(:success)
     end
-  end
 
+    it "loads a user into @user" do
+      user = create :user
+      get :show, :id => 1
+
+      expect(assigns(:user)).to eq(user)
+    end
+  end
 end

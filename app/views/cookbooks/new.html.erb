@@ -1,2 +1,17 @@
-<h1>Cookbooks#new</h1>
-<p>Find me in app/views/cookbooks/new.html.erb</p>
+<h1>Create a New Cookbook</h1>
+
+<div class="form-group">
+  <fieldset>
+    <%= form_for @cookbook do |f| %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, required: true, class: "form-control" %>
+
+      <%= f.label :description %>
+      <%= f.text_area :description, class: "form-control"%>
+
+  <br>
+      <%= f.submit "Create", class: "btn btn-default" %>
+    <% end %>
+  </fieldset>
+</div>
