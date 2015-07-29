@@ -21,6 +21,12 @@ RSpec.describe User, type: :model do
       expect(user.errors.keys).to include :password
     end
 
+    it "requires a password_confirmation be present" do
+      user = build :user, password_confirmation: nil
+      user.valid?
+      expect(user.errors.keys).to include :password_confirmation
+    end
+
     it "requires matching password and password confirmation" do
       user = build :user, password_confirmation: "shazamablam!"
       user.valid?

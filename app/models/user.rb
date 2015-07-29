@@ -5,4 +5,6 @@ class User < ActiveRecord::Base
   has_many :cookbooks
 
   validates :username, presence: true, uniqueness: true
+  validates :password_confirmation, presence: true
+
 end
