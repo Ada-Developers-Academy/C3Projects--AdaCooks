@@ -19,6 +19,16 @@ class CookbooksController < ApplicationController
     end
   end
 
+  def destroy
+    # raise
+    user = User.find(params[:user_id])
+    cookbook = Cookbook.find(params[:id])
+    if user.id == cookbook.user_id
+      cookbook.destroy  
+      redirect_to dashboard_user_path(user)
+    end
+  end
+
   private
 
   def cookbook_params
