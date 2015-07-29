@@ -1,2 +1,0 @@
-module CookbooksControllerHelper
-end

@@ -1,6 +1,5 @@
 <%= form_for ingredient, multipart: true do |f| %>
   <div class = "form-group">
-
   <%= f.label :name, "#{name_desc}" %>
   <%= f.text_field :name, class: "form_field", autofocus: true, placeholder: name_placeholder, value: name_value %>
   </div>

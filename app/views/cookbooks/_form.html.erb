@@ -1,0 +1,20 @@
+<%= form_for cookbook do |f| %>
+<div class = "form-group">
+  <%= f.label :name, "#{name_desc}" %>
+  <%= f.text_field :name, class: "form-field", autofocus: true, placeholder: name_placeholder, value: name_value %>
+</div>
+
+<div class = "form-group">
+  <%= f.label :description, "#{description_desc}" %>
+  <%= f.text_area :description, class: "form-field", autofocus: true, placeholder: description_placeholder, value: description_value %>
+</div>
+
+<div class="form-group">
+  <%= f.hidden_field :active, value: true %>
+  <%= f.hidden_field :user_id, value: params[:user_id] %>
+</div>
+
+<div class = "form-group">
+  <%= f.submit submit_button, class: "btn btn-default"  %>
+</div>
+<% end %>

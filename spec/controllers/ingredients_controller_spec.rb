@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe IngredientsController, type: :controller do
 let(:ingredient1) { create :ingredient, name: 'ingredient' }
-
  describe "GET index" do
    it "responds successfully with an HTTP 200 status code" do
      get :index

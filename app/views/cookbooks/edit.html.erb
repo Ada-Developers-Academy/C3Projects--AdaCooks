@@ -1,0 +1,9 @@
+<%= render partial: "form", locals: { cookbook: @cookbook,
+                                      name_desc: "Name",
+                                      name_placeholder: "It's Five O'Clock Somewhere",
+                                      name_value: @cookbook.name,
+                                      description_desc: "Description",
+                                      description_placeholder: "A collection of cocktail recipes from around the world.",
+                                      discription_value: @cookbook.description,
+                                      submit_button: "Edit" }
+%>

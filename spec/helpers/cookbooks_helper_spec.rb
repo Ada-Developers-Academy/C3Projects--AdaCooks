@@ -10,6 +10,6 @@ require 'rails_helper'
 #     end
 #   end
 # end
-RSpec.describe CookbooksControllerHelper, type: :helper do
+RSpec.describe CookbooksHelper, type: :helper do
   pending "add some examples to (or delete) #{__FILE__}"
 end
