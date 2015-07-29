@@ -9,7 +9,7 @@ class IngredientsController < ApplicationController
   def create; end
   def edit; end
   def update; end
-  def show; end # FIXME: replace links in this view with actual URLs instead of links back to root!
+  def show; end
   def destroy; end
 
   private

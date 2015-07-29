@@ -1,0 +1,38 @@
+<h1>
+  <%= link_to @user.username, user_path(@user) %>
+  <small>Member since: <%= format_date(@user.created_at) %></small>
+</h1>
+
+<h2>Contributions</h2>
+
+<div class="col-sm-6">
+  <h3>Recipes</h3>
+
+  <% if @user.has_recipes? %>
+    <ul>
+      <% @user.recipes.each do |recipe| %>
+        <li><%= link_to recipe.name, recipe_path(recipe) %></li>
+      <% end %>
+    </ul>
+
+  <% else %>
+    <p>This user hasn't submitted any recipes yet.</p>
+    
+  <% end %>
+</div>
+
+<div class="col-sm-6">
+  <h3>Ingredients</h3>
+
+  <% if @user.has_ingredients? %>
+    <ul>
+      <% @user.ingredients.each do |ingredient| %>
+        <li><%= link_to ingredient.name, ingredient_path(ingredient) %></li>
+      <% end %>
+    </ul>
+
+  <% else %>
+    <p>This user hasn't submitted any ingredients yet.</p>
+
+  <% end %>
+</div>

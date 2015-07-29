@@ -1,15 +1,32 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the IngredientsHelper. For example:
-#
-# describe IngredientsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe IngredientsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:ingredient) { create :ingredient }
+  let(:recipe1) { create :recipe }
+  let(:recipe2) { create :recipe }
+  let(:recipe3) { create :recipe }
+
+  describe "ingredient_recipes_count" do
+    it "outputs some text based on how many recipes an ingredient is used in" do
+      recipe1.ingredients << ingredient
+      recipe2.ingredients << ingredient
+      expect(ingredient_recipes_count(ingredient)).to include("2")
+
+      recipe3
+      expect(ingredient_recipes_count(ingredient)).not_to include("3")
+    end
+
+    it "adjusts the pluralization if there's only one ingredient" do
+      recipe1.ingredients << ingredient
+      expect(ingredient_recipes_count(ingredient)).not_to include("s")
+
+      recipe2.ingredients << ingredient
+      expect(ingredient_recipes_count(ingredient)).to include("s")
+    end
+  end
+
+  # FIXME: test random_ingredient_name
+  describe "random_ingredient_name" do
+    pending "NOTE: I'm not sure how to properly write a unit test for this"
+  end
 end
