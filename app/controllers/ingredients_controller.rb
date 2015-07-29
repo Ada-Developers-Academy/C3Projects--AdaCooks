@@ -1,4 +1,6 @@
 class IngredientsController < ApplicationController
+  before_action :find_ingredient, only: [:show, :destroy]
+  
   def index
     @ingredients = Ingredient.all.alphabet
   end
@@ -21,7 +23,6 @@ class IngredientsController < ApplicationController
   end
 
   def destroy
-    find_ingredient
     @ingredient.destroy
 
     redirect_to root_path
