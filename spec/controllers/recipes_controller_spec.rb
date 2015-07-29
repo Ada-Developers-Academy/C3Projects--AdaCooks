@@ -52,5 +52,22 @@ RSpec.describe RecipesController, type: :controller do
         expect(Recipe.count).to eq 1
       end
     end
+
+    describe "PATCH #update" do
+      let(:new_params) do
+        {preparation: "I tried to make this, and the chemicals melted my kitchen counter." }
+      end
+
+      before(:each) do
+        @recipe = create :recipe, name: "gnarly fake banana"
+        patch :edit, :id => 1, :recipe => new_params
+        @recipe.reload
+      end
+
+      it "updates a record with new preparation details" do
+        expect(@recipe.name).to eq(new_params[:name])
+      end
+    end
+
   end
 end
