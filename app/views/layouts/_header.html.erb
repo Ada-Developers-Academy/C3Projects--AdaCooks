@@ -1,12 +1,12 @@
 <nav>
-  <div class="navbar-default navbar-fixed-top">
+  <div class="navbar navbar-default navbar-fixed-top">
 
     <div class="navbar-header">
       <%= link_to "Hambre", root_path, class: "navbar-brand" %>
     </div>
 
     <!-- Add logic to only show if user is logged in -->
-    <ul class="nav navbar-nav nav-tabs">
+    <ul class="nav navbar-nav navbar-link">
       <li role="presentation"><%= link_to "Cookbooks", cookbooks_path %></li>
       <li role="presentation"><%= link_to "Recipes", recipes_path %></li>
       <li role="presentation"><%= link_to "Ingredients", ingredients_path %></li>
