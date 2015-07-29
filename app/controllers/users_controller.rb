@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @recipes = User.find(params[:id]).recipes
+    @ingredients = User.find(params[:id]).ingredients
   end
 
   def new
