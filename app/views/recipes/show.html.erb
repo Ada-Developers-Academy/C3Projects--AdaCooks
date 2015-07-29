@@ -1,0 +1,24 @@
+<div class="page-header">
+  <h2><%= @recipe.name %>
+    <!-- <small> From: < link_to @recipe.user.name, user_path(@recipe.user) ></small> -->
+  </h2>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <% @recipe.ingredients.each do |ingredient| %>
+      <%= link_to ingredient.name, ingredient_path(ingredient) %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-10">
+    <div class="panel">
+      <div class="panel-header">Instructions:</div>
+      <p>
+        <%= @recipe.preparation %>
+      </p>
+    </div>
+  </div>
+</div>
