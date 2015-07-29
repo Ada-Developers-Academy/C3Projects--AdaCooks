@@ -1,9 +1,10 @@
 class CookbooksController < ApplicationController
 
-  # before_action :login_required
+  before_action :login_required
 
   def index
-    @cookbooks = Cookbook.all
+    @user = User.find(session[:user_id])
+    @cookbooks = @user.cookbooks
   end
 
   def show
