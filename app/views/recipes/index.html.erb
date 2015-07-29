@@ -1,12 +1,15 @@
-<h1><center>Salad recipes</h1>
-  <div class="table">
-    <% @recipes.each do |recipe| %>
-    <tr>
-        <dt><h2><%= recipe.name %></h2></dt>
-    </tr>
-    <tr>
-      <td><blockquote><%= recipe.description %></blockquote></td>
-      <td><%= image_tag recipe.image_url, class: "img-circle", size: '550x500' %></td>
-    </dl>
-      <% end %>
+<div class="container marketing">
+  <h1>Enjoy our best salad recipes!</h1>
+  <hr class="featurette-divider">
+
+  <div class="row">
+    <% @recipes.each do |recipe|  %>
+      <div class="col-lg-4">
+        <%= image_tag recipe.image_url, class:"img-circle", size: "250x250" %>
+        <h2><%= recipe.name %></h2>
+        <p><%= recipe.description %></p>
+        <p><%= link_to "View details", recipe_path(recipe.id), class: "btn btn-default" %></p>
+      </div>
+    <% end %>
   </div>
+</div>

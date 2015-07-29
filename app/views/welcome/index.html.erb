@@ -1,69 +1,27 @@
-    <div class="container marketing">
+<div class="container marketing">
+  <h1>Welcome to rabbit hole!</h1>
 
-      <div class="row">
-        <div class="col-lg-4">
-          <% recipe = @recipes.find(1)  %>
-          <%= image_tag recipe.image_url, class:"img-circle", size: "250x250" %>
-          <h2><%= recipe.name %></h2>
-          <p><%= recipe.description %></p>
-          <p><%= link_to "View details", recipe_path(recipe.id), class: "btn btn-default" %></p>
-        </div>
+  <div class="row">
+    <div class="col-lg-12">
+        <h3 class="lead">There are plenty of reasons to try one of our deliciously satisfying salad recipes. Most greens are great sources of folate and of vitamin C, which promotes healthy skin and a healthy immune system. Popular salad additions, such as tomatoes, carrots, cabbages and bell peppers, deliver vitamin A (as beta carotene) and lycopene, a phytochemical that may protect against breast and prostate cancers. Enjoy one of these salads recipes.</h3>
+    </div>
 
-        <div class="row">
-          <div class="col-lg-4">
-            <% recipe = @recipes.find(2)  %>
-            <%= image_tag recipe.image_url, class:"img-circle", size: "250x250" %>
-            <h2><%= recipe.name %></h2>
-            <p><%= recipe.description %></p>
-            <p><%= link_to "View details", recipe_path(recipe.id), class: "btn btn-default" %></p>
-          </div>
+    <div class="col-lg-4">
+      <% recipe = @recipes.find(1)  %>
+      <%= image_tag recipe.image_url, class:"img-circle", size: "250x250" %>
+      <h2><%= recipe.name %></h2>
+    </div>
 
+    <div class="col-lg-4">
+      <% recipe = @recipes.find(2)  %>
+      <%= image_tag recipe.image_url, class:"img-circle", size: "250x250" %>
+      <h2><%= recipe.name %></h2>
+    </div>
 
-          <div class="row">
-            <div class="col-lg-4">
-              <% recipe = @recipes.find(3)  %>
-              <%= image_tag recipe.image_url, class:"img-circle", size: "250x250" %>
-              <h2><%= recipe.name %></h2>
-              <p><%= recipe.description %></p>
-              <p><%= link_to "View details", recipe_path(recipe.id), class: "btn btn-default" %></p>
-            </div>
-          </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-        <div class="col-md-5">
-          <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7 col-md-push-5">
-          <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-        <div class="col-md-5 col-md-pull-7">
-          <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-        <div class="col-md-5">
-          <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
+    <div class="col-lg-4">
+      <% recipe = @recipes.find(3)  %>
+      <%= image_tag recipe.image_url, class:"img-circle", size: "250x250" %>
+      <h2><%= recipe.name %></h2>
+    </div>
+  </div>
+</div>
