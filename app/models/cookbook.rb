@@ -6,6 +6,7 @@ class Cookbook < ActiveRecord::Base
 # ----------VALIDATIONS------------------------------
   validates :name, presence: true, uniqueness: true
 
+# ----------SCOPES------------------------------
   def self.alphabetize
     order('name')
   end
