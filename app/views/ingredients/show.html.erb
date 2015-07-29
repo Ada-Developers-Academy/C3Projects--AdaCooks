@@ -1,0 +1,9 @@
+<h3><%= @ingredient.name %></h3>
+
+<%# image_tag %>
+
+<h4>Used in these recipes:</h4>
+
+<ul class="list=group">
+  <%= render partial: 'recipe', collection: @ingredient.recipes %>
+</ul>
