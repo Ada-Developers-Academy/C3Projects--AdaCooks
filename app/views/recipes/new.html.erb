@@ -1,0 +1,24 @@
+<h3>Create a New Recipe</h3>
+
+<%= form_for @recipe do |f| %>
+
+  <div class="form-group">
+    <%= f.label :name, "Name" %>
+    <%= f.text_field :name, class: "form-control" %>
+
+    <%= f.label :description, "Description" %>
+    <%= f.text_field :description, class: "form-control" %>
+
+    <%= f.label :preparation, "Preparation" %>
+    <%= f.text_area :preparation, class: "form-control" %>
+
+    <%= f.label :image, "Recipe Image" %>
+    <%= f.file_field :image%>
+
+    <% f.hidden_field :user_id, :value => session[:id] %>
+
+    <%= f.collection_check_boxes :cookbooks, @cookbooks, :id, :name, class: "form-control" %>
+    <br>
+    <%= f.submit "Create Recipe", class: "btn btn-default" %>
+  </div>
+<% end %>

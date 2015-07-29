@@ -37,7 +37,8 @@ CSV.foreach("db/seed_data_ingredients.csv", { encoding: "UTF-8", headers: true, 
 
     i = Ingredient.create(
       name: row[:name],
-      image: open(image_path)
+      image: open(image_path),
+      user_id: row[:user_id]
       )
 
     i.recipes << Recipe.find_by_name(row[:recipe_name])
