@@ -1,6 +1,6 @@
 class IngredientsController < ApplicationController
-  # before_action :login_required, except: [:index, :show]
-  # before_action :belongs_to_user, only: [:edit, :destroy]
+  before_action :login_required, except: [:index, :show]
+  before_action :belongs_to_user, only: [:edit, :destroy]
 
   def index
     @ingredients = Ingredient.all
@@ -54,7 +54,8 @@ class IngredientsController < ApplicationController
   end
 
   def belongs_to_user
-    if @ingredient_id != session[:user_id]
+  @ingredient = Ingredient.find(params[:id])
+    if @ingredient.user_id != session[:user_id]
       redirect_to ingredients_path
     end
   end
