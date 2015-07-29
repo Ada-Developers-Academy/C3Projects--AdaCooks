@@ -1,15 +1,25 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the UsersHelper. For example:
-#
-# describe UsersHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe UsersHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "#error_check(attribute)" do
+    before :each do
+      @user = create :user
+      @user.errors[:username] = "can't be blank"
+    end
+
+    it "checks if @user has any errors" do
+      expect(helper.error_check(:username)).to_not be nil
+      expect(helper.error_check(:email)).to eq nil
+    end
+
+    it "sets flash.now to have an error for the invalid attribute" do
+      helper.error_check(:username)
+      expect(flash.now[:username_error]).to_not be nil
+    end
+
+    it "formats the error message" do
+      expect(@user.errors[:username]).to_not eq "Can't be blank."
+      expect(helper.error_check(:username)).to eq "Can't be blank."
+    end
+  end
 end
