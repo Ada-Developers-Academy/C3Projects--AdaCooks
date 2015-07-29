@@ -16,7 +16,7 @@ class CookbooksController < ApplicationController
   end
 
   def create
-    @cookbook = Cookbook.create(cookbook_params)
+    @cookbook = Cookbook.new(cookbook_params)
     if @cookbook.save
       redirect_to user_path
     else
