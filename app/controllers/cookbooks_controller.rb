@@ -1,6 +1,6 @@
 class CookbooksController < ApplicationController
   before_action :require_login
-  before_action :find_cookbook, only: [:show, :edit, :update]
+  before_action :find_cookbook, only: [:show, :edit, :update, :destroy]
   before_action :get_cookbook_associations, only: [:new, :edit]
 
   def show
@@ -37,6 +37,12 @@ class CookbooksController < ApplicationController
     @cookbook.save
 
     redirect_to user_cookbook_path(session[:user_id], @cookbook.id)
+  end
+
+  def destroy
+    @cookbook.destroy
+
+    redirect_to user_path(session[:user_id]), notice: "Cookbook deleted."
   end
 
   private
