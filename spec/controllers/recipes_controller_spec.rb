@@ -115,7 +115,7 @@ RSpec.describe RecipesController, type: :controller do
     end
   end
 
-  context "GET #edit" do
+  describe "GET #edit" do
     before :each do
       user = create(:user)
       session[:user_id] = user.id
@@ -146,7 +146,7 @@ RSpec.describe RecipesController, type: :controller do
     end
   end
 
-  context "PUT #update" do
+  describe "PUT #update" do
     before :each do
       @user = create(:user)
       @recipe = create(:recipe)
@@ -214,6 +214,19 @@ RSpec.describe RecipesController, type: :controller do
       it "flashes an error" do
         expect(flash[:errors]).to include(ApplicationController::ERRORS[:unauth_user_error])
       end
+    end
+  end
+
+  describe "DELETE #destroy" do
+    before :each do
+      user = create(:user)
+      recipe = create(:recipe)
+      session[:user_id] = user.id
+      delete :destroy, id: recipe.id
+    end
+
+    it "deletes the record" do
+      expect(Recipe.all.count).to eq 0
     end
   end
 end

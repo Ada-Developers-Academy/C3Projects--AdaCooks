@@ -24,6 +24,8 @@
   <div class="row">
     <div class="center-link-buttons">
       <%= link_to "Edit", edit_recipe_path(id: @recipe.id), class: "btn btn-info" %>
+      <%= link_to "Delete", recipe_path(id: @recipe.id),
+          method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
     </div>
   </div>
 <% end %>
