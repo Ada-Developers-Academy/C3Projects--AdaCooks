@@ -1,6 +1,10 @@
 class RecipesController < ApplicationController
   def index
-    @recipes = Recipe.alpha_order
+    if params[:search]
+      @recipes = Recipe.search(params[:search])
+    else
+      @recipes = Recipe.alpha_order
+    end
   end
 
   def show

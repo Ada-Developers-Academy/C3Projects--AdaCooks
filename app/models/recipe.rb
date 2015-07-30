@@ -11,4 +11,8 @@ class Recipe < ActiveRecord::Base
 
 # Scopes --------------------------------------------------------
   scope :alpha_order, -> { order(name: :asc) }
+
+  def self.search(search)
+    where('name LIKE ? OR description LIKE ? OR preparation LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%")
+  end
 end
