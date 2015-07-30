@@ -1,13 +1,17 @@
-<ul class="nav nav-tabs nav-justified">
-  <li role="presentation" class="active"><a href="#new-recipes">Recipes</a></li>
-  <li role="presentation"><a href="/">Ingredients</a></li>
-  <!-- Add link to ingredients tab -->
-  <!-- Haven't figured out how to implement this ingredients tab yet. -->
-</ul>
 
 <div class="row">
+  <div class="col-xs-12 col-md-8">
+    <h2 class="home-header">Latest Recipes <small><%= link_to "See all", recipes_path %></small></h2>
+  </div>
+  <div class="col-xs-6 col-md-4">
+    <h2>Ingredients <small><%= link_to "See all", "" %></small></h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-md-8">
   <% @recipes.each do |recipe| %>
-    <div class="col-sm-6 col-md-4">
+    <div class="col-md-6">
       <div class="thumbnail">
         <p><%= link_to recipe.name, recipe_path(recipe) %></p>
         <p><%= image_tag recipe.image_url(:thumb) %></p>
@@ -15,5 +19,13 @@
       </div>
     </div>
   <% end %>
+    </div>
+
+  <div class="col-xs-6 col-md-4">
+    <ul class="list-group">
+    <% @ingredients.each do |ingredient| %>
+        <li class="list-group-item"><%= ingredient.name %></li>
+    <% end %>
+  </div>
+
 </div>
-<%= link_to "All recipes", recipes_path %>
