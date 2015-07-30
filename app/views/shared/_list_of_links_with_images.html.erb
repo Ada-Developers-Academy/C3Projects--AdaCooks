@@ -1,0 +1,8 @@
+<ul class="list-unstyled">
+  <% objects.each do |object| %>
+    <li>
+      <%= image_tag object.image_url(:thumb), class: "img-rounded" %>
+      <%= link_to object.name, polymorphic_path(object) %>
+    </li>
+  <% end %>
+</ul>

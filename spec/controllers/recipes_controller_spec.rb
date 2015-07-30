@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe RecipesController, type: :controller do
-  let(:all_recipes) { Recipe.all }
-
   describe "get :index" do
     let(:recipe_a) { create(:recipe, name: "a") }
     let(:recipe_b) { create(:recipe, name: "b") }
