@@ -8,12 +8,15 @@
         </h1>
       </section>
 
+      <%= link_to "Add a Cookbook", new_cookbook_path, class: "btn btn-default" %>
+
       <h3>My Cookbooks</h3>
         <ul>
           <% @cookbooks.each do |cookbook| %>
             <li>
               <%= link_to cookbook.name, cookbook_path(cookbook.id) %>
-              (<%= cookbook.recipes.count %>)
+              (<%= cookbook.recipes.count %> Recipe)
+              <%= link_to "Edit", edit_cookbook_path %>
             </li>
           <% end %>
         </ul>
