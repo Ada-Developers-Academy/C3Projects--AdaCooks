@@ -1,0 +1,14 @@
+<h1><%= @cookbook.name %></h1>
+<ul class="media-list">
+  <% @recipes.each do |recipe| %>
+    <li class="media">
+      <div class="media-left media-middle">
+        <%= link_to image_tag(recipe.image_url(:thumb), class: "media-object"), recipe_path(recipe.id) %>
+      </div>
+      <div class="media-body">
+        <h5 class="media-heading"><%= link_to recipe.name, recipe_path(recipe.id) %></h5>
+        <p><%= recipe.desc %></p>
+      </div>
+    </li>
+  <% end %>
+</ul>
