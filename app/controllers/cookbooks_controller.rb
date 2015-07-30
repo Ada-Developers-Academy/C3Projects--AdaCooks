@@ -58,17 +58,16 @@ class CookbooksController < ApplicationController
   end
 
   def remove_recipe
-    # cookbook = Cookbook.find(params[:id])
-    recipe = @cookbook.recipes.find(params[:id])
-    raise
-    if recipe && @cookbook
-      @cookbook.recipes.delete(recipe)
-      recipe.cookbooks.delete(@cookbook)
+    cookbook = Cookbook.find(params[:cookbook_id])
+    recipe = Recipe.find(params[:id])
+    if recipe && cookbook
+      cookbook.recipes.delete(recipe)
+      recipe.cookbooks.delete(cookbook)
       flash[:success] = MESSAGES[:remove_success]
     else
       flash[:error] = MESSAGES[:remove_fail]
     end
-      redirect_to user_cookbook_path(@user, @cookbook)
+    redirect_to cookbook_path(cookbook)
   end
 
   private

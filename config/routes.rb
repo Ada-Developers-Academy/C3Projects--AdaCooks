@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :recipes
 
   resources :cookbooks
-  delete 'cookbooks/:cookbook_id/recipe/:id/remove/', to: 'cookbooks#remove_recipe', as: 'remove_recipe'
+  delete 'cookbooks/:cookbook_id/recipe/:id', to: 'cookbooks#remove_recipe', as: 'remove_recipe'
   
   resources :ingredients
   

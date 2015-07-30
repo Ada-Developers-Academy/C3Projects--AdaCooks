@@ -1,6 +1,6 @@
 <li class="list-group-item">
   <%= link_to recipe.name, recipe_path(recipe) %>
-  <%= link_to 'Remove', remove_recipe_path(@cookbook, recipe), method: :delete, class: "btn btn-danger",
-    role: "button" %>
+  <%= link_to 'Remove', remove_recipe_path(@cookbook, recipe), method: :delete, 
+    class: "btn btn-danger", data: { confirm: "Are you sure?" }, role: "button" %>
   <p>Updated at: <%= readable_date(recipe.updated_at) %></p>
 </li>
