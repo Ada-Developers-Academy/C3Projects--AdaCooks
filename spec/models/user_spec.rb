@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  before :each do
+    create :ingredient, id: 99
+  end
+  
   describe "validations" do
     it "creates valid users" do
       create :user
@@ -56,9 +60,10 @@ RSpec.describe User, type: :model do
     end
 
     it "has many recipes" do
+      # create :ingredient, id: 99
       user = create :user, id: 1
-      stone_soup = create :recipe, name: "stone soup", user_id: 1
-      earth_worms = create :recipe, name: "earth worms", user_id: 1
+      stone_soup = create :recipe, name: "stone soup", user_id: 1, ingredient_ids: [99]
+      earth_worms = create :recipe, name: "earth worms", user_id: 1, ingredient_ids: [99]
 
       expect(user.recipes).to include(earth_worms, stone_soup)
     end

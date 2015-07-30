@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Recipe, type: :model do
+  before :each do
+    create :ingredient, id: 99
+  end
+
   describe "validations" do
     it "creates valid recipes" do
       create :recipe
