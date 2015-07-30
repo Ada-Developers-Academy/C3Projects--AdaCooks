@@ -22,6 +22,14 @@ class RecipesController < ApplicationController
     end
   end
 
+
+def remove
+  cookbook = Cookbook.find(params[:cookbook_id])
+  recipe = cookbook.recipes.find(params[:recipe_id])
+  cookbook.recipes.delete(recipe)
+  redirect_to user_cookbook_path(session[:user_id], params[:cookbook_id])
+end
+
 private
 
   def recipe_params

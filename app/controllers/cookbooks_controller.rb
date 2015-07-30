@@ -8,7 +8,7 @@ end
 
 def index
   @cookbooks = Cookbook.order(:name)
-  
+
   # @unique_ing = @cookbook.recipes.ingredients.where(recipe_id.count = 1) #change to a scope
 
 end
@@ -35,6 +35,7 @@ def update
 
   redirect_to
 end
+
 
 def destroy
   @cookbook.destroy
