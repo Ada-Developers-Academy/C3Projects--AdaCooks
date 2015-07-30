@@ -23,11 +23,11 @@ We're doing this to make the final project easier to code review. Because the ba
 
 ### As any User, I can...
 - search by the name of an Ingredient and get related Recipes back.
-- __Recipes__
+- DONE __Recipes__
   - DONE view an alphabetical list of all Recipes
-  - view the details of a Recipe, inluding...
+  - DONE view the details of a Recipe, inluding...
     - DONE a link to the User profile of the person who created the Recipe
-    - links to the Ingridient profile for all associated Ingredients
+    - DONE links to the Ingridient profile for all associated Ingredients
 - DONE __Ingredients__
   - DONE view an alphabetical list of all Ingedients
   - DONE view the details of an individual Ingredient, including...
