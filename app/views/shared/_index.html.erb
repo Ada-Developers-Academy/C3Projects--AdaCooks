@@ -2,5 +2,7 @@
 
 <% collection.each do |separate| %>
 <p><%= link_to separate.name, "/#{link}/#{separate.id}" %></p>
+<%= image_tag(separate.image_url(:thumb))%>
+
 
 <% end %>
