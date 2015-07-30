@@ -27,7 +27,7 @@
         <p>Description: <%= cookbook.description %></p>
       <div class="btn-toolbar">
         <p><%= link_to "View details", cookbook_path(cookbook.id), class: "btn btn-default" %>
-        <% if session[:user_id] %>
+        <% if params[:id].to_i == @current_user.id %>
          <%= link_to "Edit Cookbook", edit_cookbook_path(cookbook), class: "btn btn-warning" %>
           <%= link_to "Delete Cookbook", cookbook_path(cookbook), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure you want to delete this?"} %>
         </p>
