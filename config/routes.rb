@@ -8,7 +8,9 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
 
-  resources :cookbooks # cookbooks will always be attached to a user
+  resources :cookbooks do # cookbooks will always be attached to a user
+    post 'remove_recipe', on: :member
+  end
 
   resources :recipes do # recipes aren't necessarily attached to a cookbook
     resources :steps, except: [:index, :show]

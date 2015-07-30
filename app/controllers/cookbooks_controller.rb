@@ -1,10 +1,13 @@
 class CookbooksController < ApplicationController
   before_action :require_login
-  before_action :set_cookbook, only: [:show, :edit, :update, :destroy]
+  before_action :set_cookbook, only: [
+    :show, :edit, :update, :destroy, :remove_recipe
+  ]
 
   MESSAGES = {
     name: "Requires a name.",
-    saved: "Successfully saved cookbook."
+    saved: "Successfully saved cookbook.",
+    recipe: "Successfully removed recipe(s)."
   }
 
   # def index # NOTE THIS LOGIC NEEDS TO GO INTO THE RECIPE & INGREDIENTS NOT COOKBOOKS AUGH
@@ -20,6 +23,7 @@ class CookbooksController < ApplicationController
   end
 
   def show
+    @recipes = @cookbook.recipes
   end
 
   def new
@@ -57,6 +61,17 @@ class CookbooksController < ApplicationController
   def destroy
     @cookbook.destroy
     redirect_to cookbooks_path
+  end
+
+  def remove_recipe
+    if params[:recipe].nil?
+      @cookbook.recipes.destroy_all
+    else
+      recipe = Recipe.find(params[:recipe])
+      @cookbook.recipes.destroy(recipe)
+    end
+    flash.now[:success] = MESSAGES[:recipe]
+    redirect_to cookbook_path(@cookbook)
   end
 
   private
