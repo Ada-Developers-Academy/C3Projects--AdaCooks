@@ -8,6 +8,15 @@ class Recipe < ActiveRecord::Base
   # Validations
   validates :name, presence: true
   validates :preparation, presence: true
+  validate :ingredient_was_checked
+
+  private
+
+  def ingredient_was_checked
+    if self.ingredient_ids.blank?
+      self.errors.add(:ingredient_ids, "You must select at least one ingredient.")
+    end
+  end
 
   # look up join table validations when we get a sec
   # validates :ingredients, presence: true, uniqueness: true

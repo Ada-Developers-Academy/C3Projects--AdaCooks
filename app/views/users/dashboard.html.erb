@@ -15,7 +15,7 @@
   <th>Delete?</th>
 <% @recipes.each do |recipe| %>
 <tr>
-  <td><%= recipe.name %></td>
+  <td><%= link_to recipe.name, recipe_path(recipe) %></td>
   <td><%= link_to "Edit", edit_user_recipe_path(session[:user_id], recipe.id) %></td>
   <td><%= link_to "Delete", user_recipe_path(session[:user_id], recipe.id), method: :delete, data: { confirm: "Are you sure?"} %></td>
   </tr>
