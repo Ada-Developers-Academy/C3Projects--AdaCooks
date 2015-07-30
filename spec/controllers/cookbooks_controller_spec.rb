@@ -48,20 +48,19 @@ RSpec.describe CookbooksController, type: :controller do
     end
   end # create
 
-  # describe "DELETE #destroy" do
-  #   before(:each) do
-  #     @cookbook1 = create :cookbook, { name: "Paula Deen vs Jimmy Dean" }
-  #     @cookbook2 = create :cookbook, name: "PopTarts"
-  #   end
-  #
-  #   it "cookbook count changes by -1" do
-  #     expect{delete :destroy, {id: @cookbook1.id}}.to change(Cookbook, :count).by(-1)
-  #   end
-  #
-  #   it "redirect_to root_path" do
-  #     delete :destroy, id: @cookbook1.id, cookbook1: { name: "Paula Deen vs Jimmy Dean" }
-  #     expect(response).to redirect_to(user_path(session[:user_id]))
-  #   end
-  # end
+  describe "DELETE #destroy" do
+    before(:each) do
+      create :cookbook
+    end
+
+    it "cookbook count changes by -1" do
+      expect{delete :destroy, {id: cookbook.id}}.to change(Cookbook, :count).by(-1)
+    end
+
+    it "redirect_to user_path" do
+      delete :destroy, id: @cookbook1.id, cookbook1: { name: "Paula Deen vs Jimmy Dean" }
+      expect(response).to redirect_to(user_path(session[:user_id]))
+    end
+  end
 
 end
