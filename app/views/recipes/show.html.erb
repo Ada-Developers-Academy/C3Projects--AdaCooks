@@ -10,6 +10,22 @@
 	<%= @recipe.description %>
 </p>
 
+<table>
+	<% @recipe.recipe_ingredients.each do |ingredient| %>
+	<tr>
+		<td>
+			<%= ingredient.quantity %>
+		</td>
+		<td>
+			<%= ingredient.measurement %>
+		</td>
+		<td>
+			<%= link_to Ingredient.find(ingredient.id).name, ingredient_path(Ingredient.find(ingredient.id)) %>
+		</td>
+	</tr>
+	<% end %>
+</table>
+
 <p>
 	<%= @recipe.prep %>
 </p>
