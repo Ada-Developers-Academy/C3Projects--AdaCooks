@@ -63,7 +63,7 @@ We're doing this to make the final project easier to code review. Because the ba
     - DONE Changing the `name`, `description`, uploaded image, and/or `preparation`
     - Removing or Adding Ingredients
   - DONE Destroy an existing Recipe that I created
-    - Destroying a Recipe __does not__ destroy the Ingrdients, just the associations
+    - DONE Destroying a Recipe __does not__ destroy the Ingrdients, just the associations
   - From a Recipe's detail page, I can save the Recipe to an existing Cookbook
 - DONE __Ingredients__
   - DONE Create an Ingredient with...
