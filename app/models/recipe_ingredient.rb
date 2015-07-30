@@ -7,10 +7,10 @@ class RecipeIngredient < ActiveRecord::Base
 
   # getter - for edit
   def ingredient_name
-    # ingredient.nil? ? nil : ingredient.name
     # doesn't need self cause it'll check for a variable first which doesn't exist
     # then it'll check for an object
     ingredient.try :name
+    # same as `ingredient.nil? ? nil : ingredient.name`
   end
 
   # setter - for creating

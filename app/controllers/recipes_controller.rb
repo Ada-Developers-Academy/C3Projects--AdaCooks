@@ -10,21 +10,28 @@ class RecipesController < ApplicationController
 		@recipe.recipe_ingredients.build
 
 		# move to model?
-		user_cookbooks = Cookbook.where(user_id: session[:user_id]).map { |c| [c.name, c.id] }
+		user = User.find(session[:user_id])
+		user_cookbooks = user.cookbooks.map { |c| [c.name, c.id] }
 		@cookbooks_array = user_cookbooks.unshift(["None", nil])
 
 		# move to model?
-		count = 1
 		@measurements_array = []
 		measurements = RecipeIngredient::MEASUREMENTS.each do |measurement|
-			@measurements_array << [measurement, count]
-			count += 1
+			# [label (for view), value (sent to db)]
+			@measurements_array << [measurement, measurement]
 		end
 	end
 
 	def create
-		recipe = Recipe.create(create_params)
-		redirect_to recipe_path(recipe)
+		recipe = Recipe.new(create_params)
+
+		if recipe.valid?
+			recipe.save
+			redirect_to recipe_path(recipe)
+		else
+			flash[:error] = "Your recipe did not save."
+			redirect_to new_recipe_path
+		end
 	end
 
 	private
