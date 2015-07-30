@@ -6,7 +6,7 @@ class Recipe < ActiveRecord::Base
   belongs_to :user
   accepts_nested_attributes_for :recipe_ingredients,
     allow_destroy: true,
-    reject_if: :all_blank
+    :reject_if => lambda { |ri| ri[:ingredient_id].blank? }
 
   # Validations ----------------------------------------------------------------
   validates :name, presence: true, uniqueness: true

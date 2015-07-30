@@ -1,3 +1,11 @@
 <h1>Make history with a new concoction!</h1>
 
+<% if @recipe.errors.messages %>
+  <% @recipe.errors.full_messages.each do |message| %>
+    <p>
+      <%= message %>
+    </p>
+  <% end %>
+<% end %>
+
 <%= render "recipe_form" %>

@@ -1,4 +1,4 @@
-<%= form_for setup_recipe(@recipe) do |f| %>
+<%= form_for @recipe do |f| %>
   <div class="form-group">
     <fieldset>
       <legend><h2>Recipe details</h2></legend>
@@ -25,6 +25,12 @@
 
           <%= ff.label :ingredient_id %>
           <%= ff.collection_select(:ingredient_id, Ingredient.all, :id, :name, prompt: "Select" ) %>
+          <%# ff.hidden_field :recipe_id, value: @recipe_id %>
+
+          <% if ff.object.persisted? %>
+            <%= ff.check_box :_destroy %>
+            <%= ff.label :_destroy, "Destroy" %>
+          <% end %>
         </div>
       <% end %>
       <%= f.submit "Submit", class: "btn btn-default"%>
