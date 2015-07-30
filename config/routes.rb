@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [] do
     get "", to: "users#show", as: "" # OPTIMIZE: Figure this out later
-    resources :cookbooks
+    resources :cookbooks do
+      delete "recipes/:id", to: "cookbooks#remove_recipe", as: "recipe"
+    end
   end
 end
