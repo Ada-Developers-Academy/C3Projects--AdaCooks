@@ -26,6 +26,8 @@
       <th>Cookbook</th>
       <th># of Recipes</th>
       <th># of Ingredients</th>
+      <th></th>
+      <th></th>
     </tr>
     <% @cookbooks.each do |cookbook| %>
       <tr>
@@ -34,6 +36,8 @@
         </td>
         <td><%= cookbook.recipes.count %></td>
         <td><%= cookbook.unique_ingredient_count %></td>
+        <td><%= link_to 'Edit', edit_cookbook_path(cookbook) %></td>
+        <td><%= link_to 'Delete', cookbook, method: :delete %></td>
       </tr>
     <% end %>
   </tbody>

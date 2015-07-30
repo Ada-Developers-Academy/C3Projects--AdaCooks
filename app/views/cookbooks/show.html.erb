@@ -1,6 +1,5 @@
-<%= render partial: 'shared/flash_messages' %>
-
 <h3><%= @cookbook.name %></h3>
+
 <p>Created by: <%= link_to @owner.username, user_path(@owner) %></p>
 
 <p><%= @cookbook.description %></p>
