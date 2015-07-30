@@ -1,12 +1,12 @@
 class IngredientsController < ApplicationController
   before_action :find_ingredient, only: [:show, :destroy]
-  
+
   def index
     @ingredients = Ingredient.all.alphabet
   end
 
   def show
-    @type = find_ingredient
+    @ingredient = find_ingredient
   end
 
   def new
