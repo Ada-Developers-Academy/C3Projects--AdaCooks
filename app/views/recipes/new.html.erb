@@ -1,4 +1,5 @@
-<%= form_for @recipe do |f|  %>
+
+<%= form_for @recipe, html: {class: "form-group"} do |f|  %>
   <div class="form-group">
     <fieldset>
       <legend><h2>Add a Recipe!</h2></legend>
@@ -14,6 +15,7 @@
       <%= f.text_field :preparation %>
 
       <%= f.label :ingredients %><br>
+
       <%= collection_check_boxes(:recipe, :ingredient_ids, Ingredient.all, :id, :name) do |b| %>
            <%= b.label class: "checkbox-inline" do %>
              <%= b.check_box + b.text.capitalize %>

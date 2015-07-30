@@ -1,4 +1,6 @@
 class RecipesController < ApplicationController
+  before_action :require_login, only: [:new]
+  
   def index
     if params[:search]
       @recipes = Recipe.search(params[:search])
