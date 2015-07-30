@@ -34,7 +34,7 @@
 <ul>
 <% if @ingredient.recipes && @ingredient.recipes.count > 0 %>
   <% @ingredient.recipes.each do |recipe| %>
-    <li><%= link_to recipe.name, recipe_path %></li>
+    <li><%= link_to recipe.name, recipe_path(recipe) %></li>
   <% end %>
 <% else %>
 

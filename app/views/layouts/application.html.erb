@@ -8,28 +8,31 @@
   </head>
   <body>
     <header class="jumbotron">
-    <div class="container">
-      <h1 class="top">Eat Me!</h1>
-      <p>
-        <%= random_profession_name %> prefer more <%= random_ingredient_name %>
-        in their <%= random_recipe_name %> than any other ingredient!
-      </p>
+      <div class="container">
+        <h1 class="top">Eat Me!</h1>
+        <p>
+          <%= random_profession_name %> prefer more <%= random_ingredient_name %>
+          in their <%= random_recipe_name %> than any other ingredient!
+        </p>
 
-      <!-- navbar -->
-      <ul class="nav nav-pills">
-        <%= render "layouts/navbar" %>
-      </ul>
-    </div>
+        <!-- navbar -->
+        <ul class="nav nav-pills">
+          <%= render "layouts/navbar" %>
+        </ul>
+      </div>
     </header>
 
-      <main class="container">
+    <main class="container">
+      <% if flash[:error] %>
+        <p class="alert alert-danger"><%= flash[:error] %></p>
+      <% end %>
 
-        <% if flash[:error] %>
-          <p class="alert alert-danger"><%= flash[:error] %></p>
-        <% end %>
+      <% if flash[:success] %>
+        <p class="alert alert-success"><%= flash[:success] %></p>
+      <% end %>
 
-        <%= yield %>
-      </main>
+      <%= yield %>
+    </main>
 
     <footer>
       <nav class="navbar navbar-default">

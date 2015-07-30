@@ -1,4 +1,9 @@
 <li><%= link_to "Home", root_path %></li>
+<%= form_for :search, url: root_path do |f| %>
+  <%= f.text_field :query, placeholder: "Ingredient Name" %>
+
+  <%= f.submit "Search By Ingredient" %>
+<% end %>
 <li><%= link_to "Recipes", recipes_path %></li>
 <li><%= link_to "Ingredients", ingredients_path %></li>
 
