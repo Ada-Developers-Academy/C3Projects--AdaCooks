@@ -18,10 +18,12 @@ class IngredientsController < ApplicationController
 
   def create
     @ingredient = Ingredient.new(ingredient_params)
-    if @ingredient.save
+    if @ingredient.save && (params[:ingredient][:request] == "http://localhost:3000/ingredient_check")
+      redirect_to ingredient_index_path
+    elsif @ingredient.save && (params[:ingredient][:request] != "http://localhost:3000/ingredient_check")
       redirect_to ingredients_path, notice: "Ingredient successfully added!"
     else
-      flash.now[:error] = "Error!!"
+      flash.now[:error] = "Ingredient must have a name and must be unique"
       render :new
     end
   end
@@ -49,6 +51,10 @@ class IngredientsController < ApplicationController
   def search
     @ingredients = Ingredient.search params[:search]
     render :search_results
+  end
+
+  def ingredient_check
+    @ingredients = Ingredient.all.sort_by { |i| i.name.upcase }
   end
 
 private

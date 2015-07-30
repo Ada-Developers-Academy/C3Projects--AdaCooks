@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   delete "logout" => "sessions#destroy"
 
   get    "/ingredients_/search_results" => "ingredients#search"
+  get    "/ingredient_check"            => "ingredients#ingredient_check", as: "ingredient_index"
 end

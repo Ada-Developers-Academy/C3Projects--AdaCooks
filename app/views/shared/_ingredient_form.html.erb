@@ -5,6 +5,8 @@
   <%= f.label :image %>
   <%= f.file_field :image %>
 
+  <%= f.hidden_field :request, value: request.referer %>
+
   <%= f.submit %>
 
   <% end %>
