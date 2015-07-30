@@ -1,4 +1,7 @@
 <h3>Cookbooks</h3>
+
+<%= link_to "Create a New Cookbook", new_user_cookbook_path(@user.id), class: 'btn btn-primary' %>
+
 <% @cookbooks.each do |cookbook| %>
   <div class="media list-group">
     <div class="media-body">
@@ -9,7 +12,7 @@
       <p>Number of Recipes: <%= cookbook.recipes.count %></p>
       <p>Chef: <%= link_to cookbook.user.username, user_path(cookbook.user_id) %></p>
     </div>
-    <% if session[:user_id] %>
+    <% if session[:user_id] == cookbook.user_id %>
       <div class="media-right">
         <%= link_to edit_user_cookbook_path(@user.id, cookbook.id), class: 'btn btn-default' do %>
           <span class="glyphicon glyphicon-pencil" aria-hidden="true" data-toggle="tooltip" title="Edit Me!"></span>
