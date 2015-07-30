@@ -7,7 +7,6 @@ class Ingredient < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
 
 # SCOPES -------------------------------------------
-  scope :alphabetical, -> { sort_by {|i| i.name} }
 
 # MOUNT UPLOADER --------------------------------------
   mount_uploader :image, ImageUploader

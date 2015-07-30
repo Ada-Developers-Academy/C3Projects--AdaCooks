@@ -15,7 +15,6 @@ class Recipe < ActiveRecord::Base
     end
   end
 # SCOPES ----------------------------------------------
-  scope :alphabetical, -> { all.sort_by {|i| i.name} }
 
 # MOUNT UPLOADER --------------------------------------
   mount_uploader :image, ImageUploader
