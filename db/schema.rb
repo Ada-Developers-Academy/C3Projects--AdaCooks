@@ -12,6 +12,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20150730161450) do
+
   create_table "cookbooks", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
@@ -37,33 +38,17 @@ ActiveRecord::Schema.define(version: 20150730161450) do
     t.datetime "updated_at",    null: false
   end
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
   create_table "recipes", force: :cascade do |t|
     t.string   "name",        null: false
     t.string   "description", null: false
     t.string   "image"
-=======
-  create_table "recipes", force: :cascade do |t|
-    t.string   "name",        null: false
-    t.string   "description", null: false
-    t.string   "image_url"
->>>>>>> New migration.
     t.string   "prep",        null: false
     t.integer  "cookbook_id"
-    t.integer  "user_id"
+    t.integer  "user_id",     null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-<<<<<<< HEAD
-=======
->>>>>>> Fixed duplicate :recipe in factories and re-migrated.
-=======
->>>>>>> Fixed duplicate :recipe in factories and re-migrated.
-=======
->>>>>>> New migration.
   create_table "users", force: :cascade do |t|
     t.string   "username",        null: false
     t.string   "email",           null: false
