@@ -9,10 +9,16 @@
   <body>
     <div class="container-fluid" id="main-container">
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-lg-12">
         <div class="page-header">
-        <header>
-          <h1>Ada Cooks</h1>
+          <header>
+          <div class="row">
+            <div class="col-lg-12 col-md-8 col-sm-8">
+            <div class="logo">
+            <%= image_tag("ungodly_grub.png", class: "center-block") %>
+          </div>
+        </div>
+      </div>
         <% if session[:user_id] %>
           <div class="account-buttons">
           <%= link_to "Logout", logout_path, method: :delete %>
@@ -26,7 +32,7 @@
           <%= link_to "Register!", register_path, class: "btn btn-default" %>
           </div>
           <% end %>
-        </header>
+          </header>
         </div>
 
         <nav class="navbar navbar-default">
