@@ -96,6 +96,7 @@ RSpec.describe RecipesController, type: :controller do
     context "valid recipe" do
       before :each do
         post :create, recipe: attributes_for(:recipe)
+        @recipe = Recipe.find(1)
       end
 
       it "saves the recipe to the db" do
@@ -104,9 +105,12 @@ RSpec.describe RecipesController, type: :controller do
 
       it "is associated with the correct user" do
         user = create(:user)
-        recipe = Recipe.find(1)
 
-        expect(recipe.user.id).to eq user.id
+        expect(@recipe.user.id).to eq user.id
+      end
+
+      it "redirects_to the show page" do
+        expect(subject).to redirect_to recipe_path(id: @recipe.id)
       end
     end
   end
