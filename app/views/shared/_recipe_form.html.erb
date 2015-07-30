@@ -12,10 +12,12 @@
   <%= f.label :instructions %>
   <%= f.text_field :instructions%>
 
-  
-
+  <%= f.label :cookbooks %>
+  <%= collection_select :recipe, :cookbook_ids, Cookbook.all, :id, :name, include_blank: 'no cookbook' %>
 
   <%= f.submit "Add Ingredients" %>
   
 
 <% end %>
+
+

@@ -49,12 +49,21 @@ def create
 end
 
 def edit
+  redirect_to new_user_ingredient_path(session[:user_id])
 end
 
 def update
-  @ingredient.update(ingredient_params)
-
-  redirect_to
+  recipe = Recipe.find(session[:recipe_id])
+  user = User.find(session[:user_id])
+  @ingredient = Ingredient.new(ingredient_params)
+  recipe.ingredients << @ingredient
+  @ingredient.user_id = user.id
+  if @ingredient.save
+    redirect_to new_user_ingredient_path(session[:user_id])
+  else
+    flash[:error] = "It did not save"
+    render :new
+  end
 end
 
 def remove
