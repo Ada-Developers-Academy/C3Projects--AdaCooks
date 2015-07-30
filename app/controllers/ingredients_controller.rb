@@ -13,6 +13,10 @@ class IngredientsController < ApplicationController
     destroy_fail: "There was a problem with your ingredient deletion. Please try again."
   }
 
+  def index
+    @ingredients = Ingredient.alpha
+  end
+
   def new
     @ingredient = Ingredient.new
   end

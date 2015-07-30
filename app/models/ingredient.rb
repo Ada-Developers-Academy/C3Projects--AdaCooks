@@ -12,4 +12,6 @@ class Ingredient < ActiveRecord::Base
 
   # Scopes ----------------------------------------------------------------
   scope :newest, -> (total) { order("created_at DESC").limit(total) }
+  scope :alpha, -> { order("name ASC") }
+
 end

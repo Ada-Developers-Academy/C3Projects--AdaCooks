@@ -18,4 +18,6 @@ class Recipe < ActiveRecord::Base
   # refactor: have :newest chain from :desc_by_update
   scope :newest, -> (total) { order("created_at DESC").limit(total) }
   scope :desc_by_update, -> { order("updated_at DESC") }
+  scope :alpha, -> { order("name ASC") }
+
 end

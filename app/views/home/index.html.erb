@@ -4,7 +4,7 @@
     <h2 class="home-header">Latest Recipes <small><%= link_to "See all", recipes_path %></small></h2>
   </div>
   <div class="col-xs-6 col-md-4">
-    <h2>Ingredients <small><%= link_to "See all", "" %></small></h2>
+    <h2>Ingredients <small><%= link_to "See all", ingredients_path %></small></h2>
   </div>
 </div>
 
@@ -24,7 +24,7 @@
   <div class="col-xs-6 col-md-4">
     <ul class="list-group">
     <% @ingredients.each do |ingredient| %>
-        <li class="list-group-item"><%= ingredient.name %></li>
+        <li class="list-group-item"><%= link_to ingredient.name, ingredient_path(ingredient) %></li>
     <% end %>
   </div>
 

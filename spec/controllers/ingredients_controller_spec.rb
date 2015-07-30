@@ -1,6 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe IngredientsController, type: :controller do
+
+  describe "GET #index" do
+    it "renders the index template" do
+      get :index
+      expect(response).to render_template("index")
+    end
+  end
+
+
   describe "GET #new" do
     before :each do
       get :new
@@ -11,7 +20,7 @@ RSpec.describe IngredientsController, type: :controller do
     end
 
     it "renders the new template" do
-      expect(response).to render_template "new" 
+      expect(response).to render_template "new"
     end
   end
 
@@ -87,7 +96,7 @@ RSpec.describe IngredientsController, type: :controller do
       end
 
       it "redirects to ingredient#show" do
-        expect(response).to redirect_to ingredient_path(ingredient)        
+        expect(response).to redirect_to ingredient_path(ingredient)
       end
     end
 
