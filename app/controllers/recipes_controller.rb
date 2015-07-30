@@ -15,7 +15,7 @@ class RecipesController < ApplicationController
       @ingredients = Ingredient.all.order(:name)
       @cookbooks = Cookbook.where(:user_id => params[:user_id]).order(:name)
     else
-      flash[:error] = "You do not have access to that user's products"
+      flash[:error] = "You do not have access to this user's products"
 
       redirect_to user_dashboard_path(session[:user_id])
     end
@@ -54,6 +54,31 @@ class RecipesController < ApplicationController
     end
 
   end
+
+  def edit
+    @recipe = Recipe.find(params[:id])
+
+    @ingredients = Ingredient.all.order(:name)
+    @cookbooks = Cookbook.where(:user_id => params[:user_id]).order(:name)
+  end
+
+  def update
+    @recipe = Recipe.find(params[:id])
+
+    @recipe.update(recipe_params)
+
+    associate_ingredients(@recipe)
+    associate_cookbooks(@recipe)
+
+    redirect_to user_dashboard_path(session[:user_id])
+  end
+
+  def destroy
+    recipe = Recipe.find(params[:id])
+    recipe.destroy
+    redirect_to user_dashboard_path(session[:user_id])
+  end
+
 
 ###########################################################
   private

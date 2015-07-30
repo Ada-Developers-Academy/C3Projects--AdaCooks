@@ -1,8 +1,8 @@
 class Recipe < ActiveRecord::Base
   # Validations
-  validates :name, presence: true
-  validates :preparation, presence: true
-  validates :ingredients, presence: true
+  # validates :name, presence: true
+  # validates :preparation, presence: true
+  # validates :ingredients, presence: true
 
   # Mounted Objects
   mount_uploader :image, ImageUploader
