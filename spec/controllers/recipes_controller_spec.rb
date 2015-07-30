@@ -101,13 +101,13 @@ RSpec.describe RecipesController, type: :controller do
     end
 
     it "deletes the record" do
-      expect{
-        delete :destroy, { id: @user.id }
-      }.to change(Recipe, :count).by(-1)
+      delete :destroy, id: @recipe.id
+
+      expect(Recipe.count).to eq 0
     end
 
     it "redirects to recipes#index" do
-      delete :destroy, { id: @user.id }
+      delete :destroy,  id: @recipe.id
       expect(response).to redirect_to user_path(session[:user_id])
     end
 
@@ -116,6 +116,7 @@ RSpec.describe RecipesController, type: :controller do
       ingredient2 = create :ingredient, name: "Another Ingredient"
       @recipe.ingredients << [ ingredient1, ingredient2 ]
 
+      delete :destroy, id: @recipe.id
       expect(Ingredient.all).to include(ingredient1)
       expect(Ingredient.all).to include(ingredient2)
     end
@@ -123,8 +124,9 @@ RSpec.describe RecipesController, type: :controller do
     it "does not delete associated cookbooks" do
       cookbook = create :cookbook
       @recipe.cookbooks << cookbook
-      expect(Cookbook.all).to include(cookbook)
 
+      delete :destroy, id: @recipe.id
+      expect(Cookbook.all).to include(cookbook)
     end
   end
 end
