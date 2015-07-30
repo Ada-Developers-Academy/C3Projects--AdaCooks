@@ -80,6 +80,7 @@ class RecipesController < ApplicationController
       :description,
       :preparation,
       :user_id,
+      :image, 
       ingredient_ids: [],
       cookbook_ids: [])
   end

@@ -10,6 +10,9 @@ class Recipe < ActiveRecord::Base
   validates :preparation, presence: true
   validate :ingredient_was_checked
 
+  # Mounted object
+  mount_uploader image, ImageUploader
+
   private
 
   def ingredient_was_checked
