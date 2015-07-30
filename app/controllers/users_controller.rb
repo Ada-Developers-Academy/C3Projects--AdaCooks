@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_login, only: [:show]
-  
+
   def new
     if session[:user_id].nil?
       @user = User.new
