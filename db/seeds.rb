@@ -41,10 +41,41 @@ recipes = [
 
  {id:2, name: "Kale Apple Smoothie", description:"this delicious smoothie is perfect after a walk.",
  instructions:"blend apple, kale, and ice in a blender on high speed for 3 minutes.",
- image: "green_smoothie.jpg", user_id:2 } 
+ image: "green_smoothie.jpg", user_id:2 }, 
+
+ {id:3, name: "Strawberry Apple Smoothie", description:"this delicious smoothie is perfect after a walk.",
+ instructions:"blend apple, strawberry, and ice in a blender on high speed for 3 minutes.",
+ image: "green_smoothie.jpg", user_id:1},
+
+ {id:4, name: "Flax seed Spinach Smoothie", description:"this delicious smoothie is perfect after a walk.",
+ instructions:"blend flax seed, spinach, and ice in a blender on high speed for 3 minutes.",
+ image: "green_smoothie.jpg", user_id:2}
 
 ]
 
 recipes.each do |recipe|
   Recipe.create(recipe)
 end
+
+recipe1, recipe2, recipe3, recipe4 = Recipe.all
+
+recipe1.ingredients << Ingredient.find([1, 3, 4])
+recipe2.ingredients << Ingredient.find([2, 4, 8])
+recipe3.ingredients << Ingredient.find([2, 4, 7])
+recipe4.ingredients << Ingredient.find([9, 4])
+
+cookbooks = [
+           {id: 1, name: "Green Smoothies", user_id: 3},
+           {id: 2, name: "Fruity Smoothies", user_id: 2}
+]
+
+cookbooks.each do |cookbook|
+  Cookbook.create(cookbook)
+end
+
+
+
+cookbook1, cookbook2 = Cookbook.all
+
+cookbook1.recipes << Recipe.find([2, 4])
+cookbook2.recipes << Recipe.find([1, 3])
