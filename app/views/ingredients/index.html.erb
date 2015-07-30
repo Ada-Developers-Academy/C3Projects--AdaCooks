@@ -15,3 +15,12 @@
 </div>
 <% end %>
 </div>
+
+<%   %>
+<h4> Recipes You can find this in </h4>
+<% @recipes.each do |recipe| %>
+<%= link_to(image_tag(recipe.image_url(:thumb)), recipe_path(recipe.id)) %>
+
+<%= recipe.name %>
+<br>
+<% end %>
