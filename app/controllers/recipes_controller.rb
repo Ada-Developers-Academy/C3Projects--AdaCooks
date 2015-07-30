@@ -25,16 +25,22 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe = Recipe.create(recipe_params)
+    @recipe = Recipe.new(recipe_params)
     @recipe.user_id = session[:user_id]
+    @recipe.validate
 
-    if @recipe.save
+    if @recipe.valid?
       @ingredient_recipe = (params[:recipe][:ingredient_ids].first).to_i
       @recipe.ingredients << Ingredient.find(@ingredient_recipe) unless @ingredient_recipe != 0
       # This prevents anything from being saved if the user didn't input any ingredients for a recipe
+      @recipe.save
       redirect_to user_path(session[:user_id])
     else
-      render 'new'
+      @cookbook = Cookbook.where(user_id: session[:user_id])
+      @user = User.find(session[:user_id])
+      @ingredients = Ingredient.all
+      @recipe = Recipe.new(user_id: @user.id)
+      render :new
     end
   end
 

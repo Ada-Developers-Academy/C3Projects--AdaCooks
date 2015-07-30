@@ -8,13 +8,15 @@
         <th>Cookbook Name</th>
         <th>Description</th>
         <th>No. Recipes</th>
-        <th></th>
+        <th>No. Unique Ingredients</th>
+        <th>Delete?</th>
     </tr>
     <% @cookbooks.each do |cookbook| %>
       <tr>
         <td> <h3><%= link_to "#{cookbook.name}", cookbook_path(cookbook.id) %></h3> </td>
         <td><%= cookbook.description %></td>
         <td><%= cookbook.recipes.count %> </td>
+        <td></td>
     <td><%= button_to "Delete", cookbook_path(cookbook.id), method: "delete", class: "btn btn-danger" %></td>
   </table>
 
