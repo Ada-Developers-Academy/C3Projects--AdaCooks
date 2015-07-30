@@ -3,7 +3,7 @@
 
 <h3>Recipes</h3>
 <% @recipes.each do |recipe| %>
-<div class = "col-sm-3">
+<div class = "col-sm-4">
   <%= link_to  "#{recipe.name}", recipe_path(recipe.id) %>
   <%= image_tag recipe.image_url, class: "img-board img-center" %>
 </div>

@@ -9,7 +9,7 @@ class IngredientsController < ApplicationController
   def show
     @ingredient_id = params[:id]
     @ingredient = Ingredient.find(@ingredient_id)
-    @ingredients = @ingredient.recipes
+    @recipes = @ingredient.recipes
   end
 
   def new
@@ -49,6 +49,12 @@ class IngredientsController < ApplicationController
 
 	def search
     @ingredients = Ingredient.search params[:search]
+    @recipes = []
+    @ingredients.each do |ingredient|
+      array = ingredient.recipes
+      @recipes.concat array
+    end
+    @recipes = @recipes.uniq
     render :search_results
   end
 

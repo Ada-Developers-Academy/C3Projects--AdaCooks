@@ -16,8 +16,8 @@
 
 <h3>Recipes</h3>
 <% @recipes.each do |recipe| %>
-<div class = "col-sm-3">
-  <%= link_to  "#{recipe.name}", recipe_path(recipe.id) %>
+<div class = "col-sm-4">
   <%= image_tag recipe.image_url, class: "img-board img-center" %>
+  <h4><%= link_to  "#{recipe.name}", recipe_path(recipe.id) %></h4>
 </div>
 <% end %>

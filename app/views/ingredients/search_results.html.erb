@@ -1,25 +1,8 @@
 <h1>search results</h1>
-<table>
-  <thead>
-    <tr>
-      <th>
-        Name
-      </th>
-      <th>
-        Image
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @ingredients.each do |ingredient| %>
-    <tr>
-      <td>
-        <%= link_to "#{ingredient.name}", ingredient_path(ingredient.id) %>
-      </td>
-      <td>
-        <%= image_tag ingredient.image_url, class: "img-board img-center" %>
-      </td>
-    </tr>
+
+    <% @recipes.each do |recipe| %>
+      <div class = "col-sm-4">
+        <%= image_tag recipe.image_url, class: "img-board img-center"  %>
+        <%= link_to "#{recipe.name}", recipe_path(recipe.id)  %>
+      </div>
     <% end %>
-  </tbody>
-</table>
