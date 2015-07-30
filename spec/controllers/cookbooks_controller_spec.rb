@@ -152,16 +152,16 @@ RSpec.describe CookbooksController, type: :controller do
     # end
   end
 
-  # describe "DELETE #remove_recipe" do
-  #   let(:cookbook) { create :cookbook }
-  #   before :each do
-  #     recipe = create :recipe
-  #     cookbook.recipes << recipe
-  #     delete :remove_recipe, cookbook_id: cookbook, id: recipe
-  #   end
+  describe "DELETE #remove_recipe" do
+    let(:cookbook) { create :cookbook }
+    before :each do
+      recipe = create :recipe
+      cookbook.recipes << recipe
+      delete :remove_recipe, cookbook_id: cookbook, id: recipe
+    end
 
-  #   it "removes the association between cookbook and recipe" do
-  #     expect(cookbook.recipes.count).to eq 0
-  #   end
-  # end
+    it "removes the association between cookbook and recipe" do
+      expect(cookbook.recipes.count).to eq 0
+    end
+  end
 end
