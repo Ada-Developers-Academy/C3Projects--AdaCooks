@@ -1,5 +1,5 @@
 class CookbooksController < ApplicationController
-  before_action :require_login, only: [:show, :new, :create]
+  before_action :require_login
   before_action :find_cookbook, only: [:show, :edit, :update]
   before_action :get_cookbook_associations, only: [:new, :edit]
 
