@@ -1,17 +1,21 @@
-<%= form_for @ingredient, url: path do |f| %>
-  <fieldset>
-    <div class="form-group">
-      <%= f.label :name %>
-      <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
-    </div>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <%= form_for @ingredient, url: path do |f| %>
+      <fieldset>
+        <div class="form-group">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+        </div>
 
-    <div class="form-group">
-      <%= f.label "Optional Image" %>
-      <%= f.file_field :avatar %>
-    </div>
+        <div class="form-group">
+          <%= f.label "Optional Image" %>
+          <%= f.file_field :avatar %>
+        </div>
 
-    <br>
+        <br>
 
-    <%= f.submit "Save Ingredient", class: "btn btn-primary" %>
-  </fieldset>
-<% end %>
+        <%= f.submit "Save Ingredient", class: "btn btn-primary" %>
+      </fieldset>
+    <% end %>
+  </div>
+</div>

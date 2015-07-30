@@ -1,17 +1,29 @@
-<%= form_for @user, url: signup_path do |f| %>
-  <fieldset>
-    <%= f.label :username %>
-    <%= f.text_field :username %>
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <%= form_for @user, url: signup_path do |f| %>
+      <fieldset>
+        <div class="form-group">
+          <%= f.label :username %>
+          <%= f.text_field :username, class: "form-control", placeholder: "Username" %>
+        </div>
 
-    <%= f.label :email %>
-    <%= f.email_field :email %>
+        <div class="form-group">
+          <%= f.label :email %>
+          <%= f.email_field :email, class: "form-control", placeholder: "Email" %>
+        </div>
 
-    <%= f.label :password %>
-    <%= f.password_field :password %>
+        <div class="form-group">
+          <%= f.label :password %>
+          <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+        </div>
 
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
+        <div class="form-group">
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password Confirmation" %>
+        </div>
 
-    <%= f.submit "Login" %>
-  </fieldset>
-<% end %>
+        <%= f.submit "Login", class: "btn btn-primary" %>
+      </fieldset>
+    <% end %>
+  </div>
+</div>
