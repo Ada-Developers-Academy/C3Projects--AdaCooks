@@ -19,7 +19,7 @@ class RecipesController < ApplicationController
     @user = User.find(session[:user_id])
 
     if @recipe.save
-      redirect_to user_path(@user)
+      redirect_to user_path(@user.id)
     else
       render 'new'
     end

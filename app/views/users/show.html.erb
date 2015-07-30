@@ -2,19 +2,18 @@
   <% if session[:user_id] %>
     <h1>Welcome back, <%= @user.name %>!</h1>
     <p><%= link_to "Create a New Cookbook", new_cookbook_path, class: "btn btn-default" %>
-      <%= link_to "Add New Recipe", new_recipe_path, class: "btn btn-default"  %></p>
   <% else %>
     <h1><%= @user.name %> cookbooks</h1>
   <% end %>
 
   <hr class="featurette-divider">
 
-  <h3><mark>Cookbooks:</mark></h3>
+  <h3><mark>Cookbooks:</mark></h3><br>
 
   <div class="row">
     <% @cookbooks.each do |cookbook| %>
       <div class="col-md-4">
-        
+
         <% if cookbook.photo_url %>
           <%= image_tag cookbook.photo_url, class:"img-circle", size: "220x200" %>
         <% elsif cookbook.image_url %>

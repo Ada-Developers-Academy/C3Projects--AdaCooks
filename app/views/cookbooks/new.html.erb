@@ -5,14 +5,15 @@
   <div class="form-group">
     <fieldset>
       <%= form_for @cookbook do |f| %>
-
         <%= f.label :name %>
         <%= f.text_field :name, required: true, class: "form-control" %>
 
         <%= f.label :description %>
         <%= f.text_area :description, class: "form-control"%>
 
-        <br>
+        <%= f.label :image %>
+        <%= f.file_field :image %><br><br>
+
         <%= f.submit "Create", class: "btn btn-default" %>
       <% end %>
     </fieldset>

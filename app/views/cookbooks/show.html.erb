@@ -1,8 +1,10 @@
 <div class="container marketing">
   <h1><%= @cookbook.name %>!</h1>
+  <%= link_to "Add New Recipe", new_recipe_path, class: "btn btn-default"  %></p>
   <hr class="featurette-divider">
 
-  <h3><mark>Recipes: </mark></h3>
+  <h3><mark>Recipes: </mark></h3><br>
+
 
   <div class="row">
     <% @cookbook.recipes.each do |recipe| %>
@@ -19,7 +21,7 @@
         <h2><%= recipe.name %></h2>
         <p><%= recipe.description %></p>
         <p><%= link_to "View details", recipe_path(recipe.id), class: "btn btn-default" %>
-          
+
         <% if session[:user_id] %>
           <%= link_to "Delete this recipe", recipe_path(recipe), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure you want to delete this?"} %></p>
         <% end %>
