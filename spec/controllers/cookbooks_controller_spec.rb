@@ -5,14 +5,6 @@ RSpec.describe CookbooksController, type: :controller do
   let(:cookbook_params) { { :cookbook => { name: "name" } } }
   let(:invalid_params) { { :cookbook => { desc: "desc" } } }
 
-  describe "GET #index" do
-    it "responds successfully with an HTTP 200 status code" do
-      get :index
-      expect(response).to be_success
-      expect(response).to have_http_status(200)
-    end
-  end
-
   describe "GET #new" do
     context "valid params" do
       it "creates a new instance of Cookbook" do
@@ -31,14 +23,14 @@ RSpec.describe CookbooksController, type: :controller do
 
   describe "POST #create" do
     context "valid params" do
-      xit "creates a Cookbook record" do
+      it "creates a Cookbook record" do
         post :create, cookbook_params
         expect(Cookbook.count).to eq 1
       end
 
-      xit "redirects to the show page" do
+      it "redirects to the user show page" do
         post :create, cookbook_params
-        expect(subject).to redirect_to(user_path)
+        expect(subject).to redirect_to(user_path(session[:user_id]))
       end
     end
 

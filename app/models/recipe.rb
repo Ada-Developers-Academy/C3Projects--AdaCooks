@@ -7,17 +7,22 @@ class Recipe < ActiveRecord::Base
 # VALIDATIONS -----------------------------------------
   validates :name, presence: true
   validates :prep, presence: true
-  validates_associated :ingredients
+  validate :req_ingredients
 
-# SCOPES ----------------------------------------------
-  # scope :find_recipe, ->
-
-# SEARCH ----------------------------------------------
-  def self.search(search)
-    if search
-      find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
-    else
-      find(:all)
+  def req_ingredients
+    unless ingredients.length > 0
+      errors.add(:ingredients, "Need at least one ingrediet in your recipe")
     end
   end
+# SCOPES ----------------------------------------------
+
+# MOUNT UPLOADER --------------------------------------
+  mount_uploader :image, ImageUploader
+
+# METHODS ---------------------------------------------
+
+  def self.organize
+    self.all.sort_by { |i| i.name.capitalize }
+  end
+
 end

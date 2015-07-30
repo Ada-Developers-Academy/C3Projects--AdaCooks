@@ -1,0 +1,16 @@
+<div>
+  <h2><%= @ingredient.name %></h2>
+  <%= image_tag(@ingredient.image) %>
+  <% if session[:user_id] %>
+    <%= button_to "Edit", edit_ingredient_path(@ingredient), method: :get, class: "btn btn-default" %>
+    <%= button_to "Delete", ingredient_path(@ingredient), method: :delete, class: "btn btn-danger" %>
+  <% end %>
+</div>
+<section>
+  <h5>Recipes Using <%= @ingredient.name %></h5>
+  <% @ingredient.recipes.each do |recipe| %>
+  <ul>
+    <li><%= link_to recipe.name, recipe_path(recipe), method: :get %></li>
+  </ul>
+  <% end %>
+</section>

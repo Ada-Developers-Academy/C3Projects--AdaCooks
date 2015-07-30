@@ -1,9 +1,9 @@
 class IngredientsController < ApplicationController
-  before_action :require_login, except: [:index]
+  before_action :require_login, except: [:index, :show, :search]
   before_action :find_ingredient, only: [:show, :edit, :update, :destroy]
 
   def index
-    @ingredients = Ingredient.all.alphabetical
+    @ingredients = Ingredient.all.sort_by {|i| i.name}
   end
 
   def show
@@ -12,19 +12,25 @@ class IngredientsController < ApplicationController
 
   def new
     @ingredient = Ingredient.new
+    @url = ingredients_path
+    @method = :post
   end
 
   def create
-    if @ingredient.save
+    @ingredient = Ingredient.new(ingredient_params)
+    if @ingredient.save && (params[:ingredient][:request] == "http://localhost:3000/ingredient_check")
+      redirect_to ingredient_index_path
+    elsif @ingredient.save && (params[:ingredient][:request] != "http://localhost:3000/ingredient_check")
       redirect_to ingredients_path, notice: "Ingredient successfully added!"
     else
-      flash.now[:error] = "Error!!"
+      flash.now[:error] = "Ingredient must have a name and must be unique"
       render :new
     end
   end
 
   def edit
-    render :new
+    @url = ingredient_path
+    @method = :patch
   end
 
   def update
@@ -40,6 +46,15 @@ class IngredientsController < ApplicationController
     @ingredient = Ingredient.find(params[:id])
     @ingredient.destroy
     redirect_to ingredients_path
+  end
+
+  def search
+    @ingredients = Ingredient.search params[:search]
+    render :search_results
+  end
+
+  def ingredient_check
+    @ingredients = Ingredient.all.sort_by { |i| i.name.upcase }
   end
 
 private

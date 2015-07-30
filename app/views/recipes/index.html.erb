@@ -1,0 +1,14 @@
+<h1>Recipes</h1>
+<% alphabet = ("A".."Z").to_a %>
+<% @recipes.each do |recipe| %>
+  <% alphabet.each do |letter| %>
+    <% if recipe.name.first.upcase == letter %>
+      <strong><%= letter %></strong>
+      <%= link_to recipe.name, recipe_path(recipe), method: :get %>
+    <% else %>
+      <strong><%= letter %></strong>
+    <% end %>
+  <% end %>
+<% end %>
+<br>
+<%= link_to "New Recipe", ingredient_index_path, method: :get %>

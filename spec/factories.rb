@@ -9,6 +9,7 @@ FactoryGirl.define do
   factory :recipe do
     name "Chicken Fingers"
     prep "1. Cut chicken into fingers 2. Bread and Fry"
+    association :ingredients, factory: :ingredient
   end
 
   factory :ingredient do
@@ -18,5 +19,10 @@ FactoryGirl.define do
   factory :cookbook do
     name "Book Name"
     desc "A book with recipes"
+  end
+
+  factory :session do
+    email "email@email.com"
+    password "password"
   end
 end

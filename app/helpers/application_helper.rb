@@ -1,4 +1,5 @@
 module ApplicationHelper
+  ALPHABET = %w(A B C D E F G H I J K L M N O P Q R S T U V W X Y Z)
 
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
@@ -16,5 +17,5 @@ module ApplicationHelper
   def logged_in?
    current_user != nil
   end
-  
+
 end

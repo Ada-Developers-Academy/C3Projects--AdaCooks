@@ -1,13 +1,9 @@
 class CookbooksController < ApplicationController
   before_action :require_login
   before_action :define_user
-  before_action :get_cookbook, only: [:show, :edit, :update, :destroy]
+  before_action :find_cookbook, only: [:edit, :update, :destroy]
 
   # Display cookbook(s)
-  def index
-    @cookbooks = Cookbook.all
-  end
-
   def show; end
 
   # Add a new cookbook
@@ -18,7 +14,7 @@ class CookbooksController < ApplicationController
   def create
     @cookbook = Cookbook.new(cookbook_params)
     if @cookbook.save
-      redirect_to user_path
+      redirect_to user_path(session[:user_id])
     else
       render new_cookbook_path
     end
@@ -44,10 +40,10 @@ end
 
 private
 
-  def get_cookbook
+  def find_cookbook
     @cookbook = Cookbook.find(params[:id])
   end
 
   def cookbook_params
-    params.require(:cookbook).permit(:name, :desc)
+    params.require(:cookbook).permit(:name, :desc, :user_id)
   end

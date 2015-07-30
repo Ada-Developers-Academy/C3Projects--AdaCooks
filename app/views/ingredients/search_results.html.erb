@@ -1,0 +1,6 @@
+<% @ingredients.each do |ingredient| %>
+  <div class="container">
+    <%= image_tag(ingredient.image_url(:thumb)) %>
+    <%= link_to ingredient.name, ingredient_path(ingredient.id) %>
+  </div>
+<% end %>

@@ -1,0 +1,9 @@
+<h4>Do you see all the ingredients you need below?</h4>
+
+<ul><% @ingredients.each do |ingredient| %>
+    <li><%= ingredient.name %></li>
+    <% end %>
+</ul>
+
+<%= link_to "Continue to Add Recipe", new_recipe_path, method: :get %>
+<%= link_to "Add More Ingredients", new_ingredient_path, method: :get %>

@@ -18,7 +18,15 @@ RSpec.describe Ingredient, type: :model do
     end
   end
 
-  describe "GET #index" do
-    
+  describe "scope" do
+    let(:ingredient1) {create :ingredient}
+    let(:ingredient2) {create :ingredient, name: "spice"}
+    let(:ingredient3) {create :ingredient, name: "everything nice"}
+
+    it "sorts all the ingredients by alphabetical order" do
+      ingredient2
+      correct_order = [ingredient3, ingredient2, ingredient1]
+      expect(Ingredient.all.sort_by {|i| i.name}).to eq(correct_order)
+    end
   end
 end

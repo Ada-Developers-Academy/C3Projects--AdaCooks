@@ -20,6 +20,21 @@ $gray-medium-light: #EAEAEA;
   }
 }
 
+a:hover {
+  text-decoration: none;
+}
+
+/* typography ------------------------------------------------- */
+
+h1, h2 {
+  font-family: 'Unica One', cursive;
+}
+
+h3 {
+  font-family: 'Reenie Beanie', cursive;
+  font-size: 2.1em;
+}
+
 /* navigation ------------------------------------------------- */
 
 .navbar-brand { 
@@ -39,7 +54,7 @@ $gray-medium-light: #EAEAEA;
 
 .jumbotron {
   width: 100%;
-  height: 575px;
+  height: 500px;
   margin-top: -48px;
   background: image-url("jumbo.jpg") no-repeat center left;
   background-size: cover;
@@ -57,7 +72,36 @@ $gray-medium-light: #EAEAEA;
 .jumbotron p {
   color: #FFF;
   font-family: 'Reenie Beanie', cursive;
-  font-size: 2.7em;
+  font-size: 2.8em;
+}
+
+.search {
+  padding-top: 20px;
+}
+
+/* images ----------------------------------------------------- */
+
+.img-circle {
+  border: 3px solid #DDE6ED;
+}
+
+/* user profile ----------------------------------------------- */
+
+.recipe-count {
+  font-style: italic;
+}
+
+.glyphicon-pencil {
+  margin-right: 5px;
+}
+
+.profile-buttons {
+  padding-top: 8px;
+}
+
+.cookbook-header {
+  font-family: 'Reenie Beanie', cursive;
+  font-size: 2.9em;
 }
 
 /* footer ----------------------------------------------------- */

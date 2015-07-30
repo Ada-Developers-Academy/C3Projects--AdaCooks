@@ -15,7 +15,7 @@
       <%= f.label :desc, "Description" %>
       <%= f.text_field :desc, class: 'form-control form-group' %>
 
-      <%= f.hidden_field :user_id %>
+      <%= f.hidden_field :user_id, value: session[:user_id] %>
 
       <%= f.submit class: "btn btn-primary" %>
     <% end %>

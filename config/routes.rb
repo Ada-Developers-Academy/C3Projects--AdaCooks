@@ -1,6 +1,6 @@
-Rails.application.routes.draw do  
+Rails.application.routes.draw do
   root 'home#index'
-  
+
   resources :users, only: [:new, :create, :show]
   resources :sessions, only: [:new, :create, :destroy]
 
@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   delete "logout" => "sessions#destroy"
 
   # Search
-  get "/recipes_/search_results" => "recipes#search"
+  get    "/ingredients_/search_results" => "ingredients#search"
+  get    "/ingredient_check"            => "ingredients#ingredient_check", as: "ingredient_index"
 end
