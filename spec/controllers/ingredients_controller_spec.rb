@@ -42,11 +42,10 @@ RSpec.describe IngredientsController, type: :controller do
         expect(Ingredient.count).to eq(0)
       end
 
-      # do render and redirect have the same http status code??
-      # it "renders :new ingredient form" do
-        # post :create, invalid_ingredient.attributes
-        # expect(response).to have_http_status(200)
-      # end
+      it "renders :new ingredient form" do
+        post :create, invalid_ingredient.attributes
+        expect(response).to redirect_to(ingredients_path)
+      end
     end
   end
 
