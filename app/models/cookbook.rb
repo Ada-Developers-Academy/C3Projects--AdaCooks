@@ -12,4 +12,9 @@ class Cookbook < ActiveRecord::Base
     recipe = Recipe.find(recipe_id)
     recipes.delete(recipe)
   end
+
+  # Instance Methods -----------------------------------------------------------
+  def proper_name # FIXME: test Cookbook#proper_name
+    name.titlecase
+  end
 end

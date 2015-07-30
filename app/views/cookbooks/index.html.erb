@@ -6,7 +6,7 @@
 <ul class="list-group">
   <% @cookbooks.each do |cookbook| %>
     <li class="list-group-item">
-      <%= link_to cookbook.name, user_cookbook_path(session[:user_id], cookbook.id) %>
+      <%= link_to cookbook.proper_name, user_cookbook_path(session[:user_id], cookbook.id) %>
       <%= link_to "Edit", edit_user_cookbook_path(session[:user_id], cookbook.id), class: "btn btn-info btn-xs" %>
       <%= link_to "Delete", user_cookbook_path(session[:user_id], cookbook.id), method: "delete", class: "btn btn-warning btn-xs", data: { confirm: "Are you sure you want to delete?" } %>
       <span class="badge"><%= cookbook_ingredients_count(cookbook) %></span>
