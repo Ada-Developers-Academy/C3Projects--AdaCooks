@@ -18,21 +18,22 @@ RSpec.describe RecipesController, type: :controller do
     end
   end
 
-  # describe "GET #show" do
-  #
-  #   it "renders the :show view" do
-  #     get :show
-  #     expect(response).to render_template("show")
-  #   end
-  #
-  #   it "returns successfully with HTTP code of 200" do
-  #     get :show
-  #     expect(response).to be_success
-  #   end
+  describe "GET #show" do
+  let(:pineapple) {create :recipe, user: create(:user) }
+    it "renders the :show view" do
 
+      get :show, :id => pineapple.id
+      expect(response).to render_template("show")
+    end
+
+    it "returns successfully with HTTP code of 200" do
+      get :show
+      expect(response).to be_success
+    end
+  end
 
   describe "GET #new" do
-    let(:pineapple) {create :recipe}
+    let(:pineapple) {create :recipe, user: create(:user) }
 
     it "creates a new recipe" do
       ingredient = build :ingredient
