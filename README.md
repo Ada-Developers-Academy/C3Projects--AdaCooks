@@ -26,7 +26,7 @@ We're doing this to make the final project easier to code review. Because the ba
 - __Recipes__
   - view an alphabetical list of all Recipes
   - view the details of a Recipe, inluding...
-    - a link to the User profile of the person who created the Recipe
+    - DONE a link to the User profile of the person who created the Recipe
     - links to the Ingridient profile for all associated Ingredients
 - __Ingredients__
   - view an alphabetical list of all Ingedients
