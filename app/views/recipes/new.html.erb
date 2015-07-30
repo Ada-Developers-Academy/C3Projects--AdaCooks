@@ -37,16 +37,6 @@
 
             <br>
             <br>
-            <%= f.fields_for :ingredients do |ingredient| %>
-            <%= ingredient.label "Add a new ingredient:" %>
-            <%= ingredient.text_field :name, class: "form-control"%>
-
-            <%= ingredient.label :image %>
-            <%= ingredient.file_field :image %>
-            <% end %>
-
-            <br>
-            <br>
 
             <%= f.submit "Create New Recipe", class: "btn btn-primary" %>
 

@@ -24,7 +24,7 @@ class RecipesController < ApplicationController
 
       redirect_to user_path(@user)
     else
-      raise
+
       render 'new'
 
     end
@@ -49,6 +49,6 @@ class RecipesController < ApplicationController
 
   def create_params
     params.require(:recipe).permit(:name, :description, :image, :preparation,
-      :cookbook_id, {:ingredient_ids => [] }, ingredients: [:name, :image])
+      :cookbook_id, {:ingredient_ids => [] } )
   end
 end

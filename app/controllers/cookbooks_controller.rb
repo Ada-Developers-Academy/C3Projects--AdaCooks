@@ -25,15 +25,21 @@ class CookbooksController < ApplicationController
   end
 
   def edit
+    @cookbook = Cookbook.find(params[:id])
   end
 
   def update
+    user = User.find(session[:user_id])
+    cookbook = Cookbook.find(params[:id])
+    cookbook.update(create_params[:cookbook])
+
+    redirect_to user_path(user)
   end
 
   def destroy
     cookbook = Cookbook.find(params[:id])
-    cookbook.destroy
     user = User.find(cookbook.user_id)
+    cookbook.destroy
 
     redirect_to user_path(user)
   end
