@@ -19,28 +19,61 @@ RSpec.describe RecipesController, type: :controller do
   end
 
   describe "GET #show" do
-  let(:pineapple) {create :recipe, user: create(:user) }
+  let(:soup) {create :recipe, user: create(:user) } # associated a user with a recipe: there's a user hash, create method has user paramater
     it "renders the :show view" do
-
-      get :show, :id => pineapple.id
+      get :show, :id => soup.id
       expect(response).to render_template("show")
     end
 
     it "returns successfully with HTTP code of 200" do
-      get :show
+      get :show, :id => soup.id
       expect(response).to be_success
     end
   end
 
+  # describe "POST #create" do
+  #   let(:recipe_params) do
+  #     {
+  #       recipe: {
+  #         name: "Yay",
+  #         preparation: "Yup"
+  #       },
+  #
+  #       ingredient: {
+  #         name: "Insert"
+  #       }
+  #     }
+  #   end
+  #
+  #   it "creates a new recipe" do
+  #     post :create, recipe_params
+  #     expect(Recipe.count).to eq(1)
+  #   end
+  # end
+
+  # describe "GET#New" do
+  #   let(:pineapple) {create :recipe, user: create(:user), ingredients: create(:ingredient) }
+  #
+  #   it "saves a new blank instance of a recipe in a variable" do
+  #     pineapple
+  #     get :new
+  #     expect(response).to render_template(:new)
+  #   end
+  # end
+
+
+    # let(:soup) {create :recipe, user: create(:user)}
+    # let(:water) {create :ingredient}
+      # recipe1 = build(:recipe, ingredients: create(:ingredient), user: create(:user))
+
   describe "GET #new" do
-    let(:pineapple) {create :recipe, user: create(:user) }
-
     it "creates a new recipe" do
-      ingredient = build :ingredient
-      pineapple.ingredients << ingredient
-
-      get :new
-      expect(assigns(:pineapple)).to be_a_new(Recipe)
+      soup = create(:recipe)
+      soup.ingredients = create(:ingredient)
+      soup.user = create(:user)
+      soup.save
+      post :create, :id => soup.id
+      expect(assigns(:recipe)).to be_a_new(Recipe)
       expect(response).to render_template(:new)
     end
   end # new
