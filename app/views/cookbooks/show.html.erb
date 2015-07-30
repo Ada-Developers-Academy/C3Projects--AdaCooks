@@ -1,10 +1,11 @@
 <div class="container marketing">
   <h1><%= @cookbook.name %>!</h1>
-  <%= link_to "Add New Recipe", new_recipe_path, class: "btn btn-default"  %></p>
+  <% if session[:user_id] %>
+    <%= link_to "Add New Recipe", new_recipe_path, class: "btn btn-default"  %></p>
+  <% end %>
   <hr class="featurette-divider">
 
   <h3><mark>Recipes: </mark></h3><br>
-
 
   <div class="row">
     <% @cookbook.recipes.each do |recipe| %>
