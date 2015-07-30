@@ -42,7 +42,6 @@ RSpec.describe IngredientsController, type: :controller do
   describe "GET #new" do
     before :each do
       @user = create :user
-      # @ingredient = create :ingredient, user_id: @user.id
       session[:user_id] = @user.id
     end
 
@@ -56,11 +55,6 @@ RSpec.describe IngredientsController, type: :controller do
       get :new, user_id: @user.id
       expect(response).to render_template("new")
     end
-
-    # it "assigns @ingredient" do # FIXME: Ingredient.new??
-    #   get :new, user_id: @user.id
-    #   expect(assigns(:ingredient)).to eq(@ingredient)
-    # end
 
     it "assigns @authenticated_user" do
       get :new, user_id: @user.id
@@ -88,7 +82,6 @@ RSpec.describe IngredientsController, type: :controller do
 
       it "does not permit access / redirects to the home page" do
         get :new, user_id: @user.id
-
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
       end
@@ -130,7 +123,6 @@ RSpec.describe IngredientsController, type: :controller do
 
       it "does not permit access / redirects to the home page" do
         get :edit, id: @ingredient.id, user_id: @user.id
-
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
       end
@@ -144,7 +136,6 @@ RSpec.describe IngredientsController, type: :controller do
 
       it "does not permit access / redirects to the home page" do
         get :edit, id: @ingredient.id, user_id: @user.id
-
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
       end
@@ -200,7 +191,6 @@ RSpec.describe IngredientsController, type: :controller do
 
       it "does not permit access / redirects to the home page" do
         post :create, ingredient: @ingredient, user_id: @user.id
-
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
       end
@@ -214,7 +204,6 @@ RSpec.describe IngredientsController, type: :controller do
 
       it "does not permit access / redirects to the home page" do
         post :create, inredient: @ingredient, user_id: @user.id
-
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
       end
@@ -240,10 +229,11 @@ RSpec.describe IngredientsController, type: :controller do
         expect(response).to have_http_status(302)
       end
 
-      it "creates a new ingredient" do # OPTIMIZE: this creates new ingredient test
+      it "updates the ingredient" do # OPTIMIZE: this creates new ingredient test
         patch :update, id: @ingredient.id, ingredient: @params, user_id: @user.id
         expect(assigns(:ingredient).class).to eq(Ingredient)
         expect(assigns(:ingredient)).to be_valid
+        expect(assigns(:ingredient).id).to eq(@ingredient.id)
       end
     end
 

@@ -68,7 +68,6 @@ RSpec.describe RecipesController, type: :controller do
 
       it "does not permit access / redirects to the home page" do
         get :new, user_id: @user.id
-
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
       end
@@ -82,7 +81,6 @@ RSpec.describe RecipesController, type: :controller do
 
       it "does not permit access / redirects to the home page" do
         get :new, user_id: @user.id
-
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
       end
@@ -124,7 +122,6 @@ RSpec.describe RecipesController, type: :controller do
 
       it "does not permit access / redirects to the home page" do
         get :edit, id: @recipe.id, user_id: @user.id
-
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
       end
@@ -138,7 +135,6 @@ RSpec.describe RecipesController, type: :controller do
 
       it "does not permit access / redirects to the home page" do
         get :edit, id: @recipe.id, user_id: @user.id
-
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
       end
@@ -194,7 +190,6 @@ RSpec.describe RecipesController, type: :controller do
 
       it "does not permit access / redirects to the home page" do
         post :create, recipe: @recipe, user_id: @user.id
-
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
       end
@@ -208,7 +203,6 @@ RSpec.describe RecipesController, type: :controller do
 
       it "does not permit access / redirects to the home page" do
         post :create, inredient: @recipe, user_id: @user.id
-
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
       end
@@ -266,7 +260,6 @@ RSpec.describe RecipesController, type: :controller do
 
       it "does not permit access / redirects to the home page" do
         patch :update, id: @recipe.id, recipe: @params, user_id: @user.id
-
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
       end
@@ -280,7 +273,6 @@ RSpec.describe RecipesController, type: :controller do
 
       it "does not permit access / redirects to the home page" do
         patch :update, id: @recipe.id, recipe: @params, user_id: @user.id
-
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
       end
@@ -322,7 +314,6 @@ RSpec.describe RecipesController, type: :controller do
 
       it "does not permit access / redirects to the home page" do
         delete :destroy, id: @recipe.id, user_id: @user.id
-
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
       end
@@ -336,7 +327,6 @@ RSpec.describe RecipesController, type: :controller do
 
       it "does not permit access / redirects to the home page" do
         delete :destroy, id: @recipe.id, user_id: @user.id
-
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
       end
