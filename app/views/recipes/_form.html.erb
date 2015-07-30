@@ -21,7 +21,7 @@
         <%= f.label :cookbooks %>
         <div>
           <%= collection_check_boxes(:recipe, :cookbook_ids, Cookbook.where(user_id: session[:user_id]), :id, :name) do |b| %>
-           <%= b.label class: "checkbox-inline" do %>
+            <%= b.label class: "checkbox-inline" do %>
               <%= b.check_box + b.text.capitalize %>
             <% end %>
           <% end %>
