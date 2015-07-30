@@ -9,5 +9,5 @@ class Ingredient < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
 
   # Mounted object
-  mount_uploader image, ImageUploader
+  mount_uploader :image, ImageUploader
 end

@@ -10,6 +10,11 @@
     <%= f.text_field :name, required: true, autofocus: true, class: "form-control" %>
   </div>
 
+  <div class="form-group">
+    <%= f.label :image %>
+    <%= f.file_field :image, class: "form-control" %>
+  </div>
+
   <%= f.hidden_field :user_id, :value => params[:user_id] %>
 
   <%= f.submit "Add Ingredient", method: :post, class: "btn btn-primary" %>

@@ -11,7 +11,7 @@ class Recipe < ActiveRecord::Base
   validate :ingredient_was_checked
 
   # Mounted object
-  mount_uploader image, ImageUploader
+  mount_uploader :image, ImageUploader
 
   private
 
