@@ -2,6 +2,7 @@ class Recipe < ActiveRecord::Base
 	mount_uploader :image_url, ImageUploader
 
 # Associatons ------------------------------------------------------------------
+	belongs_to :user
 	belongs_to :cookbook
 	has_many :recipe_ingredients
 	has_many :ingredients, through: :recipe_ingredients
