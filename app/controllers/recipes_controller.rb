@@ -1,7 +1,11 @@
 class RecipesController < ApplicationController
 
   def index
-    @recipes = Recipe.all.order('name ASC')
+    if params[:search]
+      @recipes = Recipe.search(params[:search]).order("name ASC")
+    else
+      @recipes = Recipe.all.order('name ASC')
+    end
   end
 
   def show
@@ -78,6 +82,8 @@ class RecipesController < ApplicationController
     recipe.destroy
     redirect_to user_dashboard_path(session[:user_id])
   end
+
+
 
 
 ###########################################################
