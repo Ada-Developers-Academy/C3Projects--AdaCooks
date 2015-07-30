@@ -14,8 +14,8 @@ class Recipe < ActiveRecord::Base # OPTIMIZE: the image uploader
   # Scopes
   scope :alphabetized, -> { order(:name) }
 
-  # mount_uploader :avatar, AvatarUploader # FIXME: we didn't do this right?
-  
+  mount_uploader :avatar, AvatarUploader # FIXME: we didn't do this right?
+
   # uploader = AvatarUploader.new
   # uploader.store!(my_file)
   # uploader.retrieve_from_store!('my_file.png')

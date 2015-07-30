@@ -1,0 +1,11 @@
+<%= form_for @ingredient do |f| %>
+  <fieldset>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label "Optional Image" %>
+    <%= f.file_field :avatar %>
+
+    <%= f.submit "Save Ingredient" %>
+  </fieldset>
+<% end %>

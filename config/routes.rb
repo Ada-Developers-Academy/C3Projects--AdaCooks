@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post "/signup", to: "users#create"
 
   resources :recipes, only: [:index, :show, :new]
-  resources :ingredients, only: [:index, :show]
+  resources :ingredients, only: [:index, :show, :new, :create]
 
   resources :users, only: [] do
     get "", to: "users#show", as: "" # OPTIMIZE: Figure this out later

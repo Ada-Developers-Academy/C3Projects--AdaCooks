@@ -11,7 +11,7 @@ class Ingredient < ActiveRecord::Base
   scope :alphabetized, -> { order("name ASC") }
 
   # Mounted Objects ------------------------------------------------------------
-  # mount_uploader :avatar, AvatarUploader # FIXME: we didn't do this right?
+  mount_uploader :avatar, AvatarUploader # FIXME: we didn't do this right?
 
 
   # uploader = AvatarUploader.new
