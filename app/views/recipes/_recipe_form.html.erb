@@ -1,4 +1,4 @@
-<%= form_for @recipe do |f| %>
+<%= form_for setup_recipe(@recipe) do |f| %>
   <div class="form-group">
     <fieldset>
       <legend><h2>Recipe details</h2></legend>
@@ -14,24 +14,19 @@
       <%= f.label :preparation, "preparation" %>
       <%= f.text_area :preparation, :required => true, class: "form-control" %>
 
-      <%# f.fields_for :recipe_ingredients, class: "form-inline" do |ri| %>
-        <!-- <div class="form-group"> -->
-          <%# ri.label :quantity %>
-          <%# ri.text_field :quantity, class: "form-control" %>
-        <!-- </div> -->
+      <h4>Ingredients</h4>
+      <%= f.fields_for :recipe_ingredients do |ff| %>
+        <div class="form-group">
+          <%= ff.label :quantity %>
+          <%= ff.text_field :quantity %>
 
-        <!-- <div class="form-group"> -->
-          <%# ri.label :measurement_id %>
-          <%# ri.collection_select(:measurement_id, Measurement.all, :id, :unit, prompt: "select" ) %>
-        <!-- </div> -->
-        <!-- <div class="form-group"> -->
-          <%# ri.label :ingredient_id, class: "form-label" %>
-          <%# ri.collection_select(:ingredient_id, Ingredient.all, :id, :name, prompt: "select" ) %>
-        <!-- </div> -->
-          <%# ri.hidden_field :recipe_id, value: @recipe_id %>
-      <%# end %>
+          <%= ff.label :measurement_id, "Unit" %>
+          <%= ff.collection_select(:measurement_id, Measurement.all, :id, :unit, prompt: "Select" ) %>
 
-
+          <%= ff.label :ingredient_id %>
+          <%= ff.collection_select(:ingredient_id, Ingredient.all, :id, :name, prompt: "Select" ) %>
+        </div>
+      <% end %>
       <%= f.submit "Submit", class: "btn btn-default"%>
     </fieldset>
 
