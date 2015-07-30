@@ -10,4 +10,8 @@ class Ingredient < ActiveRecord::Base
   # Validations
   validates :name, presence: true, uniqueness: true
   validates :user_id, presence: true
+
+  def self.search(query)
+    where("name like ?", "%#{query}%")
+  end
 end
