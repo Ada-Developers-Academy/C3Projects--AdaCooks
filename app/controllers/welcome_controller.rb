@@ -1,14 +1,8 @@
 class WelcomeController < ApplicationController
   def index
-    session[:user_id] ? @user = User.find_by(id: session[:user_id]) : @user = "Guest"
+    @recipes = Recipe.order(:name)
 
-      @recipes = Recipe.order(:name)
-
-      @ingredients = Ingredient.order(:name)
-
-      if params[:search]
-        @search_results = Recipe.joins(:ingredients).where("ingredients.name LIKE ?", "%#{params[:search][:query]}%")
-      end
+    @ingredients = Ingredient.order(:name)
   end
 end
 
