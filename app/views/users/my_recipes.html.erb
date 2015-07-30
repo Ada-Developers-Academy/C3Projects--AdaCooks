@@ -1,20 +1,33 @@
-<div class="row">
-  <ul class="nav nav-tabs nav-justified">
-    <li role="presentation" class="active">
-      <%= link_to 'Recipes', my_recipes_path %>
-    </li>
-    <li role="presentation">
-      <%= link_to 'Cookbooks', my_cookbooks_path %>
-    </li>
-  </ul>
-
-  <h3>My Recipes</h3>
-
-  <ul class="list-group">
-    <% @recipes.each do |recipe| %>
-      <li class="list-group-item">
-        <%= link_to recipe.name, recipe %>
+<div class="navbar navbar-default">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li role="presentation" class="active">
+        <%= link_to 'Recipes', my_recipes_path %>
       </li>
-    <% end %>
-  </ul>
+      <li role="presentation">
+        <%= link_to 'Cookbooks', my_cookbooks_path %>
+      </li>
+      <li role="presentation">
+        <%= link_to 'Ingredients', my_ingredients_path %>
+      </li>
+    </ul>
+  </div>
 </div>
+
+<h3>My Recipes</h3>
+
+<p>
+  <%= link_to 'New recipe', new_recipe_path, class: "btn btn-default", role: "button" %>
+</p>
+
+<ul class="list-group">
+  <% @recipes.each do |recipe| %>
+    <li class="list-group-item">
+      <%= link_to recipe.name, recipe %>
+    </li>
+  <% end %>
+</ul>
+
+
+
+    

@@ -1,15 +1,16 @@
-<%= render partial: 'shared/flash_messages' %>
-
 <h3><%= @cookbook.name %></h3>
+
 <p>Created by: <%= link_to @owner.username, user_path(@owner) %></p>
 
 <p><%= @cookbook.description %></p>
 
 <h4>Recipes:</h4>
 
-<ul class="list-group">
+<table class="table table-hover">
+  <tbody>
   <%= render partial: 'recipe', collection: @recipes %>
-</ul>
+  </tbody>
+</table>
 
 <%= link_to 'Delete cookbook', cookbook_path(@cookbook), method: :delete, 
   class: "btn btn-danger", role: "button" %>

@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   helper_method :current_user
+  helper_method :last_page
 
   MESSAGES = {
     not_signed_in: "Please sign in to access that page.",
@@ -20,5 +21,9 @@ class ApplicationController < ActionController::Base
       redirect_to signin_path
       flash[:errors] = MESSAGES[:not_signed_in]
     end
+  end
+
+  def last_page
+    session[:last_page] = request.referer || :back
   end
 end

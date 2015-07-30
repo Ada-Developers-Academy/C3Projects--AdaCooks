@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   # before_filter :authorize, only: [:dashboard]
-  before_action :current_user, only: [:my_recipes, :my_cookbooks]
+  before_action :current_user, only: [:my_recipes, :my_cookbooks, :my_ingredients]
   
   def new
     @user = User.new
@@ -24,6 +24,10 @@ class UsersController < ApplicationController
 
   def my_cookbooks
     @cookbooks = @current_user.cookbooks.alphabetical
+  end
+
+  def my_ingredients
+    @ingredients = @current_user.ingredients
   end
 
   private
