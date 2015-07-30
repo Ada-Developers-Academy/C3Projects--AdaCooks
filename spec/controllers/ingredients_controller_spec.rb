@@ -177,10 +177,11 @@ RSpec.describe IngredientsController, type: :controller do
       end
     end
 
-    context "not logged in user" do
+    context "different user is logged in" do
       before :each do
         @ingredient = create :ingredient
-        session[:user_id] = nil
+        create :user
+        session[:user_id] = 1
 
         put :update, user_id: session[:user_id], id: @ingredient.id, :ingredient => { name: "New Name"}
         @ingredient.reload
@@ -191,7 +192,7 @@ RSpec.describe IngredientsController, type: :controller do
       end
 
       it "redirects to the ingredient show page" do
-        expect(subject).to redirect_to root_path
+        expect(subject).to redirect_to ingredient_path(@ingredient)
       end
     end
   end

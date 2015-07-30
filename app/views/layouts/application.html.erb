@@ -26,6 +26,10 @@
       <h5 class="alert alert-warning"><%= flash[:errors] %></h5>
     <% end %>
 
+    <% if flash[:alert] %>
+      <h5 class="alert alert-warning"><%= flash[:alert] %></h5>
+    <% end %>
+
     <% if flash[:notice] %>
       <h5 class="alert alert-success"><%= flash[:notice] %></h5>
     <% end %>

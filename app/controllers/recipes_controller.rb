@@ -2,6 +2,9 @@ class RecipesController < ApplicationController
   before_action :find_recipe, only: [ :show, :edit, :update, :destroy ]
   before_action :get_recipe_associations, only: [ :new, :create, :edit, :update ]
   before_action :require_login, only: [ :new, :create, :edit, :update, :destroy ]
+  before_action only: [:edit, :update, :destroy] do
+    correct_login(@recipe)
+  end
 
   def index
     @recipes = Recipe.all.alpha_order
@@ -66,5 +69,11 @@ class RecipesController < ApplicationController
   def get_recipe_associations
     @ingredients = Ingredient.all
     @cookbooks = Cookbook.where(user_id: session[:user_id])
+  end
+
+  def correct_login(object)
+    unless session[:user_id] == object.user_id
+      redirect_to user_path(session[:user_id]), alert: ERRORS[:wrong_login]
+    end
   end
 end
