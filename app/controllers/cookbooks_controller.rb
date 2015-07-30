@@ -48,7 +48,7 @@ class CookbooksController < ApplicationController
     if cookbook.recipes.include?(recipe)
       flash[:error] = "This recipe is already in #{cookbook.name}."
     else
-      cookbook.recipes << recipe
+      cookbook.add_recipe_association(recipe)
     end
 
     redirect_to user_cookbook_path(session[:user_id], cookbook)

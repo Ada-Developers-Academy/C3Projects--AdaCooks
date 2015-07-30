@@ -13,6 +13,10 @@ class Cookbook < ActiveRecord::Base
     recipes.delete(recipe)
   end
 
+  def add_recipe_association(recipe)
+    recipes << recipe
+  end
+
   # Instance Methods -----------------------------------------------------------
   def proper_name # FIXME: test Cookbook#proper_name
     name.titlecase
