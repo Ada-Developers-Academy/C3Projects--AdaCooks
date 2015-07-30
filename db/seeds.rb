@@ -10,14 +10,18 @@ end
 
 # recipes ----------------------------------------------------------------------
 recipes_params = {
-  apple_crisp: { name: "Apple Crisp", description: "Yummy, cinnamony goodness!", user_id: users[:gurl].id },
-  oreo_ice_cream: { name: "Oreo Ice Cream", description: "Delicious on a hot day!", user_id: users[:gurl].id },
-  brownies: { name: "Brownies", description: "Delicious on a cold day!", user_id: users[:gurl].id }
+  apple_crisp: { name: "Apple Crisp", description: "Yummy, cinnamony goodness!", user_id: users[:gurl].id, image: "apple_crisp.jpg" },
+  oreo_ice_cream: { name: "Oreo Ice Cream", description: "Delicious on a hot day!", user_id: users[:gurl].id, image: "oreo_ice_cream.jpg" },
+  brownies: { name: "Brownies", description: "Delicious on a cold day!", user_id: users[:gurl].id, image: "brownies.jpg" }
 }
 
 recipes = {}
 recipes_params.each do |var_name, params|
   recipes[var_name] = Recipe.create(params)
+  if params[:image]
+    recipes[var_name].image = Rails.root.join("db/seeds/images/#{params[:image]}").open
+    recipes[var_name].save!
+  end
 end
 
 # ingredients ------------------------------------------------------------------
