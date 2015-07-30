@@ -15,7 +15,7 @@
         <td> <h3><%= cookbook.name %></h3> </td>
         <td><%= cookbook.description %></td>
         <td><%= cookbook.recipes %> RECIPES</td>
-        <td><%= button_to "Delete", cookbook_path, method: "delete" %></td>
+        <td><%= button_to "Delete", cookbook_path(cookbook.id), method: "delete" %></td>
       </tr>
     <% end %>
   </table>

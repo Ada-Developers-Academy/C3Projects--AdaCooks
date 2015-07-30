@@ -17,6 +17,13 @@ class CookbooksController < ApplicationController
     end
   end
 
+  def destroy
+    @cookbook = Cookbook.find(params[:id])
+    @cookbook.destroy
+    redirect_to user_path(session[:user_id])
+  end
+
+
   private
 
   def cookbook_params
