@@ -37,7 +37,6 @@ RSpec.describe UsersController, type: :controller do
   describe "POST #create" do
     context "no username" do
       before :each do
-        @user = build(:user, username: "")
         post :create, user: attributes_for(:user, username: "")
       end
 

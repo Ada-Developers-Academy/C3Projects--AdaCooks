@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
   ERRORS = {
     login_error: "Invalid login. Please try again.",
     not_logged_in: "Please log in to see this page.",
-    registration_error: "Please try again."
+    registration_error: "Please try again.",
+    new_recipe_error: "A recipe needs to have a name and preparation."
   }
 
   # before action for new forms for which you need to be an identified user

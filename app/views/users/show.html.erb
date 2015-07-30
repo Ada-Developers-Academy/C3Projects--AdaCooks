@@ -6,11 +6,15 @@
   <% end %>
 </div>
 
-<%= render partial: "shared/recipes", locals: { recipes: @recipes } %>
+<div class="row">  
+  <%= render partial: "shared/recipes", locals: { recipes: @recipes } %>
+</div>
 
 <% if session[:user_id] == @user.id %>
+<div class="row">
   <div class="dashboard-links">
     <%= link_to "My Cookbooks", user_cookbooks_path(@user), class: "btn btn-default" %>
     <%= link_to "Add a recipe", new_recipe_path, class: "btn btn-info" %>
   </div>
+</div>
 <% end %>
