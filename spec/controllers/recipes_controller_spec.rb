@@ -114,4 +114,119 @@ RSpec.describe RecipesController, type: :controller do
       end
     end
   end
+
+  describe "GET #edit" do
+    before :each do
+      user = create(:user)
+      session[:user_id] = user.id
+      @recipe = create(:recipe)
+      get :edit, id: @recipe.id
+    end
+
+    it "renders the edit form" do
+      expect(response.status).to eq 200
+      expect(subject).to render_template :edit
+    end
+
+    context "unauthorized user cannot edit" do
+      before :each do
+        @unauth_user = create(:user, username: "user2")
+        session[:user_id] = @unauth_user.id
+
+        get :edit, id: @recipe.id
+      end
+
+      it "redirects to the user's dashboard" do
+        expect(subject).to redirect_to user_path(id: @unauth_user.id)
+      end
+
+      it "flashes an error" do
+        expect(flash[:errors]).to include(ApplicationController::ERRORS[:unauth_user_error])
+      end
+    end
+  end
+
+  describe "PUT #update" do
+    before :each do
+      @user = create(:user)
+      @recipe = create(:recipe)
+    end
+
+    context "valid user" do
+      before :each do
+        session[:user_id] = @user.id
+      end
+
+      context "no name" do
+        before :each do
+          put :update, id: @recipe.id, recipe: attributes_for(:recipe, name: "")
+        end
+
+        it "does not make the change" do
+          expect(@recipe.name).to eq "Delicious Food"
+        end
+
+        it "renders to the edit form" do
+          expect(subject).to render_template :edit
+        end
+      end
+
+      context "no preparation" do
+        before :each do
+          put :update, id: @recipe.id, recipe: attributes_for(:recipe, preparation: "")
+        end
+
+        it "does not make the change" do
+          expect(@recipe.name).to eq "Delicious Food"
+        end
+
+        it "renders to the edit form" do
+          expect(subject).to render_template :edit
+        end
+      end
+
+      context "valid edit" do
+        before :each do
+          put :update, id: @recipe.id, recipe: attributes_for(:recipe, name: "Howdy")
+          @recipe.reload
+        end
+
+        it "saves the updates" do
+          expect(@recipe.name).to eq "Howdy"
+        end
+
+        it "redirects to the recipe's show page" do
+          expect(subject).to redirect_to recipe_path(id: @recipe.id)
+        end
+      end
+    end
+
+    context "not the right user" do
+      before :each do
+        session[:user_id] = nil
+        put :update, id: @recipe.id, recipe: attributes_for(:recipe, name: "Howdy")
+      end
+
+      it "doesn't update the record" do
+        expect(@recipe.name).to eq "Delicious Food"
+      end
+
+      it "flashes an error" do
+        expect(flash[:errors]).to include(ApplicationController::ERRORS[:unauth_user_error])
+      end
+    end
+  end
+
+  describe "DELETE #destroy" do
+    before :each do
+      user = create(:user)
+      recipe = create(:recipe)
+      session[:user_id] = user.id
+      delete :destroy, id: recipe.id
+    end
+
+    it "deletes the record" do
+      expect(Recipe.all.count).to eq 0
+    end
+  end
 end

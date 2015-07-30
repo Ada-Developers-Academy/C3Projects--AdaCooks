@@ -8,7 +8,8 @@ class ApplicationController < ActionController::Base
     login_error: "Invalid login. Please try again.",
     not_logged_in: "Please log in to see this page.",
     registration_error: "Please try again.",
-    new_recipe_error: "A recipe needs to have a name and preparation."
+    new_recipe_error: "A recipe needs to have a name and preparation.",
+    unauth_user_error: "You are not authorized to see this information."
   }
 
   # before action for new forms for which you need to be an identified user
@@ -20,7 +21,7 @@ class ApplicationController < ActionController::Base
   # or access user cookbooks
   def correct_user
     logged_in_user = User.find(session[:user_id])
-    redirect_to user_path(logged_in_user) unless params[:user_id] == logged_in_user.id
+    redirect_to user_path(logged_in_user), flash: { errors: ERRORS[:unauth_user_error] } unless params[:user_id] == logged_in_user.id
   end
 
 end

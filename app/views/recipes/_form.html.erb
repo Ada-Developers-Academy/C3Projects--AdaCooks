@@ -1,5 +1,5 @@
 <div class="container">
-  <h2><center><%= form_type %> Your Recipe </h2>
+  <h2><center><%= form_type %> Recipe </h2>
 
   <div class="form-group">
       <%= form_for recipe, html: {class: "form"} do |f| %>
@@ -17,6 +17,24 @@
 
         <%= f.label :preparation %>
         <%= f.text_field :preparation, class: "form-control" %>
+
+        <%= f.label :cookbooks %>
+        <div>
+          <%= collection_check_boxes(:recipe, :cookbook_ids, Cookbook.where(user_id: session[:user_id]), :id, :name) do |b| %>
+            <%= b.label class: "checkbox-inline" do %>
+              <%= b.check_box + b.text.capitalize %>
+            <% end %>
+          <% end %>
+        </div>
+
+        <%= f.label :ingredients %>
+        <div>
+          <%= collection_check_boxes(:recipe, :ingredient_ids, Ingredient.all, :id, :name) do |b| %>
+           <%= b.label class: "checkbox-inline" do %>
+              <%= b.check_box + b.text.capitalize %>
+            <% end %>
+          <% end %>
+        </div>
 
         <%= f.hidden_field :user_id, value: session[:user_id] %>
 
