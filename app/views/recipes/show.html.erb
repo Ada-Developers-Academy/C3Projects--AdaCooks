@@ -1,8 +1,8 @@
 <h2> <%= @recipe.name %> </h2>
 <% unless @recipe.cookbook_id.nil? %>
-	<h3> in <%= link_to @recipe.cookbook, cookbook_path(@recipe.cookbook.id) %> </h3>
+	<h4> in <%= link_to @recipe.cookbook.name, cookbook_path(@recipe.cookbook.id) %> </h4>
 <% end %>
-<h4> by: <%= link_to @recipe.user, user_path(@recipe.user.id) %> </h4>
+<h5> by: <%= link_to @recipe.user.username, user_path(@recipe.user.id) %> </h5>
 
 <%= image_tag(@recipe.image) %>
 
