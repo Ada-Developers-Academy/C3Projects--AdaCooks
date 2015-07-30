@@ -7,7 +7,9 @@ class CookbooksController < ApplicationController
   def show
     @cookbook = Cookbook.find(params[:id])
     @user = User.find(@cookbook.user_id)
-    @current_user = User.find(session[:user_id])
+    if session[:user_id]
+      @current_user = User.find(session[:user_id])
+    end
   end
 
   def new

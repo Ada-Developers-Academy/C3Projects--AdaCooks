@@ -1,7 +1,9 @@
 <div class="container marketing">
   <h1><%= @cookbook.name %>!</h1>
-  <% if @user.id == @current_user.id %>
-    <%= link_to "Add New Recipe", new_recipe_path, class: "btn btn-default"  %></p>
+  <% if session[:user_id] %>
+    <% if @user.id == @current_user.id %>
+      <%= link_to "Add New Recipe", new_recipe_path, class: "btn btn-default"  %></p>
+    <% end %>
   <% end %>
   <hr class="featurette-divider">
 
@@ -22,10 +24,11 @@
         <h2><%= recipe.name %></h2>
         <p><%= recipe.description %></p>
         <p><%= link_to "View details", recipe_path(recipe.id), class: "btn btn-default" %>
-
+      <% if  session[:user_id] %>
         <% if params[:id].to_i == @current_user.id %>
           <%= link_to "Remove Recipe from Cookbook", remove_cookbook_path(recipe), method: :remove_cookbook, class: "btn btn-warning", data: { confirm: "Are you sure you want to remove this recipe from your cookbook?"} %>
         </p>
+        <% end %>
         <% end %>
       </div>
     <% end %>
