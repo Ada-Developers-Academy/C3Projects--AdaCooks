@@ -1,5 +1,11 @@
 class RecipesController < ApplicationController
 
+before_action :select_recipe, only: [:edit, :destroy, :update]
+
+  def select_recipe
+    @recipe = Recipe.find(params[:id])
+  end
+
   def index
     @recipes = Recipe.all
   end
@@ -20,6 +26,15 @@ class RecipesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def edit
+  end
+
+  def update
+    @recipe.update(recipe_params)
+
+    redirect_to user_recipe_path(session[:user_id], recipe_id)
   end
 
 private
