@@ -4,7 +4,7 @@
   <div class="col-xs-8 col-md-6">
     <ul class="list-group">
     <% @ingredients.each do |ingredient| %>
-        <li class="list-group-item"><%= ingredient.name %></li>
+        <li class="list-group-item"><%= link_to ingredient.name, ingredient_path(ingredient) %></li>
     <% end %>
   </div>
 </div>
