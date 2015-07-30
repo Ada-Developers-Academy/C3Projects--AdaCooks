@@ -25,16 +25,16 @@
 
           <%= ff.label :ingredient_id %>
           <%= ff.collection_select(:ingredient_id, Ingredient.all, :id, :name, prompt: "Select" ) %>
-          <%= ff.hidden_field :recipe_id %>
 
-          <% if ff.object.persisted? %>
-            <%= ff.check_box :_destroy %>
-            <%= ff.label :_destroy, "Destroy" %>
-          <% end %>
+          <%= ff.hidden_field :recipe_id, value: @new_recipe_id %>
+
+          <%# if ff.object.persisted? %>
+            <%#= ff.check_box :_destroy %>
+            <%#= ff.label :_destroy, "Destroy" %>
+          <%# end %>
         </div>
       <% end %>
       <%= f.submit "Submit", class: "btn btn-default"%>
     </fieldset>
-
   </div>
 <% end %>
