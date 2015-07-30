@@ -1,0 +1,17 @@
+<%= form_for @cookbook, url: url do |f| %>
+
+  <div class="form-group">
+    <%= f.label :name, "Name" %>
+    <%= f.text_field :name, class: "form-control" %>
+
+    <%= f.label :image, "Cookbook Image" %>
+    <%= f.file_field :image %>
+
+    <%= f.label :description, "Description" %>
+    <%= f.text_field :description %>
+
+    <%= f.hidden_field :user_id, :value => params[:user_id] %>
+    <br>
+    <%= f.submit "#{verb} Cookbook", class: "btn btn-default" %>
+  </div>
+<% end %>
