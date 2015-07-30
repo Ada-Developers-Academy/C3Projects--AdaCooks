@@ -40,7 +40,6 @@ class RecipesController < ApplicationController
 
   def update
     remove_recipe_from_cookbook
-
   end
 
   def destroy
@@ -57,6 +56,7 @@ class RecipesController < ApplicationController
 
      if cookbook
         recipe.cookbooks.delete(cookbook)
+        redirect_to root_path
      end
 
 

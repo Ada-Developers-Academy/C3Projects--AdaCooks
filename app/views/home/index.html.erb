@@ -6,7 +6,7 @@
 <h2>Here are a few recipes to check out!</h2>
 <div>
   <ul>
-    <%= @recipes.each do |recipe| %>
+    <% @recipes.each do |recipe| %>
       <li> <%= image_tag(recipe.image) %> </li>
       <li> <%= recipe.name %> </li>
 
