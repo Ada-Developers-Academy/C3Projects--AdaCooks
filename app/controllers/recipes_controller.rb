@@ -2,7 +2,11 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show]
 
   def index
-    @recipes = Recipe.by_name
+    if params[:search]
+      @recipes = Recipe.search_by_ingredient(params[:search]).by_name
+    else
+      @recipes = Recipe.by_name
+    end
   end
 
   def show
