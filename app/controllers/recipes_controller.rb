@@ -11,8 +11,6 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
-    @ingredients = []
-    @cookbooks = []
   end
 
   def create
@@ -22,7 +20,7 @@ class RecipesController < ApplicationController
     if @recipe.save
       redirect_to recipe_path(@recipe.id), notice: "Recipe added!"
     else
-      flash.now[:error] = ERRORS[:unsuccessful_save]
+      flash.now[:errors] = ERRORS[:unsuccessful_save]
       render :new
     end
   end
@@ -37,7 +35,7 @@ class RecipesController < ApplicationController
     if @recipe.save
       redirect_to recipe_path(@recipe.id), notice: "Recipe updated!"
     else
-      flash.now[:error] = ERRORS[:unsuccessful_save]
+      flash.now[:errors] = ERRORS[:unsuccessful_save]
       render :new
     end
   end

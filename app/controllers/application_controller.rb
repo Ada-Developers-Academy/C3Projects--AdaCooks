@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   MESSAGES = {
     successful_login: "You have successfully logged in! Nice work!",
     successful_logout: "You have logged out. We'll miss you.",
-
+    success: "Success!"
   }
 
   ERRORS = {
