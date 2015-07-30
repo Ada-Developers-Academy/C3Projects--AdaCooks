@@ -1,0 +1,7 @@
+<ul class="list-group">
+  <% ingredients.each do |ingredient| %>
+    <li class="list-group-item">
+      <%= link_to ingredient.proper_name, ingredient_path(ingredient) %>
+    </li>
+  <% end %>
+</ul>

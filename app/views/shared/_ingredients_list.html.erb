@@ -1,0 +1,12 @@
+<ul class="list-group">
+  <% ingredients.each do |ingredient| %>
+    <li class="list-group-item">
+      <%= link_to ingredient.proper_name, ingredient_path(ingredient) %>
+      <span class="badge"><%= ingredient_recipes_count(ingredient) %></span>
+      <% if @user && ingredient.user_id == @user.id %>
+        <%= link_to "Edit", edit_user_ingredient_path(@user, ingredient), class: "btn btn-info btn-xs" %>
+        <%= link_to "Delete", user_ingredient_path(@user, ingredient), method: "delete", class: "btn btn-warning btn-xs" %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
