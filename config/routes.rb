@@ -23,6 +23,8 @@ Rails.application.routes.draw do
 
   delete '/logout' => 'sessions#destroy', as: :logout
 
+  patch '/remove_ingredient/:user_id/:ingredient_id' => 'ingredients#remove', as: :remove_ingredient
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,4 +1,7 @@
-<h1>Add a New Ingredient</h1>
+<h1>Add a New Ingredient </h1>
+<% unless @recipe.nil? %>
+  <h1><%= @recipe.name %></h1>
+<% end %>
 
 <%= form_for @ingredient, url: user_ingredients_path(params[:user_id]) do |f| %>
   <fieldset>
@@ -12,11 +15,11 @@
 
   <%= f.submit %>
 <% end %>
-
 <% unless @ingredients.nil? %>
   <% @ingredients.each do |ingredient| %>
     <%= ingredient.name %>
     <%= image_tag(ingredient.image.full) %>
-    <%= link_to "Delete", user_ingredient_path(params[:user_id], ingredient.id), method: :delete, data: {confirm: "Are you sure you want to delete #{ingredient.name}?"} %>
+    <%= link_to "Remove Ingredient from Recipe", remove_ingredient_path(params[:user_id], ingredient.id), method: :patch, data: {confirm: "Are you sure you want to delete #{ingredient.name}?"} %>
+   
   <% end %>
 <% end %>
