@@ -7,10 +7,12 @@
     <p>Description: <%= @recipe.description %></p>
 
     <ul class="list-group">
-      <% @ingredient_lines.each do |line| %>
-        <li class="list-group-item">
-          <%= "#{line.quantity} #{line.measurement.unit} #{line.ingredient.name}" %>
-        </li>
+      <% if @ingredient_lines %>
+        <% @ingredient_lines.each do |line| %>
+          <li class="list-group-item">
+            <%= "#{line.quantity} #{line.measurement.unit} #{line.ingredient.name}" %>
+          </li>
+        <% end %>
       <% end %>
     </ul>
 
