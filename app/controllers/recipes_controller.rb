@@ -10,6 +10,12 @@ class RecipesController < ApplicationController
 
   def create 
     @recipe = Recipe.create(recipe_params)
+    if @recipe.save
+      session[:recipe_id] = @recipe.id
+      redirect_to new_user_ingredient_path(session[:user_id])
+    else
+      render :new
+    end
   end
 
 private
