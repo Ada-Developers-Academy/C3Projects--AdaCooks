@@ -45,7 +45,7 @@
 
 	<div class="form-group">
 		<%= f.label :cookbook_id, 'Cook Book' %>
-		<%= f.select(:cookbook_id, options_for_select(@cookbooks_array)) %>
+		<%= f.collection_select(:cookbook_id, @user_cookbooks, :id, :name, include_blank: "None") %>
 	</div>
 
 	<%= f.submit "Create Recipe", class: 'btn btn-primary' %>
