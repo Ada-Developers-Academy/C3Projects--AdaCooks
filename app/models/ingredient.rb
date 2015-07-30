@@ -6,7 +6,12 @@ class Ingredient < ActiveRecord::Base
 
   # Mounted Objects -------------------------------------------------------------
   mount_uploader :image, ImageUploader
-  
+
   # Validations ----------------------------------------------------------------
   validates :name, presence: true, uniqueness: true
+
+  # Scopes ----------------------------------------------------------------
+  scope :newest, -> (total) { order("created_at DESC").limit(total) }
+  scope :alpha, -> { order("name ASC") }
+
 end

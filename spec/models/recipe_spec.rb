@@ -62,5 +62,9 @@ RSpec.describe Recipe, type: :model do
       correct_order = [@recipe3, @recipe2]
       expect(Recipe.newest(2)).to eq correct_order
     end
+
+    it "alphabetizes recipes" do
+      expect(Recipe.alpha.first).to eq @recipe3
+    end
   end
 end

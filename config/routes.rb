@@ -11,11 +11,13 @@ Rails.application.routes.draw do
   resources :recipes
 
   resources :cookbooks
-  delete 'cookbooks/:cookbook_id/recipe/:id/remove/', to: 'cookbooks#remove_recipe', as: 'remove_recipe'
+  delete 'cookbooks/:cookbook_id/recipe/:id', to: 'cookbooks#remove_recipe', as: 'remove_recipe'
   
   resources :ingredients
   
   resources :users, except: [:new, :create]
-  get 'dashboard', to: 'users#dashboard', as: 'dashboard'
+  get 'my_recipes', to: 'users#my_recipes', as: 'my_recipes'
+  get 'my_cookbooks', to: 'users#my_cookbooks', as: 'my_cookbooks'
+  get 'my_ingredients', to: 'users#my_ingredients', as: 'my_ingredients'
 
 end

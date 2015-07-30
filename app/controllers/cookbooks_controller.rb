@@ -2,6 +2,8 @@ class CookbooksController < ApplicationController
   before_action :set_cookbook, only: [:edit, :update, :show, :destroy]
   before_action :current_user, only: [:create]
 
+  after_action :last_page
+
   MESSAGES = {
     create_success: "You have successfully created a new cookbook.",
     create_fail: "There was a problem with your new cookbook. Please try again.",
@@ -49,25 +51,23 @@ class CookbooksController < ApplicationController
     @cookbook.destroy
     if Cookbook.find_by(id: cookbook_id)
       flash[:errors] = MESSAGES[:destroy_fail]
-      redirect_to :back
     else
       flash[:success] = MESSAGES[:destroy_success]
-      redirect_to root_path #user_path(@current_user)
     end
+    redirect_to my_cookbooks_path
   end
 
   def remove_recipe
-    # cookbook = Cookbook.find(params[:id])
-    recipe = @cookbook.recipes.find(params[:id])
-    raise
-    if recipe && @cookbook
-      @cookbook.recipes.delete(recipe)
-      recipe.cookbooks.delete(@cookbook)
+    cookbook = Cookbook.find(params[:cookbook_id])
+    recipe = Recipe.find(params[:id])
+    if recipe && cookbook
+      cookbook.recipes.delete(recipe)
+      recipe.cookbooks.delete(cookbook)
       flash[:success] = MESSAGES[:remove_success]
     else
       flash[:error] = MESSAGES[:remove_fail]
     end
-      redirect_to user_cookbook_path(@user, @cookbook)
+    redirect_to cookbook_path(cookbook)
   end
 
   private

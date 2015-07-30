@@ -1,6 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe IngredientsController, type: :controller do
+
+  describe "GET #index" do
+    it "renders the index template" do
+      get :index
+      expect(response).to render_template("index")
+    end
+  end
+
+
   describe "GET #new" do
     before :each do
       get :new
@@ -11,7 +20,7 @@ RSpec.describe IngredientsController, type: :controller do
     end
 
     it "renders the new template" do
-      expect(response).to render_template "new" 
+      expect(response).to render_template "new"
     end
   end
 
@@ -24,6 +33,7 @@ RSpec.describe IngredientsController, type: :controller do
       before :each do
         @user = create :user
         session[:user_id] = @user.id
+        session[:last_page] = ingredient_path(1)
         post :create, ingredient: valid_params
       end
 
@@ -76,6 +86,7 @@ RSpec.describe IngredientsController, type: :controller do
 
     context "valid params" do
       before :each do
+        session[:last_page] = ingredient_path(ingredient)
         put :update, id: ingredient, ingredient: { name: 'updated name' }
         ingredient.reload
       end
@@ -85,7 +96,7 @@ RSpec.describe IngredientsController, type: :controller do
       end
 
       it "redirects to ingredient#show" do
-        expect(response).to redirect_to ingredient_path(ingredient)        
+        expect(response).to redirect_to ingredient_path(ingredient)
       end
     end
 
@@ -118,6 +129,28 @@ RSpec.describe IngredientsController, type: :controller do
 
     it "renders the show template" do
       expect(response).to render_template "show"
+    end
+  end
+
+  describe "DELETE #destroy" do
+    let(:ingredient) { create :ingredient }
+
+    before :each do
+      recipe = create :recipe
+      ingredient.recipes << recipe
+      delete :destroy, id: ingredient
+    end
+
+    it "deletes the ingredient" do
+      expect(Ingredient.count).to eq 0
+    end
+
+    it "does not delete the associated recipes" do
+      expect(Recipe.count).to eq 1
+    end
+
+    it "redirects to my_ingredients path" do
+      expect(response).to redirect_to my_ingredients_path
     end
   end
 end

@@ -20,4 +20,13 @@ RSpec.describe Cookbook, type: :model do
       expect(cookbook.errors.keys).to_not include :description
     end
   end
+
+  context "scopes" do
+    it "sorts alphabetically" do
+      cookbook1 = create :cookbook, name: 'b name'
+      cookbook2 = create :cookbook, name: 'a name'
+      correct_order = [cookbook2, cookbook1]
+      expect(Cookbook.alphabetical).to eq correct_order
+    end
+  end
 end

@@ -22,4 +22,16 @@ RSpec.describe Ingredient, type: :model do
       expect(ingredient2.errors.keys).to_not include :name
     end
   end
+
+  context "scopes" do
+    before :each do
+      @ingredient1 = create :ingredient, name: "bucket of Zs"
+      @ingredient2 = create :ingredient, name: "bucket of As"
+    end
+
+    it "alphabetizes recipes" do
+      expect(Ingredient.alpha.first).to eq @ingredient2
+    end
+  end
+
 end

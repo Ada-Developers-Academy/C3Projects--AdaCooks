@@ -1,0 +1,44 @@
+<div class="navbar navbar-default">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li role="presentation">
+        <%= link_to 'Recipes', my_recipes_path %>
+      </li>
+      <li role="presentation" class="active">
+        <%= link_to 'Cookbooks', my_cookbooks_path %>
+      </li>
+      <li role="presentation">
+        <%= link_to 'Ingredients', my_ingredients_path %>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<h3>My Cookbooks</h3>
+
+<p>
+  <%= link_to 'New cookbook', new_cookbook_path, class: "btn btn-default", role: "button" %>
+</p>
+
+<table class="table table-hover">
+  <tbody>
+    <tr>
+      <th>Cookbook</th>
+      <th># of Recipes</th>
+      <th># of Ingredients</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <% @cookbooks.each do |cookbook| %>
+      <tr>
+        <td>
+          <%= link_to cookbook.name, cookbook %>
+        </td>
+        <td><%= cookbook.recipes.count %></td>
+        <td><%= cookbook.unique_ingredient_count %></td>
+        <td><%= link_to 'Edit', edit_cookbook_path(cookbook) %></td>
+        <td><%= link_to 'Delete', cookbook, method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

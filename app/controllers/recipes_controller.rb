@@ -1,6 +1,8 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:edit, :update, :show, :destroy]
 
+  after_action :last_page
+
   MESSAGES = {
     create_success: "You have successfully created a new recipe.",
     create_fail: "There was a problem with your new recipe. Please try again.",
@@ -11,7 +13,7 @@ class RecipesController < ApplicationController
   }
 
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.alpha
   end
 
   def show
@@ -68,5 +70,4 @@ class RecipesController < ApplicationController
   def recipe_params
     params.require(:recipe).permit(:name, :description, :image, :preparation, :user_id)
   end
-
 end
