@@ -8,9 +8,9 @@
   <%= f.label :instructions %>
   <%= f.text_field :instructions%>
 
-  <%= f.label :rec_photo %>
-  <%= f.file_field :rec_photo %>
+  <%= f.label :image %>
+  <%= f.file_field :image %>
 
 
-  <%= f.submit, "Add ingredients", new_user_ingredient_path(session[:user_id]) %>
+  <%= f.submit "Add ingredients", new_user_ingredient_path(session[:user_id]) %>
 <% end %>
