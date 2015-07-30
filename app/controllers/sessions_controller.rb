@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if @user.nil?
+    if @user.nil? && params[:session][:email].any?
       flash[:alert] = "#{params[:session][:email]} is not a registered email address."
       render :new
     elsif @user.authenticate(params[:session][:password])

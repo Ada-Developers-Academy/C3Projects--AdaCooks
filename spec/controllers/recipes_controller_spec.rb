@@ -32,4 +32,20 @@ RSpec.describe RecipesController, type: :controller do
       expect(response).to render_template("index")
     end
   end
+
+  describe "get :show" do
+    let(:recipe) { create(:recipe) }
+
+    it "assigns @recipe" do
+      get :show, { id: recipe.id }
+
+      expect(assigns(:recipe)).to eq(recipe)
+    end
+
+    it "renders the show template" do
+      get :show, { id: recipe.id }
+
+      expect(response).to render_template("show")
+    end
+  end
 end
