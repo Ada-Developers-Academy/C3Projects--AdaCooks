@@ -1,6 +1,6 @@
 class CookbooksController < ApplicationController
   before_action :require_login
-  before_action :find_cookbook, only: [:show, :edit, :update, :destroy]
+  before_action :find_cookbook, only: [:show, :edit, :update, :destroy, :unassociate]
   before_action :get_cookbook_associations, only: [:new, :edit]
   before_action only: [:show, :edit, :update, :destroy] do
     correct_login(@cookbook)
@@ -46,6 +46,13 @@ class CookbooksController < ApplicationController
     @cookbook.destroy
 
     redirect_to user_path(session[:user_id]), notice: "Cookbook deleted."
+  end
+
+  def unassociate
+    cookbook_recipes = @cookbook.recipes
+    cookbook_recipes.delete(params[:recipe_id])
+
+    redirect_to user_cookbook_path(session[:user_id], @cookbook.id)
   end
 
   private

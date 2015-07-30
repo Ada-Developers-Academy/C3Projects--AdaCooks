@@ -7,10 +7,10 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
       flash[:messages] = MESSAGES[:successful_login]
-      redirect_to root_path
+      redirect_to user_path(@user.id)
     else
       flash[:errors] = ERRORS[:login_error]
-      redirect_to root_path #TODO: Change this path, could not get :back to test at this time (HTTPS REFERER??)
+      redirect_to root_path
     end
   end
 
