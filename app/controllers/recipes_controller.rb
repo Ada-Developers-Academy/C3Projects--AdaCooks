@@ -13,7 +13,12 @@ class RecipesController < ApplicationController
   }
 
   def index
-    @recipes = Recipe.alpha
+    # @recipes = Recipe.alpha
+    if params[:search]
+      @recipes = Recipe.search(params[:search])
+    else
+      @recipes = Recipe.alpha
+    end
   end
 
   def show
