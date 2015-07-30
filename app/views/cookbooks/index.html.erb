@@ -2,7 +2,7 @@
   <div class="col-md-6 col-md-offset-3">
     <h2 class="text-center"> My Cookbooks </h2>
     <h4 class="text-center">
-      <%= link_to "Add a New Cookbook", new_user_cookbook_path %>
+      <%= link_to "Add a New Cookbook", new_user_cookbook_path(session[:user_id]) %>
     </h4>
     <table class="table table-bordered">
       <tr>

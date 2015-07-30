@@ -23,15 +23,20 @@ class IngredientsController < ApplicationController
   end
 
   def edit; end
-  
+
   def update
     @ingredient.update(ingredient_params)
 
     if @ingredient.save
-      redirect_to user_path(@ingredient.user_id)
+      redirect_to ingredient_path(@ingredient)
     else
       render :edit
     end
+  end
+
+  def destroy
+    @ingredient.destroy
+    redirect_to ingredients_path
   end
 
   private

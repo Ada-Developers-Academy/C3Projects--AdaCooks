@@ -13,6 +13,6 @@
 <div class="row">
   <div class="col-md-3">
     <h4> <%= link_to "Edit Cookbook", edit_user_cookbook_path(@cookbook.user_id, @cookbook.id) %> </h4>
-    <h4> <%= link_to "Delete Cookbook", user_cookbook_path(@cookbook.user_id, @cookbook.id) %> </h4>
+    <h4> <%= link_to "Delete Cookbook", user_cookbook_path(@cookbook.user_id, @cookbook.id), method: :delete, data: { confirm: "Are you sure?"} %> </h4>
   </div>
 </div>
