@@ -1,33 +1,32 @@
 <div class="container">
-  <div class="row">
-    <aside class="col-md-4">
-      <section class="user_info">
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">
         <h1>
           <%= gravatar_for @user %>
           <%= @user.name %>
         </h1>
-      </section>
+      </div>
 
-      <%= link_to "Add a Cookbook", new_cookbook_path, class: "btn btn-default" %>
-
-      <h3>My Cookbooks</h3>
-        <ul>
-          <% @cookbooks.each do |cookbook| %>
-            <li>
-              <%= link_to cookbook.name, cookbook_path(cookbook.id) %>
-              <%= pluralize(cookbook.recipes.count, "recipe") %>
-              <%= link_to "Edit", edit_cookbook_path %>
-              <%= link_to "Delete", cookbook_path(cookbook.id), method: :delete %>
-            </li>
-          <% end %>
-        </ul>
-
-      <h3>My Recipes</h3>
-        <ul>
-          <% @recipes.each do |recipe| %>
-            <li><%= link_to recipe.name, recipe_path(recipe.id) %></li>
-          <% end %>
-        </ul>
-    </aside>
+      <!-- List group -->
+      <ul class="list-group">
+        <% @cookbooks.each do |cookbook| %>
+          <li class="list-group-item">
+            <%= link_to cookbook.name, cookbook_path(cookbook.id) %>
+            <span class="pull-right">
+              <%= link_to edit_cookbook_path(cookbook.id) do %>
+                  <i class="glyphicon glyphicon-pencil"></i>
+              <% end %>
+              <%= link_to cookbook_path(cookbook.id), method: :delete do %>
+                  <i class="glyphicon glyphicon-remove"></i>
+              <% end %>
+            </span>
+            <br>
+            <span class="recipe-count text-muted"><%= pluralize(cookbook.recipes.count, "recipe") %></span>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </div>
