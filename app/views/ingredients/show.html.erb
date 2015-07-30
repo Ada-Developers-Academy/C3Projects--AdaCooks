@@ -1,13 +1,13 @@
 <h1>Show Ingredient</h1>
 
-<%= form_for @ingredient, url: , params[:id]) do |f| %>
-  <fieldset>
-    <legend>Product Details</legend>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+  <ul>
+    <li> <%= image_tag(@ingredient.image) %> </li>
+    <li> <%= @ingredient.name %> </li>
+  </ul> 
 
-      <%= f.label :image %>
-      <%= f.text_field :image %>
-  </fieldset>
-  <%= f.submit %>
-<% end %>
+<% @recipes.each do |recipe| %>
+  <ul>
+    <li> <%= image_tag(recipe.image) %> </li>
+    <li> <%= link_to "#{recipe.name}", user_recipe_path(session[:user_id], "#{recipe.id}") %> </li>  
+  </ul> 
+<% end %> 
