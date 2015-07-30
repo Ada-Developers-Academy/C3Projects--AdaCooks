@@ -1,1 +1,12 @@
-index.html.erb
+<h2>My Cookbooks!</h2>
+
+<%= link_to "Add a New Cookbook", %>
+
+<% @cookbooks.each do |cookbook| %>
+      <tr>
+        <td><%= image_tag(@recipe.image.thumb) %></td>
+        <td><%= link_to cookbook.name, user_cookbook_path(cookbook.id) %></td>
+        <td><%= link_to "Edit", edit_user_cookbook_path(user.cookbook_id), class: "btn btn-default" %></td>
+        <td><%= link_to "X", user_cookbook_path(user.cookbook_id), method: :delete, class: "btn btn-danger" %></td>
+      </tr>
+  <% end %>
