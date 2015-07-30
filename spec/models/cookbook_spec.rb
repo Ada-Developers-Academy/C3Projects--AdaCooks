@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.describe Cookbook, type: :model do
 
   before :each do
+    create :ingredient, id: 99
+  end
+
+  before :each do
     @cookbook = build :cookbook, id: 1, user_id: 1
   end
 

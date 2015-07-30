@@ -24,7 +24,7 @@ CSV.foreach("db/cookbook2.csv", { encoding: "UTF-8", headers: true, header_conve
 end
 
 dog_meat = Ingredient.create(name: "dog meat")
-stew = Recipe.create(name: "dog meat stew", preparation: "1. Stew dog meat. 2. Choke.", user_id: 1)
+stew = Recipe.create(name: "dog meat stew", preparation: "1. Stew dog meat. 2. Choke.", user_id: 1, ingredient_ids: [1])
 stew.ingredients << dog_meat
 
 fanciful_feasts = Cookbook.find_by(name: "Fanciful Feasts")
