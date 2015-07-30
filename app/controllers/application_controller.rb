@@ -25,4 +25,13 @@ class ApplicationController < ActionController::Base
       redirect_to login_path
     end
   end
+
+  def check_user_params
+    unless session[:user_id] == params[:user_id]
+
+      flash[:error] = "Dude, you don't have access to that user's sh*t."
+
+      redirect_to root_path
+    end
+  end
 end

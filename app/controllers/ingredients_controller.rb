@@ -1,4 +1,5 @@
 class IngredientsController < ApplicationController
+  before_action :check_user_params, except: [:index, :show]
 
   def new
     @ingredient = Ingredient.new

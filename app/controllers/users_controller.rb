@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_login, only: [:dashboard]
 
+  before_action :check_user_params, only: [:dashboard]
   def new
     @user = User.new
   end
