@@ -1,4 +1,6 @@
 class Ingredient < ActiveRecord::Base
+    #Validations
+    validates :name, uniqueness: true
 
     # Mounted Objects
     mount_uploader :image, ImageUploader
