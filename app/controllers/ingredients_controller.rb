@@ -3,6 +3,10 @@ class IngredientsController < ApplicationController
   def index
     if params[:search]
       @ingredients = Ingredient.search(params[:search]).order("created_at ASC")
+      @recipes = @ingredients.map do |ingredient|
+        ingredient.recipes
+      end.flatten
+
     else
       @ingredients = Ingredient.all.order('name ASC')
     end
@@ -10,7 +14,7 @@ class IngredientsController < ApplicationController
 
   def show
     @ingredient = Ingredient.find(params[:id])
-    @recipes = Ingredient.find(params[:id]).recipes
+    @recipes = Recipe.where(ingredient_id: @ingredient.id)
   end
 
   def new

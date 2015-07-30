@@ -15,4 +15,8 @@ class Recipe < ActiveRecord::Base
   def self.search(query)
     where("name like ?", "%#{query}%")
   end
+  
+  def self.search_deep(query)
+    where("ingredient like?", "%#{query}")
+  end
 end
