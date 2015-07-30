@@ -5,7 +5,7 @@
     <div class="form-group input-lg search">
       <%= form_tag({controller:'ingredients', action: 'search'}, method: :get, role: "search", class: "form-inline") do %>
         <%= text_field_tag :search, params[:search], placeholder: "Search by Ingredient", class: "form-control" %>
-        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
       <% end %>
     </div>
   </div>
@@ -15,9 +15,11 @@
 <div class="container center">
   <% @recipes.each do |recipe| %>
     <div class="col-md-4">
-      <%= image_tag(recipe.image, class: "img-homepage") %>
-      <p class="img-name"><%= link_to(recipe.name, recipe_path(recipe.id)) %></p>
-      <p class="img-desc"><%= recipe.desc %></p>
+      <div class="well">
+        <%= image_tag(recipe.image, class: "img-thumbnail", size: "190x190") %>
+        <p class="img-name"><%= link_to(recipe.name, recipe_path(recipe.id)) %></p>
+        <p class="img-desc"><%= recipe.desc %></p>
+      </div>
     </div>
   <% end %>
 </div>
@@ -27,8 +29,10 @@
 <div class="container center">
   <% @ingredients.each do |ingredient| %>
     <div class="col-md-4">
-      <%= image_tag(ingredient.image, class: "img-homepage") %>
-      <p class="img-name"><%= link_to(ingredient.name, ingredient_path(ingredient.id)) %></p>
+      <div class="well">
+        <%= image_tag(ingredient.image, class: "img-thumbnail", size: "190x190") %>
+        <p class="img-name"><%= link_to(ingredient.name, ingredient_path(ingredient.id)) %></p>
+      </div>
     </div>
   <% end %>
 </div>
