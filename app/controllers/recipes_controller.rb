@@ -11,6 +11,8 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    @ingredients = []
+    @cookbooks = []
   end
 
   def create
