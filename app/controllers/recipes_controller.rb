@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   before_action :require_login, only: [:new]
-  
+
   def index
     if params[:search]
       @recipes = Recipe.search(params[:search])
@@ -25,10 +25,11 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.create(recipe_params)
     @recipe.user_id = session[:user_id]
-    @ingredient_recipe = (params[:recipe][:ingredient_ids].first).to_i
-    @recipe.ingredients << Ingredient.find(@ingredient_recipe)
 
     if @recipe.save
+      @ingredient_recipe = (params[:recipe][:ingredient_ids].first).to_i
+      @recipe.ingredients << Ingredient.find(@ingredient_recipe) unless @ingredient_recipe != 0
+      # This prevents anything from being saved if the user didn't input any ingredients for a recipe
       redirect_to user_path(session[:user_id])
     else
       render 'new'
