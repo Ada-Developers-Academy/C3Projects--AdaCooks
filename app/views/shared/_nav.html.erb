@@ -6,9 +6,10 @@
       <li><a href="<%=user_path(session[:user_id])%>">My Dashboard</a></li>
       <li><a href="<%=user_cookbooks_path(session[:user_id])%>">My Cookbooks</a></li>
       <li><a href="<%=user_ingredients_path(session[:user_id])%>">My Ingredients</a></li>
+      <li><a href="<%=new_user_recipe_path(session[:user_id])%>">Create a New Recipe</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#">Log Out</a></li> 
+      <li><%= link_to "Logout", logout_path, method: :delete %></li> 
     </ul>
   </div>
 </nav>
