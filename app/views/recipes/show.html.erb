@@ -1,3 +1,5 @@
+<%= render partial: 'shared/flash_messages' %>
+
 <div class="row">
   <div class="col-md-8">
     <h1> <%= @recipe.name %></h1>
@@ -5,12 +7,10 @@
     <p>Description: <%= @recipe.description %></p>
 
     <ul class="list-group">
-      <% if @ingredient_lines %>
-        <% @ingredient_lines.each do |line| %>
-          <li class="list-group-item">
-            <%= "#{line.quantity} #{line.measurement.unit} #{line.ingredient.name}" %>
-          </li>
-        <% end %>
+      <% @ingredient_lines.each do |line| %>
+        <li class="list-group-item">
+          <%= "#{line.quantity} #{line.measurement.unit}" %> <%= link_to line.ingredient.name, ingredient_path(line.ingredient_id) %>
+        </li>
       <% end %>
     </ul>
 
