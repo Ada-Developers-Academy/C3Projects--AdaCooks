@@ -1,17 +1,14 @@
 <div class="form">
-<%= form_for @ingredient, url: @url, method: @method do |f| %>
-  <div class="form-group">
-  <%= f.label :name %>
-  <%= f.text_field :name, class: "form-control" %>
-  </div>
-  <div class="form-group">
-  <%= f.label :image %>
-  <%= f.file_field :image, class: "form-control" %>
-  </div>
-  <%= f.hidden_field :request, value: request.referer %>
+  <%= form_for @ingredient, url: @url, method: @method do |f| %>
 
-  <div class="form-group">
-  <%= f.submit "Save New Ingredient", id: session[:user_id], class: "btn btn-primary col-sm-2" %>
-  </div>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control form-group" %>
+
+    <%= f.label :image %>
+    <%= f.file_field :image, class: "form-control form-group" %>
+
+    <%= f.hidden_field :request, value: request.referer %>
+
+    <%= f.submit "Save", id: session[:user_id], class: "btn btn-primary col-sm-2" %>
   <% end %>
 </div>
