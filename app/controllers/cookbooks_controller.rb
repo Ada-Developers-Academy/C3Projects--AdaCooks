@@ -1,6 +1,4 @@
 class CookbooksController < ApplicationController
-  def index
-  end
 
   def new
     @cookbook = Cookbook.new
