@@ -4,6 +4,6 @@
 <% @ingredients.each do |ingredient| %>
   <ul>
     <li> <%= image_tag(ingredient.image) %> </li>
-    <li> <%= link to "#{ingredient.name}", ingredient_path(id) %> </li>
+    <li> <%= link_to "#{ingredient.name}", ingredient_path(ingredient.id) %> </li>
   </ul> 
 <% end %> 

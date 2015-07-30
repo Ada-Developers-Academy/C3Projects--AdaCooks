@@ -8,10 +8,12 @@ end
 
 def index
   @ingredients = Ingredient.order(:name)
+  session[:recipe_id] = nil
 end
 
 def index_by_id
   @ingredients = Ingredient.where(params[:user_id])
+  session[:recipe_id] = nil
 end
 
 def show
@@ -20,14 +22,16 @@ end
 
 def new
   @ingredient = Ingredient.new
-  user = User.find(session[:user_id])
-  @ingredients = user.ingredients
+  @user = User.find(session[:user_id])
+  @recipe = Recipe.find(session[:recipe_id])
+  @ingredients = @recipe.ingredients
 end
 
 def create
-  recipe = Recipe.find(session[:user_id])
+  recipe = Recipe.find(session[:recipe_id])
   user = User.find(session[:user_id])
-  @ingredient = recipe.ingredients.create(ingredient_params)
+  @ingredient = Ingredient.new(ingredient_params)
+  recipe.ingredients << @ingredient
   @ingredient.user_id = user.id
   if @ingredient.save
     redirect_to new_user_ingredient_path(session[:user_id])
@@ -45,6 +49,14 @@ def update
 
   redirect_to
 end
+
+def remove
+  recipe = Recipe.find(session[:recipe_id])
+  ingredient = recipe.ingredients.find(params[:ingredient_id])
+  recipe.ingredients.delete(ingredient)
+  redirect_to new_user_ingredient_path(session[:user_id])
+end
+
 
 def destroy
   @ingredient.destroy
