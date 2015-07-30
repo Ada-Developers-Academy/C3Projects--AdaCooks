@@ -1,5 +1,9 @@
 <%= flash[:notice] %>
 
+<% if session[:user_id] == @recipe.user.id %>
+	<%= button_to 'Edit', edit_recipe_path(@recipe), method: :get, class: 'btn btn-default' %>
+<% else %>
+
 <%= form_for(@recipe, url: { controller: :cookbooks, action: :update }, method: :put) do |f| %>
 	<%= f.select(:cookbook_id, options_for_select(@cookbooks_array)) %>
 
