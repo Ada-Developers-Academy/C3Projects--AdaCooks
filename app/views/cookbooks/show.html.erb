@@ -1,3 +1,19 @@
+<% if session[:user_id] %>
+  <div class="text-right">
+    <%= link_to edit_user_cookbook_path(session[:user_id], @cookbook.id), class: 'btn btn-default' do %>
+      <span class="glyphicon glyphicon-pencil" aria-hidden="true" data-toggle="tooltip" title="Edit Me!"></span>
+    <% end %>
+    <%= link_to user_cookbook_path(session[:user_id], @cookbook.id), method: :delete, class: 'btn btn-default' do %>
+      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+    <% end %>
+  </div>
+<% end %>
+
+<h1><%= @cookbook.name %></h1>
+<p><%= @cookbook.description %></p>
+
+<h5>Number of Recipes: <%= @recipe_count %></h5>
+
 <% @recipes.each do |recipe| %>
   <div class="media list-group">
     <div class="media-left col-sm-1">
@@ -17,6 +33,7 @@
         <%= link_to edit_recipe_path(recipe.id), class: 'btn btn-default' do %>
           <span class="glyphicon glyphicon-pencil" aria-hidden="true" data-toggle="tooltip" title="Edit Me!"></span>
         <% end %>
+        # TODO: Add link to unassociate the recipe from the cookbook
       </div>
     <% end %>
     <hr>

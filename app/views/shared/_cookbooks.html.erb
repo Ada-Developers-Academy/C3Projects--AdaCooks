@@ -1,0 +1,21 @@
+<h3>Cookbooks</h3>
+<% @cookbooks.each do |cookbook| %>
+  <div class="media list-group">
+    <div class="media-body">
+      <h4 class="media-heading">
+        <%= link_to cookbook.name, user_cookbook_path(@user.id, cookbook.id) %>
+      </h4>
+      <p><%= cookbook.description %></p>
+      <p>Number of Recipes: <%= cookbook.recipes.count %></p>
+      <p>Chef: <%= link_to cookbook.user.username, user_path(cookbook.user_id) %></p>
+    </div>
+    <% if session[:user_id] %>
+      <div class="media-right">
+        <%= link_to edit_user_cookbook_path(@user.id, cookbook.id), class: 'btn btn-default' do %>
+          <span class="glyphicon glyphicon-pencil" aria-hidden="true" data-toggle="tooltip" title="Edit Me!"></span>
+        <% end %>
+      </div>
+    <% end %>
+    <hr>
+  </div>
+<% end %>

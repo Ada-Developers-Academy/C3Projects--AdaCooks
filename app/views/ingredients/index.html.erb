@@ -20,7 +20,9 @@
     </div>
     <% if session[:user_id] %>
       <div class="media-right">
-        <%= link_to "Edit Ingredient", edit_ingredient_path(ingredient.id), class: 'btn btn-default' %>
+        <%= link_to edit_ingredient_path(ingredient.id), class: 'btn btn-default' do %>
+          <span class="glyphicon glyphicon-pencil" aria-hidden="true" data-toggle="tooltip" title="Edit Me!"></span>
+        <% end %>
       </div>
     <% end %>
     <hr>
