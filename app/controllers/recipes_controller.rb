@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
   before_action :find_recipe, only: [:show, :edit, :update, :destroy]
 
   def index
-    @recipes = Recipe.all.sort_by {|recipe| recipe.name}
+    @recipes = Recipe.organize
   end
 
   def show
@@ -58,8 +58,4 @@ class RecipesController < ApplicationController
   def recipe_params
     params.require(:recipe).permit(:name, :desc, :prep, :image, :cookbook_id, :user_id, :ingredient_ids => [], ingredients_attributes: [:name])
   end
-
-  # def ingredient_params
-    # params.require(recipe: :ingredient).permit(:name, :image)
-  # end
 end

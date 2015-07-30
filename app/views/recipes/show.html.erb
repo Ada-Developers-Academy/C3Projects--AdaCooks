@@ -12,6 +12,7 @@
 
   <% if session[:user_id] %>
     <%= button_to "Edit", edit_recipe_path(@recipe), method: :get, class: "btn btn-default" %>
+    <%= button_to "Delete", recipe_path(@recipe), method: :delete, class: "btn btn-danger" %>
   <% else %>
     <strong>Submitted by: <%= link_to @recipe.user.name, user_path(@recipe.user), method: :get %></strong>
   <% end %>

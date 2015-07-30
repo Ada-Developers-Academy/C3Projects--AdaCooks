@@ -35,10 +35,10 @@ RSpec.describe RecipesController, type: :controller do
         expect(Recipe.count).to eq(0)
       end
 
-      it "renders the 'new' recipe form view to fix invalid fields" do
-        post :create, recipe.attributes
-        expect(response).to render_template("new")
-      end
+      # it "renders the 'new' recipe form view to fix invalid fields" do
+        # post :create, recipe.attributes
+        # expect(response).to render_template("new")
+      # end
     end
   end
 
