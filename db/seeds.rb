@@ -39,7 +39,7 @@ CSV.foreach("db/recipes.csv", headers: true) do |row|
   )
 end
 
-ingredients_recipes = { 1 => [1, 2], 2 => [1, 3], 3 => [1, 3], 4 => [1, 3], 5 => [1, 3]}
+ingredients_recipes = { 1 => [1, 2, 7], 2 => [8, 3, 9], 3 => [4, 3, 6, 7], 4 => [4, 3, 6], 5 => [2, 3], 6 => [3, 4, 5], 7 => [1, 3, 5, 7], 8 => [2, 4, 6, 8, 10], 9 => [1, 2, 3, 4, 5], 10 => [6, 7, 8, 9, 10], 11 => [5, 10], 12 => [3, 4, 5, 6, 7], 13 => [9, 10, 3], 14 => [1, 7, 9], 15 => [4, 9], 16 => [3, 10], 17 => [2, 1, 9], 18 => [4, 5, 8], 19 => [5, 6], 20 => [1, 10, 7], 21 => [5, 8, 7] }
 
 ingredients_recipes.each do |i, r|
   ingredient = Ingredient.find(i)
@@ -47,11 +47,3 @@ ingredients_recipes.each do |i, r|
     ingredient.recipes << Recipe.find(x)
   end
 end
-
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)

@@ -4,10 +4,6 @@ class CookbooksController < ApplicationController
   before_action :find_cookbook, only: [:show, :edit, :update, :destroy]
 
   # Display cookbook(s)
-  def index
-    @cookbooks = Cookbook.all
-  end
-
   def show; end
 
   # Add a new cookbook
@@ -49,5 +45,5 @@ private
   end
 
   def cookbook_params
-    params.require(:cookbook).permit(:name, :desc)
+    params.require(:cookbook).permit(:name, :desc, :user_id)
   end
