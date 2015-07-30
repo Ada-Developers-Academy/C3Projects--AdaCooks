@@ -23,12 +23,12 @@ RSpec.describe Ingredient, type: :model do
   describe "search query" do
     it "returns ingredients whose names include query input" do 
 
-      Ingredient.create(name: "Chicken Soup")
-      Ingredient.create(name: "Chicken Tacos")
-      Ingredient.create(name: "Chocolate Cake")
+      Ingredient.create(name: "Shredded Chicken")
+      Ingredient.create(name: "Baked Chicken")
+      Ingredient.create(name: "Chocolate")
 
       expect(Ingredient.search("chicken").count).to eq(2)
-      expect(Ingredient.search("cake").count).to eq(1)
+      expect(Ingredient.search("chocolate").count).to eq(1)
       expect(Ingredient.search("c").count).to eq(3)
     end
   end
