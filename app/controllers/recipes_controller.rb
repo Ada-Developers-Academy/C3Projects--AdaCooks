@@ -25,9 +25,11 @@ class RecipesController < ApplicationController
 
     @user = User.find(@recipe.user_id)
 
-    local_user = User.find(session[:user_id])
+    if session[:user_id]
+      local_user = User.find(session[:user_id])
 
-    @user_cookbooks = local_user.cookbooks
+      @user_cookbooks = local_user.cookbooks
+    end
 
     @ingredients = @recipe.ingredients
   end
