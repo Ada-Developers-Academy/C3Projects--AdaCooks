@@ -2,6 +2,9 @@ class CookbooksController < ApplicationController
   before_action :require_login
   before_action :find_cookbook, only: [:show, :edit, :update, :destroy]
   before_action :get_cookbook_associations, only: [:new, :edit]
+  before_action only: [:show, :edit, :update, :destroy] do
+    correct_login(@cookbook)
+  end
 
   def show
     if session[:user_id] == params[:user_id].to_i
@@ -62,5 +65,11 @@ class CookbooksController < ApplicationController
   def get_cookbook_associations
     @recipes = Recipe.all
     @cookbooks = Cookbook.where(user_id: session[:user_id])
+  end
+
+  def correct_login(object)
+    unless session[:user_id] == object.user_id
+      redirect_to user_path(session[:user_id]), alert: ERRORS[:wrong_login]
+    end
   end
 end

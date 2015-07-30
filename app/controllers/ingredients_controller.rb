@@ -1,13 +1,16 @@
 class IngredientsController < ApplicationController
+  before_action :find_ingredient, only: [ :show, :edit, :update, :destroy ]
   before_action :require_login, only: [ :new, :create, :edit, :update, :destroy ]
   before_action :get_ingredient_associations, only: [ :new, :create, :edit, :update ]
+  before_action only: [:edit, :update, :destroy] do
+    correct_login(@ingredient)
+  end
 
   def index
     @ingredients = Ingredient.order(:name)
   end
 
   def show
-    @ingredient = Ingredient.find(params[:id])
     @recipes = @ingredient.recipes
   end
 
@@ -27,13 +30,24 @@ class IngredientsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
+    @ingredient.update(create_ingredient_params)
+    @ingredient.recipe_ids = [] unless params[:ingredient][:recipe_ids]
+
+    if @ingredient.save
+      redirect_to ingredient_path(@ingredient.id), notice: "Ingredient updated!"
+    else
+      flash.now[:errors] = ERRORS[:unsuccessful_save]
+      redirect_to ingredient_path(@ingredient.id)
+    end
   end
 
   def destroy
+    @ingredient.destroy
+
+    redirect_to user_path(session[:user_id]), alert: "Ingredient deleted."
   end
 
   private
@@ -52,5 +66,11 @@ class IngredientsController < ApplicationController
 
   def get_ingredient_associations
     @recipes = Recipe.where(user_id: session[:user_id])
+  end
+
+  def correct_login(object)
+    unless session[:user_id] == object.user_id
+      redirect_to user_path(session[:user_id]), alert: ERRORS[:wrong_login]
+    end
   end
 end

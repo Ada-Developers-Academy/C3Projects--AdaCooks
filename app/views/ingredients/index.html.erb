@@ -18,10 +18,13 @@
       </h4>
       <p>Chef: <%= link_to ingredient.user.username, user_path(ingredient.user_id) %></p>
     </div>
-    <% if session[:user_id] %>
+    <% if session[:user_id] == ingredient.user_id %>
       <div class="media-right">
         <%= link_to edit_ingredient_path(ingredient.id), class: 'btn btn-default' do %>
           <span class="glyphicon glyphicon-pencil" aria-hidden="true" data-toggle="tooltip" title="Edit Me!"></span>
+        <% end %>
+        <%= link_to ingredient_path(ingredient.id), method: :delete, class: "btn btn-default" do %>
+          <span class="glyphicon glyphicon-trash"></span>
         <% end %>
       </div>
     <% end %>

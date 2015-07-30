@@ -22,10 +22,10 @@ RSpec.describe CookbooksController, type: :controller do
 
     context "not logged in user" do
       before :each do
-        cookbook = create :cookbook
         user = create :user
         session[:user_id] = user.id
-        get :show, user_id: 2, id: cookbook.id
+        # below references a different user
+        get :show, user_id: 2
       end
 
       it "does not respond successfully" do
