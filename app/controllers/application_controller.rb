@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_filter :check_search,
+  before_filter :check_search, :set_user_name
 
   def set_user_name
     @user = User.find_by(id: session[:user_id])
@@ -16,5 +16,9 @@ class ApplicationController < ActionController::Base
         @search_results = Recipe.joins(:ingredients).where("ingredients.name LIKE ?", "%#{params[:search][:query]}%")
     end
   end
+
+  # def check_current_page
+  #   if
+  # end
 
 end
