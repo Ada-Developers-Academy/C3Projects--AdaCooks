@@ -8,7 +8,7 @@ FactoryGirl.define do
 
   factory :ingredient do
     name 'Chocolate Chips'
-    user_id 2
+    user_id 1
   end
 
   factory :user do

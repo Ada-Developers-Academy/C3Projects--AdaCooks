@@ -142,7 +142,7 @@ RSpec.describe IngredientsController, type: :controller do
     context "logged in user" do
       before :each do
         @ingredient = create :ingredient
-        user = create :user
+        create :user
         session[:user_id] = 1
 
         put :update, id: @ingredient.id, :ingredient => { name: "New Name"}
@@ -181,7 +181,8 @@ RSpec.describe IngredientsController, type: :controller do
       before :each do
         @ingredient = create :ingredient
         create :user
-        session[:user_id] = 1
+        create :user, username: "Second User", email: "second@user.com"
+        session[:user_id] = 2
 
         put :update, user_id: session[:user_id], id: @ingredient.id, :ingredient => { name: "New Name"}
         @ingredient.reload
@@ -192,24 +193,24 @@ RSpec.describe IngredientsController, type: :controller do
       end
 
       it "redirects to the ingredient show page" do
-        expect(subject).to redirect_to ingredient_path(@ingredient)
+        expect(subject).to redirect_to user_path(session[:user_id])
       end
     end
   end
-  #
-  # describe "DELETE #destroy" do
-  #
-  #   before :each do
-  #     @ingredient = create :ingredient
-  #     create :user
-  #     session[:user_id] = 1
-  #   end
-  #
-  #   it "deletes the record" do
-  #     expect{
-  #       delete :destroy, id: @ingredient.id
-  #     }.to change(Ingredient, :count).by(-1)
-  #   end
-  # end
+
+  describe "DELETE #destroy" do
+
+    before :each do
+      @ingredient = create :ingredient
+      create :user
+      session[:user_id] = 1
+    end
+
+    it "deletes the record" do
+      expect{
+        delete :destroy, id: @ingredient.id
+      }.to change(Ingredient, :count).by(-1)
+    end
+  end
 
 end

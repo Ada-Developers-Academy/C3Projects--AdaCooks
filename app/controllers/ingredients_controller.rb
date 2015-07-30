@@ -45,6 +45,9 @@ class IngredientsController < ApplicationController
   end
 
   def destroy
+    @ingredient.destroy
+
+    redirect_to user_path(session[:user_id]), alert: "Ingredient deleted."
   end
 
   private

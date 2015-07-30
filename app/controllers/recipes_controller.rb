@@ -46,7 +46,7 @@ class RecipesController < ApplicationController
   def destroy
     @recipe.destroy
 
-    redirect_to user_path(session[:user_id]), notice: "Recipe deleted."
+    redirect_to user_path(session[:user_id]), alert: "Recipe deleted."
   end
 
   private
