@@ -1,27 +1,66 @@
 class RecipesController < ApplicationController
+  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  # before_action :set_user, only: [:new, :create, :edit, :update, :destroy]
   before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @recipes = Recipe.alphabetized # TODO: write scope
+    @recipes = Recipe.alphabetized
   end
 
-  def new; end
+  def show; end
 
-  def create; end
+  def new
+    @recipe = Recipe.new
+    @recipe.ingredients.build
+  end
+
+  def create
+    @recipe = Recipe.new(create_params)
+
+    if @recipe.save
+      flash[:success] = "Your recipe has been created! CHECK IT OUTTTTTtttttt now, baby, check it out now."
+      redirect_to recipe_path(@recipe)
+    else
+      flash[:error] = @recipe.errors.full_messages
+      render :new
+    end
+  end
 
   def edit; end
 
-  def update; end
-
-  def show
-    @recipe = Recipe.find(params[:id])
-    # TODO: Add in image to view, fix ingredient path
+  def update
+    if @recipe.update(edit_params)
+      flash[:success] = "Your recipe has been updated! CHECK IT OUTTTTTtttttt now, baby, check it out now."
+      redirect_to recipe_path(@recipe)
+    else
+      flash[:error] = @recipe.errors.full_messages
+      render :edit
+    end
   end
 
-  def destroy; end
+  def destroy
+    name = @recipe.proper_name
+    @recipe.destroy
+    flash[:success] = "Your recipe has been destroyed. Goodbye, #{ name }!"
+    redirect_to recipes_path
+  end
 
   private
     def create_params
-      # make sure you include the :avatar!
+      recipe = edit_params
+      recipe[:user_id] = sessions[:user_id]
+      return recipe
+    end
+
+    def edit_params
+      recipe = params.require(:recipe).permit(:name, :steps, :avatar, :description)
+    end
+
+    def set_recipe
+      @recipe = Recipe.find(params[:id])
+    end
+
+    def set_user
+      @user = User.find(session[:user_id])
     end
 end
