@@ -47,7 +47,7 @@ class RecipesController < ApplicationController
   private
     def create_params
       recipe = edit_params
-      recipe[:user_id] = sessions[:user_id]
+      recipe[:user_id] = session[:user_id]
       return recipe
     end
 
