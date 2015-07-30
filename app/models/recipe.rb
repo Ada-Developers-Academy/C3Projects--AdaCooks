@@ -8,9 +8,9 @@ class Recipe < ActiveRecord::Base
   validates :name, presence: true
   validates :preparation, presence: true
   # validates_with RecipeValidator, :on => :update
-  
+
   # Scopes -----------------------------------------
-  scope :alphabet, -> { order(:name) }
+  scope :alphabet, -> { order('lower (name)') }
 
   # Mounted Objects_____________________________________________________________
   # mount_uploader :image, ImageUploader #instance of class image uploader

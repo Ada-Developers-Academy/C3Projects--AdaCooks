@@ -6,7 +6,7 @@ class Ingredient < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
 
   # Scopes -----------------------------------------
-  scope :alphabet, -> { order(:name) }
+  scope :alphabet, -> { order('lower (name)') }
 
 
 end
