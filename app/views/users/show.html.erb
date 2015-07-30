@@ -5,21 +5,17 @@
 
   <table class="table">
     <tr>
-      <th>
-        <td>photo</td>
-        <td>Cookbook</td>
-        <td>No. Recipes</td>
-        <td>Delete</td>
-      </th>
+        <th>Cookbook Name</th>
+        <th>Description</th>
+        <th>No. Recipes</th>
+        <th>Delete</th>
     </tr>
     <% @cookbooks.each do |cookbook| %>
       <tr>
         <td> <h3><%= cookbook.name %></h3> </td>
-        <td><%= button_to "Delete", cookbook_path, method: "delete" %></td>
-      </tr>
-      <tr>
         <td><%= cookbook.description %></td>
-        <td><%= cookbook.recipes %> ingredients</td>
+        <td><%= cookbook.recipes %> RECIPES</td>
+        <td><%= button_to "Delete", cookbook_path, method: "delete" %></td>
       </tr>
     <% end %>
   </table>
