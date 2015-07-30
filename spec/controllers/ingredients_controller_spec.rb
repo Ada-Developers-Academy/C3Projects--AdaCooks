@@ -24,6 +24,7 @@ RSpec.describe IngredientsController, type: :controller do
       before :each do
         @user = create :user
         session[:user_id] = @user.id
+        session[:last_page] = ingredient_path(1)
         post :create, ingredient: valid_params
       end
 
@@ -76,6 +77,7 @@ RSpec.describe IngredientsController, type: :controller do
 
     context "valid params" do
       before :each do
+        session[:last_page] = ingredient_path(ingredient)
         put :update, id: ingredient, ingredient: { name: 'updated name' }
         ingredient.reload
       end
@@ -118,6 +120,28 @@ RSpec.describe IngredientsController, type: :controller do
 
     it "renders the show template" do
       expect(response).to render_template "show"
+    end
+  end
+
+  describe "DELETE #destroy" do
+    let(:ingredient) { create :ingredient }
+
+    before :each do
+      recipe = create :recipe
+      ingredient.recipes << recipe
+      delete :destroy, id: ingredient
+    end
+
+    it "deletes the ingredient" do
+      expect(Ingredient.count).to eq 0
+    end
+
+    it "does not delete the associated recipes" do
+      expect(Recipe.count).to eq 1
+    end
+
+    it "redirects to my_ingredients path" do
+      expect(response).to redirect_to my_ingredients_path
     end
   end
 end
