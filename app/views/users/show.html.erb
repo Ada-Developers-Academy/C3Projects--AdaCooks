@@ -15,8 +15,9 @@
           <% @cookbooks.each do |cookbook| %>
             <li>
               <%= link_to cookbook.name, cookbook_path(cookbook.id) %>
-              (<%= cookbook.recipes.count %> Recipe)
+              <%= pluralize(cookbook.recipes.count, "recipe") %>
               <%= link_to "Edit", edit_cookbook_path %>
+              <%= link_to "Delete", cookbook_path(cookbook.id), method: :delete %>
             </li>
           <% end %>
         </ul>
