@@ -25,7 +25,7 @@
 
           <%= ff.label :ingredient_id %>
           <%= ff.collection_select(:ingredient_id, Ingredient.all, :id, :name, prompt: "Select" ) %>
-          <%# ff.hidden_field :recipe_id, value: @recipe_id %>
+          <%= ff.hidden_field :recipe_id %>
 
           <% if ff.object.persisted? %>
             <%= ff.check_box :_destroy %>
