@@ -3,19 +3,19 @@
   <small>Submitted by: <%= link_to "#{@recipe.user.username}", user_path(@recipe.user.id) %></small>
 </h1>
 
-<% if session[:user_id] %>
+<% if @authenticated_user %>
   <div class="btn-group">
     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       +Cookbook <span class="caret"></span>
     </button>
     <ul class="dropdown-menu">
-      <% (@user.cookbooks).each do |cookbook| %>
-        <li> <%= link_to cookbook.name, user_cookbook_recipe_path(@user, cookbook, @recipe), method: "post" %> </li>
+      <% (@authenticated_user.cookbooks).each do |cookbook| %>
+        <li> <%= link_to cookbook.name, user_cookbook_recipe_path(@authenticated_user, cookbook, @recipe), method: "post" %> </li>
       <% end %>
     </ul>
   </div>
 
-  <% if @recipe.user_id == session[:user_id] %>
+  <% if @recipe.user_id == @authenticated_user.id %>
     <%= link_to "Edit", edit_user_recipe_path(@authenticated_user, @recipe), class: "btn btn-info btn-md" %>
     <%= link_to "Delete", user_recipe_path(@authenticated_user, @recipe), method: "delete", class: "btn btn-warning btn-md" %>
   <% end %>

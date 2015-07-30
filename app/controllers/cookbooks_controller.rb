@@ -3,7 +3,7 @@ class CookbooksController < ApplicationController
   before_action :set_cookbook, only: [:edit, :show, :destroy]
 
   def index
-    @cookbooks = @user.cookbooks
+    @cookbooks = @authenticated_user.cookbooks
   end
 
   def new
@@ -15,7 +15,7 @@ class CookbooksController < ApplicationController
 
     if @cookbook.save
       flash[:success] = "Your cookbook has been created."
-      redirect_to user_cookbook_path(session[:user_id], @cookbook.id)
+      redirect_to user_cookbook_path(@authenticated_user, @cookbook.id)
     else
       flash[:error] = @cookbook.errors.full_messages.first
       render :new
@@ -30,7 +30,7 @@ class CookbooksController < ApplicationController
 
     if @cookbook.save
       flash[:success] = "Your cookbook has been edited."
-      redirect_to user_cookbook_path(session[:user_id], @cookbook.id)
+      redirect_to user_cookbook_path(@authenticated_user, @cookbook.id)
     else
       flash[:error] = @cookbook.errors.full_messages.first
       render :edit
@@ -50,7 +50,7 @@ class CookbooksController < ApplicationController
     # association with deleted cookbook (SQL caches the old association)
     associated_recipes.each { |recipe| recipe.reload }
 
-    redirect_to user_cookbooks_path(session[:user_id])
+    redirect_to user_cookbooks_path(@authenticated_user)
   end
 
   def add_recipe
@@ -63,20 +63,20 @@ class CookbooksController < ApplicationController
       cookbook.add_recipe_association(recipe)
     end
 
-    redirect_to user_cookbook_path(session[:user_id], cookbook)
+    redirect_to user_cookbook_path(@authenticated_user, cookbook)
   end
 
   def remove_recipe
     cookbook = Cookbook.find(params[:cookbook_id])
     cookbook.remove_recipe_association(params[:id])
 
-    redirect_to user_cookbook_path(session[:user_id], cookbook)
+    redirect_to user_cookbook_path(@authenticated_user, cookbook)
   end
 
   private
     def create_params
       create_params = params.require(:cookbook).permit(:name, :description, :user_id)
-      create_params[:user_id] = session[:user_id]
+      create_params[:user_id] = @authenticated_user
 
       return create_params
     end
