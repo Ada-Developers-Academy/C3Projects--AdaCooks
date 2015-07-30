@@ -41,10 +41,9 @@ RSpec.describe CookbooksController, type: :controller do
   describe "GET #new" do
     context "logged in user" do
       before :each do
-        cookbook = create :cookbook
         user = create :user
         session[:user_id] = user.id
-        get :new, user_id: user.id, id: cookbook.id
+        get :new, user_id: user.id
       end
 
       it "responds successfully with an HTTP 200 status code" do
@@ -59,10 +58,9 @@ RSpec.describe CookbooksController, type: :controller do
 
     context "not logged in user" do
       before :each do
-        cookbook = create :cookbook
         user = create :user
         session[:user_id] = user.id
-        get :new, user_id: 2, id: cookbook.id
+        get :new, user_id: 2
       end
 
       it "does not respond successfully" do

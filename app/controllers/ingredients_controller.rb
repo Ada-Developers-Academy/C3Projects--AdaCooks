@@ -1,4 +1,5 @@
 class IngredientsController < ApplicationController
+  before_action :find_ingredient, only: [ :show, :edit, :update, :destroy ]
   before_action :require_login, only: [ :new, :create, :edit, :update, :destroy ]
   before_action :get_ingredient_associations, only: [ :new, :create, :edit, :update ]
 
@@ -7,7 +8,6 @@ class IngredientsController < ApplicationController
   end
 
   def show
-    @ingredient = Ingredient.find(params[:id])
     @recipes = @ingredient.recipes
   end
 
@@ -27,10 +27,18 @@ class IngredientsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
+    @ingredient.update(create_ingredient_params)
+    @ingredient.recipe_ids = [] unless params[:ingredient][:recipe_ids]
+
+    if @ingredient.save
+      redirect_to ingredient_path(@ingredient.id), notice: "Ingredient updated!"
+    else
+      flash.now[:errors] = ERRORS[:unsuccessful_save]
+      render :new
+    end
   end
 
   def destroy

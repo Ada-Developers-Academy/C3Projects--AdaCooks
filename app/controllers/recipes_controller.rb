@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   before_action :find_recipe, only: [ :show, :edit, :update, :destroy ]
-  before_action :get_recipe_associations, only: [ :new, :edit, :update ]
+  before_action :get_recipe_associations, only: [ :new, :create, :edit, :update ]
   before_action :require_login, only: [ :new, :create, :edit, :update, :destroy ]
 
   def index
