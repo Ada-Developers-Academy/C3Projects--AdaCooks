@@ -8,8 +8,9 @@ Rails.application.routes.draw do
   # search
   get "/search" => 'recipes#index'
 
-  resources :users, only: [:show, :new, :create]
-  resources :cookbooks
+  resources :users, only: [:show, :new, :create] do
+    resources :cookbooks
+  end
   resources :recipes
   resources :ingredients
 
@@ -17,6 +18,5 @@ Rails.application.routes.draw do
   get    "/login", to: "sessions#new"
   post   "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
-
 
 end
