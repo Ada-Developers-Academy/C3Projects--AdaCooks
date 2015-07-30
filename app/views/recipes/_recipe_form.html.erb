@@ -2,7 +2,7 @@
 
     <br><% unless @recipe.errors.values == [] %>
       <div class="alert alert-danger" role="alert">
-        <%= @recipe.errors.values.first.first.capitalize %>
+        <%= @recipe.errors.full_messages.first %>
       </div>
     <% end %><br>
 

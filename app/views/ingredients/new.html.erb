@@ -1,4 +1,13 @@
 <div class="container marketing">
+
+
+  <% unless @ingredient.errors.values == [] %>
+    <div class="alert alert-danger" role="alert">
+      <%=  @ingredient.errors.full_messages.first %>
+    </div>
+  <% end %>
+
+
   <fieldset>
     <%= form_for @ingredient do |f| %>
       <%= f.label "Add a new ingredient:" %>
