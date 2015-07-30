@@ -13,7 +13,13 @@ class CookbooksController < ApplicationController
   def create
     @cookbook = Cookbook.create(create_params)
 
-    redirect_to user_cookbook_path(session[:user_id], @cookbook.id)
+    if @cookbook.save
+      flash[:success] = "Your cookbook has been created"
+      redirect_to user_cookbook_path(session[:user_id], @cookbook.id)
+    else
+      flash[:error] = @cookbook.errors.full_messages.first
+      render :new
+    end
   end
 
   def edit
