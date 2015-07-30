@@ -4,6 +4,7 @@ class Recipe < ActiveRecord::Base
   has_and_belongs_to_many :ingredients
   belongs_to :cookbook
 
+
 # Validations __________________________________________________________
   validates :name, presence: true
   validates :preparation, presence: true

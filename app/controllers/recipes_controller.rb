@@ -50,7 +50,6 @@ class RecipesController < ApplicationController
     cookbook = recipe.cookbook_id
     recipe.destroy
 
-
     redirect_to cookbook_path(cookbook)
   end
 
