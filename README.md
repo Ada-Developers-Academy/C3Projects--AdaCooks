@@ -30,8 +30,8 @@ We're doing this to make the final project easier to code review. Because the ba
     - links to the Ingridient profile for all associated Ingredients
 - __Ingredients__
   - view an alphabetical list of all Ingedients
-  - view the details of an individual Ingredient, including...
-    - a list of links to Recipes associated with the Ingredient
+  - DONE view the details of an individual Ingredient, including...
+    - DONE a list of links to Recipes associated with the Ingredient
     
 ### As an anonymous User I can...
 - DONE register a new User account
@@ -39,13 +39,13 @@ We're doing this to make the final project easier to code review. Because the ba
 
 ### As a Logged In User I can...
 - DONE Log Out
-- __Cookbooks__
+- DONE __Cookbooks__
   - DONE See a list of Cookbooks I've already created, including...
     - DONE The number of Recipes associated with the Cookbook
     - DONE The number of unique Ingredients associated with the Cookbook
-  - See the details of a specific Cookbook, including...
+  - DONE See the details of a specific Cookbook, including...
     - DONE a list of links to the Recipes associated with the Cookbook
-    - a link to remove (unassociate) a Recipe from the Cookbook. This does not destroy the Recipe.
+    - DONE a link to remove (unassociate) a Recipe from the Cookbook. This does not destroy the Recipe.
   - DONE Create a new Cookbook, associated with my User account, with...
     - DONE a `name` (required)
     - DONE a `description` (optional)
