@@ -1,8 +1,10 @@
 <li><%= link_to "Home", root_path %></li>
-<%= form_for :search, url: root_path do |f| %>
-  <%= f.text_field :query, placeholder: "Ingredient Name" %>
+<%= form_for :search, url: root_path, :html => { :class => "form-inline" } do |f| %>
+  <div class="form-group">
+    <%= f.text_field :query, class: "form-control", placeholder: "Ingredient Name" %>
+  </div>
 
-  <%= f.submit "Search By Ingredient" %>
+  <%= f.submit "Search By Ingredient", class: "btn btn-default" %>
 <% end %>
 <li><%= link_to "Recipes", recipes_path %></li>
 <li><%= link_to "Ingredients", ingredients_path %></li>
