@@ -45,6 +45,10 @@ class CookbooksController < ApplicationController
     redirect_to user_path(session[:user_id]), notice: "Cookbook deleted."
   end
 
+  def unassociate
+    
+  end
+
   private
 
   def create_cookbook_params    # note: access to associated objects (e.g., recipes) will be through that controller.

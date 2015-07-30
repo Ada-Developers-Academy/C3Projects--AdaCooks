@@ -4,7 +4,7 @@
       <span class="glyphicon glyphicon-pencil" aria-hidden="true" data-toggle="tooltip" title="Edit Me!"></span>
     <% end %>
     <%= link_to user_cookbook_path(session[:user_id], @cookbook.id), method: :delete, class: 'btn btn-default' do %>
-      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+      <span class="glyphicon glyphicon-trash" aria-hidden="true" data-toggle="tooltip" title="Delete Cookbook!"></span>
     <% end %>
   </div>
 <% end %>
@@ -28,12 +28,14 @@
       <p><%= recipe.description %></p>
       <p>Chef: <%= link_to recipe.user.username, user_path(recipe.user_id) %></p>
     </div>
-    <% if session[:user_id] %>
+    <% if session[:user_id] == recipe.user_id %>
       <div class="media-right">
         <%= link_to edit_recipe_path(recipe.id), class: 'btn btn-default' do %>
           <span class="glyphicon glyphicon-pencil" aria-hidden="true" data-toggle="tooltip" title="Edit Me!"></span>
         <% end %>
-        # TODO: Add link to unassociate the recipe from the cookbook
+        <%= link_to recipe_path(recipe.id), method: :delete, class: "btn btn-default" do %>
+          <span class="glyphicon glyphicon-trash" data-toggle="tooltip" title="Edit Me!"></span>
+        <% end %>
       </div>
     <% end %>
     <hr>
