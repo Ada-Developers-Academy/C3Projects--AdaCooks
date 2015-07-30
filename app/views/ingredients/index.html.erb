@@ -2,7 +2,7 @@
 
 <%= link_to "Add New Ingredient", new_user_ingredient_path(session[:user_id]), class: "btn btn-primary" %>
 
-<%= link_to "Back to Dashboard", dashboard_user_path(session[:user_id]), class: "btn btn-primary" %>
+<%= link_to "Back", :back, class: "btn btn-default" %>
 
 <table>
   <th>Ingredients</th>
@@ -18,4 +18,3 @@
   </tr>
   <% end %>
 </table>
-

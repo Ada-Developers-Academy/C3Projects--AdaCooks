@@ -17,12 +17,12 @@
     <% @recipes.each do |recipe| %>
     <tr>
       <td><%= link_to recipe.name, recipe_path(recipe) %></td>
-      <td><%= link_to "X", destroy_recipe_assoc_path(user_id: params[:user_id], cookbook_id: @cookbook, recipe_id: recipe), method: :delete, class: "btn btn-danger" %></td>
+      <td><%= link_to "X", destroy_recipe_assoc_path(user_id: session[:user_id], cookbook_id: @cookbook, recipe_id: recipe), method: :delete, class: "btn btn-danger" %></td>
     </tr>
     <% end %>
   </tbody>
 </table>
 
 <p>
-  <%= link_to "Back to Dashboard", dashboard_user_path(@user), class: "btn btn-default" %>
+  <%= link_to "Back", :back, class: "btn btn-default" %>
 </p>
