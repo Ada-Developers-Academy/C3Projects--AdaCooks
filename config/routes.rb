@@ -5,8 +5,12 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
 
-  resources :users, only: [:show, :new, :create]
-  resources :cookbooks
+  # search
+  get "/search" => 'recipes#index'
+
+  resources :users, only: [:show, :new, :create] do
+    resources :cookbooks
+  end
   resources :recipes
   resources :ingredients
 
@@ -14,6 +18,5 @@ Rails.application.routes.draw do
   get    "/login", to: "sessions#new"
   post   "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
-
 
 end

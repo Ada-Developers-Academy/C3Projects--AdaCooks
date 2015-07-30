@@ -22,11 +22,19 @@ class IngredientsController < ApplicationController
     end
   end
 
-  private
+  def edit; end
+  
+  def update
+    @ingredient.update(ingredient_params)
 
-      def create_ingredient
-        @ingredient = Ingredient.new
-      end
+    if @ingredient.save
+      redirect_to user_path(@ingredient.user_id)
+    else
+      render :edit
+    end
+  end
+
+  private
 
       def set_ingredient
         @ingredient = Ingredient.find(params[:id])
