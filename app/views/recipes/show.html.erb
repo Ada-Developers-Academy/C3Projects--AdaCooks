@@ -12,7 +12,9 @@
   </div>
   <div class="col-lg-6 col-offset-lg-2">
     <%= render partial: "ingredients_list", locals: { recipe: @recipe } %>
-    Instructions: <p><%= @recipe.preparation %></p>
+    <h4>Description: </h4><p><%= @recipe.description %></p>
+    <h4>Instructions: </h4><p><%= @recipe.preparation %></p>
+
     </div>
   </div>
 </div>

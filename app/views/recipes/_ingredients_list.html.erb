@@ -1,4 +1,5 @@
-<p>Includes:
+<h4>Includes: </h4>
+<p>
   <% recipe.ingredients.each_with_index do |ingredient, index| %>
     <%= link_to ingredient.name, ingredient_path(ingredient) %>
     <!-- #TODO: extract into controller? -->
