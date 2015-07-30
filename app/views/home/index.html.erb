@@ -4,3 +4,18 @@
     <p> For the People, by the People </p>
   </div>
 </div>
+<div class="container">
+  <div class="row">
+  <% @recipes.each do |recipe| %>
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <a href="<%= recipe_path(recipe.id)%>">
+          <%= image_tag(recipe.image_url, class: "img-rounded product-thumb") %>
+          <div class="caption">
+            <h4><%= recipe.name.titlecase %></h4>
+        </a>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

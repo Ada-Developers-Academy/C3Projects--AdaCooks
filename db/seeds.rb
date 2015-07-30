@@ -23,7 +23,7 @@ CSV.foreach("db/recipes.csv", headers: true) do |row|
   Recipe.create(
     name: row[0],
     description: row[1],
-    image: row[2],
+    image: File.open(Rails.root.join(row[2])),
     preparation: row[3],
     user_id: row[4]
   )
@@ -33,7 +33,7 @@ CSV.foreach("db/recipes.csv", headers: true) do |row|
 
    Ingredient.create(
      name: row[0],
-     image: row[1],
+     image: File.open(Rails.root.join(row[1])),
      user_id: row[2]
    )
   end
