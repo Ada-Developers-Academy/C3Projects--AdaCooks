@@ -1,4 +1,6 @@
 class CookbooksController < ApplicationController
+  before_action :check_user_params, except: [:show]
+
   def show
     @cookbook = Cookbook.find(params[:id])
     @recipes = @cookbook.recipes
@@ -34,8 +36,6 @@ class CookbooksController < ApplicationController
         render :edit
       end
     end
-
-
   end
 
   def destroy

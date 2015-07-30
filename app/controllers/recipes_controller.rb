@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+  before_action :check_user_params, except: [:show]
 
   def new
     @recipe = Recipe.new
@@ -82,7 +83,7 @@ class RecipesController < ApplicationController
       :description,
       :preparation,
       :user_id,
-      :image, 
+      :image,
       ingredient_ids: [],
       cookbook_ids: [])
   end

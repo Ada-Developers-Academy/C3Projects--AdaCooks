@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  before_action :check_user_params, only: [:destroy]
   def create
     @user = User.find_by(email: params[:session][:email])
 
