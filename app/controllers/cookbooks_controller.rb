@@ -1,5 +1,11 @@
 class CookbooksController < ApplicationController
   before_action :require_login
+  before_action :set_cookbook, only: [:show, :edit, :update, :destroy]
+
+  MESSAGES = {
+    name: "Requires a name.",
+    saved: "Successfully saved cookbook."
+  }
 
   # def index # NOTE THIS LOGIC NEEDS TO GO INTO THE RECIPE & INGREDIENTS NOT COOKBOOKS AUGH
   #   if params[:id].nil?
@@ -13,6 +19,9 @@ class CookbooksController < ApplicationController
     @cookbooks = Cookbook.by_user(session[:user_id]) # TODO SHOULD BE ALPHABETICAL?
   end
 
+  def show
+  end
+
   def new
     @cookbook = Cookbook.new
   end
@@ -21,33 +30,32 @@ class CookbooksController < ApplicationController
     @cookbook = Cookbook.new(cookbook_params)
     @cookbook.user_id = session[:user_id]
     if @cookbook.save
+      flash[:success] = MESSAGES[:saved]
       redirect_to cookbook_path(@cookbook)
     else
-      flash[:warning] = "Cookbook needs a name."
+      flash[:warning] = MESSAGES[:name]
       render :new
     end
   end
 
   def edit
-    @cookbook = Cookbook.find(params[:id])
   end
 
   def update
-    cookbook = Cookbook.find(params[:id])
-    cookbook.attributes = cookbook_params
-
-    if cookbook.save
-      flash[:success] = "Successfully updated cookbook."
-      redirect_to cookbook_path(cookbook)
+    if @cookbook.update(cookbook_params)
+      flash[:success] = MESSAGES[:saved]
+      redirect_to cookbook_path(@cookbook)
     else
-      flash[:warning] = "Requires name."
-      render edit_cookbook_path(cookbook)
+      # BELOW: Had to do the below because @cookbook's values still change
+      # from the #update mehod, and I want to return the original name.
+      @cookbook.name = Cookbook.find(params[:id]).name
+      flash.now[:warning] = MESSAGES[:name]
+      render :edit
     end
   end
 
   def destroy
-    cookbook = Cookbook.find(params[:id])
-    cookbook.destroy
+    @cookbook.destroy
     redirect_to cookbooks_path
   end
 
@@ -55,6 +63,10 @@ class CookbooksController < ApplicationController
 
   def cookbook_params
     params.require(:cookbook).permit(:name, :description)
+  end
+
+  def set_cookbook
+    @cookbook = Cookbook.find(params[:id])
   end
 
 end
