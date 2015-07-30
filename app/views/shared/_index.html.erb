@@ -1,6 +1,9 @@
 <h1>All the <%= collection.name.pluralize %> </h1>
 
 <% collection.each do |separate| %>
+
 <p><%= link_to separate.name, "/#{link}/#{separate.id}", method: :get %></p>
+<%= image_tag(separate.image_url(:thumb))%>
+
 
 <% end %>

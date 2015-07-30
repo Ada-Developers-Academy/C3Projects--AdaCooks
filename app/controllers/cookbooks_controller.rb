@@ -15,6 +15,10 @@ class CookbooksController < ApplicationController
     end
   end
 
+  def show
+    @cookbook = Cookbook.find(params[:id])
+  end
+
   def destroy
     @cookbook = Cookbook.find(params[:id])
     @cookbook.destroy

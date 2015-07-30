@@ -1,4 +1,6 @@
 class Recipe < ActiveRecord::Base
+  # uploader ------
+  mount_uploader :image, ImageUploader
   # Associations ----------------------------------
   has_and_belongs_to_many :ingredients
   has_and_belongs_to_many :cookbooks

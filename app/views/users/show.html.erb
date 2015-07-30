@@ -1,22 +1,22 @@
 <div class="container">
   <h1>Welcome, <%= @user.username %></h1>
-  <%= button_to "New Recipe", new_recipe_path, method: :get %>
-  <%= button_to "New Cookbook", new_cookbook_path, method: :get %>
+  <%= button_to "New Recipe", new_recipe_path, method: :get, class: "btn btn-default" %>
+  <%= button_to "New Cookbook", new_cookbook_path, method: :get, class: "btn btn-default" %>
 
-  <table class="table">
+  <table class="table table-bordered">
     <tr>
         <th>Cookbook Name</th>
         <th>Description</th>
         <th>No. Recipes</th>
-        <th>Delete</th>
+        <th></th>
     </tr>
     <% @cookbooks.each do |cookbook| %>
       <tr>
-        <td> <h3><%= cookbook.name %></h3> </td>
+        <td> <h3><%= link_to "#{cookbook.name}", cookbook_path(cookbook.id) %></h3> </td>
         <td><%= cookbook.description %></td>
-        <td><%= cookbook.recipes %> RECIPES</td>
-        <td><%= button_to "Delete", cookbook_path(cookbook.id), method: "delete" %></td>
-      </tr>
-    <% end %>
+        <td><%= cookbook.recipes.count %> </td>
+    <td><%= button_to "Delete", cookbook_path(cookbook.id), method: "delete", class: "btn btn-danger" %></td>
   </table>
+
+<% end %>
 </div>
