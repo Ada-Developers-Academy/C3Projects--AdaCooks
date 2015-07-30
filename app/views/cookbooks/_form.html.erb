@@ -1,11 +1,15 @@
 <%= form_for @cookbook, url: path do |f| %>
   <fieldset>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <div class="form_group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
 
-    <%= f.label :description %>
-    <%= f.text_field :description %>
-
-    <%= f.submit %>
+    <div class="form_group">
+      <%= f.label :description %>
+      <%= f.text_field :description, class: "form-control" %>
+    </div>
+    <br>
+    <%= f.submit class: "btn btn-primary" %>
   </fieldset>
 <% end %>
