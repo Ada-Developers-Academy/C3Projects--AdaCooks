@@ -28,8 +28,21 @@ body {
   min-height: 100vh;
 }
 
+.navbar-default {
+  background: #87CC1F;
+}
+
 .navbar-text {
-  padding: 0 5px 0 5px;
+  padding: 0 10px 0 5px;
+}
+
+.navbar-text p {
+  color: #0C140F;
+}
+
+
+.navbar-brand span {
+  color: #0C140F;
 }
 
 .form-control {
