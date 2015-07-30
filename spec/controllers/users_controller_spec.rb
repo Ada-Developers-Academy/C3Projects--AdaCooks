@@ -78,4 +78,20 @@ RSpec.describe UsersController, type: :controller do
       expect(response).to render_template("my_cookbooks")
     end
   end
+
+  describe "GET #my_ingredients" do
+    before :each do
+      @user = create :user
+      session[:user_id] = @user.id
+      get :my_ingredients
+    end
+
+    it "responds with an HTTP 200 status" do
+      expect(response).to have_http_status(200)
+    end
+
+    it "renders the new template" do
+      expect(response).to render_template("my_ingredients")
+    end
+  end
 end
