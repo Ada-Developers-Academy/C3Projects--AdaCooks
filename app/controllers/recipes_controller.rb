@@ -11,7 +11,6 @@ class RecipesController < ApplicationController
     update_fail: "There was a problem with your update. Please try again.",
     destroy_success: "You have successfully deleted the recipe.",
     destroy_fail: "There was a problem with your recipe deletion. Please try again.",
-    cookbook_success: "You saved this recipe to your cookbook.",
     cookbook_fail: "Saving this recipe to that cookbook did not work. Please try again. "
   }
 
@@ -68,7 +67,7 @@ class RecipesController < ApplicationController
     @recipe.cookbooks << cookbook
 
     if @recipe.cookbooks.exists?(id: cookbook_id)
-      flash[:success] = MESSAGES[:cookbook_success]
+      flash[:success] = "You successfully saved this recipe to your cookbook '#{cookbook.name}'."
       redirect_to @recipe
     else
       flash[:errors] = MESSAGES[:cookbook_fail]
