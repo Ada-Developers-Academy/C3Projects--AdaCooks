@@ -4,7 +4,7 @@ RSpec.describe User, type: :model do
   before :each do
     create :ingredient, id: 99
   end
-  
+
   describe "validations" do
     it "creates valid users" do
       create :user
