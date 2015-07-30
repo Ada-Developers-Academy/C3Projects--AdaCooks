@@ -6,7 +6,7 @@ RSpec.describe CookbooksController, type: :controller do
       cookbook = create :cookbook
       user = create :user
       session[:user_id] = user.id
-      get :show, id: cookbook.id
+      get :show, user_id: user.id, id: cookbook.id
     end
 
     it "responds successfully with an HTTP 200 status code" do
