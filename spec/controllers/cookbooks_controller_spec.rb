@@ -57,8 +57,13 @@ RSpec.describe CookbooksController, type: :controller do
     end
 
     context "not logged in user" do
+      it "does not respond successfully" do
+        get :new, user_id: 1
+        expect(response).to_not be_success
+      end
+
       it "redirects to the home page" do
-        get :new, user_id: 2
+        get :new, user_id: 1
         expect(response).to redirect_to(root_path)
       end
     end
