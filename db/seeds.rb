@@ -16,16 +16,16 @@ users.each do |user|
   User.create(user)
 end
 
-ingredients = [image:   }
-                {id:1, name: "banana", image: File.open(File.join('app/assets/images/banana.jpg')), user_id: 1},
-                {id:2, name: "apple", image: File.open(File.join('app/assets/images/apple.jpg')), user_id: 2},
+ingredients = [   
+                {id:1, name: "banana", user_id: 1, image: File.open(File.join('app/assets/images/banana.jpg'))},
+                {id:2, name: "apple",  user_id: 2, image: File.open(File.join('app/assets/images/apple.jpg'))},
                 {id:3, name: "mango", image: File.open(File.join('app/assets/images/mango.jpg')), user_id: 3},
                 {id:4, name: "ice", image: File.open(File.join('app/assets/images/ice.jpg')), user_id: 1},
                 {id:5, name: "peach", image: File.open(File.join('app/assets/images/peach.jpg')), user_id: 2},
-                {id:6, name: "peanut butter", image: File.open(File.join('app/assets/images/peanut_butter.jpg')), user_id: 2},
+                {id:6, name: "peanut butter", image: File.open(File.join('app/assets/images/pbutter.jpg')), user_id: 2},
                 {id:7, name: "strawberry", image: File.open(File.join('app/assets/images/strawberry.jpg')), user_id:1},
                 {id:8, name: "kale", image:File.open(File.join('app/assets/images/kale.jpg')), user_id: 3},
-                {id:9, name: "flax", image: File.open(File.join('app/assets/images/flax.jpg')), user_id: 2},
+                {id:9, name: "flax", image: File.open(File.join('app/assets/images/flax_seed.jpg')), user_id: 2},
                 {id:10, name: "orange juice", image: File.open(File.join('app/assets/images/orange_juice.jpg')), user_id: 2}
 ]
 
