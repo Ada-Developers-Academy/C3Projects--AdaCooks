@@ -11,8 +11,7 @@ class RecipesController < ApplicationController
 
 		# move to model?
 		user = User.find(session[:user_id])
-		user_cookbooks = user.cookbooks.map { |c| [c.name, c.id] }
-		@cookbooks_array = user_cookbooks.unshift(["None", nil])
+		@cookbooks_array = user.cookbooks.map { |c| [c.name, c.id] }
 
 		# move to model?
 		@measurements_array = []
@@ -48,8 +47,8 @@ class RecipesController < ApplicationController
 
 		# move to model?
 		user = User.find(session[:user_id])
-		user_cookbooks = user.cookbooks.map { |c| [c.name, c.id] }
-		@cookbooks_array = user_cookbooks.unshift(["None", nil])
+		@user_cookbooks = user.cookbooks
+		@cookbooks_array = user.cookbooks.map { |c| [c.name, c.id] }
 
 		# move to model?
 		@measurements_array = []
