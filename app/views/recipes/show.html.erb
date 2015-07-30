@@ -1,0 +1,15 @@
+<h2> <%= @recipe.name %> </h2>
+<% unless @recipe.cookbook_id.nil? %>
+	<h3> in <%= link_to @recipe.cookbook, cookbook_path(@recipe.cookbook.id) %> </h3>
+<% end %>
+<h4> by: <%= link_to @recipe.user, user_path(@recipe.user.id) %> </h4>
+
+<%= image_tag(@recipe.image) %>
+
+<p>
+	<%= @recipe.description %>
+</p>
+
+<p>
+	<%= @recipe.prep %>
+</p>
