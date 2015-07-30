@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   def set_user # FIXME: test set_user
     if session[:user_id]
-      @user = User.find(session[:user_id])
+      @authenticated_user = User.find(session[:user_id])
     end
   end
 end

@@ -6,8 +6,8 @@
 <% if session[:user_id] %>
   <%= link_to "+Cookbook", root_path, class: "btn btn-default btn-md" %>
   <% if @recipe.user_id == session[:user_id] %>
-    <%= link_to "Edit", edit_user_recipe_path(@user, @recipe), class: "btn btn-info btn-md" %>
-    <%= link_to "Delete", user_recipe_path(@user, @recipe), method: "delete", class: "btn btn-warning btn-md" %>
+    <%= link_to "Edit", edit_user_recipe_path(@authenticated_user, @recipe), class: "btn btn-info btn-md" %>
+    <%= link_to "Delete", user_recipe_path(@authenticated_user, @recipe), method: "delete", class: "btn btn-warning btn-md" %>
   <% end %>
 <% end %>
 
@@ -19,7 +19,7 @@
 
 <div class="col-sm-4">
   <% if @recipe.ingredients.count > 0 %>
-    <% if @recipe.user_id == @user.id %>
+    <% if @recipe.user_id == @authenticated_user.id %>
       <%= render partial: 'shared/recipe_ingredients_list', locals: { ingredients: @recipe.ingredients.alphabetized } %>
     <% else %>
       <%= render partial: 'shared/plain_ingredients_list', locals: { ingredients: @recipe.ingredients.alphabetized } %>
