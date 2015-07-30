@@ -21,7 +21,10 @@ ingredients = [
   { name: "Maya's Midori", user_id: 3, image: File.open(File.join('app/assets/images/ingredients/maya.jpg')) }, #12
   { name: "Orange Juice", user_id: 1, image:File.open(File.join('app/assets/images/ingredients/orange.jpeg')) }, #13
   { name: "7-Up", user_id: 3, image: File.open(File.join('app/assets/images/ingredients/7up.jpeg'))}, #14
-  { name: "Whisky Sour Mix", user_id: 2, image: File.open(File.join('app/assets/images/ingredients/sour.jpeg')) } #15
+  { name: "Whisky Sour Mix", user_id: 2, image: File.open(File.join('app/assets/images/ingredients/sour.jpeg')) }, #15
+  { name: "Tina's Tequila", user_id: 1, image: File.open(File.join('app/assets/images/ingredients/tina.jpg')) }, #16
+  { name: "Leslie's Liquer", user_id: 3, image: File.open(File.join('app/assets/images/ingredients/Leslie.jpeg')) }, #17
+  { name: "Veronica's Vodka", user_id: 2, image: File.open(File.join('app/assets/images/ingredients/veronica.jpg')) } #18
 ]
 
 ingredients.each do |ingredient|

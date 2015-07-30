@@ -8,11 +8,12 @@ class Ingredient < ActiveRecord::Base
 # ----------MOUNTED-OBJECTS-----------------------------
   mount_uploader :image, ImageUploader
 
-  # -------------SCOPES----------------------
+# -------------SCOPES----------------------
   def self.alphabetize
     order('name'.capitalize)
   end
 
+# -------------RECIPES----------------------
   def self.search(query)
     where("name LIKE ?", "%#{query}%") #for localhost
     # where("name ILIKE ?", "%#{query}%") #for heroku
