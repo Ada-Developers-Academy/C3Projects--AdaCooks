@@ -30,7 +30,7 @@ RSpec.describe SessionsController, type: :controller do
       end
 
       it "redirects to the home page" do
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(user_path(@user))
       end
     end
 
