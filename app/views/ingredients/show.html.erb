@@ -1,7 +1,7 @@
 <h2><%= @ingredient.name %></h2>
 
 <p>
-  <!-- @ingredient.image -->
+  <%= image_tag @ingredient.image_url(:thumb) %>
 </p>
 
 <h3>Recipes</h3>

@@ -25,6 +25,11 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :image %>
+    <%= f.file_field :image, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :cookbook_ids, "Cookbooks" %>
     <%= f.collection_select( :cookbook_ids, @cookbooks, :id, :name, options = {prompt: "Select a Cookbook (optional)"}, class: "form-control") %>
   </div>

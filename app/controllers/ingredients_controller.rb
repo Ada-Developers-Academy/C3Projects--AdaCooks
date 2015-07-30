@@ -55,6 +55,6 @@ class IngredientsController < ApplicationController
   private
 
   def ingredients_params
-    params.require(:ingredient).permit(:name, :user_id, { :recipe_ids => [] })
+    params.require(:ingredient).permit(:name, :user_id, :image, { :recipe_ids => [] })
   end
 end
