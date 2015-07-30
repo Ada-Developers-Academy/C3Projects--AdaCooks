@@ -25,14 +25,14 @@ class CookbooksController < ApplicationController
   end
 
   def update
-    @cookbook = Cookbook.find(params[:id])
-    @cookbook.update(cookbook_params)
+    cookbook = Cookbook.find(params[:id])
+    cookbook.update(cookbook_params)
     redirect_to user_path(session[:user_id])
   end
 
   def destroy
-    @cookbook = Cookbook.find(params[:id])
-    @cookbook.destroy
+    cookbook = Cookbook.find(params[:id])
+    cookbook.destroy
     redirect_to user_path(session[:user_id])
   end
 

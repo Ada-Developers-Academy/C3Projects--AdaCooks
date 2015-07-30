@@ -1,10 +1,5 @@
 FactoryGirl.define do
 
-  # factory :ingredient do
-  #   name "Pineapple"
-  #     # do we need a user_id???
-  # end
-
   factory :ingredient_params do
     # can we do this?
   end
@@ -24,7 +19,7 @@ FactoryGirl.define do
   factory :recipe do
     name "Soup"
     preparation "Stir It"
-    
+
   end
 
   factory :ingredient do
@@ -33,5 +28,6 @@ FactoryGirl.define do
 
   factory :cookbook do
     name "Paula Deen vs Jimmy Dean"
+    description "This is the ultimate Battle Royale, with CHEESE!"
   end
 end

@@ -26,45 +26,27 @@ RSpec.describe CookbooksController, type: :controller do
     end
   end # new
 
-  # describe "POST #create" do
-  #   # + test case
-  #   context "Valid Ingredient params" do
-  #     let(:ingred_params) do
-  #        {
-  #          ingredient: {
-  #            name: 'Steak',
-  #            image: 'steak.jpg'
-  #          }
-  #        }
-  #     end
-  #
-  #     it "creates a new Ingredient record" do
-  #       post :create, ingred_params
-  #       expect(Ingredient.count).to eq(1)
-  #     end
-  #   end
-  #   # - test case
-  #   context "Invalid Ingredient params" do
-  #     let(:ingred_params) do
-  #        {
-  #          ingredient: {
-  #            image: 'steak.jpg'
-  #          }
-  #        }
-  #     end
-  #
-  #     it "does not persist invalid ingredients" do
-  #      post :create, ingred_params
-  #      expect(Ingredient.count).to eq 0
-  #      end
-  #
-  #    it "renders the :new view (to allow users to fix invalid data)" do
-  #      post :create, ingred_params
-  #      expect(response).to render_template("new")
-  #    end
-  #
-  #   end
-  # end # create
+  describe "POST #create" do
+    # + test case
+      it "creates a new Cookbook record" do
+        session[:user_id] = 20
+        expect{post :create, cookbook: FactoryGirl.attributes_for(:cookbook)}.to change(Cookbook, :count).by(1)
+      end
+    # - test case
+    context "doesn't let invalid cookbooks to save" do
+      it "does not persist invalid ingredients" do
+       session[:user_id] = 20
+
+       expect{post :create, cookbook: FactoryGirl.attributes_for(:cookbook, name: nil)}.to change(Cookbook, :count).by(0)
+       end
+
+     it "renders the :new view (to allow users to fix invalid data)" do
+       post :create, cookbook: FactoryGirl.attributes_for(:cookbook, name: nil)
+       expect(response).to render_template("new")
+     end
+
+    end
+  end # create
 
   # describe "DELETE #destroy" do
   #   before(:each) do
