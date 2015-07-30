@@ -2,7 +2,7 @@
 
 <% if session[:user_id] == @recipe.user.id %>
 	<%= button_to 'Edit', edit_recipe_path(@recipe), method: :get, class: 'btn btn-default' %>
-<% else %>
+<% end %>
 
 <%= form_for(@recipe, url: { controller: :cookbooks, action: :update }, method: :put) do |f| %>
 	<%= f.select(:cookbook_id, options_for_select(@cookbooks_array)) %>
@@ -29,16 +29,16 @@
 			<h4>Ingredients</h4>
 		</th>
 	</tr>
-	<% @recipe.recipe_ingredients.each do |ingredient| %>
+	<% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
 	<tr>
 		<td>
-			<%= ingredient.quantity %>
+			<%= recipe_ingredient.quantity %>
 		</td>
 		<td>
-			<%= ingredient.measurement %>
+			<%= recipe_ingredient.measurement %>
 		</td>
 		<td>
-			<%= link_to Ingredient.find(ingredient.id).name, ingredient_path(Ingredient.find(ingredient.id)) %>
+			<%= link_to recipe_ingredient.ingredient.name, ingredient_path(recipe_ingredient.ingredient) %>
 		</td>
 	</tr>
 	<% end %>
