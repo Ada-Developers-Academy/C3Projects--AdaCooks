@@ -1,0 +1,3 @@
+<h1>Edit <%= @recipe.name %></h1>
+
+<%= render partial: "shared/recipe_form", locals: {recipe: @recipe, url: @url, method: @method} %>

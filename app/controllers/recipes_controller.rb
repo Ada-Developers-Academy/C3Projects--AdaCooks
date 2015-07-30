@@ -19,12 +19,9 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
-    @ingredient_ids = params[:recipe][:ingredient_ids]
-
-    Ingredient.save_to_recipe
 
     if @recipe.save
-      raise
+      # raise
       redirect_to recipes_path, notice: "Recipe successfully added chef!"
     else
       flash.now[:error] = "Error!!"
@@ -38,6 +35,7 @@ class RecipesController < ApplicationController
   end
 
   def update
+    @recipe.update(recipe_params)
     if @recipe.save
       redirect_to recipes_path, notice: "You so fancy!"
     else
@@ -58,7 +56,7 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:name, :desc, :prep, :image, :cookbook_id, :user_id, :ingredient_ids, ingredients_attributes: [:name])
+    params.require(:recipe).permit(:name, :desc, :prep, :image, :cookbook_id, :user_id, :ingredient_ids => [], ingredients_attributes: [:name])
   end
 
   # def ingredient_params

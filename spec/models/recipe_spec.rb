@@ -13,6 +13,11 @@ RSpec.describe Recipe, type: :model do
       expect(recipe).to_not be_valid
       expect(recipe.errors.keys).to include(:prep)
     end
+
+    it "requires ingredients" do
+      expect(recipe).to_not be_valid
+      expect(recipe.errors.keys).to include(:req_ingredients)
+    end
   end
 
   describe "scope" do
