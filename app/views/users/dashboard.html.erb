@@ -2,6 +2,17 @@
 <h1>Hello <%= @user.username %>! Welcome to your Dashboard!</h1>
 
 <h3>Your Cookbooks:</h3>
+<%= link_to "Create a New Cookbook", new_user_cookbook_path(@user.id), class: "btn btn-default" %>
+<br>
+
+<% @user.cookbooks.each do |cookbook| %>
+  <div class="dashboard-product-block">
+    <%= link_to(image_tag(cookbook.image_url(:thumb)), user_cookbook_path(@user.id, cookbook.id)) %>
+    <%= link_to "Edit", edit_user_cookbook_path(@user.id, cookbook.id), class: "btn btn-default dashboard-button" %>
+    <%= link_to "X", user_cookbook_path(@user.id, cookbook.id), method: :delete, class: "btn btn-danger dashboard-button" %>
+    <h5><%= cookbook.name %></h5>
+  </div>
+<% end %>
 
 <h3>Your Recipes:</h3>
 
