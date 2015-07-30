@@ -1,2 +1,2 @@
 <%= render :partial => 'form',
-           :locals => { :path => user_cookbook_path(session[:user_id], @cookbook.id) } %>
+           :locals => { :path => user_cookbook_path(@authenticated_user, @cookbook.id) } %>
