@@ -1,6 +1,7 @@
 <h1> <%= @cookbook.name.upcase %>
 <%= link_to "Edit", edit_user_cookbook_path(@authenticated_user, @cookbook), class: "btn btn-info" %>
-<%= link_to "Delete", user_cookbook_path(@authenticated_user, @cookbook), method: "delete", class: "btn btn-warning", data: { confirm: "Are you sure you want to delete?" } %>
+<%= link_to "Delete", user_cookbook_path(@authenticated_user, @cookbook), method: "delete",
+    class: "btn btn-warning", data: { confirm: "Are you sure you want to remove this from your cookbook?" } %>
 </h1>
 
 <h4><%= @cookbook.description %></h4>
@@ -11,7 +12,8 @@
   <% @recipes.each do |recipe| %>
     <li class="list-group-item">
       <%= link_to recipe.name, recipe_path(recipe) %>
-      <%= link_to "Remove recipe", user_cookbook_recipe_path(session[:user_id], @cookbook, recipe), method: "delete", class: "btn btn-warning btn-xs", data: { confirm: "Are you sure you want to delete?" } %>
+      <%= link_to "Remove recipe", user_cookbook_recipe_path(session[:user_id], @cookbook, recipe), method: "delete",
+      class: "btn btn-warning btn-xs", data: { confirm: "Are you sure you want to remove this from your cookbook?" } %>
     </li>
   <% end %>
 </ul>

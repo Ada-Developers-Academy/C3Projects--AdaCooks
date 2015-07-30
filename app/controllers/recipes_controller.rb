@@ -39,9 +39,35 @@ class RecipesController < ApplicationController
 
   def destroy
     name = @recipe.proper_name
+    associated_ingredients = @recipe.ingredients
+
     @recipe.destroy
+    # forces each ingredient record to reload so that ingredient.recipe no longer
+    # shows the association with the deleted recipe (SQL caches the old association)
+    associated_ingredients.each { |ingredient| ingredient.reload }
+
     flash[:success] = "Your recipe has been destroyed. Goodbye, #{ name }!"
     redirect_to recipes_path
+  end
+
+  def add_ingredient
+    recipe = Recipe.find(params[:recipe_id])
+    ingredient = Ingredient.find(params[:id])
+
+    if recipe.ingredients.include?(ingredient)
+      flash[:error] = "This ingredient is already in #{ recipe.name }."
+    else
+      recipe.add_ingredient_association(ingredient)
+    end
+
+    redirect_to recipe_path(recipe)
+  end
+
+  def remove_ingredient
+    recipe = Recipe.find(params[:recipe_id])
+    recipe.remove_ingredient_association(params[:id])
+
+    redirect_to recipe_path(recipe)
   end
 
   private

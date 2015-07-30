@@ -3,11 +3,28 @@
     <li class="list-group-item">
       <%= link_to ingredient.proper_name, ingredient_path(ingredient) %>
       <span class="badge"><%= ingredient_recipes_count(ingredient) %></span>
-      <% if @authenticated_user && ingredient.user_id == @authenticated_user.id %>
-        <%= link_to "Edit", edit_user_ingredient_path(@authenticated_user, ingredient),
-            class: "btn btn-info btn-xs" %>
-        <%= link_to "Delete", user_ingredient_path(@authenticated_user, ingredient),
-            method: "delete", class: "btn btn-warning btn-xs" %>
+
+      <% if @authenticated_user %>
+        <!-- add to recipe button -->
+        <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle btn-xs"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            +Recipe <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <% (@authenticated_user.recipes).each do |recipe| %>
+              <li><%= link_to recipe.name, user_recipe_ingredient_path(@authenticated_user, recipe, ingredient), method: "post" %></li>
+            <% end %>
+          </ul>
+        </div>
+
+        <% if ingredient.user_id == @authenticated_user.id %>
+          <!-- edit / delete buttons -->
+          <%= link_to "Edit", edit_user_ingredient_path(@authenticated_user, ingredient),
+              class: "btn btn-info btn-xs" %>
+          <%= link_to "Delete", user_ingredient_path(@authenticated_user, ingredient),
+              method: "delete", class: "btn btn-warning btn-xs" %>
+        <% end %>
       <% end %>
     </li>
   <% end %>

@@ -22,8 +22,7 @@ class CookbooksController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     @cookbook = Cookbook.update(params[:id], create_params)
@@ -42,14 +41,15 @@ class CookbooksController < ApplicationController
   end
 
   def destroy
+    name = @cookbook.name
     associated_recipes = @cookbook.recipes
 
-    Cookbook.destroy(params[:id])
-
-    # forces recipe entry to reload so that recipe.cookbooks no longer shows
-    # association with deleted cookbook (SQL caches the old association)
+    @cookbook.destroy
+    # forces each recipe record to reload so that recipe.cookbooks no longer shows
+    # the association with the deleted cookbook (SQL caches the old association)
     associated_recipes.each { |recipe| recipe.reload }
 
+    flash[:success] = "Your cookbook has been destroyed. Goodbye, #{ name }!"
     redirect_to user_cookbooks_path(@authenticated_user)
   end
 
