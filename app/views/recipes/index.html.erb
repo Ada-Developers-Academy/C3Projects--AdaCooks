@@ -1,4 +1,6 @@
 <div class="row">
+  <%= "There are no recipes containing #{params[:search]}" unless @recipes.present? %>
+    
   <% @recipes.each do |recipe| %>
     <div class="col-md-4">
       <div class="thumbnail">
