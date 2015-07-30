@@ -1,7 +1,11 @@
 require 'rails_helper'
+require 'pry'
 
 RSpec.describe Ingredient, type: :model do
 
+  before :each do
+    create :ingredient, name: "an ingredient", id: 99
+  end
 
   before :each do
     @ingredient = build :ingredient, user_id: 1
