@@ -44,7 +44,7 @@ RSpec.describe CookbooksController, type: :controller do
       it "redirects to the cookbook show page" do
         post :create, cookbook_params
         expect(response).to
-        redirect_to(user_cookbook_path(user_id: cookbook.user_id, id: cookbook.id))
+        redirect_to(cookbook_path(assigns(:cookbook)))
       end
     end
 
@@ -63,9 +63,23 @@ RSpec.describe CookbooksController, type: :controller do
 
       it "redirects to the #new page" do
         post :create, cookbook_params
-        expect(response).to
-        redirect_to(new_user_cookbook_path(user_id: cookbook.user_id))
+        expect(response).to redirect_to(new_user_cookbook_path(:user_id))
       end
     end # end context
   end # end describe
+
+  describe "PUT edit" do
+    it "updates an existing record" do
+      post :update, id: cookbook, cookbook: { name: "Cooking with Dirt" }
+      cookbook.reload
+      expect(cookbook.name).to eq "Cooking with Dirt"
+    end
+  end
+
+  describe "DELETE destroy" do
+    it "deletes an existing record" do
+      delete :destroy, id: cookbook
+      expect(Cookbook.count).to eq 0
+    end
+  end
 end # end class

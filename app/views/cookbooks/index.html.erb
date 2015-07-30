@@ -7,6 +7,12 @@
         Name
       </th>
       <th>
+        Recipe Count
+      </th>
+      <th>
+        Ingredients Used
+      </th>
+      <th>
         Edit
       </th>
       <th>
@@ -18,13 +24,19 @@
     <% @cookbooks.alphabetize.each do |cookbook| %>
       <tr>
         <td>
-          <%= link_to "#{cookbook.name}", user_cookbook_path(@user.id, cookbook.id) %>
+          <%= link_to "#{cookbook.name}", cookbook_path(cookbook) %>
         </td>
         <td>
-          <%= link_to "Edit", edit_user_cookbook_path(session[:user_id], cookbook.id) %>
+          <%= cookbook.recipes.count %>
         </td>
         <td>
-          <%= link_to "Delete", user_cookbook_path(cookbook.user_id, cookbook.id), :method => :delete %>
+          numbers yay!
+        </td>
+        <td>
+          <%= link_to "Edit", edit_cookbook_path(cookbook) %>
+        </td>
+        <td>
+          <%= link_to "Delete", cookbook_path(cookbook), :method => :delete %>
         </td>
     </tr>
   <% end %>

@@ -1,9 +1,17 @@
-<%= render partial: "form", locals: { cookbook: @cookbook,
+<% if @cookbook.errors %>
+<ul>
+  <% @cookbook.errors.full_messages.each do |msg|  %>
+  <li>
+    <%= msg %>
+  </li>
+  <% end %>
+</ul>
+<% end %>
+
+<%= render partial: "form", locals: { url: user_cookbooks_path, cookbook: @cookbook,
                                       name_desc: "Name",
                                       name_placeholder: "It's Five O'Clock Somewhere",
-                                      name_value: @cookbook.name,
                                       description_desc: "Description",
                                       description_placeholder: "A collection of cocktail recipes from around the world.",
-                                      description_value: @cookbook.description,
                                       submit_button: "New" }
 %>

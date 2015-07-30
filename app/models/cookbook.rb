@@ -8,6 +8,6 @@ class Cookbook < ActiveRecord::Base
 
 # ----------SCOPES------------------------------
   def self.alphabetize
-    order('name')
+    order('name'.capitalize)
   end
 end

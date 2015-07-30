@@ -1,17 +1,16 @@
-<%= form_for user_cookbooks_path(params[:user_id]) do |f| %>
+<%= form_for cookbook, url: url do |f| %>
 <div class = "form-group">
   <%= f.label :name, "#{name_desc}" %>
-  <%= f.text_field :name, class: "form-field", autofocus: true, placeholder: name_placeholder, value: name_value %>
+  <%= f.text_field :name, class: "form-field", autofocus: true, placeholder: name_placeholder %>
 </div>
 
 <div class = "form-group">
   <%= f.label :description, "#{description_desc}" %>
-  <%= f.text_area :description, class: "form-field", autofocus: true, placeholder: description_placeholder, value: description_value %>
+  <%= f.text_area :description, class: "form-field", autofocus: true, placeholder: description_placeholder %>
 </div>
 
 <div class="form-group">
-  <%= f.hidden_field :active, value: true %>
-  <%= f.hidden_field :user_id, value: params[:user_id] %>
+  <%= f.hidden_field :user_id %>
 </div>
 
 <div class = "form-group">

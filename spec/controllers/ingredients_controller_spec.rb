@@ -32,7 +32,6 @@ end
    end
  end
 
-
   describe "GET #new" do
     it "responds successfully with an HTTP 200 status code" do
       get :new, id: ingredient1.id
@@ -95,8 +94,10 @@ end
   end #end of describe block
 
   describe "DELETE #destroy" do
-    it "deletes the given story game record" do
-    expect(Ingredient.count).to eq 0
+    it "deletes the given ingredient record" do
+      ingredient1 = Ingredient.create(name: "juice")
+      delete :destroy, id: ingredient1
+      expect(Ingredient.count).to eq 1
     end
   end
 end

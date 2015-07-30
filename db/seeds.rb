@@ -15,10 +15,13 @@ ingredients = [
   { name: "Gloria's Gin", user_id: 2, image: File.open(File.join('app/assets/images/ingredients/gloria.jpeg')) }, #6
   { name: "Ada's Aquavit", user_id: 2, image: File.open(File.join('app/assets/images/ingredients/ada.jpg')) }, #7
   { name: "J.K.'s Jack Daniels", user_id: 2, image: File.open(File.join('app/assets/images/ingredients/jk.jpg')) }, #8
-  { name: "Zerlina's Lemon Zest ", user_id: 3, image: File.open(File.join('app/assets/images/ingredients/zerlina.jpg')) }, #9
+  { name: "Zerlina's Orange Zest ", user_id: 3, image: File.open(File.join('app/assets/images/ingredients/zerlina.jpg')) }, #9
   { name: "Hillary's Hooch", user_id: 3, image: File.open(File.join('app/assets/images/ingredients/hillary.jpg')) }, #10,
   { name: "Rosario's Rye Whisky", user_id: 3, image: File.open(File.join('app/assets/images/ingredients/rosario.jpeg')) }, #11
-  { name: "Maya's Midori", user_id: 3, image: File.open(File.join('app/assets/images/ingredients/maya.jpg')) } #12
+  { name: "Maya's Midori", user_id: 3, image: File.open(File.join('app/assets/images/ingredients/maya.jpg')) }, #12
+  { name: "Orange Juice", user_id: 1, image:File.open(File.join('app/assets/images/ingredients/orange.jpeg')) }, #13
+  { name: "7-Up", user_id: 3, image: File.open(File.join('app/assets/images/ingredients/7up.jpeg'))}, #14
+  { name: "Whisky Sour Mix", user_id: 2, image: File.open(File.join('app/assets/images/ingredients/sour.jpeg')) } #15
 ]
 
 ingredients.each do |ingredient|
@@ -51,9 +54,31 @@ cookbooks.each do |cookbook|
 end
 
 recipes = [
-
+  {name: "Sugar Bomb", cookbook_id: 1, description: "This sweet concoction is the perfect treat after a long week.", prep: "Mix the grenadine and gin together and then pour over a glass of ice. For added pizazz add your favorite garnish or use rimming sugar", image_url: File.open(File.join('app/assets/images/recipes/sugar.jpeg')) }, #1
+  {name: "Orange Sunrise", cookbook_id: 2, description: "A surprisingly strong orange drink", prep: "In a large glass combine the hooch, whisky and orange juice. Stir until combined. Add ice if desired. Garnish with orange zest.", image_url: File.open(File.join('app/assets/images/recipes/hooch.jpg')) }, #2
+  {name: "The Classic with a twist", cookbook_id: 3, description: "Whisky on the rocks levels up with bitters and simple syrup.", prep: "Stir whisky and simple sryup together until combined. Add bitters and pour over ice.", image_url: File.open(File.join('app/assets/images/recipes/whisky.jpeg')) }, #3
+  {name: "Midori Sour", cookbook_id: 4, description: "A sweet and tart beverage great for a night out or a night in.", prep: "Mix together 7-up, whisky sour and Midori. Add 1-3 maraschino cherries.", image_url: File.open(File.join('app/assets/images/recipes/midori.jpg')) } #4
 ]
 
 recipes.each do |recipe|
   Recipe.create(recipe)
+end
+
+recipe_ingredients = [
+  { recipe_id: 1, ingredient_id: 6, quantity: 2, measurement: "ounces" },
+  { recipe_id: 1, ingredient_id: 2, quantity: 2, measurement: "ounces" },
+  { recipe_id: 2, ingredient_id: 10, quantity: 2, measurement: "ounces" },
+  { recipe_id: 2, ingredient_id: 13, quantity: 4, measurement: "ounces" },
+  { recipe_id: 2, ingredient_id: 9, quantity: 1, measurement: "pinch" },
+  { recipe_id: 3, ingredient_id: 8, quantity: 2, measurement: "ounces" },
+  { recipe_id: 3, ingredient_id: 3, quantity: 2, measurement: "ounces" },
+  { recipe_id: 3, ingredient_id: 5, quantity: 1, measurement: "ounces" },
+  { recipe_id: 4, ingredient_id: 14, quantity: 4, measurement: "ounces" },
+  { recipe_id: 4, ingredient_id: 15, quantity: 2, measurement: "ounces" },
+  { recipe_id: 4, ingredient_id: 12, quantity: 2, measurement: "ounces" },
+  { recipe_id: 4, ingredient_id: 4, quantity: 2, measurement: "" }
+]
+
+recipe_ingredients.each do |recipe_ingredients|
+  RecipeIngredient.create(recipe_ingredients)
 end

@@ -1,7 +1,6 @@
 class CookbooksController < ApplicationController
 
   before_action :login_required
-  before_action :belongs_to_user, except: [:index, :new]
 
   def index
     @user = User.find(session[:user_id])
@@ -14,16 +13,16 @@ class CookbooksController < ApplicationController
   end
 
   def new
-    @cookbook = Cookbook.new(cookbook_params[:cookbook])
+    @cookbook = Cookbook.new
   end
 
   def create
-    @cookbook = Cookbook.create(cookbook_params[:cookbook])
+    @cookbook = Cookbook.new(cookbook_params)
     if @cookbook.save
-      redirect_to user_cookbook_path(@cookbook.user_id, @cookbook.id)
+      redirect_to cookbook_path(@cookbook)
     else
       flash[:error]
-      redirect_to new_user_cookbook_path
+      render :new
     end
   end
 
@@ -32,12 +31,11 @@ class CookbooksController < ApplicationController
     @cookbook = Cookbook.find(@cookbook_id)
   end
 
-  def create
+  def update
     @cookbook_id = params[:id]
     @cookbook = Cookbook.find(@cookbook_id)
-    @cookbook.update(cookbook_params[:cookbook])
-
-    redirect_to user_cookbook_path(@cookbook.user_id, @cookbook_id)
+    @cookbook.update(cookbook_params)
+    redirect_to cookbook_path(@cookbook)
   end
 
   def destroy
@@ -51,13 +49,7 @@ class CookbooksController < ApplicationController
   private
 
   def cookbook_params
-    params.permit(cookbook: [:name, :user_id, :description])
+    params.require(:cookbook).permit(:name, :user_id, :description)
   end
 
-  def belongs_to_user
-  @cookbook = Cookbook.find(params[:id])
-    if @cookbook.user_id != session[:user_id]
-      redirect_to user_path(@cookbook.user_id)
-    end
-  end
 end

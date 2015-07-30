@@ -13,3 +13,11 @@
 <br>
 
 <%= link_to "Return to Ingredients Index", ingredients_path, class: "txt-center" %>
+
+<h3>Recipes</h3>
+<% @recipes.each do |recipe| %>
+<div class = "col-sm-3">
+  <%= link_to  "#{recipe.name}", recipe_path(recipe.id) %>
+  <%= image_tag recipe.image_url %>
+</div>
+<% end %>

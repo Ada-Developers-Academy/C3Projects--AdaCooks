@@ -5,9 +5,10 @@ Rails.application.routes.draw do
   root 'users#index'
 
   resources :users do
-    resources :cookbooks
+    resources :cookbooks, only: [:index, :new, :create]
   end
 
+  resources :cookbooks, only: [:show, :edit, :destroy, :update]
   resources :recipes, :ingredients
   resources :sessions, only: [:new, :create, :destroy]
 
