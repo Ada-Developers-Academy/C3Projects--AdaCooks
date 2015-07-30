@@ -1,13 +1,34 @@
-<h1><%= @recipe.name %> <small> Submitted by: <%= link_to "#{@recipe.user.username}", user_path(@recipe.user.id) %> </small></h1>
+<h1>
+  <%= @recipe.name.upcase %>
+  <small>Submitted by: <%= link_to "#{@recipe.user.username}", user_path(@recipe.user.id) %></small>
+</h1>
 
-<h6>IMAGE GOES HERE</h6>
-
-<h4> <%= @recipe.description %> </h4>
-
-<ul>
-  <% @recipe.ingredients.each do |ingredient| %>
-    <li> <%= link_to ingredient.name, ingredient_path(ingredient) %> </li>
+<% if session[:user_id] %>
+  <%= link_to "+Cookbook", root_path, class: "btn btn-default btn-md" %>
+  <% if @recipe.user_id == session[:user_id] %>
+    <%= link_to "Edit", edit_user_recipe_path(@user, @recipe), class: "btn btn-info btn-md" %>
+    <%= link_to "Delete", user_recipe_path(@user, @recipe), method: "delete", class: "btn btn-warning btn-md" %>
   <% end %>
-</ul>
+<% end %>
 
-<p> <%= @recipe.steps %> </p>
+<% if @recipe.avatar %>
+  <%= image_tag @recipe.avatar_url %>
+<% end %>
+
+<h4><%= @recipe.description %></h4>
+
+<div class="col-sm-4">
+  <% if @recipe.ingredients.count > 0 %>
+    <% if @recipe.user_id == @user.id %>
+      <%= render partial: 'shared/recipe_ingredients_list', locals: { ingredients: @recipe.ingredients.alphabetized } %>
+    <% else %>
+      <%= render partial: 'shared/plain_ingredients_list', locals: { ingredients: @recipe.ingredients.alphabetized } %>
+    <% end %>
+  <% else %>
+    <p>You call this a recipe? This "recipe" doesn't even have ingredients!!</p>
+  <% end %>
+</div>
+
+<div class="col-sm-8">
+  <p><%= @recipe.steps %></p>
+</div>

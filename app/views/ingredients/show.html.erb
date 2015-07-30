@@ -1,6 +1,11 @@
 <h1>
   <%= @ingredient.name.upcase %>
-  <small>Created by: <%= link_to @ingredient.user.username, user_path(@ingredient.user) %></small>
+  <% if session[:user_id] && @ingredient.user_id == session[:user_id] %>
+    <%= link_to "Edit", edit_user_ingredient_path(@user, @ingredient), class: "btn btn-info" %>
+    <%= link_to "Delete", user_ingredient_path(@user, @ingredient), class: "btn btn-warning" %>
+  <% else %>
+    <small>Created by:<%= link_to @ingredient.user.username, user_path(@ingredient.user) %></small>
+  <% end %>
 </h1>
 
 <% if @ingredient.avatar %>
@@ -8,13 +13,30 @@
 <% end %>
 
 <p><%= @ingredient.name %> is used in the following recipes:</p>
+
+<div class="col-sm-4">
+  <% if @ingredient.recipes.count > 0 %>
+    <%= render partial: 'shared/plain_recipes_list', locals: { recipes: @ingredient.recipes.alphabetized } %>
+  <% else %>
+    <p>
+      This ingredient is going to waste! It's just sitting on the shelf waiting
+      to mold, not being used in even a single recipe. What sad day this is for
+      <%= @ingredient.proper_name %>.
+
+      <% if @user %>
+        Would you like to <%= link_to "create a new recipe", new_user_recipe_path(@user) %>
+        using this lonely ingredient?
+      <% end %>
+    </p>
+  <% end %>
+</div>
+
 <ul>
 <% if @ingredient.recipes && @ingredient.recipes.count > 0 %>
   <% @ingredient.recipes.each do |recipe| %>
     <li><%= link_to recipe.name, recipe_path %></li>
   <% end %>
 <% else %>
-  <li>It's not used in any recipes yet. ;_;</li>
-  <li>Add a new one <%= link_to "here", new_recipe_path %>!</li>
+
 <% end %>
 </ul>
