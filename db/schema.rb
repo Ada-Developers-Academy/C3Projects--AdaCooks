@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(version: 20150729225625) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "cookbooks_recipes", id: false, force: :cascade do |t|
+    t.integer "cookbook_id", null: false
+    t.integer "recipe_id",   null: false
+  end
+
+  add_index "cookbooks_recipes", ["cookbook_id", "recipe_id"], name: "index_cookbooks_recipes_on_cookbook_id_and_recipe_id"
+  add_index "cookbooks_recipes", ["recipe_id", "cookbook_id"], name: "index_cookbooks_recipes_on_recipe_id_and_cookbook_id"
+
   create_table "homes", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
