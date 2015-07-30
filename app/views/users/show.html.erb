@@ -4,6 +4,7 @@
       <h1>Welcome back, <%= @user.name %>!</h1>
       <p><%= link_to "Create a New Cookbook", new_cookbook_path, class: "btn btn-default" %>
         <%= link_to "Add New Recipe", new_recipe_path, class: "btn btn-default"  %>
+        <%= link_to "See all your ingredients", ingredients_path %></p>
     <% else %>
       <h1><%= @user.name %> cookbooks</h1>
     <% end %>
