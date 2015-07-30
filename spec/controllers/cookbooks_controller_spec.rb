@@ -16,14 +16,6 @@ RSpec.describe CookbooksController, type: :controller do
 #     end
 #   end
 
-  describe "GET #new" do
-    it "renders 'new' template" do
-      get :new
-
-      expect(response).to render_template('new')
-    end
-  end
-
   describe "GET #create" do
 
     before :each do
@@ -55,21 +47,17 @@ RSpec.describe CookbooksController, type: :controller do
     end
   end
 
-  describe "GET #edit" do
-    it "returns http success" do
-      get :edit
-      expect(response).to have_http_status(:success)
-    end
-  end
-
   describe "PATCH #update" do
     it "returns updates a cookbook record" do
+      user = create :user, id: 2
+      session[:user_id] = 2
       cookbook = create :cookbook
       old_description = cookbook.description
 
-      patch :update, id: cookbook.id, cookbook: { id: 1, description: "A better desc"}
+      patch :update, id: cookbook.id, cookbook: { id: 1, description: "A better desc" }
+      cookbook.reload
 
-      expect(cookbook.description).to_not eq old_description
+      expect(cookbook.description).to_not eq(old_description)
     end
   end
 

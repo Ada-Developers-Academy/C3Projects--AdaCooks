@@ -5,6 +5,7 @@ FactoryGirl.define do
     photo_url "an image url"
     preparation "tomato, crust, cheese, meat"
     cookbook nil
+    user_id 1
     ingredients { |a| [a.association(:ingredient)] }
   end
 end

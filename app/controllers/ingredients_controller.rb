@@ -28,6 +28,7 @@ class IngredientsController < ApplicationController
   def create
     @ingredient = Ingredient.create(create_params)
     @user = User.find(session[:user_id])
+    @ingredient.user_id = @user.id
 
     if @ingredient.save
       redirect_to new_recipe_path
