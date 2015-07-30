@@ -1,7 +1,11 @@
 class IngredientsController < ApplicationController
 
   def index
-    @ingredients = Ingredient.all.order('name ASC')
+    if params[:search]
+      @ingredients = Ingredient.search(params[:search]).order("created_at ASC")
+    else
+      @ingredients = Ingredient.all.order('name ASC')
+    end
   end
 
   def show
