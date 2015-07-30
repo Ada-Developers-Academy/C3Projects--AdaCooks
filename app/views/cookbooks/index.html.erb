@@ -3,15 +3,23 @@
 <% if @cookbooks.nil? %>
   <p>You have no cookbooks. :(</p>
 <% else %>
-  <ul>
-    <% @cookbooks.each do |cookbook| %>
-      <li>
-        <%= link_to cookbook.name, cookbook_path(cookbook) %>
-        <%= link_to "EDIT", edit_cookbook_path(cookbook), class: "btn btn-warning" %>
-        <%= link_to "DELETE", cookbook_path(cookbook), { method: "delete", class: "btn btn-danger" } %>
-      </li>
-    <% end %>
-  </ul>
+  <div class="row">
+    <ul>
+      <% @cookbooks.each do |cookbook| %>
+        <li>
+          <div class="col-md-4 col-md-offset-1">
+            <%= link_to cookbook.name, cookbook_path(cookbook) %>
+          </div>
+          <div class="col-md-2">Recipes: <%= cookbook.recipes.count %></div>
+          <div class="col-md-2">Ingredients: <%= cookbook.ingredients.count %></div>
+          <div class="col-md-3">
+          <%= link_to "EDIT", edit_cookbook_path(cookbook), class: "btn btn-warning" %>
+          <%= link_to "DELETE", cookbook_path(cookbook), { method: "delete", class: "btn btn-danger" } %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
 
 <%= link_to "ADD", new_cookbook_path, class: "btn btn-primary" %>
