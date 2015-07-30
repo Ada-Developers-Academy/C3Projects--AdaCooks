@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   before_action :require_login, only: [:new]
+  # before_action :user_cookbooks, only: [:new]
 
   def index
     if params[:search]
@@ -12,9 +13,12 @@ class RecipesController < ApplicationController
   end
 
   def new
-    user = User.find(session[:user_id])
-    @recipe = Recipe.new(user_id: user.id)
+    @user = User.find(session[:user_id])
+    @recipe = Recipe.new(user_id: @user.id)
     @ingredients = Ingredient.all
+    # @orders = Order.includes(:order_items).where(order_items: { user_id: @user } )
+
+    # @cookbook = Cookbook.includes(:cookbook).where(user_id: @user.id )
   end
 
   def show

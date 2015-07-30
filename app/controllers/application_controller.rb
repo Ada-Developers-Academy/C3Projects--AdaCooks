@@ -7,4 +7,8 @@ class ApplicationController < ActionController::Base
   def require_login
     redirect_to login_path, flash: {error: MESSAGES[:not_logged_in]} unless session[:user_id]
   end
+
+  # def user_cookbooks
+  #   redirect_to root_path unless session[:user_id]
+  # end
 end

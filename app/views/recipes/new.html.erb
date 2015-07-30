@@ -12,14 +12,21 @@
       <%= f.hidden_field :user_id, value: @recipe.user_id %>
 
       <%= f.label :preparation, "Preparation" %>
-      <%= f.text_field :preparation %>
-
+      <%= f.text_area :preparation %>
+<br>
       <%= f.label :ingredients, :required => true %> <br>
       <%= collection_check_boxes(:recipe, :ingredient_ids, Ingredient.all, :id, :name) do |b| %>
            <%= b.label class: "checkbox-inline" do %>
              <%= b.check_box + b.text.capitalize %>
            <% end %>
          <% end %>
+<br>
+       <%= f.label :cookbooks, "Associate One of Your Cookbooks" %><br>
+       <%= collection_check_boxes(:recipe, :cookbook_ids, Cookbook.where(user_id: @user.id ), :id, :name) do |b| %>
+            <%= b.label class: "checkbox-inline" do %>
+              <%= b.check_box + b.text.capitalize %>
+            <% end %>
+          <% end %>
     </fieldset>
     <%= f.submit "Submit", class: "btn btn-default"%>
   </div>
