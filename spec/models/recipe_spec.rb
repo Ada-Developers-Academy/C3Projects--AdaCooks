@@ -1,14 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Recipe, type: :model do
-  # before(:each) do
-  #   @recipe = Recipe.create(id: 1, name: "Soup", preparation: "Stir It")
-  #   @ingredient = Ingredient.create(id: 1)
-  # end
-  #
-  # after(:each) do
-  #   @recipe.destroy
-  # end
 
   describe "recipe model validations" do
     it "must have one or more order ingredients" do
@@ -32,7 +24,21 @@ RSpec.describe Recipe, type: :model do
       expect(recipe).to_not be_valid
       expect(recipe.errors.keys).to include(:preparation)
     end
-
   end
 
+  describe "alphabet scope" do
+
+    let(:recipe1) { create :recipe, name: 'BBQ Chikun' }
+    let(:recipe2) { create :recipe, name: 'Goulash' }
+    let(:recipe3) { create :recipe, name: 'Pho' }
+    let(:recipe4) { create :recipe, name: 'Armadillo' }
+
+    # positive test - includes unique formats
+    it "has all the unique formats in alphabetical order" do
+      recipe2
+      correct_order = [recipe4, recipe1, recipe2, recipe3]
+      expect(Recipe.all.alphabet).to eq correct_order
+    end
+
+  end
 end

@@ -18,14 +18,15 @@ FactoryGirl.define do
 
 
   factory :recipe do
-    id 1
     name "Soup"
     preparation "Stir It"
   end
 
   factory :ingredient do
-    id 4
     name "Water"
+  end
 
+  factory :cookbook do
+    name "Paula Deen vs Jimmy Dean"
   end
 end
