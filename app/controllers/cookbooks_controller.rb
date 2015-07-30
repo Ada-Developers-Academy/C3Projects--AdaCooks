@@ -42,6 +42,9 @@ class CookbooksController < ApplicationController
     redirect_to user_cookbooks_path(session[:user_id])
   end
 
+  def add_recipe
+  end
+
   def remove_recipe
     cookbook = Cookbook.find(params[:cookbook_id])
     cookbook.remove_recipe_association(params[:id])
