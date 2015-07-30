@@ -3,6 +3,7 @@
 <div class="row">
   <div class="col-md-8">
     <h1> <%= @recipe.name %></h1>
+    <p>Written by: <%= link_to @owner.username, user_path(@owner) %>
     <p><%= image_tag @recipe.image_url(:display) %></p>
     <p>Description: <%= @recipe.description %></p>
 
@@ -15,8 +16,14 @@
     </ul>
 
     <p>Preparation: <%= @recipe.preparation %></p>
-    <p>Recipe by: <%= link_to @recipe.user.username, "" %>
-    <!-- This link needs to be filled in with the future user show path -->
+
+    <p>Save to your cookbook:</p>
+    <%= form_tag(controller: "recipes", action: "add_to_cookbook", method: "post", class: "form") do %>
+      <%= collection_select(:cookbook, :cookbook_id, @cookbooks, :id, :name, include_blank: true) %>
+      <%= submit_tag "Save" %>
+    <% end %>
+      
+    <!-- make logic so that only @owner sees this -->
     <p><%= link_to "Edit this recipe", edit_recipe_path(@recipe), class: "btn btn-default" %></p>
     <p><%= link_to "Delete this recipe", recipe_path(@recipe), method: "delete", data: { confirm: "Are you sure?" }, class: "btn btn-danger" %></p>
   </div>
