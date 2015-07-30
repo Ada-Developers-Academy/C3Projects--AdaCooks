@@ -17,29 +17,29 @@ end
 
 recipes = [
   { name: "Mint chocolate chip ice cream", description: "creamy, minty goodness",
-    image: "", user_id: 1 },
+    image: File.open(File.join('app/assets/images/recipes/mint.jpg')), user_id: 1 },
   { name: "French vanilla ice cream", description: "rich custard with flecks of real vanilla bean",
-    image: "", user_id: 1 },
+    image: File.open(File.join('app/assets/images/recipes/frenchvanilla.jpg')), user_id: 1 },
   { name: "Cappuccino gelato", description: "smooth, with flecks of coffee",
-    image: "", user_id: 1 },
+    image: File.open(File.join('app/assets/images/recipes/cap.jpg')), user_id: 1 },
   { name: "Chocolate hazelnut gelato", description: "the perfect flavor pairing for autumn",
-    image: "", user_id: 1 },
+    image: File.open(File.join('app/assets/images/recipes/hazelnut.jpg')), user_id: 1 },
   { name: "Raspberry sorbet", description: "crisp and vibrant with a hint of sweetness",
-    image: "", user_id: 2 },
+    image: File.open(File.join('app/assets/images/recipes/rasp.jpg')), user_id: 2 },
   { name: "Honey lavendar ice cream", description: "light herbal notes with wildflower sweetness",
-    image: "", user_id: 2 },
+    image: File.open(File.join('app/assets/images/recipes/honey.jpg')), user_id: 2 },
   { name: "Nisqually flood ice cream", description: "gummy worms and chocolate twigs float in this homage to the power of nature",
-    image: "", user_id: 2 },
+    image: File.open(File.join('app/assets/images/recipes/gummy.jpg')), user_id: 2 },
   { name: "Candied ginger ice cream", description: "a custard base topped with chunks of tangy candied ginger",
-    image: "", user_id: 2 },
+    image: File.open(File.join('app/assets/images/recipes/ginger.jpg')), user_id: 2 },
   { name: "Lemon sorbet", description: "light, crisp, and refreshing citrus",
-    image: "", user_id: 3 },
+    image: File.open(File.join('app/assets/images/recipes/lemon.jpg')), user_id: 3 },
   { name: "Raspberry chevre ice cream", description: "goat's milk ice cream with chunks of mild chevre and a raspberry ribbon",
-    image: "", user_id: 3 },
+    image: File.open(File.join('app/assets/images/recipes/chevre.jpg')), user_id: 3 },
   { name: "Wild blackberry ice cream", description: "fresh fruit bursting with flavor in a sweet cream base",
-    image: "", user_id: 3 },
+    image: File.open(File.join('app/assets/images/recipes/blackberry.jpg')), user_id: 3 },
   { name: "Maple walnut ice cream", description: "earthy and rich with sweet tree sap",
-    image: "", user_id: 3 }
+    image: File.open(File.join('app/assets/images/recipes/maple.jpg')), user_id: 3 }
 ]
 
 recipes.each do |recipe_params|

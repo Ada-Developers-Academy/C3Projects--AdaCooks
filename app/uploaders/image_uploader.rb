@@ -25,7 +25,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  # process :scale => [200, 300]
+  # process :scale => [300, 300]
   #
   # def scale(width, height)
   #   # do something
@@ -33,7 +33,10 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :thumb do
-    process :resize_to_fit => [160, 160]
+    # process :resize_to_fit => [160, 160]
+    process :resize_to_fill => [160, 160
+    # decided to go with a "fill" so that our
+    # navigation thumbnails would be standardized views
   end
 
   version :display do
