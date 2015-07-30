@@ -14,6 +14,11 @@ class Ingredient < ActiveRecord::Base
 
 # METHODS ------------------------------------------
 
+  # results in "stack level too deep" error for specs and regular use
+  # def name=(name)
+    # self.name = Ingredient.where(name: name).first_or_create
+  # end
+
   def self.search(query)
     where("name LIKE ?", "%#{query}%")
   end

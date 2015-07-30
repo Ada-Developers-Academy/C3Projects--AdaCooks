@@ -5,7 +5,7 @@ class Recipe < ActiveRecord::Base
   belongs_to :user
 
   accepts_nested_attributes_for :ingredients
-  accepts_nested_attributes_for :cookbooks
+  # accepts_nested_attributes_for :cookbooks
 
 # VALIDATIONS -----------------------------------------
   validates :name, presence: true

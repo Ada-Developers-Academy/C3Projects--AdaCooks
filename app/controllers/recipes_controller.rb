@@ -18,7 +18,7 @@ class RecipesController < ApplicationController
   end
 
   def create
-    # @ingredient = Ingredient.new(ingredient_params)
+    # @ingredient = Ingredient.new(name: params[:recipe][:ingredients_attributes][:name])
     @recipe = Recipe.new(recipe_params)
     raise
     if @recipe.save
@@ -36,7 +36,7 @@ class RecipesController < ApplicationController
 
   def update
     if @recipe.save
-      redirect_to recipes_path, notice: "It's so fancy now"
+      redirect_to recipes_path, notice: "You so fancy!"
     else
       flash.now[:error] = "Throw yo hands in the ERROR!!"
       render :new
