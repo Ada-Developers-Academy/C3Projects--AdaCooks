@@ -38,6 +38,8 @@ class CookbooksController < ApplicationController
 
   def destroy
     cookbook = Cookbook.find(params[:id])
+    cookbook.unassociate_recipes
+
     user = User.find(cookbook.user_id)
     cookbook.destroy
 

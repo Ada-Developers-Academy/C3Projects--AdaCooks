@@ -13,4 +13,13 @@ class Cookbook < ActiveRecord::Base
 
 scope :user_cookbooks, -> (user) { where(user_id: "#{user.id}") }
 
+  def unassociate_recipes
+    recipes = self.recipes
+
+    recipes.each do |recipe|
+      recipe.cookbook_id = nil
+      recipe.save
+    end
+  end
+
 end

@@ -6,7 +6,9 @@
     <div class="col-md-7 col-md-push-5">
       <h2 class="featurette-heading"></h2>
       <p class="lead"><%= @recipe.description %></p>
-      <p>Recipe added by <%= link_to "#{@recipe.cookbook.user.name}", user_path %></p>
+      <% if @recipe.cookbook %>
+        <p>Recipe added by <%= link_to "#{@recipe.cookbook.user.name}", user_path %></p>
+      <% end %>
 
     </div>
     <div class="col-md-5 col-md-pull-7">

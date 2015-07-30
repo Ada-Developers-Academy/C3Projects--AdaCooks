@@ -12,19 +12,31 @@
 
     <div class="col-lg-4">
       <% recipe = @recipes.find(1)  %>
-      <%= image_tag recipe.photo_url, class:"img-circle", size: "250x250" %>
+      <% if recipe.photo_url %>
+        <%= image_tag recipe.photo_url, class:"img-circle", size: "300x300" %>
+      <% else %>
+        <%= image_tag recipe.image_url, class: "img-circle", size: '100x100'%>
+      <% end %>
       <h2><%= recipe.name %></h2>
     </div>
 
     <div class="col-lg-4">
       <% recipe = @recipes.find(2)  %>
-      <%= image_tag recipe.photo_url, class:"img-circle", size: "250x250" %>
+      <% if recipe.photo_url %>
+        <%= image_tag recipe.photo_url, class:"img-circle", size: "300x300" %>
+      <% else %>
+        <%= image_tag recipe.image_url, class: "img-circle", size: '100x100'%>
+      <% end %>
       <h2><%= recipe.name %></h2>
     </div>
 
     <div class="col-lg-4">
       <% recipe = @recipes.find(3)  %>
-      <%= image_tag recipe.photo_url, class:"img-circle", size: "250x250" %>
+      <% if recipe.photo_url %>
+        <%= image_tag recipe.photo_url, class:"img-circle", size: "300x300" %>
+      <% else %>
+        <%= image_tag recipe.image_url, class: "img-circle", size: '100x100'%>
+      <% end %>
       <h2><%= recipe.name %></h2>
     </div>
   </div>
