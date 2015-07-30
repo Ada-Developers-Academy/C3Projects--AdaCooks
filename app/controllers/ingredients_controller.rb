@@ -14,7 +14,7 @@ class IngredientsController < ApplicationController
   }
 
   def index
-    @ingredient = Ingredient.all
+    @ingredients = Ingredient.alpha
   end
 
   def new
