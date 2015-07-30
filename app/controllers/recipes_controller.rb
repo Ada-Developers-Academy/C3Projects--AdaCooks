@@ -6,10 +6,20 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    session[:recipe_id] = nil
   end
 
   def create 
+    user = User.find(session[:user_id])
     @recipe = Recipe.create(recipe_params)
+    @recipe.user_id = user.id
+
+    if @recipe.save
+      session[:recipe_id] = @recipe.id
+      redirect_to new_user_ingredient_path(session[:user_id])
+    else
+      render :new
+    end
   end
 
 private
