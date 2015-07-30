@@ -1,8 +1,10 @@
 <li><%= link_to "Home", root_path %></li>
-<%= form_for :search, url: root_path do |f| %>
-  <%= f.text_field :query, placeholder: "Ingredient Name" %>
+<%= form_for :search, url: root_path, :html => { :class => "form-inline" } do |f| %>
+  <div class="form-group">
+    <%= f.text_field :query, class: "form-control", placeholder: "Ingredient Name" %>
+  </div>
 
-  <%= f.submit "Search By Ingredient" %>
+  <%= f.submit "Search By Ingredient", class: "btn btn-default" %>
 <% end %>
 <li><%= link_to "Recipes", recipes_path %></li>
 <li><%= link_to "Ingredients", ingredients_path %></li>
@@ -16,7 +18,7 @@
       Create New.. <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
-      <li><%= link_to "Cookbook", user_cookbooks_path(@authenticated_user) %></li>
+      <li><%= link_to "Cookbook", new_user_cookbook_path(@authenticated_user) %></li>
       <li><%= link_to "Recipe", new_user_recipe_path(@authenticated_user) %></li>
       <li><%= link_to "Ingredient", new_user_ingredient_path(@authenticated_user) %></li>
     </ul>
