@@ -7,13 +7,8 @@
       <li role="presentation">
         <%= link_to 'Cookbooks', my_cookbooks_path %>
       </li>
-      <li role="presentation" class="dropdown"  class="active">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manage<span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><%= link_to 'Ingredients', my_ingredients_path %></li>
-          <!-- make a link to user profile -->
-          <li>Profile</li>
-        </ul>
+      <li role="presentation" class="active">
+        <%= link_to 'Ingredients', my_ingredients_path %>
       </li>
     </ul>
   </div>
@@ -21,7 +16,9 @@
 
 <h3>My Ingredients</h3>
 
-<%= link_to 'Add an ingredient', new_ingredient_path, class: "btn btn-default", role: "button" %>
+<p>
+  <%= link_to 'New ingredient', new_ingredient_path, class: "btn btn-default", role: "button" %>
+</p>
 
 <table class="table table-hover">
   <tbody>

@@ -7,19 +7,18 @@
       <li role="presentation">
         <%= link_to 'Cookbooks', my_cookbooks_path %>
       </li>
-      <li role="presentation" class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manage<span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><%= link_to 'Ingredients', my_ingredients_path %></li>
-          <!-- make a link to user profile -->
-          <li>Profile</li>
-        </ul>
+      <li role="presentation">
+        <%= link_to 'Ingredients', my_ingredients_path %>
       </li>
     </ul>
   </div>
 </div>
 
 <h3>My Recipes</h3>
+
+<p>
+  <%= link_to 'New recipe', new_recipe_path, class: "btn btn-default", role: "button" %>
+</p>
 
 <ul class="list-group">
   <% @recipes.each do |recipe| %>
