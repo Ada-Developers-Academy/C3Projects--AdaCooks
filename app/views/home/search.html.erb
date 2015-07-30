@@ -1,0 +1,20 @@
+<h1>
+  Search results for: <%= @match.name.upcase %>
+  <small>Created by: <%= link_to @match.user.username, user_path(@match.user) %></small>
+</h1>
+
+<% if @match.avatar %>
+  <%= image_tag @match.avatar_url %>
+<% end %>
+
+<p><%= @match.name %> is used in the following recipes:</p>
+<ul>
+<% if @match.recipes && @match.recipes.count > 0 %>
+  <% @match.recipes.each do |recipe| %>
+    <li><%= link_to recipe.name, recipe_path(recipe) %></li>
+  <% end %>
+<% else %>
+  <li>It's not used in any recipes yet. ;_;</li>
+  <li>Add a new one <%= link_to "here", new_recipe_path %>!</li>
+<% end %>
+</ul>

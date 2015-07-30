@@ -18,6 +18,11 @@
       <%= link_to "Recipes", recipes_path, class: "btn btn-default" %>
       <%= link_to "Ingredients", ingredients_path, class: "btn btn-default" %>
 
+      <%= form_for :search do |f| %>
+        <%= f.text_field :query %>
+
+        <%= f.submit "Search" %>
+      <% end %>
 
       <% if session[:user_id] %>
         <%= link_to "Cookbooks", user_cookbooks_path(session[:user_id]), class: "btn btn-default" %>
