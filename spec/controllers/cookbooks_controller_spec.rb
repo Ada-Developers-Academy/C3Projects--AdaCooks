@@ -199,6 +199,4 @@ RSpec.describe CookbooksController, type: :controller do
       end
     end
   end
-
-  
 end
