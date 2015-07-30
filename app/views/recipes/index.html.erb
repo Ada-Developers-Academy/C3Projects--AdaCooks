@@ -1,3 +1,13 @@
-<h1>All Recipes</h1>
+<% content_for :page_title do %>
+  <h2>All Recipes</h2>
+<% end %>
 
-<%= render 'recipes_list', { recipes: @recipes } %>
+<main class="container-fluid">
+  <div class="row col-sm-1 col-md-3"></div>
+  <div class="row col-sm-10 col-md-6">
+
+  <%= render 'recipes_list', { recipes: @recipes } %>
+
+  </div>
+  <div class="row col-sm-1 col-md-3"></div>
+</main>
