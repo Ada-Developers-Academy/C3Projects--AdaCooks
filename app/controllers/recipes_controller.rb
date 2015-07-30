@@ -10,7 +10,8 @@ class RecipesController < ApplicationController
   end
 
   def new
-    @recipe = Recipe.new
+    user = User.find(session[:user_id])
+    @recipe = Recipe.new(user_id: user.id)
     @ingredients = Ingredient.all
   end
 
@@ -21,15 +22,12 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.create(recipe_params)
-    # @recipe.user_id = session[:user_id]
-    @unicorns = (params[:recipe][:ingredient_ids].first).to_i
-    @recipe.ingredients << Ingredient.find(@unicorns)
-    # @join = IngredientsRecipes.create(recipe_id, ingredient_id)
-
-
+    @recipe.user_id = session[:user_id]
+    @ingredient_recipe = (params[:recipe][:ingredient_ids].first).to_i
+    @recipe.ingredients << Ingredient.find(@ingredient_recipe)
 
     if @recipe.save
-        redirect_to user_path(session[:user_id])
+      redirect_to user_path(session[:user_id])
     else
       render 'new'
     end
@@ -44,6 +42,6 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :description, :image, :ingredients, :preparation, {:ingredient_ids => [] })
+    params.require(:recipe).permit(:user_id, :name, :description, :image, :ingredients, :preparation, {:ingredient_ids => [] })
   end
 end

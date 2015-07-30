@@ -8,8 +8,7 @@
       <%= f.label :description, "Describe Your Recipe" %>
       <%= f.text_area :description %>
 
-      <%= f.label :name, "Cookbook Name" %>
-      <%= f.text_field :name %>
+      <%= f.hidden_field :user_id, value: @recipe.user_id %>
 
       <%= f.label :preparation, "Preparation" %>
       <%= f.text_field :preparation %>
