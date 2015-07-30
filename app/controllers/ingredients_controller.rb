@@ -37,9 +37,14 @@ class IngredientsController < ApplicationController
   end
 
   def edit
+    @ingredient = Ingredient.find(params[:id])
   end
 
   def update
+    user = User.find(session[:user_id])
+    ingredient = Ingredient.find(params[:id])
+    ingredient.update(create_params)
+    redirect_to ingredients_path
   end
 
   def destroy
@@ -48,6 +53,6 @@ class IngredientsController < ApplicationController
   private
 
     def create_params
-      params.require(:ingredient).permit(:name, :image)
+      params.require(:ingredient).permit(:name, :image, :photo_url)
     end
 end

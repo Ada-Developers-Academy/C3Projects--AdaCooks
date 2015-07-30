@@ -1,2 +1,22 @@
-<h1>Ingredients#edit</h1>
-<p>Find me in app/views/ingredients/edit.html.erb</p>
+<div class="container marketing">
+
+<h1><%= @ingredient.name %></h1>
+
+  <div class="form-group">
+    <fieldset>
+      <%= form_for @ingredient do |f| %>
+
+        <%= f.label :name %>
+        <%= f.text_field :name, required: true, class: "form-control" %>
+
+        <%= f.label :photo_url %>
+        <%= f.text_field :photo_url, class: "form-control" %><br>
+
+        <%= f.label :image %>
+        <%= f.file_field :image %><br>
+
+        <%= f.submit "Save", class: "btn btn-primary" %>
+      <% end %>
+    </fieldset>
+  </div>
+</div>
