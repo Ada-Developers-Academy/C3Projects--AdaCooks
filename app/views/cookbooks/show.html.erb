@@ -10,14 +10,18 @@
   <thead>
     <tr>
       <th>Recipe</th>
+      <% if session[:user_id] %>
       <th>Remove</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
     <% @recipes.each do |recipe| %>
     <tr>
       <td><%= link_to recipe.name, recipe_path(recipe) %></td>
-      <td><%= link_to "X", destroy_recipe_assoc_path(user_id: session[:user_id], cookbook_id: @cookbook, recipe_id: recipe), method: :delete, class: "btn btn-danger" %></td>
+      <% if session[:user_id] %>
+        <td><%= link_to "X", destroy_recipe_assoc_path(user_id: session[:user_id], cookbook_id: @cookbook, recipe_id: recipe), method: :delete, class: "btn btn-danger" %></td>
+      <% end %>
     </tr>
     <% end %>
   </tbody>
