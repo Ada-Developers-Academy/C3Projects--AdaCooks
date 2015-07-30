@@ -3,6 +3,7 @@ class IngredientsController < ApplicationController
   def index
     if params[:search]
       @ingredients = Ingredient.search(params[:search]).order("created_at ASC")
+      raise
     else
       @ingredients = Ingredient.all.order('name ASC')
     end
