@@ -1,6 +1,9 @@
 <h2>Create a New Recipe</h2>
 
 <%= form_for @recipe do |f| %>
+
+	<%= f.hidden_field :user_id %>
+
 	<div class="form-group">
 		<%= f.label :name, 'Recipe Name' %>
 		<%= f.text_field :name %>

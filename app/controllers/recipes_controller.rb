@@ -41,7 +41,7 @@ class RecipesController < ApplicationController
 	private
 
 	def create_params
-		params.require(:recipe).permit(:name, :description, :image_url, :prep,
+		params.require(:recipe).permit(:user_id, :name, :description, :image_url, :prep,
 			:cookbook_id, recipe_ingredients_attributes: [:quantity, :measurement,
 			:ingredient_name])
 	end

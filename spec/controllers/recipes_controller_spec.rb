@@ -62,10 +62,11 @@ RSpec.describe RecipesController, type: :controller do
 
 	describe "POST create" do
 		before :each do
+			create :user
 			session[:user_id] = 1
 		end
 
-		let(:params) { { :recipe => { name: "recipe", description: "it's good",
+		let(:params) { { :recipe => { user_id: 1, name: "recipe", description: "it's good",
 			prep: "mix well", recipe_ingredients_attributes: [quantity: 1, measurement: "cup",
 			ingredient_name: "lemon"] } } }
 
@@ -80,7 +81,7 @@ RSpec.describe RecipesController, type: :controller do
 		end
 
 		context "object successfully saved" do
-			let(:params) { { :recipe => { name: "recipe", description: "it's good",
+			let(:params) { { :recipe => { user_id: 1, name: "recipe", description: "it's good",
 				prep: "mix well", recipe_ingredients_attributes: [quantity: 1, measurement: "cup",
 				ingredient_name: "lemon"] } } }
 
@@ -99,6 +100,15 @@ RSpec.describe RecipesController, type: :controller do
 				post :create, params
 				expect(subject).to redirect_to new_recipe_path
 			end
+		end
+	end
+
+	describe "GET show" do
+
+		it "retrieves the Recipe object" do
+			create :recipe
+			get :show, id: 1
+			expect(assigns(:recipe)).to eq Recipe.find(1)
 		end
 	end
 end
