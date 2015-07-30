@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @recipies = Recipe.all
+    @recipes = Recipe.all
+    @ingredients = Ingredient.order(:name)
   end
 end
