@@ -52,12 +52,18 @@ class RecipesController < ApplicationController
   private
 
   def remove_recipe_from_cookbook
-     recipe = Recipe.find(params[:user_id])
-     cookbook = recipe.cookbooks.find(params[:cookbook][:id])
+     cookbook = Cookbook.find(params[:id])
+     recipe = cookbook.recipes.where(cookbook: params[:id])
 
      if cookbook
-        recipe.coobooks.delete(cookbook)
+       raise
+        recipe.cookbooks.delete(cookbook)
      end
+
+     @user = User.find(session[:user_id])
+     @recipe = Recipe.new(user_id: @user.id)
+     @ingredients = Ingredient.all
+     @cookbook = Cookbook.where(user_id: @user.id )
 
   end
 
