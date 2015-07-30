@@ -1,6 +1,6 @@
 class IngredientsController < ApplicationController
 
-before_action :select_ingredient, only: [:show, :edit, :destroy]
+before_action :select_ingredient, only: [:show, :edit, :destroy, :update]
 
 def select_ingredient
   @ingredient = Ingredient.find(params[:id])
