@@ -12,6 +12,12 @@
   <!-- @recipe.image -->
 </p>
 
+<h3>Associated Ingredients</h3>
+
+<% @ingredients.each do |ingredient| %>
+  <%= link_to ingredient.name, ingredient_path(ingredient) %>
+  <% end %>
+
 <p>
   <%= link_to "Back", :back, class: "btn btn-default" %>
 </p>
