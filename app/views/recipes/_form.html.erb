@@ -1,17 +1,27 @@
 <%= form_for @recipe, url: user_recipe_path(@authenticated_user, @recipe) do |f| %>
   <fieldset>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+    </div>
 
-    <%= f.label :description %>
-    <%= f.text_field :description %>
+    <div class="form-group">
+      <%= f.label :description %>
+      <%= f.text_field :description, class: "form-control", placeholder: "Description" %>
+    </div>
 
-    <%= f.label :steps %>
-    <%= f.text_field :steps %>
+    <div class="form-group">
+      <%= f.label :steps %>
+      <%= f.text_field :steps, class: "form-control", placeholder: "Steps" %>
+    </div>
 
-    <%= f.label "Optional Image" %>
-    <%= f.file_field :avatar %>
+    <div class="form-group">
+      <%= f.label "Optional Image" %>
+      <%= f.file_field :avatar %>
+    </div>
 
-    <%= f.submit "Save Recipe" %>
+    <br>
+
+    <%= f.submit "Save Recipe", class: "btn btn-primary" %>
   </fieldset>
 <% end %>

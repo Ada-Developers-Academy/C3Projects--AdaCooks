@@ -1,11 +1,17 @@
 <%= form_for @ingredient, url: user_ingredient_path(@authenticated_user, @ingredient) do |f| %>
   <fieldset>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+    </div>
 
-    <%= f.label "Optional Image" %>
-    <%= f.file_field :avatar %>
+    <div class="form-group">
+      <%= f.label "Optional Image" %>
+      <%= f.file_field :avatar %>
+    </div>
 
-    <%= f.submit "Save Ingredient" %>
+    <br>
+
+    <%= f.submit "Save Ingredient" class: "btn btn-primary" %>
   </fieldset>
 <% end %>
