@@ -2,7 +2,7 @@
 <p><%= image_tag(@user.image.full) %></p>
 
 <% unless @recipes.nil? %>
-  <%= @recipes.each do |recipe| %>
+  <% @recipes.each do |recipe| %>
     <%= link_to "#{recipe.name}", recipe_path(recipe.id)  %>
     <%= recipe.image %>
     <%= link_to "Edit Recipe", edit_user_recipe_path(session[:user_id], recipe.id) %>
