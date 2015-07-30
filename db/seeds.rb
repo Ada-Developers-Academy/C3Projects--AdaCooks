@@ -54,10 +54,10 @@ cookbooks.each do |cookbook|
 end
 
 recipes = [
-  {name: "Sugar Bomb", cookbook_id: 1, description: "This sweet concoction is the perfect treat after a long week.", prep: "Mix the grenadine and gin together and then pour over a glass of ice. For added pizazz add your favorite garnish or use rimming sugar", image_url: File.open(File.join('app/assets/images/recipes/sugar.jpeg')) }, #1
-  {name: "Orange Sunrise", cookbook_id: 2, description: "A surprisingly strong orange drink", prep: "In a large glass combine the hooch, whisky and orange juice. Stir until combined. Add ice if desired. Garnish with orange zest.", image_url: File.open(File.join('app/assets/images/recipes/hooch.jpg')) }, #2
-  {name: "The Classic with a twist", cookbook_id: 3, description: "Whisky on the rocks levels up with bitters and simple syrup.", prep: "Stir whisky and simple sryup together until combined. Add bitters and pour over ice.", image_url: File.open(File.join('app/assets/images/recipes/whisky.jpeg')) }, #3
-  {name: "Midori Sour", cookbook_id: 4, description: "A sweet and tart beverage great for a night out or a night in.", prep: "Mix together 7-up, whisky sour and Midori. Add 1-3 maraschino cherries.", image_url: File.open(File.join('app/assets/images/recipes/midori.jpg')) } #4
+  {name: "Sugar Bomb", cookbook_id: 1, description: "This sweet concoction is the perfect treat after a long week.", prep: "Mix the grenadine and gin together and then pour over a glass of ice. For added pizazz add your favorite garnish or use rimming sugar", image: File.open(File.join('app/assets/images/recipes/sugar.jpeg')) }, #1
+  {name: "Orange Sunrise", cookbook_id: 2, description: "A surprisingly strong orange drink", prep: "In a large glass combine the hooch, whisky and orange juice. Stir until combined. Add ice if desired. Garnish with orange zest.", image: File.open(File.join('app/assets/images/recipes/hooch.jpg')) }, #2
+  {name: "The Classic with a twist", cookbook_id: 3, description: "Whisky on the rocks levels up with bitters and simple syrup.", prep: "Stir whisky and simple sryup together until combined. Add bitters and pour over ice.", image: File.open(File.join('app/assets/images/recipes/whisky.jpeg')) }, #3
+  {name: "Midori Sour", cookbook_id: 4, description: "A sweet and tart beverage great for a night out or a night in.", prep: "Mix together 7-up, whisky sour and Midori. Add 1-3 maraschino cherries.", image: File.open(File.join('app/assets/images/recipes/midori.jpg')) } #4
 ]
 
 recipes.each do |recipe|

@@ -5,6 +5,7 @@ class Ingredient < ActiveRecord::Base
 # -------------VALIDATIONS----------------------
   validates :name, presence: true, uniqueness: true
 
+# ----------MOUNTED-OBJECTS-----------------------------
   mount_uploader :image, ImageUploader
 
   # -------------SCOPES----------------------

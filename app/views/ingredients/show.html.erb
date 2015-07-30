@@ -18,6 +18,6 @@
 <% @recipes.each do |recipe| %>
 <div class = "col-sm-3">
   <%= link_to  "#{recipe.name}", recipe_path(recipe.id) %>
-  <%= image_tag recipe.image_url %>
+  <%= image_tag recipe.image_url, class: "img-board img-center" %>
 </div>
 <% end %>
