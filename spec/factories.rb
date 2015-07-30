@@ -24,6 +24,9 @@ FactoryGirl.define do
 
   factory :ingredient do
     name "Water"
+  end
 
+  factory :cookbook do
+    name "Paula Deen vs Jimmy Dean"
   end
 end
