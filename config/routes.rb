@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get '/search' => 'ingredients#search'
 
   post 'cookbooks/:id' => "recipes#remove_recipes", as: "remove_recipes"
+  patch 'recipes/:id' => 'recipes#add_cookbook', as: "add_cookbook"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

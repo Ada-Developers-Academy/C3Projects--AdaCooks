@@ -14,8 +14,18 @@
       <% if @recipe.user_id == @current_user.id %>
         <%= link_to "Edit Recipe", edit_recipe_path(@recipe), class: "btn btn-warning" %>
         <%= link_to "Delete Recipe", recipe_path(@recipe), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure you want to delete this?"} %>
-      <% end %>
+        <% end %>
     <% end %>
+      <br>
+      <br>
+      <% if session[:user_id] %>
+        <%= form_for @recipe, url: {action: "add_cookbook"} do |f| %>
+          <%= f.label "Add to Cookbook" %>
+          <%= f.collection_select :cookbook_id, Cookbook.user_cookbooks(@current_user), :id, :name, include_blank: "None" %>
+          <%= f.submit "Add", class: "btn btn-default" %>
+          <% end %>
+        <% end %>
+
 
     </div>
     <div class="col-md-5 col-md-pull-7">
