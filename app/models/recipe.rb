@@ -22,5 +22,4 @@ class Recipe < ActiveRecord::Base
   scope :newest, -> (total) { order("created_at DESC").limit(total) }
   scope :desc_by_update, -> { order("updated_at DESC") }
   scope :alpha, -> { order("name ASC") }
-
 end
