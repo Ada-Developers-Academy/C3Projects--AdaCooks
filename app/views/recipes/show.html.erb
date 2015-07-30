@@ -4,7 +4,17 @@
 </h1>
 
 <% if session[:user_id] %>
-  <%= link_to "+Cookbook", root_path, class: "btn btn-default btn-md" %>
+  <div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      +Cookbook <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <% (@user.cookbooks).each do |cookbook| %>
+        <li> <%= link_to cookbook.name, user_cookbook_recipe_path(@user, cookbook, @recipe), method: "post" %> </li>
+      <% end %>
+    </ul>
+  </div>
+
   <% if @recipe.user_id == session[:user_id] %>
     <%= link_to "Edit", edit_user_recipe_path(@authenticated_user, @recipe), class: "btn btn-info btn-md" %>
     <%= link_to "Delete", user_recipe_path(@authenticated_user, @recipe), method: "delete", class: "btn btn-warning btn-md" %>
