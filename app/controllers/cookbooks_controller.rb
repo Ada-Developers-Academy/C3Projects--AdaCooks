@@ -41,10 +41,15 @@ class CookbooksController < ApplicationController
     redirect_to user_cookbooks_path(session[:user_id])
   end
 
-  def add_recipe    
+  def add_recipe
     cookbook = Cookbook.find(params[:cookbook_id])
     recipe = Recipe.find(params[:id])
-    cookbook.recipes << recipe
+
+    if cookbook.recipes.include?(recipe)
+      flash[:error] = "This recipe is already in #{cookbook.name}."
+    else
+      cookbook.recipes << recipe
+    end
 
     redirect_to user_cookbook_path(session[:user_id], cookbook)
   end
