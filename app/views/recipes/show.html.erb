@@ -1,3 +1,12 @@
+<%= flash[:notice] %>
+
+<%= form_for(@recipe, url: { controller: :cookbooks, action: :update }, method: :put) do |f| %>
+	<%= f.select(:cookbook_id, options_for_select(@cookbooks_array)) %>
+
+	<%= f.submit 'Add to Cookbook', class:'btn btn-default' %>
+<% end %>
+
+
 <h2> <%= @recipe.name %> </h2>
 <% unless @recipe.cookbook_id.nil? %>
 	<h4> in <%= link_to @recipe.cookbook.name, cookbook_path(@recipe.cookbook.id) %> </h4>
@@ -11,6 +20,11 @@
 </p>
 
 <table>
+	<tr>
+		<th colspan="3">
+			<h4>Ingredients</h4>
+		</th>
+	</tr>
 	<% @recipe.recipe_ingredients.each do |ingredient| %>
 	<tr>
 		<td>
@@ -26,6 +40,7 @@
 	<% end %>
 </table>
 
+<h4>Directions</h4>
 <p>
 	<%= @recipe.prep %>
 </p>

@@ -76,6 +76,33 @@ RSpec.describe CookbooksController, type: :controller do
     end
   end
 
+  describe "PUT update" do
+    let(:recipe) { create :recipe }
+    let(:cookbook) { create :cookbook }
+    let(:params) { { :recipe => { cookbook_id: 1 }, id: 1 } }
+
+    before :each do
+      create :user
+      recipe
+      cookbook # same deal
+    end
+
+    it "adds the recipe to the cookbook" do
+      put :update, params
+      expect(cookbook.recipes).to include recipe
+    end
+
+    it "sends a flash notice that the recipe has been added" do
+      put :update, params
+      expect(flash[:notice]).to_not be nil
+    end
+
+    it "redirects the user back to the recipe :show view" do
+      put :update, params
+      expect(subject).to redirect_to recipe_path(recipe.id)
+    end
+  end
+
   describe "DELETE destroy" do
     it "deletes an existing record" do
       delete :destroy, id: cookbook
