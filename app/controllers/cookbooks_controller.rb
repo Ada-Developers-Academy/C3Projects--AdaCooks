@@ -16,11 +16,29 @@ class CookbooksController < ApplicationController
   def create
     @cookbook = Cookbook.new(cookbook_params)
     if @cookbook.save
-      redirect_to user_cookbook_path(@cookbook)
+      redirect_to user_cookbooks_path(@cookbook.user_id)
     else
       render 'new'
     end
   end
+
+  def edit; end
+
+  def update
+    @cookbook.update(cookbook_params)
+
+    if @cookbook.save
+      redirect_to user_cookbooks_path(@cookbook.user_id)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @cookbook.destroy
+    redirect_to user_cookbooks_path(@cookbook.user_id)
+  end
+
 
   private
 
