@@ -58,7 +58,7 @@
     </div>
     <div class="col-sm-3 float-right">
       <!-- change below to new_user_cookbook_path -->
-      <%= link_to "Create a New Cookbook", new_cookbook_path, class: 'btn btn-primary' %>
+      <%= link_to "Create a New Cookbook", new_user_cookbook_path, class: 'btn btn-primary' %>
     </div>
 
     <div class="row">
@@ -69,13 +69,13 @@
               <div class="btn btn-default">
                 <%= check_box_tag "recipe[cookbook_ids][]", cookbook.id %>
                 <!-- change below to user_cookbook_path -->
-                <%= link_to cookbook.name, cookbook_path(session[:user_id], cookbook.id) %>
+                <%= link_to cookbook.name, user_cookbook_path(session[:user_id], cookbook.id) %>
               </div>
             <% else %>
               <div class="btn btn-default">
                 <%= check_box_tag "recipe[cookbook_ids][]", cookbook.id, checked = true %>
                 <!-- change below to user_cookbook_path -->
-                <%= link_to cookbook.name, cookbook_path(session[:user_id], cookbook.id) %>
+                <%= link_to cookbook.name, user_cookbook_path(session[:user_id], cookbook.id) %>
               </div>
             <% end %>
           <% end %>
