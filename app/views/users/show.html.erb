@@ -1,3 +1,16 @@
 <div class="page-header">
-  <h1><%= @user.username %></h1>
+  <% if session[:user_id] == @user.id %>
+    <h1>My Dashboard</h1>
+  <% else %>
+    <h1><%= @user.username %>'s Recipes</h1>
+  <% end %>
 </div>
+
+<%= render partial: "shared/recipes", locals: { recipes: @recipes } %>
+
+<% if session[:user_id] == @user.id %>
+  <div class="dashboard-links">
+    <%= link_to "My Cookbooks", user_cookbooks_path(@user), class: "btn btn-default" %>
+    <%= link_to "Add a recipe", new_recipe_path, class: "btn btn-info" %>
+  </div>
+<% end %>

@@ -1,16 +1,5 @@
 <div class="row">
   <%= "There are no recipes containing #{params[:search]}" unless @recipes.present? %>
-    
-  <% @recipes.each do |recipe| %>
-    <div class="col-md-4">
-      <div class="thumbnail">
-        <!-- # TODO: Image thumbnail will go here -->
-        <div class="caption">
-          <h3><%= link_to recipe.name, recipe_path(recipe) %></h3>
-          <%= render partial: "ingredients_list", locals: { recipe: recipe } %>
-          <%= link_to "Details", recipe_path(recipe), class: "btn btn-info no-border-buttons" %>
-        </div>
-      </div>
-    </div>
-  <% end %>
+
+  <%= render partial: "shared/recipes", locals: { recipes: @recipes }  %>
 </div>
