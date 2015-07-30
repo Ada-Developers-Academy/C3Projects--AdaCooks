@@ -15,7 +15,7 @@
       <%= f.text_field :preparation %>
 
       <%= f.label :ingredients %><br>
-      <%= collection_check_boxes(:recipe, :ingredient_ids, @ingredients, :id, :name) do |b| %>
+      <%= collection_check_boxes(:recipe, :ingredient_ids, Ingredient.all, :id, :name) do |b| %>
            <%= b.label class: "checkbox-inline" do %>
              <%= b.check_box + b.text.capitalize %>
            <% end %>
