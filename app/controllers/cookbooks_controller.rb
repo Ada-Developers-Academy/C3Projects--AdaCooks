@@ -1,5 +1,18 @@
 class CookbooksController < ApplicationController
 
+  def show
+    @cookbook = Cookbook.find(params[:id])
+  end
+
+  def remove_recipe
+    cookbook = Cookbook.find(params[:cookbook_id])
+    recipe = Recipe.find(params[:recipe_id])
+
+    cookbook.recipes.delete(recipe)
+
+    redirect_to user_cookbook_path(params[:user_id], params[:cookbook_id])
+  end
+
   def new
     @cookbook = Cookbook.new
   end

@@ -1,0 +1,15 @@
+<h3>Cookbook | <%= @cookbook.name %></h3>
+<h4>Created by: <%= @cookbook.user.username %></h4>
+<%= image_tag @cookbook.image_url %>
+
+<p><%= @cookbook.description %></p>
+
+<h4>Recipes:</h4>
+
+<% @cookbook.recipes.each do |recipe| %>
+  <div class="dashboard-product-block">
+    <%= link_to(image_tag(recipe.image_url(:thumb)), user_recipe_path(params[:user_id], recipe.id)) %>
+    <h5><%= recipe.name %></h5>
+    <%= link_to "Remove", remove_recipe_path(params[:user_id], @cookbook.id, recipe.id), method: :patch, class: "btn btn-danger dashboard-button" %>
+  </div>
+<% end %>

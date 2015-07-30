@@ -31,6 +31,8 @@ Rails.application.routes.draw do
     get :dashboard
     resources :recipes
     resources :cookbooks
+
+
   end
 
   resources :recipes
@@ -41,6 +43,8 @@ Rails.application.routes.draw do
   get '/login'     =>  'sessions#new',    as: 'login'
   post '/login'    =>  'sessions#create'
   delete '/logout' => 'sessions#destroy', as: 'logout'
+
+  patch 'users/:user_id/cookbooks/:cookbook_id/remove/:recipe_id' =>   'cookbooks#remove_recipe', as: "remove_recipe"
 
 
   # Example resource route with sub-resources:
