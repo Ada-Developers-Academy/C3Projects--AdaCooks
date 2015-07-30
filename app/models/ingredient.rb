@@ -4,5 +4,7 @@ class Ingredient < ActiveRecord::Base
   belongs_to :user
   mount_uploader :image, ImageUploader
 
+  validates :name, uniqueness: true, presence: true # TODO: add validation tests
+
   scope :by_name, -> { order(:name) }
 end
