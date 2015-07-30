@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-  # before_filter :authorize, only: [:dashboard]
+  # before_filter :authorize, only: [:my_recipes, :my_cookbooks, :my_ingredients]
   before_action :current_user, only: [:my_recipes, :my_cookbooks, :my_ingredients]
-  
+  before_action :set_user, only: [:show]
+
   def new
     @user = User.new
   end
@@ -18,6 +19,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @recipes = @user.recipes
+  end
+
   def my_recipes
     @recipes = @current_user.recipes.desc_by_update
   end
@@ -31,6 +36,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def set_user
+    @user = User.find(params[:id])
+  end
 
   def user_params
     params.require(:user).permit(:username, :password, :password_confirmation)
