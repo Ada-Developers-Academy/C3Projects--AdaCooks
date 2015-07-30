@@ -2,7 +2,9 @@
 <h4>Feed Your Food Addiction</h4>
 <h3><%= session[:user_id] %></h3>
 <div>
-<%= link_to "View my Dashboard", user_dashboard_path(session[:user_id]), class: "btn btn-success" %>
+<% if session[:user_id].present? %>
+  <%= link_to "View my Dashboard", user_dashboard_path(session[:user_id]), class: "btn btn-success" %>
+<% end %>
 </div>
 
 <br>
