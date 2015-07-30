@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(session[:user_id])
-    @cookbooks = Cookbook.all
+    @cookbooks = Cookbook.where(user_id: @user.id )
   end
 
   def view

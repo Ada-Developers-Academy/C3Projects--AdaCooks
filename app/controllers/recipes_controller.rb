@@ -16,9 +16,7 @@ class RecipesController < ApplicationController
     @user = User.find(session[:user_id])
     @recipe = Recipe.new(user_id: @user.id)
     @ingredients = Ingredient.all
-    # @orders = Order.includes(:order_items).where(order_items: { user_id: @user } )
-
-    # @cookbook = Cookbook.includes(:cookbook).where(user_id: @user.id )
+    @cookbook = Cookbook.where(user_id: @user.id )
   end
 
   def show

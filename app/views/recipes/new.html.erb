@@ -22,7 +22,7 @@
          <% end %>
 <br>
        <%= f.label :cookbooks, "Associate One of Your Cookbooks" %><br>
-       <%= collection_check_boxes(:recipe, :cookbook_ids, Cookbook.where(user_id: @user.id ), :id, :name) do |b| %>
+       <%= collection_check_boxes(:recipe, :cookbook_ids, @cookbook, :id, :name) do |b| %>
             <%= b.label class: "checkbox-inline" do %>
               <%= b.check_box + b.text.capitalize %>
             <% end %>
