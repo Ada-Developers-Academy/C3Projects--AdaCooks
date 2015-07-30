@@ -1,7 +1,7 @@
 class CookbooksController < ApplicationController
   before_action :require_login
   before_action :define_user
-  before_action :find_cookbook, only: [:show, :edit, :update, :destroy]
+  before_action :find_cookbook, only: [:edit, :update, :destroy]
 
   # Display cookbook(s)
   def show; end

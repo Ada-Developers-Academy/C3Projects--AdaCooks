@@ -18,8 +18,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(session[:user_id])
-    @recipes = @user.recipes
     @cookbooks = @user.cookbooks
+    if params[:cookbook]
+      @cookbook = Cookbook.find(params[:cookbook])
+    end
   end
 
 private
