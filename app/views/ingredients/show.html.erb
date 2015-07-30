@@ -10,7 +10,7 @@
       <%= image_tag @ingredient.image_url, class: "img-responsive center-block img-rounded" %>
 
       <h4>Recipes Containing <%= @ingredient.name %></h4>
-      <%= render 'recipes/recipes_list', { recipes: @ingredient.recipes } %>
+      <%= render 'shared/list_of_links_with_images', { objects: @ingredient.recipes } %>
 
     </div>
   </div>
