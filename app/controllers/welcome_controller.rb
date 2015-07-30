@@ -1,9 +1,9 @@
 class WelcomeController < ApplicationController
   def index
-    if session[:user_id]
-      @user = User.find_by(id: session[:user_id])
-    end
+    session[:user_id] ? @user = User.find_by(id: session[:user_id]) : @user = "Guest"
+
       @recipes = Recipe.order(:name)
+
       @ingredients = Ingredient.order(:name)
 
       if params[:search]
