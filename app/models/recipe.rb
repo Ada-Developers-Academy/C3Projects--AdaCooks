@@ -10,6 +10,9 @@ class Recipe < ActiveRecord::Base
 # Validations ------------------------------------------------------------------
 	validates :name, :description, :prep, presence: true
 
+# ----------MOUNTED-OBJECTS-----------------------------
+  mount_uploader :image, ImageUploader
+
 # Scopes -----------------------------------------------------------------------
 	# returns ALL recipes - do I want that, really…?
 	scope :alphabetize, -> { Recipe.order(name: :asc) }

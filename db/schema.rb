@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150729184448) do
+ActiveRecord::Schema.define(version: 20150730161450) do
 
   create_table "cookbooks", force: :cascade do |t|
     t.string   "name"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20150729184448) do
   create_table "recipes", force: :cascade do |t|
     t.string   "name",        null: false
     t.string   "description", null: false
-    t.string   "image_url"
+    t.string   "image"
     t.string   "prep",        null: false
     t.integer  "cookbook_id"
     t.datetime "created_at",  null: false
