@@ -6,16 +6,19 @@
     <div class="col-md-7 col-md-push-5">
       <h2 class="featurette-heading"></h2>
       <p class="lead"><%= @recipe.description %></p>
+
       <% if @recipe.cookbook %>
-        <p>Recipe added by <%= link_to "#{@recipe.cookbook.user.name}", user_path %></p>
+      <p>Recipe added by <%= link_to "#{@recipe.cookbook.user.name}", user_path(@recipe.cookbook.user.id) %></p>
       <% end %>
 
     </div>
     <div class="col-md-5 col-md-pull-7">
       <% if @recipe.photo_url %>
         <%= image_tag @recipe.photo_url, class:"img-circle", size: "300x300" %>
+      <% elsif @recipe.image_url %>
+        <%= image_tag @recipe.image_url, class: "img-circle", size: '300x300'%>
       <% else %>
-        <%= image_tag @recipe.image_url, class: "img-circle", size: '100x100'%>
+        <%= image_tag "no_image.png", class: "img-circle", size: '300x300'%>
       <% end %>
     </div>
   </div>
@@ -36,7 +39,13 @@
       <p class="lead"><mark>INGREDIENTS: </mark></p>
       <% @recipe.ingredients.each do |ingredient| %>
         <%= link_to ingredient_path(ingredient.id) do %>
-          <%= image_tag ingredient.photo_url, class: "img-circle", size: '100x100'%>
+          <% if ingredient.photo_url %>
+            <%= image_tag ingredient.photo_url, class: "img-circle", size: '100x100'%>
+          <% elsif ingredient.image_url %>
+            <%= image_tag ingredient.image_url, class: "img-circle", size: '100x100'%>
+          <% else %>
+            <%= image_tag "no_image.png", class: "img-circle", size: '100x100'%>
+          <% end %>
         <% end %>
       <% end %>
     </div>

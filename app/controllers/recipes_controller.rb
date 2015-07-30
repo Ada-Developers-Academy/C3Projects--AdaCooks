@@ -12,8 +12,6 @@ class RecipesController < ApplicationController
   def new
     @recipe = Recipe.new
     @user = User.find(session[:user_id])
-
-    1.times { @recipe.ingredients.build}
   end
 
   def create
@@ -21,12 +19,9 @@ class RecipesController < ApplicationController
     @user = User.find(session[:user_id])
 
     if @recipe.save
-
-      redirect_to user_path(@user)
+      redirect_to user_path(@user.id)
     else
-
       render 'new'
-
     end
   end
 

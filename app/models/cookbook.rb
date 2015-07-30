@@ -8,6 +8,9 @@ class Cookbook < ActiveRecord::Base
 # Validations ________________________________________________________________
   validates :name, presence: true
 
+# Mounted Objects------------------------------------------------------------
+  mount_uploader :image, ImageUploader
+
 
 # Scopes _____________________________________________________________________
 

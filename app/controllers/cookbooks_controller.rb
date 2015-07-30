@@ -18,7 +18,7 @@ class CookbooksController < ApplicationController
     cookbook.user_id = user.id
 
     if cookbook.save
-      redirect_to user_path(user)
+      redirect_to new_recipe_path
     else
       render :new
     end
@@ -49,6 +49,6 @@ class CookbooksController < ApplicationController
   private
 
   def create_params
-    params.permit(cookbook: [:name, :description, :user_id])
+    params.permit(cookbook: [:name, :description, :user_id, :image])
   end
 end

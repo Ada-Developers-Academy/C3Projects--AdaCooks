@@ -7,10 +7,16 @@
       <div class="col-lg-3">
         <p class="lead"><%= ingredient.name.capitalize %></p>
         <%= link_to ingredient_path(ingredient.id) do %>
-          <%= image_tag ingredient.photo_url, class: "img-circle", size: '200x200'  %>
+          <% if ingredient.photo_url %>
+            <%= image_tag ingredient.photo_url, class: "img-circle", size: '200x200' %>
+          <% elsif ingredient.image_url %>
+            <%= image_tag ingredient.image_url, class: "img-circle", size: '200x200' %>
+          <% else %>
+            <%= image_tag "no_image.png", class: "img-circle", size: '200x200' %>
           <% end %>
-        </div>
         <% end %>
       </div>
+      <% end %>
     </div>
+  </div>
 </div>

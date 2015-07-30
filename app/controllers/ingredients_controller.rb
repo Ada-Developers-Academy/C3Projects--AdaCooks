@@ -1,4 +1,6 @@
 class IngredientsController < ApplicationController
+  before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
+
   def index
     @ingredients = Ingredient.alpha_order
   end
@@ -20,10 +22,18 @@ class IngredientsController < ApplicationController
 
   def new
     @ingredient = Ingredient.new
+    @user = User.find(session[:user_id])
   end
 
   def create
+    @ingredient = Ingredient.create(create_params)
+    @user = User.find(session[:user_id])
 
+    if @ingredient.save
+      redirect_to new_recipe_path
+    else
+      render 'new'
+    end
   end
 
   def edit
@@ -34,4 +44,10 @@ class IngredientsController < ApplicationController
 
   def destroy
   end
+
+  private
+
+    def create_params
+      params.require(:ingredient).permit(:name, :image)
+    end
 end

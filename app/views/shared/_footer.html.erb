@@ -1,6 +1,8 @@
 <div class="container marketing">
   <footer>
-    <p class="pull-right"><a href="#">Back to top</a></p>
+    <% if session[:user_id] %>
+      <p class="pull-right"><%= link_to "Back to your cookbooks", user_path(session[:user_id]) %></p>
+    <% end %>
     <p>&copy; <%= Time.now.year %> Rabbit hole Inc </p>
   </footer>
 </div>
