@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get    "/login", to: "sessions#new", as: 'login'
   post   "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy", as: 'logout'
+  get "/remove/recipe/:recipe_id", to: "recipes#update", as: 'remove_recipe'
 
 
   resources :recipes
