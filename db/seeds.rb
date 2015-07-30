@@ -39,7 +39,7 @@ CSV.foreach("db/recipes.csv", headers: true) do |row|
   )
 end
 
-ingredients_recipes = { 1 => [1, 2], 2 => [1, 3]}
+ingredients_recipes = { 1 => [1, 2], 2 => [1, 3], 3 => [1, 3], 4 => [1, 3], 5 => [1, 3]}
 
 ingredients_recipes.each do |i, r|
   ingredient = Ingredient.find(i)
