@@ -1,6 +1,10 @@
 <h2><%= @recipe.name %></h2>
 
 <p>
+  Owner: <%= link_to "#{@user.name}", profile_user_path(@user) %>
+</p>
+
+<p>
   <%= @recipe.description %>
 </p>
 

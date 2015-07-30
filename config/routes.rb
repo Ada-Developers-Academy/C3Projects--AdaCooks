@@ -19,19 +19,21 @@ Rails.application.routes.draw do
   resources :users, only: [:create] do
     member do
       get 'dashboard'
+      get 'profile'
     end
   end
   get '/register', to: 'users#new', as: 'register'
 
 
 
+
   # resources :sessions, only: [:new, :create, :destroy]
   get '/login', to: 'sessions#new', as: 'login'
-  post    '/login',   to: 'sessions#create'
+  post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy', as: 'logout'
 
 
-  # resources :cookbooks
+  resources :cookbooks, only: [:show]
 
   resources :users, only: [] do
     resources :recipes, only: [:new, :create, :edit, :update, :destroy]
