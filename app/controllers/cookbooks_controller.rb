@@ -3,7 +3,6 @@ class CookbooksController < ApplicationController
   before_action :set_cookbook, only: [:edit, :show, :destroy]
 
   def index
-    @user = User.find(params[:user_id])
     @cookbooks = @user.cookbooks
   end
 
@@ -14,7 +13,13 @@ class CookbooksController < ApplicationController
   def create
     @cookbook = Cookbook.create(create_params)
 
-    redirect_to user_cookbook_path(session[:user_id], @cookbook.id)
+    if @cookbook.save
+      flash[:success] = "Your cookbook has been created."
+      redirect_to user_cookbook_path(session[:user_id], @cookbook.id)
+    else
+      flash[:error] = @cookbook.errors.full_messages.first
+      render :new
+    end
   end
 
   def edit
@@ -23,7 +28,13 @@ class CookbooksController < ApplicationController
   def update
     @cookbook = Cookbook.update(params[:id], create_params)
 
-    redirect_to user_cookbook_path(session[:user_id], @cookbook.id)
+    if @cookbook.save
+      flash[:success] = "Your cookbook has been edited."
+      redirect_to user_cookbook_path(session[:user_id], @cookbook.id)
+    else
+      flash[:error] = @cookbook.errors.full_messages.first
+      render :edit
+    end
   end
 
   def show
@@ -43,6 +54,16 @@ class CookbooksController < ApplicationController
   end
 
   def add_recipe
+    cookbook = Cookbook.find(params[:cookbook_id])
+    recipe = Recipe.find(params[:id])
+
+    if cookbook.recipes.include?(recipe)
+      flash[:error] = "This recipe is already in #{cookbook.name}."
+    else
+      cookbook.add_recipe_association(recipe)
+    end
+
+    redirect_to user_cookbook_path(session[:user_id], cookbook)
   end
 
   def remove_recipe

@@ -1,23 +1,16 @@
-<h1>My Cookbooks</h1>
+<h1>
+  My Cookbooks
+    <small>+<%= link_to "Add Cookbook", new_user_cookbook_path(@user)%></small>
 
-<%= link_to "Add Cookbook", new_user_cookbook_path(@user), class: "btn btn-default" %>
-
-<table class="table">
-  <tr>
-    <th>Cookbook</th>
-    <th># of Recipes</th>
-    <th># of Unique Recipes</th>
-    <th></th>
-    <th></th>
-  </tr>
-
+</h1>
+<ul class="list-group">
   <% @cookbooks.each do |cookbook| %>
-    <tr>
-      <td><%= link_to "#{cookbook.name}", user_cookbook_path(session[:user_id], cookbook.id) %></td>
-      <td><%= cookbook.recipes.count %></td>
-      <td><%= cookbook.recipes.uniq.count %></td>
-      <td><%= link_to "Edit", edit_user_cookbook_path(session[:user_id], cookbook.id), class: "btn btn-default" %></td>
-      <td><%= link_to "Delete", user_cookbook_path(session[:user_id], cookbook.id), method: "delete", class: "btn btn-default", data: { confirm: "Are you sure you want to delete?" }  %></td>
-    </tr>
+    <li class="list-group-item">
+      <%= link_to cookbook.proper_name, user_cookbook_path(session[:user_id], cookbook.id) %>
+      <%= link_to "Edit", edit_user_cookbook_path(session[:user_id], cookbook.id), class: "btn btn-info btn-xs" %>
+      <%= link_to "Delete", user_cookbook_path(session[:user_id], cookbook.id), method: "delete", class: "btn btn-warning btn-xs", data: { confirm: "Are you sure you want to delete?" } %>
+      <span class="badge"><%= cookbook_ingredients_count(cookbook) %></span>
+      <span class="badge"><%= cookbook_recipes_count(cookbook) %></span>
+    </li>
   <% end %>
-</table>
+</ul>
