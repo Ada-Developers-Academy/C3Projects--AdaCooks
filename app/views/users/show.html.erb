@@ -6,8 +6,12 @@
         <h1>
           <%= gravatar_for @user %>
           <%= @user.name %>
-          <%= link_to("Add a Cookbook", new_cookbook_path, class: "btn btn-default") %>
         </h1>
+        <p class="container profile-buttons">
+          <%= link_to("Add Cookbook", new_cookbook_path, class: "btn btn-sm btn-primary") %>
+          <%= link_to("Add Recipe", new_recipe_path, class: "btn btn-sm btn-primary") %>
+          <%= link_to("Add Ingredient", new_ingredient_path, class: "btn btn-sm btn-primary") %>
+        </p>
       </div>
 
       <!-- List group -->
