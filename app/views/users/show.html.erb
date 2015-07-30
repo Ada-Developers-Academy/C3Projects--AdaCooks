@@ -3,7 +3,8 @@
     <% if params[:id].to_i == @current_user.id %>
       <h1>Welcome back, <%= @user.name %>!</h1>
       <p><%= link_to "Create a New Cookbook", new_cookbook_path, class: "btn btn-default" %>
-  <% else %>
+        <%= link_to "Add New Recipe", new_recipe_path, class: "btn btn-default"  %>
+    <% else %>
       <h1><%= @user.name %> cookbooks</h1>
     <% end %>
   <% else %>
@@ -63,12 +64,8 @@
 
             <h2><%= recipe.name %></h2>
             <p><%= link_to "View details", recipe_path(recipe.id), class: "btn btn-default" %>
-        <% if session[:user_id] %>
-          <% if params[:id].to_i == @current_user.id %>
-            <%= link_to "Delete this recipe", recipe_path(recipe), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure you want to delete this?"} %>
-          <% end %>
+
         </div>
-        <% end %>
       <% end %>
     </div>
   </div>

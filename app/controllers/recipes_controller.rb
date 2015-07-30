@@ -7,6 +7,9 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    if session[:user_id]
+      @current_user = User.find(session[:user_id])
+    end
   end
 
   def new
@@ -27,9 +30,15 @@ class RecipesController < ApplicationController
   end
 
   def edit
+    @recipe = Recipe.find(params[:id])
+    @user = User.find(session[:user_id])
   end
 
   def update
+    recipe = Recipe.find(params[:id])
+    recipe.update(create_params)
+
+    redirect_to recipe_path(recipe)
   end
 
   def remove_cookbook

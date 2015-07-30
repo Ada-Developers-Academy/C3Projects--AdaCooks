@@ -5,23 +5,25 @@ class UsersController < ApplicationController
     include ApplicationHelper
 
   def show
-
     if session[:user_id]
       @current_user = User.find(session[:user_id])
-      @user = User.find(session[:user_id])
-      @cookbooks = @user.cookbooks
-      @recipes = @user.recipes
+      if session[:user_id] == @current_user
+        @user = User.find(session[:user_id])
+        @cookbooks = @user.cookbooks
+        @recipes = @user.recipes
+      else
+        load_user_cookbooks
+      end
     else
-
-      @user = User.find(params[:id])
-      @cookbooks = @user.cookbooks
-      @recipes =@user.recipes
+      load_user_cookbooks
     end
   end
 
-  def current_user?
-    user = User.find(params[:id])
-    user.id = session[:user_id]
+
+  def load_user_cookbooks
+    @user = User.find(params[:id])
+    @cookbooks = @user.cookbooks
+    @recipes =@user.recipes
   end
 
 

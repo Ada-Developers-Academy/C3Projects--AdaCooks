@@ -10,6 +10,12 @@
       <% if @recipe.cookbook %>
       <p>Recipe added by <%= link_to "#{@recipe.user.name}", user_path(@recipe.user.id) %></p>
       <% end %>
+    <% if session[:user_id] %>
+      <% if params[:id].to_i == @current_user.id %>
+        <%= link_to "Edit Recipe", edit_recipe_path(@recipe), class: "btn btn-warning" %>
+        <%= link_to "Delete Recipe", recipe_path(@recipe), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure you want to delete this?"} %>
+      <% end %>
+    <% end %>
 
     </div>
     <div class="col-md-5 col-md-pull-7">
