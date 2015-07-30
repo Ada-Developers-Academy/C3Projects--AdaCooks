@@ -17,5 +17,7 @@ Rails.application.routes.draw do
   resources :recipes
   resources :ingredients
 
+  patch "/unassociate_recipe", to: "cookbooks#unassociate", as: "unassociate"
+  put "/unassociate_recipe", to: "cookbooks#unassociate", as: "unassociate"
 
 end
