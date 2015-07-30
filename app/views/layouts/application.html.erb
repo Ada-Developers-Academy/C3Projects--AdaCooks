@@ -10,13 +10,15 @@
 
   <%= render partial: "shared/header" %>
 
+  <div class="jumbotron text-center">
+    <%= yield :page_title %>
+  </div>
+
   <% flash.each do |name, msg| %>
     <%= content_tag :div, msg, class: "#{name} alert #{flash_check(name)}" %>
   <% end %>
 
-  <div class="container-fluid">
-    <%= yield %>
-  </div>
+  <%= yield %>
 
 </body>
 </html>
