@@ -23,6 +23,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @cookbooks = Cookbook.where(user_id: session[:user_id])
+    @recipes = Recipe.where(user_id: session[:user_id])
   end
 
   private

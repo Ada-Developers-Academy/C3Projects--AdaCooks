@@ -127,5 +127,4 @@ RSpec.describe RecipesController, type: :controller do
 
     end
   end
-
 end

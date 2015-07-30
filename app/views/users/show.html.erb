@@ -10,3 +10,10 @@
     </div>
   </div>
 </div>
+
+<% if session[:user_id] %>
+  <%= render partial: "shared/cookbooks" %>
+<% end %>
+
+<h3>Recipes</h3>
+<%= render partial: "shared/recipes" %>

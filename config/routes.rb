@@ -11,10 +11,11 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy", as: "logout"
 
   resources :users, only: [ :show, :new, :create ] do
+    resources :cookbooks
   end
 
   resources :recipes
   resources :ingredients
-  resources :cookbooks
+
 
 end

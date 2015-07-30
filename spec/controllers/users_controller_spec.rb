@@ -4,6 +4,7 @@ RSpec.describe UsersController, type: :controller do
   describe "GET #show" do
     before :each do
       user = create :user
+      session[:user_id] = user.id
       get :show, id: user.id
     end
 
