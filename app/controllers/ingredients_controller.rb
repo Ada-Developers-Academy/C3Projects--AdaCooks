@@ -62,8 +62,4 @@ class IngredientsController < ApplicationController
   def ingredient_params
     params.require(:ingredient).permit(:name, :image)
   end
-
-  def last_page
-    session[:last_page] = request.referer || :back
-  end
 end
