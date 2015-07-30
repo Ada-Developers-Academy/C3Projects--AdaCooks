@@ -1,0 +1,22 @@
+<div class="page-header">
+  <h2><%= @recipe.name %>
+    <small> From: <%= link_to @recipe.user.username, user_path(@recipe.user.id) %></small>
+  </h2>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= render partial: "ingredients_list", locals: { recipe: @recipe } %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-10">
+    <div class="panel">
+      <div class="panel-header">Instructions:</div>
+      <p>
+        <%= @recipe.preparation %>
+      </p>
+    </div>
+  </div>
+</div>

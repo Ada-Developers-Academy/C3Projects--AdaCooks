@@ -1,0 +1,23 @@
+<div class="row form-header container-fluid">
+  <div class="col-md-6 col-md-offset-3">
+    <h2 class="text-center"> My Cookbooks </h2>
+    <h4 class="text-center">
+      <%= link_to "Add a New Cookbook", new_user_cookbook_path %>
+    </h4>
+    <table class="table table-bordered">
+      <tr>
+        <th>Cookbook Name</th>
+        <th>Number of Recipes</th>
+        <th>Number of Ingredients</th>
+      </tr>
+
+      <% @cookbooks.each do |cookbook| %>
+      <tr>
+        <td> <%= link_to cookbook.name.titlecase, user_cookbook_path(cookbook.user_id, cookbook.id) %> </td>
+        <td class="text-center"> <%= cookbook.recipes.count %> </td>
+        <td class="text-center"> <%= cookbook.ingredients.count %> </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

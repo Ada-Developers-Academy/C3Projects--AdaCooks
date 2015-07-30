@@ -1,0 +1,5 @@
+<div class="row">
+  <%= "There are no recipes containing #{params[:search]}" unless @recipes.present? %>
+
+  <%= render partial: "shared/recipes", locals: { recipes: @recipes }  %>
+</div>

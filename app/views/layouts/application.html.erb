@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>C3ProjectsAdacooks</title>
+  <title>Recipes for All</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
+<%= render "shared/nav" %>
+<div class="page">
+  <div class="container-fluid">
+    <%= yield %>
+  </div>
+</div>
 
 </body>
 </html>
