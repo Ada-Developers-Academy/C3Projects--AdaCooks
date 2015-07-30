@@ -16,9 +16,4 @@ class ApplicationController < ActionController::Base
         @search_results = Recipe.joins(:ingredients).where("ingredients.name LIKE ?", "%#{params[:search][:query]}%")
     end
   end
-
-  # def check_current_page
-  #   if
-  # end
-
 end

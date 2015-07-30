@@ -38,7 +38,8 @@
               <li><p class="navbar-text">Welcome, <%= @user_name %> </li>
           </ul>
         </div>
-        <p>
+        <% unless current_page?(login_path) || current_page?(dashboard_user_path(session[:user_id])) %>
+        <div>
           <%= form_for "search", method: "get", html: { class: "form" } do |f| %>
           <div class="form-group inline-form">
             <%= f.label :query, "Search Ingredients:" %>
@@ -46,10 +47,11 @@
           </div>
           <%= f.submit "Search", class: "btn btn-default" %>
           <% end %>
-        </p>
+          <% end %>
+        </div>
 
         <% if params[:search] %>
-          <h3>Related Recipes</h3>
+          <h5>Related Recipes</h5>
           <div class="list-group">
             <% @search_results.each do |recipe| %>
             <button type="button" class="list-group-item"><%= link_to recipe.name, recipe_path(recipe) %></button>
