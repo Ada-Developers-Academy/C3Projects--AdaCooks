@@ -18,7 +18,7 @@
       <%= link_to "Recipes", recipes_path, class: "btn btn-default" %>
       <%= link_to "Ingredients", ingredients_path, class: "btn btn-default" %>
 
-      <%= form_for :search do |f| %>
+      <%= form_for :search, url: root_path do |f| %>
         <%= f.text_field :query %>
 
         <%= f.submit "Search" %>
@@ -38,6 +38,10 @@
 
       <% if flash[:error] %>
         <p class="alert alert-danger"><%= flash[:error] %></p>
+      <% end %>
+
+      <% if flash[:success] %>
+        <p class="alert alert-success"><%= flash[:success] %></p>
       <% end %>
 
       <%= yield %>
