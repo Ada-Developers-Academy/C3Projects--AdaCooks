@@ -19,6 +19,26 @@ class CookbooksController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:user_id])
+    @cookbook = Cookbook.find(params[:id])
+  end
+
+  def update
+    user = User.find(params[:user_id])
+    cookbook = Cookbook.find(params[:id])
+
+    if user.id == cookbook.user.id
+      if cookbook.update(cookbook_params)
+        redirect_to dashboard_user_path(user)
+      else
+        render :edit
+      end
+    end
+
+
+  end
+
   def destroy
     user = User.find(params[:user_id])
     cookbook = Cookbook.find(params[:id])
@@ -38,12 +58,6 @@ class CookbooksController < ApplicationController
     end
 
     redirect_to user_cookbook_path(user, cookbook)
-  end
-
-  def update
-    cookbook = Cookbook.find(params[:id])
-
-    cookbook.update
   end
 
   private
