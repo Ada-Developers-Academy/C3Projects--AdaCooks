@@ -6,15 +6,11 @@ RSpec.describe RecipeIngredient, type: :model do
   #   let(:user) { create :user } # doesn't have :name attribute
   #
   #   it "returns the name attribute" do
-  #     expect(ingredient.ingredient_name).to eq "An ingredient"
+  #     expect(ingredient_name).to eq "An ingredient"
   #   end
   #
   #   it "returns nil if there is no name attribute" do
   #     expect(user.ingredient_name).to eq nil
   #   end
-  # end
-  #
-  # describe "#ingredient_name=" do
-  #
   # end
 end
