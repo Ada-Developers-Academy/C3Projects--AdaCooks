@@ -38,7 +38,8 @@
               <li><p class="navbar-text">Welcome, <%= @user_name %> </li>
           </ul>
         </div>
-        <% unless current_page?(login_path) || current_page?(dashboard_user_path(session[:user_id])) %>
+        <% unless current_page?(login_path) || params[:controller] == 'users' && %w(dashboard).include?(params[:action])
+ %>
         <div>
           <%= form_for "search", method: "get", html: { class: "form" } do |f| %>
           <div class="form-group inline-form">
