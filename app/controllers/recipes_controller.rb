@@ -36,13 +36,41 @@ class RecipesController < ApplicationController
 
 	def show
 		@recipe = Recipe.find(params[:id])
+
+		# move to model?
+		user = User.find(session[:user_id])
+		user_cookbooks = user.cookbooks.map { |c| [c.name, c.id] }
+		@cookbooks_array = user_cookbooks.unshift(["None", nil])
+	end
+
+	def edit
+		@recipe = Recipe.find(params[:id])
+
+		# move to model?
+		user = User.find(session[:user_id])
+		user_cookbooks = user.cookbooks.map { |c| [c.name, c.id] }
+		@cookbooks_array = user_cookbooks.unshift(["None", nil])
+
+		# move to model?
+		@measurements_array = []
+		measurements = RecipeIngredient::MEASUREMENTS.each do |measurement|
+			# [label (for view), value (sent to db)]
+			@measurements_array << [measurement, measurement]
+		end
+	end
+
+	def update
+		recipe = Recipe.find(params[:id])
+		recipe.update(create_params)
+
+		redirect_to recipe_path(recipe)
 	end
 
 	private
 
 	def create_params
 		params.require(:recipe).permit(:user_id, :name, :description, :image_url, :prep,
-			:cookbook_id, recipe_ingredients_attributes: [:quantity, :measurement,
+			:cookbook_id, recipe_ingredients_attributes: [:id, :quantity, :measurement,
 			:ingredient_name])
 	end
 end
