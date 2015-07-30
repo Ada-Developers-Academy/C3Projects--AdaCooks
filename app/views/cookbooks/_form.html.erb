@@ -1,15 +1,21 @@
-<%= form_for @cookbook, url: path do |f| %>
-  <fieldset>
-    <div class="form_group">
-      <%= f.label :name %>
-      <%= f.text_field :name, class: "form-control" %>
-    </div>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <%= form_for @cookbook, url: path do |f| %>
+      <fieldset>
+        <div class="form-group">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+        </div>
 
-    <div class="form_group">
-      <%= f.label :description %>
-      <%= f.text_field :description, class: "form-control" %>
-    </div>
-    <br>
-    <%= f.submit class: "btn btn-primary" %>
-  </fieldset>
-<% end %>
+        <div class="form-group">
+          <%= f.label :description %>
+          <%= f.text_field :description, class: "form-control", placeholder: "Description" %>
+        </div>
+
+        <br>
+
+        <%= f.submit "Save Cookbook", class: "btn btn-primary" %>
+      </fieldset>
+    <% end %>
+  </div>
+</div>
