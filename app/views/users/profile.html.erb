@@ -1,0 +1,22 @@
+<h2><%= @user.name %></h2>
+
+<h3>Cookbooks</h3>
+<div class="list-group">
+  <% @cookbooks.each do |cookbook| %>
+  <button type="button" class="list-group-item"><%= link_to cookbook.name, cookbook_path(cookbook) %></button>
+  <% end %>
+</div>
+
+<h3>Recipes</h3>
+<div class="list-group">
+  <% @recipes.each do |recipe| %>
+  <button type="button" class="list-group-item"><%= link_to recipe.name, recipe_path(recipe) %></button>
+  <% end %>
+</div>
+
+<h3>Ingredients</h3>
+<div class="list-group">
+  <% @ingredeints.each do |ingredient| %>
+  <button type="button" class="list-group-item"><%= link_to ingredient.name, ingredient_path(ingredient) %></button>
+  <% end %>
+</div>
