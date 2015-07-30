@@ -11,6 +11,7 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    @ingredients = Ingredient.all
   end
 
   def show
@@ -20,7 +21,12 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.create(recipe_params)
-    @recipe.user_id = session[:user_id]
+    # @recipe.user_id = session[:user_id]
+    @unicorns = (params[:recipe][:ingredient_ids].first).to_i
+    @recipe.ingredients << Ingredient.find(@unicorns)
+    # @join = IngredientsRecipes.create(recipe_id, ingredient_id)
+
+
 
     if @recipe.save
         redirect_to user_path(session[:user_id])
@@ -35,10 +41,9 @@ class RecipesController < ApplicationController
 
   end
 
-
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :description, :image, {:cookbook_ids => [] })
+    params.require(:recipe).permit(:name, :description, :image, :ingredients)
   end
 end

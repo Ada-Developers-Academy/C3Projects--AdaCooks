@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Welcome, <%= @user.username %></h1>
-  <%= button_to "New Recipe", new_recipe_path %>
-  <%= button_to "New Cookbook", new_cookbook_path %>
+  <%= button_to "New Recipe", new_recipe_path, method: :get %>
+  <%= button_to "New Cookbook", new_cookbook_path, method: :get %>
 
   <table class="table">
     <tr>
