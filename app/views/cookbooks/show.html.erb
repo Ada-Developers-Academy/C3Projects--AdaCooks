@@ -1,15 +1,16 @@
 <div class="container">
-  <h2><%= @cookbook.name %></h2>
+  <h2><%= @cookbook.name %></h2> <%= link_to "Edit Cookbook", edit_cookbook_path(@cookbook.id), class:"btn btn-primary" %>
   <h2><small><%= @cookbook.description %></small></h2>
-  <%= @cookbook.recipes.count %> Recipes
+  <%= @cookbook.recipes.count %> Recipes,
   23525 unique ingredients
 
   <h3>Table of Contents</h3>
   <div class="row">
-    <% @cookbook.recipes.each do |recipe| %>
-    <div class="col-md-6">
+    <% @cookbook.recipes.alphabet.each do |recipe| %>
+    <div class="col-md-12">
       <%= image_tag(recipe.image_url(:medium))%>
       <%= link_to "#{recipe.name}", recipe_path(recipe.id) %>
+      <%= button_to "Remove from cookbook", root_path, class:"btn btn-danger" %>
     </div>
     <% end %>
   </div>
