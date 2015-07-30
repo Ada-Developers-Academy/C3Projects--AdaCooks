@@ -58,7 +58,7 @@
     </div>
     <div class="col-sm-3 float-right">
       <!-- change below to new_user_cookbook_path -->
-      <%= link_to "Create a New Cookbook", new_user_cookbook_path, class: 'btn btn-primary' %>
+      <%= link_to "Create a New Cookbook", new_user_cookbook_path(session[:user_id]), class: 'btn btn-primary' %>
     </div>
 
     <div class="row">
