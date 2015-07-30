@@ -32,6 +32,7 @@
       <th>Name</th>
       <th>Recipes</th>
       <th>Ingredients</th>
+      <th>Edit</th>
       <th>Delete</th>
     </tr>
   </thead>
@@ -41,7 +42,8 @@
       <td><%= link_to cookbook.name, user_cookbook_path(@user, cookbook) %></td>
       <td><span class="badge"><%= cookbook.recipes.count %></span></td>
       <td><span class="badge"><%= cookbook.ingredients.count %></span></td>
-      <td><%= link_to "X", user_cookbook_path(@user, cookbook), method: :delete, class: "btn btn-danger" %></td>
+      <td><%= link_to "Edit", edit_user_cookbook_path(@user, cookbook), class: "btn btn-default" %></td>
+      <td><%= link_to "Delete", user_cookbook_path(@user, cookbook), method: :delete, class: "btn btn-danger" %></td>
     </tr>
     <% end %>
   </tbody>
