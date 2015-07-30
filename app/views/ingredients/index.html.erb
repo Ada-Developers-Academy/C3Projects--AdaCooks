@@ -12,7 +12,7 @@
           <% elsif ingredient.image_url %>
             <%= image_tag ingredient.image_url, class: "img-circle", size: '200x200'  %>
           <% else %>
-            <p>No image</p>
+            <%= image_tag "no_image.png", class: "img-circle", size: '200x200'  %>
           <% end %>
         <% end %>
       </div>

@@ -30,7 +30,7 @@ class IngredientsController < ApplicationController
     @user = User.find(session[:user_id])
 
     if @ingredient.save
-      redirect_to ingredients_path
+      redirect_to new_recipe_path
     else
       render 'new'
     end
