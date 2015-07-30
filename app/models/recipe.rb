@@ -1,7 +1,7 @@
 class Recipe < ActiveRecord::Base
   # Associations ---------------------------------------------------------------
   has_and_belongs_to_many :cookbooks, :join_table => "cookbooks_recipes"
-  has_many :recipe_ingredients
+  has_many :recipe_ingredients, inverse_of: :recipe
   has_many :ingredients, through: :recipe_ingredients
   belongs_to :user
   accepts_nested_attributes_for :recipe_ingredients,
