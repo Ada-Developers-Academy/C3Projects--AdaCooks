@@ -5,21 +5,18 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12">
-    <%= render partial: "ingredients_list", locals: { recipe: @recipe } %>
+  <div class="col-lg-4">
+    <div class="thumbnail">
+      <%= image_tag(@recipe.image_url, class: "img-rounded product-thumb") %>
+    </div>
   </div>
-</div>
-
-<div class="row">
-  <div class="col-md-10">
-    <div class="panel">
-      <div class="panel-header">Instructions:</div>
-      <p>
-        <%= @recipe.preparation %>
-      </p>
+  <div class="col-lg-6 col-offset-lg-2">
+    <%= render partial: "ingredients_list", locals: { recipe: @recipe } %>
+    Instructions: <p><%= @recipe.preparation %></p>
     </div>
   </div>
 </div>
+
 <% if session[:user_id] == @recipe.user_id %>
   <div class="row">
     <div class="center-link-buttons">
