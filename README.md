@@ -34,33 +34,33 @@ We're doing this to make the final project easier to code review. Because the ba
     - a list of links to Recipes associated with the Ingredient
     
 ### As an anonymous User I can...
-- register a new User account
-- Log In to an existing User account
+- DONE register a new User account
+- DONE Log In to an existing User account
 
 ### As a Logged In User I can...
-- Log Out
+- DONE Log Out
 - __Cookbooks__
-  - See a list of Cookbooks I've already created, including...
-    - The number of Recipes associated with the Cookbook
-    - The number of unique Ingredients associated with the Cookbook
+  - DONE See a list of Cookbooks I've already created, including...
+    - DONE The number of Recipes associated with the Cookbook
+    - DONE The number of unique Ingredients associated with the Cookbook
   - See the details of a specific Cookbook, including...
-    - a list of links to the Recipes associated with the Cookbook
+    - DONE a list of links to the Recipes associated with the Cookbook
     - a link to remove (unassociate) a Recipe from the Cookbook. This does not destroy the Recipe.
-  - Create a new Cookbook, associated with my User account, with...
-    - a `name` (required)
-    - a `description` (optional)
-  - Destroy an existing Cookbook
-    - Destroying a Cookbook __does not__ destroy the Recipes, just the associations.
-  - Edit an existing Cookbook's `name` and `description` information.
+  - DONE Create a new Cookbook, associated with my User account, with...
+    - DONE a `name` (required)
+    - DONE a `description` (optional)
+  - DONE Destroy an existing Cookbook
+    - DONE Destroying a Cookbook __does not__ destroy the Recipes, just the associations.
+  - DONE Edit an existing Cookbook's `name` and `description` information.
 - __Recipes__
   - Create a new Recipe, optionally associated with one of my existing Cookbooks, with...
-    - a `name` (required)
-    - a `description` (optional)
-    - an uploaded image of the prepared Recipe (optional)
-    - a `preparation` (required)
+    - DONE a `name` (required)
+    - DONE a `description` (optional)
+    - DONE an uploaded image of the prepared Recipe (optional)
+    - DONE a `preparation` (required)
     - one or more Ingredients (required)
   - Edit an existing Recipe that I created by...
-    - Changing the `name`, `description`, uploaded image, and/or `preparation`
+    - DONE Changing the `name`, `description`, uploaded image, and/or `preparation`
     - Removing or Adding Ingredients
   - Destroy an existing Recipe that I created
     - Destroying a Recipe __does not__ destroy the Ingrdients, just the associations
