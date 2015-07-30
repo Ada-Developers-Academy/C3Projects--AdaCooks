@@ -1,41 +1,28 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Eat Me!</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <div class="container">
+  <head>
+    <title>Eat Me!</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
     <header class="jumbotron">
-      <h1 class="top">Eat Me!</h1>
-      <p>
-        <%= random_profession_name %> prefer more <%= random_ingredient_name %>
-        in their <%= random_recipe_name %> than any other ingredient!
-      </p>
-      <%= link_to "Home", root_path, class: "btn btn-default" %>
-      <%= link_to "Recipes", recipes_path, class: "btn btn-default" %>
-      <%= link_to "Ingredients", ingredients_path, class: "btn btn-default" %>
+      <div class="container">
+        <h1 class="top">Eat Me!</h1>
+        <p>
+          <%= random_profession_name %> prefer more <%= random_ingredient_name %>
+          in their <%= random_recipe_name %> than any other ingredient!
+        </p>
 
-      <%= form_for :search, url: root_path do |f| %>
-        <%= f.text_field :query %>
-
-        <%= f.submit "Search" %>
-      <% end %>
-
-      <% if session[:user_id] %>
-        <%= link_to "Cookbooks", user_cookbooks_path(session[:user_id]), class: "btn btn-default" %>
-        <%= link_to "Logout", logout_path, method: "delete", class: "btn btn-default pull-right" %>
-        <p>Welcome, <%= User.find_by(id: session[:user_id]).username %> </p>
-      <% else %>
-        <%= link_to "Signup", signup_path, class: "btn btn-default pull-right" %>
-        <%= link_to "Login", login_path, class: "btn btn-default pull-right" %>
-      <% end %>
+        <!-- navbar -->
+        <ul class="nav nav-pills">
+          <%= render "layouts/navbar" %>
+        </ul>
+      </div>
     </header>
 
     <main class="container">
-
       <% if flash[:error] %>
         <p class="alert alert-danger"><%= flash[:error] %></p>
       <% end %>
@@ -49,12 +36,12 @@
 
     <footer>
       <nav class="navbar navbar-default">
-        <%= link_to "Top", "#top", class: "btn btn-default" %>
-        <%= link_to "Home", root_path, class: "btn btn-default" %>
-        <%= link_to "Recipes", recipes_path, class: "btn btn-default", class: "btn btn-default" %>
-        <%= link_to "Ingredients", ingredients_path, class: "btn btn-default" %>
+        <div class="container">
+          <ul class="nav nav-pills">
+            <%= link_to "Jump back to the top", "#top" %>
+          </ul>
+        </div>
       </nav>
     </footer>
-  </div>
-</body>
+  </body>
 </html>

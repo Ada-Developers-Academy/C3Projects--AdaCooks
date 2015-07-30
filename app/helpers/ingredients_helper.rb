@@ -1,8 +1,8 @@
 module IngredientsHelper
-  def ingredient_recipes_count(ingredient)
-    output = "(in #{ ingredient.recipes.count } recipe"
+  def ingredient_recipes_count(ingredient) # FIXME: test probably broken?
+    output = "in #{ ingredient.recipes.count } recipe"
     output += "s" unless ingredient.recipes.count == 1
-    output += ")"
+    output += ""
   end
 
   def random_ingredient_name

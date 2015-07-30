@@ -3,36 +3,36 @@
   <small>Member since: <%= format_date(@user.created_at) %></small>
 </h1>
 
-<h2>Contributions</h2>
+<h2>User Contributions</h2>
 
 <div class="col-sm-6">
-  <h3>Recipes</h3>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Recipes</h3>
+    </div>
 
-  <% if @user.has_recipes? %>
-    <ul>
-      <% @user.recipes.each do |recipe| %>
-        <li><%= link_to recipe.name, recipe_path(recipe) %></li>
+    <div class="panel-body">
+      <% if @user.has_recipes? %>
+        <%= render partial: 'shared/recipes_list', locals: { recipes: @user.recipes.alphabetized } %>
+      <% else %>
+        <p>This user hasn't submitted any recipes yet.</p>
       <% end %>
-    </ul>
-
-  <% else %>
-    <p>This user hasn't submitted any recipes yet.</p>
-
-  <% end %>
+    </div>
+  </div>
 </div>
 
 <div class="col-sm-6">
-  <h3>Ingredients</h3>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Ingredients</h3>
+    </div>
 
-  <% if @user.has_ingredients? %>
-    <ul>
-      <% @user.ingredients.each do |ingredient| %>
-        <li><%= link_to ingredient.name, ingredient_path(ingredient) %></li>
+    <div class="panel-body">
+      <% if @user.has_ingredients? %>
+        <%= render partial: 'shared/ingredients_list', locals: { ingredients: @user.ingredients.alphabetized } %>
+      <% else %>
+        <p>This user hasn't submitted any ingredients yet.</p>
       <% end %>
-    </ul>
-
-  <% else %>
-    <p>This user hasn't submitted any ingredients yet.</p>
-
-  <% end %>
+    </div>
+  </div>
 </div>

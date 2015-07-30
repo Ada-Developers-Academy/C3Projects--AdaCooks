@@ -1,0 +1,17 @@
+<%= form_for @recipe, url: user_recipe_path(@user, @recipe) do |f| %>
+  <fieldset>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+
+    <%= f.label :steps %>
+    <%= f.text_field :steps %>
+
+    <%= f.label "Optional Image" %>
+    <%= f.file_field :avatar %>
+
+    <%= f.submit "Save Recipe" %>
+  </fieldset>
+<% end %>

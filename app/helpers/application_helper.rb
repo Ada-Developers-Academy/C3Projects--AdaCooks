@@ -2,9 +2,7 @@ module ApplicationHelper
   def format_date(date) # FIXME: test #format_date
     # OPTIMIZE: is this the best format?
     # http://apidock.com/ruby/DateTime/strftime
-    if (date.class == Time) || (date.class == Date) || (date.class == DateTime)
-      date.strftime("%B %Y") # eg, January 2086, August 1994
-    end
+    date.strftime("%B %Y") # eg, January 2086, August 1994 # FIXME: specs
   end
 
   def random_profession_name # FIXME: test #random_profession_name
