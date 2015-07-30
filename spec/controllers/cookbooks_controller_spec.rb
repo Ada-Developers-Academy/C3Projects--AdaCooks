@@ -58,18 +58,13 @@ RSpec.describe CookbooksController, type: :controller do
     end
 
     context "not logged in user" do
-      before :each do
-        cookbook = create :cookbook
-        user = create :user
-        session[:user_id] = user.id
-        get :new, user_id: 2, id: cookbook.id
-      end
-
       it "does not respond successfully" do
+        get :new, user_id: 1
         expect(response).to_not be_success
       end
 
       it "redirects to the home page" do
+        get :new, user_id: 1
         expect(response).to redirect_to(root_path)
       end
     end
@@ -78,7 +73,8 @@ RSpec.describe CookbooksController, type: :controller do
   describe "POST #create" do
     describe "user not logged in" do
       it "redirects to the login page" do
-        expect(response).to redirect_to(login_path)
+        post :create, cookbook: attributes_for(:cookbook)
+        expect(response).to redirect_to(root_path)
       end
     end
 
