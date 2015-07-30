@@ -10,7 +10,7 @@
     <div class="col-md-12">
       <%= image_tag(recipe.image_url(:medium))%>
       <%= link_to "#{recipe.name}", recipe_path(recipe.id) %>
-      <%= link_to "Remove from cookbook", remove_recipe_path, class:"btn btn-danger" %>
+      <%= link_to "Remove from cookbook", remove_recipe_path(recipe.id), class:"btn btn-danger" %>
     </div>
     <% end %>
   </div>
