@@ -2,9 +2,39 @@
   <div class="container">
     <h1>Hambre</h1>
     <p>¿Tienes Hambre? Satisfy your cravings with our mouth-watering recipes.</p>
-    <%= form_tag({controller:'ingredients', action: 'search'}, method: :get) do %>
-    <%= text_field_tag :search, params[:search], id: 'search_field', placeholder: "Search by Ingredient" %>
-    <%= submit_tag "Search" %>
-    <% end %>
+    <div class="form-group input-lg search">
+      <%= form_tag({controller:'ingredients', action: 'search'}, method: :get, role: "search", class: "form-inline") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search by Ingredient", class: "form-control" %>
+        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+      <% end %>
+    </div>
   </div>
 </div>
+
+<h2 class="center">Recipes</h2>
+<div class="container center">
+  <% @recipes.each do |recipe| %>
+    <div class="col-md-4">
+      <div class="well">
+        <%= link_to image_tag(recipe.image, class: "img-circle", size: "200x170"), recipe_path(recipe.id) %>
+        <h3><%= link_to(recipe.name, recipe_path(recipe.id)) %></h3>
+        <p class="img-desc"><%= recipe.desc %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<!-- Ingredient images -->
+<h2 class="center">Ingredients</h2>
+<div class="container center">
+  <% @ingredients.each do |ingredient| %>
+    <div class="col-md-4">
+      <div class="well">
+        <%= link_to image_tag(ingredient.image, class: "img-circle", size: "200x170"), ingredient_path(ingredient.id) %>
+        <h3><%= link_to(ingredient.name, ingredient_path(ingredient.id)) %></h3>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+

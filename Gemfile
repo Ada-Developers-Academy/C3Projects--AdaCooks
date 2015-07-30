@@ -26,6 +26,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Carrier Wave for image uploads
+gem 'mini_magick'
 gem 'carrierwave'
 
 # Use ActiveModel has_secure_password

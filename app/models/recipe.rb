@@ -16,7 +16,7 @@ class Recipe < ActiveRecord::Base
   scope :alphabetical, -> { all.sort_by {|i| i.name} }
   # scope :find_recipe, ->
 
-# MOUNTED OBJECTS -------------------------------------
-  # mount_uploader :image, ImageUploader
+# MOUNT UPLOADER --------------------------------------
+  mount_uploader :image, ImageUploader
 
 end

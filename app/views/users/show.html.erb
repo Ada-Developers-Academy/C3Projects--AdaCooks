@@ -8,8 +8,26 @@
         </h1>
       </section>
 
-      <p><%= link_to "My Cookbooks", "#" %></p>
-      <p><%= link_to "My Recipes", "#" %></p>
+      <%= link_to "Add a Cookbook", new_cookbook_path, class: "btn btn-default" %>
+
+      <h3>My Cookbooks</h3>
+        <ul>
+          <% @cookbooks.each do |cookbook| %>
+            <li>
+              <%= link_to cookbook.name, cookbook_path(cookbook.id) %>
+              <%= pluralize(cookbook.recipes.count, "recipe") %>
+              <%= link_to "Edit", edit_cookbook_path %>
+              <%= link_to "Delete", cookbook_path(cookbook.id), method: :delete %>
+            </li>
+          <% end %>
+        </ul>
+
+      <h3>My Recipes</h3>
+        <ul>
+          <% @recipes.each do |recipe| %>
+            <li><%= link_to recipe.name, recipe_path(recipe.id) %></li>
+          <% end %>
+        </ul>
     </aside>
   </div>
 </div>

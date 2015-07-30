@@ -31,14 +31,14 @@ RSpec.describe CookbooksController, type: :controller do
 
   describe "POST #create" do
     context "valid params" do
-      xit "creates a Cookbook record" do
+      it "creates a Cookbook record" do
         post :create, cookbook_params
         expect(Cookbook.count).to eq 1
       end
 
-      xit "redirects to the show page" do
+      it "redirects to the user show page" do
         post :create, cookbook_params
-        expect(subject).to redirect_to(user_path)
+        expect(subject).to redirect_to(user_path(session[:user_id]))
       end
     end
 
