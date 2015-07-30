@@ -1,1 +1,21 @@
-<%= render partial: "form", locals: { form_type: "New" } %>
+<div class="container">
+  <h2><center> Add A Cookbook</h2>
+
+<div class="form-group">
+    <%= form_for @cookbook, url: new_user_cookbook_path(session[:user_id]), html: {class: "form"} do |f| %>
+  <div class="col-md-4 col-md-offset-2">
+    <%= render partial: "shared/errors", locals: { data_type: @cookbook } %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
+
+      <%= f.label :description %>
+      <%= f.text_field :description, class: "form-control" %>
+
+      <%= f.hidden_field :user_id, value: session[:user_id] %>
+    <br><br>
+    <%= f.submit class: "btn btn-default" %>
+  <% end %>
+  </div>
+ </div>
+</div>
