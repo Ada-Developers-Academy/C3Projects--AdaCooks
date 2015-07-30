@@ -70,7 +70,7 @@ ingredients = [
   { user_id: 1, name: "whole milk" },
   { user_id: 1, name: "caramel" },
   { user_id: 2, name: "fleur de sel" },
-  { user_id: 2, name: "lavendar" },
+  { user_id: 2, name: "lavender" },
   { user_id: 2, name: "lemon juice" },
   { user_id: 2, name: "wild blackberries" },
   { user_id: 2, name: "fresh chevre" },
