@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to user_path(@user.id), method: :get
     else
-      flash.now[:login_error] = "Try again"
+      flash[:login_error] = "Try again"
       render :new
     end
   end

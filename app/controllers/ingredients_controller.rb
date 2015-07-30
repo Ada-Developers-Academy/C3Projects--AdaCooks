@@ -20,12 +20,21 @@ end
 
 def new
   @ingredient = Ingredient.new
+  user = User.find(session[:user_id])
+  @ingredients = user.ingredients
 end
 
 def create
-  @ingredient = Ingredient.create(ingredient_params)
-  
-  redirect_to
+  recipe = Recipe.find(session[:user_id])
+  user = User.find(session[:user_id])
+  @ingredient = recipe.ingredients.create(ingredient_params)
+  @ingredient.user_id = user.id
+  if @ingredient.save
+    redirect_to new_user_ingredient_path(session[:user_id])
+  else
+    flash[:error] = "It did not save"
+    render :new
+  end
 end
 
 def edit
@@ -39,8 +48,7 @@ end
 
 def destroy
   @ingredient.destroy
-
-  redirect_to
+  redirect_to new_user_ingredient_path(session[:user_id])
 end
 
 private
