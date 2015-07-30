@@ -154,42 +154,41 @@ RSpec.describe IngredientsController, type: :controller do
   describe "POST #create" do
     before :each do
       @user = create :user
-      @ingredient = build :ingredient, user_id: nil
+      @ingredient = attributes_for :ingredient
       session[:user_id] = @user.id
     end
 
-    it "assigns @ingredient" do
-      post :create, id: @ingredient.id, user_id: @user.id
-      expect(assigns(:ingredient)).to eq(@ingredient)
-    end
-
     it "assigns @authenticated_user" do
-      post :create, id: @ingredient.id, user_id: @user.id
+      post :create, ingredient: @ingredient, user_id: @user.id
       expect(assigns(:authenticated_user)).to eq(@user)
     end
 
     context "valid form input" do
       it "redirects to newly created ingredient's show page" do
-        post :create, id: @ingredient.id, user_id: @user.id
+        post :create, ingredient: @ingredient, user_id: @user.id
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to(ingredient_path(@ingredient))
       end
 
-      it "renders edit template" do
-        post :create, id: @ingredient.id, user_id: @user.id
-        expect(response).to render_template("edit")
+      it "creates a new ingredient" do # OPTIMIZE: this creates new ingredient test
+        post :create, ingredient: @ingredient, user_id: @user.id
+        expect(assigns(:ingredient).class).to eq(Ingredient)
+        expect(assigns(:ingredient)).to be_valid
       end
     end
 
     context "invalid form input" do
+      before :each do
+        @ingredient = attributes_for :ingredient, name: nil
+      end
+
       it "responds successfully with an HTTP 200 status code" do
-        post :create, id: @ingredient.id, user_id: @user.id
+        post :create, ingredient: @ingredient, user_id: @user.id
         expect(response).to be_success
         expect(response).to have_http_status(200)
       end
 
       it "renders new template" do
-        post :create, id: @ingredient.id, user_id: @user.id
+        post :create, ingredient: @ingredient, user_id: @user.id
         expect(response).to render_template("new")
       end
     end
@@ -200,7 +199,7 @@ RSpec.describe IngredientsController, type: :controller do
       end
 
       it "does not permit access / redirects to the home page" do
-        post :create, id: @ingredient.id, user_id: @user.id
+        post :create, ingredient: @ingredient, user_id: @user.id
 
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
@@ -214,7 +213,7 @@ RSpec.describe IngredientsController, type: :controller do
       end
 
       it "does not permit access / redirects to the home page" do
-        post :create, id: @ingredient.id, user_id: @user.id
+        post :create, inredient: @ingredient, user_id: @user.id
 
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
@@ -225,29 +224,44 @@ RSpec.describe IngredientsController, type: :controller do
   describe "PATCH #update" do
     before :each do
       @user = create :user
-      @ingredient = create :ingredient, user_id: @user.id
+      @ingredient = create :ingredient
+      @params = attributes_for :ingredient
       session[:user_id] = @user.id
     end
 
-    it "responds successfully with an HTTP 200 status code" do
-      patch :update, id: @ingredient.id, user_id: @user.id
-      expect(response).to be_success
-      expect(response).to have_http_status(200)
-    end
-
-    it "renders edit template" do
-      patch :update, id: @ingredient.id, user_id: @user.id
-      expect(response).to render_template("edit")
-    end
-
-    it "assigns @ingredient" do
-      patch :update, id: @ingredient.id, user_id: @user.id
-      expect(assigns(:ingredient)).to eq(@ingredient)
-    end
-
     it "assigns @authenticated_user" do
-      patch :update, id: @ingredient.id, user_id: @user.id
+      patch :update, id: @ingredient.id, ingredient: @params, user_id: @user.id
       expect(assigns(:authenticated_user)).to eq(@user)
+    end
+
+    context "valid form input" do
+      it "redirects to newly created ingredient's show page" do
+        patch :update, id: @ingredient.id, ingredient: @params, user_id: @user.id
+        expect(response).to have_http_status(302)
+      end
+
+      it "creates a new ingredient" do # OPTIMIZE: this creates new ingredient test
+        patch :update, id: @ingredient.id, ingredient: @params, user_id: @user.id
+        expect(assigns(:ingredient).class).to eq(Ingredient)
+        expect(assigns(:ingredient)).to be_valid
+      end
+    end
+
+    context "invalid form input" do
+      before :each do
+        @params = attributes_for :ingredient, name: nil
+      end
+
+      it "responds successfully with an HTTP 200 status code" do
+        patch :update, id: @ingredient.id, ingredient: @params, user_id: @user.id
+        expect(response).to be_success
+        expect(response).to have_http_status(200)
+      end
+
+      it "renders edit template" do
+        patch :update, id: @ingredient.id, ingredient: @params, user_id: @user.id
+        expect(response).to render_template("edit")
+      end
     end
 
     context "unauthenticated users" do
@@ -256,7 +270,7 @@ RSpec.describe IngredientsController, type: :controller do
       end
 
       it "does not permit access / redirects to the home page" do
-        patch :update, id: @ingredient.id, user_id: @user.id
+        patch :update, id: @ingredient.id, ingredient: @params, user_id: @user.id
 
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
@@ -270,7 +284,7 @@ RSpec.describe IngredientsController, type: :controller do
       end
 
       it "does not permit access / redirects to the home page" do
-        patch :update, id: @ingredient.id, user_id: @user.id
+        patch :update, id: @ingredient.id, ingredient: @params, user_id: @user.id
 
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
