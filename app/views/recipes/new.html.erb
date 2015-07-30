@@ -5,7 +5,6 @@
   <div class="form-group">
     <fieldset>
       <%= form_for @recipe do |f| %>
-
         <%= f.label :name %>
         <%= f.text_field :name, required: true, class: "form-control" %>
 
@@ -13,45 +12,22 @@
         <%= f.text_area :description, class: "form-control" %>
 
         <%= f.label :preparation %>
-        <%= f.text_area :preparation, class: "form-control" %>
-
-        <br>
+        <%= f.text_area :preparation, class: "form-control" %><br>
 
         <%= f.label :image, "Recipe Photo" %>
-        <%= f.file_field :image %>
-
-        <br>
+        <%= f.file_field :image %><br>
 
         <%= f.label :cookbook %>
-        <%= f.collection_select :cookbook_id, Cookbook.user_cookbooks(@user), :id, :name, include_blank: "None" %>
+        <%= f.collection_select :cookbook_id, Cookbook.user_cookbooks(@user), :id, :name, include_blank: "None" %><br><br>
 
-        <br>
-        <br>
-
-        <%= f.label :ingredients %><br>
-        <%= collection_check_boxes(:recipe, :ingredient_ids, Ingredient.all, :id, :name) do |b| %>
-          <%= b.label class: "checkbox-inline" do %>
-            <%= b.check_box + b.text.capitalize %>
+        <%= f.label :ingredients %> <%= link_to "Add Ingredient", new_ingredient_path %><br>
+          <%= collection_check_boxes(:recipe, :ingredient_ids, Ingredient.alpha_order, :id, :name) do |b| %>
+            <%= b.label class: "checkbox-inline" do %>
+              <%= b.check_box + b.text.capitalize %>
             <% end %>
-            <% end %>
-
-            <br>
-            <br>
-            <%= f.fields_for :ingredients do |ingredient| %>
-            <%= ingredient.label "Add a new ingredient:" %>
-            <%= ingredient.text_field :name, class: "form-control"%>
-
-            <%= ingredient.label :image %>
-            <%= ingredient.file_field :image %>
-            <% end %>
-
-            <br>
-            <br>
-
-            <%= f.submit "Create New Recipe", class: "btn btn-primary" %>
-
-            <% end %>
-
-          </fieldset>
-        </div>
+          <% end %><br><br>
+        <%= f.submit "Create New Recipe", class: "btn btn-primary" %>
+      <% end %>
+    </fieldset>
+  </div>
 </div>

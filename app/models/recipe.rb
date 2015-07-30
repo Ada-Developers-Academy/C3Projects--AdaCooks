@@ -4,8 +4,6 @@ class Recipe < ActiveRecord::Base
   has_and_belongs_to_many :ingredients
   belongs_to :cookbook
 
-  accepts_nested_attributes_for :ingredients, reject_if: proc { |attributes| attributes['name'].blank? }
-
 # Validations __________________________________________________________
   validates :name, presence: true
   validates :preparation, presence: true
