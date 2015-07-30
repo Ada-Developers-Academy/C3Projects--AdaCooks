@@ -3,7 +3,7 @@ FactoryGirl.define do
     recipe_id 1
     ingredient_id 1
     quantity 2
-    measure "pieces"
+    measure "cups"
   end
 
   factory :recipe do
