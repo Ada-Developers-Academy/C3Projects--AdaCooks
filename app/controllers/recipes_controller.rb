@@ -18,10 +18,13 @@ class RecipesController < ApplicationController
   end
 
   def create
-    # @ingredient = Ingredient.new(name: params[:recipe][:ingredients_attributes][:name])
     @recipe = Recipe.new(recipe_params)
-    raise
+    @ingredient_ids = params[:recipe][:ingredient_ids]
+
+    Ingredient.save_to_recipe
+
     if @recipe.save
+      raise
       redirect_to recipes_path, notice: "Recipe successfully added chef!"
     else
       flash.now[:error] = "Error!!"

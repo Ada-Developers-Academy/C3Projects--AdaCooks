@@ -1,4 +1,3 @@
-<div>
   <h2><%= @recipe.name %></h2>
   <%= image_tag(@recipe.image) %>
   <% if session[:user_id] %>
@@ -6,12 +5,11 @@
   <% else %>
     <strong>Submitted by: <%= link_to @recipe.user.name, user_path(@recipe.user), method: :get %></strong>
   <% end %>
-</div>
-<section>
-  <h5>Recipes Using <%= @recipe.name %></h5>
+
+  <h5>Ingredients for <%= @recipe.name %></h5>
+  <% raise %>
   <% @recipe.ingredients.each do |ingredient| %>
   <ul>
-    <li><%= link_to ingredient.name, ingredient_path(ingredient), method: :get %></li>
+    <li><%= link_to "#{ingredient.name}", ingredient_path(ingredient), method: :get %></li>
   </ul>
   <% end %>
-</section>

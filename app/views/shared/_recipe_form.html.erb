@@ -1,32 +1,29 @@
+<div class="form">
 <%= form_for @recipe, url: @url, method: @method do |f| %>
   <div class="form-group">
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: "form-control" %>
   </div>
   <div class="form-group">
     <%= f.label :desc %>
-    <%= f.text_area :desc %>
+    <%= f.text_area :desc, class: "form-control" %>
   </div>
   <div class="form-group">
     <%= f.label :image, "Upload an Image" %>
-    <%= f.file_field :image %>
+    <%= f.file_field :image, class: "form-control" %>
   </div>
   <div class="form-group">
     <%= f.label :prep, "Preparation" %>
-    <%= f.text_area :prep %>
+    <%= f.text_area :prep, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :ingredient_ids, "Select All Ingredients" %>
-    <%= f.collection_select :ingredient_ids, Ingredient.all, :id, :name, {}, {multiple: true} %>
+    <%= f.label :ingredient_ids, "Select All Ingredients Necessary" %>
+    <%= f.collection_select :ingredient_ids, Ingredient.all, :id, :name, {}, {multiple: true, class: "form-control"} %>
   </div>
-  <!-- <div class="form-group"> -->
-  <%= #f.fields_for :ingredients_attributes do |ingredient_fields| %>
-    <%= #ingredient_fields.label :name, "Add New Ingredient" %>
-    <%= #ingredient_fields.text_field :name %>
-    <% #end %>
-  <!-- </div> -->
+
   <%= f.hidden_field :user_id, value: session[:user_id] %>
-
+<div class="form-group">
   <%= f.submit %>
-
+</div>
 <% end %>
+</div>

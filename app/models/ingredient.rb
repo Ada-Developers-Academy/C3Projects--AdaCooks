@@ -18,8 +18,21 @@ class Ingredient < ActiveRecord::Base
   # def name=(name)
     # self.name = Ingredient.where(name: name).first_or_create
   # end
-  
+
   def self.search(query)
     where("name LIKE ?", "%#{query}%")
+  end
+
+  def self.save_to_recipe
+    if @ingredient_ids.first == ""
+      @ingredient_ids.shift
+    else
+      @ingredient_ids
+    end
+
+    @ingredient_ids.each do |id|
+      ingredient = Ingredient.find(id)
+      @recipe.ingredients << ingredient
+    end
   end
 end
