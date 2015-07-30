@@ -36,6 +36,15 @@ class RecipesController < ApplicationController
   def update
   end
 
+  def remove_cookbook
+    recipe = Recipe.find(params[:id])
+    cookbook = Cookbook.find(recipe.cookbook_id)
+    recipe.cookbook_id = nil
+    recipe.save
+
+    redirect_to cookbook_path(cookbook)
+  end
+
   def destroy
     recipe = Recipe.find(params[:id])
     cookbook = recipe.cookbook_id
