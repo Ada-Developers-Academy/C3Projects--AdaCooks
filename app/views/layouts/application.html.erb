@@ -42,7 +42,7 @@
 
          <ul class="nav navbar-nav navbar-right">
             <% if session[:user_id] %>
-              <li><%= link_to "Dashboard", dashboard_user_path(session[:user_id]) %></li>
+              <li class="navbar-text"><p><%= link_to "Dashboard", dashboard_user_path(session[:user_id]) %></p></li>
               <% end %>
               <li class="navbar-text"><p>Welcome, <%= @user_name %></p></li>
           </ul>

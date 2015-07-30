@@ -16,4 +16,13 @@ class ApplicationController < ActionController::Base
         @search_results = Recipe.joins(:ingredients).where("ingredients.name LIKE ?", "%#{params[:search][:query]}%")
     end
   end
+
+  def require_login
+    unless session[:user_id]
+
+      flash[:login_error] = "You must be logged in to perform that action"
+
+      redirect_to login_path
+    end
+  end
 end

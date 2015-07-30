@@ -16,6 +16,8 @@
 
 html {
   background-image: url("gross_pattern.png");
+  background-repeat: repeat-x;
+  background-attachment: fixed;
  }
 
 body {
@@ -29,7 +31,7 @@ body {
 }
 
 .navbar-default {
-  background: #87CC1F;
+  background: #74da12;
 }
 
 .navbar-text {
@@ -41,8 +43,21 @@ body {
   color: #0C140F;
 }
 
+.navbar-text a {
+  color: #0C140F;
+}
+
+.navbar-text a:hover {
+  color: #6712da;
+  text-decoration: none;
+}
+
 .navbar-brand span {
   color: #0C140F;
+}
+
+.navbar-brand span:hover {
+  color: #6712DA;
 }
 
 .form-control {
