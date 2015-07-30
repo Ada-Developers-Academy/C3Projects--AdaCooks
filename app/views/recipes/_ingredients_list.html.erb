@@ -1,0 +1,7 @@
+<p>Includes:
+  <% recipe.ingredients.each_with_index do |ingredient, index| %>
+    <%= link_to ingredient.name, ingredient_path(ingredient) %>
+    <!-- #TODO: extract into controller? -->
+    <% unless recipe.ingredients.count == index + 1 %>, <% end %>
+  <% end %>
+</p>

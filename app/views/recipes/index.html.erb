@@ -4,12 +4,8 @@
       <div class="thumbnail">
         <!-- # TODO: Image thumbnail will go here -->
         <div class="caption">
-          <h3><%= recipe.name %></h3>
-          <p>Includes:
-            <% recipe.ingredients.each do |ingredient| %>
-              <%= link_to ingredient.name, ingredient_path(ingredient) %>
-            <% end %>
-          </p>
+          <h3><%= link_to recipe.name, recipe_path(recipe) %></h3>
+          <%= render partial: "ingredients_list", locals: { recipe: recipe } %>
           <%= link_to "Details", recipe_path(recipe), class: "btn btn-info no-border-buttons" %>
         </div>
       </div>
