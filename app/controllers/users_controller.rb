@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: :show
-
   def signup
     @user = User.new
   end
@@ -20,10 +18,6 @@ class UsersController < ApplicationController
   def show; end
 
   private
-    def set_user
-      @user = User.find(params[:user_id])
-    end
-
     def create_params
       params.require(:user).permit(:username, :email, :password, :password_confirmation)
     end
