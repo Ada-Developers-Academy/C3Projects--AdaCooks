@@ -1,1 +1,16 @@
-<%= render partial: "shared/show", locals: { type: "Cookbook"} %>
+<div class="container">
+  <h2><%= @cookbook.name %></h2>
+  <h2><small><%= @cookbook.description %></small></h2>
+  <%= @cookbook.recipes.count %> Recipes
+  23525 unique ingredients
+
+  <h3>Table of Contents</h3>
+  <div class="row">
+    <% @cookbook.recipes.each do |recipe| %>
+    <div class="col-md-6">
+      <%= image_tag(recipe.image_url(:medium))%>
+      <%= link_to "#{recipe.name}", recipe_path(recipe.id) %>
+    </div>
+    <% end %>
+  </div>
+</div>
