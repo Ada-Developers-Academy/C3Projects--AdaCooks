@@ -2,7 +2,8 @@
   <% ingredients.each do |ingredient| %>
     <li class="list-group-item">
       <%= link_to ingredient.proper_name, ingredient_path(ingredient) %>
-      <%= link_to "Remove", ingredient_path(ingredient), class: "btn btn-warning btn-xs" %>
+      <%= link_to "Remove ingredient", user_recipe_ingredient_path(session[:user_id], @recipe, ingredient), method: "delete",
+      class: "btn btn-warning btn-xs", data: { confirm: "Are you sure you want to remove this from your recipe?" } %>
     </li>
   <% end %>
   <li class="list-group-item">

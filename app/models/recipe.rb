@@ -17,7 +17,16 @@ class Recipe < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 
   # Instance Methods -----------------------------------------------------------
+  def remove_ingredient_association(ingredient_id)
+    ingredient = Ingredient.find(ingredient_id)
+    ingredients.delete(ingredient)
+  end
+
+  def add_ingredient_association(ingredient)
+    ingredients << ingredient unless ingredients.include? ingredient
+  end
+
   def proper_name # FIXME: test Recipe#proper_name
-    name.titlecase
+    name.titlecase # OPTIMZE: also should Recipe#proper_name be a helper?
   end
 end

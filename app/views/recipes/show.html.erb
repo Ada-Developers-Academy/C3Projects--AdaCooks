@@ -27,7 +27,7 @@
 
 <h4><%= @recipe.description %></h4>
 
-<div class="col-sm-4">
+<div class="col-sm-6">
   <% if @recipe.ingredients.count > 0 %>
     <% if @recipe.user_id == @authenticated_user.id %>
       <%= render partial: 'shared/recipe_ingredients_list', locals: { ingredients: @recipe.ingredients.alphabetized } %>
@@ -39,6 +39,6 @@
   <% end %>
 </div>
 
-<div class="col-sm-8">
+<div class="col-sm-6">
   <p><%= @recipe.steps %></p>
 </div>
