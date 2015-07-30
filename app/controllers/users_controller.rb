@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: :show
+  before_action :set_user_for_profile, only: :show
 
   def signup
     @user = User.new
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   def show; end
 
   private
-    def set_user
+    def set_user_for_profile
       @user = User.find(params[:user_id])
     end
 
