@@ -1,29 +1,29 @@
 FactoryGirl.define do
   factory :user do
-    username "gurl"
+    sequence(:username){ |n| "User#{n}" }
     email { "#{username}@example.com" }
-    password "gurl"
-    password_confirmation "gurl"
+    password "w0rd"
+    password_confirmation "w0rd"
   end
 
   factory :recipe do
-    name "Apple Crisp"
+    sequence(:name){ |n| "Recipe#{n}" }
     user
   end
 
   factory :ingredient do
-    name "Ingredient"
+    sequence(:name){ |n| "Ingredient#{n}" }
     user
   end
 
   factory :step do
-    number 1
+    sequence(:number){ |n| n }
     directions "Here are directions."
     recipe
   end
 
   factory :measurement do
-    amount "1/2 C"
+    sequence(:amount){ |n| "#{n} tsp" }
     ingredient
     step
     recipe
