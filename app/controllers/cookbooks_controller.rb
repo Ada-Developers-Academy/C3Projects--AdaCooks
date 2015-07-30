@@ -7,7 +7,7 @@ class CookbooksController < ApplicationController
   def create
     @cookbook = Cookbook.create(cookbook_params)
     @cookbook.user_id = session[:user_id]
-    
+
     if @cookbook.save
         redirect_to user_path(session[:user_id])
     else
@@ -22,6 +22,12 @@ class CookbooksController < ApplicationController
 
   def edit
     @cookbook = Cookbook.find(params[:id])
+  end
+
+  def update
+    @cookbook = Cookbook.find(params[:id])
+    @cookbook.update(cookbook_params)
+    redirect_to user_path(session[:user_id])
   end
 
   def destroy
