@@ -29,7 +29,6 @@ class UsersController < ApplicationController
   def dashboard
     if session[:user_id] == params[:user_id].to_i
       @user = User.find(params[:user_id])
-
       @recipes = Recipe.where(user_id: @user.id)
 
     else
