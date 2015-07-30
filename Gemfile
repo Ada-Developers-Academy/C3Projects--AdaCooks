@@ -27,6 +27,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass'
 
+# for uploads
+gem 'mini_magick'
+gem 'carrierwave'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

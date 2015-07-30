@@ -21,6 +21,9 @@
            <% end %>
          <% end %>
 <br>
+      <%= f.label :image, 'Photo' %>
+      <%= f.file_field :image %>
+<br>
        <%= f.label :cookbooks, "Associate One of Your Cookbooks" %><br>
        <%= collection_check_boxes(:recipe, :cookbook_ids, @cookbook, :id, :name) do |b| %>
             <%= b.label class: "checkbox-inline" do %>
