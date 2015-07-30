@@ -8,9 +8,13 @@ end
 
 def index
   @cookbooks = Cookbook.order(:name)
+  @count = @cookbook.recipes.count
+  @unique_ing = @cookbook.recipes.ingredients.where(recipe_id.count = 1) #change to a scope
+
 end
 
 def show
+  @recipes = @cookbook.recipes
 end
 
 def new

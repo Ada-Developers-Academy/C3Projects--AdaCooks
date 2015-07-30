@@ -1,7 +1,9 @@
+<h2>All Current Ingredients</h2>
+
 
 <% @ingredients.each do |ingredient| %>
   <ul>
     <li> <%= image_tag(ingredient.image) %> </li>
-    <li> <%= ingredient.name %> </li>
+    <li> <%= link to "#{ingredient.name}", ingredient_path(id) %> </li>
   </ul> 
 <% end %> 
