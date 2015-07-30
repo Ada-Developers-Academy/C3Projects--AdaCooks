@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Ingredient, type: :model do
   context "name validation" do
-    let(:pine) {create :ingredient}
-    let(:pine2) {build :ingredient}
+    let(:pine)  {create :ingredient}
+    let(:pine2) {create :ingredient}
 
     # + case
     it "creates ingredient if name is present" do
@@ -20,16 +20,29 @@ RSpec.describe Ingredient, type: :model do
 
     it "requires a name to be unique" do
       pine
-      pine2
-      expect(pine2.errors.keys).to include(:name)
-      # I don't know why above isn't working
-      expect(pine2).to_not be_valid
-    end
-  end # name validation
+      another_pine = pine.dup
+      another_pine.save
 
+      expect(another_pine.errors.keys).to include(:name)
+    end
+  end
+
+  describe "alphabet scope" do
+    let(:ingredient1) { create :ingredient, name: "Jerky"}
+    let(:ingredient2) { create :ingredient, name: "Bacon"}
+    let(:ingredient3) { create :ingredient, name: "Pineapple"}
+    let(:ingredient4) { create :ingredient, name: "Apple"}
+
+    it "orders ingredients alphabetically" do
+      ingredient2
+      order = [ingredient4, ingredient2, ingredient1, ingredient3]
+      expect(Ingredient.all.alphabet).to eq(order)
+    end
+
+  end
   # context "alpha scope" do
   #   before(:each) do
-  #     @j = create(:ingredient, name: "Jerky"),
+  #     @j = create(:ingredient, name: "Jerky"}
   #     @b = create(:ingredient, name: "Bacon"),
   #     @p = create(:ingredient),
   #     @a = create(:ingredient, name: "Apple")
@@ -40,4 +53,4 @@ RSpec.describe Ingredient, type: :model do
   #     expect(Ingredient.all.alphabet).to eq(order)
   #   end
   # end
-end # describe
+end
