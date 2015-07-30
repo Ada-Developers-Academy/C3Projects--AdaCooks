@@ -1,0 +1,48 @@
+<%= form_for @ingredient do |f| %>
+  <div class="form-group">
+    <%= f.label :name, for: "ingredientName" %>
+    <%= f.text_field :name, type: "name", class: "form-control", placeholder: "Name your ingredient", required: :true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :image, for: "ingredientPhoto" %>
+    <%= f.file_field :image, class: "form-control" %>
+  </div>
+
+  <hr>
+
+  <div class="form-group">
+    <div class="col-sm-2">
+      <h4>Recipes</h4>
+    </div>
+    <div class="col-sm-3 float-right">
+      <%= link_to "Create a New Recipe", new_recipe_path, class: 'btn btn-primary' %>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="button-group" role="group">
+          <% @recipes.each do |recipe| %>
+            <% unless @ingredient.recipes.include?(recipe) %>
+              <div class="btn btn-default">
+                <%= check_box_tag "ingredient[recipe_ids][]", recipe.id %>
+                <%= link_to recipe.name, recipe_path(recipe.id) %>
+              </div>
+            <% else %>
+              <div class="btn btn-default">
+                <%= check_box_tag "ingredient[recipe_ids][]", recipe.id, checked = true %>
+                <%= link_to recipe.name, recipe_path(recipe.id) %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <%= f.submit class: "btn btn-success" %>
+
+<% end %>
+<hr>

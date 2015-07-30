@@ -4,7 +4,6 @@ FactoryGirl.define do
     description 'Everyone loves chocolate chip cookies'
     preparation 'Mix chocolate chips with some other stuff'
     user_id 1
-    # user
   end
 
   factory :ingredient do
