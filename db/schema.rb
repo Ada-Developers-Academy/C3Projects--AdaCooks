@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20150730161450) do
 >>>>>>> New migration.
     t.string   "prep",        null: false
     t.integer  "cookbook_id"
+    t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
