@@ -14,7 +14,7 @@ class IngredientsController < ApplicationController
     search_result = Ingredient.where(name: params[:search])
     if !search_result.any?
       flash[:error] = "Unfortunately we don't have #{params[:search].to_s}"
-      redirect_to root_path
+      redirect_to :back
     else
       render :search
     end

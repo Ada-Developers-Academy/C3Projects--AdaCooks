@@ -10,6 +10,13 @@
   <div class="container">
 
     <%= render "shared/nav" %>
+
+    <div class="container marketing">
+      <% if flash[:error] %>
+        <h3><span class="label label-warning"><%= flash[:error] %></span></h3>
+      <% end %>
+    </div>
+
     <%= yield %>
     <hr class="featurette-divider">
 
