@@ -11,13 +11,13 @@
   </div>
 </div>
 
-<h3 class="center">Recipes</h3>
+<h2 class="center">Recipes</h2>
 <div class="container center">
   <% @recipes.each do |recipe| %>
     <div class="col-md-4">
       <div class="well">
-        <%= image_tag(recipe.image, class: "img-thumbnail", size: "190x190") %>
-        <p class="img-name"><%= link_to(recipe.name, recipe_path(recipe.id)) %></p>
+        <%= link_to image_tag(recipe.image, class: "img-circle", size: "200x170"), recipe_path(recipe.id) %>
+        <h3><%= link_to(recipe.name, recipe_path(recipe.id)) %></h3>
         <p class="img-desc"><%= recipe.desc %></p>
       </div>
     </div>
@@ -25,13 +25,13 @@
 </div>
 
 <!-- Ingredient images -->
-<h3 class="center">Ingredients</h3>
+<h2 class="center">Ingredients</h2>
 <div class="container center">
   <% @ingredients.each do |ingredient| %>
     <div class="col-md-4">
       <div class="well">
-        <%= image_tag(ingredient.image, class: "img-thumbnail", size: "190x190") %>
-        <p class="img-name"><%= link_to(ingredient.name, ingredient_path(ingredient.id)) %></p>
+        <%= link_to image_tag(ingredient.image, class: "img-circle", size: "200x170"), ingredient_path(ingredient.id) %>
+        <h3><%= link_to(ingredient.name, ingredient_path(ingredient.id)) %></h3>
       </div>
     </div>
   <% end %>

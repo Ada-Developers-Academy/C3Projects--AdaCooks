@@ -20,10 +20,19 @@ $gray-medium-light: #EAEAEA;
   }
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 /* typography ------------------------------------------------- */
 
-h1 {
+h1, h2 {
   font-family: 'Unica One', cursive;
+}
+
+h3 {
+  font-family: 'Reenie Beanie', cursive;
+  font-size: 2.1em;
 }
 
 /* navigation ------------------------------------------------- */
@@ -72,11 +81,8 @@ h1 {
 
 /* images ----------------------------------------------------- */
 
-.img-homepage {
-  height: 165px;
-  max-width: 70%;
-  /*border-radius: 100%;*/
-  border: 1px solid #DDE6ED;
+.img-circle {
+  border: 3px solid #DDE6ED;
 }
 
 /* user profile ----------------------------------------------- */
