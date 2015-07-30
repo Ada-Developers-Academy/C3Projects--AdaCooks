@@ -4,6 +4,9 @@
 
 <h1>New Recipe</h1>
 <%= form_for @recipe, url: user_recipes_path(session[:user_id]), html: { class: "form" } do |f| %>
+  <% @recipe.errors.full_messages.each do ||msg| %>
+    <p><%= msg %></p>
+  <% end %>
   <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :name, required: true, autofocus: true, class: "form-control" %>
