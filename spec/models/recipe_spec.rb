@@ -25,6 +25,13 @@ RSpec.describe Recipe, type: :model do
       expect(recipe).to_not be_valid
       expect(recipe.errors.keys).to include(:preparation)
     end
+
+    it "requires associated ingredients" do
+      recipe = build :recipe, ingredient_ids: []
+
+      expect(recipe).to_not be_valid
+      expect(recipe.errors.keys).to include(:ingredient_ids)
+    end
   end # validations
 
   describe "associations" do
