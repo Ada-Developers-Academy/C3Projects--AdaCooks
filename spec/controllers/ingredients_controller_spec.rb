@@ -34,17 +34,37 @@ RSpec.describe IngredientsController, type: :controller do
   end
 
   describe "GET #new" do
-    it "responds successfully with an HTTP 200 status code" do
-      expect(response).to be_success
-      expect(response).to have_http_status(200)
+    context "logged in user" do
+      before :each do
+        user = create :user
+        session[:user_id] = user.id
+        get :new
+      end
+
+      it "responds successfully with an HTTP 200 status code" do
+        expect(response).to be_success
+        expect(response).to have_http_status(200)
+      end
+
+      it "renders the new view" do
+        expect(response).to render_template("new")
+      end
     end
 
-    # #TODO: WHY NOT WORKING?
-    # it "renders the new view" do
-    #   create :user
-    #   session[:user_id] = 1
-    #   expect(response).to render_template("new")
-    # end
+    context "not logged in user" do
+      before :each do
+        session[:user_id] = nil
+        get :new
+      end
+
+      it "does not respond successfully" do
+        expect(response).to_not be_success
+      end
+
+      it "redirects to the home page" do
+        expect(response).to redirect_to(root_path)
+      end
+    end
   end
 
   describe "POST #create" do
@@ -82,42 +102,97 @@ RSpec.describe IngredientsController, type: :controller do
     end
   end
 
-# WIP
   describe "GET #edit" do
-    before :each do
-      create :ingredient
-      get :edit
+    context "logged in user" do
+      before :each do
+        ingredient = create :ingredient
+        user = create :user
+        session[:user_id] = user.id
+        get :edit, id: ingredient.id
+      end
+
+      it "responds successfully with an HTTP 200 status code" do
+        expect(response).to be_success
+        expect(response).to have_http_status(200)
+      end
+
+      it "renders the edit view" do
+        expect(response).to render_template(:edit)
+      end
     end
 
-    it "responds successfully with an HTTP 200 status code" do
-      expect(response).to be_success
-      expect(response).to have_http_status(200)
-    end
+    context "not logged in user" do
+      before :each do
+        ingredient = create :ingredient
+        session[:user_id] = nil
+        get :edit, id: ingredient.id
+      end
 
-    it "renders the edit view" do
-      expect(response).to render_template(:edit)
+      it "does not respond successfully" do
+        expect(response).to_not be_success
+      end
+
+      it "redirects to the home page" do
+        expect(response).to redirect_to(root_path)
+      end
     end
   end
 
-  describe "PUT update/:id" do
+  describe "PUT #update/:id" do
+    context "logged in user" do
+      before :each do
+        @ingredient = create :ingredient
+        user = create :user
+        session[:user_id] = 1
 
-    before :each do
-      @ingredient = create :ingredient
-      user = create :user
-      session[:user_id] = 1
+        put :update, id: @ingredient.id, :ingredient => { name: "New Name"}
+        @ingredient.reload
+      end
 
-      put :update, user_id: user.id, id: 1, :ingredient => { name: "New Name"}
-      @ingredient.reload
+      it "updates the ingredient record" do
+        expect(response).to redirect_to(@ingredient)
+
+        expect(@ingredient.name).to eq("New Name")
+      end
+
+      it "redirects to the ingredient show page" do
+        expect(subject).to redirect_to ingredient_path(@ingredient)
+      end
+
+      context "invalid update params" do
+        before :each do
+          put :update, id: @ingredient.id, :ingredient => { name: nil}
+          @ingredient.reload
+        end
+
+        it "does not update the ingredient record" do
+          expect(response).to redirect_to(@ingredient)
+
+          expect(@ingredient.name).to eq("New Name")
+        end
+
+        it "redirects to the ingredient show page" do
+          expect(subject).to redirect_to ingredient_path(@ingredient)
+        end
+      end
     end
 
-    it "updates the ingredient record" do
-      expect(response).to redirect_to(@ingredient)
+    context "not logged in user" do
+      before :each do
+        @ingredient = create :ingredient
+        session[:user_id] = nil
 
-      expect(@ingredient.name).to eq("New Name")
-    end
+        put :update, user_id: session[:user_id], id: @ingredient.id, :ingredient => { name: "New Name"}
+        @ingredient.reload
+      end
 
-    it "redirects to the ingredient show page" do
-      expect(subject).to redirect_to ingredient_path(@ingredient)
+      it "does not update the ingredient record" do
+        expect(@ingredient.name).to_not eq("New Name")
+      end
+
+      it "redirects to the ingredient show page" do
+        expect(subject).to redirect_to root_path
+      end
     end
   end
   #

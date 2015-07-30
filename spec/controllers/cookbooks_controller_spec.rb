@@ -22,10 +22,10 @@ RSpec.describe CookbooksController, type: :controller do
 
     context "not logged in user" do
       before :each do
-        cookbook = create :cookbook
         user = create :user
         session[:user_id] = user.id
-        get :show, user_id: 2, id: cookbook.id
+        # below references a different user
+        get :show, user_id: 2
       end
 
       it "does not respond successfully" do
@@ -68,7 +68,6 @@ RSpec.describe CookbooksController, type: :controller do
       end
 
       it "redirects to the home page" do
-        get :new, user_id: 2
         expect(response).to redirect_to(root_path)
       end
     end

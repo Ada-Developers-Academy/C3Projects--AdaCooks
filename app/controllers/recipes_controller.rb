@@ -36,7 +36,7 @@ class RecipesController < ApplicationController
       redirect_to recipe_path(@recipe.id), notice: "Recipe updated!"
     else
       flash.now[:errors] = ERRORS[:unsuccessful_save]
-      render :new
+      redirect_to recipe_path(@recipe.id)
     end
   end
 

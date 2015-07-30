@@ -49,7 +49,7 @@ RSpec.describe RecipesController, type: :controller do
     context "not logged in user" do
       before :each do
         session[:user_id] = nil
-        get :show
+        get :new
       end
 
       it "does not respond successfully" do
