@@ -10,12 +10,29 @@ before_action :select_recipe, only: [:edit, :destroy, :update]
     @recipes = Recipe.all
   end
 
+  def show
+    @recipe = Recipe.find(params[:id])
+    
+  end
+
+  def add_recipe
+    cookbook = Cookbook.find(params[:recipe][:cookbook_ids])
+    @recipe = Recipe.find(params[:recipe_id])
+    @recipe.cookbooks << cookbook
+    redirect_to user_cookbooks_path(session[:user_id])
+  end
+
   def new
     @recipe = Recipe.new
     session[:recipe_id] = nil
   end
 
-  def create 
+  def create
+    unless params[:recipe][:cookbook_ids].empty?
+      cookbook = Cookbook.find(params[:recipe][:cookbook_ids])
+      @recipe = Recipe.find(params[:recipe_id])
+      @recipe.cookbooks << cookbook
+    end
     user = User.find(session[:user_id])
     @recipe = Recipe.create(recipe_params)
     @recipe.user_id = user.id
@@ -29,12 +46,25 @@ before_action :select_recipe, only: [:edit, :destroy, :update]
   end
 
   def edit
+    @recipe = Recipe.find(session[:user_id])
   end
 
   def update
-    @recipe.update(recipe_params)
+    unless params[:recipe][:cookbook_ids].empty?
+      cookbook = Cookbook.find(params[:recipe][:cookbook_ids])
+      @recipe = Recipe.find(params[:recipe_id])
+      @recipe.cookbooks << cookbook
+    end
+    user = User.find(session[:user_id])
+    @recipe = Recipe.find(params[:id])
+    if @recipe.update(recipe_params)
+      session[:recipe_id] = @recipe.id
+      redirect_to new_user_ingredient_path(session[:user_id])
+    else
+      render :edit
+      flash[:error] = "wrong"
+    end
 
-    redirect_to user_recipe_path(session[:user_id], recipe_id)
   end
 
 
@@ -49,7 +79,7 @@ end
 private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :description, :instructions, :image, :user_id)
+    params.require(:recipe).permit(:name, :description, :instructions, :image, :user_id, :cookbook_ids)
   end
 
 

@@ -4,7 +4,7 @@
   <% @recipes.each do |recipe| %>
       <tr>
         <td><%= image_tag(recipe.image.thumb) %></td>
-        <td><%= link_to "#{recipe.name}", user_recipe_path(session[:user_id], recipe.id) %></td>
+        <td><%= link_to "#{recipe.name}", user_cookbook_recipe_path(session[:user_id], @cookbook.id, recipe.id) %></td>
         <td><%= link_to "Edit", edit_user_recipe_path(session[:user_id], recipe.id), class: "btn btn-default" %></td>
         <td><%= link_to "X", remove_recipe_path(session[:user_id], recipe.id, @cookbook.id), method: :patch, class: "btn btn-danger", data: { confirm: "Are you sure you want to remove #{recipe.name}?"} %></td>
       </tr>

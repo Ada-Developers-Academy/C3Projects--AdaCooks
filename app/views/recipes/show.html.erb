@@ -2,4 +2,9 @@
 <%= @recipe.image %> 
 <%= @recipe.name %>
 <%= @recipe.description %>
-<%= @recipe.instructions%>
+<%= @recipe.instructions %>
+
+
+<%= render partial: 'shared/select_cookbook.html.erb', locals: {url: add_recipe_path(session[:user_id], @recipe.id)} %>
+
+
