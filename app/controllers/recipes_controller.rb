@@ -4,6 +4,18 @@ class RecipesController < ApplicationController
     @recipes = Recipe.all
   end
 
+  def show
+    @recipe = Recipe.find(params[:id])
+    
+  end
+
+  def add_recipe
+    cookbook = Cookbook.find(params[:recipe][:cookbook_ids])
+    @recipe = Recipe.find(params[:recipe_id])
+    @recipe.cookbooks << cookbook
+    redirect_to user_cookbooks_path(session[:user_id])
+  end
+
   def new
     @recipe = Recipe.new
     session[:recipe_id] = nil
@@ -33,7 +45,7 @@ end
 private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :description, :instructions, :image, :user_id)
+    params.require(:recipe).permit(:name, :description, :instructions, :image, :user_id, :cookbook_ids)
   end
 
 

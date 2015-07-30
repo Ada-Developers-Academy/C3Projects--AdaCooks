@@ -4,3 +4,11 @@
 <%= @recipe.description %>
 <%= @recipe.instructions %>
 <%= @recipe.image %>
+
+<%= form_for @recipe, url: add_recipe_path(session[:user_id], @recipe.id) do |f| %>
+  <%= f.label :cookbooks %>
+  <%= collection_select :recipe, :cookbook_ids, Cookbook.all, :id, :name, {} %>
+
+  <%= f.submit "Add this Recipe to a cookbook" %>
+<% end %>
+
