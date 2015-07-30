@@ -29,9 +29,36 @@ RSpec.describe RecipesController, type: :controller do
   end
 
   describe "GET #new" do
-    it "responds successfully with an HTTP 200 status code" do
-      expect(response).to be_success
-      expect(response).to have_http_status(200)
+    context "logged in user" do
+      before :each do
+        user = create :user
+        session[:user_id] = user.id
+        get :new
+      end
+
+      it "responds successfully with an HTTP 200 status code" do
+        expect(response).to be_success
+        expect(response).to have_http_status(200)
+      end
+
+      it "renders the new view" do
+        expect(response).to render_template("new")
+      end
+    end
+
+    context "not logged in user" do
+      before :each do
+        session[:user_id] = nil
+        get :new
+      end
+
+      it "does not respond successfully" do
+        expect(response).to_not be_success
+      end
+
+      it "redirects to the home page" do
+        expect(response).to redirect_to(root_path)
+      end
     end
   end
 
