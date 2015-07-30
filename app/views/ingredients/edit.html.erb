@@ -1,1 +1,1 @@
-<%= render "form", locals: { url: edit_user_ingredient_path(@authenticated_user, @ingredient) } %>
+<%= render partial: "form", locals: { path: user_ingredient_path(@authenticated_user, @ingredient) } %>
