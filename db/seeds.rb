@@ -32,7 +32,8 @@ CSV.foreach("db/recipes.csv", headers: true) do |row|
   description: row[1],
   photo_url: row[2],
   preparation: row[3],
-  cookbook_id: row[4]
+  cookbook_id: row[4],
+  user_id: row[5]
   )
 end
 

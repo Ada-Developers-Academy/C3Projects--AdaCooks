@@ -3,6 +3,7 @@ class Recipe < ActiveRecord::Base
 # associations__________________________________________________________
   has_and_belongs_to_many :ingredients
   belongs_to :cookbook
+  belongs_to :user
 
 # Validations __________________________________________________________
   validates :name, presence: true

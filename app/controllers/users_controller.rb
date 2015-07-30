@@ -7,9 +7,11 @@ class UsersController < ApplicationController
     if session[:user_id]
       @user = User.find(session[:user_id])
       @cookbooks = @user.cookbooks
+      @recipes = @user.recipes
     else
       @user = User.find(params[:id])
       @cookbooks = @user.cookbooks
+      @recipes =@user.recipes
     end
   end
 

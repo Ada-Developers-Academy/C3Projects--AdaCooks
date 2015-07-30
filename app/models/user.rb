@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_secure_password
 
   has_many :cookbooks
-  has_many :recipes, through: :cookbooks
+  has_many :recipes
 
 # Validations _________________________________________________________________
   validates :name, presence: true, uniqueness: true
