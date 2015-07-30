@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:edit, :update, :show, :destroy, :add_to_cookbook]
   before_action :current_user, only: [:show, :add_to_cookbook]
-
+  before_action :setup_show, only: [:show, :add_to_cookbook]
   after_action :last_page
 
   MESSAGES = {
@@ -20,9 +20,6 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @ingredient_lines = @recipe.recipe_ingredients
-    @owner = @recipe.user
-    @cookbooks = @current_user.cookbooks
   end
 
   def new
@@ -66,15 +63,10 @@ class RecipesController < ApplicationController
   end
 
   def add_to_cookbook
-    @owner = @recipe.user
-    @ingredient_lines = @recipe.recipe_ingredients
-    @cookbooks = @current_user.cookbooks
-
     cookbook_id = params[:cookbook][:cookbook_id]
     cookbook = Cookbook.find(cookbook_id)
     @recipe.cookbooks << cookbook
 
-    # raise
     if @recipe.cookbooks.exists?(id: cookbook_id)
       flash[:success] = MESSAGES[:cookbook_success]
       redirect_to @recipe
@@ -85,6 +77,12 @@ class RecipesController < ApplicationController
   end
 
   private
+
+  def setup_show
+    @owner = @recipe.user
+    @ingredient_lines = @recipe.recipe_ingredients
+    @cookbooks = @current_user.cookbooks - @recipe.cookbooks
+  end
 
   def set_recipe
     @recipe = Recipe.find(params[:id])
