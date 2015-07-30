@@ -1,6 +1,5 @@
 class IngredientsController < ApplicationController
   before_action :set_ingredient, only: [:show, :edit, :update, :destroy]
-  before_action :set_user, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
 
   def index

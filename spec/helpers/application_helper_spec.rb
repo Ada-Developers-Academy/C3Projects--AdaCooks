@@ -8,9 +8,9 @@ RSpec.describe ApplicationHelper, type: :helper do
       Date.parse(date_string), Time.parse(date_string), DateTime.parse(date_string)
     ]}
 
-    it "takes in a date / time and outputs a string" do
+    it "takes in a date/time-feeling object and outputs a string" do
       invalid_dates.each do |date|
-        expect(format_date(date)).to eq(nil)
+        expect{ format_date(date) }.to raise_exception(NoMethodError)
       end
 
       valid_dates.each do |date|

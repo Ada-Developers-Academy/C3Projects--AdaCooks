@@ -15,8 +15,8 @@
           </ul>
         </div>
         <% if recipe.user_id == session[:user_id] %>
-          <%= link_to "Edit", edit_user_recipe_path(@user, recipe), class: "btn btn-info btn-xs" %>
-          <%= link_to "Delete", user_recipe_path(@user, recipe), class: "btn btn-warning btn-xs" %>
+          <%= link_to "Edit", edit_user_recipe_path(@authenticated_user, recipe), class: "btn btn-info btn-xs" %>
+          <%= link_to "Delete", user_recipe_path(@authenticated_user, recipe), class: "btn btn-warning btn-xs" %>
         <% end %>
       <% end %>
     </li>

@@ -1,6 +1,5 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
-  # before_action :set_user, only: [:new, :create, :edit, :update, :destroy]
   before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
 
   def index
@@ -48,7 +47,7 @@ class RecipesController < ApplicationController
   private
     def create_params
       recipe = edit_params
-      recipe[:user_id] = sessions[:user_id]
+      recipe[:user_id] = session[:user_id]
       return recipe
     end
 
@@ -58,9 +57,5 @@ class RecipesController < ApplicationController
 
     def set_recipe
       @recipe = Recipe.find(params[:id])
-    end
-
-    def set_user
-      @user = User.find(session[:user_id])
     end
 end

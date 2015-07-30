@@ -1,7 +1,7 @@
 <h1>
   All Recipes
   <% if session[:user_id] %>
-    <small>+<%= link_to "Add New Recipe", new_user_recipe_path(@user.id) %></small>
+    <small>+<%= link_to "Add New Recipe", new_user_recipe_path(@authenticated_user.id) %></small>
   <% end %>
 </h1>
 
