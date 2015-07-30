@@ -8,4 +8,8 @@ class Cookbook < ActiveRecord::Base
   validates :name, presence: true
   validates :user_id, presence: true, numericality: { only_integer: true, greater_than: 0 }
 
+  def remove_recipe_association(recipe_id)
+    recipe = Recipe.find(recipe_id)
+    recipes.delete(recipe)
+  end
 end

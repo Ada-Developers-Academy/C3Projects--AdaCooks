@@ -1,6 +1,6 @@
 <h1>My Cookbooks</h1>
 
-<%= link_to "Add Cookbook", class: "btn btn-default" %>
+<%= link_to "Add Cookbook", new_user_cookbook_path(@user), class: "btn btn-default" %>
 
 <table class="table">
   <tr>
@@ -13,11 +13,11 @@
 
   <% @cookbooks.each do |cookbook| %>
     <tr>
-      <td><%= link_to "#{cookbook.name}", user_cookbook_path(cookbook.user.id, cookbook.id) %></td>
+      <td><%= link_to "#{cookbook.name}", user_cookbook_path(session[:user_id], cookbook.id) %></td>
       <td><%= cookbook.recipes.count %></td>
       <td><%= cookbook.recipes.uniq.count %></td>
-      <td><%= link_to "Edit", class: "btn btn-default" %></td>
-      <td><%= link_to "Delete", class: "btn btn-default" %></td>
+      <td><%= link_to "Edit", edit_user_cookbook_path(session[:user_id], cookbook.id), class: "btn btn-default" %></td>
+      <td><%= link_to "Delete", user_cookbook_path(session[:user_id], cookbook.id), method: "delete", class: "btn btn-default", data: { confirm: "Are you sure you want to delete?" }  %></td>
     </tr>
   <% end %>
 </table>

@@ -6,8 +6,8 @@
 <table class="table">
   <% @recipes.each do |recipe| %>
     <tr>
-      <td><%= link_to "#{recipe.name}", recipe_path(recipe.id) %></td>
-      <td><%= link_to "Remove recipe", class: "btn btn-default" %></td>
+      <td><%= link_to recipe.name, recipe_path(recipe) %></td>
+      <td><%= link_to "Remove recipe", user_cookbook_recipe_path(session[:user_id], @cookbook, recipe), method: "delete", class: "btn btn-default" %></td>
     </tr>
   <% end %>
 </table>
