@@ -8,8 +8,22 @@
         </h1>
       </section>
 
-      <p><%= link_to "My Cookbooks", cookbooks_path %></p>
-      <p><%= link_to "My Recipes", "#" %></p>
+      <h3>My Cookbooks</h3>
+        <ul>
+          <% @cookbooks.each do |cookbook| %>
+            <li>
+              <%= link_to cookbook.name, cookbook_path(cookbook.id) %>
+              (<%= cookbook.recipes.count %>)
+            </li>
+          <% end %>
+        </ul>
+
+      <h3>My Recipes</h3>
+        <ul>
+          <% @recipes.each do |recipe| %>
+            <li><%= link_to recipe.name, recipe_path(recipe.id) %></li>
+          <% end %>
+        </ul>
     </aside>
   </div>
 </div>

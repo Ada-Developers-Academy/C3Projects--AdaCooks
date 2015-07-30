@@ -18,8 +18,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(session[:user_id])
-    # @recipes = @user.recipes
-    # @cookbooks = @user.cookbooks
+    @recipes = @user.recipes
+    @cookbooks = @user.cookbooks
   end
 
 private

@@ -18,7 +18,4 @@ RSpec.describe Ingredient, type: :model do
     end
   end
 
-  describe "GET #index" do
-    
-  end
 end
