@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     resources :cookbooks, only: [:index, :new, :create]
   end
 
+  get "/recipes/search_results" => "ingredients#search"
+
   resources :cookbooks, only: [:show, :edit, :destroy, :update]
   resources :recipes, :ingredients
   resources :sessions, :recipe_ingredients, only: [:new, :create, :destroy]

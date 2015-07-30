@@ -1,5 +1,5 @@
 class IngredientsController < ApplicationController
-  before_action :login_required, except: [:index, :show]
+  before_action :login_required, except: [:index, :search, :show]
   before_action :belongs_to_user, only: [:edit, :destroy]
 
   def index
@@ -9,7 +9,7 @@ class IngredientsController < ApplicationController
   def show
     @ingredient_id = params[:id]
     @ingredient = Ingredient.find(@ingredient_id)
-    @recipes = @ingredient.recipes
+    @ingredients = @ingredient.recipes
   end
 
   def new
@@ -45,6 +45,11 @@ class IngredientsController < ApplicationController
     @ingredient.destroy
 
     redirect_to ingredients_path
+  end
+
+	def search
+    @ingredients = Ingredient.search params[:search]
+    render :search_results
   end
 
   private

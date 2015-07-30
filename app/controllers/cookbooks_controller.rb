@@ -10,6 +10,7 @@ class CookbooksController < ApplicationController
   def show
     @cookbook_id = params[:id]
     @cookbook = Cookbook.find(@cookbook_id)
+    @recipes = @cookbook.recipes
   end
 
   def new

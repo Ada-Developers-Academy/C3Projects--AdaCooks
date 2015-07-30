@@ -1,0 +1,25 @@
+<h1>search results</h1>
+<table>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Image
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @ingredients.each do |ingredient| %>
+    <tr>
+      <td>
+        <%= link_to "#{ingredient.name}", ingredient_path(ingredient.id) %>
+      </td>
+      <td>
+        <%= image_tag ingredient.image_url, class: "img-board img-center" %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

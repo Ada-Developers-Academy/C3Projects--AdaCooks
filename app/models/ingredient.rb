@@ -12,4 +12,9 @@ class Ingredient < ActiveRecord::Base
   def self.alphabetize
     order('name'.capitalize)
   end
+
+  def self.search(query)
+    where("name LIKE ?", "%#{query}%") #for localhost
+    # where("name ILIKE ?", "%#{query}%") #for heroku
+  end
 end
