@@ -19,4 +19,9 @@ FactoryGirl.define do
     name "Book Name"
     desc "A book with recipes"
   end
+
+  factory :session do
+    email "email@email.com"
+    password "password"
+  end
 end
