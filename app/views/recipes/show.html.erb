@@ -16,6 +16,28 @@
   <!-- @recipe.image -->
 </p>
 
+<h3>Associated Ingredients</h3>
+
+<% @ingredients.each do |ingredient| %>
+  <%= link_to ingredient.name, ingredient_path(ingredient) %>
+  <% end %>
+
 <p>
   <%= link_to "Back", :back, class: "btn btn-default" %>
 </p>
+
+<% unless session[:user_id] == nil %>
+
+<h5>Assign to Cookbook</h5>
+  <%= form_for @recipe, url: user_recipe_path(session[:user_id], @recipe.id), html: { class: "form" } do |f| %>
+
+    <div class="form-group">
+      <%= f.label :cookbook_ids, "Cookbooks" %>
+      <%= f.collection_select( :cookbook_ids, @user_cookbooks, :id, :name, options = {prompt: "Select a Cookbook (optional)"}, class: "form-control") %>
+    </div>
+
+    <%= f.submit "Add to Cookbook" %>
+
+    <% end %>
+  <% end %>
+

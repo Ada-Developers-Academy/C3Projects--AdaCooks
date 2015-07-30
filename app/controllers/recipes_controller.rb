@@ -22,7 +22,14 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+
     @user = User.find(@recipe.user_id)
+
+    local_user = User.find(session[:user_id])
+
+    @user_cookbooks = local_user.cookbooks
+
+    @ingredients = @recipe.ingredients
   end
 
   def edit
