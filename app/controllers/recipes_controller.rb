@@ -38,6 +38,11 @@ class RecipesController < ApplicationController
     end
   end
 
+  def update
+    remove_recipe_from_cookbook
+
+  end
+
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
@@ -45,6 +50,16 @@ class RecipesController < ApplicationController
   end
 
   private
+
+  def remove_recipe_from_cookbook
+     recipe = Recipe.find(params[:user_id])
+     cookbook = recipe.cookbooks.find(params[:cookbook][:id])
+
+     if cookbook
+        recipe.coobooks.delete(cookbook)
+     end
+
+  end
 
   def recipe_params
     params.require(:recipe).permit(:user_id, :name, :description, :image, :ingredients, :preparation, {:ingredient_ids => [] }, {:cookbook_ids => [] })
