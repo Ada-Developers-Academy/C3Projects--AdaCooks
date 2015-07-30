@@ -10,6 +10,7 @@ class RecipesController < ApplicationController
     if session[:user_id]
       @current_user = User.find(session[:user_id])
     end
+
   end
 
   def new
@@ -41,7 +42,7 @@ class RecipesController < ApplicationController
     redirect_to recipe_path(recipe)
   end
 
-  def remove_cookbook
+  def remove_recipes
     recipe = Recipe.find(params[:id])
     cookbook = Cookbook.find(recipe.cookbook_id)
     recipe.cookbook_id = nil
@@ -52,10 +53,10 @@ class RecipesController < ApplicationController
 
   def destroy
     recipe = Recipe.find(params[:id])
-    cookbook = recipe.cookbook_id
+    user = User.find(session[:user_id])
     recipe.destroy
 
-    redirect_to cookbook_path(cookbook)
+    redirect_to user_path(user)
   end
 
   private
