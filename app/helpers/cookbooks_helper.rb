@@ -6,16 +6,9 @@ module CookbooksHelper
   end
 
   def cookbook_ingredients_count(cookbook) # FIXME: test probably broken?
-    recipes = cookbook.recipes
+    ingredient_count = cookbook.uniq_ingredients
 
-    all_ingredients = []
-    recipes.each do |recipe|
-      all_ingredients.push(recipe.ingredients)
-    end
-
-    ingredient_count = all_ingredients.flatten.uniq.count
-
-    output = "#{ ingredient_count} unique ingredient"
+    output = "#{ingredient_count} unique ingredient"
     output += "s" unless ingredient_count == 1
     output += ""
   end

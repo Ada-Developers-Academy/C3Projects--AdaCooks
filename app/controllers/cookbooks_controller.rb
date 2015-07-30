@@ -14,7 +14,7 @@ class CookbooksController < ApplicationController
     @cookbook = Cookbook.create(create_params)
 
     if @cookbook.save
-      flash[:success] = "Your cookbook has been created"
+      flash[:success] = "Your cookbook has been created."
       redirect_to user_cookbook_path(session[:user_id], @cookbook.id)
     else
       flash[:error] = @cookbook.errors.full_messages.first
@@ -28,7 +28,13 @@ class CookbooksController < ApplicationController
   def update
     @cookbook = Cookbook.update(params[:id], create_params)
 
-    redirect_to user_cookbook_path(session[:user_id], @cookbook.id)
+    if @cookbook.save
+      flash[:success] = "Your cookbook has been edited."
+      redirect_to user_cookbook_path(session[:user_id], @cookbook.id)
+    else
+      flash[:error] = @cookbook.errors.full_messages.first
+      render :edit
+    end
   end
 
   def show
