@@ -11,10 +11,13 @@ class Cookbook < ActiveRecord::Base
     order('name'.capitalize)
   end
 
+# ----------QUERIES-------------------------------
+
+
 # ----------MODEL METHODS------------------------------
-  def self.unique_ingredients
+  def unique_ingredients
     array = self.ingredients
     ingredient_array = array.uniq{|ingredient| ingredient.name}
-    ingredient.count
+    ingredient_array.count
   end
 end
