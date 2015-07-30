@@ -10,14 +10,6 @@ class CookbooksController < ApplicationController
     recipe: "Successfully removed recipe(s)."
   }
 
-  # def index # NOTE THIS LOGIC NEEDS TO GO INTO THE RECIPE & INGREDIENTS NOT COOKBOOKS AUGH
-  #   if params[:id].nil?
-  #     @cookbook = Cookbook.all # TODO THIS HAS TO BE ALPHABETICAL
-  #   else
-  #     @cookbook = Cookbook.where(user_id: params[:id]) # TODO ALSO ALPHABETICAL
-  #   end
-  # end
-
   def index
     @cookbooks = Cookbook.by_user(session[:user_id]) # TODO SHOULD BE ALPHABETICAL?
   end
