@@ -211,6 +211,16 @@ RSpec.describe IngredientsController, type: :controller do
         delete :destroy, id: @ingredient.id
       }.to change(Ingredient, :count).by(-1)
     end
+
+    it "does not delete associated recipes" do
+      recipe1 = create :recipe
+      recipe2 = create :recipe, name: "Another Recipe"
+      @ingredient.recipes << [ recipe1, recipe2 ]
+
+      delete :destroy, id: @ingredient.id
+      expect(Recipe.all).to include(recipe1)
+      expect(Recipe.all).to include(recipe2)
+    end
   end
 
 end
