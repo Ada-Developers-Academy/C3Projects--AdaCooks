@@ -6,9 +6,10 @@ class ApplicationController < ActionController::Base
 
   ERRORS = {
     login_error: "Invalid login. Please try again.",
-    not_logged_in: "Please log in to see this page."
+    not_logged_in: "Please log in to see this page.",
+    registration_error: "Please try again."
   }
-  
+
   # before action for new forms for which you need to be an identified user
   def require_login
     redirect_to login_path, flash: { errors: ERRORS[:not_logged_in] } unless session[:user_id]
