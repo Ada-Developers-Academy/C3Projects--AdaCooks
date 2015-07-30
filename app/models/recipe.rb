@@ -20,4 +20,8 @@ class Recipe < ActiveRecord::Base
   scope :desc_by_update, -> { order("updated_at DESC") }
   scope :alpha, -> { order("name ASC") }
 
+  def self.search(query)
+    where("name like ?", "%#{query}%")
+  end
+
 end
