@@ -38,19 +38,5 @@ RSpec.describe Ingredient, type: :model do
       order = [ingredient4, ingredient2, ingredient1, ingredient3]
       expect(Ingredient.all.alphabet).to eq(order)
     end
-
   end
-  # context "alpha scope" do
-  #   before(:each) do
-  #     @j = create(:ingredient, name: "Jerky"}
-  #     @b = create(:ingredient, name: "Bacon"),
-  #     @p = create(:ingredient),
-  #     @a = create(:ingredient, name: "Apple")
-  #
-  #   end
-  #   it "orders ingredients alphabetically" do
-  #     order = [@a, @b, @j, @p]
-  #     expect(Ingredient.all.alphabet).to eq(order)
-  #   end
-  # end
 end
