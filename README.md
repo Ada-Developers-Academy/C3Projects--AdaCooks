@@ -65,12 +65,12 @@ We're doing this to make the final project easier to code review. Because the ba
   - Destroy an existing Recipe that I created
     - Destroying a Recipe __does not__ destroy the Ingrdients, just the associations
   - From a Recipe's detail page, I can save the Recipe to an existing Cookbook
-- __Ingredients__
-  - Create an Ingredient with...
-    - a unique `name` (required)
-    - an uploaded image of the Ingredient (optional)
-  - Edit the `name` and/or the uploaded image of an existing Ingredient that I created
-  - Destroy an existing Ingredient that I created (this does not destroy any associated Recipes)
+- DONE __Ingredients__
+  - DONE Create an Ingredient with...
+    - DONE a unique `name` (required)
+    - DONE an uploaded image of the Ingredient (optional)
+  - DONE Edit the `name` and/or the uploaded image of an existing Ingredient that I created
+  - DONE Destroy an existing Ingredient that I created (this does not destroy any associated Recipes)
 
 ### Other Requirements
 - A minimum 80% test coverage for all Models and Controllers.
