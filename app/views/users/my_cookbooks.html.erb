@@ -1,0 +1,31 @@
+<div class="row">
+  <ul class="nav nav-tabs nav-justified">
+    <li role="presentation">
+      <%= link_to 'Recipes', my_recipes_path %>
+    </li>
+    <li role="presentation" class="active">
+      <%= link_to 'Cookbooks', my_cookbooks_path %>
+    </li>
+  </ul>
+
+  <h3>My Cookbooks</h3>
+
+  <table class="table table-hover">
+    <tbody>
+      <tr>
+        <th>Cookbook</th>
+        <th># of Recipes</th>
+        <th># of Ingredients</th>
+      </tr>
+      <% @cookbooks.each do |cookbook| %>
+        <tr>
+          <td>
+            <%= link_to cookbook.name, cookbook %>
+          </td>
+          <td><%= cookbook.recipes.count %></td>
+          <td><%= cookbook.unique_ingredient_count %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
