@@ -24,7 +24,11 @@
       <ul class="list-group">
         <% @cookbooks.each do |cookbook| %>
           <li class="list-group-item">
-            <strong><%= link_to cookbook.name, {:controller => "users", :action => "show", :cookbook => cookbook.id } %></strong>
+            <strong>
+            <%= link_to cookbook.name, { :controller => "users", 
+                                         :action => "show", 
+                                         :cookbook => cookbook.id } %>
+            </strong>
             <% if current_user?(@user) %>
               <span class="pull-right">
                 <%= link_to edit_cookbook_path(cookbook.id) do %>

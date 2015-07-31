@@ -1,14 +1,15 @@
-<h1>Recipes</h1>
-<% alphabet = ("A".."Z").to_a %>
-<% @recipes.each do |recipe| %>
-  <% alphabet.each do |letter| %>
-    <% if recipe.name.first.upcase == letter %>
-      <strong><%= letter %></strong>
-      <%= link_to recipe.name, recipe_path(recipe), method: :get %>
-    <% else %>
-      <strong><%= letter %></strong>
-    <% end %>
+<div class="container">
+  <% @recipes.each do |recipe| %>
+    <div class="col-md-4 center">
+      <div class="well">
+        <%= link_to image_tag(recipe.image, class: "img-circle", size: "200x170"), recipe_path(recipe.id) %>
+        <h3><%= link_to(recipe.name, recipe_path(recipe.id)) %></h3>
+        <p class="img-desc"><%= recipe.desc %></p>
+        <span class="text-muted"><%= pluralize(recipe.ingredients.count, "ingredient") %></span>
+      </div>
+    </div>
   <% end %>
-<% end %>
+</div>
+
 <br>
 <%= link_to "New Recipe", ingredient_index_path, method: :get %>
