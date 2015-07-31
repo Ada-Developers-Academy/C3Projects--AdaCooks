@@ -88,8 +88,8 @@ RSpec.describe IngredientsController, type: :controller do
 
     context "invalid ingredient params" do
       before :each do
-        @user = create :user
-        session[:user_id] = @user.id
+        user = create :user
+        session[:user_id] = user.id
         post :create, ingredient: attributes_for(:ingredient, name: nil)
       end
 
