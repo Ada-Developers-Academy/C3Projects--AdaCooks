@@ -19,7 +19,7 @@
 				<% unless session[:user_id] %>
 					<%= link_to 'Login', new_session_path, class: 'btn btn-primary login' %>
 				<% else %>
-				<%= link_to 'My Cookbooks', user_path(session[:user_id]), class: 'nav-user-link navbar-left' %>
+				<%= link_to 'My Cookbooks', user_cookbooks_path(session[:user_id]), class: 'nav-user-link navbar-left' %>
 					<%= link_to 'Logout', session_path(session[:user_id]), method: :delete, class: 'btn btn-primary logout' %>
 				<% end %>
 
