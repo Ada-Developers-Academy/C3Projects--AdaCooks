@@ -3,6 +3,7 @@ FactoryGirl.define do
     name 'Chocolate Chip Cookies'
     description 'Everyone loves chocolate chip cookies'
     preparation 'Mix chocolate chips with some other stuff'
+    ingredient_ids [1]
     user_id 1
   end
 
