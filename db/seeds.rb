@@ -18,17 +18,6 @@ CSV.foreach("db/cookbooks.csv", headers: true) do |row|
    )
   end
 
-CSV.foreach("db/recipes.csv", headers: true) do |row|
-
-  Recipe.create(
-    name: row[0],
-    description: row[1],
-    image: File.open(Rails.root.join(row[2])),
-    preparation: row[3],
-    user_id: row[4]
-  )
- end
-
  CSV.foreach("db/ingredients.csv", headers: true) do |row|
 
    Ingredient.create(
@@ -37,6 +26,22 @@ CSV.foreach("db/recipes.csv", headers: true) do |row|
      user_id: row[2]
    )
   end
+
+CSV.foreach("db/recipes.csv", headers: true) do |row|
+
+  recipe = Recipe.new(
+    name: row[0],
+    description: row[1],
+    image: File.open(Rails.root.join(row[2])),
+    preparation: row[3],
+    user_id: row[4]
+  )
+
+  recipe.ingredients << Ingredient.find(26)
+  recipe.save
+
+ end
+
 
 cookbooks_recipes = { 1 => [5, 6, 8], 2 => [2, 7], 3 => [3, 6], 4 => [1, 2, 3, 4, 5, 7, 8], 5 => [1, 2, 4, 7]}
 
