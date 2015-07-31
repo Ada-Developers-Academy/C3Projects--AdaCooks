@@ -18,8 +18,18 @@
  @import "bootstrap";
 
  // this is a green world
-.jumbotron, .navbar {
+.navbar {
   background: #cfc;
+}
+
+.jumbotron {
+  background-image: url("cooking-banner.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+}
+
+.jumbotron h1 span, .jumbotron p span{
+  background-color: rgba(230, 230, 230, .3);
 }
 
 .jumbotron p {
@@ -39,8 +49,9 @@
   padding: 3px 10px;
 }
 
+
 .jumbotron .nav > li > a, footer .nav > li > a {
-  border: 1px solid #cec;
+  border: 1px solid #C0C0C0;
   border-radius: 5px;
 }
 
