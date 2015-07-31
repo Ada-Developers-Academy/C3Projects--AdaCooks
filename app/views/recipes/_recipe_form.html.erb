@@ -23,10 +23,13 @@
 
   <div class="form-group">
     <div class="col-sm-2">
-      <h4><i class="fa fa-leaf"></i> Ingredients <small>(Required)</small></h4>
-    </div>
-    <div class="col-sm-3 float-right">
-      <%= link_to "Create a New Ingredient", new_ingredient_path, class: 'btn btn-primary' %>
+      <h4><i class="fa fa-leaf"></i> Add Ingredients
+        <small><%= link_to new_ingredient_path(@user.id) do %>
+            <span class="glyphicon glyphicon-plus" aria-hidden="true" data-toggle="tooltip" title="Create an Ingredient!"></span>
+          <% end %>
+        </small>
+        <small>(Required)</small>
+      </h4>
     </div>
 
     <div class="row">
@@ -54,11 +57,12 @@
 
   <div class="form-group">
     <div class="col-sm-4">
-      <h4>Add To A Cookbook?</h4>
-    </div>
-    <div class="col-sm-3 float-right">
-      <!-- change below to new_user_cookbook_path -->
-      <%= link_to "Create a New Cookbook", new_user_cookbook_path(session[:user_id]), class: 'btn btn-primary' %>
+      <h4><i class="fa fa-book"></i> Add To A Cookbook
+        <small><%= link_to new_user_cookbook_path(@user.id) do %>
+            <span class="glyphicon glyphicon-plus" aria-hidden="true" data-toggle="tooltip" title="Create a Cookbook!"></span>
+          <% end %>
+        </small>
+      </h4>
     </div>
 
     <div class="row">
