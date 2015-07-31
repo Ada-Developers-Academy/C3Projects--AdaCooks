@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:edit, :update, :show, :destroy]
-
+  before_action :set_recipe, only: [:edit, :update, :show, :destroy, :add_to_cookbook]
+  before_action :current_user, only: [:show, :add_to_cookbook]
+  before_action :setup_show, only: [:show, :add_to_cookbook]
   after_action :last_page
 
   MESSAGES = {
@@ -9,7 +10,8 @@ class RecipesController < ApplicationController
     update_success: "You have successfully updated your recipe.",
     update_fail: "There was a problem with your update. Please try again.",
     destroy_success: "You have successfully deleted the recipe.",
-    destroy_fail: "There was a problem with your recipe deletion. Please try again."
+    destroy_fail: "There was a problem with your recipe deletion. Please try again.",
+    cookbook_fail: "Saving this recipe to that cookbook did not work. Please try again. "
   }
 
   def index
@@ -17,7 +19,6 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @ingredient_lines = @recipe.recipe_ingredients
   end
 
   def new
@@ -60,7 +61,27 @@ class RecipesController < ApplicationController
     redirect_to recipes_path
   end
 
+  def add_to_cookbook
+    cookbook_id = params[:cookbook][:cookbook_id]
+    cookbook = Cookbook.find(cookbook_id)
+    @recipe.cookbooks << cookbook
+
+    if @recipe.cookbooks.exists?(id: cookbook_id)
+      flash[:success] = "You successfully saved this recipe to your cookbook '#{cookbook.name}'."
+      redirect_to @recipe
+    else
+      flash[:errors] = MESSAGES[:cookbook_fail]
+      render :show
+    end
+  end
+
   private
+
+  def setup_show
+    @owner = @recipe.user
+    @ingredient_lines = @recipe.recipe_ingredients
+    @cookbooks = @current_user.cookbooks - @recipe.cookbooks
+  end
 
   def set_recipe
     @recipe = Recipe.find(params[:id])

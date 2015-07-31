@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   delete '/signout', to: 'sessions#destroy', as: 'signout'
 
   resources :recipes
+  post 'recipes/:id/add_to_cookbook', to: 'recipes#add_to_cookbook', as: 'add_to_cookbook'
 
   resources :cookbooks
   delete 'cookbooks/:cookbook_id/recipe/:id', to: 'cookbooks#remove_recipe', as: 'remove_recipe'
