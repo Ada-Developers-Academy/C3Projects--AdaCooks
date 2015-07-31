@@ -1,0 +1,9 @@
+<%= form_for [recipe, step] do |f| %>
+
+  <div class="form-group">
+    <%= f.label :directions %>
+    <%= f.text_area :directions, { class: "form-control", required: true } %>
+  </div>
+
+  <%= f.submit "Save", { class: "btn btn-primary" } %>
+<% end %>
