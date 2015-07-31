@@ -33,6 +33,14 @@
         </div>
       <% end %>
 
+      <% if @current_user %>
+        <h4>Add to a cookbook:</h4>
+        <div class="form-group">
+          <%= f.label :cookbook_ids, "Cookbook" %>
+          <%= f.collection_select(:cookbook_ids, @cookbooks, :id, :name, {}, {multiple: true}) %>
+        </div>
+      <% end %>
+
       <%= f.submit "Submit", class: "btn btn-default"%>
     </fieldset>
   </div>
