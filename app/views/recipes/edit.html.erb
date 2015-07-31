@@ -1,3 +1,13 @@
-<h3>Update <%= @recipe_name %></h3>
+<div class="row">
+  <div class="col-sm-offset-2 col-sm-8">
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title">Update <%= @recipe_name.titlecase %></h3>
+      </div>
 
-<%= render "recipe_form" %>
+      <div class="panel-body">
+        <%= render "recipe_form" %>
+      </div>
+    </div>
+  </div>
+</div>

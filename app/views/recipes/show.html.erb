@@ -1,52 +1,66 @@
 <div class="row">
-  <div class="col-md-8">
-    <h1> <%= @recipe.name %></h1>
-    <p>Written by: <%= link_to @owner.username, user_path(@owner) %>
-    <p><%= image_tag @recipe.image_url(:display) %></p>
-    <p>Description: <%= @recipe.description %></p>
+  <div class="col-sm-offset-2 col-sm-8">
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @recipe.name.titlecase %></h3>
+      </div>
 
-    <ul class="list-group">
-      <% @ingredient_lines.each do |line| %>
-        <li class="list-group-item">
-          <%= "#{pluralize(line.quantity, line.measurement.unit)}" %> <%= link_to line.ingredient.name, ingredient_path(line.ingredient_id) %>
-        </li>
-      <% end %>
-    </ul>
-
-    <p>Preparation: <%= @recipe.preparation %></p>
-
-    <% if @yourcookbooks && @your_cookbooks.count > 0 %>
-      <p>This recipe is part of your cookbook(s):</p>
-      <ul>
-        <% @your_cookbooks.each do |cookbook| %>
-          <li>
-            <%= link_to cookbook.name.titlecase, cookbook %>
+      <div class="panel-body">
+        <em><%= @recipe.description %></em>
+        <p>By: <%= link_to @owner.username, user_path(@owner) %>
+        <p>
+          <%= image_tag @recipe.image_url(:display), class: "img-thumbnail center-block" %>
+        </p>
+        <h4>Ingredients:</h4>
+      </div>
+      <ul class="list-group">
+        <% @ingredient_lines.each do |line| %>
+          <li class="list-group-item">
+            <%= "#{pluralize(line.quantity, line.measurement.unit)}" %> <%= link_to line.ingredient.name, ingredient_path(line.ingredient_id) %>
           </li>
         <% end %>
       </ul>
-    <% else %>
-      <em>This recipe is not in any of your cookbooks.</em>
-    <% end %>
 
-    <% if @current_user %>
-      <p>Save to a cookbook:</p>
+      <div class="panel-body">
 
-      <% if @unused_cookbooks.count > 0 %>
-        <%= form_tag(controller: "recipes", action: "add_to_cookbook", method: "post", class: "form") do %>
-          <%= collection_select(:cookbook, :cookbook_id, @unused_cookbooks, :id, :name, include_blank: true) %>
-          <%= submit_tag "Save" %>
+        <h4>Preparation:</h4>
+        <p><%= @recipe.preparation %></p>
+
+        <% if @your_cookbooks.count > 0 %>
+          <p>This recipe is part of your cookbook(s):</p>
+          <ul>
+            <% @your_cookbooks.each do |cookbook| %>
+              <li>
+                <%= link_to cookbook.name.titlecase, cookbook %>
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
+          <em>This recipe is not in any of your cookbooks.</em>
         <% end %>
-      <% elsif @current_user.cookbooks.empty? %>
-        <em>You have no cookbooks to add this recipe to.</em>
-      <% else %>
-        <em>This recipe is already part of all of your cookbooks.</em>
+
+        <% if @current_user %>
+          <p>Save to a cookbook:</p>
+
+          <% if @unused_cookbooks.count > 0 %>
+            <%= form_tag(controller: "recipes", action: "add_to_cookbook", method: "post", class: "form") do %>
+              <%= collection_select(:cookbook, :cookbook_id, @unused_cookbooks, :id, :name, include_blank: true, class: "form-control") %>
+              <%= submit_tag "Save", role: "button", class: "btn btn-default" %>
+            <% end %>
+          <% elsif @current_user.cookbooks.empty? %>
+            <em>You have no cookbooks to add this recipe to.</em>
+          <% else %>
+            <em>This recipe is already part of all of your cookbooks.</em>
+          <% end %>
+        <% end %>
+      </div>
+
+      <% if appropriate_user(@recipe) %>
+        <div class="panel-footer">
+          <%= link_to "Edit this recipe", edit_recipe_path(@recipe), class: "btn btn-default" %>
+          <%= link_to "Delete this recipe", recipe_path(@recipe), method: "delete", data: { confirm: "Are you sure?" }, class: "btn btn-danger pull-right" %>
+        </div>
       <% end %>
-    <% end %>
-
-    <% if appropriate_user(@recipe) %>
-      <p><%= link_to "Edit this recipe", edit_recipe_path(@recipe), class: "btn btn-default" %></p>
-
-      <p><%= link_to "Delete this recipe", recipe_path(@recipe), method: "delete", data: { confirm: "Are you sure?" }, class: "btn btn-danger" %></p>
-    <% end %>
+    </div>
   </div>
 </div>
