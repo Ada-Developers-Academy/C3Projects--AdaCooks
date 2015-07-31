@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     resources :ingredients, only: [:new, :create, :edit, :update, :destroy]
     resources :recipes, only: [:new, :create, :edit, :update, :destroy]
     resources :recipes, only: [] do
+      get "ingredients", to: "recipes#ingredients"
+      post "ingredients", to: "recipes#add_ingredients"
       post "ingredients/:id", to: "recipes#add_ingredient", as: "ingredient"
       delete "ingredients/:id", to: "recipes#remove_ingredient"
     end

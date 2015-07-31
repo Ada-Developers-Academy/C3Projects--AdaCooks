@@ -1,0 +1,17 @@
+<div class="col-sm-8 col-offset-2">
+  <h3>Assign Ingredients to <%= @recipe.proper_name %></h3>
+  <%= form_for @recipe, url: user_recipe_ingredients_path(@authenticated_user, @recipe), method: "post" do |f| %>
+    <% @ingredients.each do |ingredient| %>
+      <div class="col-sm-4">
+        <label><%= ingredient.name %>
+          <% if @recipe.ingredients.include? ingredient %>
+            <%= check_box_tag "ingredients[]", ingredient.id, checked: true %>
+          <% else %>
+            <%= check_box_tag "ingredients[]", ingredient.id %>
+          <% end %>
+        </label>
+      </div>
+    <% end %>
+    <%= f.submit "Add Ingredients to #{ @recipe.proper_name }", class: "btn btn-warning" %>
+  <% end %>
+</div>

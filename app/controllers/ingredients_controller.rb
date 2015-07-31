@@ -55,6 +55,8 @@ class IngredientsController < ApplicationController
     end
 
     def edit_params
-      params.require(:ingredient).permit(:name, :avatar)
+      ingredient = params.require(:ingredient).permit(:name, :avatar)
+      ingredient[:name].downcase!
+      return ingredient
     end
 end
