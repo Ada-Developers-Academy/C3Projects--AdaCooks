@@ -26,17 +26,20 @@
         <h4>Preparation:</h4>
         <p><%= @recipe.preparation %></p>
 
-        <% if @current_user && @your_cookbooks.count > 0 %>
-          <p>This recipe is part of your cookbook(s):</p>
-          <ul>
-            <% @your_cookbooks.each do |cookbook| %>
-              <li>
-                <%= link_to cookbook.name.titlecase, cookbook %>
-              </li>
-            <% end %>
-          </ul>
-        <% elsif @current_user %>
-          <em>This recipe is not in any of your cookbooks.</em>
+        <% if @current_user %>
+          <h4>Cookbooks:</h4>
+          <% if @your_cookbooks.count > 0 %>
+            <p>This recipe is part of your cookbook(s):</p>
+            <ul>
+              <% @your_cookbooks.each do |cookbook| %>
+                <li>
+                  <%= link_to cookbook.name.titlecase, cookbook %>
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <em>This recipe is not in any of your cookbooks.</em>
+          <% end %>
         <% end %>
 
         <% if @current_user %>
