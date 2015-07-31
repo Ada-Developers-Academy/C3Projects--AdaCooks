@@ -21,9 +21,7 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
-
     if @recipe.save
-      # raise
       redirect_to recipes_path, notice: "Recipe successfully added chef!"
     else
       flash.now[:error] = "Error!!"

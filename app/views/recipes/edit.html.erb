@@ -1,7 +1,12 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <span class="back-link"><%= link_to "Return to Previous Page", :back %></span>
-    <h1>Edit <%= @recipe.name %></h1>
+    <h1>Edit Recipe "<%= @recipe.name %>"</h1>
+    <%= render partial: 'shared/error_messages', locals: { any_errors: @recipe.errors.any?,
+                                                           count_errors: @recipe.errors.count,
+                                                           messages: @recipe.errors.full_messages }
+    %>
+
     <%= render partial: "shared/recipe_form", locals: {recipe: @recipe, url: @url, method: @method} %>
   </div>
 </div>

@@ -11,50 +11,51 @@ RSpec.describe RecipesController, type: :controller do
   end
 
   describe "POST #create" do
+    before :each do
+      session[:user_id] = 1
+      ingredient = create :ingredient
+    end
+    let(:recipe_params) {{ :recipe => {name: "chiken in a biscuit", prep: "open the box", ingredient_ids: ["1"], user_id: 1}}}
+    let(:invalid_params) {{ :recipe => {name: nil, prep: nil, ingredient_ids: ["1"], user_id: 1}}}
 
     context "Valid recipe params" do
-      before :each do
-        @recipe1 = Recipe.new(name: "hi", prep: "bye")
-        @recipe1.ingredients << Ingredient.create(name: "sugar")
-        @recipe1.save
-        end
-
       it "creates a recipe" do
-        post :create, id: @recipe1
+        post :create, recipe_params
         expect(Recipe.count).to eq(1)
       end
 
       it "redirects to the recipes index page after saving" do
-        session[:user_id] = 1
-        post :create, id: @recipe1
+        post :create, recipe_params
         expect(response).to redirect_to(recipes_path)
       end
     end
 
     context "Invalid recipe params" do
-      let(:recipe) {build :recipe, name: nil}
-
       it "does not persist invalid recipes" do
-        post :create, recipe.attributes
+        post :create, invalid_params
         expect(Recipe.count).to eq(0)
       end
 
-      # it "renders the 'new' recipe form view to fix invalid fields" do
-        # post :create, recipe.attributes
-        # expect(response).to render_template("new")
-      # end
+      it "renders the 'new' recipe form view to fix invalid fields" do
+        post :create, invalid_params
+        expect(response).to render_template("new")
+      end
     end
   end
 
   describe "PATCH #update" do
-    let(:recipe) {create :recipe}
+    before :each do
+      session[:user_id] = 1
+      ingredient = create :ingredient
+    end
+    let(:recipe_params) {{ :recipe => {name: "chiken in a biscuit", prep: "open the box", ingredient_ids: ["1"], user_id: 1}}}
 
     context "valid updates to recipe" do
-      # it "responds successfully with an HTTP 300 status code" do
-        # patch :update, id: recipe.id
-        # expect(response).to be_success
-        # expect(response).to have_http_status(300)
-      # end
+      it "redirects to the recipe index after updating" do
+        patch :update, recipe_params
+        expect(response).to be_success
+        expect(response).to redirect_to(recipes_path)
+      end
     end
   end
 end
