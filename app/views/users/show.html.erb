@@ -21,11 +21,11 @@
       <div class="col-md-4">
 
         <% if cookbook.image_url %>
-          <%= image_tag cookbook.image_url, class:"img-thumbnail", size: "220x200" %>
+          <%= image_tag cookbook.image_url, class:"img-thumbnail", size: "300x300" %>
         <% elsif cookbook.photo_url %>
-          <%= image_tag cookbook.photo_url, class:"img-thumbnail", size: "220x200" %>
+          <%= image_tag cookbook.photo_url, class:"img-thumbnail", size: "300x300" %>
         <% else %>
-          <%= image_tag "no_image.png", class:"img-thumbnail", size: "220x200" %>
+          <%= image_tag "no_image.png", class:"img-thumbnail", size: "300x300" %>
         <% end %>
 
         <h2><%= cookbook.name %></h2>
