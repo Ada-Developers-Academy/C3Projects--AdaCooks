@@ -15,7 +15,7 @@
       <tr>
         <td> <%= link_to cookbook.name.titlecase, user_cookbook_path(cookbook.user_id, cookbook.id) %> </td>
         <td class="text-center"> <%= cookbook.recipes.count %> </td>
-        <td class="text-center"> <%= cookbook.ingredients.count %> </td>
+        <td class="text-center"> <%= cookbook.ingredients.distinct.count %> </td>
       </tr>
       <% end %>
     </table>
