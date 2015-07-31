@@ -93,7 +93,7 @@ end
 
 def destroy
   @ingredient.destroy
-  redirect_to new_user_ingredient_path(session[:user_id])
+  redirect_to ingredients_by_user_path(session[:user_id])
 end
 
 private
