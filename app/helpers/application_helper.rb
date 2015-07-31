@@ -6,4 +6,8 @@ module ApplicationHelper
   def appropriate_user(resource)
     @current_user && @current_user.id == resource.user_id
   end
+
+  def user_or_guest
+    session[:user_id] ? User.find(session[:user_id]).username : "guest"
+  end
 end
