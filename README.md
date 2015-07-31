@@ -53,18 +53,18 @@ We're doing this to make the final project easier to code review. Because the ba
     - DONE Destroying a Cookbook __does not__ destroy the Recipes, just the associations.
   - DONE Edit an existing Cookbook's `name` and `description` information.
 - __Recipes__
-  - Create a new Recipe, optionally associated with one of my existing Cookbooks, with...
+  - DONE Create a new Recipe, optionally associated with one of my existing Cookbooks, with...
     - DONE a `name` (required)
     - DONE a `description` (optional)
     - DONE an uploaded image of the prepared Recipe (optional)
     - DONE a `preparation` (required)
-    - one or more Ingredients (required)
+    - DONE one or more Ingredients (required)
   - Edit an existing Recipe that I created by...
     - DONE Changing the `name`, `description`, uploaded image, and/or `preparation`
     - Removing or Adding Ingredients
   - DONE Destroy an existing Recipe that I created
     - DONE Destroying a Recipe __does not__ destroy the Ingrdients, just the associations
-  - From a Recipe's detail page, I can save the Recipe to an existing Cookbook
+  - DONE From a Recipe's detail page, I can save the Recipe to an existing Cookbook
 - DONE __Ingredients__
   - DONE Create an Ingredient with...
     - DONE a unique `name` (required)
