@@ -36,7 +36,8 @@ recipes = [
     name: "Chocolate Coconut Milk Ice Cream",
     description: "Healthy yet decadent",
     preparation: "Combine all of the ingredients in a blender, and blend until smooth and creamy. Adjust the flavor to your taste, then transfer to a freezer-safe container. Place in the freezer for 4-6 hours, or until firm.",
-    user_id: 2
+    user_id: 2,
+    image: "choc_ice_cream.jpg"
   },
 
   {
@@ -51,41 +52,55 @@ recipes = [
     name: "Salsa Chicken",
     description: "Quick and easy mexican style crock pot recipe",
     preparation: "Add Chicken to crock pot, and all other ingredients on top.  Cook on low for 6 hours",
-    user_id: 2
+    user_id: 2,
+    image: "black_pepper.jpg"
   },
 
   {
     name: "Witches Brew",
     description: "For a spooky halloween night",
     preparation: "Combine mud and water until desired consistency.  Add grass and earthworms as a garnish.",
-    user_id: 1
+    user_id: 1,
+    image: "pineapple.jpg"
   },
 
   {
     name: "Soft Chocolate Chip Cookies",
     description: "Very delicious, you can use any flavor pudding you like for this recipe.",
     preparation: "Preheat oven to 350 degrees F (175 degrees C). Sift together the flour and baking soda, set aside. In a large bowl, cream together the butter, brown sugar, and white sugar. Beat in the instant pudding mix until blended. Stir in the eggs and vanilla. Blend in the flour Bake for 10 to 12 minutes in the preheated oven. Edges should be golden brown.mixture. Finally, stir in the chocolate chips and nuts. Drop cookies by rounded spoonfuls onto ungreased cookie sheets.",
-    user_id: 2
+    user_id: 2,
+    image: "fake_reeses.jpg"
   },
 
   {
     name: "Peanut Butter & Jam Sando",
     description: "The golden oldie; never gets old",
     preparation: "Apply peanut butter to one piece of bread.  Add jam to the top to desired height. Enjoy.",
-    user_id: 1
+    user_id: 1,
+    image: "yam.jpg"
   },
 
   {
     name: "Fried Chicken",
     description: "Finger licking-greasy good",
     preparation: "Heat oil in deep fryer, apply batter to chicken until coated.  Add to fryer until golden brown. Towel dry.",
-    user_id: 2
+    user_id: 2,
+    image: "yam.jpg"
   }
 
 ]
 
+
 recipes.each do |recipe|
-  Recipe.create recipe
+  image_path = "app/assets/images/" + recipe[:image]
+
+  Recipe.create(
+  name: recipe[:name],
+  description: recipe[:description],
+  preparation: recipe[:preparation],
+  user_id: recipe[:user_id],
+  image: open(image_path)
+  )
 end
 
 # Ingredients -------------------------------
