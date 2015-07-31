@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
-  before_action :require_login, only: [:new, :create, :edit, :update] # TODO: test that these views require login
+  before_action :require_login, only: [:new, :create, :edit, :update, :destroy] # TODO: test that these views require login
   before_action :set_recipe, only: [:show, :edit, :update]
-  before_action :authenticate_user, only: [:edit, :update] # TODO: test this!
+  before_action :authenticate_user, only: [:edit, :update, :destroy] # TODO: test this!
 
   def index
     if params[:search]
@@ -43,6 +43,11 @@ class RecipesController < ApplicationController
       flash.now[:error] = @recipe.errors
       render :edit
     end
+  end
+
+  def destroy
+    # TODO: Brandi was going to do this
+    redirect_to user_path(session[:user_id])
   end
 
   private
