@@ -18,4 +18,8 @@ class Recipe < ActiveRecord::Base
       .where("ingredients.name like ?", "%#{query}%")
       .references(:ingredients)
   end
+
+  def owner?(session_id) # TODO: test this
+    user_id == session_id
+  end
 end

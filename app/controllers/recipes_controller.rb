@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show]
-  before_action :require_login, only: [:new, :create] # TODO: test that these views require login
+  before_action :require_login, only: [:new, :create, :edit, :update] # TODO: test that these views require login
+  before_action :set_recipe, only: [:show, :edit, :update]
+  before_action :authenticate_user, only: [:edit, :update] # TODO: test this!
 
   def index
     if params[:search]
@@ -30,6 +31,19 @@ class RecipesController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @recipe.update(create_params)
+      flash[:message] = { success: "Updated successfully!" }
+      redirect_to recipe_path(@recipe)
+    else
+      flash.now[:error] = @recipe.errors
+      render :edit
+    end
+  end
+
   private
     def set_recipe
       @recipe = Recipe.find(params[:id])
@@ -37,5 +51,9 @@ class RecipesController < ApplicationController
 
     def create_params
       params.require(:recipe).permit(:name, :description, :image)
+    end
+
+    def authenticate_user
+      redirect_to root_path unless @recipe.owner?(session[:user_id])
     end
 end
