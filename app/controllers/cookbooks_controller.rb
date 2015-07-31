@@ -1,10 +1,11 @@
 class CookbooksController < ApplicationController
   before_action :require_login
-  before_action :find_cookbook, only: [:show, :edit, :update, :destroy, :unassociate]
-  before_action :get_cookbook_associations, only: [:new, :edit]
-  before_action only: [:show, :edit, :update, :destroy] do
+  before_action :find_cookbook, only: [ :show, :edit, :update, :destroy, :unassociate ]
+  before_action :get_cookbook_associations, only: [ :new, :edit ]
+  before_action only: [ :show, :edit, :update, :destroy ] do
     correct_login(@cookbook)
   end
+  after_action :save_previous_url, only: [ :new ]
 
   def index
     @cookbooks = Cookbook.where(user_id: session[:user_id])
@@ -27,13 +28,14 @@ class CookbooksController < ApplicationController
   def create
     @cookbook = Cookbook.new(create_cookbook_params)
     @cookbook.user_id = session[:user_id]
-
+    @back_url = session[:previous_url]
     if @cookbook.save
-      redirect_to user_path(session[:user_id]), notice: "Cookbook added!"
+      redirect_to @back_url, notice: "Cookbook added!"
     else
       flash.now[:error] = ERRORS[:unsuccessful_save]
       render :new
     end
+
   end
 
   def edit; end

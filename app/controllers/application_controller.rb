@@ -30,4 +30,8 @@ class ApplicationController < ActionController::Base
     @user = User.find(session[:user_id]) unless session[:user_id].nil?
     flash[:error] = ERRORS[:login_required]
   end
+
+  def save_previous_url
+    session[:previous_url] = URI(request.referer || '').path
+  end
 end

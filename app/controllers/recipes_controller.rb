@@ -5,6 +5,7 @@ class RecipesController < ApplicationController
   before_action only: [:edit, :update, :destroy] do
     correct_login(@recipe)
   end
+  after_action :save_previous_url, only: [ :new ]
 
   def index
     @recipes = Recipe.all.alpha_order
@@ -22,9 +23,10 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(create_recipe_params)
     @recipe.user_id = session[:user_id]
+    @back_url = session[:previous_url]
 
     if @recipe.save
-      redirect_to :back, notice: "Recipe added!"
+      redirect_to @back_url, notice: "Recipe added!"
     else
       flash.now[:errors] = ERRORS[:unsuccessful_save]
       render :new
