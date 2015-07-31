@@ -45,15 +45,8 @@ RSpec.describe RecipesController, type: :controller do
 			expect(assigns(:recipe)).to be_a_kind_of Recipe
 		end
 
-		it 'makes an array of cookbooks names and their IDs' do
-			expected_array = [["None", nil], ["A", 1], ["B", 2], ["C", 3]]
-			get :new
-
-			expect(assigns(:cookbooks_array)).to eq expected_array
-		end
-
-		it 'makes an array of measurment values' do
-			expected_array = [["", ""], ["tsp", "tsp"], ["tbsp", "tbsp"], ["cup", "cup"], ["ounce", "ounce"], ["gram", "gram"], ["pound", "pound"], ["piece", "piece"]]
+		it 'makes an array of measurement values' do
+			expected_array = [["tsp", "tsp"], ["tbsp", "tbsp"], ["cup", "cup"], ["ounce", "ounce"], ["gram", "gram"], ["pound", "pound"], ["piece", "piece"]]
 			get :new
 
 			expect(assigns(:measurements_array)).to eq expected_array
@@ -106,6 +99,8 @@ RSpec.describe RecipesController, type: :controller do
 	describe "GET show" do
 
 		it "retrieves the Recipe object" do
+			create :user
+			session[:user_id] = 1
 			create :recipe
 			get :show, id: 1
 			expect(assigns(:recipe)).to eq Recipe.find(1)
