@@ -46,11 +46,15 @@ class CookbooksController < ApplicationController
       end
 
       def cookbook_params
-        params.require(:cookbook).permit(:name, :description, :user_id)
+        params.require(:cookbook).permit(:name, :description, :user_id, recipe_ids: [])
       end
 
       def correct_user
-        logged_in_user = User.find(session[:user_id])
-        redirect_to user_path(logged_in_user) unless params[:user_id].to_i == logged_in_user.id
+        if session[:user_id].nil?
+          redirect_to root_path
+        else
+          logged_in_user = User.find(session[:user_id])
+          redirect_to user_path(logged_in_user) unless params[:user_id].to_i == logged_in_user.id
+        end
       end
 end

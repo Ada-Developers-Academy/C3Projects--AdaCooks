@@ -12,6 +12,15 @@
       <%= f.label :description %>
       <%= f.text_field :description, class: "form-control" %>
 
+      <%= f.label :recipes %>
+      <div>
+        <%= collection_check_boxes(:cookbook, :recipe_ids, Recipe.all, :id, :name) do |b| %>
+          <%= b.label class: "checkbox-inline" do %>
+            <%= b.check_box + b.text.capitalize %>
+          <% end %>
+        <% end %>
+      </div>
+
       <%= f.hidden_field :user_id, value: session[:user_id] %>
     <br><br>
     <%= f.submit class: "btn btn-default" %>
