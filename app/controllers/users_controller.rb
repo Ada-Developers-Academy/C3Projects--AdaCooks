@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-    # before_action :require_login, only: [:show]
-    before_action :registered_user, only: [:new]
+  # before_action :require_login, only: [:show]
+  before_action :registered_user, only: [:new]
 
-    include ApplicationHelper
+  include ApplicationHelper
 
   def show
     if session[:user_id]
@@ -19,13 +19,11 @@ class UsersController < ApplicationController
     end
   end
 
-
   def load_user_cookbooks
     @user = User.find(params[:id])
     @cookbooks = @user.cookbooks
     @recipes =@user.recipes
   end
-
 
   def new
     @user = User.new

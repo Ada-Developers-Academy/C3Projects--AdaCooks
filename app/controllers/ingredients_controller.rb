@@ -53,7 +53,7 @@ class IngredientsController < ApplicationController
 
   private
 
-    def create_params
-      params.require(:ingredient).permit(:name, :image, :photo_url)
-    end
+  def create_params
+    params.require(:ingredient).permit(:name, :image, :photo_url)
+  end
 end

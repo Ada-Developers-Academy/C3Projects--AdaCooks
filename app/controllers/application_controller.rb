@@ -25,5 +25,4 @@ class ApplicationController < ActionController::Base
     @recipes = Recipe.all
   end
 
-
 end

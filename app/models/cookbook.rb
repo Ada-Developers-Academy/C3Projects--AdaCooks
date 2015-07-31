@@ -11,7 +11,6 @@ class Cookbook < ActiveRecord::Base
 # Mounted Objects------------------------------------------------------------
   mount_uploader :image, ImageUploader
 
-
 # Scopes _____________________________________________________________________
 
 scope :user_cookbooks, -> (user) { where(user_id: "#{user.id}") }
@@ -24,5 +23,4 @@ scope :user_cookbooks, -> (user) { where(user_id: "#{user.id}") }
       recipe.save
     end
   end
-
 end
