@@ -34,8 +34,19 @@
     <br>
     <span>Cookbook (optional)</span>
     <br>
+   
+    <div class="row">
+        <%= f.collection_check_boxes(:cookbooks, @cookbooks, :id, :name, checked: @recipe.cookbooks.map(&:id)) do |i|%>
+            <div class="col-md-1">
+                <%= i.check_box %>
+            </div>
 
-    <%= f.collection_select :cookbooks, @cookbooks, :id, :name, include_blank: true %>
+            <div class="col-md-2">
+                <%= i.object.name %>
+            </div>
+        <% end %>
+    </div>
+
     <br>
     <%= f.submit "Create Recipe", class: "btn btn-default" %>
   </div>
