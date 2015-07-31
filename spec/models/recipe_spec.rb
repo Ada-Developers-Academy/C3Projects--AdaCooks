@@ -27,17 +27,18 @@ RSpec.describe Recipe, type: :model do
   end
 
   describe "alphabet scope" do
-
-    let(:recipe1) { create :recipe, name: 'BBQ Chikun' }
-    let(:recipe2) { create :recipe, name: 'Goulash' }
-    let(:recipe3) { create :recipe, name: 'Pho' }
-    let(:recipe4) { create :recipe, name: 'Armadillo' }
-
     # positive test - includes unique formats
+
     it "has all the unique formats in alphabetical order" do
-      recipe2
-      correct_order = [recipe4, recipe1, recipe2, recipe3]
-      expect(Recipe.all.alphabet).to eq correct_order
+    # We attempted to use Factory Girl, but it wouldn't generate even though we had all the needed attributes for recipe.  
+
+    ingredient = Ingredient.create(id: 1, name: "Sumthin")
+    recipe1 = Recipe.create(name: 'Goulash', ingredient_ids: 1, user_id: 1, preparation: "Stil")
+    recipe2 = Recipe.create(name: 'Pho', ingredient_ids: 1, user_id: 1, preparation: "Stil")
+    recipe3 = Recipe.create(name: 'BBQ Chikun', ingredient_ids: 1, user_id: 1, preparation: "Stil")
+    recipe4 = Recipe.create(name: 'Armadillo', ingredient_ids: 1, user_id: 1, preparation: "Stil")
+    correct_order = [recipe4, recipe3, recipe1, recipe2]
+      expect(Recipe.alphabet).to eq correct_order
     end
 
   end
