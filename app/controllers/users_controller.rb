@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :current_user, except: [:new, :create]
   before_action :set_user, only: [:show, :update]
 
-  before_action :require_signin, only: [:my_recipes, :my_cookbooks, :my_ingredients]
+  before_action :require_signin, only: [:my_recipes, :my_cookbooks, :my_ingredients, :edit]
 
 MESSAGES = {
     update_success: "You have successfully updated your profile.",
@@ -18,8 +18,7 @@ MESSAGES = {
 
     if @user.save
       session[:user_id] = @user.id
-      # redirect to dashboard_path(@user)
-      redirect_to root_path
+      redirect_to my_recipes_path
     else
       render :new
     end

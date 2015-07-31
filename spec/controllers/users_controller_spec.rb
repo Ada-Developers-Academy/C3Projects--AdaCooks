@@ -21,13 +21,19 @@ RSpec.describe UsersController, type: :controller do
         { username: "ren", password: "1111", password_confirmation: "1111" }
       end
 
-      it "creates a new user" do
+      before :each do
         post :create, user: valid_params
+      end
+
+      it "creates a new user" do
         expect(User.count).to eq 1
+      end
+
+      it "redirects to my_recipes dashboard page" do
+        expect(response).to redirect_to my_recipes_path
       end
     end
 
-    # write test for redirect to user#dashboard when dashboard is created
     context "invalid params" do
       let(:invalid_params) do
         { username: "stimpy", password: "1111", password_confirmation: "1234" }
