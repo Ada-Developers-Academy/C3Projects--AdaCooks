@@ -49,6 +49,7 @@ class IngredientsController < ApplicationController
   end
 
   def search
+    flash[:error] = "Aw, we couldn't find any ingredients with '#{params[:search]}'."
     @ingredients = Ingredient.search params[:search]
     render :search_results
   end

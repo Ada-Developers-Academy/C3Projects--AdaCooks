@@ -21,8 +21,8 @@ class Recipe < ActiveRecord::Base
 
 # METHODS ---------------------------------------------
 
-def self.organize
-  self.all.sort_by { |i| i.name.capitalize }
-end
+  def self.organize
+    self.all.sort_by { |i| i.name.capitalize }
+  end
 
 end

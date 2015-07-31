@@ -49,6 +49,11 @@ class RecipesController < ApplicationController
     redirect_to recipes_path, notice: "#{@recipe} is no more :("
   end
 
+  def search
+    @recipes = Recipe.search params[:search]
+    render :search_results
+  end
+
   private
 
   def find_recipe

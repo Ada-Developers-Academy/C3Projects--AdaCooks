@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   post   "login"  => "sessions#create"
   delete "logout" => "sessions#destroy"
 
+  # Search
   get    "/ingredients_/search_results" => "ingredients#search"
   get    "/ingredient_check"            => "ingredients#ingredient_check", as: "ingredient_index"
 
