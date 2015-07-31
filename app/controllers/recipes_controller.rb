@@ -51,24 +51,26 @@ class RecipesController < ApplicationController
   end
 
   def associate_cookbooks(recipe)
-    cookbook_id = params[:recipe][:cookbooks].to_i
+    recipe.cookbooks.destroy_all
 
-    if cookbook_id != 0
-      recipe.cookbooks << Cookbook.find(cookbook_id)
+    input_cookbooks = params[:recipe][:cookbooks]
+
+    input_cookbooks.each do |input|
+      if input != ""
+        recipe.cookbooks << Cookbook.find(input)
+      end
     end
-
   end
 
   def edit
     @recipe = Recipe.find(params[:id])
 
     @ingredients = Ingredient.all.order(:name)
-    @cookbooks = Cookbook.where(:user_id => params[:user_id]).order(:name)
+    @cookbooks = Cookbook.where(:user_id => @recipe.user_id).order(:name)
   end
 
   def update
     @recipe = Recipe.find(params[:id])
-
     @recipe.update(recipe_params)
 
     associate_ingredients(@recipe)
@@ -82,8 +84,6 @@ class RecipesController < ApplicationController
     recipe.destroy
     redirect_to user_dashboard_path(session[:user_id])
   end
-
-
 
 
 ###########################################################
