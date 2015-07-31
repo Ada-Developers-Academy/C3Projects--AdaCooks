@@ -1,6 +1,6 @@
 <div class="container marketing">
   <% @ingredients.each do |ingredient| %>
-  <h1>Recipes with <%= ingredient.name %></h1>
+  <h1><%= ingredient.name.capitalize %></h1>
   <hr class="featurette-divider">
 
     <div class="row featurette">
@@ -32,7 +32,7 @@
         </div>
         <% end %>
       <% else %>
-        <p class="lead">Unfortunately, there's no recipes with <%=ingredient.name %></p>
+        <p class="lead">Unfortunately, there are no recipes with <%=ingredient.name %></p>
     <% end %>
   <% end %>
 </div>
