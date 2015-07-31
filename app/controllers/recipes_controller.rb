@@ -12,6 +12,11 @@ before_action :select_recipe, only: [:edit, :destroy, :update]
 
   def show
     @recipe = Recipe.find(params[:id])
+    @user = @recipe.user
+    unless @user.id == params[:user_id]
+      params[:user_id] = @user.id
+    end
+
     
   end
 
