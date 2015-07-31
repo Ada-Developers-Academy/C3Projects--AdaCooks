@@ -9,10 +9,10 @@
       </div>
       <div class="col-md-5 col-md-pull-7">
 
-        <% if ingredient.photo_url %>
-          <%= image_tag ingredient.photo_url, class:"img-circle", size: "300x300" %>
-        <% elsif ingredient.image_url %>
+        <% if ingredient.image_url %>
           <%= image_tag ingredient.image_url, class:"img-circle", size: "300x300" %>
+        <% elsif ingredient.photo_url %>
+          <%= image_tag ingredient.photo_url, class:"img-circle", size: "300x300" %>
         <% else %>
           <%= image_tag "no_image.png", class:"img-circle", size: "300x300" %>
         <% end %>
