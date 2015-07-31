@@ -22,6 +22,8 @@
              <% end %>
            <% end %>
   <br>
+        <%= link_to "Add New Ingredient", new_ingredient_path, class:"btn btn-default" %>
+  <br>
         <%= f.label :image, 'Photo' %>
         <%= f.file_field :image %>
   <br>
@@ -32,7 +34,7 @@
               <% end %>
             <% end %>
       </fieldset>
-      <%= f.submit "Submit", class: "btn btn-default"%>
+      <%= f.submit "Submit", class: "btn btn-primary"%>
     </div>
     <% end %>
 </div>
