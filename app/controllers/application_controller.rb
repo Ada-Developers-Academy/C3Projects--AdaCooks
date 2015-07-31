@@ -8,7 +8,8 @@ class ApplicationController < ActionController::Base
     login_error: "Invalid login. Please try again.",
     not_logged_in: "Please log in to see this page.",
     registration_error: "Please try again.",
-    new_recipe_error: "A recipe needs to have a name and preparation."
+    new_recipe_error: "A recipe needs to have a name and preparation.",
+    unauth_user_error: "You are not authorized to see this information."
   }
 
   # before action for new forms for which you need to be an identified user
