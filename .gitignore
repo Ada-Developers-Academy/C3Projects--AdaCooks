@@ -21,3 +21,5 @@ coverage/
 
 # Ignore public uploaded files
 public/uploads/
+
+.DS_Store
