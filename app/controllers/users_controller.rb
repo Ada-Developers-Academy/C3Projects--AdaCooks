@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:success] = "Thank you for creating an account with us!"
       session[:user_id] = @user.id # creates a session - they are logged in
-      redirect_to dash_user_path(@user)
+      redirect_to user_path(@user)
     else # if they entered invalid info
       render :new
     end

@@ -4,10 +4,7 @@ Rails.application.routes.draw do
   # It's odd -- root_path --> 'localhost:3000', which does not redirect and change
   # the url. But 'localhost:3000/' DOES redirect and change the URL.
 
-  resources :users, only: [:show, :new, :create] do
-    get 'dash', on: :member
-    resources :recipes, only: [:index]
-  end
+  resources :users, only: [:show, :new, :create]
 
   resources :sessions, only: [:new, :create, :destroy]
 

@@ -3,6 +3,11 @@
   <h3><%= link_to @recipe.user.username, user_path(@recipe.user) %></h3>
 <% end %>
 
+<% if @recipe.owner?(session[:user_id]) %>
+  <%= button_to "Edit Recipe", edit_recipe_path(@recipe), class: "btn btn-default" %>
+  <br>
+<% end %>
+
 <%= image_tag @recipe.image_url, class: "img-responsive center-block img-rounded" %>
 
 <ol class="list-unstyled">
