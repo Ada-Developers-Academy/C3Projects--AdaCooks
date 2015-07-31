@@ -30,9 +30,9 @@
       
       <p class="addto-book">
       <% if session[:user_id] %>
-        <%= form_for :cookbook, url: @url do |f| %>
-          <%= f.label :cookbook, "Add to a Cookbook" %>
-          <%= f.collection_select :cookbook, @user.cookbooks, :id, :name, include_blank: "--Select a Cookbook--", class: "form-group form-control" %>
+        <%= form_for :recipe, url: recipe_path, method: :patch do |f| %>
+          <%= f.label :cookbooks, "Add to a Cookbook" %>
+          <%= f.collection_select :cookbooks, @user.cookbooks, :id, :name, include_blank: "--Select a Cookbook--", class: "form-group form-control" %>
           <%= f.submit "Save", class: "btn btn-xs btn-default" %>
         <% end %>
       <% end %>

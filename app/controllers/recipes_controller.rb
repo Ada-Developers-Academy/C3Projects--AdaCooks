@@ -10,13 +10,13 @@ class RecipesController < ApplicationController
   def show
     @user = current_user
     @ingredients = @recipe.ingredients
-    @cookbooks = @user.cookbooks
   end
 
   def new
     @recipe = Recipe.new
     @url = recipes_path
     @method = :post
+    @user = current_user
   end
 
   def create
@@ -63,6 +63,6 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:name, :desc, :prep, :image, :cookbook_id, :user_id, :ingredient_ids => [], ingredients_attributes: [:name])
+    params.require(:recipe).permit(:name, :desc, :prep, :image, :cookbook_id, :user_id, :ingredient_ids => [], ingredients_attributes: [:name], :cookbook_ids => [])
   end
 end

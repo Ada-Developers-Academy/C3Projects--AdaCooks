@@ -14,18 +14,19 @@
 
     <div class="form-group">
       <%= f.label :ingredients, "Select All Ingredients: " %>
-      <%= collection_check_boxes(:recipe, :ingredient_ids, Ingredient.all, :id, :name) do |b| %>
+      <%= collection_check_boxes(:recipe, :ingredient_ids, Ingredient.alpha, :id, :name) do |b| %>
         <%= b.label class: "checkbox-inline form-group" do %>
           <%= b.check_box + b.text.titlecase %>
         <% end %>
       <% end %>
     </div>
 
-    <div class="form-control">
-    <%= form_for @recipe, url: @url do |f| %>
-      <%= f.label :cookbook_id %>
-      <%= f.collection_select :cookbook_id, @user.cookbooks, :id, :name, include_blank: "--Select a Cookbook--", class: "form-group col-sm-2" %>
-      <%= f.submit "Save", class: "btn btn-primary" %>
+    <div class="form-group">
+      <%= f.label :cookbooks, "Add to Cookbooks: " %>
+      <%= collection_check_boxes(:recipe, :cookbook_ids, @user.cookbooks, :id, :name) do |b| %>
+        <%= b.label class: "checkbox-inline form-group" do %>
+          <%= b.check_box + b.text.titlecase %>
+        <% end %>
       <% end %>
     </div>
 
