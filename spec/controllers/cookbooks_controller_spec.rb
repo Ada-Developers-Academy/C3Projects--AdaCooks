@@ -25,41 +25,64 @@ RSpec.describe CookbooksController, type: :controller do
     end
   end
 
-  # def create
-  #   @cookbook = Cookbook.create(cookbook_params)
-  #   if @cookbook.save
-  #     redirect_to dashboard_user_path(@cookbook.user)
-  #   else
-  #     render :new
-  #   end
-  # end
-
-
-
   describe "POST #create" do
-
-
-    it "after good create, renders dashboard view" do
-
-      @user = create :user
-      params = { user_id: @user.id, cookbook: { name: "yikes", user_id: @user.id } }
-      # let(:cookbook) do
-      #     {
-      #       user_id: @user.id,
-      #       cookbook: {
-      #       name: "a cookbook",
-      #       user_id: @user.id
-      #       }
-      #     }
-      #   end
-
-      # params = { cookbook: { name: "yikes", user_id: user.id } }
-      # cookbook = Cookbook.create(params[:cookbook])
-      session[:user_id] = @user.id
+    it "after good create, redirects to dashboard view" do
+      user = create :user
+      params = { user_id: user.id, cookbook: { name: "yikes", user_id: user.id } }
+      session[:user_id] = user.id
       post :create, params
 
       expect(response).to have_http_status(302)
-      expect(response).to redirect_to(dashboard_user_path(@user))
+      expect(response).to redirect_to(dashboard_user_path(user))
+    end
+
+    it "after bad create, renders new view" do
+      user = create :user
+      params = { user_id: user.id, cookbook: { name: nil, user_id: user.id } }
+      session[:user_id] = user.id
+      post :create, params
+
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+      expect(response).to render_template(:new)
+    end
+  end
+
+  describe "GET #edit" do
+    it "renders edit view" do
+      user = create :user
+      cookbook = create :cookbook, user_id: user.id
+      session[:user_id] = user.id
+      get :edit, user_id: user.id, id: cookbook.id
+
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+      expect(response).to render_template(:edit)
+    end
+  end
+
+  describe "PUT #update" do
+    it "after good update, redirects to dashboard view" do
+      user = create :user
+      cookbook = create :cookbook, id: 1, name: "nah", user_id: user.id
+      params = { user_id: user.id, id: cookbook.id, cookbook: { name: "nope", user_id: user.id } }
+      session[:user_id] = user.id
+      put :update, params
+
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to(dashboard_user_path(user))
+    end
+
+    it "after bad update, renders new view" do
+      user = create :user
+      cookbook = create :cookbook, id: 1, name: "lol", user_id: user.id
+      params = { user_id: user.id, id: cookbook.id, cookbook: { name: nil, user_id: user.id } }
+      session[:user_id] = user.id
+      put :update, params
+
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+      expect(response).to render_template(:edit)
     end
   end
 
