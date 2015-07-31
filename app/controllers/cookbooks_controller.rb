@@ -27,11 +27,6 @@ class CookbooksController < ApplicationController
     end
   end
 
-
-  def destroy
-    @cookbook = Cookbook.find(params[:id])
-  end
-
   def update
     cookbook = Cookbook.find(params[:id])
     cookbook.update(cookbook_params)
