@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
   before_action :require_login, except: [:index, :show]
   before_action :find_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :set_user
   include ApplicationHelper
 
   def index
@@ -8,7 +9,6 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @user = current_user
     @ingredients = @recipe.ingredients
   end
 
@@ -16,7 +16,6 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new
     @url = recipes_path
     @method = :post
-    @user = current_user
   end
 
   def create
@@ -32,6 +31,7 @@ class RecipesController < ApplicationController
   def edit
     @url = recipe_path(@recipe)
     @method = :patch
+    @user = current_user
   end
 
   def update
@@ -55,6 +55,10 @@ class RecipesController < ApplicationController
   end
 
   private
+
+  def set_user
+    @user = current_user
+  end
 
   def find_recipe
     @recipe = Recipe.find(params[:id])

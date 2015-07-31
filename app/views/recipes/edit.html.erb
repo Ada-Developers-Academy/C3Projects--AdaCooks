@@ -4,9 +4,10 @@
     <h1>Edit Recipe "<%= @recipe.name %>"</h1>
     <%= render partial: 'shared/error_messages', locals: { any_errors: @recipe.errors.any?,
                                                            count_errors: @recipe.errors.count,
-                                                           messages: @recipe.errors.full_messages }
-    %>
+                                                           messages: @recipe.errors.full_messages } %>
 
-    <%= render partial: "shared/recipe_form", locals: {recipe: @recipe, url: @url, method: @method} %>
+    <%= render partial: "shared/recipe_form", locals: { recipe: @recipe, 
+                                                        url: @url, 
+                                                        method: @method } %>
   </div>
 </div>

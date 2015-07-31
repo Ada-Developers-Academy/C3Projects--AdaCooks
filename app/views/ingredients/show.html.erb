@@ -18,7 +18,7 @@
     <div class="col-md-6 ingredient-recipes">
       <h5>Recipes using <%= @ingredient.name %></h5>
       <ul>
-        <% @ingredient.recipes.each do |recipe| %>
+        <% @ingredient.recipes.alpha.each do |recipe| %>
           <li><%= link_to "#{recipe.name}", recipe_path(recipe) %></li>
         <% end %>
       </ul>
