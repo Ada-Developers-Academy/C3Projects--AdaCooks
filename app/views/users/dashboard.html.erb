@@ -3,14 +3,11 @@
 
 <%= link_to "My Ingredients", user_ingredients_path(session[:user_id]), class: "btn btn-default" %>
 <h2>Dashboard</h2>
-<p>
-  Hello, <%= @user.name %>
-</p>
 
-<table>
+<table class="table table-bordered table-hover">
   <th>Recipes</th>
   <th>Edit</th>
-  <th>Delete?</th>
+  <th>Delete</th>
 <% @recipes.each do |recipe| %>
 <tr>
   <td><%= link_to recipe.name, recipe_path(recipe) %></td>
