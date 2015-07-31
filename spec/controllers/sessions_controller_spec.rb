@@ -28,7 +28,7 @@ RSpec.describe SessionsController, type: :controller do
       end
 
       it "creates an authenticated session" do
-        post :create, :session => valid_params
+        post :create, session: valid_params
         expect(session[:user_id]).to eq 1
       end
     end
@@ -40,7 +40,7 @@ RSpec.describe SessionsController, type: :controller do
       end
 
       it "does not create an authenticated session" do
-        post :create, :session => invalid_params
+        post :create, session: invalid_params
         expect(session[:user_id]).to be_nil
       end
     end

@@ -22,7 +22,7 @@ RSpec.describe UsersController, type: :controller do
       end
 
       it "creates a new user" do
-        post :create, :user => valid_params
+        post :create, user: valid_params
         expect(User.count).to eq 1
       end
     end
@@ -34,7 +34,7 @@ RSpec.describe UsersController, type: :controller do
       end
 
       before :each do
-        post :create, :user => invalid_params
+        post :create, user: invalid_params
       end
 
       it "does not create a new user" do
