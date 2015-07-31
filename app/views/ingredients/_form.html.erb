@@ -1,7 +1,7 @@
 <%= form_for @ingredient, method: method_name, class: "form" do |f| %>
   <div class="form-group">
     <%= f.label :name %>
-    <%= f.text_field :name, :required => true, class: "form-control" %>
+    <%= f.text_field :name, required: true, class: "form-control" %>
     <p class="field-error"><%= show_errors(@ingredient, "name") %></p>
   </div>
 
