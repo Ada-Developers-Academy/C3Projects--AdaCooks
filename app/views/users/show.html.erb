@@ -1,6 +1,7 @@
 <div class="container">
   <h1><%= @user.username %> Dashboard </h1>
   <%= button_to "New Recipe", new_recipe_path, method: :get, class: "btn btn-default" %>
+  <%= button_to "New Ingredient", new_ingredient_path, method: :get, class: "btn btn-default" %>
   <%= button_to "New Cookbook", new_cookbook_path, method: :get, class: "btn btn-default" %>
 
   <table class="table table-bordered">
@@ -40,11 +41,23 @@
     </tr>
     <% end %>
 
-
-
-
-
   </table>
+
+  <table class="table table-bordered">
+  <tr>
+      <th>Your Ingredients</th>
+      <th>Edit!</th>
+      <th>Delete?</th>
+  </tr>
+
+  <% @ingredients.each do |ingredient| %>
+  <tr>
+    <td><%= link_to "#{ingredient.name}", ingredient_path(ingredient.id)%></td>
+    <td><%= button_to "Edit", edit_ingredient_path(ingredient.id), method: "get", class: "btn btn-danger" %></td>
+    <td><%= button_to "Delete", ingredient_path(ingredient.id), method: "delete", class: "btn btn-danger" %></td>
+  </tr>
+  <% end %>
+</table>
 
 
 

@@ -1,5 +1,6 @@
 class IngredientsController < ApplicationController
   before_action :find_ingredient, only: [:show, :destroy]
+  before_action :require_login, only: [:new]
 
   def index
     @ingredients = Ingredient.all.alphabet
@@ -15,6 +16,7 @@ class IngredientsController < ApplicationController
 
   def create
     @ingredient = Ingredient.new(ingredient_params)
+    @ingredient.user_id = session[:user_id]
     if @ingredient.save
       redirect_to ingredient_path(@ingredient)
     else

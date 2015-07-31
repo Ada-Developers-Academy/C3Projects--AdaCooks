@@ -43,7 +43,6 @@ class RecipesController < ApplicationController
     # @user = User.find(@recipe.user_id).username.capitalize
     @user_recipes = User.find(@recipe.user_id).username.capitalize
     @your_cookbook = User.find(session[:user_id]).cookbooks if session[:user_id]
-
   end
 
   def add
@@ -73,8 +72,14 @@ class RecipesController < ApplicationController
     end
   end
 
-  def update
-    remove_recipe_from_cookbook
+  def remove_recipe
+     cookbook = Cookbook.find(session[:cookbook_id])
+     recipe = Recipe.find(params[:recipe_id])
+
+     if cookbook
+        recipe.cookbooks.delete(cookbook)
+        redirect_to root_path
+     end
   end
 
   def destroy
@@ -85,17 +90,6 @@ class RecipesController < ApplicationController
 
   private
 
-  def remove_recipe_from_cookbook
-     cookbook = Cookbook.find(session[:cookbook_id])
-     recipe = Recipe.find(params[:recipe_id])
-
-     if cookbook
-        recipe.cookbooks.delete(cookbook)
-        redirect_to root_path
-     end
-
-
-  end
 
   def recipe_params
     params.require(:recipe).permit(:user_id, :recipe_id, :name, :description, :image, :ingredients, :preparation, {:ingredient_ids => [] }, {:cookbook_ids => [] })

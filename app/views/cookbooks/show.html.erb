@@ -1,9 +1,10 @@
 <div class="container">
   <h2><%= @cookbook.name %></h2> <%= link_to "Edit Cookbook", edit_cookbook_path(@cookbook.id), class:"btn btn-primary" %>
   <h2><small><%= @cookbook.description %></small></h2>
-  <%= @cookbook.recipes.count %> Recipes,
+  <p><%= @cookbook.recipes.count %> Recipes</p>
 
-  <h3>Table of Contents</h3>
+
+  <h3>Recipes</h3>
   <div class="row">
     <% @cookbook.recipes.alphabet.each do |recipe| %>
     <div class="col-md-12">
