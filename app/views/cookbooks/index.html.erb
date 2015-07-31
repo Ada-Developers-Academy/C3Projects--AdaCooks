@@ -6,6 +6,7 @@
       <tr>
         <td>Number of Recipes: <%= cookbook.recipes.count%></td>
         <td><%= link_to cookbook.name, user_cookbook_path(session[:user_id], cookbook.id) %></td>
+        <td> <%= cookbook.unique %> </td>
         <td><%= link_to "Edit", edit_user_cookbook_path(session[:user_id], cookbook.id), class: "btn btn-default" %></td>
         <td><%= link_to "X", user_cookbook_path(session[:user_id], cookbook.id), method: :delete, class: "btn btn-danger" %></td>
       </tr>
