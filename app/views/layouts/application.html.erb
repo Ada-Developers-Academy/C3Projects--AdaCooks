@@ -38,6 +38,13 @@
       </header>
       <body>
 
+       <% if flash[:error] %>
+        <div class="alert alert-danger" role="alert">
+          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+          <%= flash[:error] %>
+        </div>
+      <% end %>
+      
       <%= yield :welcome_page %>
       
       <% unless current_page? root_path %>
