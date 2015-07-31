@@ -1,3 +1,4 @@
+<%= link_to "Add a new Ingredient", new_user_ingredient_path(session[:user_id])%>
 <% @ingredients.each do |ingredient| %>
   <%= ingredient.name %>
   <%= image_tag(ingredient.image) %>
