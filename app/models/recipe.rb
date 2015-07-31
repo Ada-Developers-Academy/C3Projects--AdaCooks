@@ -11,4 +11,8 @@ class Recipe < ActiveRecord::Base
   #Scopes------------------------------------------------------------------------
   #Mounted Objects---------------------------------------------------------------
   mount_uploader :image, ImageUploader
+
+
+
 end
+

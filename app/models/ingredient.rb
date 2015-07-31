@@ -16,6 +16,11 @@ class Ingredient < ActiveRecord::Base
     return result.count > 0 
   end
 
+  def self.query(query)
+    # where(:name, query) -> This would return an exact match of the query
+    where("name = ?", "#{query}") 
+  end
+
 
 end
 

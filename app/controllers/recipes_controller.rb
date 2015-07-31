@@ -86,13 +86,20 @@ def destroy
   redirect_to user_path(session[:user_id])
 end
 
+def query
+  if params[:search]
+    @recipes = Recipe.search(params[:search])
+
+    redirect_to recipe_path(recipe.id)
+  else
+    render :new
+  end
+end
 
 private
 
   def recipe_params
     params.require(:recipe).permit(:name, :description, :instructions, :image, :user_id, :cookbook_ids)
   end
-
-
 end
 

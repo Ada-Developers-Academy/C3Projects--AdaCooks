@@ -1,6 +1,6 @@
 class CookbooksController < ApplicationController
 
-before_action :select_cookbook, only: [:show, :edit, :destroy, :update]
+before_action :select_cookbook, only: [:show, :edit, :update, :destroy]
 
 def select_cookbook
   @cookbook = Cookbook.find(params[:id])
@@ -8,8 +8,7 @@ end
 
 def index
   @cookbooks = Cookbook.order(:name)
-
-  # @unique_ing = @cookbook.recipes.ingredients.where(recipe_id.count = 1) #change to a scope
+  
 
 end
 
@@ -38,6 +37,7 @@ end
 
 
 def destroy
+  @cookbook = Cookbook.find(params[:id])
   @cookbook.destroy
   redirect_to user_cookbooks_path(session[:user_id])
 end
