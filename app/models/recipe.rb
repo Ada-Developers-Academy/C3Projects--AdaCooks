@@ -35,7 +35,7 @@ class Recipe < ActiveRecord::Base
     recipes = self.all
 
     trending_recipes = recipes.sort_by do |recipe|
-      recipe.ingredients.count
+      recipe.cookbooks.count
     end
 
     # return in reverse b/c above sorts ascending
