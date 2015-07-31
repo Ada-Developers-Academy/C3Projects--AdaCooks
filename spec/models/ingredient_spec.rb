@@ -18,6 +18,15 @@ RSpec.describe Ingredient, type: :model do
       expect(ingredientsame).to_not be_valid
       expect(ingredientsame.errors.keys).to include(:name)
     end
+
+    it "unique name is case insensitive" do
+      ingredient =     create :ingredient, name: "yams"
+      ingredientsame = build :ingredient, name: "YAMs"
+
+      expect(ingredientsame).to_not be_valid
+      expect(ingredientsame.errors.keys).to include(:name)
+    end
+
   end
 
   describe "model associations" do
