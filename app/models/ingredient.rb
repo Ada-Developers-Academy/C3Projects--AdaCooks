@@ -14,4 +14,13 @@ class Ingredient < ActiveRecord::Base
   scope :newest, -> (total) { order("created_at DESC").limit(total) }
   scope :alpha, -> { order("name ASC") }
 
+  def self.search(query)
+    # where("name like ?", "%#{query}%").take.recipes
+    results = where("name like ?", "%#{query}%")
+    if results.length >= 1
+      results.take.recipes
+    end
+  end
+
+
 end
