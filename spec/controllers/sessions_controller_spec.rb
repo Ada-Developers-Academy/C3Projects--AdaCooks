@@ -29,4 +29,14 @@ RSpec.describe SessionsController, type: :controller do
       end
     end
   end
+
+  describe "DELETE #destroy" do
+    context "when an logged in user logs out" do
+      it "changes the session[:user_id] to nil" do
+        delete :destroy, session: {user_id: 1}
+
+        expect(session[:user_id]).to be nil
+      end
+    end
+  end
 end
