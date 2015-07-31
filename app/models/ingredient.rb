@@ -15,12 +15,7 @@ class Ingredient < ActiveRecord::Base
   scope :alpha, -> { order("name ASC") }
 
   def self.search(query)
-    # where("name like ?", "%#{query}%").take.recipes
     results = where("name like ?", "%#{query}%")
-    if results.length >= 1
-      results.take.recipes
-    end
+    results.take.recipes if results.length > 0
   end
-
-
 end
