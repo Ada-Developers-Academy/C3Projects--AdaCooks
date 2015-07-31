@@ -6,13 +6,29 @@ RSpec.describe CookbooksController, type: :controller do
     let(:book) {create :cookbook}
 
     it "returns successfully with HTTP code of 200" do
+      session[:cookbook_id] = book.id
       get :show, id: book
+      # why is this returning false?
       expect(response).to be_success
     end
 
     it "renders the :show view" do
+      session[:cookbook_id] = book.id
       get :show, id: book
+      # why is it rendering with <[]> instead of <"show">?
       expect(response).to render_template(:show)
+    end
+
+    it "finds the right cookbook" do
+      get :show, id: book
+      expect{assigns(book).to eq(Cookbook)}
+    end
+
+    # - test case
+
+    it "does not display someone else's cookbook" do
+      get :show, id: book
+      expect(flash[:error]).to be_present
     end
   end
 
@@ -48,20 +64,77 @@ RSpec.describe CookbooksController, type: :controller do
     end
   end # create
 
+  describe "GET #edit" do
+    # + test case
+    context "it's the user's cookbook" do
+      before(:each) do
+        soup = create :recipe, ingredients: [create(:ingredient)]
+        @cookbook = create :cookbook, user: create(:user), recipes: [soup]
+        session[:user_id] = @cookbook.user_id
+      end
+      it "renders the edit page" do
+        get :edit, id: @cookbook
+        expect(response).to render_template(:edit)
+      end
+    end
+    # - test case
+    context "it's not user's cookbook" do
+      before(:each) do
+        soup = create :recipe, ingredients: [create(:ingredient)]
+        @cookbook = create :cookbook, user: create(:user), recipes: [soup]
+        session[:user_id] = 20
+      end
+      it "redirect_to user_path" do
+        get :edit, id: @cookbook
+        expect(response).to redirect_to(user_path(session[:user_id]))
+        # undefined method `user_id' for nil:NilClass??
+      end
+    end
+  end
+
+  describe "PATCH #update" do
+    context "sucessful update" do
+      before(:each) do
+        soup = create :recipe, ingredients: [create(:ingredient)]
+        @cookbook = create :cookbook, user: create(:user), recipes: [soup]
+        session[:user_id] = @cookbook.user_id
+      end
+
+      it "changes cookbook name" do
+        patch :update, :id => @cookbook, :cookbook => {name: "Cookbookin'"}
+        @cookbook.reload
+        expect(@cookbook.name).to eq("Cookbookin'")
+      end
+
+      it "redirect_to user_path" do
+        patch :update, id: @cookbook, :cookbook => {name: "Cookbookin'"}
+        expect(response).to redirect_to(user_path(@cookbook.user_id))
+      end
+
+    end
+  end
+
   describe "DELETE #destroy" do
     before(:each) do
-      session[:user_id] = 10
-      create :cookbook
+      soup = create :recipe, ingredients: [create(:ingredient)]
+      @cookbook = create :cookbook, user: create(:user), recipes: [soup]
+      session[:user_id] = @cookbook.user_id
     end
 
     it "cookbook count changes by -1" do
-      expect{delete :destroy, {id: cookbook.id}}.to change(Cookbook, :count).by(-1)
+      expect{delete :destroy, {id: @cookbook}}.to change(Cookbook, :count).by(-1)
     end
 
     it "redirect_to user_path" do
-      delete :destroy, id: cookbook.id
-      expect(response).to redirect_to(user_path(session[:user_id]))
+      delete :destroy, id: @cookbook
+      expect(response).to redirect_to(user_path(@cookbook.user_id))
+    end
+
+    it "doesn't delete the recipe" do
+      delete :destroy, id: @cookbook
+      expect(Recipe.count).to eq(1)
     end
   end
+
 
 end
