@@ -19,12 +19,6 @@ RSpec.describe RecipesController, type: :controller do
     end
   end
 
-  let(:recipe) do
-      {
-        user_id: 1,
-
-      }
-    end
 
   describe "POST #create" do
     it "redirects to the dashboard view" do

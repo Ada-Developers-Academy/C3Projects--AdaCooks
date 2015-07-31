@@ -60,6 +60,10 @@ body {
   color: #6712DA;
 }
 
+.content {
+  margin: 0 20px 0 20px;
+}
+
 .form-control {
   max-width: 250px;
 }
@@ -68,6 +72,10 @@ body {
   width: auto;
   display: inline-block;
   vertical-align: middle;
+}
+
+.search {
+  margin: 0 20px 0 20px;
 }
 
 .inline-form {

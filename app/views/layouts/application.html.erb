@@ -9,7 +9,7 @@
   <body>
     <div class="container-fluid" id="main-container">
       <div class="row">
-        <div class="col-lg-12">
+        <div class="col-md-12">
         <div class="page-header">
           <header>
           <div class="row">
@@ -53,7 +53,7 @@
           </ul>
         </div>
         <% unless current_page?(login_path) || params[:controller] == 'users' && %w(dashboard).include?(params[:action]) %>
-        <div>
+        <div class="search">
           <%= form_for "search", method: "get", html: { class: "form" } do |f| %>
           <div class="form-group inline-form">
             <%= f.label :query, "Search Ingredients:" %>
@@ -68,15 +68,14 @@
           <h5>Related Recipes</h5>
           <div class="list-group">
             <% @search_results.each do |recipe| %>
-            <button type="button" class="list-group-item"><%= link_to recipe.name, recipe_path(recipe) %></button>
+              <button type="button" class="list-group-item"><%= link_to recipe.name, recipe_path(recipe) %></button>
             <% end %>
         <% end %>
-        </nav>
-
-        <%= yield %>
+      </nav>
+      <div class="content">
+      <%= yield %>
       </div>
     </div>
-  </body>
-</div>
+</body>
 
 </html>
