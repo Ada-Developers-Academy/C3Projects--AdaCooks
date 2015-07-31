@@ -4,7 +4,7 @@
     <%= link_to "Edit", edit_user_ingredient_path(@authenticated_user, @ingredient), class: "btn btn-info" %>
     <%= link_to "Delete", user_ingredient_path(@authenticated_user, @ingredient),
         method: "delete", class: "btn btn-warning", data: {
-        confirm: "Are you sure you want to delete #{ ingredient.proper_name }?" %>
+        confirm: "Are you sure you want to delete #{ @ingredient.proper_name }?" } %>
   <% else %>
     <small>Created by:<%= link_to @ingredient.user.username, user_path(@ingredient.user) %></small>
   <% end %>

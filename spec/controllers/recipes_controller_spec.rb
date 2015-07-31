@@ -164,6 +164,12 @@ RSpec.describe RecipesController, type: :controller do
         expect(assigns(:recipe).class).to eq(Recipe)
         expect(assigns(:recipe)).to be_valid
       end
+
+      it "flashes an error message" do
+        post :create, recipe: @recipe, user_id: @user.id
+        expect(flash[:error].nil?).to eq(false)
+        expect(flash[:false].nil?).to eq(true)
+      end
     end
 
     context "invalid form input" do
@@ -181,6 +187,12 @@ RSpec.describe RecipesController, type: :controller do
         post :create, recipe: @recipe, user_id: @user.id
         expect(response).to render_template("new")
       end
+
+      it "flashes an error message" do
+        post :create, recipe: @recipe, user_id: @user.id
+        expect(flash[:error].nil?).to eq(false)
+        expect(flash[:success].nil?).to eq(true)
+      end
     end
 
     context "unauthenticated users" do
@@ -193,6 +205,12 @@ RSpec.describe RecipesController, type: :controller do
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
       end
+
+      it "flashes an error message" do
+        post :create, recipe: @recipe, user_id: @user.id
+        expect(flash[:error].nil?).to eq(false)
+        expect(flash[:success].nil?).to eq(true)
+      end
     end
 
     context "authenticated users that don't own current recipe" do
@@ -202,9 +220,15 @@ RSpec.describe RecipesController, type: :controller do
       end
 
       it "does not permit access / redirects to the home page" do
-        post :create, inredient: @recipe, user_id: @user.id
+        post :create, recipe: @recipe, user_id: @user.id
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
+      end
+
+      it "flashes an error message" do
+        post :create, recipe: @recipe, user_id: @user.id
+        expect(flash[:error].nil?).to eq(false)
+        expect(flash[:success].nil?).to eq(true)
       end
     end
   end
@@ -226,6 +250,7 @@ RSpec.describe RecipesController, type: :controller do
       it "redirects to newly created recipe's show page" do
         patch :update, id: @recipe.id, recipe: @params, user_id: @user.id
         expect(response).to have_http_status(302)
+        expect(response).to redirect_to(recipe_path(@recipe))
       end
 
       it "updates the recipe" do # OPTIMIZE: this creates new recipe test
@@ -233,6 +258,12 @@ RSpec.describe RecipesController, type: :controller do
         expect(assigns(:recipe).class).to eq(Recipe)
         expect(assigns(:recipe)).to be_valid
         expect(assigns(:recipe).id).to eq(@recipe.id)
+      end
+
+      it "flashes a success message" do
+        patch :update, id: @recipe.id, recipe: @params, user_id: @user.id
+        expect(flash[:success].nil?).to eq(false)
+        expect(flash[:error].nil?).to eq(true)
       end
     end
 
@@ -251,6 +282,12 @@ RSpec.describe RecipesController, type: :controller do
         patch :update, id: @recipe.id, recipe: @params, user_id: @user.id
         expect(response).to render_template("edit")
       end
+
+      it "flashes an error message" do
+        patch :update, id: @recipe.id, recipe: @params, user_id: @user.id
+        expect(flash[:error].nil?).to eq(false)
+        expect(flash[:success].nil?).to eq(true)
+      end
     end
 
     context "unauthenticated users" do
@@ -262,6 +299,12 @@ RSpec.describe RecipesController, type: :controller do
         patch :update, id: @recipe.id, recipe: @params, user_id: @user.id
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
+      end
+
+      it "flashes an error message" do
+        patch :update, id: @recipe.id, recipe: @params, user_id: @user.id
+        expect(flash[:error].nil?).to eq(false)
+        expect(flash[:success].nil?).to eq(true)
       end
     end
 
@@ -275,6 +318,12 @@ RSpec.describe RecipesController, type: :controller do
         patch :update, id: @recipe.id, recipe: @params, user_id: @user.id
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
+      end
+
+      it "flashes an error message" do
+        patch :update, id: @recipe.id, recipe: @params, user_id: @user.id
+        expect(flash[:error].nil?).to eq(false)
+        expect(flash[:success].nil?).to eq(true)
       end
     end
   end
@@ -307,6 +356,12 @@ RSpec.describe RecipesController, type: :controller do
       expect(Recipe.find_by(id: @recipe.id)).to eq(nil)
     end
 
+    it "flashes a success message" do
+      delete :destroy, id: @recipe.id, user_id: @user.id
+      expect(flash[:success].nil?).to eq(false)
+      expect(flash[:error].nil?).to eq(true)
+    end
+
     context "unauthenticated users" do
       before :each do
         session[:user_id] = nil
@@ -316,6 +371,12 @@ RSpec.describe RecipesController, type: :controller do
         delete :destroy, id: @recipe.id, user_id: @user.id
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
+      end
+
+      it "flashes an error message" do
+        delete :destroy, id: @recipe.id, user_id: @user.id
+        expect(flash[:error].nil?).to eq(false)
+        expect(flash[:success].nil?).to eq(true)
       end
     end
 
@@ -329,6 +390,12 @@ RSpec.describe RecipesController, type: :controller do
         delete :destroy, id: @recipe.id, user_id: @user.id
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
+      end
+
+      it "flashes an error message" do
+        delete :destroy, id: @recipe.id, user_id: @user.id
+        expect(flash[:error].nil?).to eq(false)
+        expect(flash[:success].nil?).to eq(true)
       end
     end
   end
