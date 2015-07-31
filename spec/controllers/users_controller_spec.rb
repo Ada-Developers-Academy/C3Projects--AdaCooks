@@ -7,6 +7,11 @@ RSpec.describe UsersController, type: :controller do
       get :new
       expect(response).to have_http_status(:success)
     end
+
+    it "renders a new page" do
+      get :new
+      expect(response).to render_template("new")
+    end
   end
 
   describe "POST #create" do
