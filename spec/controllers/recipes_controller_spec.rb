@@ -15,8 +15,6 @@ RSpec.describe RecipesController, type: :controller do
       }
     end
 
-
-
   describe "GET #new" do
     it "renders the :new view" do
       get :new, recipe_params
