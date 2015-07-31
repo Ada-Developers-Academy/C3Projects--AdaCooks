@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :registered_user, only: [:new]
+  before_action :user_exist?, only: [:show]
 
   include ApplicationHelper
 
@@ -43,5 +44,14 @@ class UsersController < ApplicationController
 
   def create_params
     params.permit(user: [:name, :email, :password, :password_confirmation])
+  end
+
+  def user_exist?
+    if User.where(id: params[:id].to_s).any?
+      show
+    else
+      flash[:error] = "This user does not exist"
+      redirect_to root_path
+    end
   end
 end
