@@ -39,7 +39,6 @@ RSpec.describe RecipesController, type: :controller do
   end
 
   describe "GET #create" do
-
     before :each do
       user = create :user, id: 1
       session[:user_id] = 1
@@ -47,7 +46,6 @@ RSpec.describe RecipesController, type: :controller do
     end
 
     context "with valid params" do
-
       let (:params) do { name: "name", description: "some stuff", user_id: 1, preparation: "do some stuff", :ingredient_ids => [1]  }
       end
 
@@ -69,7 +67,6 @@ RSpec.describe RecipesController, type: :controller do
       end
     end
   end
-
 
   describe "PATCH #update" do
     it "returns updates a recipe record" do

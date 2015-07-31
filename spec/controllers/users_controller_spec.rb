@@ -31,7 +31,6 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-
   describe "GET #show" do
     before :each do
       @user = create :user

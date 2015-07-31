@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe CookbooksController, type: :controller do
 
-
   describe "GET #show" do
     it "returns http success" do
       user = create :user, id: 2
@@ -23,14 +22,12 @@ RSpec.describe CookbooksController, type: :controller do
   end
 
   describe "GET #create" do
-
     before :each do
       user = create :user, id: 2
       session[:user_id] = 2
     end
 
     context "with valid params" do
-
       let (:params) do { name: "name", description: "some stuff", user_id: 2 }
       end
 
@@ -87,5 +84,4 @@ RSpec.describe CookbooksController, type: :controller do
       expect(Cookbook.count).to eq (0)
     end
   end
-
 end
