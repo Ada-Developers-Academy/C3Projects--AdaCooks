@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   def flash_check(name)
     case name
     when "success"
@@ -12,5 +11,4 @@ module ApplicationHelper
       return "alert-info"
     end
   end
-
 end
