@@ -7,7 +7,10 @@
       </div>
       <div class="media-body">
         <h5 class="media-heading"><%= link_to recipe.name, recipe_path(recipe.id) %></h5>
-        <p><%= recipe.desc %></p>
+        <p>
+          <%= recipe.desc %><br>
+          <%= link_to "remove from #{@cookbook.name}", { :controller => "cookbooks", :action => "rm_recipe", :cookbook => @cookbook.id, :recipe => recipe.id }  %>
+        </p>
       </div>
     </li>
   <% end %>
