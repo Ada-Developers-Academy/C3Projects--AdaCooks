@@ -1,7 +1,7 @@
 <%= form_for @recipe do |f| %>
   <div class="form-group">
     <fieldset>
-      <legend><h2>Recipe details</h2></legend>
+      <legend>Recipe details</legend>
       <%= f.label :name, "Name" %>
       <%= f.text_field :name, :required => true, class: "form-control" %>
 
@@ -14,7 +14,7 @@
       <%= f.label :preparation, "preparation" %>
       <%= f.text_area :preparation, :required => true, class: "form-control" %>
 
-      <h4>Ingredients</h4>
+      <legend>Ingredients</legend>
       <%= f.fields_for :recipe_ingredients do |ff| %>
         <div class="form-group">
           <%= ff.label :quantity %>
@@ -35,14 +35,17 @@
 
       <!-- Mahalo @acmei, for the help on this collection_check_boxes -->
       <% if @current_user %>
-        <h4>Add to a cookbook:</h4>
+      <legend>Add to your cookbooks</legend>
         <div class="form-group">
-          <%= f.label :cookbook_ids, "Cookbook" %>
-          <%= collection_check_boxes(:recipe, :cookbook_ids, @cookbooks, :id, :name) %>
+          <%= collection_check_boxes(:recipe, :cookbook_ids, @cookbooks, :id, :name) do |cookbook| %>
+            <%= cookbook.label class: "checkbox form-group" do %>
+              <%= cookbook.check_box + cookbook.text.titlecase %>
+            <% end %>
+          <% end %>
         </div>
       <% end %>
 
-      <%= f.submit "Submit", class: "btn btn-default"%>
+      <%= f.submit "Submit", class: "btn btn-primary"%>
     </fieldset>
   </div>
 <% end %>

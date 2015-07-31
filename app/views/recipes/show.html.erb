@@ -15,16 +15,31 @@
 
     <p>Preparation: <%= @recipe.preparation %></p>
 
-    <% if @current_user %>
-      <p>Save to your cookbook:</p>
+    <% if @your_cookbooks %>
+      <p>This recipe is part of your cookbook(s):</p>
+      <ul>
+        <% @your_cookbooks.each do |cookbook| %>
+          <li>
+            <%= link_to cookbook.name.titlecase, cookbook %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <em>This recipe is not in any of your cookbooks.</em>
+    <% end %>
 
-      <% if @cookbooks.count > 0 %>
+    <% if @current_user %>
+      <p>Save to a cookbook:</p>
+
+      <% if @unused_cookbooks.count > 0 %>
         <%= form_tag(controller: "recipes", action: "add_to_cookbook", method: "post", class: "form") do %>
-          <%= collection_select(:cookbook, :cookbook_id, @cookbooks, :id, :name, include_blank: true) %>
+          <%= collection_select(:cookbook, :cookbook_id, @unused_cookbooks, :id, :name, include_blank: true) %>
           <%= submit_tag "Save" %>
         <% end %>
+      <% elsif @current_user.cookbooks.empty? %>
+        <em>You have no cookbooks to add this recipe to.</em>
       <% else %>
-        <em>Either you have no cookbooks, or this recipe is already part of all of your cookbooks.</em>
+        <em>This recipe is already part of all of your cookbooks.</em>
       <% end %>
     <% end %>
 

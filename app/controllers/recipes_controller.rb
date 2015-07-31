@@ -95,7 +95,10 @@ class RecipesController < ApplicationController
   def setup_show
     @owner = @recipe.user
     @ingredient_lines = @recipe.recipe_ingredients
-    @cookbooks = @current_user.cookbooks - @recipe.cookbooks if @current_user
+    if @current_user
+      @unused_cookbooks = @current_user.cookbooks - @recipe.cookbooks
+      @your_cookbooks = @recipe.cookbooks.where(user: @current_user)
+    end
   end
 
   def set_recipe
