@@ -89,22 +89,21 @@ RSpec.describe RecipesController, type: :controller do
       end
     end
 
-    # => this test is currently not working
-    # => not sure which params to pass in
+    describe "POST #add_to_cookbook" do
 
-    # describe "POST #add_to_cookbook" do
-    #   let(:cookbook) { create :cookbook }
-    #   let(:recipe) { create :recipe }
+      let(:cookbook_params) do
+        {cookbook_id: 1}
+      end
 
-    #   before :each do
-    #     session[:user_id] = 1
-    #     binding.pry
-    #     post :add_to_cookbook, id: recipe, cookbook_id: cookbook.id
-    #   end
+      before :each do
+        @recipe = create :recipe
+        @cookbook = create :cookbook
+        post :add_to_cookbook, id: @recipe.id, cookbook: cookbook_params
+      end
 
-    #   it "adds the recipe to the cookbook" do
-    #     expect(cookbook.recipes).to include (recipe)
-    #   end
-    # end
+      it "adds the recipe to the cookbook" do
+        expect(@cookbook.recipes).to include(@recipe)
+      end
+    end
   end
 end
