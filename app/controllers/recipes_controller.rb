@@ -31,7 +31,7 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
-    @cookbooks = @current_user.cookbooks - @recipe.cookbooks if @current_user
+    @cookbooks = @current_user.cookbooks
     5.times { @recipe.recipe_ingredients.build }
   end
 
@@ -104,7 +104,7 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(
-    :name, :description, :image, :preparation, :user_id, :cookbook_ids,
+    :name, :description, :image, :preparation, :user_id, :cookbook_ids => [],
     recipe_ingredients_attributes: [
       :quantity, :measurement_id, :ingredient_id, :_destroy
       ]
