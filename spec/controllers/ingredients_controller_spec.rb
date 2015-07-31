@@ -39,7 +39,7 @@ RSpec.describe IngredientsController, type: :controller do
       end
     end
 
-    context "Logged in users can access #new" do
+    context "Logged in users can access #new and #create" do
       before :each do
         user = create :user
         session[:user_id] = user.id
