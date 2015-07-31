@@ -5,7 +5,11 @@ class Recipe < ActiveRecord::Base
   has_many :ingredients, through: :measurements
   has_many :steps
   belongs_to :user
+
   mount_uploader :image, ImageUploader
+
+  validates :name, presence: true # TODO: test this
+  validates :user_id, presence: true # TODO: test this
 
   scope :by_name, -> { order(:name) }
 
