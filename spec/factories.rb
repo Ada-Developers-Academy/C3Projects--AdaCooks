@@ -28,4 +28,10 @@ FactoryGirl.define do
     step
     recipe
   end
+
+  factory :cookbook do
+    name "How to Cook"
+    description "You like know how to cook?"
+    user
+  end
 end

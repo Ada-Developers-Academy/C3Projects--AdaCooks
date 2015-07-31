@@ -107,3 +107,21 @@ measurements = [
 measurements.each do |measurement|
   Measurement.create(measurement)
 end
+
+# cookbooks --------------------------------------------------------------------
+
+cookbooks_params = {
+  amazing_apple_appetizers: { name: "Amazing Apple Appetizers", description: "OMG APPLES ARE AMAZING!!!!111!!!!", user_id: users[:gurl].id },
+  food_for_thought: { name: "Food for Thought", description: "Think about this food before you eat it. Perhaps it will think back.", user_id: users[:gurl].id },
+  water_everything_you_can_cook_with_it: { name: "Water: Everything You Can Cook With It", description: "Water. The essence of life.", user_id: users[:gurl].id }
+}
+
+cookbooks = {}
+cookbooks_params.each do |var_name, params|
+  cookbooks[var_name] = Cookbook.create(params)
+end
+
+cookbooks[:amazing_apple_appetizers].recipes << recipes[:apple_crisp]
+recipes.each_value do |object|
+  cookbooks[:food_for_thought].recipes << object
+end
