@@ -34,7 +34,7 @@
                 <%= link_to edit_cookbook_path(cookbook.id) do %>
                     <i class="glyphicon glyphicon-pencil"></i>
                 <% end %>
-                <%= link_to cookbook_path(cookbook.id), method: :delete do %>
+                <%= link_to cookbook_path(cookbook.id), data: { confirm: "Delete #{cookbook.name}?" }, method: :delete do %>
                     <i class="glyphicon glyphicon-remove"></i>
                 <% end %>
               </span>

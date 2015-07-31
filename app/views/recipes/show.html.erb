@@ -5,7 +5,7 @@
       <%= link_to edit_recipe_path(@recipe) do %>
           <i class="glyphicon glyphicon-pencil"></i>
       <% end %>
-      <%= link_to recipe_path(@recipe), method: :delete do %>
+      <%= link_to recipe_path(@recipe), method: :delete, data: { confirm: "Delete #{@recipe.name}?" } do %>
           <i class="glyphicon glyphicon-remove"></i>
       <% end %>
     <% else %>
