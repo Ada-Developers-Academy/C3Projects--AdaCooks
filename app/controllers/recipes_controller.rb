@@ -32,7 +32,7 @@ class RecipesController < ApplicationController
       associate_ingredients(@recipe)
       associate_cookbooks(@recipe)
     else
-      flash[:error] = "Please enter valid values"
+      flash[:error] = "A recipe must include 1 or more ingredients. Accepted image formats include: jpg, png and gif. Please try again."
     end
 
     redirect_to user_dashboard_path(session[:user_id])
@@ -63,10 +63,16 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    @recipe = Recipe.find(params[:id])
+    if session[:user_id] == Recipe.find(params[:id]).user_id
+      @recipe = Recipe.find(params[:id])
 
-    @ingredients = Ingredient.all.order(:name)
-    @cookbooks = Cookbook.where(:user_id => @recipe.user_id).order(:name)
+      @ingredients = Ingredient.all.order(:name)
+      @cookbooks = Cookbook.where(:user_id => @recipe.user_id).order(:name)
+    else
+      flash[:error] = "Sorry, you do not have administrative rights to this recipe."
+
+      redirect_to root_path
+    end
   end
 
   def update
@@ -90,7 +96,7 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :description, :preparation, :image, :categories, :user_id)
+    params.require(:recipe).permit(:name, :description, :preparation, :image, :user_id, :ingredients, :cookbooks)
   end
 
 end

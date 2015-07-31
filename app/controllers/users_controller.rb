@@ -21,7 +21,10 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to root_path
       # update to take to user dashboard later
+    elsif params[:password] != params[:password_confirmation]
+      flash[:error] = "Password and password confirmation must match."
     else
+      flash[:error] = "Sorry, this username is already taken. Please choose another one."
       redirect_to signup_path
     end
   end

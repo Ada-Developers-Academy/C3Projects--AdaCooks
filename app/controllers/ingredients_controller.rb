@@ -30,7 +30,12 @@ class IngredientsController < ApplicationController
   end
 
   def edit
-    @ingredient = Ingredient.find(params[:id])
+    if session[:user_id] == Ingredient.find(params[:id]).user_id
+      @ingredient = Ingredient.find(params[:id])
+    else
+      flash[:error] = "Sorry, you do not have administrative rights to this ingredient."
+      redirect_to root_path
+    end
   end
 
   def update

@@ -9,7 +9,7 @@
     <%= f.label :description, "Description" %>
     <%= f.text_field :description, class: "form-control" %>
 
-    <span>Ingredients:</span>
+    <span>Ingredients (please select at least one):</span>
     <br>
     <div class="row">
         <%= f.collection_check_boxes(:ingredients, @ingredients, :id, :name, :required => true) do |i|%>
@@ -26,7 +26,7 @@
     <%= f.label :preparation, "Preparation" %>
     <%= f.text_area :preparation, class: "form-control", :required => true %>
 
-    <%= f.label :image, "Recipe Image" %>
+    <%= f.label :image, "Recipe Image (jpg, png, gif):" %>
     <%= f.file_field :image%>
 
     <%= f.hidden_field :user_id, :value => session[:user_id] %>

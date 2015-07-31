@@ -10,7 +10,7 @@
       <%= link_to(image_tag(cookbook.image_url(:thumb)), user_cookbook_path(@user.id, cookbook.id)) %>
       <div class="dashboard-buttons-block">
         <%= link_to edit_user_cookbook_path(@user.id, cookbook.id), class: "btn btn-default dashboard-button" do %><span class="glyphicon glyphicon-pencil"></span><% end %>
-        <%= link_to user_cookbook_path(@user.id, cookbook.id), method: :delete, class: "btn btn-danger dashboard-button" do %><span class="glyphicon glyphicon-remove"></span><% end %>
+        <%= link_to user_cookbook_path(@user.id, cookbook.id), data: { confirm: "Are you sure you want to delete this cookbook?"}, method: :delete, class: "btn btn-danger dashboard-button" do %><span class="glyphicon glyphicon-remove"></span><% end %>
       </div>
       <h5><%= link_to "#{cookbook.name}", user_cookbook_path(@user.id, cookbook.id)  %></h5>
       <h6>Recipe Count: <%= cookbook.recipes.count %></h6>
@@ -27,7 +27,7 @@
       <%= link_to(image_tag(recipe.image_url(:thumb)), recipe_path(recipe.id)) %>
       <div class="dashboard-buttons-block">
         <%= link_to edit_recipe_path(recipe.id), class: "btn btn-default dashboard-button" do %><span class="glyphicon glyphicon-pencil"></span><% end %>
-        <%= link_to recipe_path(recipe.id), method: :delete, class: "btn btn-danger dashboard-button" do %><span class="glyphicon glyphicon-remove"></span><% end %>
+        <%= link_to recipe_path(recipe.id), data: { confirm: "Are you sure you want to delete this recipe?"}, method: :delete, class: "btn btn-danger dashboard-button" do %><span class="glyphicon glyphicon-remove"></span><% end %>
       </div>
       <h5><%=link_to "#{recipe.name}", recipe_path(recipe.id) %></h5>
     </div>
@@ -43,7 +43,7 @@
       <%= link_to(image_tag(ingredient.image_url(:thumb)), ingredient_path(ingredient.id)) %>
       <div class="dashboard-buttons-block">
         <%= link_to edit_ingredient_path(ingredient.id), class: "btn btn-default dashboard-button" do %><span class="glyphicon glyphicon-pencil"></span><% end %>
-        <%= link_to ingredient_path(ingredient.id), method: :delete, class: "btn btn-danger dashboard-button" do %><span class="glyphicon glyphicon-remove"></span><% end %>
+        <%= link_to ingredient_path(ingredient.id), data: { confirm: "Are you sure you want to delete this ingredient?"}, method: :delete, class: "btn btn-danger dashboard-button" do %><span class="glyphicon glyphicon-remove"></span><% end %>
       </div>
       <h5><%= link_to "#{ingredient.name}", ingredient_path(ingredient.id) %></h5>
     </div>
