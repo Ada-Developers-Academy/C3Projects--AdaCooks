@@ -1,0 +1,6 @@
+<%= form_tag(recipes_path, method: "get", class: "navbar-form", id: "search-form") do %>
+  <div class="input-append">
+    <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search for..." %>
+    <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"> Search</span></button>
+  </div>
+<% end %>

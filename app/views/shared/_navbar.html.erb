@@ -1,0 +1,32 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <% if session[:user_id] %>
+        <li>
+          <%= link_to 'Sign Out', signout_path, method: :delete %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to 'Sign in', signin_path %>
+        </li>
+        <li>
+          <%= link_to 'Register', register_path %>
+        </li>
+      <% end %>
+      <li>
+        <%= render partial: 'shared/search_form' %>
+      </li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <p class="navbar-text">Welcome, <%= user_or_guest %>.</p>
+      </li>
+      <% if session[:user_id] %>
+        <li>
+          <%= link_to 'Dashboard', my_recipes_path %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>

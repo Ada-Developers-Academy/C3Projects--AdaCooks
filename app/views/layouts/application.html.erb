@@ -7,16 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= form_tag(recipes_path, method: "get", class: "navbar-form", id: "search-form") do %>
-  <div class="input-append">
-    <%= text_field_tag :search, params[:search], class: "span2", placeholder: "Search" %>
-    <button class="btn btn-default btn-xs" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"> Search</span></button>
-  </div>
-  <% end %>
   <div class="container-fluid">
+    
 
     <%= render partial: 'shared/header' %>
 
+    <%= render partial: 'shared/navbar' %>
     <%= render partial: 'shared/flash_messages' %>
 
     <%= yield %>
