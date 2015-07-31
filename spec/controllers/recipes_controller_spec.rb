@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe RecipesController, type: :controller do
   describe "GET #index" do
     before :each do
+      create :ingredient
       create :recipe
       get :index
     end
@@ -19,6 +20,7 @@ RSpec.describe RecipesController, type: :controller do
 
   describe "GET #show" do
     before :each do
+      create :ingredient
       recipe = create :recipe
       create :user
       get :show, id: recipe.id
@@ -67,8 +69,9 @@ RSpec.describe RecipesController, type: :controller do
     context "valid recipe params" do
       before :each do
         create :user
+        create :ingredient
         session[:user_id] = 1
-        request.env["HTTP_REFERER"] = "/"
+        session[:previous_url] = "/"
         post :create, recipe: attributes_for(:recipe)
       end
 
@@ -84,6 +87,7 @@ RSpec.describe RecipesController, type: :controller do
     context "invalid recipe params" do
       before :each do
         create :user
+        create :ingredient
         session[:user_id]
         post :create, recipe: attributes_for(:recipe, name: nil)
       end
@@ -101,6 +105,7 @@ RSpec.describe RecipesController, type: :controller do
   describe "PUT update/:id" do
 
     before :each do
+      create :ingredient
       @recipe = create :recipe
       user = create :user
       session[:user_id] = 1
@@ -123,6 +128,7 @@ RSpec.describe RecipesController, type: :controller do
   describe "DELETE #destroy" do
 
     before :each do
+      create :ingredient
       @recipe = create :recipe
       @user = create :user
       session[:user_id] = 1
@@ -140,7 +146,7 @@ RSpec.describe RecipesController, type: :controller do
     end
 
     it "does not delete associated ingredients" do
-      ingredient1 = create :ingredient
+      ingredient1 = create :ingredient, name: "Some Ingredient"
       ingredient2 = create :ingredient, name: "Another Ingredient"
       @recipe.ingredients << [ ingredient1, ingredient2 ]
 

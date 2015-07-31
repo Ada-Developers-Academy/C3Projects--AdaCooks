@@ -73,7 +73,7 @@ RSpec.describe IngredientsController, type: :controller do
       before :each do
         create :user
         session[:user_id] = 1
-        request.env["HTTP_REFERER"] = "/"
+        session[:previous_url] = "/"
         post :create, ingredient: attributes_for(:ingredient)
       end
 
