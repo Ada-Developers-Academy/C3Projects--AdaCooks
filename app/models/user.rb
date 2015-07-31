@@ -5,6 +5,12 @@ class User < ActiveRecord::Base
   has_many :ingredients
 
   # VALIDATIONS ----------------------------------------------------------------
-  validates_presence_of :username, :email, :password
-  validates_confirmation_of :password
+  validates :username, presence: true, uniqueness: true
+  validates :email, presence: true
+  validates :password, presence: true, confirmation: true
+
+  # so the URL displays the username vs the id
+  def to_param
+    username
+  end
 end
