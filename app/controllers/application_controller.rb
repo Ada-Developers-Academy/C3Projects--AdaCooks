@@ -27,8 +27,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_user_params
-    # binding.pry
-    unless session[:user_id] == params[:user_id]
+    unless session[:user_id] == @user.id
 
       flash[:error] = "Dude, you don't have access to that user's sh*t."
 

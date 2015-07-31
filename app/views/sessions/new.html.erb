@@ -1,9 +1,9 @@
 <h1>Login</h1>
-<div>
   <% if flash.now[:login_error] %>
+<div class="alert alert-danger">
     <%= flash.now[:login_error] %>
+</div>
   <% end %>
-<div>
 <%= form_for :session, url: login_path do |f| %>
 <legend>User Info</legend>
   <fieldset>
