@@ -2,17 +2,17 @@
   <h1> <%= @ingredient.name %> Details </h1>
   <table class="table">
     <tr>
-        <td></td>
-        <td>Name</td>
-        <td>Recipes</td>
+        <th></th>
+        <th>Name</th>
+        <th>Recipes</th>
     </tr>
     <tr>
       <td class="thumbnails"><%= image_tag(@ingredient.image_url(:medium))%> </td>
       <td> <%= @ingredient.name %></td>
       <td><% @ingredient.recipes.each do |recipe| %>
-        <%= link_to "#{recipe.name}", recipe_path(recipe.id) %>
-      </td>
-    </tr>
+        <p><%= link_to "#{recipe.name}", recipe_path(recipe.id) %></p>
     <% end %>
+  </td>
+    </tr>
   </table>
 </div>
