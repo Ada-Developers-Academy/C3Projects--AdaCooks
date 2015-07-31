@@ -63,6 +63,23 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
+  describe "GET #edit" do
+    let(:user) { create :user }
+
+    before :each do
+      session[:user_id] = user.user.id
+      get :edit, id: user
+    end
+
+    it "responds with an HTTP 200 status" do
+      expect(response).to have_http_status 200
+    end
+
+    it "renders the edit template" do
+      expect(response).to render_template "edit"
+    end
+  end
+
   describe "GET #my_recipes" do
     before :each do
       @user = create :user
