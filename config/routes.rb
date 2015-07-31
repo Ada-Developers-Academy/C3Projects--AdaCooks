@@ -16,15 +16,18 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
-  resources :users, only: [:create] do
-    member do
-      get 'dashboard'
-      get 'profile'
-    end
-  end
+  resources :users, only: [:create]
+  #do
+  #   member do
+  #     get 'dashboard'
+  #     get 'profile'
+  #   end
+  # end
   get '/register', to: 'users#new', as: 'register'
 
+  get '/users/:user_id/dashboard', to: 'users#dashboard', as: 'dashboard_user'
 
+  get '/users/:user_id/profile', to: 'users#profile', as: 'profile_user'
 
 
   # resources :sessions, only: [:new, :create, :destroy]
