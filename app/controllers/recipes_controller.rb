@@ -54,7 +54,6 @@ class RecipesController < ApplicationController
 
   def update
     @recipe.clear_ingredients
-
     @recipe.update(recipe_params)
 
     if @recipe.save
