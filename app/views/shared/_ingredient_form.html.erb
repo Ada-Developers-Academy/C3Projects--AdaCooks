@@ -1,3 +1,7 @@
+<% unless flash[:errors].nil? %>
+  <%= render partial: "shared/errors", locals: {instance: @ingredient} %>
+<% end %>
+
 <h1>Add an Ingredient </h1>
 <% unless @recipe.nil? %>
   <h1><%= @recipe.name %></h1>

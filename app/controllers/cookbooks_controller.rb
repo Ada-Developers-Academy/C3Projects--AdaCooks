@@ -1,6 +1,6 @@
 class CookbooksController < ApplicationController
 
-before_action :select_cookbook, only: [:show, :edit, :destroy]
+before_action :select_cookbook, only: [:show, :edit, :destroy, :update]
 
 def select_cookbook
   @cookbook = Cookbook.find(params[:id])
@@ -33,7 +33,7 @@ end
 def update
   @cookbook.update(cookbook_params)
 
-  redirect_to
+  redirect_to user_cookbook_path(session[:user_id], params[:id])
 end
 
 
@@ -47,7 +47,7 @@ private
 #params ------------------------------------------------------------------------------
 
 def cookbook_params
-  params.require(:cookbook).permit(:name, :user_id, :recipe_id)
+  params.require(:cookbook).permit(:name, :user_id, :recipe_id, :description)
 end
 
 end
