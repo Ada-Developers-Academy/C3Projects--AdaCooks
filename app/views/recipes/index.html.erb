@@ -1,5 +1,10 @@
 <div class="container">
-<h1> Recipes </h1>
+  <h1> 
+    Recipes
+    <% if logged_in? %>
+      <%= link_to "Add a Recipe", new_recipe_path, class: "btn btn-primary" %>
+    <% end %>
+  </h1><br>
   <% @recipes.each do |recipe| %>
     <div class="col-md-3 center">
       <div class="well">
@@ -9,7 +14,5 @@
         <span class="text-muted"><%= pluralize(recipe.ingredients.count, "ingredient") %></span><br>
       </div>
     </div>
-<% end %>
-<br>
-<%= button_to "New Recipe", ingredient_index_path, method: :get, class: "btn btn-primary" %>
+  <% end %>
 </div>
