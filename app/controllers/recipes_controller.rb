@@ -20,8 +20,8 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(create_params)
 
     if @recipe.save
-      flash[:success] = "Your recipe has been created! CHECK IT OUTTTTTtttttt now, baby, check it out now."
-      redirect_to recipe_path(@recipe)
+      flash[:success] = "Mmmm, #{ @recipe.proper_name } sounds delicious."
+      redirect_to user_recipe_ingredients_path(@authenticated_user, @recipe)
     else
       flash[:error] = @recipe.errors.full_messages.first
       render :new
@@ -32,8 +32,8 @@ class RecipesController < ApplicationController
 
   def update
     if @recipe.update(edit_params)
-      flash[:success] = "Your recipe has been updated! CHECK IT OUTTTTTtttttt now, baby, check it out now."
-      redirect_to recipe_path(@recipe)
+      flash[:success] = "What a great way to improve #{ @recipe.proper_name }! You can update the ingredients now."
+      redirect_to user_recipe_ingredients_path(@authenticated_user, @recipe)
     else
       flash[:error] = @recipe.errors.full_messages.first
       render :edit
@@ -58,29 +58,28 @@ class RecipesController < ApplicationController
   end
 
   def add_ingredients
-    ingredients = params[:ingredients].map { |ingredient| Ingredient.find(ingredient) }
+    ingredient_ids = params[:ingredients]
 
-    ingredients.each do |ingredient|
-      @recipe.add_ingredient_association(ingredient) unless @recipe.ingredients.include? ingredient
-    end
+    unless ingredient_ids.nil?
+      ingredients = ingredient_ids.map { |id| Ingredient.find(id) }
 
-    redirect_to recipe_path(@recipe)
-  end
+      ingredients.each do |ingredient|
+        @recipe.add_ingredient_association(ingredient) unless @recipe.ingredients.include? ingredient
+      end
 
-  def add_ingredient
-    ingredient = Ingredient.find(params[:id])
-
-    if @recipe.ingredients.include?(ingredient)
-      flash[:error] = "This ingredient is already in #{ recipe.name }."
+      flash[:success] = "HERE IT IS: Hi, new & improved #{ @recipe.proper_name }."
+      redirect_to recipe_path(@recipe)
     else
-      @recipe.add_ingredient_association(ingredient)
-    end
+      flash[:error] = "You must select at least one ingredient!"
 
-    redirect_to recipe_path(@recipe)
+      redirect_to user_recipe_ingredients_path(@authenticated_user, @recipe)
+    end
   end
 
   def remove_ingredient
+    ingredient_name = Ingredient.find(params[:id]).proper_name
     @recipe.remove_ingredient_association(params[:id])
+    flash[:success] = "#{ ingredient_name } has been removed from #{ @recipe.proper_name }."
 
     redirect_to recipe_path(@recipe)
   end

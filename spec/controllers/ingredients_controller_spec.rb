@@ -165,6 +165,12 @@ RSpec.describe IngredientsController, type: :controller do
         expect(assigns(:ingredient).class).to eq(Ingredient)
         expect(assigns(:ingredient)).to be_valid
       end
+
+      it "flashes a success message" do
+        post :create, ingredient: @ingredient, user_id: @user.id
+        expect(flash[:success].nil?).to eq(false)
+        expect(flash[:error].nil?).to eq(true)
+      end
     end
 
     context "invalid form input" do
@@ -182,6 +188,12 @@ RSpec.describe IngredientsController, type: :controller do
         post :create, ingredient: @ingredient, user_id: @user.id
         expect(response).to render_template("new")
       end
+
+      it "flashes an error message" do
+        post :create, ingredient: @ingredient, user_id: @user.id
+        expect(flash[:error].nil?).to eq(false)
+        expect(flash[:success].nil?).to eq(true)
+      end
     end
 
     context "unauthenticated users" do
@@ -193,6 +205,12 @@ RSpec.describe IngredientsController, type: :controller do
         post :create, ingredient: @ingredient, user_id: @user.id
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
+      end
+
+      it "flashes an error message" do
+        post :create, ingredient: @ingredient, user_id: @user.id
+        expect(flash[:error].nil?).to eq(false)
+        expect(flash[:success].nil?).to eq(true)
       end
     end
 
@@ -206,6 +224,12 @@ RSpec.describe IngredientsController, type: :controller do
         post :create, inredient: @ingredient, user_id: @user.id
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
+      end
+
+      it "flashes an error message" do
+        post :create, inredient: @ingredient, user_id: @user.id
+        expect(flash[:error].nil?).to eq(false)
+        expect(flash[:success].nil?).to eq(true)
       end
     end
   end
@@ -227,6 +251,7 @@ RSpec.describe IngredientsController, type: :controller do
       it "redirects to newly created ingredient's show page" do
         patch :update, id: @ingredient.id, ingredient: @params, user_id: @user.id
         expect(response).to have_http_status(302)
+        expect(response).to redirect_to(ingredient_path(@ingredient))
       end
 
       it "updates the ingredient" do # OPTIMIZE: this creates new ingredient test
@@ -234,6 +259,12 @@ RSpec.describe IngredientsController, type: :controller do
         expect(assigns(:ingredient).class).to eq(Ingredient)
         expect(assigns(:ingredient)).to be_valid
         expect(assigns(:ingredient).id).to eq(@ingredient.id)
+      end
+
+      it "flashes a success message" do
+        patch :update, id: @ingredient.id, ingredient: @params, user_id: @user.id
+        expect(flash[:success].nil?).to eq(false)
+        expect(flash[:error].nil?).to eq(true)
       end
     end
 
@@ -251,6 +282,12 @@ RSpec.describe IngredientsController, type: :controller do
       it "renders edit template" do
         patch :update, id: @ingredient.id, ingredient: @params, user_id: @user.id
         expect(response).to render_template("edit")
+      end
+
+      it "flashes an error message" do
+        patch :update, id: @ingredient.id, ingredient: @params, user_id: @user.id
+        expect(flash[:error].nil?).to eq(false)
+        expect(flash[:success].nil?).to eq(true)
       end
     end
 
@@ -278,6 +315,12 @@ RSpec.describe IngredientsController, type: :controller do
 
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
+      end
+
+      it "flashes an error message" do
+        patch :update, id: @ingredient.id, ingredient: @params, user_id: @user.id
+        expect(flash[:error].nil?).to eq(false)
+        expect(flash[:success].nil?).to eq(true)
       end
     end
   end
@@ -321,6 +364,12 @@ RSpec.describe IngredientsController, type: :controller do
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
       end
+
+      it "flashes an error message" do
+        delete :destroy, id: @ingredient.id, user_id: @user.id
+        expect(flash[:error].nil?).to eq(false)
+        expect(flash[:success].nil?).to eq(true)
+      end
     end
 
     context "authenticated users that don't own current ingredient" do
@@ -334,6 +383,12 @@ RSpec.describe IngredientsController, type: :controller do
 
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
+      end
+
+      it "flashes an error message" do
+        delete :destroy, id: @ingredient.id, user_id: @user.id
+        expect(flash[:error].nil?).to eq(false)
+        expect(flash[:success].nil?).to eq(true)
       end
     end
   end

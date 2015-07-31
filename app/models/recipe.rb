@@ -2,7 +2,6 @@ class Recipe < ActiveRecord::Base
   # Associations ---------------------------------------------------------------
   belongs_to :user
   has_and_belongs_to_many :ingredients
-    # accepts_nested_attributes_for :ingredients # FIXME: test accepts_nested_attributes_for :ingredients
   has_and_belongs_to_many :cookbooks
 
   # Validations ----------------------------------------------------------------
@@ -26,8 +25,8 @@ class Recipe < ActiveRecord::Base
     ingredients << ingredient unless ingredients.include? ingredient
   end
 
-  def proper_name # FIXME: test Recipe#proper_name
-    name.titlecase # OPTIMZE: also should Recipe#proper_name be a helper?
+  def proper_name
+    name.titlecase
   end
 
   # Class Methods --------------------------------------------------------------
@@ -35,7 +34,7 @@ class Recipe < ActiveRecord::Base
     recipes = self.all
 
     trending_recipes = recipes.sort_by do |recipe|
-      recipe.ingredients.count
+      recipe.cookbooks.count
     end
 
     # return in reverse b/c above sorts ascending
