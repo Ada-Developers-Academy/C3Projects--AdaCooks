@@ -36,6 +36,16 @@ class CookbooksController < ApplicationController
     redirect_to user_path
   end
 
+  # Delete a recipe
+  def rm_recipe
+    @cookbook = Cookbook.find(params[:cookbook])
+    @recipe = Recipe.find(params[:recipe])
+    @recipe.cookbook_id = nil
+    @recipe.save
+
+    redirect_to user_path(session[:user_id], :cookbook => @cookbook.id)
+  end
+
 end
 
 private

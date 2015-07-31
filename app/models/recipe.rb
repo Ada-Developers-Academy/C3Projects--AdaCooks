@@ -15,14 +15,15 @@ class Recipe < ActiveRecord::Base
     end
   end
 # SCOPES ----------------------------------------------
+  scope :alpha, -> { order("name ASC") }
 
 # MOUNT UPLOADER --------------------------------------
   mount_uploader :image, ImageUploader
 
 # METHODS ---------------------------------------------
 
-def self.organize
-  self.all.sort_by { |i| i.name.capitalize }
-end
+  def self.organize
+    self.all.sort_by { |i| i.name.capitalize }
+  end
 
 end

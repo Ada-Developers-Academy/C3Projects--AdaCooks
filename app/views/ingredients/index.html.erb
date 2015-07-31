@@ -1,7 +1,13 @@
+<div class="container">
 <h1> Ingredients </h1>
-  <ul>
-<% @ingredients.each do |ingredient| %>
-    <li><%= link_to ingredient.name.capitalize!, ingredient_path(ingredient), method: :get %></li>
-<% end %>
-</ul>
-<%= button_to "Add a New Ingredient", new_ingredient_path, method: :get, class: "btn btn-primary" %>
+  <% @ingredients.each do |ingredient| %>
+    <div class="col-md-3 center">
+      <div class="well">
+        <%= link_to image_tag(ingredient.image, class: "img-thumbnail", size: "200x170"), ingredient_path(ingredient.id) %>
+        <h3><%= link_to ingredient.name, ingredient_path(ingredient.id), method: :get %></h3>
+      </div>
+    </div>
+      <% end %>
+    <br>
+    <%= button_to "New Ingredient", new_ingredient_path, method: :get, class: "btn btn-primary" %>
+</div>

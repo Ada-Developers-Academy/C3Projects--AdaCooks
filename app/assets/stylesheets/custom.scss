@@ -30,7 +30,7 @@ h1, h2 {
   font-family: 'Unica One', cursive;
 }
 
-h3 {
+h3, h4, h5 {
   font-family: 'Reenie Beanie', cursive;
   font-size: 2.1em;
 }
@@ -79,10 +79,21 @@ h3 {
   padding-top: 20px;
 }
 
+/* search results ---------------------------------------------- */
+
+.ingredient-search {
+  margin-bottom: 20px;
+}
+
 /* images ----------------------------------------------------- */
 
 .img-circle {
   border: 3px solid #DDE6ED;
+}
+
+.recipe-image {
+  max-width: 70%;
+  border: 2px solid #DDE6ED;
 }
 
 /* user profile ----------------------------------------------- */
@@ -99,9 +110,25 @@ h3 {
   padding-top: 8px;
 }
 
+.recipes {
+  margin-left: 10px;
+}
+
 .cookbook-header {
+  margin-top: -2px;
   font-family: 'Reenie Beanie', cursive;
   font-size: 2.9em;
+}
+
+/* recipe show page ------------------------------------------- */
+
+.recipe-name {
+  font-family: 'Unica One', cursive;
+  font-size: 2.5em;
+}
+
+.recipe-desc {
+  margin-top: 15px;
 }
 
 /* footer ----------------------------------------------------- */
@@ -138,6 +165,10 @@ body {
 }
 
 label.required:after {
-    content: " *";
-    color: $error;
+  content: " *";
+  color: $error;
+}
+
+.back-link {
+  margin-bottom: 20px;
 }

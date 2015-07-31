@@ -1,6 +1,43 @@
-<% @ingredients.each do |ingredient| %>
-  <div class="container">
-    <%= image_tag(ingredient.image_url(:thumb)) %>
-    <%= link_to ingredient.name, ingredient_path(ingredient.id) %>
+<div class="col-md-8 col-md-offset-2">
+  <% if @ingredients.size == 0 %>
+    <div class="alert alert-danger" role="alert">
+      <%= flash[:error] %>
+    </div>
+  <% end %>
+</div>
+
+<div class="container"> 
+  <div class="col-md-8 col-md-offset-2">
+    <ul class="media-list">
+      <% @ingredients.each do |ingredient| %>
+      <li class="media">
+        <div class="media-left">
+          <%= image_tag(ingredient.image_url(:thumb)) %>
+        </div>
+
+        <div class="media-body">
+          <h3 class="media-heading ingredient-search">
+            Recipes with <%= link_to ingredient.name, ingredient_path(ingredient.id) %>
+          </h3>
+
+          <ul class="media-list">
+            <% ingredient.recipes.each do |recipe| %>
+              <li class="media">
+                <div class="media-left media-middle">
+                  <%= image_tag(recipe.image_url(:thumb)) %>
+                </div>
+                
+                <div class="media-body">
+                  <p class="media-heading">
+                    <%= link_to recipe.name, recipe_path(recipe.id) %>
+                  </p>
+                  <%= recipe.desc %>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </ul>
   </div>
-<% end %>
+</div>

@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
   before_action :find_recipe, only: [:show, :edit, :update, :destroy]
 
   def index
-    @recipes = Recipe.organize
+    @recipes = Recipe.alpha
   end
 
   def show
@@ -49,6 +49,11 @@ class RecipesController < ApplicationController
   def destroy
     @recipe.destroy
     redirect_to recipes_path, notice: "#{@recipe} is no more :("
+  end
+
+  def search
+    @recipes = Recipe.search params[:search]
+    render :search_results
   end
 
   private
