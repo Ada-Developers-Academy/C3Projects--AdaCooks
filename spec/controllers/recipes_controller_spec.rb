@@ -126,5 +126,17 @@ RSpec.describe RecipesController, type: :controller do
     end
   end
 
+  describe "DELETE #destroy" do
+    it "redirects to :dashboard view" do
+      user = create :user
+      session[:user_id] = user.id
+      recipe = create :recipe, name: "aged sushi", user_id: user.id
+      request.env['HTTP_REFERER'] = '/users/#{user.id}/dashboard'
 
+      delete :destroy, id: recipe.id, user_id: user.id
+
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to('/users/#{user.id}/dashboard')
+    end
+  end
 end
