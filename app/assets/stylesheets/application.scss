@@ -15,7 +15,19 @@
  @import 'bootstrap-sprockets';
  @import 'bootstrap';
 
+h1, h2, h3, h4, h5 {
+  font-family: 'Slabo 27px', serif;
+}
 
+th{
+  font-family: 'lato';
+  font-size: 1.25em;
+}
+
+a{
+  font-family: 'lato';
+  font-size: 1.25em;
+}
 .img-sm {
   width: 50px;
   height: 50px;
