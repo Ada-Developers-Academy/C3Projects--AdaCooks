@@ -1,6 +1,6 @@
 <h1>User Profile for <%= @user.username %></h1>
 <div class="row">
-  <div class="col-sm-8 col-md-4">
+  <div class="col-md-4 col-md-offset-4">
     <div class="thumbnail">
       <%= image_tag @user.image_url(:small), alt: "User Profile Photo" %>
       <div class="caption">
@@ -11,16 +11,35 @@
   </div>
 </div>
 
-<% if session[:user_id] %>
-  <%= render partial: "shared/cookbooks" %>
-<% end %>
+<h3><i class="fa fa-book"></i> Cookbooks
+  <% if session[:user_id] %>
+    <small><%= link_to new_user_cookbook_path(@user.id) do %>
+        <span class="glyphicon glyphicon-plus" aria-hidden="true" data-toggle="tooltip" title="Create a Cookbook!"></span>
+      <% end %>
+    </small>
+  <% end %>
+</h3>
+<%= render partial: "shared/cookbooks" %>
+<a href="#top">Back to Top</a>
 
-<h3>Recipes<small><%= link_to new_recipe_path(@user.id) do %>
-  <span class="glyphicon glyphicon-plus" aria-hidden="true" data-toggle="tooltip" title="Create a Recipe!"></span>
-<% end %></small></h3>
+<h3><i class="fa fa-cutlery"></i> Recipes
+  <% if session[:user_id] %>
+    <small><%= link_to new_recipe_path(@user.id) do %>
+        <span class="glyphicon glyphicon-plus" aria-hidden="true" data-toggle="tooltip" title="Create a Recipe!"></span>
+      <% end %>
+    </small>
+  <% end %>
+</h3>
 <%= render partial: "shared/recipes" %>
+<a href="#top">Back to Top</a>
 
-<h3>Ingredients<small><%= link_to new_ingredient_path(@user.id) do %>
-  <span class="glyphicon glyphicon-plus" aria-hidden="true" data-toggle="tooltip" title="Create an Ingredient!"></span>
-<% end %></small></h3>
+<h3><i class="fa fa-leaf"></i> Ingredients
+  <% if session[:user_id] %>
+    <small><%= link_to new_ingredient_path(@user.id) do %>
+        <span class="glyphicon glyphicon-plus" aria-hidden="true" data-toggle="tooltip" title="Create an Ingredient!"></span>
+      <% end %>
+    </small>
+  <% end %>
+</h3>
 <%= render partial: "shared/ingredients" %>
+<a href="#top">Back to Top</a>
