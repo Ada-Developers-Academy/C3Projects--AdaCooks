@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :ingredients, only: [:index, :show]
 
   resources :users, only: [] do
-    get "", to: "users#show", as: "" # OPTIMIZE: Figure this out later
+    get "", to: "users#show", as: ""
     resources :cookbooks do
       post "recipes/:id", to: "cookbooks#add_recipe", as: "recipe"
       delete "recipes/:id", to: "cookbooks#remove_recipe"
