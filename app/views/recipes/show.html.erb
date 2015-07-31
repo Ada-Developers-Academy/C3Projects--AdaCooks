@@ -1,66 +1,66 @@
 <div class="container marketing">
-  <h1><%= @recipe.name %></h1>
-  <hr class="featurette-divider">
+ <h1><%= @recipe.name %></h1>
+ <hr class="featurette-divider">
 
-  <div class="row featurette">
-    <div class="col-md-7 col-md-push-5">
-      <h2 class="featurette-heading"></h2>
-      <p class="lead"><%= @recipe.description %></p>
+ <div class="row featurette">
+   <div class="col-md-7 col-md-push-5">
+     <h2 class="featurette-heading"></h2>
+     <p class="lead"><%= @recipe.description %></p>
 
-      <p>Recipe added by <%= link_to "#{@recipe.user.name}", user_path(@recipe.user.id) %></p>
+     <p>Recipe added by <%= link_to "#{@recipe.user.name}", user_path(@recipe.user.id) %></p>
 
-      <% if session[:user_id] %>
-        <% if @recipe.user_id == @current_user.id %>
-          <%= link_to "Edit Recipe", edit_recipe_path(@recipe), class: "btn btn-warning" %>
-          <%= link_to "Delete Recipe", recipe_path(@recipe), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure you want to delete this?"} %>
-        <% end %>
-      <% end %><br><br>
+     <% if session[:user_id] %>
+       <% if @recipe.user_id == @current_user.id %>
+         <%= link_to "Edit Recipe", edit_recipe_path(@recipe), class: "btn btn-warning" %>
+         <%= link_to "Delete Recipe", recipe_path(@recipe), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure you want to delete this?"} %>
+       <% end %>
+     <% end %><br><br>
 
-      <% if session[:user_id] %>
-        <%= form_for @recipe do |f| %>
-          <%= f.label "Add to Cookbook" %>
-          <%= f.collection_select :cookbook_id, Cookbook.user_cookbooks(@current_user), :id, :name, include_blank: "None" %>
-          <%= f.submit "Add", class: "btn btn-default" %>
-        <% end %>
-      <% end %>
-    </div>
+     <% if session[:user_id] %>
+       <%= form_for @recipe do |f| %>
+         <%= f.label "Add to Cookbook" %>
+         <%= f.collection_select :cookbook_id, Cookbook.user_cookbooks(@current_user), :id, :name, include_blank: "None" %>
+         <%= f.submit "Add", class: "btn btn-default" %>
+       <% end %>
+     <% end %>
+   </div>
 
-    <div class="col-md-5 col-md-pull-7">
-      <% if @recipe.image_url %>
-        <%= image_tag @recipe.image_url, class:"img-circle", size: "300x300" %>
-      <% elsif @recipe.photo_url %>
-        <%= image_tag @recipe.photo_url, class: "img-circle", size: '300x300'%>
-      <% else %>
-        <%= image_tag "no_image.png", class: "img-circle", size: '300x300'%>
-      <% end %>
-    </div>
-  </div>
+   <div class="col-md-5 col-md-pull-7">
+     <% if @recipe.image_url %>
+       <%= image_tag @recipe.image_url, class:"img-circle", size: "300x300" %>
+     <% elsif @recipe.photo_url %>
+       <%= image_tag @recipe.photo_url, class: "img-circle", size: '300x300'%>
+     <% else %>
+       <%= image_tag "no_image.png", class: "img-circle", size: '300x300'%>
+     <% end %>
+   </div>
+ </div>
 
-  <hr class="featurette-divider">
+ <hr class="featurette-divider">
 
-  <div class="row featurette">
-    <div class="col-md-12">
-      <p class="lead"><mark>PREPARATION: </mark></p>
-      <p><%= @recipe.preparation %></p>
-    </div>
-  </div>
+ <div class="row featurette">
+   <div class="col-md-12">
+     <p class="lead"><mark>PREPARATION: </mark></p>
+     <p><%= @recipe.preparation %></p>
+   </div>
+ </div>
 
-  <hr class="featurette-divider">
+ <hr class="featurette-divider">
 
-  <div class="row featurette">
-    <div class="col-md-12">
-      <p class="lead"><mark>INGREDIENTS: </mark></p>
-      <% @recipe.ingredients.each do |ingredient| %>
-        <%= link_to ingredient_path(ingredient.id) do %>
-          <% if ingredient.image_url %>
-            <%= image_tag ingredient.image_url, class: "img-circle", size: '100x100'%>
-          <% elsif ingredient.photo_url %>
-            <%= image_tag ingredient.photo_url, class: "img-circle", size: '100x100'%>
-          <% else %>
-            <%= image_tag "no_image.png", class: "img-circle", size: '100x100'%>
-          <% end %>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
+ <div class="row featurette">
+   <div class="col-md-12">
+     <p class="lead"><mark>INGREDIENTS: </mark></p>
+     <% @recipe.ingredients.each do |ingredient| %>
+       <%= link_to ingredient_path(ingredient.id) do %>
+         <% if ingredient.image_url %>
+           <%= image_tag ingredient.image_url, class: "img-circle", size: '100x100'%>
+         <% elsif ingredient.photo_url %>
+           <%= image_tag ingredient.photo_url, class: "img-circle", size: '100x100'%>
+         <% else %>
+           <%= image_tag "no_image.png", class: "img-circle", size: '100x100'%>
+         <% end %>
+       <% end %>
+     <% end %>
+   </div>
+ </div>
 </div>
