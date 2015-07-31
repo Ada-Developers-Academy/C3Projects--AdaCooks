@@ -72,14 +72,16 @@
               <% @search_results.each do |recipe| %>
                 <button type="button" class="list-group-item"><%= link_to recipe.name, recipe_path(recipe) %></button>
               <% end %>
+            </div>
           </div>
-        </div>
         <% end %>
       </nav>
+
       <div class="content">
-      <%= yield %>
+
+        <%= yield %>
+
       </div>
     </div>
-</body>
-
+  </body>
 </html>
