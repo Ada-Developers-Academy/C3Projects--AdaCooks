@@ -96,5 +96,17 @@ RSpec.describe IngredientsController, type: :controller do
     end
   end
 
+  describe "GET #show" do
+    it "renders :show view" do
+      ingredient = create :ingredient
+
+      get :show, id: ingredient.id
+
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+      expect(response).to render_template(:show)
+    end
+  end
+
 
 end
