@@ -36,6 +36,11 @@ h1, h2, h3, h4, h5, .brand {
  float: none;
 }
 
+.float-right {
+  float: right;
+  margin-left: 10px;
+}
+
 .container-padding {
   margin-bottom: 50px;
 }

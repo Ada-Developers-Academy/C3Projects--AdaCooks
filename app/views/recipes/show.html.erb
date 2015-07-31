@@ -1,51 +1,43 @@
-<%= flash[:notice] %>
+<div class="col-sm-8 center-block no-float">
 
-<% if session[:user_id] == @recipe.user.id %>
-	<%= button_to 'Edit', edit_recipe_path(@recipe), method: :get, class: 'btn btn-default' %>
-	<%= button_to 'Delete', recipe_path(@recipe), method: :delete, class: 'btn btn-danger' %>
-<% end %>
+	<%= flash[:notice] %>
 
-<%= form_for(@recipe, url: { controller: :cookbooks, action: :update }, method: :put) do |f| %>
-	<%= f.select(:cookbook_id, options_for_select(@cookbooks_array)) %>
-
-	<%= f.submit 'Add to Cookbook', class:'btn btn-default' %>
-<% end %>
-
-
-<h2> <%= @recipe.name %> </h2>
-<% unless @recipe.cookbook_id.nil? %>
-	<h4> in <%= link_to @recipe.cookbook.name, cookbook_path(@recipe.cookbook.id) %> </h4>
-<% end %>
-<h5> by: <%= link_to @recipe.user.username, user_path(@recipe.user.id) %> </h5>
-
-<%= image_tag(@recipe.image) %>
-
-<p>
-	<%= @recipe.description %>
-</p>
-
-<table>
-	<tr>
-		<th colspan="3">
-			<h4>Ingredients</h4>
-		</th>
-	</tr>
-	<% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
-	<tr>
-		<td>
-			<%= recipe_ingredient.quantity %>
-		</td>
-		<td>
-			<%= recipe_ingredient.measurement %>
-		</td>
-		<td>
-			<%= link_to recipe_ingredient.ingredient.name, ingredient_path(recipe_ingredient.ingredient) %>
-		</td>
-	</tr>
+	<% if session[:user_id] == @recipe.user.id %>
+		<%= button_to 'Edit', edit_recipe_path(@recipe), method: :get, class: 'btn btn-default float-right' %>
+		<%= button_to 'Delete', recipe_path(@recipe), method: :delete, class: 'btn btn-danger float-right' %>
 	<% end %>
-</table>
 
-<h4>Directions</h4>
-<p>
-	<%= @recipe.prep %>
-</p>
+	<h2> <%= @recipe.name %> </h2>
+	<% unless @recipe.cookbook_id.nil? %>
+		<h4> in <%= link_to @recipe.cookbook.name, cookbook_path(@recipe.cookbook.id) %> </h4>
+	<% end %>
+	<h5> by: <%= link_to @recipe.user.username, user_path(@recipe.user.id) %> </h5>
+
+	<%= image_tag(@recipe.image) %>
+
+	<p>
+		<%= @recipe.description %>
+	</p>
+
+	<h4>Ingredients</h4>
+	<ul>
+		<% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
+		<li>
+			<%= recipe_ingredient.quantity %>
+			<%= recipe_ingredient.measurement %>
+			<%= link_to recipe_ingredient.ingredient.name, ingredient_path(recipe_ingredient.ingredient) %>
+		</li>
+		<% end %>
+	</ul>
+
+	<h4>Directions</h4>
+	<p>
+		<%= @recipe.prep %>
+	</p>
+
+	<br>
+	<%= form_for(@recipe, url: { controller: :cookbooks, action: :update }, method: :put) do |f| %>
+		<%= f.select(:cookbook_id, options_for_select(@cookbooks_array), {}, { class: 'form-control' }) %>
+		<%= f.submit 'Add to Cookbook', class:'btn btn-default' %>
+	<% end %>
+</div>
