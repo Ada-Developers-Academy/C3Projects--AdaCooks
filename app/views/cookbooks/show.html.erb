@@ -1,0 +1,15 @@
+<div class="container">
+  <h1><%= @cookbook.name %></h1> <%= link_to "Edit Cookbook", edit_cookbook_path(@cookbook.id), class:"btn btn-primary" %>
+  <h2>Description: <small><%= @cookbook.description %></small></h2>
+
+  <h3>Recipes</h3>
+  <div class="row">
+    <% @cookbook.recipes.alphabet.each do |recipe| %>
+    <div class="col-md-12">
+      <h3><%= link_to "#{recipe.name}", recipe_path(recipe.id) %></h3>
+      <%= image_tag(recipe.image_url(:medium))%>
+      <br><%= link_to "Remove from cookbook", remove_recipe_path(recipe.id), class:"btn btn-danger" %>
+    </div>
+    <% end %>
+  </div>
+</div>

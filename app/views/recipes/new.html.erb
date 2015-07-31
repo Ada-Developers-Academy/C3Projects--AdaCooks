@@ -1,0 +1,40 @@
+<div class="container">
+
+  <%= form_for @recipe, html: {class: "form-group"}, method: :post do |f|  %>
+    <div class="form-group">
+      <fieldset>
+        <legend><h2>Add a Recipe!</h2></legend>
+        <%= f.label :name, "Recipe Name" %>
+        <%= f.text_field :name, class: "form-control" %>
+
+        <%= f.label :description, "Describe Your Recipe" %>
+        <%= f.text_area :description, class: "form-control" %>
+
+        <%= f.hidden_field :user_id, value: @recipe.user_id %>
+
+        <%= f.label :preparation, "Preparation" %>
+        <%= f.text_area :preparation, class: "form-control" %>
+  <br>
+        <%= f.label :ingredients, :required => true %> <br>
+        <%= collection_check_boxes(:recipe, :ingredient_ids, Ingredient.all, :id, :name) do |b| %>
+             <%= b.label class: "checkbox-inline" do %>
+               <%= b.check_box + b.text.capitalize %>
+             <% end %>
+           <% end %>
+  <br>
+        <%= link_to "Add New Ingredient", new_ingredient_path, class:"btn btn-default" %>
+  <br>
+        <%= f.label :image, 'Photo' %>
+        <%= f.file_field :image %>
+  <br>
+         <%= f.label :cookbooks, "Associate One of Your Cookbooks" %><br>
+         <%= collection_check_boxes(:recipe, :cookbook_ids, @cookbook, :id, :name) do |b| %>
+              <%= b.label class: "checkbox-inline" do %>
+                <%= b.check_box + b.text.capitalize %>
+              <% end %>
+            <% end %>
+      </fieldset>
+      <%= f.submit "Submit", class: "btn btn-primary"%>
+    </div>
+    <% end %>
+</div>

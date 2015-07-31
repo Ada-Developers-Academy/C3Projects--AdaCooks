@@ -1,0 +1,13 @@
+<div class="container">
+  <h1><%= @user.username %> has <%= @user.recipes.count %> Recipes </h1>
+    <div class="row">
+    <ul>
+        <% @user.recipes.each do |recipe| %>
+        <div class="col-md-4">
+          <%= image_tag(recipe.image_url(:thumb)) %>
+          <%= link_to "#{recipe.name}", recipe_path(recipe.id) %>
+      </div>
+        <% end %>
+    </ul>
+  </div>
+</div>

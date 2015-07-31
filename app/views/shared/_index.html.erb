@@ -1,0 +1,10 @@
+<h1>All the <%= collection.name.pluralize %> </h1>
+
+<div class="row">
+  <% collection.each do |separate| %>
+    <div class="col-md-4">
+      <div class="thumbnail"><%= image_tag(separate.image_url)%></div>
+        <h3><%= link_to separate.name, "/#{link}/#{separate.id}", method: :get %></h3>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,26 @@
+<%= form_for @cookbook do |f|  %>
+  <div class="form-group">
+      <% flash.each do|name, message| %>
+      <div class="error"><%= message %></div>
+      <% end %>
+
+    <fieldset>
+      <%= f.label :name, "Cookbook Name" %>
+      <%= f.text_field :name, class: "form-control" %>
+
+      <%= f.label :description, "Cookbook Description" %>
+      <%= f.text_area :description, class: "form-control" %>
+
+      <br>
+
+      <%= f.label :recipes, :required => true %> <br>
+      <%= collection_check_boxes(:cookbook, :recipe_ids, Recipe.all, :id, :name) do |b| %>
+           <%= b.label class: "checkbox" do %>
+             <%= b.check_box + b.text.capitalize %>
+           <% end %>
+         <% end %>
+
+    </fieldset>
+    <%= f.submit "Submit", class: "btn btn-default"%>
+  </div>
+  <% end %>

@@ -1,0 +1,67 @@
+<div class="container">
+  <h1><%= @user.username %>'s Dashboard </h1>
+  <%= button_to "New Recipe", new_recipe_path, method: :get, class: "btn btn-default" %>
+  <%= button_to "New Ingredient", new_ingredient_path, method: :get, class: "btn btn-default" %>
+  <%= button_to "New Cookbook", new_cookbook_path, method: :get, class: "btn btn-default" %>
+
+  <table class="table table-bordered">
+    <tr>
+        <th>Your Cookbooks</th>
+        <th>Description</th>
+        <th>No. Recipes</th>
+        <th>No. Unique Ingredients</th>
+        <th>Delete?</th>
+    </tr>
+    <% @cookbooks.each do |cookbook| %>
+
+      <tr>
+        <td> <h3><%= link_to "#{cookbook.name}", cookbook_path(cookbook.id) %></h3> </td>
+        <td><%= cookbook.description %></td>
+        <td><%= cookbook.recipes.count %> </td>
+        <td><ul>
+          <%= cookbook.recipes.flat_map {|cookbook_recipes| cookbook_recipes.ingredients.pluck(:name)}.uniq.count %>
+          </ul></td>
+
+    <td><%= button_to "Delete", cookbook_path(cookbook.id), method: "delete", class: "btn btn-danger" %></td>
+<% end %>
+  </table>
+
+  <table class="table table-bordered">
+    <tr>
+        <th>Your Recipes</th>
+        <th>Edit!</th>
+        <th>Delete?</th>
+    </tr>
+
+    <% @recipes.each do |recipe| %>
+    <tr>
+      <td>
+          <%= image_tag(recipe.image_url(:thumb))%>
+          <%= link_to "#{recipe.name}", recipe_path(recipe.id)%>
+      </td>
+      <td><%= button_to "Edit", edit_recipe_path(recipe.id), method: "get", class: "btn btn-danger" %></td>
+      <td><%= button_to "Delete", recipe_path(recipe.id), method: "delete", class: "btn btn-danger" %></td>
+    </tr>
+    <% end %>
+
+  </table>
+
+  <table class="table table-bordered">
+  <tr>
+      <th>Your Ingredients</th>
+      <th>Edit!</th>
+      <th>Delete?</th>
+  </tr>
+
+  <% @ingredients.each do |ingredient| %>
+  <tr>
+    <td><%= link_to "#{ingredient.name}", ingredient_path(ingredient.id)%></td>
+    <td><%= button_to "Edit", edit_ingredient_path(ingredient.id), method: "get", class: "btn btn-danger" %></td>
+    <td><%= button_to "Delete", ingredient_path(ingredient.id), method: "delete", class: "btn btn-danger" %></td>
+  </tr>
+  <% end %>
+</table>
+
+
+
+</div>
