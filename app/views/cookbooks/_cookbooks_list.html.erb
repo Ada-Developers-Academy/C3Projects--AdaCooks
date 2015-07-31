@@ -15,5 +15,8 @@
         </ul>
       </li>
     <% end %>
+    <% if authenticated? %>
+      <%= link_to "ADD", new_cookbook_path, class: "btn btn-primary" %>
+    <% end %>
   </ul>
 </div>
