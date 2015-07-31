@@ -32,7 +32,7 @@ RSpec.describe RecipesController, type: :controller do
     end
 
     it "displays the correct recipe" do
-      get :show, :id => 1
+      get :show, id: 1
       expect(assigns(:recipe)).to eq(@recipe)
     end
 
@@ -54,7 +54,7 @@ RSpec.describe RecipesController, type: :controller do
       end
       before(:each) do
         session[:user_id] = @user.id
-        post :create, :recipe => valid_params
+        post :create, recipe: valid_params
       end
 
       it "creates a new recipe" do
@@ -69,7 +69,7 @@ RSpec.describe RecipesController, type: :controller do
 
       before(:each) do
         @recipe = create :recipe, name: "gnarly fake banana"
-        patch :update, :id => 1, :recipe => new_params
+        patch :update, id: 1, recipe: new_params
         @recipe.reload
       end
 
@@ -86,27 +86,26 @@ RSpec.describe RecipesController, type: :controller do
 
       it "deletes a recipe" do
         recipe = create :recipe
-        delete :destroy, :id => recipe.id
+        delete :destroy, id: recipe.id
         expect(Recipe.count).to eq 0
       end
     end
 
-    # => this test is currently not working
-    # => not sure which params to pass in
-    
-    # describe "POST #add_to_cookbook" do
-    #   let(:cookbook) { create :cookbook }
-    #   let(:recipe) { create :recipe }
+    describe "POST #add_to_cookbook" do
 
-    #   before :each do
-    #     session[:user_id] = 1
-    #     binding.pry
-    #     post :add_to_cookbook, id: recipe, cookbook_id: cookbook.id
-    #   end
+      let(:cookbook_params) do
+        {cookbook_id: 1}
+      end
 
-    #   it "adds the recipe to the cookbook" do
-    #     expect(cookbook.recipes).to include (recipe)
-    #   end
-    # end
+      before :each do
+        @recipe = create :recipe
+        @cookbook = create :cookbook
+        post :add_to_cookbook, id: @recipe.id, cookbook: cookbook_params
+      end
+
+      it "adds the recipe to the cookbook" do
+        expect(@cookbook.recipes).to include(@recipe)
+      end
+    end
   end
 end
