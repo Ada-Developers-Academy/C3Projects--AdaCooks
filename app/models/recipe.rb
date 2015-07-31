@@ -10,7 +10,7 @@ class Recipe < ActiveRecord::Base
 # Validations ---------------------------------------------------
   validates :name, presence: true
   validates :preparation, presence: true
-  # one or more ingredients required, need to look up how to do this validation
+  validates :ingredients, presence: true
 
 # Scopes --------------------------------------------------------
   scope :alpha_order, -> { order(name: :asc) }

@@ -28,9 +28,8 @@ RSpec.describe Ingredient, type: :model do
     end
 
     it "has and belongs to recipes" do
-      ingredient = create :ingredient
       recipe = create :recipe
-      ingredient.recipes << recipe
+      ingredient = recipe.ingredients.first
 
       expect(ingredient.recipes.count).to eq 1
       expect(recipe.ingredients.count).to eq 1

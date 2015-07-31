@@ -4,7 +4,9 @@ RSpec.describe RecipesController, type: :controller do
   describe "GET #index" do
     before :each do
       %w(Happy Lovely Pig Darling Appetite Bumpkin).each do |name|
-        create(:recipe, name: name)
+        recipe = Recipe.new(name: name, preparation: "as;lkdfj")
+        recipe.ingredients << Ingredient.new(name: name)
+        recipe.save
       end
     end
 
@@ -95,8 +97,12 @@ RSpec.describe RecipesController, type: :controller do
 
     context "valid recipe" do
       before :each do
-        post :create, recipe: attributes_for(:recipe)
-        @recipe = Recipe.find(1)
+        user = create(:user)
+        session[:user_id] = user.id
+        ingredient = create(:ingredient)
+        recipe_params = { recipe: { name: ";lk", preparation: "l;kajsdf",
+                                    ingredient_ids: ["#{ingredient.id}"], user_id: user.id } }
+        post :create, recipe_params
       end
 
       it "saves the recipe to the db" do
@@ -104,13 +110,11 @@ RSpec.describe RecipesController, type: :controller do
       end
 
       it "is associated with the correct user" do
-        user = create(:user)
-
-        expect(@recipe.user.id).to eq user.id
+        expect(Recipe.first.user_id).to eq 1
       end
 
       it "redirects_to the show page" do
-        expect(subject).to redirect_to recipe_path(id: @recipe.id)
+        expect(subject).to redirect_to recipe_path(id: Recipe.first.id)
       end
     end
   end

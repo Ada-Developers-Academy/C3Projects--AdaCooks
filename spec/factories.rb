@@ -16,7 +16,6 @@ FactoryGirl.define do
   factory :ingredient do
     name "yams"
     user_id 1
-    # recipe
   end
 
   factory :recipe do
@@ -24,7 +23,6 @@ FactoryGirl.define do
     description "This is really tasty"
     preparation "Honestly this is just a roasted yam"
     user_id 1
-    # ingredient
-    # cookbook
+    after(:build) {|recipe| recipe.ingredients << [create(:ingredient)] }
   end
 end
