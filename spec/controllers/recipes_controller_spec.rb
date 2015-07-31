@@ -34,23 +34,24 @@ RSpec.describe RecipesController, type: :controller do
     end
   end
 
-  describe "remove_recipe_from_cookbook" do
+  describe "GET #remove_recipe" do
     # creating a cookbook associated with a user, and associated with recipes collection
-    let(:book) { create :cookbook, user: create(:user), recipes: [create(:recipe)] }
+    # let(:book) { create :cookbook, user: create(:user), recipes: [create(:recipe)] }
 
     before(:each) do
-      book
+      soup = create :recipe, ingredients: [create(:ingredient)]
+      @book = create :cookbook, user: create(:user), recipes: [soup]
       # need a cookbook_id in session for method to work
-      session[:cookbook_id] = book.id
+      session[:cookbook_id] = @book.id
     end
 
     it "removes recipe from cookbook" do
-      get :update, :recipe_id => 1
-      expect(book.recipes.count).to eq(0)
+      get :remove_recipe, :recipe_id => 1
+      expect(@book.recipes.count).to eq(0)
     end
 
     it "doesn't delete the recipe" do
-      get :update, :recipe_id => 1
+      get :remove_recipe, :recipe_id => 1
       expect(Recipe.count).to eq(1)
     end
   end
