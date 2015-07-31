@@ -26,10 +26,10 @@
           <%= ff.label :ingredient_id %>
           <%= ff.collection_select(:ingredient_id, Ingredient.all, :id, :name, include_blank: true) %>
 
-          <%# if ff.object.persisted? %>
-            <%#= ff.check_box :_destroy %>
-            <%#= ff.label :_destroy, "Destroy" %>
-          <%# end %>
+          <% if ff.object.persisted? %>
+            <%= ff.check_box :_destroy %>
+            <%= ff.label :_destroy, "Remove" %>
+          <% end %>
         </div>
       <% end %>
       <%= f.submit "Submit", class: "btn btn-default"%>
