@@ -8,14 +8,14 @@
     <ul class="list-group">
       <% @ingredient_lines.each do |line| %>
         <li class="list-group-item">
-          <%= "#{line.quantity} #{line.measurement.unit}" %> <%= link_to line.ingredient.name, ingredient_path(line.ingredient_id) %>
+          <%= "#{pluralize(line.quantity, line.measurement.unit)}" %> <%= link_to line.ingredient.name, ingredient_path(line.ingredient_id) %>
         </li>
       <% end %>
     </ul>
 
     <p>Preparation: <%= @recipe.preparation %></p>
 
-    <% if @current_user %>    
+    <% if @current_user %>
       <p>Save to your cookbook:</p>
 
       <% if @cookbooks.count > 0 %>
@@ -27,11 +27,11 @@
         <em>Either you have no cookbooks, or this recipe is already part of all of your cookbooks.</em>
       <% end %>
     <% end %>
-    
+
     <% if appropriate_user(@recipe) %>
       <p><%= link_to "Edit this recipe", edit_recipe_path(@recipe), class: "btn btn-default" %></p>
-      
+
       <p><%= link_to "Delete this recipe", recipe_path(@recipe), method: "delete", data: { confirm: "Are you sure?" }, class: "btn btn-danger" %></p>
-    <% end %>      
+    <% end %>
   </div>
 </div>
