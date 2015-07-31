@@ -70,7 +70,7 @@ RSpec.describe IngredientsController, type: :controller do
       expect(response).to render_template :edit
     end
 
-    it "redirects to the user's dashboard" do
+    it "redirects other users to their dashboard" do
       @unauth_user = create :user, username: "wronguser"
       session[:user_id] = @unauth_user
       get :edit, id: @ingredient.id
@@ -122,7 +122,7 @@ RSpec.describe IngredientsController, type: :controller do
       session[:user_id] = user.id
       ingredient = create(:ingredient)
       delete :destroy, id: ingredient.id
-      
+
       expect(Ingredient.all.count).to eq 0
     end
   end
