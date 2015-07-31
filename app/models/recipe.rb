@@ -11,6 +11,7 @@ class Recipe < ActiveRecord::Base
   validates :name, presence: true
   validates :preparation, presence: true
   validates :user_id, presence: true
+  validates :ingredients, presence: true
 
   # Scopes
   scope :alpha_order, -> { order(:name) }
