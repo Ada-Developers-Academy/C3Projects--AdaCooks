@@ -1,6 +1,9 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
-  before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_recipe, only: [:ingredients, :add_ingredients,
+    :add_ingredient, :remove_ingredient, :show, :edit, :update, :destroy]
+  before_action :require_user_login, only: [:ingredients, :add_ingredients,
+    :add_ingredient, :remove_ingredient, :new, :create, :edit, :update,
+    :destroy]
 
   def index
     @recipes = Recipe.alphabetized
@@ -50,24 +53,36 @@ class RecipesController < ApplicationController
     redirect_to recipes_path
   end
 
-  def add_ingredient
-    recipe = Recipe.find(params[:recipe_id])
-    ingredient = Ingredient.find(params[:id])
+  def ingredients
+    @ingredients = Ingredient.alphabetized
+  end
 
-    if recipe.ingredients.include?(ingredient)
-      flash[:error] = "This ingredient is already in #{ recipe.name }."
-    else
-      recipe.add_ingredient_association(ingredient)
+  def add_ingredients
+    ingredients = params[:ingredients].map { |ingredient| Ingredient.find(ingredient) }
+
+    ingredients.each do |ingredient|
+      @recipe.add_ingredient_association(ingredient) unless @recipe.ingredients.include? ingredient
     end
 
-    redirect_to recipe_path(recipe)
+    redirect_to recipe_path(@recipe)
+  end
+
+  def add_ingredient
+    ingredient = Ingredient.find(params[:id])
+
+    if @recipe.ingredients.include?(ingredient)
+      flash[:error] = "This ingredient is already in #{ recipe.name }."
+    else
+      @recipe.add_ingredient_association(ingredient)
+    end
+
+    redirect_to recipe_path(@recipe)
   end
 
   def remove_ingredient
-    recipe = Recipe.find(params[:recipe_id])
-    recipe.remove_ingredient_association(params[:id])
+    @recipe.remove_ingredient_association(params[:id])
 
-    redirect_to recipe_path(recipe)
+    redirect_to recipe_path(@recipe)
   end
 
   private
@@ -82,6 +97,7 @@ class RecipesController < ApplicationController
     end
 
     def set_recipe
-      @recipe = Recipe.find(params[:id])
+      id = params[:recipe_id] || params[:id]
+      @recipe = Recipe.find(id)
     end
 end

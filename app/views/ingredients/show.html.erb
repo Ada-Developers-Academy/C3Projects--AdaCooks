@@ -8,14 +8,17 @@
   <% end %>
 </h1>
 
-<% if @ingredient.avatar %>
-  <%= image_tag @ingredient.avatar_url %>
-<% end %>
-
-<p><%= @ingredient.name %> is used in the following recipes:</p>
 
 <div class="row">
-  <div class="col-sm-8 col-sm-offset-2">
+  <div class="col-sm-6">
+    <% if @ingredient.avatar %>
+      <%= image_tag @ingredient.avatar_url(:display) %>
+    <% end %>
+  </div>
+
+  <div class="col-sm-6">
+    <h4><%= @ingredient.proper_name %> is used in the following recipes:</h4>
+
     <% if @ingredient.recipes.count > 0 %>
       <%= render partial: 'shared/plain_recipes_list', locals: { recipes: @ingredient.recipes.alphabetized } %>
     <% else %>

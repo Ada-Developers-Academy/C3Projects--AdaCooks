@@ -1,5 +1,8 @@
 class HomeController < ApplicationController
-  def root; end
+  def root
+    @recipes = Recipe.trending
+    @ingredients = Ingredient.trending
+  end
 
   def search
     query = params[:search][:query].downcase

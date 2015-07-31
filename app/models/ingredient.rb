@@ -17,4 +17,16 @@ class Ingredient < ActiveRecord::Base
   def proper_name # FIXME: test Ingredient#proper_name
     name.titlecase
   end
+
+  # Class Methods --------------------------------------------------------------
+  def self.trending
+    ingredients = self.all
+
+    trending_ingredients = ingredients.sort_by do |ingredient|
+      ingredient.recipes.count
+    end
+
+    # return in reverse b/c above sorts ascending
+    return trending_ingredients.last(5).reverse
+  end
 end

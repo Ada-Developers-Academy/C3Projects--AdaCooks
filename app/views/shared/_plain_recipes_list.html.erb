@@ -1,6 +1,9 @@
 <ul class="list-group">
   <% recipes.each do |recipe| %>
     <li class="list-group-item">
+      <% if recipe.avatar %>
+        <%= image_tag recipe.avatar_url(:thumb) %>
+      <% end %>
       <%= link_to recipe.proper_name, recipe_path(recipe) %>
     </li>
   <% end %>

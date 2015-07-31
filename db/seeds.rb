@@ -25,11 +25,13 @@ CSV.foreach("db/seed_data/cookbooks.csv", { encoding: "UTF-8", headers: true, he
 end
 
 CSV.foreach("db/seed_data/recipes.csv", { encoding: "UTF-8", headers: true, header_converters: :symbol, converters: :all }) do |row|
+  image_path = "app/assets/images/seeds/" + row[:image]
   recipe = Recipe.create(
             name: row[:name],
             steps: row[:steps],
             description: row[:description],
-            user_id: row[:user_id]
+            user_id: row[:user_id],
+            avatar: open(image_path)
           )
 
   cookbooks = row[:cookbooks]
@@ -50,9 +52,11 @@ CSV.foreach("db/seed_data/recipes.csv", { encoding: "UTF-8", headers: true, head
 end
 
 CSV.foreach("db/seed_data/ingredients.csv", { encoding: "UTF-8", headers: true, header_converters: :symbol, converters: :all }) do |row|
+  image_path = "app/assets/images/seeds/" + row[:image]
   ingredient = Ingredient.create(
                 name: row[:name],
-                user_id: row[:user_id]
+                user_id: row[:user_id],
+                avatar: open(image_path)
               )
 
   recipes = row[:recipes]
