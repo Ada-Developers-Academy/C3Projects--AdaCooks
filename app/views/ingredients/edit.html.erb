@@ -1,0 +1,15 @@
+
+<%= form_for @ingredient, html: {class: "form-group"} do |f|  %>
+  <div class="form-group">
+    <fieldset>
+      <legend><h2>Edit Your Recipe</h2></legend>
+      <%= f.label :name, "Recipe Name" %>
+      <%= f.text_field :name %>
+<br>
+      <%= f.label :image, 'Photo' %>
+      <%= f.file_field :image %>
+<br>
+    </fieldset>
+    <%= f.submit "Submit", class: "btn btn-default"%>
+  </div>
+  <% end %>
