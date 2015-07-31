@@ -1,6 +1,6 @@
 class IngredientsController < ApplicationController
-  before_action :require_login, except: [:index, :show]
-  before_action :check_user_params, except: [:index, :show]
+  before_action :require_login, except: [:show]
+  before_action :check_user_params, except: [:show]
 
   def new
     @ingredient = Ingredient.new

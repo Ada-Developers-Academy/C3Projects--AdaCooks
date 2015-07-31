@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   end
 
   def profile
-    @user = User.find(params[:id])
+    @user = User.find(params[:user_id])
     @cookbooks = Cookbook.where(user_id: @user.id)
     @recipes = Recipe.where(user_id: @user.id)
     @ingredeints = Ingredient.where(user_id: @user.id)
