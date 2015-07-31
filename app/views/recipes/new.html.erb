@@ -1,11 +1,13 @@
-<h1>Make history with a new concoction!</h1>
+<div class="row">
+  <div class="col-sm-offset-3 col-sm-6">
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title">Make history with a new concoction!</h3>
+      </div>
 
-<% if @recipe.errors.messages %>
-  <% @recipe.errors.full_messages.each do |message| %>
-    <p>
-      <%= message %>
-    </p>
-  <% end %>
-<% end %>
-
-<%= render "recipe_form" %>
+      <div class="panel-body">
+        <%= render "recipe_form" %>
+      </div>
+    </div>
+  </div>
+</div>
