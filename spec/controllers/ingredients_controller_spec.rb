@@ -68,5 +68,33 @@ RSpec.describe IngredientsController, type: :controller do
     end
   end
 
+  describe "PUT #update" do
+    it "after good update, redirects to :dashboard view" do
+      user = create :user
+      session[:user_id] = user.id
+      ingredient = create :ingredient, user_id: user.id
+      params = { id: ingredient.id, user_id: user.id, ingredient: { id: ingredient.id, user_id: user.id } }
+
+      put :update, params
+
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to(dashboard_user_path(user))
+    end
+
+    it "after bad update, flashes error and redirects to :dashboard view" do
+      user = create :user
+      session[:user_id] = user.id
+      ingredient = create :ingredient, user_id: user.id
+      params = { id: ingredient.id, user_id: user.id, ingredient: { id: ingredient.id, name: nil, user_id: user.id } }
+      request.env['HTTP_REFERER'] = '/users/#{user.id}/dashboard'
+
+      put :update, params
+
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to('/users/#{user.id}/dashboard')
+      expect(flash[:error]).to eq("Please enter valid stuff")
+    end
+  end
+
 
 end
