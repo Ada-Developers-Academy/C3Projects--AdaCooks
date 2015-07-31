@@ -23,7 +23,7 @@
 <h4><%= @recipe.description %></h4>
 
 <div class="row">
-  <div class="col-sm-4">
+  <div class="col-sm-5">
     <% if @recipe.ingredients.count > 0 %>
       <% if @authenticated_user && @recipe.user_id == @authenticated_user.id %>
         <%= render partial: 'shared/recipe_ingredients_list', locals: { ingredients: @recipe.ingredients.alphabetized } %>
@@ -35,7 +35,7 @@
     <% end %>
   </div>
 
-  <div class="col-sm-8">
+  <div class="col-sm-7">
     <% if @recipe.avatar %>
       <%= image_tag @recipe.avatar_url(:display) %>
     <% end %>
