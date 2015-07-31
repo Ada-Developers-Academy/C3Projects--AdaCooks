@@ -2,18 +2,18 @@ require 'rails_helper'
 
 RSpec.describe RecipesController, type: :controller do
 
-#   describe "GET #index" do
-#     it "returns http success" do
-#       get :index
-#       expect(response).to have_http_status(:success)
-#     end
-#   end
+  describe "GET #index" do
+    it "returns http success" do
+      get :index
+      expect(response).to have_http_status(:success)
+    end
+  end
 
   describe "GET #show" do
     it "returns http success" do
-      user = create :user
-      session[:user_id] = 1
-      get :show
+      recipe = create :recipe
+      get :show,  id: recipe.id
+
       expect(response).to have_http_status(:success)
     end
   end
@@ -24,6 +24,17 @@ RSpec.describe RecipesController, type: :controller do
       session[:user_id] = 1
       get :new
       expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe "GET # edit" do
+    it "renders an edit view" do
+      user = create :user
+      session[:user_id] = 1
+      recipe = create :recipe
+      get :edit, :id => recipe.id
+
+      expect(response).to render_template('edit')
     end
   end
 
@@ -60,25 +71,29 @@ RSpec.describe RecipesController, type: :controller do
   end
 
 
-#   describe "GET #create" do
-#     it "returns http success" do
-#       get :create
-#       expect(response).to have_http_status(:success)
-#     end
-#   end
+  describe "PATCH #update" do
+    it "returns updates a recipe record" do
+      user = create :user, id: 1
+      session[:user_id] = 1
+      recipe = create :recipe
+      old_description = recipe.description
 
-#   describe "GET #update" do
-#     it "returns http success" do
-#       get :update
-#       expect(response).to have_http_status(:success)
-#     end
-#   end
+      patch :update, id: recipe.id, recipe: { id: 1, description: "BEST PIZZA EVER" }
+      recipe.reload
 
-#   describe "GET #destroy" do
-#     it "returns http success" do
-#       get :destroy
-#       expect(response).to have_http_status(:success)
-#     end
-#   end
+      expect(recipe.description).to_not eq(old_description)
+    end
+  end
+
+  describe "DELETE #destroy" do
+    it "deletes a recipe record from the database" do
+      user = create :user, id: 1
+      recipe = build :recipe
+      get :destroy, :id => 1
+
+      expect(Recipe.count).to eq (0)
+    end
+  end
+
 
 end
