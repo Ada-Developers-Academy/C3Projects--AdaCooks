@@ -6,6 +6,10 @@ class CookbooksController < ApplicationController
     correct_login(@cookbook)
   end
 
+  def index
+    @cookbooks = Cookbook.where(user_id: session[:user_id])
+  end
+
   def show
     if session[:user_id] == params[:user_id].to_i
       @recipes = @cookbook.recipes
