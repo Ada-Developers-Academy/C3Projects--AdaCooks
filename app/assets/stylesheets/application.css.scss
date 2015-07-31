@@ -17,6 +17,33 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+ // this is a green world
+.jumbotron, .navbar {
+  background: #cfc;
+}
+
+.jumbotron p {
+  font-size: 18px;
+}
+
+.nav > li > a:hover, .nav > li > a:focus, .nav-pills a:hover, .nav-pills a:active, li.dropdown.open a:active, li.dropdown.open a:focus {
+    background-color: #080; // dark green
+    color: #cfc; // light green
+}
+
+// greeeeeeeen greeen green green
+.nav > li > a {
+  background-color: #fff;
+  color: #353;
+  margin: 3px;
+  padding: 3px 10px;
+}
+
+.jumbotron .nav > li > a, footer .nav > li > a {
+  border: 1px solid #cec;
+  border-radius: 5px;
+}
+
 .inline-form {
   width: auto;
 }
