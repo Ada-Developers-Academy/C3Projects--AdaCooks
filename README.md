@@ -12,14 +12,14 @@ We are going to try something new with this project. When you've accomplished al
 
 We're doing this to make the final project easier to code review. Because the baseline includes all of the Rails setup and boilerplate, issuing (and merging) a PR at the beginning will remove those files from the Pull Request interface for the PR you'll open at the end of the project.
 
-### The baseline requirements are...
+### DONE The baseline requirements are...
 - DONE a ruby-gemset and ruby-version.
 - DONE a new rails 4.2.2 application.
 - DONE [rspec](https://github.com/rspec/rspec-rails) setup in document format (hint: use a .rspec config file and the `rspec_rails` gem)
 - DONE [factory_girl](https://github.com/thoughtbot/factory_girl_rails) included and set up to work with rspec (hint: use the `factory_girl_rails` gem)
 - DONE code coverage reporting (hint: user simplecov)
 
-## User Stories
+## DONE User Stories
 
 ### DONE As any User, I can...
 - DONE search by the name of an Ingredient and get related Recipes back.
@@ -37,7 +37,7 @@ We're doing this to make the final project easier to code review. Because the ba
 - DONE register a new User account
 - DONE Log In to an existing User account
 
-### As a Logged In User I can...
+### DONE As a Logged In User I can...
 - DONE Log Out
 - DONE __Cookbooks__
   - DONE See a list of Cookbooks I've already created, including...
@@ -72,5 +72,5 @@ We're doing this to make the final project easier to code review. Because the ba
   - DONE Edit the `name` and/or the uploaded image of an existing Ingredient that I created
   - DONE Destroy an existing Ingredient that I created (this does not destroy any associated Recipes)
 
-### Other Requirements
+### DONE Other Requirements
 - DONE A minimum 80% test coverage for all Models and Controllers.
