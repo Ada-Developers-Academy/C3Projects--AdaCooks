@@ -26,7 +26,7 @@
         <h4>Preparation:</h4>
         <p><%= @recipe.preparation %></p>
 
-        <% if @your_cookbooks.count > 0 %>
+        <% if @current_user && @your_cookbooks.count > 0 %>
           <p>This recipe is part of your cookbook(s):</p>
           <ul>
             <% @your_cookbooks.each do |cookbook| %>
@@ -35,7 +35,7 @@
               </li>
             <% end %>
           </ul>
-        <% else %>
+        <% elsif @current_user %>
           <em>This recipe is not in any of your cookbooks.</em>
         <% end %>
 
