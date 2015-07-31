@@ -32,7 +32,7 @@
       <% if session[:user_id] %>
         <%= form_for :recipe, url: recipe_path, method: :patch do |f| %>
           <%= f.label :cookbooks, "Add to a Cookbook" %>
-          <%= f.collection_select :cookbooks, @user.cookbooks, :id, :name, include_blank: "--Select a Cookbook--", class: "form-group form-control" %>
+          <%= f.collection_select(:cookbook_ids, @user.cookbooks, :id, :name, include_blank: "--Select a Cookbook--", class: "form-group form-control") %>
           <%= f.submit "Save", class: "btn btn-xs btn-default" %>
         <% end %>
       <% end %>
