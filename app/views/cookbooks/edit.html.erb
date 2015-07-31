@@ -1,3 +1,13 @@
-<h3>Edit '<%= @cookbook.name %>'</h3>
+<div class="row">
+  <div class="col-sm-offset-3 col-sm-6">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">Edit '<%= @cookbook.name %>'</h3>
+      </div>
 
-<%= render partial: 'form', locals: { method_name: "put" } %>
+      <div class="panel-body">
+        <%= render partial: 'form', locals: { method_name: "put" } %>
+      </div>
+    </div>
+  </div>
+</div>
