@@ -26,6 +26,7 @@ class UsersController < ApplicationController
     @user = User.find(session[:user_id])
     @cookbooks = Cookbook.where(user_id: @user.id )
     @recipes = Recipe.where(user_id: @user.id )
+    @ingredients = Ingredient.where(user_id: @user.id)
   end
 
   def view

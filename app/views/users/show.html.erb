@@ -41,11 +41,23 @@
     </tr>
     <% end %>
 
-
-
-
-
   </table>
+
+  <table class="table table-bordered">
+  <tr>
+      <th>Your Ingredients</th>
+      <th>Edit!</th>
+      <th>Delete?</th>
+  </tr>
+
+  <% @ingredients.each do |ingredient| %>
+  <tr>
+    <td><%= link_to "#{ingredient.name}", ingredient_path(ingredient.id)%></td>
+    <td><%= button_to "Edit", edit_ingredient_path(ingredient.id), method: "get", class: "btn btn-danger" %></td>
+    <td><%= button_to "Delete", ingredient_path(ingredient.id), method: "delete", class: "btn btn-danger" %></td>
+  </tr>
+  <% end %>
+</table>
 
 
 

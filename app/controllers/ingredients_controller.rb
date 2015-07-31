@@ -16,6 +16,7 @@ class IngredientsController < ApplicationController
 
   def create
     @ingredient = Ingredient.new(ingredient_params)
+    @ingredient.user_id = session[:user_id]
     if @ingredient.save
       redirect_to ingredient_path(@ingredient)
     else
