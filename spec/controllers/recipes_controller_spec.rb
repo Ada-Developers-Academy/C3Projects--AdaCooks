@@ -17,8 +17,6 @@ RSpec.describe RecipesController, type: :controller do
   end
 
   describe "GET #new" do
-
-
     it "responds successfully with an HTTP 200 status code" do
       @user = create :user
       session[:user_id] = @user.id
@@ -33,4 +31,20 @@ RSpec.describe RecipesController, type: :controller do
      expect(assigns(:recipe)).to be_kind_of(Object)
    end
  end
+
+ describe "DELETE #destroy" do
+
+    before :each do
+      create :ingredient
+      @recipe = create :recipe
+      @user = create :user
+      session[:user_id] = 1
+    end
+
+    it "deletes the recipe" do
+      delete :destroy, id: @recipe.id
+
+      expect(Recipe.count).to eq 0
+    end
+  end
 end
