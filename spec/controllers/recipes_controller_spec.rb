@@ -2,9 +2,8 @@ require 'rails_helper'
 
 RSpec.describe RecipesController, type: :controller do
   before :each do
-    ingredient = create :ingredient, id: 99
-    recipe = create :recipe, id: 1,  user_id: 1
-
+    create :ingredient, id: 99
+    create :recipe, id: 1,  user_id: 1
   end
 
 
@@ -58,5 +57,49 @@ RSpec.describe RecipesController, type: :controller do
       expect(flash[:error]).to eq("Please enter valid stuff")
     end
   end
+
+  describe "GET #show" do
+    it "renders the :show view" do
+      user = create :user, name: "bob"
+      ingredient = create :ingredient, name: "wimpy pasta"
+      recipe = create :recipe, user_id: user.id, ingredient_ids: [ingredient.id]
+
+      get :show, id: recipe.id
+
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+      expect(response).to render_template(:show)
+    end
+
+    it "still renders :show for that user's recipe" do
+      user = create :user, name: "bob"
+      ingredient = create :ingredient, name: "wimpy pasta"
+      recipe = create :recipe, user_id: user.id, ingredient_ids: [ingredient.id]
+      session[:user_id] = user.id
+
+      get :show, id: recipe.id, user_id: user.id
+
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+      expect(response).to render_template(:show)
+    end
+  end
+
+  describe "GET #edit" do
+    it "renders the :edit view" do
+      user = create :user, name: "sue"
+      recipe = create :recipe, user_id: user.id, ingredient_ids: [99]
+      session[:user_id] = user.id
+
+      get :edit, id: recipe.id, user_id: user.id
+
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+      expect(response).to render_template(:edit)
+    end
+  end
+
+
+
 
 end
