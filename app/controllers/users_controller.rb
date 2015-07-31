@@ -25,6 +25,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @cookbooks = Cookbook.where(user_id: session[:user_id])
     @recipes = Recipe.where(user_id: session[:user_id])
+    @ingredients = Ingredient.where(user_id: session[:user_id])
   end
 
   private

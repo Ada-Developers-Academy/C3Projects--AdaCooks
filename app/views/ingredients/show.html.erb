@@ -18,6 +18,10 @@
 </div>
 
 <div class="row col-sm-12">
+  <h3>Chef: <%= link_to @user.username, user_path(@user.id) %></h3>
+</div>
+
+<div class="row col-sm-12">
   <h3>Recipes containing <%= @ingredient.name %>:</h3>
   <%= render partial: "shared/recipes" %>
 </div>

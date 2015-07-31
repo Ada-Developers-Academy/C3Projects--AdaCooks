@@ -10,7 +10,10 @@ class RecipesController < ApplicationController
     @recipes = Recipe.all.alpha_order
   end
 
-  def show; end
+  def show
+    recipe_user_id = @recipe.user_id
+    @user = User.find(recipe_user_id)
+  end
 
   def new
     @recipe = Recipe.new

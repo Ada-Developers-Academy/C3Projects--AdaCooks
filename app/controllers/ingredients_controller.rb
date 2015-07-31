@@ -21,6 +21,8 @@ class IngredientsController < ApplicationController
 
   def show
     @recipes = @ingredient.recipes
+    ingredient_user_id = @ingredient.user_id
+    @user = User.find(ingredient_user_id)
   end
 
   def new

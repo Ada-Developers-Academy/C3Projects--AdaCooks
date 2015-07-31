@@ -15,5 +15,12 @@
   <%= render partial: "shared/cookbooks" %>
 <% end %>
 
-<h3>Recipes</h3>
+<h3>Recipes<small><%= link_to new_recipe_path(@user.id) do %>
+  <span class="glyphicon glyphicon-plus" aria-hidden="true" data-toggle="tooltip" title="Create a Recipe!"></span>
+<% end %></small></h3>
 <%= render partial: "shared/recipes" %>
+
+<h3>Ingredients<small><%= link_to new_ingredient_path(@user.id) do %>
+  <span class="glyphicon glyphicon-plus" aria-hidden="true" data-toggle="tooltip" title="Create an Ingredient!"></span>
+<% end %></small></h3>
+<%= render partial: "shared/ingredients" %>
