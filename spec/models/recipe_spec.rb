@@ -20,7 +20,7 @@ RSpec.describe Recipe, type: :model do
     end
   end
 
-  describe "methods" do
+  describe "scope" do
     before :each do
       @recipe1 = Recipe.new(name: "hi", prep: "bye")
       @recipe2 = Recipe.new(name: "bye", prep: "bye")
@@ -32,7 +32,22 @@ RSpec.describe Recipe, type: :model do
 
     it "sorts all the recipes by alphabetical order" do
       correct_order = [@recipe2, @recipe1, @recipe3]
-      expect(Recipe.organize).to eq(correct_order)
+      expect(Recipe.alpha).to eq(correct_order)
+    end
+  end
+
+  describe "associations" do
+    before :each do
+      @recipe1 = Recipe.new(name: "hi", prep: "bye")
+      @recipe1.save(validate: false)
+    end
+
+    it "should have an ingredients method" do
+      expect(@recipe1).to respond_to(:ingredients)
+    end
+
+    it "should have a cookbook method" do
+      expect(@recipe1).to respond_to(:cookbook_id)
     end
   end
 

@@ -8,6 +8,12 @@ RSpec.describe IngredientsController, type: :controller do
       expect(response).to be_success
       expect(response).to have_http_status(200)
     end
+
+    it "loads all the ingredients" do
+      ingredient1, ingredient2 = Ingredient.create(name: "air"), Ingredient.create(name: "water")
+      get :index
+      expect(assigns(:ingredients)).to match_array([ingredient1, ingredient2])
+    end
   end
 
   describe "GET #new" do
@@ -22,18 +28,23 @@ RSpec.describe IngredientsController, type: :controller do
   end
 
   describe "POST #create" do
-    let(:ingredient) { create :ingredient }
-
     context "valid params" do
     before :each do session[:user_id] = 1 end
+      let(:ingredient_params) do
+        {
+          ingredient: {
+            name: "sugar"
+          }
+        }
+      end
 
       it "creates an ingredient" do
-        post :create, ingredient.attributes
+        post :create, ingredient_params
         expect(Ingredient.count).to eq(1)
       end
 
       it "redirects after successfully creating a new ingredient" do
-        post :create, ingredient.attributes
+        post :create, ingredient_params
         expect(response).to redirect_to(ingredients_path)
       end
     end
@@ -57,7 +68,7 @@ RSpec.describe IngredientsController, type: :controller do
 
       it "renders :new ingredient form" do
         post :create, ingredient_params
-        expect(response).to redirect_to(ingredients_path)
+        expect(response).to render_template("new")
       end
     end
   end

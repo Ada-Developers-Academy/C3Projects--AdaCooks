@@ -26,7 +26,15 @@ RSpec.describe Ingredient, type: :model do
     it "sorts all the ingredients by alphabetical order" do
       ingredient2
       correct_order = [ingredient3, ingredient2, ingredient1]
-      expect(Ingredient.organize).to eq(correct_order)
+      expect(Ingredient.alpha).to eq(correct_order)
+    end
+  end
+
+  describe "associations" do
+    let(:ingredient) {create :ingredient}
+
+    it "should have a 'recipe' method" do
+      expect(:ingredient).to respond_to(:recipe_id)
     end
   end
 end
