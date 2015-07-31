@@ -83,19 +83,12 @@ def edit
 
   def remove_recipe
     @cookbook = Cookbook.find(params[:id])
-    @recipe = Recipe.find(params[:recipe])
-    @cookbook.recipes.delete(@recipe)
+    # @recipe = @cookbook.find(params[:recipe])
+    @cookbook.recipes.delete(params[:recipe])
 
     redirect_to cookbook_path(@cookbook)
   end
-  # def rm_recipe
-  #   @cookbook = Cookbook.find(params[:cookbook])
-  #   @recipe = Recipe.find(params[:recipe])
-  #   @recipe.cookbook_id = nil
-  #   @recipe.save
-  #
-  #   redirect_to user_path(session[:user_id], :cookbook => @cookbook.id)
-  # end
+
   private
 
   def cookbook_params
