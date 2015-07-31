@@ -25,7 +25,7 @@ class CookbooksController < ApplicationController
     @cookbook.user_id = session[:user_id]
 
     if @cookbook.save
-      redirect_to root_path, notice: "Cookbook added!"
+      redirect_to user_path(session[:user_id]), notice: "Cookbook added!"
     else
       flash.now[:error] = ERRORS[:unsuccessful_save]
       render :new
@@ -37,9 +37,13 @@ class CookbooksController < ApplicationController
   def update
     @cookbook.update(create_cookbook_params)
     @cookbook.recipe_ids = [] unless params[:cookbook][:recipe_ids]
-    @cookbook.save
 
-    redirect_to user_cookbook_path(session[:user_id], @cookbook.id)
+    if @cookbook.save
+      redirect_to user_cookbook_path(session[:user_id], @cookbook.id), notice: "Cookbook updated!"
+    else
+      flash.now[:errors] = ERRORS[:unsuccessful_save]
+      redirect_to user_cookbook_path(session[:user_id], @cookbook.id)
+    end
   end
 
   def destroy
