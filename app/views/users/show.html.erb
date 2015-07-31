@@ -5,7 +5,7 @@
 <h3><%= @user.username %>'s Recipes</h3>
 <%= render 'shared/list_of_links_with_images', { objects: @recipes } %>
 <% if session[:user_id] == @user.id %>
-  <%= link_to "Add Recipe", new_recipe_path, class: "btn btn-default" %>
+  <%= link_to "New Recipe", new_recipe_path, class: "btn btn-default" %>
 <% end %>
 
 <h3><%= @user.username %>'s Cookbooks</h3>
