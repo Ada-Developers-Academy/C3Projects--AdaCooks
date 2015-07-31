@@ -15,14 +15,20 @@
 
     <p>Preparation: <%= @recipe.preparation %></p>
 
-    <% if appropriate_user(@recipe) %>
+    <% if @current_user %>
       <p>Save to your cookbook:</p>
 
-      <%= form_tag(controller: "recipes", action: "add_to_cookbook", method: "post", class: "form") do %>
-        <%= collection_select(:cookbook, :cookbook_id, @cookbooks, :id, :name, include_blank: true) %>
-        <%= submit_tag "Save" %>
+      <% if @cookbooks.count > 0 %>
+        <%= form_tag(controller: "recipes", action: "add_to_cookbook", method: "post", class: "form") do %>
+          <%= collection_select(:cookbook, :cookbook_id, @cookbooks, :id, :name, include_blank: true) %>
+          <%= submit_tag "Save" %>
+        <% end %>
+      <% else %>
+        <em>Either you have no cookbooks, or this recipe is already part of all of your cookbooks.</em>
       <% end %>
+    <% end %>
 
+    <% if appropriate_user(@recipe) %>
       <p><%= link_to "Edit this recipe", edit_recipe_path(@recipe), class: "btn btn-default" %></p>
 
       <p><%= link_to "Delete this recipe", recipe_path(@recipe), method: "delete", data: { confirm: "Are you sure?" }, class: "btn btn-danger" %></p>
