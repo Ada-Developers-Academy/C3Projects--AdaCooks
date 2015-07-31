@@ -4,17 +4,20 @@
     <%= flash.now[:login_error] %>
 </div>
   <% end %>
-<%= form_for :session, url: login_path do |f| %>
+<%= form_for :session, url: login_path, html: { class: "form" } do |f| %>
 <legend>User Info</legend>
   <fieldset>
-  <%= f.label :email %>
-  <%= f.text_field :email %>
+    <div class="form-group">
+      <%= f.label :email %>
+      <%= f.text_field :email, class: "form-control" %>
+    </div>
 
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+    <div class="form-group">
+      <%= f.label :password %>
+      <%= f.password_field :password, class: "form-control" %>
+    </div>
 
-  <%= f.submit "LOGIN" %>
+  <%= f.submit "Login", class: "btn btn-primary" %>
 </fieldset>
 
 <% end %>
-
