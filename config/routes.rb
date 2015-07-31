@@ -16,8 +16,9 @@ Rails.application.routes.draw do
   
   resources :ingredients
   
-  resources :users, except: [:new, :create]
+  resources :users, except: [:new, :create, :edit]
   get 'my_recipes', to: 'users#my_recipes', as: 'my_recipes'
   get 'my_cookbooks', to: 'users#my_cookbooks', as: 'my_cookbooks'
   get 'my_ingredients', to: 'users#my_ingredients', as: 'my_ingredients'
+  get 'edit_profile', to: 'users#edit', as: 'edit_profile'
 end
