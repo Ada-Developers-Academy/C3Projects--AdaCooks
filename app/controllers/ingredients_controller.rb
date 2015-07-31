@@ -1,7 +1,7 @@
 class IngredientsController < ApplicationController
   before_action :set_ingredient, only: [:show, :edit, :update, :destroy]
 
-  before_action :current_user, only: [:create, :show, :edit, :update]
+  before_action :current_user, only: [:create, :show, :edit, :update, :new]
 
   before_action :require_signin, only: [:new]
   

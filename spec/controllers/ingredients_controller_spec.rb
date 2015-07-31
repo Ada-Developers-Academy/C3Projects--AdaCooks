@@ -11,7 +11,10 @@ RSpec.describe IngredientsController, type: :controller do
 
 
   describe "GET #new" do
+    let(:user) { create :user }
+    
     before :each do
+      session[:user_id] = user.id
       get :new
     end
 

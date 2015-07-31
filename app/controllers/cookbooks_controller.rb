@@ -1,6 +1,6 @@
 class CookbooksController < ApplicationController
   before_action :set_cookbook, only: [:edit, :update, :show, :destroy]
-  before_action :current_user, only: [:create, :show, :edit, :update]
+  before_action :current_user, only: [:create, :show, :edit, :update, :new]
 
   before_action :require_signin, only: [:new]
   before_action :require_owner, only: [:show, :edit, :update]

@@ -7,6 +7,7 @@ RSpec.describe CookbooksController, type: :controller do
 
   describe "GET #new" do
     before :each do
+      session[:user_id] = @user.id
       get :new
     end
 
