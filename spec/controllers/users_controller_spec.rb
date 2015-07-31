@@ -32,7 +32,7 @@ RSpec.describe UsersController, type: :controller do
     it "renders dashboard for logged in users" do
       user = create :user, id: 88
       session[:user_id] = user.id
-      get :dashboard, id: user.id
+      get :dashboard, user_id: user.id
 
       expect(response).to be_success
       expect(response).to have_http_status(200)
@@ -42,7 +42,7 @@ RSpec.describe UsersController, type: :controller do
     it "doesn't render dashboard for guest users" do
       user = create :user, id: 88
       session[:user_id] = nil
-      get :dashboard, id: user.id
+      get :dashboard, user_id: user.id
 
       expect(response).to have_http_status(302)
       expect(response).to redirect_to(login_path)
@@ -52,7 +52,7 @@ RSpec.describe UsersController, type: :controller do
   describe "GET #profile" do
     it "renders the user profile" do
       user = create :user
-      get :profile, id: user.id
+      get :profile, user_id: user.id
 
       expect(response).to be_success
       expect(response).to have_http_status(200)
@@ -64,7 +64,7 @@ RSpec.describe UsersController, type: :controller do
       cookbook1 = create :cookbook, name: "1", user_id: user.id
       cookbook2 = create :cookbook, name: "2", user_id: user.id
       cookbooks = [cookbook1, cookbook2]
-      get :profile, id: user.id
+      get :profile, user_id: user.id
 
       expect(Cookbook.where(user_id: user.id)).to eq(cookbooks)
     end
@@ -75,7 +75,7 @@ RSpec.describe UsersController, type: :controller do
       recipe1 = create :recipe, name: "1", user_id: user.id, ingredient_ids: [ingredient.id]
       recipe2 = create :recipe, name: "2", user_id: user.id, ingredient_ids: [ingredient.id]
       recipes = [recipe1, recipe2]
-      get :profile, id: user.id
+      get :profile, user_id: user.id
 
       expect(Recipe.where(user_id: user.id)).to eq(recipes)
     end
@@ -85,7 +85,7 @@ RSpec.describe UsersController, type: :controller do
       ingredient1 = create :ingredient, name: "1", user_id: user.id
       ingredient2 = create :ingredient, name: "2", user_id: user.id
       ingredients = [ingredient1, ingredient2]
-      get :profile, id: user.id
+      get :profile, user_id: user.id
 
       expect(Ingredient.where(user_id: user.id)).to eq(ingredients)
     end
