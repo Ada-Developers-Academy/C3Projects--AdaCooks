@@ -13,6 +13,8 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url(http://fonts.googleapis.com/css?family=Permanent+Marker);
+
 
 html {
   background-image: url("gross_pattern.png");
@@ -25,6 +27,17 @@ body {
   margin: auto;
   padding: 30px 20px 30px 20px;
 }
+
+h2 {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 36px;
+}
+
+h3 {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 28px;
+}
+
 
 #main-container {
   min-height: 100vh;
@@ -60,6 +73,10 @@ body {
   color: #6712DA;
 }
 
+.content {
+  margin: 0 20px 0 20px;
+}
+
 .form-control {
   max-width: 250px;
 }
@@ -68,6 +85,10 @@ body {
   width: auto;
   display: inline-block;
   vertical-align: middle;
+}
+
+.search {
+  margin: 0 20px 0 20px;
 }
 
 .inline-form {
