@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+  before_action :require_login, except: [:show]
   before_action :check_user_params, except: [:show]
 
   def new
