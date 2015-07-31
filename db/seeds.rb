@@ -16,7 +16,7 @@ recipes_params = {
   oreo_ice_cream: { name: "Oreo Ice Cream", description: "Delicious on a hot day!", user_id: users[:gurl].id, image: "oreo_ice_cream.jpg" },
   brownies: { name: "Brownies", description: "Delicious on a cold day!", user_id: users[:gurl].id, image: "brownies.jpg" },
   mac_and_cheese: { name: "Mac & Cheese", description: "SO YUMMY!!", user_id: users[:cheese_man].id, image: "mac-cheese.jpg" },
-  water_recipe: { name: "Water", description: "Drink me.", user_id: users[:cheese_man].id }
+  water_recipe: { name: "Water", description: "Drink me.", user_id: users[:cheese_man].id, image: "water.jpg" }
 }
 
 recipes = {}
