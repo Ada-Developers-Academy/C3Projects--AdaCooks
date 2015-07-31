@@ -81,6 +81,11 @@ def remove
   redirect_to user_cookbook_path(session[:user_id], params[:cookbook_id])
 end
 
+def destroy
+  @recipe.destroy
+  redirect_to user_path(session[:user_id])
+end
+
 
 private
 
