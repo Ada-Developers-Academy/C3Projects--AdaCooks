@@ -21,11 +21,11 @@ RSpec.describe UsersController, type: :controller do
     end
 
     describe "POST #create" do
-    context "valid form input" do
-      before :each do
-        @params = attributes_for :user
-      end
-    end
+    # # context "valid form input" do
+    #   before :each do
+    #     @params = attributes_for :user
+    #   end
+    # end
 
   it "redirects to newly created user's show page" do
       post :create, user: @params

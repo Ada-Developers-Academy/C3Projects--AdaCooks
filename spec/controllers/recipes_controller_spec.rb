@@ -17,7 +17,7 @@ RSpec.describe RecipesController, type: :controller do
   end
 
   describe "GET #new" do
-    end
+
 
     it "responds successfully with an HTTP 200 status code" do
       @user = create :user
@@ -33,3 +33,4 @@ RSpec.describe RecipesController, type: :controller do
      expect(assigns(:recipe)).to be_kind_of(Object)
    end
  end
+end
