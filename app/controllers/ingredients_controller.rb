@@ -27,7 +27,7 @@ class IngredientsController < ApplicationController
   def destroy
     @ingredient.destroy
 
-    redirect_to root_path
+    redirect_to user_path(session[:user_id])
   end
 
   private

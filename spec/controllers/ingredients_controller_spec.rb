@@ -77,6 +77,7 @@ RSpec.describe IngredientsController, type: :controller do
     before(:each) do
       @pine = create :ingredient
       @pop = create :ingredient, name: "PopTarts"
+      session[:user_id] = 20
     end
 
     it "ingredient count changes by -1" do
@@ -85,7 +86,7 @@ RSpec.describe IngredientsController, type: :controller do
 
     it "redirect_to root_path" do
       delete :destroy, id: @pine.id
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to(user_path(session[:user_id]))
     end
   end # destroy
 
