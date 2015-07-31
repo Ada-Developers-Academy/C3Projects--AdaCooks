@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:edit, :update, :show, :destroy, :add_to_cookbook]
+  before_action :set_recipe, except: [:index, :new, :create]
   before_action :current_user, only: [:show, :add_to_cookbook]
   before_action :setup_show, only: [:show, :add_to_cookbook]
   after_action :last_page
@@ -15,7 +15,6 @@ class RecipesController < ApplicationController
   }
 
   def index
-    # @recipes = Recipe.alpha
     if params[:search]
       @recipes = Ingredient.search(params[:search])
       if @recipes == nil
@@ -49,10 +48,12 @@ class RecipesController < ApplicationController
   end
 
   def edit
+    5.times { @recipe.recipe_ingredients.build }
     @recipe_name = @recipe.name.titlecase
   end
 
   def update
+    @recipe.clear_ingredients
     @recipe.update(recipe_params)
 
     if @recipe.save
@@ -100,7 +101,7 @@ class RecipesController < ApplicationController
     params.require(:recipe).permit(
     :name, :description, :image, :preparation, :user_id,
     recipe_ingredients_attributes: [
-      :quantity, :measurement_id, :ingredient_id
+      :quantity, :measurement_id, :ingredient_id, :_destroy
       ]
     )
   end

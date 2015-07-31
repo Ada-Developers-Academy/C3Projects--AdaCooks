@@ -20,5 +20,4 @@ Rails.application.routes.draw do
   get 'my_recipes', to: 'users#my_recipes', as: 'my_recipes'
   get 'my_cookbooks', to: 'users#my_cookbooks', as: 'my_cookbooks'
   get 'my_ingredients', to: 'users#my_ingredients', as: 'my_ingredients'
-
 end
