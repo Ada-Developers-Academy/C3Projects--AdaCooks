@@ -6,14 +6,23 @@
   <%= link_to 'New recipe', new_recipe_path, class: "btn btn-default", role: "button" %>
 </p>
 
-<ul class="list-group">
-  <% @recipes.each do |recipe| %>
-    <li class="list-group-item">
-      <%= link_to recipe.name, recipe %>
-    </li>
-  <% end %>
-</ul>
-
-
-
-    
+<table class="table table-hover">
+  <tbody>
+    <tr>
+      <th>Recipe</th>
+      <th># of Ingredients</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <% @recipes.each do |recipe| %>
+      <tr>
+        <td>
+          <%= link_to recipe.name, recipe %>
+        </td>
+        <td><%= recipe.ingredients.count %></td>
+        <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
+        <td><%= link_to 'Delete', recipe, method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
