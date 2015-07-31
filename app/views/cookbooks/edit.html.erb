@@ -1,30 +1,3 @@
-<div class="container">
-  <h2><center> Edit Your Cookbook</h2>
-
-<div class="form-group">
-    <%= form_for @cookbook, url: user_cookbook_path(@cookbook.user_id, @cookbook.id), method: :patch, html: {class: "form"} do |f| %>
-  <div class="col-md-6 col-md-offset-3">
-    <%= render partial: "shared/errors", locals: { data_type: @cookbook } %>
-
-      <%= f.label :name %>
-      <%= f.text_field :name, class: "form-control" %>
-
-      <%= f.label :description %>
-      <%= f.text_field :description, class: "form-control" %>
-
-      <%= f.label :recipes %>
-      <div>
-        <%= collection_check_boxes(:cookbook, :recipe_ids, Recipe.all, :id, :name) do |b| %>
-          <%= b.label class: "checkbox-inline" do %>
-            <%= b.check_box + b.text.capitalize %>
-          <% end %>
-        <% end %>
-      </div>
-
-      <%= f.hidden_field :user_id, value: session[:user_id] %>
-    
-    <%= f.submit class: "btn btn-default" %>
-  <% end %>
-  </div>
- </div>
-</div>
+<%= render partial: "form", locals: { form_type: "Edit",
+                                      path: user_cookbook_path(@cookbook.user_id, @cookbook.id),
+                                      method: :patch } %>
