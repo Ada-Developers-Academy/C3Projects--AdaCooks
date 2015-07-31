@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  # before_action :require_login, only: [:show]
   before_action :registered_user, only: [:new]
 
   include ApplicationHelper

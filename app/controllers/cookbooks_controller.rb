@@ -1,13 +1,11 @@
 class CookbooksController < ApplicationController
   before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
 
-
   def show
     @cookbook = Cookbook.find(params[:id])
     @user = User.find(@cookbook.user_id)
     if session[:user_id]
       @current_user = User.find(session[:user_id])
-
     end
   end
 

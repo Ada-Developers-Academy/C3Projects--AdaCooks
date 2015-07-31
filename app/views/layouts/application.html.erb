@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>RabbitHoleSalads</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <div class="container">
+  <head>
+    <title>RabbitHoleSalads</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="container">
 
-    <%= render "shared/nav" %>
+      <%= render "shared/nav" %>
 
-    <div class="container marketing">
-      <% if flash[:error] %>
-        <h3><span class="label label-warning"><%= flash[:error] %></span></h3>
-      <% end %>
+      <div class="container marketing">
+        <% if flash[:error] %>
+          <h3><span class="label label-warning"><%= flash[:error] %></span></h3>
+        <% end %>
 
-      <%= yield %>
-      <hr class="featurette-divider">
+        <%= yield %>
+        <hr class="featurette-divider">
 
-      <%= render "shared/footer" %>
+        <%= render "shared/footer" %>
+      </div>
     </div>
-  </div>
+  </body>
 </html>
