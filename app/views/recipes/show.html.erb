@@ -2,6 +2,7 @@
 
 <% if session[:user_id] == @recipe.user.id %>
 	<%= button_to 'Edit', edit_recipe_path(@recipe), method: :get, class: 'btn btn-default' %>
+	<%= button_to 'Delete', recipe_path(@recipe), method: :delete, class: 'btn btn-danger' %>
 <% end %>
 
 <%= form_for(@recipe, url: { controller: :cookbooks, action: :update }, method: :put) do |f| %>
