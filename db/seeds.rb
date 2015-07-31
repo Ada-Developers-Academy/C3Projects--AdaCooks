@@ -57,10 +57,16 @@ cookbooks.each do |cookbook|
 end
 
 recipes = [
-  {name: "Sugar Bomb", cookbook_id: 1, user_id: 1, description: "This sweet concoction is the perfect treat after a long week.", prep: "Mix the grenadine and gin together and then pour over a glass of ice. For added pizazz add your favorite garnish or use rimming sugar", image: File.open(File.join('app/assets/images/recipes/sugar.jpeg')) }, #1
-  {name: "Orange Sunrise", cookbook_id: 2, user_id: 2, description: "A surprisingly strong orange drink", prep: "In a large glass combine the hooch, whisky and orange juice. Stir until combined. Add ice if desired. Garnish with orange zest.", image: File.open(File.join('app/assets/images/recipes/hooch.jpg')) }, #2
-  {name: "The Classic with a twist", cookbook_id: 3, user_id: 2, description: "Whisky on the rocks levels up with bitters and simple syrup.", prep: "Stir whisky and simple sryup together until combined. Add bitters and pour over ice.", image: File.open(File.join('app/assets/images/recipes/whisky.jpeg')) }, #3
-  {name: "Midori Sour", cookbook_id: 4, user_id: 3, description: "A sweet and tart beverage great for a night out or a night in.", prep: "Mix together 7-up, whisky sour and Midori. Add 1-3 maraschino cherries.", image: File.open(File.join('app/assets/images/recipes/midori.jpg')) } #4
+  {name: "Sugar Bomb", cookbook_id: 1, description: "This sweet concoction is the perfect treat after a long week.", prep: "Mix the grenadine and gin together and then pour over a glass of ice. For added pizazz add your favorite garnish or use rimming sugar", image: File.open(File.join('app/assets/images/recipes/sugar.jpeg')) }, #1
+  {name: "Orange Sunrise", cookbook_id: 2, description: "A surprisingly strong orange drink", prep: "In a large glass combine the hooch, whisky and orange juice. Stir until combined. Add ice if desired. Garnish with orange zest.", image: File.open(File.join('app/assets/images/recipes/hooch.jpg')) }, #2
+  {name: "The Classic with a twist", cookbook_id: 3, description: "Whisky on the rocks levels up with bitters and simple syrup.", prep: "Stir whisky and simple sryup together until combined. Add bitters and pour over ice.", image: File.open(File.join('app/assets/images/recipes/whisky.jpeg')) }, #3
+  {name: "Midori Sour", cookbook_id: 4, description: "A sweet and tart beverage great for a night out or a night in.", prep: "Mix together 7-up, whisky sour and Midori. Add 1-3 maraschino cherries.", image: File.open(File.join('app/assets/images/recipes/midori.jpg')) }, #4
+  {name: "Decisive", cookbook_id: 1, description: "A sweet and tart beverage great for a night out or a night in.", prep: "Pour whisky over ice. The End."  image: File.open(File.join('app/assets/images/recipes/basic.jpeg')) }, #5
+  {name: "Right to Choose... to Party", cookbook_id: 2, description: "A delicious mix, both sweet and subtle.", prep: "Mix all ingredients, garnish with cherries.", image: File.open(File.join('app/assets/images/recipes/fruitopia.jpeg')) }, #6
+  {name: "Midori Sour", cookbook_id: 3, description: "A sweet and tart beverage great for a night out or a night in.", prep: "Mix together 7-up, whisky sour and Midori. Add 1-3 maraschino cherries.", image: File.open(File.join('app/assets/images/recipes/midori.jpg')) }, #7
+  {name: "Midori Sour", cookbook_id: 4, description: "A sweet and tart beverage great for a night out or a night in.", prep: "Mix together 7-up, whisky sour and Midori. Add 1-3 maraschino cherries.", image: File.open(File.join('app/assets/images/recipes/midori.jpg')) }, #8
+  {name: "Midori Sour", cookbook_id: 1, description: "A sweet and tart beverage great for a night out or a night in.", prep: "Mix together 7-up, whisky sour and Midori. Add 1-3 maraschino cherries.", image: File.open(File.join('app/assets/images/recipes/midori.jpg')) }, #9
+  {name: "Smash(ed) the Patriarchy", cookbook_id: 2, description: "Get the party started with this intoxicating mix.", prep: "in a bathtub mix together all ingredients.", image: File.open(File.join('app/assets/images/recipes/midori.jpg')) } #10
 ]
 
 recipes.each do |recipe|
@@ -79,7 +85,23 @@ recipe_ingredients = [
   { recipe_id: 4, ingredient_id: 14, quantity: 4, measurement: "ounces" },
   { recipe_id: 4, ingredient_id: 15, quantity: 2, measurement: "ounces" },
   { recipe_id: 4, ingredient_id: 12, quantity: 2, measurement: "ounces" },
-  { recipe_id: 4, ingredient_id: 4, quantity: 2, measurement: "" }
+  { recipe_id: 4, ingredient_id: 4, quantity: 2, measurement: },
+  { recipe_id: 5, ingredient_id: 11, quantity: 4, measurement:"ounces" },
+  { recipe_id: 6, ingredient_id: 16, quantity: 2, measurement: "ounces" },
+  { recipe_id: 6, ingredient_id: 12, quantity: 3 },
+  { recipe_id: 6, ingredient_id: 1, quantity: 2, measurement: "ounces" },
+  { recipe_id: 6, ingredient_id: 14, quantity: 4, measurement: "ounces" },
+  { recipe_id: 10, ingredient_id: 1, quantity: 750, measurement: "ml" },
+  { recipe_id: 10, ingredient_id: 2, quantity: 750, measurement: "ml" },
+  { recipe_id: 10, ingredient_id: 3, quantity: 750, measurement: "ml" },
+  { recipe_id: 10, ingredient_id: 4, quantity: 750, measurement: "ml" },
+  { recipe_id: 10, ingredient_id: 6, quantity: 750, measurement: "ml" },
+  { recipe_id: 10, ingredient_id: 8, quantity: 750, measurement: "ml" },
+  { recipe_id: 10, ingredient_id: 10, quantity: 750, measurement: "ml" },
+  { recipe_id: 10, ingredient_id: 16, quantity: 750, measurement: "ml" },
+  { recipe_id: 10, ingredient_id: 17, quantity: 750, measurement: "ml" },
+  { recipe_id: 10, ingredient_id: 14, quantity: 750, measurement: "ml" },
+
 ]
 
 recipe_ingredients.each do |recipe_ingredients|
