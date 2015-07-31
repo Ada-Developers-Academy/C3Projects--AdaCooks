@@ -1,20 +1,4 @@
-<div class="container marketing">
+<%= render partial: 'ingredient_form', locals: { name: "Create New Ingredient", button: "Create"
+} %>
 
-  <% unless @ingredient.errors.values == [] %>
-    <div class="alert alert-danger" role="alert">
-      <%=  @ingredient.errors.full_messages.first %>
-    </div>
-  <% end %>
 
-  <fieldset>
-    <%= form_for @ingredient do |f| %>
-      <%= f.label "Add a new ingredient:" %>
-      <%= f.text_field :name, class: "form-control"%>
-
-      <%= f.label :image %>
-      <%= f.file_field :image %><br><br>
-
-      <%= f.submit "Add ingredient", class: "btn btn-primary" %>
-    <% end %>
-  <fieldset>
-</div>

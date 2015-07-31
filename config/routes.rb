@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :recipes
   resources :ingredients
-  resources :cookbooks
+  resources :cookbooks, except: [:index]
 
   get "/login" => "sessions#new", as: 'login'
   post "/login" => "sessions#create"
