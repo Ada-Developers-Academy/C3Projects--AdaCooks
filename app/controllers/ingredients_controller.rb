@@ -6,6 +6,24 @@ class IngredientsController < ApplicationController
     @ingredients = Ingredient.all.alphabet
   end
 
+  def edit
+    @ingredient = Ingredient.find(params[:id])
+    if session[:user_id] != @ingredient.user_id
+      redirect_to ingredient_path(@ingredient)
+    end
+  end
+
+  def update
+    @ingredient = Ingredient.find(params[:id])
+    @ingredient.update(ingredient_params)
+
+    if @ingredient.save
+      redirect_to user_path(session[:user_id])
+    else
+      render :edit
+    end
+  end
+
   def show
     @ingredient = find_ingredient
   end
