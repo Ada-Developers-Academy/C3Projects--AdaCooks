@@ -111,4 +111,40 @@ RSpec.describe RecipesController, type: :controller do
 			expect(assigns(:recipe)).to eq Recipe.find(1)
 		end
 	end
+
+	describe "DELETE destroy" do
+		before :each do
+			@recipe = create :recipe
+			@cookbook = create :cookbook
+			@ingredient = create :ingredient
+
+			@user = create :user
+			session[:user_id] = @user.id
+		end
+
+		it "deletes the recipe from the database" do
+			delete :destroy, id: 1
+			expect(Recipe.all).to_not include @recipe
+		end
+
+		it "deletes the association to the ingredient(s)" do
+			delete :destroy, id: 1
+			expect(@ingredient.recipes).to_not include @recipe
+		end
+
+		it "does not delete the associated ingredient(s)" do
+			delete :destroy, id: 1
+			expect(Ingredient.all).to include @ingredient
+		end
+
+		it "does not delete the associated cookbook" do
+			delete :destroy, id: 1
+			expect(Cookbook.all).to include @cookbook
+		end
+
+		it "redirects the user to their :show view" do
+			delete :destroy, id: 1
+			expect(subject).to redirect_to user_path(@user)
+		end
+	end
 end
