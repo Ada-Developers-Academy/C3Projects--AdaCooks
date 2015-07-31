@@ -15,12 +15,4 @@ class ApplicationController < ActionController::Base
   def require_login
     redirect_to login_path, flash: { errors: ERRORS[:not_logged_in] } unless session[:user_id]
   end
-
-  # before action for being able to edit and delete recipes and ingredients
-  # or access user cookbooks
-  def correct_user
-    logged_in_user = User.find(session[:user_id])
-    redirect_to user_path(logged_in_user) unless params[:user_id] == logged_in_user.id
-  end
-
 end
