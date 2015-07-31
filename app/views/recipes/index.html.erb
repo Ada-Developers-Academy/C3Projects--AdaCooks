@@ -11,7 +11,7 @@
   <% @recipes.each do |recipe| %>
     <div class="recipe_tiles col-md-3">
       <%= link_to(image_tag(recipe.image_url(:thumb)), recipe_path(recipe.id)) %>
-      <h4><%= recipe.name %></h4>
+      <h4><%=link_to "#{recipe.name}", recipe_path(recipe.id) %></h4>
     </div>
   <% end %>
 </div>

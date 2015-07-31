@@ -6,5 +6,5 @@
 <% @ingredient.recipes.each do |recipe| %>
 <%= link_to(image_tag(recipe.image_url(:thumb)), recipe_path(recipe.id)) %>
 <br>
-<%= recipe.name %>
+<%=link_to "#{recipe.name}", recipe_path(recipe.id) %>
 <% end %>

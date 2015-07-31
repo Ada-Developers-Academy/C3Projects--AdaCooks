@@ -10,7 +10,7 @@
   <% @recipe.ingredients.each do |ingredient| %>
     <div class="col-md-3">
       <%= link_to(image_tag(ingredient.image_url(:thumb)), ingredient_path(ingredient.id)) %>
-      <h5><%= ingredient.name %></h5>
+      <h5><%= link_to "#{ingredient.name}", ingredient_path(ingredient.id) %></h5>
     </div>
   <% end %>
 </div>

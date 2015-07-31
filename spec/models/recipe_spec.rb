@@ -7,6 +7,13 @@ RSpec.describe Recipe, type: :model do
       expect(Recipe.reflect_on_association(:cookbooks).macro).to eq(:has_and_belongs_to_many)
     end
 
+    it "A recipe must have a name" do
+      recipe= Recipe.create(name: "", description: "tiny bite size pieces")
+      recipe.save
+      expect(recipe).to_not be_valid
+
+    end
+
     it "has and belongs to many ingredients" do
       expect(Recipe.reflect_on_association(:ingredients).macro).to eq(:has_and_belongs_to_many)
     end
@@ -17,7 +24,7 @@ RSpec.describe Recipe, type: :model do
   end
 
   describe "search query" do
-    it "returns recipes whose names include query input" do 
+    it "returns recipes whose names include query input" do
 
       Recipe.create(name: "Chicken Soup")
       Recipe.create(name: "Chicken Tacos")
