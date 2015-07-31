@@ -29,7 +29,7 @@
 
 		<div class="form-group">
 			<%= ingredients.label :measurement %>
-			<!-- measurements array -->
+			<%= ingredients.select(:measurement, @measurements_array) %>
 		</div>
 
 		<div class="form-group">
