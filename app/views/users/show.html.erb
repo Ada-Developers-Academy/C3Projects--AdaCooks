@@ -11,16 +11,16 @@
   </div>
 </div>
 
-<h3><i class="fa fa-book"></i> Cookbooks
   <% if session[:user_id] %>
-    <small><%= link_to new_user_cookbook_path(@user.id) do %>
-        <span class="glyphicon glyphicon-plus" aria-hidden="true" data-toggle="tooltip" title="Create a Cookbook!"></span>
-      <% end %>
-    </small>
+    <h3><i class="fa fa-book"></i> Cookbooks
+      <small><%= link_to new_user_cookbook_path(@user.id) do %>
+          <span class="glyphicon glyphicon-plus" aria-hidden="true" data-toggle="tooltip" title="Create a Cookbook!"></span>
+        <% end %>
+      </small>
+    <%= render partial: "shared/cookbooks" %>
+    <a href="#top">Back to Top</a>
   <% end %>
 </h3>
-<%= render partial: "shared/cookbooks" %>
-<a href="#top">Back to Top</a>
 
 <h3><i class="fa fa-cutlery"></i> Recipes
   <% if session[:user_id] %>
