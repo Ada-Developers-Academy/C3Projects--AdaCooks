@@ -34,7 +34,7 @@ class IngredientsController < ApplicationController
     @ingredient.user_id = session[:user_id]
 
     if @ingredient.save
-      redirect_to ingredient_path(@ingredient.id), notice: "Ingredient added!"
+      redirect_to :back, notice: "Ingredient added!"
     else
       flash.now[:errors] = ERRORS[:unsuccessful_save]
       render :new

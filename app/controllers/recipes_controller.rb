@@ -24,7 +24,7 @@ class RecipesController < ApplicationController
     @recipe.user_id = session[:user_id]
 
     if @recipe.save
-      redirect_to recipe_path(@recipe.id), notice: "Recipe added!"
+      redirect_to :back, notice: "Recipe added!"
     else
       flash.now[:errors] = ERRORS[:unsuccessful_save]
       render :new
