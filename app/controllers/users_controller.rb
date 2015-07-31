@@ -35,7 +35,6 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to login_url
     else
-
       render :new
     end
   end
