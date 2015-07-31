@@ -20,4 +20,7 @@ Rails.application.routes.draw do
   patch "/unassociate_recipe/:recipe_id/cookbook/:id", to: "cookbooks#unassociate", as: "unassociate_recipe"
   put "/unassociate_recipe/:recipe_id/cookbook/:id", to: "cookbooks#unassociate"
 
+  patch "/toggle_cookbooks/:recipe_id", to: "recipes#toggle_cookbooks", as: "toggle_cookbooks"
+  put "/toggle_cookbooks/:recipe_id", to: "recipes#toggle_cookbooks"
+
 end
