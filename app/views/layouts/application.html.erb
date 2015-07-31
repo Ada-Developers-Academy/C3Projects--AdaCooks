@@ -24,7 +24,7 @@
           </div>
         </div>
       </div>
-        <% if session[:user_id] %>
+       <% if session[:user_id] %>
           <div class="account-buttons">
           <%= link_to "Logout", logout_path, method: :delete, class: "btn btn-default" %>
           </div>
