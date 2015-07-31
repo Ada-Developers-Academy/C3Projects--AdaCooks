@@ -38,8 +38,6 @@ RSpec.describe Cookbook, type: :model do
     it "has ingredients through recipes" do
       cookbook = create :cookbook
       recipe = create :recipe
-      ingredient = create :ingredient
-      recipe.ingredients << ingredient
       cookbook.recipes << recipe
 
       expect(cookbook.ingredients.count).to eq 1

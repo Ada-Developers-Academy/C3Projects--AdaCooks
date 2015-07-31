@@ -15,11 +15,9 @@ RSpec.describe User, type: :model do
     end
 
     it "has_many recipes" do
-      7.times do
-        create(:recipe)
-      end
+      create(:recipe)
 
-      expect(@user.recipes.count).to eq 7
+      expect(@user.recipes.count).to eq 1
     end
 
     it "has_many ingredients" do
