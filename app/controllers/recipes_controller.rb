@@ -20,6 +20,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(create_params)
 
     if @recipe.save
+      flash[:success] = "Mmmm, #{ @recipe.proper_name } sounds delicious."
       redirect_to user_recipe_ingredients_path(@authenticated_user, @recipe)
     else
       flash[:error] = @recipe.errors.full_messages.first
@@ -31,6 +32,7 @@ class RecipesController < ApplicationController
 
   def update
     if @recipe.update(edit_params)
+      flash[:success] = "What a great way to improve #{ @recipe.proper_name }! You can update the ingredients now."
       redirect_to user_recipe_ingredients_path(@authenticated_user, @recipe)
     else
       flash[:error] = @recipe.errors.full_messages.first

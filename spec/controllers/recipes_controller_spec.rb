@@ -125,6 +125,12 @@ RSpec.describe RecipesController, type: :controller do
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
       end
+
+      it "flashes an error message" do
+        get :edit, id: @recipe.id, user_id: @user.id
+        expect(flash[:error].nil?).to eq(false)
+        expect(flash[:success].nil?).to eq(true)
+      end
     end
 
     context "authenticated users that don't own current recipe" do
@@ -137,6 +143,12 @@ RSpec.describe RecipesController, type: :controller do
         get :edit, id: @recipe.id, user_id: @user.id
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
+      end
+
+      it "flashes an error message" do
+        get :edit, id: @recipe.id, user_id: @user.id
+        expect(flash[:error].nil?).to eq(false)
+        expect(flash[:success].nil?).to eq(true)
       end
     end
   end
@@ -154,8 +166,9 @@ RSpec.describe RecipesController, type: :controller do
     end
 
     context "valid form input" do
-      it "redirects to newly created recipe's show page" do
+      it "redirects to the ingredient add/update page" do
         post :create, recipe: @recipe, user_id: @user.id
+        # OPTIMIZE: actually I guess we're just checking for a redirect >_>
         expect(response).to have_http_status(302)
       end
 
@@ -165,10 +178,10 @@ RSpec.describe RecipesController, type: :controller do
         expect(assigns(:recipe)).to be_valid
       end
 
-      it "flashes an error message" do
+      it "flashes a success message" do
         post :create, recipe: @recipe, user_id: @user.id
-        expect(flash[:error].nil?).to eq(false)
-        expect(flash[:false].nil?).to eq(true)
+        expect(flash[:success].nil?).to eq(false)
+        expect(flash[:error].nil?).to eq(true)
       end
     end
 
@@ -247,10 +260,10 @@ RSpec.describe RecipesController, type: :controller do
     end
 
     context "valid form input" do
-      it "redirects to newly created recipe's show page" do
+      it "redirects to the add/update ingredients page" do
         patch :update, id: @recipe.id, recipe: @params, user_id: @user.id
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to(recipe_path(@recipe))
+        expect(response).to redirect_to(user_recipe_ingredients_path(@user, @recipe))
       end
 
       it "updates the recipe" do # OPTIMIZE: this creates new recipe test
