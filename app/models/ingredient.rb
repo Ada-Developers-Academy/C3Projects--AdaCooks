@@ -1,5 +1,5 @@
 class Ingredient < ActiveRecord::Base
-  has_many :recipes, through: :measurements
+  has_many :recipes, -> { uniq }, through: :measurements
   has_many :measurements
   has_many :cookbooks, through: :recipes
   belongs_to :user
