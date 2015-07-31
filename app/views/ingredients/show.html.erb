@@ -2,11 +2,13 @@
 
 <%= image_tag @ingredient.image_url(:display) %>
 
-
-<p>
-  <%= link_to 'Edit', edit_ingredient_path(@ingredient), role: "button", 
-    class: "btn btn-primary" %>
-</p>
+<% if appropriate_user(@ingredient) %>
+  <p>
+    <%= link_to 'Edit', edit_ingredient_path(@ingredient), role: "button", 
+      class: "btn btn-primary" %>
+  </p>
+  <p><%= link_to "Delete this ingredient", ingredient_path(@ingredient), method: "delete", data: { confirm: "Are you sure?" }, class: "btn btn-danger" %></p>
+<% end %>
 
 <h4>Used in these recipes:</h4>
 

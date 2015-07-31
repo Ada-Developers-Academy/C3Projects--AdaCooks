@@ -1,6 +1,6 @@
 class IngredientsController < ApplicationController
   before_action :set_ingredient, only: [:show, :edit, :update, :destroy]
-  before_action :current_user, only: [:create]
+  before_action :current_user, only: [:create, :show]
 
   after_action :last_page
 
