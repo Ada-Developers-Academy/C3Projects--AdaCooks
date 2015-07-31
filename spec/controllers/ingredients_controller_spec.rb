@@ -36,8 +36,8 @@ RSpec.describe IngredientsController, type: :controller do
   describe "GET #new" do
     before :each do
       @ingredient = build :ingredient
-      @user = create :user
-      session[:user_id] = @user.id
+      user = create :user
+      session[:user_id] = user.id
     end
 
     it "renders the new view" do
@@ -83,169 +83,45 @@ RSpec.describe IngredientsController, type: :controller do
 
   describe "GET #edit" do
     before :each do
-      @user = User.create(name: "vikushonok", email: "vika@email.com", password_digest: "VerySmartPassword")
-      session[:user_id] = @user.id
+      @ingredient = create :ingredient
+      user = create :user
+      session[:user_id] = user.id
     end
 
     it "renders the edit view" do
-      get :edit, user_id: @user
+      get :edit, id: @ingredient.id
 
-      expect(response).to render_template("new")
+      expect(response).to render_template("edit")
     end
   end
 
   # # UPDATE ACTION__________________________________________________________________
+  describe "PATCH #update" do
+    it "returns updates an ingredient record" do
+      user = create :user
+      session[:user_id] = user.id
+      ingredient = create :ingredient
+      old_name = ingredient.name
+
+      patch :update, id: ingredient.id, ingredient: { name: "updated name" }
+      ingredient.reload
+
+      expect(ingredient.name).to eq("updated name")
+    end
+  end
+
+  # # SEARCH ACTION__________________________________________________________________
+  # describe "GET #search" do
   #
-  # describe "PUT #update" do
-  #   context "valid params" do
-  #     before :each do
-  #       @user = User.create(name: "vikushonok", email: "vika@email.com", password_digest: "VerySmartPassword")
-  #       session[:user_id] = @user.id
-  #       @product = Product.create(name: 'product', price: 10, user_id: 1, stock: 1)
+  #   it "renders search page" do
+  #
+  #     let(:params[:search]) do { name: "Tomato" }
   #     end
   #
-  #     let(:product_params) do
-  #       {
-  #         product: {
-  #           name: 'product_changed_name',
-  #           price: 10.99,
-  #           stock: 10,
-  #           user_id: 1
-  #         }
-  #       }
-  #     end
+  #     ingredient = create :ingredient
   #
-  #     it "updates a product" do
-  #       put :update, { id: @product.id }.merge(product_params)
-  #       @product.reload
-  #
-  #       expect(Product.find(1).name).to eq 'product_changed_name'
-  #     end
-  #
-  #     it "redirects to merchant product show page" do
-  #       put :update, { id: @product.id }.merge(product_params)
-  #       @product.reload
-  #
-  #       expect(response).to redirect_to(user_path(@product.user_id))
-  #     end
-  #   end
-  #
-  #   context "invalid product params" do
-  #     before :each do
-  #       @user = User.create(name: "vikushonok", email: "vika@email.com", password_digest: "VerySmartPassword")
-  #       session[:user_id] = @user.id
-  #       @product = Product.create(name: 'product', price: 10, user_id: 1, stock: 1)
-  #     end
-  #
-  #     let(:product_params) do
-  #       {
-  #         product: {
-  #           name: "",
-  #           price: 10.99,
-  #           stock: 10,
-  #           user_id: 1
-  #         }
-  #       }
-  #     end
-  #
-  #     it "doesn't update the product" do
-  #       put :update, { id: @product.id }.merge(product_params)
-  #       @product.reload
-  #
-  #       expect(@product.name).to eq 'product'
-  #     end
-  #
-  #     it "redirects to the edit page " do
-  #       put :update, { id: @product.id }.merge(product_params)
-  #       @product.reload
-  #
-  #       expect(response).to render_template("edit", session[:user_id])
-  #     end
+  #     get :search
+  #     expect(response).to render_template(:search)
   #   end
   # end
-  #
-  # # RETIRE ACTION__________________________________________________________________
-  #
-  # describe "PATCH#retire" do
-  #
-  #   before :each do
-  #     @user = User.create(name: "vikushonok", email: "vika@email.com", password_digest: "VerySmartPassword")
-  #     session[:user_id] = @user.id
-  #     @product = Product.create(name: 'product', price: 10, user_id: 1, stock: 1)
-  #   end
-  #
-  #   it "retires product and redirects to the merchant product page " do
-  #     patch :retire, { id: @product.user_id }
-  #     @product.reload
-  #
-  #     expect(response).to redirect_to(user_path(@product.user_id))
-  #     expect(@product.retired).to eq(true)
-  #   end
-  # end
-  #
-  # # MERCHANT_PRODUCTS ACTION__________________________________________________________________
-  #
-  # describe "GET#merchant_products" do
-  #
-  #   before :each do
-  #     @user = User.create(name: "vikushonok", email: "vika@email.com", password_digest: "VerySmartPassword")
-  #     session[:user_id] = @user.id
-  #   end
-  #
-  #   it "renders merchant products page " do
-  #     get :merchant_products, { id: @user.id }
-  #
-  #     expect(response).to render_template("merchant_products", session[:user_id])
-  #   end
-  # end
-
-#   describe "GET #index" do
-#     it "returns http success" do
-#       get :index
-#       expect(response).to have_http_status(:success)
-#     end
-#   end
-
-#   describe "GET #show" do
-#     it "returns http success" do
-#       get :show
-#       expect(response).to have_http_status(:success)
-#     end
-#   end
-
-#   describe "GET #new" do
-#     it "returns http success" do
-#       get :new
-#       expect(response).to have_http_status(:success)
-#     end
-#   end
-
-#   describe "GET #create" do
-#     it "returns http success" do
-#       get :create
-#       expect(response).to have_http_status(:success)
-#     end
-#   end
-
-#   describe "GET #edit" do
-#     it "returns http success" do
-#       get :edit
-#       expect(response).to have_http_status(:success)
-#     end
-#   end
-
-#   describe "GET #update" do
-#     it "returns http success" do
-#       get :update
-#       expect(response).to have_http_status(:success)
-#     end
-#   end
-
-#   describe "GET #destroy" do
-#     it "returns http success" do
-#       get :destroy
-#       expect(response).to have_http_status(:success)
-#     end
-#   end
-
 end
