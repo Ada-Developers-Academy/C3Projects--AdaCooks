@@ -15,4 +15,9 @@ class Recipe < ActiveRecord::Base
 
 # Scopes _______________________________________________________________
   scope :alpha_order, -> { order('name ASC') }
+
+
+  def unassociate_ingredients
+    self.ingredients = []
+  end
 end

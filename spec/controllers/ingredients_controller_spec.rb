@@ -50,42 +50,31 @@ RSpec.describe IngredientsController, type: :controller do
   # # CREATE ACTION__________________________________________________________________
 
   describe "POST #create" do
-    context "valid params" do
-      before :each do
-        @user = create :user
-        session[:user_id] = @user.id
-        @valid_ingredient = build :ingredient
+    before :each do
+      user = create :user
+      session[:user_id] = user.id
+    end
+
+    context "with valid params" do
+
+      let (:params) do { name: "name"  }
       end
 
-      it "creates an ingredient" do
-        post :create
+      it "creates a new Ingredient record" do
+        post :create, :ingredient => params
 
-        expect(Ingredient.count).to eq 1
+        expect(Ingredient.count).to eq(1)
+      end
+    end
+
+    context "with invalid Ingredient params" do
+      let (:bad_params) do { name: nil }
       end
 
-      it "redirects to the new recipe page" do
-        post :create
+      it "doesn't create a new Ingredient" do
+        post :create, :ingredient => bad_params
 
-        expect(subject).to redirect_to(new_recipe_path)
-      end
-
-      context "invalid params" do
-        before :each do
-          @user = create :user
-          session[:user_id] = @user.id
-          @invalid_ingredient = built :ingredient, name: nil        end
-
-        it "doesn't save an ingredient, if there's no name" do
-          post :create
-
-          expect(Ingredient.count).to eq 0
-        end
-
-        it "redirects to a new ingredient page" do
-          post :create
-
-          expect(response).to render_template("new")
-        end
+        expect(response).to render_template(:new)
       end
     end
   end
