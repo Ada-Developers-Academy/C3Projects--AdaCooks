@@ -50,6 +50,7 @@ RSpec.describe CookbooksController, type: :controller do
 
   describe "DELETE #destroy" do
     before(:each) do
+      session[:user_id] = 10
       create :cookbook
     end
 
@@ -58,7 +59,7 @@ RSpec.describe CookbooksController, type: :controller do
     end
 
     it "redirect_to user_path" do
-      delete :destroy, id: @cookbook1.id, cookbook1: { name: "Paula Deen vs Jimmy Dean" }
+      delete :destroy, id: cookbook.id
       expect(response).to redirect_to(user_path(session[:user_id]))
     end
   end
