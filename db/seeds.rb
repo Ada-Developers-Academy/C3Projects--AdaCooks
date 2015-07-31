@@ -62,26 +62,26 @@ cookbooks.each do |cookbook_params|
 end
 
 ingredients = [
-  { user_id: 1, name: "heavy cream" },
-  { user_id: 1, name: "vanilla" },
-  { user_id: 1, name: "white sugar" },
-  { user_id: 1, name: "maple syrup" },
-  { user_id: 1, name: "egg yolks" },
-  { user_id: 1, name: "whole milk" },
-  { user_id: 1, name: "caramel" },
-  { user_id: 2, name: "fleur de sel" },
-  { user_id: 2, name: "lavender" },
-  { user_id: 2, name: "lemon juice" },
-  { user_id: 2, name: "wild blackberries" },
-  { user_id: 2, name: "fresh chevre" },
-  { user_id: 2, name: "toasted hazelnuts" },
-  { user_id: 3, name: "unsweetened chocolate" },
-  { user_id: 3, name: "cocoa powder" },
-  { user_id: 3, name: "fresh mint leaves" },
-  { user_id: 3, name: "vanilla bean" },
-  { user_id: 3, name: "toasted walnuts" },
-  { user_id: 3, name: "honey" },
-  { user_id: 3, name: "fresh raspberries" }
+  { user_id: 1, name: "heavy cream", image: File.open(File.join('app/assets/images/ingredients/cream.jpg'))},
+  { user_id: 1, name: "vanilla", image: File.open(File.join('app/assets/images/ingredients/vanilla.jpg'))},
+  { user_id: 1, name: "white sugar", image: File.open(File.join('app/assets/images/ingredients/sugar.jpg')) },
+  { user_id: 1, name: "maple syrup", image: File.open(File.join('app/assets/images/ingredients/maple.jpg')) },
+  { user_id: 1, name: "egg yolks",image: File.open(File.join('app/assets/images/ingredients/yolks.jpg')) },
+  { user_id: 1, name: "whole milk", image: File.open(File.join('app/assets/images/ingredients/milk.jpg')) },
+  { user_id: 1, name: "caramel", image: File.open(File.join('app/assets/images/ingredients/caramel.jpg'))},
+  { user_id: 2, name: "fleur de sel", image: File.open(File.join('app/assets/images/ingredients/fleur.jpg'))},
+  { user_id: 2, name: "lavender", image: File.open(File.join('app/assets/images/ingredients/lavender.jpg')) },
+  { user_id: 2, name: "lemon juice", image: File.open(File.join('app/assets/images/ingredients/lemonjuice.jpg')) },
+  { user_id: 2, name: "wild blackberries", image: File.open(File.join('app/assets/images/ingredients/blackberries.jpg')) },
+  { user_id: 2, name: "fresh chevre", image: File.open(File.join('app/assets/images/ingredients/chevre.jpg')) },
+  { user_id: 2, name: "toasted hazelnuts", image: File.open(File.join('app/assets/images/ingredients/hazelnuts.jpg')) },
+  { user_id: 3, name: "unsweetened chocolate", image: File.open(File.join('app/assets/images/ingredients/choco.jpg')) },
+  { user_id: 3, name: "cocoa powder", image: File.open(File.join('app/assets/images/ingredients/cocoa.jpg')) },
+  { user_id: 3, name: "fresh mint leaves", image: File.open(File.join('app/assets/images/ingredients/mint.jpg')) },
+  { user_id: 3, name: "vanilla bean", image: File.open(File.join('app/assets/images/ingredients/vanillabean.jpg')) },
+  { user_id: 3, name: "toasted walnuts", image: File.open(File.join('app/assets/images/ingredients/walnuts.jpg')) },
+  { user_id: 3, name: "honey", image: File.open(File.join('app/assets/images/ingredients/honey.jpg')) },
+  { user_id: 3, name: "fresh raspberries", image: File.open(File.join('app/assets/images/ingredients/raspberries.jpg')) }
 ]
 
 ingredients.each do |ingredient_params|
