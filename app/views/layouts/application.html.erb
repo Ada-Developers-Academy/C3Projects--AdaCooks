@@ -20,7 +20,7 @@
       <% end %>
 
         <% if session[:user_id] %>
-          <div class="col-md-3">
+          <div class="col-md-3 header-welcome-text">
             <h3>Welcome <%= User.find(session[:user_id]).username %></h3>
           </div>
         <% end %>
