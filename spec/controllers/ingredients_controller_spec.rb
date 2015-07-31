@@ -71,7 +71,58 @@ RSpec.describe IngredientsController, type: :controller do
      end
 
     end
-  end # create
+  end
+
+  describe "GET #edit" do
+    # + test case
+    context "it's the user's ingredient" do
+      before(:each) do
+        @yams = create :ingredient, user: create(:user)
+        session[:user_id] = @yams.user_id
+      end
+
+      it "renders the edit page" do
+        get :edit, id: @yams
+        expect(response).to render_template(:edit)
+      end
+    end
+    # - test case
+    context "it's not user's ingredient" do
+      before(:each) do
+        @yams = create :ingredient, user: create(:user)
+        session[:user_id] != @yams.user_id
+      end
+
+      it "redirect_to ingredient_path" do
+        get :edit, id: @yams
+        expect(response).to redirect_to(ingredient_path(@yams))
+        # undefined method `user_id' for nil:NilClass??
+      end
+    end
+  end
+
+  describe "PATCH #update" do
+    context "sucessful update" do
+      before(:each) do
+        @yams = create :ingredient, user: create(:user)
+        session[:user_id] = @yams.user_id
+      end
+
+      it "changes recipe's name" do
+        patch :update, :id => @yams, :recipe => {name: "sweet potatoez"}
+        @yams.reload
+        expect(@yams.name).to eq("sweet potatoez")
+      end
+
+      it "redirect_to user_path" do
+        patch :update, id: @yams, :recipe => {name: "sweet potatoez"}
+        expect(response).to redirect_to(user_path(@yams.user_id))
+      end
+    end
+
+    
+  end
+
 
   describe "DELETE #destroy" do
     before(:each) do
