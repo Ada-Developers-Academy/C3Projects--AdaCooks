@@ -10,7 +10,7 @@
         <li> <%= form_tag(query_path, :method => "get", class: "navbar-form", id: "search-form") do %>
           <div class="input-append">
             <%= text_field_tag :search, params[:search], class: "span2", placeholder: "Search Ingredients" %>
-            <button class="btn" type="submit"><i class="icon-search"></i></button>
+            <button "search" class="btn" type="submit"><i class="icon-search"></i>Search</button>
         </div>
         <% end %>
         </li>
@@ -29,8 +29,16 @@
       <ul class="nav navbar-nav">
         <li><a href="<%=root_path%>">Home</a></li>
         <li><a href="<%=ingredients_path%>">Ingredients</a></li>
+        <li> <%= form_tag(query_path, :method => "get", class: "navbar-form", id: "search-form") do %>
+          <div class="input-append">
+            <%= text_field_tag :search, params[:search], class: "span2", placeholder: "Search Ingredients" %>
+            <button class="btn" type="submit"><i class="icon-search"></i>Search</button>
+        </div>
+        <% end %>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Sign Up", new_user_path %></li>
         <li><a href="<%= login_path %>">Login</a></li> 
       </ul>
     </div>
