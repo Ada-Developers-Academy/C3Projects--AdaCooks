@@ -1,21 +1,31 @@
-<h3><%= @ingredient.name %></h3>
+<div class="row">
+  <div class="col-sm-offset-3 col-sm-6">
+    <div class="panel panel-warning">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @ingredient.name %></h3>
+      </div>
+      <div class="panel-body">
+        <%= image_tag @ingredient.image_url(:display), class: "img-thumbnail center-block" %>
+        
+        <br>
 
-<%= image_tag @ingredient.image_url(:display) %>
+        <% if appropriate_user(@ingredient) %>
+            <%= link_to 'Edit', edit_ingredient_path(@ingredient), role: "button", class: "btn btn-default" %>
 
-<% if appropriate_user(@ingredient) %>
-  <p>
-    <%= link_to 'Edit', edit_ingredient_path(@ingredient), role: "button", 
-      class: "btn btn-primary" %>
-  </p>
-  <p><%= link_to "Delete this ingredient", ingredient_path(@ingredient), method: "delete", data: { confirm: "Are you sure?" }, class: "btn btn-danger" %></p>
-<% end %>
+            <%= link_to "Delete this ingredient", ingredient_path(@ingredient), method: "delete", data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+        <% end %>
 
-<h4>Used in these recipes:</h4>
+        <h4>Used in these recipes:</h4>
 
-<% if @ingredient.recipes.count > 0 %>
-  <ul class="list=group">
-    <%= render partial: 'recipe', collection: @ingredient.recipes %>
-  </ul>
-<% else %>
-  <em>This ingredient is not currently used in any recipes.</em>
-<% end %>
+        <% if @ingredient.recipes.count > 0 %>
+          <ul class="list=group">
+            <%= render partial: 'recipe', collection: @ingredient.recipes %>
+          </ul>
+        <% else %>
+          <em>This ingredient is not currently used in any recipes.</em>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
