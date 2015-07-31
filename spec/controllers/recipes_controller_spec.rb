@@ -86,9 +86,9 @@ RSpec.describe RecipesController, type: :controller do
 
     context "invalid recipe params" do
       before :each do
-        create :user
+        user = create :user
         create :ingredient
-        session[:user_id]
+        session[:user_id] = user.id
         post :create, recipe: attributes_for(:recipe, name: nil)
       end
 
@@ -97,7 +97,7 @@ RSpec.describe RecipesController, type: :controller do
       end
 
       it "renders the new view" do
-        expect(response).to render_template(session[:user_id], "new")
+        expect(response).to render_template("new", session[:user_id])
       end
     end
   end

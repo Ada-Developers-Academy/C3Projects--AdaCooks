@@ -1,6 +1,32 @@
 require 'rails_helper'
 
 RSpec.describe CookbooksController, type: :controller do
+  describe "GET #index" do
+    context "logged in user" do
+      before :each do
+        user = create :user
+        session[:user_id] = user.id
+        get :index, user_id: user.id
+      end
+
+      it "responds successfully with an HTTP 200 status code" do
+        expect(response).to be_success
+        expect(response).to have_http_status(200)
+      end
+
+      it "renders the index view" do
+        expect(response).to render_template(:index)
+      end
+    end
+
+    context "not logged in user" do
+      it "redirects to the home page" do
+        get :index, user_id: 2
+        expect(response).to redirect_to(root_path)
+      end
+    end
+  end
+
   describe "GET #show" do
     context "logged in user" do
       before :each do
@@ -82,26 +108,27 @@ RSpec.describe CookbooksController, type: :controller do
     describe "user logged in" do
       context "valid cookbook params" do
         before :each do
-          user = create :user
-          session[:user_id]  = user.id
-          session[:previous_url] = user_path(user.id)
+          @user = create :user
+          session[:user_id]  = @user.id
+          session[:previous_url] = user_path(@user.id)
 
-          post :create, user_id: user.id, cookbook: attributes_for(:cookbook)
+          post :create, user_id: @user.id, cookbook: attributes_for(:cookbook)
         end
 
         it "creates a cookbook" do
           expect(Cookbook.count).to eq 1
         end
 
-        # it "redirects back" do
-        #   expect(response).to redirect_to :back
-        # end
+        it "redirects back" do
+          expect(response).to redirect_to user_path(@user.id)
+        end
       end
 
       context "invalid cookbook params" do
         before :each do
-          user = create :user
-          post :create, user_id: user.id, cookbook: attributes_for(:cookbook, name: nil)
+          @user = create :user
+          session[:user_id]  = @user.id
+          post :create, user_id: @user.id, cookbook: attributes_for(:cookbook, name: nil)
         end
 
         it "does not create a cookbook" do
@@ -109,7 +136,11 @@ RSpec.describe CookbooksController, type: :controller do
         end
 
         it "renders the new page" do
-          expect(response).to render_template(session[:user_id], "new")
+          expect(response).to render_template("new", session[:user_id])
+        end
+
+        it "flashes error" do
+          expect(flash.now[:error]).to include("Could not save. Please check the information and try again.")
         end
       end
     end
@@ -159,6 +190,7 @@ RSpec.describe CookbooksController, type: :controller do
 
         it "updates the cookbook" do
           expect(Cookbook.all).to include(@cookbook)
+          expect(Cookbook.last.name).to eq "New Name"
         end
 
         it "redirects to the cookbook show page" do
@@ -168,19 +200,19 @@ RSpec.describe CookbooksController, type: :controller do
 
       context "invalid cookbook params" do
         before :each do
-          user = create :user
+          @user = create :user
           @cookbook = create :cookbook
-          session[:user_id]  = user.id
-          post :create, user_id: user.id, cookbook: attributes_for(:cookbook, name: nil)
+          session[:user_id]  = @user.id
+          patch :update, user_id: @user.id, id: @cookbook.id, cookbook: attributes_for(:cookbook, name: nil)
         end
 
         it "does not update the cookbook" do
           expect(Cookbook.last.name).to eq "Cookies"
         end
 
-        # it "redirects to the cookbook show page" do
-        #   expect(response).to redirect_to(user_cookbook_path(session[:user_id], @cookbook.id))
-        # end
+        it "redirects to the cookbook show page" do
+          expect(response).to redirect_to(user_cookbook_path(@user.id, @cookbook.id))
+        end
       end
     end
   end
@@ -240,7 +272,7 @@ RSpec.describe CookbooksController, type: :controller do
       expect(Recipe.count).to eq 1
     end
 
-    it "does not delete ingredients associated wiht the recipe" do
+    it "does not delete ingredients associated with the recipe" do
       expect(Ingredient.count).to eq 1
     end
 

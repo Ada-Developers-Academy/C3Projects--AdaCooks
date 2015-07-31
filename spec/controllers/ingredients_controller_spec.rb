@@ -88,8 +88,8 @@ RSpec.describe IngredientsController, type: :controller do
 
     context "invalid ingredient params" do
       before :each do
-        create :user
-        session[:user_id]
+        @user = create :user
+        session[:user_id] = @user.id
         post :create, ingredient: attributes_for(:ingredient, name: nil)
       end
 
@@ -97,10 +97,9 @@ RSpec.describe IngredientsController, type: :controller do
         expect(Ingredient.count).to eq 0
       end
 
-      # #TODO: NOT WORKING AND NO ONE KNOWS WHY
-      # it "renders the new view" do
-      #   expect(response).to render_template :new
-      # end
+      it "renders the new view" do
+        expect(response).to render_template("new")
+      end
     end
   end
 
