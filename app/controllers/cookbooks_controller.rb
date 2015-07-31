@@ -10,6 +10,7 @@ class CookbooksController < ApplicationController
   def show
     @cookbook_id = params[:id]
     @cookbook = Cookbook.find(@cookbook_id)
+    @recipes = @cookbook.recipes
   end
 
   def new
@@ -46,6 +47,21 @@ class CookbooksController < ApplicationController
     redirect_to user_cookbooks_path(session[:user_id])
   end
 
+  def remove_recipe
+    @cookbook = Cookbook.find(params[:id])
+    @recipe = Recipe.find(params[:recipe])
+    @cookbook.recipes.delete(@recipe)
+
+    redirect_to cookbook_path(@cookbook)
+  end
+  # def rm_recipe
+  #   @cookbook = Cookbook.find(params[:cookbook])
+  #   @recipe = Recipe.find(params[:recipe])
+  #   @recipe.cookbook_id = nil
+  #   @recipe.save
+  #
+  #   redirect_to user_path(session[:user_id], :cookbook => @cookbook.id)
+  # end
   private
 
   def cookbook_params

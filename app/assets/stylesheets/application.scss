@@ -15,9 +15,24 @@
  @import 'bootstrap-sprockets';
  @import 'bootstrap';
 
- .no-float {
-   float: none;
- }
+/* UNIVERSAL */
+h1, h2, h3, h4, h5 {
+  font-family: 'Slabo 27px', serif;
+}
+
+th {
+  font-family: 'lato';
+  font-size: 1.25em;
+}
+
+a {
+  font-family: 'lato';
+  font-size: 1.25em;
+}
+
+.no-float {
+ float: none;
+}
 
  /* NAVBAR */
  .logout, .login {
@@ -31,12 +46,7 @@
   top: 5px;
 }
 
-/* LOGIN PAGE */
-.login-wrapper {
-
-}
-
-
+/* OTHER STUFF? */
 
 .img-sm {
   width: 50px;
@@ -57,15 +67,18 @@
   margin: auto;
 }
 
+.center-btn {
+  margin: auto;
+  display: block;
+}
 .img-board {
   width: 100px;
   height: 100px;
   margin: 5px;
+  display: block;
+  margin: auto;
 }
 
-// Amira, how do I center buttons?  xo - Brenna
-// .btn-center{
-//   margin: auto;
-//   display: inline;
-//   text-align: center;
-// }
+.col-sm-4{
+  margin-bottom: 20px;
+}

@@ -1,5 +1,5 @@
 class IngredientsController < ApplicationController
-  before_action :login_required, except: [:index, :show]
+  before_action :login_required, except: [:index, :search, :show]
   before_action :belongs_to_user, only: [:edit, :destroy]
 
   def index
@@ -45,6 +45,17 @@ class IngredientsController < ApplicationController
     @ingredient.destroy
 
     redirect_to ingredients_path
+  end
+
+	def search
+    @ingredients = Ingredient.search params[:search]
+    @recipes = []
+    @ingredients.each do |ingredient|
+      array = ingredient.recipes
+      @recipes.concat array
+    end
+    @recipes = @recipes.uniq
+    render :search_results
   end
 
   private

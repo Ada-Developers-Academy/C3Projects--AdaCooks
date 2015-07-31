@@ -5,19 +5,16 @@
 
 <% if session[:user_id] %>
   <% if session[:user_id] == @ingredient.user_id %>
-    <%= link_to "Edit", edit_ingredient_path(@ingredient.id), class: "btn btn-default btn-center" %>
-    <%= link_to "Delete", ingredient_path(@ingredient.id), class: "btn btn-default btn-center", :method => :delete %>
+    <%= link_to "Edit", edit_ingredient_path(@ingredient.id), class: "btn btn-default center-btn" %>
+    <%= link_to "Delete", ingredient_path(@ingredient.id), class: "btn btn-default center-btn", :method => :delete %>
   <% end %>
 <% end %>
 
-<br>
+<h4 class = "txt-center"><%= link_to "Return to Ingredients Index", ingredients_path, class: "btn btn-center" %></h4>
 
-<%= link_to "Return to Ingredients Index", ingredients_path, class: "txt-center" %>
-
-<h3>Recipes</h3>
 <% @recipes.each do |recipe| %>
-<div class = "col-sm-3">
-  <%= link_to  "#{recipe.name}", recipe_path(recipe.id) %>
-  <%= image_tag recipe.image_url, class: "img-board img-center" %>
+<div class = "col-sm-4">
+  <%= image_tag recipe.image_url, class: "img-board" %>
+  <h5 class= "txt-center"><%= link_to  "#{recipe.name}", recipe_path(recipe.id) %></h5>
 </div>
 <% end %>
