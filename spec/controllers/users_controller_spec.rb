@@ -67,7 +67,7 @@ RSpec.describe UsersController, type: :controller do
     let(:user) { create :user }
 
     before :each do
-      session[:user_id] = user.user.id
+      session[:user_id] = user.id
       get :edit, id: user
     end
 
@@ -77,6 +77,48 @@ RSpec.describe UsersController, type: :controller do
 
     it "renders the edit template" do
       expect(response).to render_template "edit"
+    end
+  end
+
+  describe "PUT #update" do
+    let(:user) { create :user }
+
+    context "valid params" do
+      before :each do
+        session[:user_id] = user.id
+        put :update, id: user, user: { 
+          username: 'updated username', 
+          password: 111, password_confirmation: 111
+        }
+        user.reload
+      end
+
+      it "updates an user with valid params" do
+        expect(user.username).to eq "updated username"
+      end
+
+      it "redirects to user#show" do
+        expect(response).to redirect_to user_path(user)        
+      end
+    end
+
+    context "invalid params" do # missing password
+      before :each do
+        session[:user_id] = user.id
+        put :update, id: user, user: {
+          username: "updated username",
+          password: nil, password_confirmation: nil
+        }
+        user.reload
+      end
+
+      it "does not update a user with invalid params" do
+        expect(user.username).to_not eq "updated username"
+      end
+
+      it "renders the :edit template" do
+        expect(response).to render_template "edit"
+      end
     end
   end
 
