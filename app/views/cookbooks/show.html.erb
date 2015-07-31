@@ -6,6 +6,6 @@
   <%= image_tag recipe.image_url, class: "img-board" %>
   <h5 class= "txt-center"><%= link_to  "#{recipe.name}", recipe_path(recipe.id) %></h5>
 
-  <%= link_to 'Remove from Cookbook', { :controller => :cookbooks, :action => :remove_recipe, :recipe => recipe }, class:'btn btn-danger' %>
+  <%= link_to 'Remove from Cookbook', { :controller => :cookbooks, :action => :remove_recipe, :recipe => recipe }, class:'btn btn-center btn-danger' %>
 </div>
 <% end %>

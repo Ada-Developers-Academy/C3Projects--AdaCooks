@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 	before_action :login_required, except: [:index, :new, :create]
 
 	def index
+		@random_recipes = Recipe.all.sample(6)
 	end
 
 	def new

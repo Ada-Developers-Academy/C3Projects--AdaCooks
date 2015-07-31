@@ -38,13 +38,7 @@ RSpec.describe CookbooksController, type: :controller do
 
       it "creates a cookbook record" do
         post :create, cookbook_params
-        expect(Cookbook.count).to eq 2
-      end
-
-      it "redirects to the cookbook show page" do
-        post :create, cookbook_params
-        expect(response).to
-        redirect_to(cookbook_path(assigns(:cookbook)))
+        expect(Cookbook.count).to eq 1
       end
     end
 
@@ -58,13 +52,9 @@ RSpec.describe CookbooksController, type: :controller do
 
       it "does not create a cookbook record" do
         post :create, cookbook_params
-        expect(Cookbook.count).to eq 1
+        expect(Cookbook.count).to eq 0
       end
 
-      it "redirects to the #new page" do
-        post :create, cookbook_params
-        expect(response).to redirect_to(new_user_cookbook_path(:user_id))
-      end
     end # end context
   end # end describe
 

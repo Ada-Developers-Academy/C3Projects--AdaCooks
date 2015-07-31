@@ -1,53 +1,23 @@
 <h2> Ingredients Index </h2>
-
 <% if session[:user_id] %>
     <%= link_to "+ Add an Ingredient", new_ingredient_path %>
 <% end %>
+<br>
+<br>
 
-<table class = "table table-hover table-bordered table-striped table-condensed">
-  <thead>
-    <tr>
-      <th>
-        Name
-      </th>
-      <th>
-        Image
-      </th>
-      <% if session[:user_id] %>
-        <th>
-          Edit
-        </th>
-        <th>
-          Delete
-        </th>
-      <% end %>
-    </tr>
-  </thead>
-  <tbody>
-    <% @ingredients.alphabetize.each do |ingredient| %>
-      <tr>
-        <td>
-          <%= link_to ingredient.name, ingredient_path(ingredient.id) %>
-        </td>
-        <td>
-          <%= image_tag ingredient.image_url, class: "img-circle img-sm" %>
-        </td>
-        <% if session[:user_id] %>
-            <% if session[:user_id] == ingredient.user_id %>
-              <td>
-                <%= link_to "Edit", edit_ingredient_path(ingredient.id) %>
-              </td>
-              <td>
-                <%= link_to "Delete", ingredient_path(ingredient.id), :method => :delete %>
-              </td>
-            <% else %>
-              <td>
-              </td>
-              <td>
-              </td>
-            <% end %>
-        <% end %>
-    </tr>
+<% @ingredients.alphabetize.each do |ingredient| %>
+  <%= image_tag ingredient.image_url, class: "img-circle img-sm" %>
+  <br>
+  <%= link_to ingredient.name, ingredient_path(ingredient.id) %>
+  <br>
+  <% if session[:user_id] %>
+    <% if session[:user_id] == ingredient.user_id %>
+      <div class = "btn-group">
+        <%= link_to "Edit", edit_ingredient_path(ingredient.id), class: "btn btn-default btn-xs" %>
+        <%= link_to "Delete", ingredient_path(ingredient.id), :method => :delete, class: "btn btn-danger btn-xs" %>
+      </div>
+    <% end %>
   <% end %>
-  </tbody>
-</table>
+  <br>
+  <br>
+<% end %>

@@ -1,1 +1,10 @@
+<% @random_recipes.each do |recipe| %>
+  <div class = "col-sm-4">
+    <%= image_tag recipe.image_url, class: "img-board"%>
+    <%= link_to "#{recipe.name}", recipe_path(recipe.id), class: "frontpage img-board" %>
+  </div>
+<% end %>
 
+<%= link_to 'View all recipes', recipes_path, class: 'frontpage' %>
+<%= image_tag 'cocktail.png', class: 'tiny' %>
+<%= link_to 'View all ingredeints', ingredients_path, class: 'frontpage' %>
