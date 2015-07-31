@@ -13,12 +13,15 @@
 	<% end %>
 	<h5> by: <%= link_to @recipe.user.username, user_path(@recipe.user.id) %> </h5>
 
+	<br>
 	<%= image_tag(@recipe.image) %>
 
+	<br><br>
 	<p>
 		<%= @recipe.description %>
 	</p>
 
+	<br>
 	<h4>Ingredients</h4>
 	<ul>
 		<% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
@@ -38,6 +41,7 @@
 	<br>
 	<%= form_for(@recipe, url: { controller: :cookbooks, action: :update }, method: :put) do |f| %>
 		<%= f.select(:cookbook_id, options_for_select(@cookbooks_array), {}, { class: 'form-control' }) %>
-		<%= f.submit 'Add to Cookbook', class:'btn btn-default' %>
+		<br>
+		<%= f.submit 'Add to Cookbook', class:'btn btn-default float-right' %>
 	<% end %>
 </div>
