@@ -1,10 +1,11 @@
-<h3 class="text-center"><i class="fa fa-book"></i> Cookbooks</h3>
-<% if session[:user_id]%>
-  <div class="text-center">
-    <%= link_to "Add a New Cookbook", new_user_cookbook_path(session[:user_id]), class: 'btn btn-primary' %>
-  </div>
-<% end %>
-
+<h3 class="text-center"><i class="fa fa-book"></i> Cookbooks
+  <% if session[:user_id] %>
+    <small><%= link_to new_user_cookbook_path(session[:user_id]) do %>
+        <span class="glyphicon glyphicon-plus" aria-hidden="true" data-toggle="tooltip" title="Create a Cookbook!"></span>
+      <% end %>
+    </small>
+  <% end %>
+</h3>
 <%= render partial: "shared/cookbooks" %>
 
 <a href="#top">Back to Top</a>
