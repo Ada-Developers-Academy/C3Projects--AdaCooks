@@ -29,7 +29,10 @@
 }
 
 .jumbotron h1 span, .jumbotron p span{
-  background-color: rgba(230, 230, 230, .3);
+  background-color: rgba(230, 230, 230, .5);
+  border-radius: 5px;
+  padding: 2px 10px;
+
 }
 
 .jumbotron p {
