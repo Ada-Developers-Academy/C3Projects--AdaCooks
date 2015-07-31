@@ -1,31 +1,33 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 text-right">
-      <h1><%= @recipe.name %></h1>
+    <% if current_user?(@user) %>
+      <%= link_to edit_recipe_path(@recipe) do %>
+          <i class="glyphicon glyphicon-pencil"></i>
+      <% end %>
+      <%= link_to recipe_path(@recipe), method: :delete do %>
+          <i class="glyphicon glyphicon-remove"></i>
+      <% end %>
+    <% else %>
+      <span class="text-muted">
+        submitted by: <%= link_to @recipe.user.name, user_path(@recipe.user), method: :get %>
+      </span>
+    <% end %>
+      <span class="recipe-name"><%= @recipe.name %></span><br>
       <%= image_tag(@recipe.image, class: "img-thumbnail recipe-image") %><br>
       <p class="recipe-desc"><%= @recipe.desc %></p>
     </div>
 
-    <div class="col-md-6 recipe-info">
+    <div class="col-md-6">
       <h5>Ingredients for <%= @recipe.name %></h5>
       <ul>
         <% @recipe.ingredients.each do |ingredient| %>
           <li><%= link_to "#{ingredient.name}", ingredient_path(ingredient), method: :get %></li>
         <% end %>
       </ul>
-      Prep: <%= @recipe.prep %>
-      <% if current_user?(@user) %>
-        <%= link_to edit_recipe_path(@recipe) do %>
-            <i class="glyphicon glyphicon-pencil"></i>
-        <% end %>
-        <%= link_to recipe_path(@recipe), method: :delete do %>
-            <i class="glyphicon glyphicon-remove"></i>
-        <% end %>
-      <% else %>
-        <span class="text-muted">
-          Submitted by: <%= link_to @recipe.user.name, user_path(@recipe.user), method: :get %>
-        </span>
-      <% end %>
+      <h5>Prep:</h5>
+      <%= (@recipe.prep).gsub(/\n/, '<br/>').html_safe %><br>
+
     </div>
   </div>
 </div>
