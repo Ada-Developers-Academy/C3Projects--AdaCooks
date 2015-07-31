@@ -15,7 +15,7 @@
       <header class="row">
       <% unless current_page? root_path %>
         <div class="col-md-5">
-          <h2 class="header-logo">Yummaholics</h2>
+          <h2 class="header-logo"><a href="/">Yummaholics</a></h2>
         </div>
       <% end %>
 
@@ -27,7 +27,7 @@
 
         <div class="pull-right">
           <% if session[:user_id] %>
-            <%= link_to "View my Dashboard", user_dashboard_path(session[:user_id]), class: "btn btn-success" %>
+            <%= link_to "Dashboard", user_dashboard_path(session[:user_id]), class: "btn btn-default dashboard-btn" %>
             <%= link_to "Sign Out", logout_path, method: :delete, class: "btn btn-default" %>
           <% else %>
             <%= link_to "Sign Up", new_user_path, class: "btn btn-default" %>
@@ -39,10 +39,13 @@
       <body>
 
       <%= yield :welcome_page %>
-      <div class="solid-background">
-       <%= yield %>
-      </div>
-
+      
+      <% unless current_page? root_path %>
+        <div class="solid-background">
+         <%= yield %>
+        </div>
+      <% end %>
+      
       </body>
     </div>
   </div>

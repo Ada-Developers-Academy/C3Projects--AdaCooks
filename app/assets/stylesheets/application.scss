@@ -39,6 +39,30 @@ header {
   font-family: 'Sacramento', cursive;
 }
 
+.header-logo a {
+  text-decoration: none;
+  color: black;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.display-img {
+  max-width: 900px;
+}
+
+.dashboard-btn {
+  background-color: #000;
+  color: #fff;
+}
+
+.thumb-icon {
+  height: 200px;
+  width: 200px;
+}
+
 .tag-line {
   font-family: 'Playfair Display', serif;
   font-size: 20px;
@@ -49,7 +73,6 @@ header {
 
 .solid-background {
   background-color: #E6E6E6;
-  // background-color: #FFF;
   padding: 20px;
   border-radius: .25em;
   margin: 50px 70px 30px 70px;
@@ -68,11 +91,11 @@ header {
   opacity: 0.5;
 }
 
-.span2 {
+.center-search {
   text-align: center;
 }
 
-.navbar-form {
+.center-search-bar {
   text-align: center;
 }
 
@@ -107,11 +130,12 @@ header {
 
 }
 
-.recipe_tiles {
+.search_result_tiles {
   height: 200px;
   width: 200px;
   overflow: hidden;
   padding: 20px;
+  text-align: center;
 }
 
 .recipe_tiles h4 {

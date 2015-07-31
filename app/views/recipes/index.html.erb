@@ -1,4 +1,4 @@
-<h3>All Recipes</h3>
+<h1>Recipes</h1>
 
 <%= form_tag(recipes_path, :method => 'get', class: "navbar-form", id: "search-form") do %>
   <div class="input-append">
@@ -9,7 +9,7 @@
 
 <div class="row">
   <% @recipes.each do |recipe| %>
-    <div class="recipe_tiles col-md-3">
+    <div class="search_result_tiles col-md-4">
       <%= link_to(image_tag(recipe.image_url(:thumb)), recipe_path(recipe.id)) %>
       <h4><%=link_to "#{recipe.name}", recipe_path(recipe.id) %></h4>
     </div>

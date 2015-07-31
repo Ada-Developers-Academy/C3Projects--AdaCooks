@@ -1,6 +1,6 @@
-<h3>Cookbook | <%= @cookbook.name %></h3>
+<h1>Cookbook | <%= @cookbook.name %></h1>
 <h4>Created by: <%= @cookbook.user.username %></h4>
-<%= image_tag @cookbook.image_url %>
+<%= image_tag @cookbook.image_url, class: "display-img" %>
 
 <p><%= @cookbook.description %></p>
 <p>Recipe Count: <%= @cookbook.recipes.count %></p>
