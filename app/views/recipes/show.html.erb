@@ -8,7 +8,7 @@
     <ul class="list-group">
       <% @ingredient_lines.each do |line| %>
         <li class="list-group-item">
-          <%= "#{line.quantity} #{line.measurement.unit}" %> <%= link_to line.ingredient.name, ingredient_path(line.ingredient_id) %>
+          <%= "#{pluralize(line.quantity, line.measurement.unit)}" %> <%= link_to line.ingredient.name, ingredient_path(line.ingredient_id) %>
         </li>
       <% end %>
     </ul>
@@ -22,10 +22,10 @@
         <%= collection_select(:cookbook, :cookbook_id, @cookbooks, :id, :name, include_blank: true) %>
         <%= submit_tag "Save" %>
       <% end %>
-    
+
       <p><%= link_to "Edit this recipe", edit_recipe_path(@recipe), class: "btn btn-default" %></p>
-      
+
       <p><%= link_to "Delete this recipe", recipe_path(@recipe), method: "delete", data: { confirm: "Are you sure?" }, class: "btn btn-danger" %></p>
-    <% end %>      
+    <% end %>
   </div>
 </div>
