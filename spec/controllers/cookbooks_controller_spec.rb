@@ -15,7 +15,7 @@ RSpec.describe CookbooksController, type: :controller do
       expect(response).to have_http_status(200)
     end
 
-    it "renders the #new template" do
+    it "renders the index template" do
       get :index
 
       expect(subject).to render_template :index
@@ -28,6 +28,80 @@ RSpec.describe CookbooksController, type: :controller do
       expect(assigns(:cookbooks)).to eq(User.first.cookbooks)
     end
   end
+
+  describe "#show" do
+    before :each do
+      @cookbook_a = create(:cookbook)
+      session[:user_id] = User.first.id
+      2.times {
+        recipe = create(:recipe)
+        @cookbook_a.recipes << recipe
+      }
+
+      get :show, id: @cookbook_a
+    end
+
+    it "renders the show template" do
+      expect(subject).to render_template :show
+    end
+
+    it "render the info for the specific cookbook" do
+      expect(assigns(:cookbook)).to eq(Cookbook.first)
+    end
+
+    it "renders the list of recipes for the specific cookbook" do
+      expect(assigns(:recipes).count).to eq 2
+      expect(assigns(:recipes)).to eq(Cookbook.first.recipes)
+    end
+  end
+
+  describe "#new" do
+    it "renders the new template" do
+      create(:user)
+      session[:user_id] = User.first.id
+      get :new
+
+      expect(subject).to render_template :new
+    end
+  end
+
+  describe "#create" do
+    before :each do
+      create(:user)
+      session[:user_id] = User.first.id
+    end
+
+    context "valid user params" do
+      it "creates a cookbook" do
+        post :create, { cookbook: attributes_for(:cookbook, user: User.first.id) }
+        expect(Cookbook.count).to eq 1
+      end
+    end
+
+    context "invalid user params" do
+      let (:invalid) { { cookbook: attributes_for(:cookbook, name: "", user: User.first.id) } }
+
+      it "does not create a cookbook" do
+        post :create, invalid
+        expect(Cookbook.count).to eq 0
+      end
+
+      it "renders the new cookbook page (if unsuccessful save)" do
+        post :create, invalid
+        expect(subject).to render_template(:new)
+      end
+    end
+  end
+
+  # # STILL NEED TO WRITE:
+  # describe "#edit" do
+  # end
+  #
+  # describe "#update" do
+  # end
+  #
+  # describe "#destroy" do
+  # end
 
   describe "#remove_recipe" do
     before :each do
@@ -74,111 +148,5 @@ RSpec.describe CookbooksController, type: :controller do
         expect(subject).to redirect_to(cookbook_path(@cookbook))
       end
     end
-
   end
 end
-
-  # STILL WORKING
-
-  #   let(:cookbook_a) { create(:cookbook, name: "a") }
-  #   let(:recipe_b) { create(:recipe, name: "b") }
-  #   let(:recipe_c) { create(:recipe, name: "c") }
-  #
-  #   it "assigns all recipes to @recipes" do
-  #     5.times { create(:recipe) }
-  #
-  #     get :index
-  #
-  #     expect(assigns(:recipes).count).to eq(5)
-  #   end
-  #
-  #   it "assigns @recipes in alphabetical order" do
-  #     recipe_b # need to create the records in the db out of alphabetical order
-  #     recipe_order = [ recipe_a, recipe_b, recipe_c ]
-  #
-  #     get :index
-  #
-  #     expect(assigns(:recipes).count).to eq(3)
-  #     expect(assigns(:recipes)).to eq(recipe_order)
-  #   end
-  #
-  #   it "renders the index template" do
-  #     get :index
-  #
-  #     expect(response).to render_template("index")
-  #   end
-  # end
-  #
-  # describe "get :show" do
-  #   let(:recipe) { create(:recipe) }
-  #
-  #   it "assigns @recipe" do
-  #     get :show, { id: recipe.id }
-  #
-  #     expect(assigns(:recipe)).to eq(recipe)
-  #   end
-  #
-  #   it "renders the show template" do
-  #     get :show, { id: recipe.id }
-  #
-  #     expect(response).to render_template("show")
-  #   end
-  # end
-  #
-  #
-  #
-  #   def index
-  #     @cookbooks = Cookbook.by_user(session[:user_id]) # TODO SHOULD BE ALPHABETICAL?
-  #   end
-  #
-  #   def show
-  #     @recipes = @cookbook.recipes
-  #   end
-  #
-  #   def new
-  #     @cookbook = Cookbook.new
-  #   end
-  #
-  #   def create
-  #     @cookbook = Cookbook.new(cookbook_params)
-  #     @cookbook.user_id = session[:user_id]
-  #     if @cookbook.save
-  #       flash[:success] = MESSAGES[:saved]
-  #       redirect_to cookbook_path(@cookbook)
-  #     else
-  #       flash[:warning] = MESSAGES[:name]
-  #       render :new
-  #     end
-  #   end
-  #
-  #   def edit
-  #   end
-  #
-  #   def update
-  #     if @cookbook.update(cookbook_params)
-  #       flash[:success] = MESSAGES[:saved]
-  #       redirect_to cookbook_path(@cookbook)
-  #     else
-  #       # BELOW: Had to do the below because @cookbook's values still change
-  #       # from the #update mehod, and I want to return the original name.
-  #       @cookbook.name = Cookbook.find(params[:id]).name
-  #       flash.now[:warning] = MESSAGES[:name]
-  #       render :edit
-  #     end
-  #   end
-  #
-  #   def destroy
-  #     @cookbook.destroy
-  #     redirect_to cookbooks_path
-  #   end
-  #
-  #   def remove_recipe
-  #     if params[:recipe].nil?
-  #       @cookbook.recipes.destroy_all
-  #     else
-  #       recipe = Recipe.find(params[:recipe])
-  #       @cookbook.recipes.destroy(recipe)
-  #     end
-  #     flash.now[:success] = MESSAGES[:recipe]
-  #     redirect_to cookbook_path(@cookbook)
-  #   end
