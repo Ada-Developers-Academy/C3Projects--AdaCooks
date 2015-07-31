@@ -1,6 +1,6 @@
 class IngredientsController < ApplicationController
 
-before_action :select_ingredient, only: [:show, :edit, :destroy, :update]
+before_action :select_ingredient, only: [:show, :edit, :destroy, :update ]
 
 def select_ingredient
   @ingredient = Ingredient.find(params[:id])
@@ -29,16 +29,23 @@ def new
 end
 
 def create
-  recipe = Recipe.find(session[:recipe_id])
-  user = User.find(session[:user_id])
-  @ingredient = Ingredient.new(ingredient_params)
-  recipe.ingredients << @ingredient
-  @ingredient.user_id = user.id
-  if @ingredient.save
-    redirect_to new_user_ingredient_path(session[:user_id])
+  unless Ingredient.search(params[:ingredient][:name])
+    recipe = Recipe.find(session[:recipe_id])
+    user = User.find(session[:user_id])
+    @ingredient = Ingredient.new(ingredient_params)
+    recipe.ingredients << @ingredient
+    @ingredient.user_id = user.id
+    if @ingredient.save
+      redirect_to new_user_ingredient_path(session[:user_id])
+    else
+      flash[:error] = "It did not save"
+      render :new
+    end
   else
-    flash[:error] = "It did not save"
-    render :new
+    @ingredient = Ingredient.where(name: params[:ingredient][:name])
+    recipe = Recipe.find(session[:recipe_id])
+    recipe.ingredients << @ingredient
+    redirect_to new_user_ingredient_path(session[:user_id])
   end
 end
 
@@ -95,3 +102,25 @@ def ingredient_params
 end
 
 end
+
+#-----------------------------------------------------------------------------
+
+# def got_ingredient
+#   input = gets.chomp.upcase
+
+#   if input == ingredient.name
+#     #gives user that information instead of creating a new ingredient page
+#   else
+#     #routes user to ingredient#create
+#   end 
+# end
+
+# def ArticlesController < ApplicationController
+#   def index
+#     if params[:search]
+#       @articles = Article.search(params[:search]).order("created_at DESC")
+#     else
+#       @articles = Article.order("created_at DESC")
+#     end
+#   end
+# end
