@@ -18,7 +18,7 @@
             <%= image_tag("ungodly_grub.png", class: "center-block") %>
             <% unless flash.now[:error].blank? %>
             <div class="alert alert-danger" role="alert">
-              <h5><%= flash.now[:error] %>&#x1f4a9;</h5>
+              <h5>&#x1f4a9;<%= flash.now[:error] %>&#x1f4a9;</h5>
             </div>
             <% end %>
           </div>
