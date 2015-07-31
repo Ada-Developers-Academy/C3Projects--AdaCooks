@@ -10,7 +10,7 @@
   <thead>
     <tr>
       <th>Recipe</th>
-      <% if session[:user_id] %>
+      <% if session[:user_id] == @cookbook.user %>
       <th>Remove</th>
       <% end %>
     </tr>
@@ -19,7 +19,7 @@
     <% @recipes.each do |recipe| %>
     <tr>
       <td><%= link_to recipe.name, recipe_path(recipe) %></td>
-      <% if session[:user_id] %>
+      <% if session[:user_id] == @cookbook.user %>
         <td><%= link_to "X", destroy_recipe_assoc_path(user_id: session[:user_id], cookbook_id: @cookbook, recipe_id: recipe), method: :delete, class: "btn btn-danger" %></td>
       <% end %>
     </tr>
