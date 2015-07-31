@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  root 'welcome#index'
+  root :to => redirect('/recipes')
+  # TODO: research the root redirect more (also research difference between 301 and 302 redirects).
+  # It's odd -- root_path --> 'localhost:3000', which does not redirect and change
+  # the url. But 'localhost:3000/' DOES redirect and change the URL.
 
   resources :users, only: [:show, :new, :create] do
     get 'dash', on: :member
@@ -13,10 +16,8 @@ Rails.application.routes.draw do
   end
 
   resources :recipes do # recipes aren't necessarily attached to a cookbook
-    resources :steps, except: [:index, :show]
+    resources :steps, except: [:index, :show] # TODO: check to see if we actually use these anywhere?
   end
 
   resources :ingredients
-
-  # TODO: MAY NEED MEASUREMENT ROUTE?
 end
