@@ -1,8 +1,8 @@
 class RecipesController < ApplicationController
-  before_action :current_user, only: [:show, :add_to_cookbook, :edit, :update, :new]
+  before_action :current_user, only: [:show, :add_to_cookbook, :edit, :update, :new, :setup_show]
 
   before_action :set_recipe, except: [:index, :new, :create]
-  before_action :setup_show, only: [:show, :add_to_cookbook]
+  before_action :setup_recipe, only: [:show, :add_to_cookbook, :edit]
 
   after_action :last_page
 
@@ -92,7 +92,7 @@ class RecipesController < ApplicationController
 
   private
 
-  def setup_show
+  def setup_recipe
     @owner = @recipe.user
     @ingredient_lines = @recipe.recipe_ingredients
     if @current_user
