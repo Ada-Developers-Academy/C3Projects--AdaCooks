@@ -58,8 +58,6 @@ class IngredientsController < ApplicationController
 
     def ingredient_params
       params.require(:ingredient).permit(:name, :image)
-      # params.require(:product).permit(:name, :price, :desc, :stock, :photo_url, :user_id, :retired, :category_ids => [], :categories_attributes => [:id, :name])
-
     end
 
 end
