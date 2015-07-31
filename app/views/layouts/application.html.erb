@@ -16,7 +16,7 @@
             <div class="col-lg-12 col-md-8 col-sm-8">
             <div class="logo">
             <%= image_tag("ungodly_grub.png", class: "center-block") %>
-            <% if flash[:error] %>
+            <% unless flash.now[:error].blank? %>
             <div class="alert alert-danger" role="alert">
               <h5><%= flash[:error] %>&#x1f4a9;</h5>
             </div>
