@@ -86,4 +86,17 @@ RSpec.describe CookbooksController, type: :controller do
     end
   end
 
+  describe "DELETE #destroy" do
+    it "redirects to dashboard view" do
+      user = create :user
+      session[:user_id] = user.id
+      cookbook = create :cookbook, user_id: user.id
+
+      delete :destroy, id: cookbook.id, user_id: user.id
+
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to(dashboard_user_path(user))
+    end
+  end
+
 end
