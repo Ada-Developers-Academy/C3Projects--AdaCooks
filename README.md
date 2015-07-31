@@ -30,7 +30,7 @@ We're doing this to make the final project easier to code review. Because the ba
   - view an alphabetical list of all Recipes
   - view the details of a Recipe, inluding...
     - a link to the User profile of the person who created the Recipe
-    - links to the Ingridient profile for all associated Ingredients
+    - links to the Ingredient profile for all associated Ingredients
 - __Ingredients__
   - view an alphabetical list of all Ingedients
   - view the details of an individual Ingredient, including...
@@ -45,7 +45,7 @@ We're doing this to make the final project easier to code review. Because the ba
 - __Cookbooks__
   - √ See a list of Cookbooks I've already created, including...
     - √ The number of Recipes associated with the Cookbook
-    - √ The number of unique Recipes associated with the Cookbook
+    - √ The number of unique Ingredients associated with the Cookbook
   - √ See the details of a specific Cookbook, including...
     - √ a list of links to the Recipes associated with the Cookbook
     - √ a link to remove (unassociate) a Recipe from the Cookbook. This does not destroy the Recipe.
