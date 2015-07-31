@@ -20,10 +20,10 @@
     <% @cookbooks.each do |cookbook| %>
       <div class="col-md-4">
 
-        <% if cookbook.photo_url %>
-          <%= image_tag cookbook.photo_url, class:"img-circle", size: "220x200" %>
-        <% elsif cookbook.image_url %>
+        <% if cookbook.image_url %>
           <%= image_tag cookbook.image_url, class:"img-circle", size: "220x200" %>
+        <% elsif cookbook.photo_url %>
+          <%= image_tag cookbook.photo_url, class:"img-circle", size: "220x200" %>
         <% else %>
           <%= image_tag "no_image.png", class:"img-circle", size: "220x200" %>
         <% end %>
