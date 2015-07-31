@@ -7,7 +7,7 @@ class IngredientsController < ApplicationController
   end
 
   def show
-    @user = User.find(session[:user_id])
+    @user = current_user
     @recipes = @ingredient.recipes
   end
 

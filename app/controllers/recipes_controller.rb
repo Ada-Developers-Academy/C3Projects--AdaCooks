@@ -32,6 +32,7 @@ class RecipesController < ApplicationController
   def edit
     @url = recipe_path(@recipe)
     @method = :patch
+    @user = current_user
   end
 
   def update
