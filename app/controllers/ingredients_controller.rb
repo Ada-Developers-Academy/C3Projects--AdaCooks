@@ -7,6 +7,8 @@ class IngredientsController < ApplicationController
   end
 
   def index
+    @recipes = Recipe.all
+
     if Ingredient.search(params[:search]).empty?
       flash[:alert] = MESSAGES[:empty_search]
       @ingredients = Ingredient.order(:name)
