@@ -6,13 +6,24 @@ RSpec.describe IngredientsController, type: :controller do
     it "renders the #index view" do
       get :index
 
+      expect(response.status).to eq 200
       expect(response).to render_template("index")
+    end
+
+    it "creates a variable with ingredients in alphabetical order" do
+      %w(pumpkin fish banana mushroom oil salt).each do |name|
+        create(:ingredient, name: name)
+      end
+      get :index
+
+      expect(assigns(:ingredients).first.name).to eq "banana"
     end
 
     it "renders the #show view" do
       ingredient = create :ingredient
       get :show, id: ingredient.id
 
+      expect(response.status).to eq 200
       expect(response).to render_template("show")
     end
   end
@@ -29,29 +40,42 @@ RSpec.describe IngredientsController, type: :controller do
     end
 
     context "Logged in users can access #new" do
-
-      it "renders the #new view" do
+      before :each do
         user = create :user
         session[:user_id] = user.id
         get :new, user_id: user
+      end
 
+      it "makes a new ingredient" do
+        expect(assigns(:ingredient)).to be_a Ingredient
+      end
+
+      it "renders the #new view" do
+        expect(response.status).to eq 200
         expect(response).to render_template("new")
       end
     end
+  end
 
-    context "Logged in users can only edit and delete their own ingredients" do
-      before :each do
-        @logged_in_user = create :user
-        @other_user = create :user, username: "other_user"
-        session[:user_id] = @logged_in_user.id
-        @ingredient = create :ingredient
-      end
+  describe "Logged in users can edit and delete their own ingredients" do
+    before :each do
+      user = create :user
+      session[:user_id] = user.id
+      @ingredient = create :ingredient
+      get :edit, id: @ingredient.id
+    end
 
-      it "renders the #edit view" do
-        get :edit, id: @logged_in_user.id
+    it "renders the #edit view" do
+      expect(response.status).to eq 200
+      expect(response).to render_template :edit
+    end
 
-        expect(response).to render_template("edit")
-      end
+    it "redirects to the user's dashboard" do
+      @unauth_user = create :user, username: "wronguser"
+      session[:user_id] = @unauth_user
+      get :edit, id: @ingredient.id
+
+      expect(subject).to redirect_to user_path(id: @unauth_user.id)
     end
   end
 end
