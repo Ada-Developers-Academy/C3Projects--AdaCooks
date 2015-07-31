@@ -40,10 +40,12 @@ RSpec.describe RecipesController, type: :controller do
 
   describe "GET #new" do
     it "renders the new template" do
+      session[:user_id] = 1
       get :new
       expect(response).to render_template("new")
     end
   end
+
   describe "POST #create" do
     context "valid params" do
 

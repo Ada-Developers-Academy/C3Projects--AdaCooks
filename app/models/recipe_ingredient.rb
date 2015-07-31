@@ -5,6 +5,7 @@ class RecipeIngredient < ActiveRecord::Base
   belongs_to :measurement
 
   # Validations ----------------------------------------------------------------
+  # mahalo @_jnf, for pointing out this needs to validate :recipe, not :recipe_id
   validates :recipe, presence: true
   validates :ingredient_id, presence: true
 end

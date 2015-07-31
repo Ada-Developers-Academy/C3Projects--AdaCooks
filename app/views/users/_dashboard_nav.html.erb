@@ -1,0 +1,15 @@
+<div class="navbar navbar-default">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li role="presentation" class="<%=is_active('my_recipes')%>">
+        <%= link_to 'My Recipes', my_recipes_path %>
+      </li>
+      <li role="presentation" class="<%=is_active('my_cookbooks')%>">
+        <%= link_to 'My Cookbooks', my_cookbooks_path %>
+      </li>
+      <li role="presentation" class="<%=is_active('my_ingredients')%>">
+        <%= link_to 'My Ingredients', my_ingredients_path %>
+      </li>
+    </ul>
+  </div>
+</div>
