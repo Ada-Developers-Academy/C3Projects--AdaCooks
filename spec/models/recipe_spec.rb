@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Recipe, type: :model do
-  describe "model validations" do
-    it "Requires that a recipe name be present" do
-      recipe1 = build :recipe
 
-      expect(recipe1).to be_valid
-    end
+  describe Recipe do
+    it_behaves_like "an object"
+  end
+
+  describe "model validations" do
 
     it "Requires that a recipe preparation be present" do
       recipe = build :recipe, preparation: nil

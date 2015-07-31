@@ -2,14 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Ingredient, type: :model do
 
+  describe Ingredient do
+    it_behaves_like "an object"
+  end
+
   describe "model validations" do
-    it "Requires that an ingredient name be present" do
-      ingredient = build :ingredient, name: nil
-
-      expect(ingredient).to_not be_valid
-      expect(ingredient.errors.keys).to include(:name)
-    end
-
     it "Requires that an ingredient name be unique" do
       ingredient = create :ingredient
       other_ingredient = ingredient.dup

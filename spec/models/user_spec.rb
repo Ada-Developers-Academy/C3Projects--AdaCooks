@@ -2,14 +2,11 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
+  describe User do
+    it_behaves_like "an object"
+  end
+
   describe "model validations" do
-    it "Requires that a cookbook name be present" do
-      user = build :user, name: nil
-
-      expect(user).to_not be_valid
-      expect(user.errors.keys).to include(:name)
-    end
-
     it "Requires that a user name be unique" do
       user = create :user
       other_user = user.dup
