@@ -11,5 +11,27 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe CookbooksHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:cookbook) { create :cookbook }
+  let(:recipe1) { create :recipe }
+  let(:recipe2) { create :recipe }
+  let(:recipe3) { create :recipe }
+
+  describe "cookbook_recipes_count" do
+    it "outputs some text based on how many recipes an ingredient is used in" do
+      cookbook.recipes << recipe1
+      cookbook.recipes << recipe2
+      expect(cookbook_recipes_count(cookbook)).to include("2")
+
+      recipe3
+      expect(cookbook_recipes_count(cookbook)).not_to include("3")
+    end
+
+    it "adjusts the pluralization if there's only one ingredient" do
+      cookbook.recipes << recipe1
+      expect(cookbook_recipes_count(cookbook)).not_to include("s")
+
+      cookbook.recipes << recipe2
+      expect(cookbook_recipes_count(cookbook)).to include("s")
+    end
+  end
 end

@@ -76,7 +76,7 @@ class CookbooksController < ApplicationController
   private
     def create_params
       create_params = params.require(:cookbook).permit(:name, :description, :user_id)
-      create_params[:user_id] = @authenticated_user
+      create_params[:user_id] = session[:user_id]
 
       return create_params
     end
