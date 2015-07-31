@@ -46,7 +46,7 @@ RSpec.describe CookbooksController, type: :controller do
        get :new, user_id: session[:user_id]
        expect(assigns(:cookbook)).to be_kind_of(Object)
      end
-   end
+  end
 
    describe "DELETE #destroy" do
     before :each do
