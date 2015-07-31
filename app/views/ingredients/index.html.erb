@@ -1,5 +1,8 @@
 <div class="container marketing">
     <h1>All Ingredients</h1>
+    <% if session[:user_id] %>
+      <a href ="#ingredients">See your ingredients</a>
+    <% end %>
 
     <hr class="featurette-divider">
 
@@ -22,7 +25,7 @@
     </div>
 
   <% if session[:user_id] %>
-    <h1 class="Ingredients">Ingredients you added</h1>
+    <h1 id="ingredients">Ingredients you added</h1>
     <p><%= link_to "Create a New ingredient", new_ingredient_path, class: "btn btn-default" %></p>
     <hr class="featurette-divider">
 
