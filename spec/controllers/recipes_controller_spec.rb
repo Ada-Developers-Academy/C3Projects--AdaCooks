@@ -22,6 +22,7 @@ RSpec.describe RecipesController, type: :controller do
 
   describe "GET #show" do
     before(:each) do
+      session[:user_id] = 1
       @recipe = create :recipe, name: "taiyaki"
     end
 
@@ -86,7 +87,24 @@ RSpec.describe RecipesController, type: :controller do
         delete :destroy, :id => recipe.id
         expect(Recipe.count).to eq 0
       end
-
     end
+
+    # => this test is currently not working
+    # => not sure which params to pass in
+    
+    # describe "POST #add_to_cookbook" do
+    #   let(:cookbook) { create :cookbook }
+    #   let(:recipe) { create :recipe }
+
+    #   before :each do
+    #     session[:user_id] = 1
+    #     binding.pry
+    #     post :add_to_cookbook, id: recipe, cookbook_id: cookbook.id
+    #   end
+
+    #   it "adds the recipe to the cookbook" do
+    #     expect(cookbook.recipes).to include (recipe)
+    #   end
+    # end
   end
 end
