@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
 
   before_action :set_recipe, except: [:index, :new, :create]
   before_action :setup_show, only: [:show, :add_to_cookbook]
-  
+
   after_action :last_page
 
   MESSAGES = {
@@ -20,8 +20,8 @@ class RecipesController < ApplicationController
   def index
     if params[:search]
       @recipes = Ingredient.search(params[:search])
-      if @recipes == nil
-        flash[:errors] = "Sorry, we can't find that ingredient! So here are ALL the recipes!"
+      if @recipes == nil || @recipes.length == 0
+        flash[:errors] = "Sorry, we can't find \"#{params[:search]}\", so here are ALL the recipes!"
         @recipes = Recipe.alpha
       end
     else
