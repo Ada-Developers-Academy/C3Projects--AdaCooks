@@ -13,6 +13,7 @@ class Recipe < ActiveRecord::Base
 
   # Scopes -----------------------------------------
   scope :alphabet, -> { order('lower (name)') }
+  scope :diff, -> { select(:ingredients).distinct.order(:ingredients).pluck(:ingredients) }
 
   # Mounted Objects_____________________________________________________________
   # mount_uploader :image, ImageUploader #instance of class image uploader

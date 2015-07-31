@@ -17,6 +17,7 @@ class CookbooksController < ApplicationController
 
   def show
     @cookbook = Cookbook.find(params[:id])
+    # @recipes = Recipes.where(user_id: session[:user_id])
   end
 
   def destroy
