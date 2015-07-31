@@ -1,5 +1,9 @@
 <h1>search results</h1>
 
+<% if flash.now[:error] %>
+  <p class="alert alert-info"><%= flash.now[:error] %></p>
+<% end %>
+
     <% @recipes.each do |recipe| %>
       <div class = "col-sm-4">
         <%= image_tag recipe.image_url, class: "img-board"  %>

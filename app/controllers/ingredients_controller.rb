@@ -37,7 +37,7 @@ class IngredientsController < ApplicationController
     @ingredient.update(ingredient_params[:ingredient])
     if @ingredient.save
       redirect_to ingredients_path(@ingredient_id)
-    elsif 
+    elsif
       flash[:errors] = error_messages(@ingredient)
       redirect_to edit_ingredient_path(@ingredient_id)
     end
@@ -59,6 +59,9 @@ class IngredientsController < ApplicationController
       @recipes.concat array
     end
     @recipes = @recipes.uniq
+    if @recipes.empty?
+      flash.now[:error] = "Search returned no results."
+    end
     render :search_results
   end
 
