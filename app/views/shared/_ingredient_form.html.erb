@@ -8,6 +8,7 @@
     <%= f.file_field :image, class: "form-control form-group" %>
 
     <%= f.hidden_field :request, value: request.referer %>
+    <%= f.hidden_field :user_id, value: session[:user_id] %>
 
     <%= f.submit "Save", id: session[:user_id], class: "btn btn-primary col-sm-2" %>
   <% end %>

@@ -66,7 +66,7 @@ private
   end
 
   def ingredient_params
-    params.require(:ingredient).permit(:name, :image)
+    params.require(:ingredient).permit(:name, :image, :user_id)
   end
 
 end
