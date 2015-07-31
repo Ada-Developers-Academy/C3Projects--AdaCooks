@@ -34,13 +34,13 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Create different versions of your uploaded files:
   version :thumb do
     # process :resize_to_fit => [160, 160]
-    process :resize_to_fill => [160, 160]
+    process resize_to_fill: [160, 160]
     # decided to go with a "fill" so that our
     # navigation thumbnails would be standardized views
   end
 
   version :display do
-    process :resize_to_fit => [400, 400]
+    process resize_to_fit: [400, 400]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
