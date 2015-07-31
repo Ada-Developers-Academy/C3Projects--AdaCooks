@@ -4,22 +4,20 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user
   helper_method :last_page
+  helper_method :require_owner
 
-  MESSAGES = {
-    not_signed_in: "Please sign in to access that page.",
-    signed_in: "Sign in successful. Enjoy your ice cream!"
+  MESSAGES = { 
+    not_signed_in: "Please sign in to access that page." 
   }
 
   def current_user
     @current_user = User.find_by(id: session[:user_id])
   end
 
-  def authorize
-    if current_user
-      flash[:success] = MESSAGES[:signed_in]
-    else
-      redirect_to signin_path
+  def require_signin
+    unless @current_user
       flash[:errors] = MESSAGES[:not_signed_in]
+      redirect_to signin_path
     end
   end
 

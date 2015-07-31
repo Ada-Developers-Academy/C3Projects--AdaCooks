@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-  # before_filter :authorize, only: [:my_recipes, :my_cookbooks, :my_ingredients]
   before_action :current_user, only: [:my_recipes, :my_cookbooks, :my_ingredients]
   before_action :set_user, only: [:show]
+
+  before_action :require_signin, only: [:my_recipes, :my_cookbooks, :my_ingredients]
 
   def new
     @user = User.new

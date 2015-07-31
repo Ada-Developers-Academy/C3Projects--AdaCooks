@@ -13,16 +13,16 @@ We are going to try something new with this project. When you've accomplished al
 We're doing this to make the final project easier to code review. Because the baseline includes all of the Rails setup and boilerplate, issuing (and merging) a PR at the beginning will remove those files from the Pull Request interface for the PR you'll open at the end of the project.
 
 ### The baseline requirements are...
-- a ruby-gemset and ruby-version.
-- a new rails 4.2.2 application.
-- [rspec](https://github.com/rspec/rspec-rails) setup in document format (hint: use a .rspec config file and the `rspec_rails` gem)
-- [factory_girl](https://github.com/thoughtbot/factory_girl_rails) included and set up to work with rspec (hint: use the `factory_girl_rails` gem)
-- code coverage reporting (hint: user simplecov)
+- DONE a ruby-gemset and ruby-version.
+- DONE a new rails 4.2.2 application.
+- DONE [rspec](https://github.com/rspec/rspec-rails) setup in document format (hint: use a .rspec config file and the `rspec_rails` gem)
+- DONE [factory_girl](https://github.com/thoughtbot/factory_girl_rails) included and set up to work with rspec (hint: use the `factory_girl_rails` gem)
+- DONE code coverage reporting (hint: user simplecov)
 
 ## User Stories
 
-### As any User, I can...
-- search by the name of an Ingredient and get related Recipes back.
+### DONE As any User, I can...
+- DONE search by the name of an Ingredient and get related Recipes back.
 - DONE __Recipes__
   - DONE view an alphabetical list of all Recipes
   - DONE view the details of a Recipe, inluding...
@@ -33,7 +33,7 @@ We're doing this to make the final project easier to code review. Because the ba
   - DONE view the details of an individual Ingredient, including...
     - DONE a list of links to Recipes associated with the Ingredient
     
-### As an anonymous User I can...
+### DONE As an anonymous User I can...
 - DONE register a new User account
 - DONE Log In to an existing User account
 
@@ -52,16 +52,16 @@ We're doing this to make the final project easier to code review. Because the ba
   - DONE Destroy an existing Cookbook
     - DONE Destroying a Cookbook __does not__ destroy the Recipes, just the associations.
   - DONE Edit an existing Cookbook's `name` and `description` information.
-- __Recipes__
+- DONE __Recipes__
   - DONE Create a new Recipe, optionally associated with one of my existing Cookbooks, with...
     - DONE a `name` (required)
     - DONE a `description` (optional)
     - DONE an uploaded image of the prepared Recipe (optional)
     - DONE a `preparation` (required)
     - DONE one or more Ingredients (required)
-  - Edit an existing Recipe that I created by...
+  - DONE Edit an existing Recipe that I created by...
     - DONE Changing the `name`, `description`, uploaded image, and/or `preparation`
-    - Removing or Adding Ingredients
+    - DONE Removing or Adding Ingredients
   - DONE Destroy an existing Recipe that I created
     - DONE Destroying a Recipe __does not__ destroy the Ingrdients, just the associations
   - DONE From a Recipe's detail page, I can save the Recipe to an existing Cookbook
@@ -73,4 +73,4 @@ We're doing this to make the final project easier to code review. Because the ba
   - DONE Destroy an existing Ingredient that I created (this does not destroy any associated Recipes)
 
 ### Other Requirements
-- A minimum 80% test coverage for all Models and Controllers.
+- DONE A minimum 80% test coverage for all Models and Controllers.

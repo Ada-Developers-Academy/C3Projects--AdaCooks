@@ -1,6 +1,7 @@
 class IngredientsController < ApplicationController
   before_action :set_ingredient, only: [:show, :edit, :update, :destroy]
-  before_action :current_user, only: [:create]
+
+  before_action :current_user, only: [:create, :show, :edit, :update]
 
   after_action :last_page
 
@@ -10,7 +11,8 @@ class IngredientsController < ApplicationController
     update_success: "You have successfully updated your ingredient.",
     update_fail: "There was a problem with your update. Please try again.",
     destroy_success: "You have successfully deleted the ingredient.",
-    destroy_fail: "There was a problem with your ingredient deletion. Please try again."
+    destroy_fail: "There was a problem with your ingredient deletion. Please try again.",
+    not_yo_ingredient: "You cannot edit someone else's ingredient."
   }
 
   def index
@@ -31,6 +33,13 @@ class IngredientsController < ApplicationController
     else
       flash[:errors] = MESSAGES[:create_fail]
       render :new
+    end
+  end
+
+  def edit
+    if @ingredient.user != @current_user
+      flash[:errors] = MESSAGES[:not_yo_ingredient]
+      redirect_to @ingredient
     end
   end
 

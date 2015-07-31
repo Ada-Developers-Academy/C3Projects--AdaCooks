@@ -1,6 +1,8 @@
 class CookbooksController < ApplicationController
   before_action :set_cookbook, only: [:edit, :update, :show, :destroy]
-  before_action :current_user, only: [:create]
+  before_action :current_user, only: [:create, :show, :edit, :update]
+
+  before_action :require_owner, only: [:show, :edit, :update]
 
   after_action :last_page
 
@@ -10,7 +12,8 @@ class CookbooksController < ApplicationController
     update_success: "You have successfully updated your cookbook.",
     update_fail: "There was a problem with your update. Please try again.",
     destroy_success: "You have successfully deleted the cookbook.",
-    destroy_fail: "There was a problem with your cookbook deletion. Please try again."
+    destroy_fail: "There was a problem with your cookbook deletion. Please try again.",
+    not_yo_cookbook: "Don't be creepin' on other people's cookbooks."
   }
 
   def new
@@ -71,6 +74,16 @@ class CookbooksController < ApplicationController
   end
 
   private
+
+  def require_owner
+    if !@current_user
+      flash[:errors] = MESSAGES[:not_signed_in]
+      redirect_to signin_path
+    elsif !@current_user.cookbooks.exists?(id: params[:id])
+      flash[:errors] = MESSAGES[:not_yo_cookbook]
+      redirect_to my_cookbooks_path
+    end
+  end
 
   def set_cookbook
     @cookbook = Cookbook.find(params[:id])

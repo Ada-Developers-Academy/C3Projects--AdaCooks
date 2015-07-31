@@ -62,6 +62,7 @@ RSpec.describe CookbooksController, type: :controller do
     let(:cookbook) { create :cookbook }
 
     before :each do
+      session[:user_id] = cookbook.user.id
       get :edit, id: cookbook
     end
 
@@ -79,6 +80,7 @@ RSpec.describe CookbooksController, type: :controller do
 
     context "valid params" do
       before :each do
+        session[:user_id] = cookbook.user.id
         put :update, id: cookbook, cookbook: { 
           name: 'updated name', description: 'updated description'
         }
@@ -96,6 +98,7 @@ RSpec.describe CookbooksController, type: :controller do
 
     context "invalid params" do # missing name
       before :each do
+        session[:user_id] = cookbook.user.id
         put :update, id: cookbook, cookbook: {
           name: nil, description: 'updated description'
         }
@@ -116,6 +119,7 @@ RSpec.describe CookbooksController, type: :controller do
     let(:cookbook) { create :cookbook }
 
     before :each do
+      session[:user_id] = cookbook.user.id
       get :show, id: cookbook
     end
 
