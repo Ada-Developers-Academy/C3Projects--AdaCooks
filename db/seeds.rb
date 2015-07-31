@@ -171,14 +171,14 @@ recipe.ingredients << Ingredient.find(i["Flour"])
 recipe.ingredients << Ingredient.find(i["Baking Powder"])
 recipe.ingredients << Ingredient.find(i["Oil"])
 
-recipe = Recipe.find(5)
+recipe = Recipe.find(6)
 # Peanut Butter & Jam Sando
 recipe.ingredients << Ingredient.find(i["Peanut Butter"])
 recipe.ingredients << Ingredient.find(i["Jam"])
 recipe.ingredients << Ingredient.find(i["Bread"])
 
 
-recipe = Recipe.find(5)
+recipe = Recipe.find(7)
 # Fried Chicken
 recipe.ingredients << Ingredient.find(i["Chicken"])
 recipe.ingredients << Ingredient.find(i["Oil"])
