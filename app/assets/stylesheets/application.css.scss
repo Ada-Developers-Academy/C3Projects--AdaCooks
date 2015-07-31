@@ -17,18 +17,30 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
-// two-column styles
+.inline-form {
+  width: auto;
+}
 
- .columns {
-   -webkit-column-count: 2; /* Chrome, Safari, Opera */
-   -moz-column-count: 2; /* Firefox */
-   column-count: 2;
-   ul {
-     margin: 0;
-   }
- }
+// this is a green world
+body, .navbar, .jumbotron {
+  background: #cfc;
+}
 
- .inline-form {
+// such a green world
+.nav > li > a:hover, .nav > li > a:focus, .nav-pills a:hover, .nav-pills a:active, li.dropdown.open a:active, li.dropdown.open a:focus {
+    background-color: #080; // dark green
+    color: #cfc; // light green
+}
 
-   width: auto;
- }
+// greeeeeeeen greeen green green
+.nav > li > a {
+  background-color: #fff;
+  border: 1px solid #cec;
+  color: #353;
+  margin: 3px;
+  padding: 3px 10px;
+}
+
+.jumbotron p {
+  font-size: 16px;
+}
