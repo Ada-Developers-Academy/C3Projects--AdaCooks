@@ -34,7 +34,7 @@
       <% end %>
 
       <!-- Mahalo @acmei, for the help on this collection_check_boxes -->
-      <% if @current_user %>
+      <% if @current_user && params[:action] == "new" %>
       <legend>Add to your cookbooks</legend>
         <% if @cookbooks %>
         <div class="form-group">
