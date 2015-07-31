@@ -28,9 +28,9 @@ We're doing this to make the final project easier to code review. Because the ba
 - √ search by the name of an Ingredient and get related Recipes back.
 - __Recipes__
   - √ view an alphabetical list of all Recipes
-  - view the details of a Recipe, inluding...
-    - a link to the User profile of the person who created the Recipe
-    - links to the Ingredient profile for all associated Ingredients
+  - √ view the details of a Recipe, inluding...
+    - √ a link to the User profile of the person who created the Recipe
+    - √ links to the Ingredient profile for all associated Ingredients
 - __Ingredients__
   - view an alphabetical list of all Ingedients
   - view the details of an individual Ingredient, including...
@@ -65,7 +65,7 @@ We're doing this to make the final project easier to code review. Because the ba
   - Edit an existing Recipe that I created by...
     - Changing the `name`, `description`, uploaded image, and/or `preparation`
     - Removing or Adding Ingredients
-  - Destroy an existing Recipe that I created
+  - √ Destroy an existing Recipe that I created
     - Destroying a Recipe __does not__ destroy the Ingrdients, just the associations
   - From a Recipe's detail page, I can save the Recipe to an existing Cookbook
 - __Ingredients__
