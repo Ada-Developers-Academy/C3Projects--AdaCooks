@@ -40,5 +40,18 @@ RSpec.describe IngredientsController, type: :controller do
       end
   end
 
+  describe "GET #index" do
+    it "renders :index view" do
+      user = create :user
+      session[:user_id] = user.id
+
+      get :index, user_id: user.id
+
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+      expect(response).to render_template(:index)
+    end
+  end
+
 
 end
