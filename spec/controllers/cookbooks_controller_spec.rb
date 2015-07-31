@@ -4,12 +4,28 @@ RSpec.describe CookbooksController, type: :controller do
 
   let(:cookbook) {create :cookbook}
 
-  describe "GET#Show" do
+  describe "GET #show" do
     it "renders the :show view for a cookbook" do
        get :show, user_id: 1, id: cookbook.id
        expect(response).to render_template("show")
     end
   end
+
+  describe "PATCH #remove_recipe" do
+    it "removes a recipe from a cookbook" do
+      cookbook = create :cookbook
+      recipe1 = create :recipe
+      recipe2 = create :recipe
+
+      cookbook.recipes << recipe1
+      cookbook.recipes << recipe2
+
+      patch :remove_recipe, user_id: cookbook.user_id, cookbook_id: cookbook.id, recipe_id: recipe1.id
+
+      expect(cookbook.recipes.count).to eq 1
+    end
+  end
+
   describe "GET #new" do
     it "responds successfully with an HTTP 200 status code" do
       @user = create :user
@@ -35,9 +51,7 @@ RSpec.describe CookbooksController, type: :controller do
 
     it "deletes the record" do
       delete :destroy, user_id: @user.id, id: @cookbook.id
-
       expect(Cookbook.count).to eq 0
     end
-    
   end
 end
