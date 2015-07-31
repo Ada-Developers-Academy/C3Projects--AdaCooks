@@ -48,4 +48,13 @@ class IngredientsController < ApplicationController
       def ingredient_params
         params.require(:ingredient).permit(:name, :image, :user_id)
       end
+
+      def correct_user
+        if session[:user_id].nil?
+          redirect_to root_path
+        else
+          logged_in_user = User.find(session[:user_id])
+          redirect_to user_path(logged_in_user) unless @ingredient.user_id == logged_in_user.id
+        end
+      end
 end
