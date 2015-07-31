@@ -17,4 +17,7 @@
   <h1><%= @ingredient.name %></h1>
 </div>
 
-<%= render partial: "shared/recipes" %>
+<div class="row col-sm-12">
+  <h3>Recipes containing <%= @ingredient.name %>:</h3>
+  <%= render partial: "shared/recipes" %>
+</div>
