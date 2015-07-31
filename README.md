@@ -32,9 +32,9 @@ We're doing this to make the final project easier to code review. Because the ba
     - √ a link to the User profile of the person who created the Recipe
     - √ links to the Ingredient profile for all associated Ingredients
 - __Ingredients__
-  - view an alphabetical list of all Ingedients
-  - view the details of an individual Ingredient, including...
-    - a list of links to Recipes associated with the Ingredient
+  - √ view an alphabetical list of all Ingedients
+  - √ view the details of an individual Ingredient, including...
+    - √ a list of links to Recipes associated with the Ingredient
     
 ### As an anonymous User I can...
 - √ register a new User account
@@ -57,23 +57,23 @@ We're doing this to make the final project easier to code review. Because the ba
   - √ Edit an existing Cookbook's `name` and `description` information.
 - __Recipes__
   - Create a new Recipe, optionally associated with one of my existing Cookbooks, with...
-    - a `name` (required)
-    - a `description` (optional)
-    - an uploaded image of the prepared Recipe (optional)
-    - a `preparation` (required)
-    - one or more Ingredients (required)
+    - √ a `name` (required)
+    - √ a `description` (optional)
+    - √ an uploaded image of the prepared Recipe (optional)
+    - √ a `preparation` (required)
+    - √ one or more Ingredients (required)
   - Edit an existing Recipe that I created by...
-    - Changing the `name`, `description`, uploaded image, and/or `preparation`
-    - Removing or Adding Ingredients
+    - √ Changing the `name`, `description`, uploaded image, and/or `preparation`
+    - √ Removing or Adding Ingredients
   - √ Destroy an existing Recipe that I created
-    - Destroying a Recipe __does not__ destroy the Ingrdients, just the associations
-  - From a Recipe's detail page, I can save the Recipe to an existing Cookbook
+    - √ Destroying a Recipe __does not__ destroy the Ingrdients, just the associations
+  - √ From a Recipe's detail page, I can save the Recipe to an existing Cookbook
 - __Ingredients__
   - Create an Ingredient with...
-    - a unique `name` (required)
-    - an uploaded image of the Ingredient (optional)
-  - Edit the `name` and/or the uploaded image of an existing Ingredient that I created
-  - Destroy an existing Ingredient that I created (this does not destroy any associated Recipes)
+    - √ a unique `name` (required)
+    - √ an uploaded image of the Ingredient (optional)
+  - √ Edit the `name` and/or the uploaded image of an existing Ingredient that I created
+  - √ Destroy an existing Ingredient that I created (this does not destroy any associated Recipes)
 
 ### Other Requirements
-- A minimum 80% test coverage for all Models and Controllers.
+- √ A minimum 80% test coverage for all Models and Controllers.
