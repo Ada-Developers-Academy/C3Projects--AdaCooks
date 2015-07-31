@@ -10,4 +10,12 @@ module ApplicationHelper
   def user_or_guest
     session[:user_id] ? User.find(session[:user_id]).username : "guest"
   end
+
+  # Mahalo to Team KittyPuppyGoddesses for inspiring this error helper!
+  def show_errors(resource, field)
+    if resource.errors[field].any?
+      flash.now[(field + "_error").to_sym] = (resource.errors.messages[field.to_sym][0].capitalize + ".")
+    end
+  end
+
 end
