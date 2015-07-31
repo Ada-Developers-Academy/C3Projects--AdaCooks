@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150728221402) do
+ActiveRecord::Schema.define(version: 20150731173251) do
 
   create_table "cookbooks", force: :cascade do |t|
     t.string   "name"
@@ -23,15 +23,25 @@ ActiveRecord::Schema.define(version: 20150728221402) do
 
   add_index "cookbooks", ["user_id"], name: "index_cookbooks_on_user_id"
 
+  create_table "cookbooks_recipes", id: false, force: :cascade do |t|
+    t.integer "cookbook_id", null: false
+    t.integer "recipe_id",   null: false
+  end
+
+  add_index "cookbooks_recipes", ["cookbook_id"], name: "index_cookbooks_recipes_on_cookbook_id"
+  add_index "cookbooks_recipes", ["recipe_id"], name: "index_cookbooks_recipes_on_recipe_id"
+
   create_table "ingredients", force: :cascade do |t|
     t.string   "name"
     t.string   "image"
     t.integer  "recipe_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
 
   add_index "ingredients", ["recipe_id"], name: "index_ingredients_on_recipe_id"
+  add_index "ingredients", ["user_id"], name: "index_ingredients_on_user_id"
 
   create_table "ingredients_recipes", id: false, force: :cascade do |t|
     t.integer "recipe_id"
@@ -46,13 +56,11 @@ ActiveRecord::Schema.define(version: 20150728221402) do
     t.text     "desc"
     t.string   "image"
     t.text     "prep"
-    t.integer  "cookbook_id"
     t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "recipes", ["cookbook_id"], name: "index_recipes_on_cookbook_id"
   add_index "recipes", ["user_id"], name: "index_recipes_on_user_id"
 
   create_table "users", force: :cascade do |t|

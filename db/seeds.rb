@@ -22,7 +22,8 @@ CSV.foreach("db/ingredients.csv", headers: true) do |row|
 
   Ingredient.create(
     name: row[0],
-    image: open(image_path)
+    image: open(image_path),
+    user_id: row[2]
   )
 end
 
@@ -34,8 +35,7 @@ CSV.foreach("db/recipes.csv", headers: true) do |row|
     desc: row[1],
     image: open(image_path),
     prep: row[3],
-    cookbook_id: row[4],
-    user_id: row[5]
+    user_id: row[4]
   )
   x.save(validate: false)
 end
@@ -46,5 +46,16 @@ ingredients_recipes.each do |i, r|
   ingredient = Ingredient.find(i)
   r.each do |x|
     ingredient.recipes << Recipe.find(x)
+  end
+end
+
+# cookbooks_recipes = { 1 => [1, 2], 2 => [4, 6], 3 => [1, 2, 3, 4, 5, 6], 4 => [2, 4], 5 => [2, 3], 6 => [3, 4, 5], 7 => [1, 3, 5], 8 => [2, 4, 6], 9 => [1, 2, 3, 4, 5, 6], 10 => [3, 6], 11 => [1, 2], 12 => [2, 5], 13 => [1, 5], 14 => [1], 15 => [5, 3], 16 => [3, 2] }
+
+cookbooks_recipes = { 1 => [1, 2, 13, 15, 8], 2 => [4, 6, 12, 14], 3 => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16], 4 => [2, 4, 7, 10], 5 => [2, 3, 8, 11, 13], 6 => [3, 4, 5, 8, 11, 14] }
+
+cookbooks_recipes.each do |i, r|
+  cookbook = Cookbook.find(i)
+  r.each do |x|
+    cookbook.recipes << Recipe.find(x)
   end
 end
