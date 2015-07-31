@@ -14,7 +14,7 @@
 
     <% @ingredients.each do |ingredient| %>
       <tr>
-        <td> <%= image_tag(ingredient.image_url(:thumb), class: "img-rounded product-thumb")  %></td>
+        <td> <%= image_tag(ingredient.image_url(:thumb), class: "img-rounded")  %></td>
         <td> <%= link_to ingredient.name.titlecase, ingredient_path(ingredient) %></td>
       </tr>
       <% end %>
