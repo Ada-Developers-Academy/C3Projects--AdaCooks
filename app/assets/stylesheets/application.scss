@@ -53,6 +53,15 @@ h4 {
   color: #0C140F;
 }
 
+a {
+  color: #0C140F;
+}
+
+a:hover {
+  color: #6712da;
+  text-decoration: none;
+  font-weight: bolder;
+}
 
 #main-container {
   min-height: 100vh;
