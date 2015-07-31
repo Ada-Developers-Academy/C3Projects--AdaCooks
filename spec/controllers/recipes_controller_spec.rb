@@ -3,21 +3,17 @@ require 'rails_helper'
 RSpec.describe RecipesController, type: :controller do
   before :each do
     ingredient = create :ingredient, id: 99
-    @user = create :user, id: 1
     recipe = create :recipe, id: 1,  user_id: 1
 
-    session[:user_id] = "1"
   end
 
-  let(:recipe_params) do
-      {
-        user_id: 1
-      }
-    end
 
   describe "GET #new" do
     it "renders the :new view" do
-      get :new, recipe_params
+      user = create :user
+      session[:user_id] = user.id
+
+      get :new, user_id: user.id
 
       expect(response).to render_template("new")
     end
@@ -26,6 +22,14 @@ RSpec.describe RecipesController, type: :controller do
   let(:recipe) do
       {
         user_id: 1,
+
+      }
+    end
+
+  describe "POST #create" do
+    it "redirects to the dashboard view" do
+      user = create :user
+      params = {user_id: user.id,
         recipe: {
         name: "A recipe",
         description: "Do stuff",
@@ -33,17 +37,16 @@ RSpec.describe RecipesController, type: :controller do
         ingredient_ids: [99]
         }
       }
-    end
+      session[:user_id] = 1
+      post :create, params
 
-  describe "POST #create" do
-    it "redirects to the dashboard view" do
-      post :create, recipe
-
-      expect(response).to redirect_to(dashboard_user_path(@user.id))
+      expect(response).to redirect_to(dashboard_user_path(user))
     end
 
     it "has a flash error for invalid data" do
-        post :create, { user_id: 1,
+      user = create :user
+      session[:user_id] = user.id
+        post :create, { user_id: user.id,
           recipe: {
           name: nil,
           description: "Do stuff",
