@@ -20,7 +20,6 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(create_params)
 
     if @recipe.save
-      flash[:success] = "Your recipe has been created! CHECK IT OUTTTTTtttttt now, baby, check it out now."
       redirect_to user_recipe_ingredients_path(@authenticated_user, @recipe)
     else
       flash[:error] = @recipe.errors.full_messages.first
@@ -32,7 +31,6 @@ class RecipesController < ApplicationController
 
   def update
     if @recipe.update(edit_params)
-      flash[:success] = "Your recipe has been updated! CHECK IT OUTTTTTtttttt now, baby, check it out now."
       redirect_to user_recipe_ingredients_path(@authenticated_user, @recipe)
     else
       flash[:error] = @recipe.errors.full_messages.first
@@ -67,6 +65,7 @@ class RecipesController < ApplicationController
         @recipe.add_ingredient_association(ingredient) unless @recipe.ingredients.include? ingredient
       end
 
+      flash[:success] = "HERE IT IS: Hi, new & improved #{ @recipe.proper_name }."
       redirect_to recipe_path(@recipe)
     else
       flash[:error] = "You must select at least one ingredient!"
