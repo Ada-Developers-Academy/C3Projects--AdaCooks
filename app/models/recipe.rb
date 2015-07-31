@@ -29,4 +29,16 @@ class Recipe < ActiveRecord::Base
   def proper_name # FIXME: test Recipe#proper_name
     name.titlecase # OPTIMZE: also should Recipe#proper_name be a helper?
   end
+
+  # Class Methods --------------------------------------------------------------
+  def self.trending
+    recipes = self.all
+
+    trending_recipes = recipes.sort_by do |recipe|
+      recipe.ingredients.count
+    end
+
+    # return in reverse b/c above sorts ascending
+    return trending_recipes.last(5).reverse
+  end
 end

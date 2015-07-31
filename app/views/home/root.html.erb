@@ -1,2 +1,11 @@
-<h3>4 out of 5 dentists recommend this recipe-finding destination!</h3>
-<h3>More doctors use <%= random_ingredient_name %> in their <%= random_recipe_name %> than any other ingredient!</h3>
+<h2>4 out of 5 dentists recommend this recipe-finding destination!</h2>
+
+<div class="col-sm-6">
+  <h3>Trending recipes:</h3>
+  <%= render partial: 'shared/recipes_list', locals: { recipes: @recipes } %>
+</div>
+
+<div class="col-sm-6">
+  <h3>Trending ingredients:</h3>
+  <%= render partial: 'shared/ingredients_list', locals: { ingredients: @ingredients } %>
+</div>
