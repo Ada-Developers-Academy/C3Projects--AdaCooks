@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
+  before_action :recipe_exist?, only: [:show]
 
   def index
     @recipes = Recipe.alpha_order
@@ -64,5 +65,14 @@ class RecipesController < ApplicationController
   def create_params
     params.require(:recipe).permit(:name, :description, :image, :preparation,
       :cookbook_id, {:ingredient_ids => [] } )
+  end
+
+  def recipe_exist?
+    if Recipe.where(id: params[:id].to_s).any?
+      show
+    else
+      flash[:error] = "This recipe does not exist"
+      redirect_to root_path
+    end
   end
 end

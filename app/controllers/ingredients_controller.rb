@@ -1,5 +1,6 @@
 class IngredientsController < ApplicationController
   before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
+  before_action :ingredient_exist?, only: [:show]
 
   def index
     @ingredients = Ingredient.alpha_order
@@ -58,5 +59,14 @@ class IngredientsController < ApplicationController
 
   def create_params
     params.require(:ingredient).permit(:name, :image, :photo_url)
+  end
+
+  def ingredient_exist?
+    if Ingredient.where(id: params[:id].to_s).any?
+      show
+    else
+      flash[:error] = "This ingredient does not exist"
+      redirect_to root_path
+    end
   end
 end

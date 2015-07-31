@@ -1,5 +1,6 @@
 class CookbooksController < ApplicationController
   before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
+  before_action :cookbook_exist?, only: [:show]
 
   def show
     @cookbook = Cookbook.find(params[:id])
@@ -51,5 +52,14 @@ class CookbooksController < ApplicationController
 
   def create_params
     params.permit(cookbook: [:name, :description, :user_id, :image])
+  end
+
+  def cookbook_exist?
+    if Cookbook.where(id: params[:id].to_s).any?
+      show
+    else
+      flash[:error] = "This cookbook does not exist"
+      redirect_to root_path
+    end
   end
 end
