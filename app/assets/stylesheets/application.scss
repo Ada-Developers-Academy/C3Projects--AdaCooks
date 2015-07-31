@@ -37,7 +37,7 @@ h1, h2, h3, h4, h5, .brand {
 }
 
 /* FORMS */
-label {
+label, nav a:first-child {
   // font-family: 'Oswald', sans-serif;
   font-weight: 300;
   text-transform: uppercase;

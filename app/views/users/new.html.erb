@@ -1,52 +1,59 @@
-<h2>Register</h2>
+<div class="col-sm-4 center-block no-float">
 
-<p class="text-danger form-errors">
-	<%= flash[:notice] %>
-</p>
+	<h2>Register</h2>
 
-<%= form_for @user do |f| %>
+	<br>
 
-	<!-- style these errors and reformat phrase  -->
-	<p class="text-danger form-errors">
-		<%= error_check(:username) %>
+	<p class="alert alert-danger">
+		<span class="glyphicon glyphicon-exclamation-sign"></span> <%= flash[:notice] %>
 	</p>
 
-	<div class="form-group">
-		<%= f.label :username %>
-		<%= f.text_field :username %>
-	</div>
+	<%= form_for @user do |f| %>
 
-	<p class="text-danger form-errors">
-		<%= error_check(:email) %>
-	</p>
+		<!-- style these errors and reformat phrase  -->
+		<p class="text-danger form-errors">
+			<%= error_check(:username) %>
+		</p>
 
-	<div class="form-group">
-		<%= f.label :email %>
-		<%= f.text_field :email %>
-	</div>
+		<div class="form-group">
+			<%= f.label :username %>
+			<%= f.text_field :username, class: 'form-control' %>
+		</div>
 
-	<p class="text-danger form-errors">
-		<%= error_check(:password) %>
-	</p>
+		<p class="text-danger form-errors">
+			<%= error_check(:email) %>
+		</p>
 
-	<div class="form-group">
-		<%= f.label :password %>
-		<%= f.text_field :password %>
-	</div>
+		<div class="form-group">
+			<%= f.label :email %>
+			<%= f.text_field :email, class: 'form-control' %>
+		</div>
 
-	<p class="text-danger form-errors">
-		<%= error_check(:password_confirmation) %>
-	</p>
+		<p class="text-danger form-errors">
+			<%= error_check(:password) %>
+		</p>
 
-	<div class="form-group">
-		<%= f.label :password_confirmation, 'Password Confirmation' %>
-		<%= f.text_field :password_confirmation %>
-	</div>
+		<div class="form-group">
+			<%= f.label :password %>
+			<%= f.text_field :password, class: 'form-control' %>
+		</div>
 
-	<% unless session[:user_id] %>
-		<%= f.submit 'Register', class: 'btn btn-primary' %>
-	<% else %>
-		<%= f.submit 'Register', { class: 'btn btn-primary', disabled: 'disabled' } %>
+		<p class="text-danger form-errors">
+			<%= error_check(:password_confirmation) %>
+		</p>
+
+		<div class="form-group">
+			<%= f.label :password_confirmation, 'Password Confirmation' %>
+			<%= f.text_field :password_confirmation, class: 'form-control' %>
+		</div>
+
+		<br>
+
+		<% unless session[:user_id] %>
+			<%= f.submit 'Register', class: 'btn btn-primary center-block col-sm-4 no-float' %>
+		<% else %>
+			<%= f.submit 'Register', { class: 'btn btn-primary center-block col-sm-4 no-float', disabled: 'disabled' } %>
+		<% end %>
+
 	<% end %>
-
-<% end %>
+</div>
