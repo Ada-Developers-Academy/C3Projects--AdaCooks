@@ -71,7 +71,7 @@ class RecipesController < ApplicationController
     else
       flash.now[:error] = "Please enter valid stuff"
 
-      redirect_to :back
+      redirect_to :back rescue redirect_to dashboard_user_path(session[:user_id])
     end
   end
 
