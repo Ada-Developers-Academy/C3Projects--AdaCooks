@@ -29,12 +29,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.new(create_params[:user])
+    @user = User.new(create_params[:user])
 
-    if user.save
+    if @user.save
       redirect_to login_url
     else
-      redirect_to new_user_path
+
+      render :new
     end
   end
 
