@@ -55,6 +55,6 @@ class IngredientsController < ApplicationController
     end
 
     def authenticate_user
-      redirect_to root_path unless @ingredient.user_id == session[:user_id] # OPTIMIZE: consider writing a method for this
+      redirect_to root_path unless @ingredient.owner?(session[:user_id])
     end
 end
