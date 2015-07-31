@@ -43,5 +43,19 @@ RSpec.describe RecipesController, type: :controller do
 
       expect(response).to redirect_to(dashboard_user_path(@user.id))
     end
+
+    it "has a flash error for invalid data" do
+        post :create, { user_id: 1,
+          recipe: {
+          name: nil,
+          description: "Do stuff",
+          preparation: "Prepare stuff",
+          ingredient_ids: [99]
+          }
+        }
+
+      expect(flash[:error]).to eq("Please enter valid stuff")
+    end
   end
+
 end
