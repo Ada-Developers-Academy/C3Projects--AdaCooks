@@ -15,7 +15,7 @@
 
     <p>Preparation: <%= @recipe.preparation %></p>
 
-    <% if @your_cookbooks %>
+    <% if @your_cookbooks.count > 0 %>
       <p>This recipe is part of your cookbook(s):</p>
       <ul>
         <% @your_cookbooks.each do |cookbook| %>
