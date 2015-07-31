@@ -7,7 +7,7 @@ class Ingredient < ActiveRecord::Base
   mount_uploader :image, ImagesUploader
 
 # Validations ---------------------------------------------------
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
 
 # Scopes --------------------------------------------------------
   scope :alpha_order, -> { order(name: :asc) }

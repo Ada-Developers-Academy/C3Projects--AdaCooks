@@ -13,8 +13,10 @@
 <% if session[:user_id] == @user.id %>
 <div class="row">
   <div class="center-link-buttons">
+    <%= link_to "My Ingredients", user_cookbooks_path(@user), class: "btn btn-default" %>
     <%= link_to "My Cookbooks", user_cookbooks_path(@user), class: "btn btn-default" %>
     <%= link_to "Add a recipe", new_recipe_path, class: "btn btn-info" %>
+    <%= link_to "Add an ingredient", new_ingredient_path, class: "btn btn-info" %>
   </div>
 </div>
 <% end %>
