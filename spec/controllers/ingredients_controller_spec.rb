@@ -53,5 +53,20 @@ RSpec.describe IngredientsController, type: :controller do
     end
   end
 
+  describe "GET #edit" do
+    it "renders :edit view" do
+      user = create :user
+      ingredient = create :ingredient
+      session[:user_id] = user.id
+
+      get :edit, user_id: user.id, id: ingredient.id
+
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+      expect(response).to render_template(:edit)
+
+    end
+  end
+
 
 end
