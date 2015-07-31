@@ -39,14 +39,17 @@ recipes = [
   { name: 'Chocolate Chip Cookies',
     description: 'Everyone loves chocolate chip cookies',
     preparation: 'Mix chocolate chips with some other stuff',
+    ingredient_ids: [1, 2],
     user_id: 1 },
   { name: 'Awesome Pizza',
     description: "Really awesome pizza",
     preparation: 'Dough. Cheese. Sauce. Pepperoni. DONE.',
+    ingredient_ids: [2, 3],
     user_id: 2 },
   { name: 'Baked Alaska',
     description: "FIRE",
     preparation: 'Mix stuff together. Add brandy. Set on fire.',
+    ingredient_ids: [1, 2, 3],
     user_id: 2 },
 ]
 
@@ -67,10 +70,6 @@ users = [
 
 users.each do |user|
   User.create(user)
-end
-
-Recipe.all.each do |recipe|
-  recipe.ingredients << Ingredient.all.sample(rand(0..3))
 end
 
 Cookbook.all.each do |cookbook|
