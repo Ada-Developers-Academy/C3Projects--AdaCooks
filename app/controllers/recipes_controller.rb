@@ -76,20 +76,10 @@ class RecipesController < ApplicationController
     end
   end
 
-  def add_ingredient
-    ingredient = Ingredient.find(params[:id])
-
-    if @recipe.ingredients.include?(ingredient)
-      flash[:error] = "This ingredient is already in #{ recipe.name }."
-    else
-      @recipe.add_ingredient_association(ingredient)
-    end
-
-    redirect_to recipe_path(@recipe)
-  end
-
   def remove_ingredient
+    ingredient_name = Ingredient.find(params[:id]).proper_name
     @recipe.remove_ingredient_association(params[:id])
+    flash[:success] = "#{ ingredient_name } has been removed from #{ @recipe.proper_name }."
 
     redirect_to recipe_path(@recipe)
   end

@@ -558,9 +558,74 @@ RSpec.describe RecipesController, type: :controller do
     end
   end
 
-  describe "PATCH #add_ingredient" do
-  end
+  describe "DELETE #remove_ingredient" do
+    before :each do
+      @user = create :user
+      @recipe = create :recipe, user_id: @user.id
+      @ingredient = create :ingredient
+      @recipe.ingredients << @ingredient
+      session[:user_id] = @user.id
+    end
 
-  describe "PATCH #remove_ingredient" do
+    it "removes the ingredient from the recipe" do
+      delete :remove_ingredient, user_id: @user.id, recipe_id: @recipe.id, id: @ingredient.id
+      @recipe.reload
+      expect(@recipe.ingredients).not_to include(@ingredient)
+    end
+
+    it "redirects to the recipe's show page" do
+      delete :remove_ingredient, user_id: @user.id, recipe_id: @recipe.id, id: @ingredient.id
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to(recipe_path(@recipe))
+    end
+
+    it "flashes a success message" do
+      delete :remove_ingredient, user_id: @user.id, recipe_id: @recipe.id, id: @ingredient.id
+      expect(flash[:success].nil?).to eq(false)
+      expect(flash[:error].nil?).to eq(true)
+    end
+
+    context "unauthenticated users" do
+      before :each do
+        session[:user_id] = nil
+        delete :remove_ingredient, user_id: @user.id, recipe_id: @recipe.id, id: @ingredient.id
+      end
+
+      it "does not permit access / redirects to the home page" do
+        expect(response).to have_http_status(302)
+        expect(response).to redirect_to(root_path)
+      end
+
+      it "flashes an error message" do
+        expect(flash[:error].nil?).to eq(false)
+        expect(flash[:success].nil?).to eq(true)
+      end
+
+      it "does not remove the ingredient from the recipe" do
+        expect(@recipe.ingredients).to include(@ingredient)
+      end
+    end
+
+    context "authenticated users that don't own current recipe" do
+      before :each do
+        @user2 = create :user, username: "another user", email: "another@use.r"
+        session[:user_id] = @user2.id
+        delete :remove_ingredient, user_id: @user.id, recipe_id: @recipe.id, id: @ingredient.id
+      end
+
+      it "does not permit access / redirects to the home page" do
+        expect(response).to have_http_status(302)
+        expect(response).to redirect_to(root_path)
+      end
+
+      it "flashes an error message" do
+        expect(flash[:error].nil?).to eq(false)
+        expect(flash[:success].nil?).to eq(true)
+      end
+
+      it "does not remove the ingredient from the recipe" do
+        expect(@recipe.ingredients).to include(@ingredient)
+      end
+    end
   end
 end
