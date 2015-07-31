@@ -62,6 +62,8 @@ class RecipesController < ApplicationController
 
 	def update
 		recipe = Recipe.find(params[:id])
+		recipe.recipe_ingredients.each { |r| recipe.recipe_ingredients.delete(r) if r.ingredient_id == nil }
+		params[:recipe][:recipe_ingredients_attributes].delete_if { |key, value| key if value[:ingredient_name].empty? }
 		recipe.update(create_params)
 
 		redirect_to recipe_path(recipe)
@@ -74,14 +76,24 @@ class RecipesController < ApplicationController
 		redirect_to user_path(session[:user_id])
 	end
 
+	def add_ingredient_field
+		@recipe = Recipe.find(params[:id])
+		@recipe.recipe_ingredients << RecipeIngredient.new
+		redirect_to :back
+	end
+
+	def destroy_ingredient
+		recipe = Recipe.find(params[:recipe_id])
+		recipe.recipe_ingredients.find(params[:id]).delete
+		recipe.save
+		redirect_to :back
+	end
+
 	private
 
 	def create_params
 		params.require(:recipe).permit(:user_id, :name, :description, :image_url, :prep,
 			:cookbook_id, recipe_ingredients_attributes: [:id, :quantity, :measurement,
 			:ingredient_name])
-	end
-
-	def add_ingredient_field
 	end
 end

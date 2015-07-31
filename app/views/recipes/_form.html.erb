@@ -29,33 +29,43 @@
 		<br>
 		<!-- ingredients -->
 		<!-- how to add many ingredients? -->
-		<%= f.fields_for :recipe_ingredients do |ingredients| %>
+		<%= f.fields_for :recipe_ingredients do |ingredient| %>
 			<table class="table">
 				<tr>
 					<td>
-						<%= ingredients.label :quantity %>
+						<%= ingredient.label :quantity %>
 					</td>
 					<td>
-						<%= ingredients.label :measurement %>
+						<%= ingredient.label :measurement %>
 					</td>
 					<td>
-						<%= ingredients.label :ingredient_name, "Ingredient" %>
+						<%= ingredient.label :ingredient_name, "Ingredient" %>
 					</td>
+					<% unless params[:action] = "edit" %>
+						<td>
+							<label>Remove</label>
+						</td>
+					<% end %>
 				</tr>
 				<tr>
 					<td>
-						<%= ingredients.text_field :quantity, class: 'form-control' %>
+						<%= ingredient.text_field :quantity, class: 'form-control' %>
 					</td>
 					<td>
-						<%= ingredients.select(:measurement, @measurements_array, { include_blank: true }, { class: 'form-control' }) %>
+						<%= ingredient.select(:measurement, @measurements_array, { include_blank: true }, { class: 'form-control' }) %>
 					</td>
 					<td>
-						<%= ingredients.text_field :ingredient_name, class: 'form-control' %>
+						<%= ingredient.text_field :ingredient_name, class: 'form-control' %>
+					</td>
+					<td>
+						<% unless params[:action] = "edit" %>
+							<%= link_to 'Remove', { controller: :recipes, action: :destroy_ingredient, recipe_id: @recipe.id, id: ingredient.object.id }, { class: 'btn btn-default', method: :delete } %>
+						<% end %>
 					</td>
 				</tr>
 			</table>
 		<% end %>
-		<%= button_to '+ Another Ingredient', {action: :add_ingredient_field}, class: 'btn btn-default float-right' %>
+		<%= link_to '+ Another Ingredient', { action: :add_ingredient_field, id: @recipe.id }, { class: 'btn btn-default float-right', method: :post} %>
 		<br><br>
 
 		<div class="form-group">
