@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :correct_user, except: [:new, :create]
   include ApplicationHelper
 
   def new
@@ -17,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(session[:user_id])
+    @user = User.find(params[:id])
     @cookbooks = @user.cookbooks
     if params[:cookbook]
       @cookbook = Cookbook.find(params[:cookbook])
@@ -25,11 +24,6 @@ class UsersController < ApplicationController
   end
 
 private
-
-  def correct_user
-    @user = User.find(params[:id])
-    redirect_to root_url unless current_user?(@user)
-  end
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
