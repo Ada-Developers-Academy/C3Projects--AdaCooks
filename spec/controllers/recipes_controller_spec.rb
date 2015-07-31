@@ -378,16 +378,162 @@ RSpec.describe RecipesController, type: :controller do
     context "unauthenticated users" do
       before :each do
         session[:user_id] = nil
+        delete :destroy, id: @recipe.id, user_id: @user.id
       end
 
       it "does not permit access / redirects to the home page" do
-        delete :destroy, id: @recipe.id, user_id: @user.id
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
       end
 
       it "flashes an error message" do
+        expect(flash[:error].nil?).to eq(false)
+        expect(flash[:success].nil?).to eq(true)
+      end
+
+      it "destroys nothing!" do
+        expect(Recipe.find_by(id: @recipe.id)).not_to eq(nil)
+      end
+    end
+
+    context "authenticated users that don't own current recipe" do
+      before :each do
+        @user2 = create :user, username: "another user", email: "another@use.r"
+        session[:user_id] = @user2.id
         delete :destroy, id: @recipe.id, user_id: @user.id
+      end
+
+      it "does not permit access / redirects to the home page" do
+        expect(response).to have_http_status(302)
+        expect(response).to redirect_to(root_path)
+      end
+
+      it "flashes an error message" do
+        expect(flash[:error].nil?).to eq(false)
+        expect(flash[:success].nil?).to eq(true)
+      end
+
+      it "destroys nothing!" do
+        expect(Recipe.find_by(id: @recipe.id)).not_to eq(nil)
+      end
+    end
+  end
+
+  describe "GET #ingredients" do
+    before :each do
+      @user = create :user
+      @recipe = create :recipe, user_id: @user.id
+      session[:user_id] = @user.id
+    end
+
+    it "responds successfully" do
+      get :ingredients, user_id: @user.id, recipe_id: @recipe.id
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+    end
+
+    it "renders the #ingredients template" do
+      get :ingredients, user_id: @user.id, recipe_id: @recipe.id
+      expect(response).to render_template("ingredients")
+    end
+
+    context "unauthenticated users" do
+      before :each do
+        session[:user_id] = nil
+        get :ingredients, user_id: @user.id, recipe_id: @recipe.id
+      end
+
+      it "does not permit access / redirects to the home page" do
+        expect(response).to have_http_status(302)
+        expect(response).to redirect_to(root_path)
+      end
+
+      it "flashes an error message" do
+        expect(flash[:error].nil?).to eq(false)
+        expect(flash[:success].nil?).to eq(true)
+      end
+    end
+
+    context "unauthorized users / users who don't own current recipe" do
+      before :each do
+        user2 = create :user, username: "unique", email: "also@uni.que"
+        session[:user_id] = user2.id
+        get :ingredients, user_id: @user.id, recipe_id: @recipe.id
+      end
+
+      it "does not permit access / redirects to the home page" do
+        expect(response).to have_http_status(302)
+        expect(response).to redirect_to(root_path)
+      end
+
+      it "flashes an error message" do
+        expect(flash[:error].nil?).to eq(false)
+        expect(flash[:success].nil?).to eq(true)
+      end
+    end
+  end
+
+  describe "POST #add_ingredients" do
+    before :each do
+      @user = create :user
+      @recipe = create :recipe, user_id: @user.id
+      @ingredient = create :ingredient
+      @ingredient_ids = [@ingredient.id]
+      session[:user_id] = @user.id
+    end
+
+    context "valid forum input" do
+      before :each do
+        post :add_ingredients, user_id: @user.id, recipe_id: @recipe.id, ingredients: @ingredient_ids
+      end
+
+      it "adds the ingredients to the recipe" do
+        expect(@recipe.ingredients).to include(@ingredient)
+      end
+
+      it "redirects to the recipe's show page" do
+        expect(response).to have_http_status(302)
+        expect(response).to redirect_to(recipe_path(@recipe))
+      end
+
+      it "flashes a success message" do
+        expect(flash[:success].nil?).to eq(false)
+        expect(flash[:error].nil?).to eq(true)
+      end
+    end
+
+    context "invalid form input" do
+      before :each do
+        post :add_ingredients, user_id: @user.id, recipe_id: @recipe.id, ingredients: nil
+      end
+
+      it "does not add the ingredients to the recipe" do
+        expect(@recipe.ingredients).not_to include(@ingredient)
+      end
+
+      it "redirects to the recipe's add/update ingredients page" do
+        expect(response).to have_http_status(302)
+        expect(response).to redirect_to(user_recipe_ingredients_path(@user, @recipe))
+      end
+
+      it "flashes an error message" do
+        expect(flash[:error].nil?).to eq(false)
+        expect(flash[:success].nil?).to eq(true)
+      end
+    end
+
+    context "unauthenticated users" do
+      before :each do
+        session[:user_id] = nil
+        post :add_ingredients, user_id: @user.id, recipe_id: @recipe.id, ingredients: @ingredient_ids
+      end
+
+      it "does not permit access / redirects to the home page" do
+        expect(response).to have_http_status(302)
+        expect(response).to redirect_to(root_path)
+      end
+
+      it "flashes an error message" do
         expect(flash[:error].nil?).to eq(false)
         expect(flash[:success].nil?).to eq(true)
       end
@@ -397,19 +543,24 @@ RSpec.describe RecipesController, type: :controller do
       before :each do
         @user2 = create :user, username: "another user", email: "another@use.r"
         session[:user_id] = @user2.id
+        post :add_ingredients, user_id: @user.id, recipe_id: @recipe.id, ingredients: @ingredient_ids
       end
 
       it "does not permit access / redirects to the home page" do
-        delete :destroy, id: @recipe.id, user_id: @user.id
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(root_path)
       end
 
       it "flashes an error message" do
-        delete :destroy, id: @recipe.id, user_id: @user.id
         expect(flash[:error].nil?).to eq(false)
         expect(flash[:success].nil?).to eq(true)
       end
     end
+  end
+
+  describe "PATCH #add_ingredient" do
+  end
+
+  describe "PATCH #remove_ingredient" do
   end
 end
