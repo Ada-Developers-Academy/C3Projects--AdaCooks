@@ -5,7 +5,11 @@ class Recipe < ActiveRecord::Base
   has_many :ingredients, through: :measurements
   has_many :steps
   belongs_to :user
+
   mount_uploader :image, ImageUploader
+
+  validates :name, presence: true # TODO: test this
+  validates :user_id, presence: true # TODO: test this
 
   scope :by_name, -> { order(:name) }
 
@@ -13,5 +17,9 @@ class Recipe < ActiveRecord::Base
     Recipe.includes(:ingredients)
       .where("ingredients.name like ?", "%#{query}%")
       .references(:ingredients)
+  end
+
+  def owner?(session_id) # TODO: test this
+    user_id == session_id
   end
 end
