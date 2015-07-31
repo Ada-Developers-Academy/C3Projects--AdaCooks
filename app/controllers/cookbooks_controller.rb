@@ -1,5 +1,6 @@
 class CookbooksController < ApplicationController
   before_action :require_login, only: [:show]
+  before_action :find_cookbook, only: [:show, :edit, :update, :destroy]
 
   def new
     @cookbook = Cookbook.new
@@ -17,7 +18,6 @@ class CookbooksController < ApplicationController
   end
 
   def show
-    @cookbook = Cookbook.find(params[:id])
     session[:cookbook_id] = @cookbook.id
   end
 
@@ -28,18 +28,19 @@ class CookbooksController < ApplicationController
   end
 
   def update
-    cookbook = Cookbook.find(params[:id])
-    cookbook.update(cookbook_params)
+    @cookbook.update(cookbook_params)
     redirect_to user_path(session[:user_id])
   end
 
   def destroy
-    cookbook = Cookbook.find(params[:id])
-    cookbook.destroy
+    @cookbook.destroy
     redirect_to user_path(session[:user_id])
   end
 
   private
+  def find_cookbook
+    @cookbook = Cookbook.find(params[:id])
+  end
 
   def cookbook_params
     params.require(:cookbook).permit(:name, :description, {:recipe_ids => [] })
