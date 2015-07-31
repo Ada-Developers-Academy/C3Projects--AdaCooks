@@ -25,10 +25,10 @@ class ImagesUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  process :resize_to_fill => [600, 600]
+  process :resize_to_fill => [400, 400]
 
-  def resize_to_fill(width, height, gravity = 'Center')
-  end
+  # def resize_to_fill(width, height, gravity = 'Center')
+  # end
 
   # def scale(width, height)
   #   # do something
@@ -36,7 +36,7 @@ class ImagesUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :thumb do
-    process :resize_to_fit => [50, 50]
+    process :resize_to_fill => [50, 50]
   end
 
 

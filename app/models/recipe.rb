@@ -16,6 +16,10 @@ class Recipe < ActiveRecord::Base
   scope :alpha_order, -> { order(name: :asc) }
 
   def self.search(search)
-    where('name LIKE ? OR description LIKE ? OR preparation LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%")
+    # the below line works but I couldn't figure out how to get it to play
+    # nicely with the other search query, so I went with the broader one
+    self.includes(:ingredients).where("ingredients.name" => "#{search}")
+    # where('name LIKE ? OR description LIKE ? OR preparation LIKE ?',
+    #       "%#{search}%", "%#{search}%", "%#{search}%")
   end
 end
