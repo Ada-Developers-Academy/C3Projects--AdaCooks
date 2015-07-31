@@ -1,0 +1,54 @@
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
+<h2><%= @recipe.name %></h2>
+
+<div class="img-thumbnail">
+ <p><%= image_tag @recipe.image_url(:thumb) %><p>
+</div>
+
+<h3>Owner: <small><%= link_to "#{@user.name}", profile_user_path(@user) %></small></h3>
+  <div class="panel panel-default">
+    <div class="panel-heading"><strong>Description:</strong></div>
+      <div class="panel-body">
+        <%= @recipe.description %>
+      </div>
+  </div>
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading"><strong>Preparation:</strong></div>
+      <div class="panel-body">
+        <%= @recipe.preparation %>
+      </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">Associated Ingredients</div>
+      <div class="panel-body">
+        <ul>
+        <% @ingredients.each do |ingredient| %>
+          <li><%= link_to ingredient.name, ingredient_path(ingredient) %></li>
+        <% end %>
+      </div>
+  </div>
+
+<p>
+  <%= link_to "Back", :back, class: "btn btn-default" %>
+</p>
+
+<% unless session[:user_id] == nil %>
+
+<h4>Assign to a Cookbook</h4>
+  <%= form_for @recipe, url: user_recipe_path(session[:user_id], @recipe.id), html: { class: "form" } do |f| %>
+
+    <div class="form-group">
+      <%= f.label :cookbook_ids, "Your Cookbooks" %>
+      <%= f.collection_select( :cookbook_ids, @user_cookbooks, :id, :name, options = {prompt: "Select a Cookbook (optional)"}, class: "form-control") %>
+    </div>
+
+    <%= f.submit "Add to Cookbook", class: "btn btn-default" %>
+
+    <% end %>
+  <% end %>
+  </div>
+</div>

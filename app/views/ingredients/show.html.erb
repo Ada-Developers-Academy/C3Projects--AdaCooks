@@ -1,0 +1,23 @@
+<h2><%= @ingredient.name %></h2>
+
+<div class="img-thumbnail">
+  <%= image_tag @ingredient.image_url(:thumb) %>
+</div>
+
+<h3>Recipes</h3>
+<div class="list-group">
+  <% @recipes.each do |recipe| %>
+  <button type="button" class="list-group-item"><%= link_to recipe.name, recipe_path(recipe) %></button>
+  <% end %>
+</div>
+
+<p>
+  <%= link_to "Back", :back, class: "btn btn-default" %>
+</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<iframe src="//giphy.com/embed/5gArNffWKNbXO" width="480" height="319" frameBorder="0" style="max-width: 100%" class="giphy-embed center-block" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>

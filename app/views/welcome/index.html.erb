@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-lg-6">
+    <h3>All Recipes &#x1F357;</h3>
+    <div class="list-group">
+      <% @recipes.each do |recipe| %>
+      <button type="button" class="list-group-item"><%= link_to recipe.name, recipe_path(recipe) %></button>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <h3>All Ingredients &#x1F357;</h3>
+    <div class="list-group">
+      <% @ingredients.each do |ingredient| %>
+      <button type="button" class="list-group-item"><%= link_to ingredient.name, ingredient_path(ingredient) %></button>
+      <% end %>
+    </div>
+  </div>
+</div>

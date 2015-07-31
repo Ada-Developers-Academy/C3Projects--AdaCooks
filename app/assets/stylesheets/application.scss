@@ -13,3 +13,130 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url(http://fonts.googleapis.com/css?family=Permanent+Marker);
+
+
+html {
+  background-image: url("gross_pattern.png");
+  background-repeat: repeat-x;
+  background-attachment: fixed;
+ }
+
+body {
+  max-width: 970px;
+  margin: auto;
+  padding: 30px 20px 30px 20px;
+}
+
+h1 {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 40px;
+  color: #0C140F;
+}
+
+
+h2 {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 36px;
+  color: #0C140F;
+}
+
+h3 {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 28px;
+  color: #0C140F;
+}
+
+h4 {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 24px;
+  color: #0C140F;
+}
+
+a {
+  color: #0C140F;
+}
+
+a:hover {
+  color: #6712da;
+  text-decoration: none;
+  font-weight: bolder;
+}
+
+#main-container {
+  min-height: 100vh;
+}
+
+.nav p {
+  margin: 0
+}
+
+.navbar-default {
+  background: #74da12;
+}
+
+.navbar-text {
+  padding: 0 10px 0 5px;
+}
+
+.navbar-text p {
+  font-weight: bolder;
+  color: #0C140F;
+}
+
+.navbar-text a {
+  color: #0C140F;
+}
+
+.navbar-text a:hover {
+  color: #6712da;
+  text-decoration: none;
+}
+
+.navbar-brand span {
+  color: #0C140F;
+}
+
+.navbar-brand span:hover {
+  color: #6712DA;
+}
+
+.content {
+  margin: 0 20px 0 20px;
+}
+
+.form-control {
+  max-width: 250px;
+}
+
+.fit-width {
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.search {
+  margin: 0 20px 0 20px;
+}
+
+.inline-form {
+  display: inline-block;
+}
+
+.field_with_errors {
+  display: block;
+}
+
+.label {
+  font-size: 100%;
+  padding: 4px 10px;
+  vertical-align: middle;
+}
+
+.form-label {
+  display: block;
+}
+
+input[type="checkbox"] {
+  display: block;
+}

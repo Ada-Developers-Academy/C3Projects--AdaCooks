@@ -26,6 +26,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass'
 
 gem 'bcrypt', '~> 3.1.7'
+
+gem 'mini_magick'
+gem 'carrierwave'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -60,4 +63,3 @@ group :development, :test do
 
   gem 'factory_girl_rails', '~> 4.0'
 end
-

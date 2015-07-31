@@ -1,0 +1,53 @@
+<% if flash.now[:error] %>
+  <%= flash.now[:error] %>
+<% end %>
+
+<h1>Edit Recipe</h1>
+<%= form_for @recipe, url: user_recipe_path(session[:user_id], @recipe.id), html: { class: "form" } do |f| %>
+
+  <% @recipe.errors.full_messages.each do ||msg| %>
+    <p><%= msg %></p>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, required: true, autofocus: true, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_area :description, required: true, autofocus: true, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :preparation %>
+    <%= f.text_area :preparation, class: "form-control" %>
+  </div>
+
+  <% if @recipe.image_url %>
+  <label>Current Image</label>
+  <p>
+    <%= image_tag @recipe.image_url(:thumb) %>
+  </p>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :image %>
+    <%= f.file_field :image, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :cookbook_ids, "Cookbooks" %>
+    <%= f.collection_select( :cookbook_ids, @cookbooks, :id, :name, options = {prompt: "Select a Cookbook (optional)"}, class: "form-control") %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :ingredient_ids, "Ingredients" %>
+    <%= f.collection_check_boxes( :ingredient_ids, @ingredients, :id, :name, checked: @recipe.ingredients.map(&:id), class: "form-control" ) %>
+    <!-- may want to change this to some sort of search function as well -->
+  </div>
+
+  <%= f.hidden_field :user_id, :value => params[:user_id] %>
+
+  <%= f.submit "Update Recipe", method: :patch, class: "btn btn-primary" %>
+<% end %>

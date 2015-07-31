@@ -1,0 +1,25 @@
+<h1>Edit Ingredient</h1>
+
+<%= form_for @ingredient, url: user_ingredient_path(session[:user_id], params[:id]), html: { class: "form" } do |f| %>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, required: true, autofocus: true, class: "form-control" %>
+  </div>
+
+  <% if @ingredient.image_url %>
+  <label>Current Image</label>
+  <p>
+    <%= image_tag @ingredient.image_url(:thumb) %>
+  </p>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :image %>
+    <%= f.file_field :image, class: "form-control" %>
+  </div>
+
+  <%= f.hidden_field :user_id, :value => params[:user_id] %>
+
+  <%= f.submit "Update Ingredient", method: :post, class: "btn btn-primary" %>
+<% end %>

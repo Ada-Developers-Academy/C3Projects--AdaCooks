@@ -1,14 +1,87 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>C3ProjectsAdacooks</title>
+  <title>Ungodly Grub</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+  <body>
+    <div class="container-fluid" id="main-container">
+      <div class="row">
+        <div class="col-md-12">
+        <div class="page-header">
+          <header>
+          <div class="row">
+            <div class="col-lg-12 col-md-8 col-sm-8">
+            <div class="logo">
+            <%= image_tag("ungodly_grub.png", class: "center-block") %>
+            <% unless flash.now[:error].blank? %>
+            <div class="alert alert-danger" role="alert">
+              <h5>&#x1f4a9;<%= flash.now[:error] %>&#x1f4a9;</h5>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+       <% if session[:user_id] %>
+          <div class="account-buttons">
+          <%= link_to "Logout", logout_path, method: :delete, class: "btn btn-default" %>
+          </div>
 
-<%= yield %>
+        <% else %>
 
-</body>
+          <div class="account-buttons">
+          <%= link_to "Login", login_path, class: "btn btn-primary" %>
+
+          <%= link_to "Register!", register_path, class: "btn btn-default" %>
+          </div>
+          <% end %>
+          </header>
+        </div>
+
+        <nav class="navbar navbar-default">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
+         </div>
+
+         <ul class="nav navbar-nav navbar-right">
+            <% if session[:user_id] %>
+              <li class="navbar-text"><p><%= link_to "Dashboard", dashboard_user_path(session[:user_id]) %></p></li>
+              <% end %>
+              <li class="navbar-text"><p>Welcome, <%= @user_name %></p></li>
+          </ul>
+        </div>
+        <% unless current_page?(login_path) || params[:controller] == 'users' && %w(dashboard).include?(params[:action]) %>
+        <div class="search">
+          <%= form_for "search", method: "get", html: { class: "form" } do |f| %>
+          <div class="form-group inline-form">
+            <%= f.label :query, "Search Ingredients:" %>
+            <%= f.search_field :query, class: "form-control", placeholder: "dog meat" %>
+          </div>
+          <%= f.submit "Search", class: "btn btn-default" %>
+          <% end %>
+          <% end %>
+        </div>
+
+        <% if params[:search] %>
+        <div class="row">
+          <div class="col-lg-12">
+            <h3>Related Recipes</h3>
+            <div class="list-group">
+              <% @search_results.each do |recipe| %>
+                <button type="button" class="list-group-item"><%= link_to recipe.name, recipe_path(recipe) %></button>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </nav>
+
+      <div class="content">
+
+        <%= yield %>
+
+      </div>
+    </div>
+  </body>
 </html>

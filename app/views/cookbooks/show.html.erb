@@ -1,0 +1,32 @@
+<h2><%= @cookbook.name %></h2>
+
+<h3>Description</h3>
+<p>
+  <%= @cookbook.description %>
+</p>
+
+<h3>Recipes</h3>
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Recipe</th>
+      <% if session[:user_id] == @cookbook.user_id %>
+      <th>Remove</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @recipes.each do |recipe| %>
+    <tr>
+      <td><%= link_to recipe.name, recipe_path(recipe) %></td>
+      <% if session[:user_id] == @cookbook.user_id %>
+        <td><%= link_to "X", destroy_recipe_assoc_path(user_id: session[:user_id], cookbook_id: @cookbook, recipe_id: recipe), method: :delete, class: "btn btn-danger" %></td>
+      <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p>
+  <%= link_to "Back", :back, class: "btn btn-default" %>
+</p>
