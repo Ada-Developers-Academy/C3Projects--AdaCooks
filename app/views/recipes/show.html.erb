@@ -1,6 +1,6 @@
 <div class="page-header">
   <h2><%= @recipe.name %>
-    <small> From: <%= link_to @recipe.user.username, user_path(@recipe.user.id) %></small>
+    <small> From: <%= link_to @recipe.user.username.titlecase, user_path(@recipe.user.id) %></small>
   </h2>
 </div>
 
