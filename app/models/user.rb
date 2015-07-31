@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 
 # Associations -----------------------------------------------------------------
 	has_many :cookbooks
+	has_many :recipes
 
 # Validations ------------------------------------------------------------------
 	validates :username, :email,                 presence: true, uniqueness: true

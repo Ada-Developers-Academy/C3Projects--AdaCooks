@@ -1,0 +1,33 @@
+<h1 class="text-center">Hello, Lovely.</h1>
+<br>
+
+<div class="col-sm-6 center-block no-float">
+	<br>
+	<h3> <%= @user.username %>'s Cookbooks &mdash;</h3>
+
+	<div class="row">
+		<ul>
+			<% @user.cookbooks.each do |cookbook| %>
+				<li>
+					<%= link_to cookbook.name, cookbook_path(cookbook) %>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+	<%= button_to "Make a Cookbook", new_user_cookbook_path(@user), class: 'btn btn-primary float-right' %>
+
+
+	<br><br>
+	<br>
+	<h3> <%= @user.username %>'s Recipes &mdash;</h3>
+	<div class="row">
+		<ul>
+			<% @user.recipes.each do |recipe| %>
+				<li>
+					<%= link_to recipe.name, recipe_path(recipe) %>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+	<%= button_to "Create a Recipe", new_recipe_path, class: 'btn btn-primary float-right' %>
+</div>

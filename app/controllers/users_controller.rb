@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-	before_action :login_required, except: [:index, :new, :create]
 
 	def index
 		@random_recipes = Recipe.all.sample(6)
@@ -19,6 +18,10 @@ class UsersController < ApplicationController
 		else
 			render :new
 		end
+	end
+
+	def show
+		@user = User.find(params[:id])
 	end
 
 	private
