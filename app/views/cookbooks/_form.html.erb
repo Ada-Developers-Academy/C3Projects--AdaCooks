@@ -1,5 +1,9 @@
 <%= form_for @cookbook do |f|  %>
   <div class="form-group">
+      <% flash.each do|name, message| %>
+        <%= message %>
+      <% end %>
+
     <fieldset>
       <%= f.label :name, "Cookbook Name" %>
       <%= f.text_field :name, class: "form-control" %>

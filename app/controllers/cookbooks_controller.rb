@@ -13,6 +13,7 @@ class CookbooksController < ApplicationController
     if @cookbook.save
         redirect_to user_path(session[:user_id])
     else
+      flash[:name] = "Please provide a name for your cookbook."
       render 'new'
     end
   end

@@ -1,6 +1,10 @@
-<h1>recipes</h1>
+<div class="container">
+
+<h1>Search Results for <%= params[:search] %> </h1>
 <% @recipes.each do |recipe| %>
-  <%= link_to recipe.name, recipe_path(recipe.id) %>
+<ul>
+  <li><%= link_to recipe.name, recipe_path(recipe.id) %></li>
+</ul>
   <% end %>
 
   <%= form_tag(recipes_path, :method => "get", class: "navbar-form", id: "search-form") do %>
@@ -9,3 +13,4 @@
         <button class="btn" type="submit"><i class="icon-search"></i></button>
       </div>
     <% end %>
+</div>
