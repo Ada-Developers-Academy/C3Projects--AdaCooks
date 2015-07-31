@@ -1,11 +1,25 @@
-<h1>Sign in!</h1>
+<div class="row">
+  <div class="col-sm-offset-3 col-sm-6">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Sign in!</h3>
+      </div>
 
-<%= form_for :session, url: signin_path, class: "form" do |f| %>
-  <%= f.label :username %>
-  <%= f.text_field :username, class: "form-control" %>
+      <div class="panel-body">
+        <%= form_for :session, url: signin_path, role: "form", class: "form" do |f| %>
+          <div class="form-group">
+            <%= f.label :username %>
+            <%= f.text_field :username, placeholder: "enter username", class: "form-control" %>
+          </div>
 
-  <%= f.label :password %>
-  <%= f.password_field :password, class: "form-control" %>
+          <div class="form-group">
+            <%= f.label :password %>
+            <%= f.password_field :password, placeholder: "enter password", class: "form-control" %>
+          </div>
 
-  <%= f.submit %>
-<% end %>
+          <%= f.submit "Sign in", class: "btn btn-info" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
