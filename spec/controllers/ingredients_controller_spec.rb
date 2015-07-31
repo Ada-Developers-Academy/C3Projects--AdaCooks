@@ -26,7 +26,8 @@ RSpec.describe IngredientsController, type: :controller do
     let(:pineapple) {create :ingredient}
 
     it "creates a new ingredient" do
-      get :new
+      session[:user_id] = create(:ingredient)
+      get :new, :id => session[:user_id]
       expect(assigns(:ingredient)).to be_a_new(Ingredient)
       expect(response).to render_template(:new)
     end
