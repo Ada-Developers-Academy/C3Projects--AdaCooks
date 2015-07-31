@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :current_user, only: [:show, :add_to_cookbook, :edit, :update]
+  before_action :current_user, only: [:show, :add_to_cookbook, :edit, :update, :new]
 
   before_action :set_recipe, except: [:index, :new, :create]
   before_action :setup_show, only: [:show, :add_to_cookbook]
@@ -31,6 +31,7 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    @cookbooks = @current_user.cookbooks
     5.times { @recipe.recipe_ingredients.build }
   end
 
@@ -94,7 +95,10 @@ class RecipesController < ApplicationController
   def setup_show
     @owner = @recipe.user
     @ingredient_lines = @recipe.recipe_ingredients
-    @cookbooks = @current_user.cookbooks - @recipe.cookbooks if @current_user
+    if @current_user
+      @unused_cookbooks = @current_user.cookbooks - @recipe.cookbooks
+      @your_cookbooks = @recipe.cookbooks.where(user: @current_user)
+    end
   end
 
   def set_recipe
@@ -103,7 +107,7 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(
-    :name, :description, :image, :preparation, :user_id,
+    :name, :description, :image, :preparation, :user_id, :cookbook_ids => [],
     recipe_ingredients_attributes: [
       :quantity, :measurement_id, :ingredient_id, :_destroy
       ]
