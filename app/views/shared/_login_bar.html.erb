@@ -25,31 +25,33 @@
 			<% end %>
 		</div>
 
-		<div class="col-sm-6 float-right">
-      <% if session[:user_id].nil? %>
-				<!-- sign in form -->
-				<%= form_for(:session, url: login_path)  do |f| %>
-					<div class="form-group col-sm-4">
-						<%= f.label :username %>
-						<%= f.text_field :username, class: "form-control" %>
-					</div>
+			<% if session[:user_id].nil? %>
+				<div class="col-sm-6 float-right">
 
-					<div class="form-group col-sm-4">
-							<%= f.label :password %>
-							<%= f.password_field :password, class: "form-control"  %>
-					</div>
+					<%= form_for(:session, url: login_path)  do |f| %>
+						<div class="form-group col-sm-3">
+							<%= f.label :username %>
+							<%= f.text_field :username, class: "form-control float-right" %>
+						</div>
 
-					<%= f.submit "Log In", class: "btn btn-primary col-sm-2 login" %>
-				<% end %>
+						<div class="form-group col-sm-3">
+								<%= f.label :password %>
+								<%= f.password_field :password, class: "form-control float-right"  %>
+						</div>
 
-				<!-- register button -->
-        <%= link_to "Sign up", new_user_path, class: 'btn btn-primary' %>
+						<%= f.submit "Log In", class: "btn btn-primary col-sm-2 login" %>
+					<% end %>
+
+					<!-- register button -->
+	        <%= link_to "Sign up", new_user_path, class: 'btn btn-primary col-sm-2 login float-right' %>
+				</div>
 
 			<% else %>
-				Hello, <%= link_to @user.username, user_path(session[:user_id]) %>!
+				<div class="float-right">
+					Hello, <%= link_to @user.username, user_path(session[:user_id]) %>!
 
-					<%= link_to "Log Out", logout_path, method: :delete, class: 'btn btn-default' %>
+					<%= link_to "Log Out", logout_path, method: :delete, class: 'btn btn-default login' %>
+				</div>
 			<% end %>
-		</div>
 	</div>
 </nav>

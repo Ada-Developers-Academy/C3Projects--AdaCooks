@@ -8,8 +8,8 @@
     <div class="col-sm-2">
       <h4 class="media-heading">
         <%= link_to ingredient.name, ingredient_path(ingredient.id) %>
-        <br><small>Chef: <%= link_to ingredient.user.username, user_path(ingredient.user_id) %></small>
       </h4>
+        <p>Chef: <%= link_to ingredient.user.username, user_path(ingredient.user_id) %></p>
     </div>
     <div class="col-sm-7">
       <div>
