@@ -33,13 +33,12 @@ end
 def update
   @cookbook.update(cookbook_params)
 
-  redirect_to user_cookbooks_path(session[:user_id], params[:id])
+  redirect_to user_cookbooks_path(session[:user_id])
 end
 
 
 def destroy
   @cookbook.destroy
-
   redirect_to user_cookbooks_path(session[:user_id])
 end
 
