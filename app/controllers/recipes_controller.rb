@@ -4,6 +4,8 @@ class RecipesController < ApplicationController
   before_action :set_recipe, except: [:index, :new, :create]
   before_action :setup_recipe, only: [:show, :add_to_cookbook, :edit]
 
+  before_action :require_signin, only: [:new]
+
   after_action :last_page
 
   MESSAGES = {

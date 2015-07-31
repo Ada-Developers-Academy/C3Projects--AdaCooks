@@ -3,6 +3,8 @@ class IngredientsController < ApplicationController
 
   before_action :current_user, only: [:create, :show, :edit, :update]
 
+  before_action :require_signin, only: [:new]
+  
   after_action :last_page
 
   MESSAGES = {
