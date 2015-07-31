@@ -95,5 +95,15 @@ RSpec.describe RecipesController, type: :controller do
     end
   end
 
+  describe "POST #remove_recipes" do
+    it "removes cookbook_id from recipe" do
+      recipe = create :recipe, cookbook_id: 1
+      cookbook = create :cookbook
 
+      post :remove_recipes, :id => 1
+      recipe.reload
+
+      expect(recipe.cookbook_id).to eq(nil)
+    end
+  end
 end

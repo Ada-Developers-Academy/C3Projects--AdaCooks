@@ -17,7 +17,7 @@
       <% end %><br><br>
 
       <% if session[:user_id] %>
-        <%= form_for @recipe, url: {action: "add_cookbook"} do |f| %>
+        <%= form_for @recipe do |f| %>
           <%= f.label "Add to Cookbook" %>
           <%= f.collection_select :cookbook_id, Cookbook.user_cookbooks(@current_user), :id, :name, include_blank: "None" %>
           <%= f.submit "Add", class: "btn btn-default" %>

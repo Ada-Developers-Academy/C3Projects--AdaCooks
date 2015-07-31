@@ -15,4 +15,15 @@ RSpec.describe Cookbook, type: :model do
       expect(cookbook).to be_valid
      end
   end
+
+  describe "#unassociate_recipes" do
+    it "removes cookbook_id from recipes" do
+      cookbook = create :cookbook
+      recipe = create :recipe, cookbook_id: 1
+      cookbook.unassociate_recipes
+      recipe.reload
+
+      expect(recipe.cookbook_id).to eq(nil)
+    end
+  end
 end

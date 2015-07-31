@@ -50,12 +50,6 @@ class RecipesController < ApplicationController
     redirect_to cookbook_path(cookbook)
   end
 
-  def add_cookbook
-    recipe = Recipe.find(params[:id])
-    recipe.update(create_params)
-
-  end
-
   def destroy
     recipe = Recipe.find(params[:id])
     user = User.find(session[:user_id])
