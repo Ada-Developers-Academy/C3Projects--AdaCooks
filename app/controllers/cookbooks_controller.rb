@@ -1,6 +1,6 @@
 class CookbooksController < ApplicationController
 
-before_action :select_cookbook, only: [:show, :edit, :destroy, :update]
+before_action :select_cookbook, only: [:show, :edit, :update, :destroy]
 
 def select_cookbook
   @cookbook = Cookbook.find(params[:id])
@@ -38,6 +38,7 @@ end
 
 
 def destroy
+  @cookbook = Cookbook.find(params[:id])
   @cookbook.destroy
 
   redirect_to

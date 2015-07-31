@@ -112,9 +112,9 @@ end
 
 def query
   if params[:search]
-    @ingredients = Ingredient.search(params[:search])
+    @ingredient = Ingredient.query(params[:search])
 
-    redirect_to ingredient_path(ingredient.id)
+    redirect_to ingredient_path(@ingredient.first.id)
   else
     render :new
   end
