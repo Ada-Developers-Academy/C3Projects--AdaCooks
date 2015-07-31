@@ -18,29 +18,13 @@ RSpec.describe RecipesController, type: :controller do
       get :index, recipe_params
       expect(response).to render_template("index")
     end
-
-    # it "loads all recipes into @recipes" do
-    #   recipe = build :recipe
-    #   all_recipes = [recipe, recipe2]
-    #   get :index
-    #   expect(all_recipes.count).to eq 2
-    # end
   end
 
   describe "GET #show" do
-    let(:recipe_params) do
-      {
-        recipe: {
-          name: "Yay",
-          preparation: "Yup",
-          ingredient_ids: 2,
-          user_id: 1
-        }
-      }
-    end
-  # let(:soup) {create :recipe, user: create(:user) } # associated a user with a recipe: there's a user hash, create method has user paramater
+
     it "renders the :show view" do
-      get :show, recipe_params
+      recipe = create :recipe
+      get :show,  id: recipe.id
       expect(response).to render_template("show")
     end
 
@@ -71,48 +55,13 @@ RSpec.describe RecipesController, type: :controller do
     end
   end
 
-  # describe "POST #create" do
-  #   let(:recipe_params) do
-  #     {
-  #       recipe: {
-  #         name: "Yay",
-  #         preparation: "Yup"
-  #       },
-  #
-  #       ingredient: {
-  #         name: "Insert"
-  #       }
-  #     }
-  #   end
-  #
-  #   it "creates a new recipe" do
-  #     post :create, recipe_params
-  #     expect(Recipe.count).to eq(1)
-  #   end
-  # end
-
-  # describe "GET#New" do
-  #   let(:pineapple) {create :recipe, user: create(:user), ingredients: create(:ingredient) }
-  #
-  #   it "saves a new blank instance of a recipe in a variable" do
-  #     pineapple
-  #     get :new
-  #     expect(response).to render_template(:new)
-  #   end
-  # end
-
-
-    # let(:soup) {create :recipe, user: create(:user)}
-    # let(:water) {create :ingredient}
-      # recipe1 = build(:recipe, ingredients: create(:ingredient), user: create(:user))
-
   describe "GET #new" do
     let(:recipe_params) do
       {
         recipe: {
           name: "Yay",
           preparation: "Yup",
-          ingredient_ids: 2,
+          :ingredient_ids => [2],
           user_id: 1
         }
       }
@@ -133,46 +82,54 @@ RSpec.describe RecipesController, type: :controller do
 
   describe "POST #create" do
 
-    context " Ingredient params" do
-      let(:recipe_params) do
+    before :each do
+      user = create :user, id: 2
+      session[:user_id] = 2
+      ingredient = create(:ingredient)
+    end
+
+    context "valid params" do
+      let (:recipe_params) do
         {
-          recipe: {
-            name: "Yay",
-            preparation: "Yup",
-            ingredient_ids: 2,
-            user_id: 1
+          name: "Yay",
+          preparation: "yup",
+          user_id: 2,
+          :ingredient_ids => [1]
           }
-        }
       end
 
-      it "creates a new recipe" do
-        session[:user_id] = create(:user)
-        post :create, recipe_params
-        expect(Recipe.count).to be(1)
-        expect(response).to redirect_to(user_path(session[:user_id]))
+      it "creates a new Recipe record" do
+        post :create, recipe: recipe_params
+        expect(Recipe.count).to eq(1)
+      end
+    end
+
+    context "with invalid recipe params" do
+      let (:invalid_recipe_params) do
+        {
+          name: "Some Name",
+          user_id: 2 }
+        end
+
+      it "doesn't create a new recipe" do
+        post :create, :recipe => invalid_recipe_params
+        expect(response).to render_template(:new)
       end
     end
   end
-
 
   describe "DELETE #destroy" do
-    let(:recipe_params) do
-      {
-        recipe: {
-          name: "Yay",
-          preparation: "Yup",
-          ingredient_ids: 2,
-          user_id: 1
-        }
-      }
-    end
 
     it "ingredient count changes by -1" do
-      session[:user_id] = create(:user)
-      delete :destroy, recipe_params
-      expect(Recipe).to change(Recipe, :count).by(-1)
+      user = create :user, id: 2
+      recipe = build :recipe, id: 1
+      delete :destroy, :id => 1
+      expect(Recipe.count).to eq(0)
     end
 
+
   end
+
+
 
 end

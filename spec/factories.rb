@@ -5,7 +5,6 @@ FactoryGirl.define do
   end
 
   factory :user do
-    id 2
     username "myspacerox"
     password "2002"
     password_confirmation "2002"
@@ -15,8 +14,7 @@ FactoryGirl.define do
   factory :recipe do
     name "Soup"
     preparation "Stir It"
-
-    # uniq-ingredient
+    user_id 2
   end
 
   factory :ingredient do
