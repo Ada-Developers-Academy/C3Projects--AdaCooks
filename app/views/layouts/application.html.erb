@@ -13,11 +13,18 @@
     
     <div class="container-fluid">
       <header class="row">
+      <% unless current_page? root_path %>
+        <div class="col-md-5">
+          <h2 class="header-logo">Yummaholics</h2>
+        </div>
+      <% end %>
+
         <% if session[:user_id] %>
           <div class="col-md-3">
-            <h3>Welcome <%= @user.username %></h3>
+            <h3>Welcome <%= User.find(session[:user_id]).username %></h3>
           </div>
         <% end %>
+
         <div class="pull-right">
           <% if session[:user_id] %>
             <%= link_to "View my Dashboard", user_dashboard_path(session[:user_id]), class: "btn btn-success" %>
@@ -26,10 +33,16 @@
             <%= link_to "Sign Up", new_user_path, class: "btn btn-default" %>
             <%= link_to "Login", login_path, class: "btn btn-default" %>
           <% end %>
+
         </div>
       </header>
       <body>
-      <%= yield %>
+
+      <%= yield :welcome_page %>
+      <div class="solid-background">
+       <%= yield %>
+      </div>
+
       </body>
     </div>
   </div>

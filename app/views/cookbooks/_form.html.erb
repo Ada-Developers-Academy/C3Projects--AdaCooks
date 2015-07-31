@@ -1,17 +1,19 @@
-<%= form_for @cookbook, url: url do |f| %>
+<div class="row">
+    <%= form_for @cookbook, url: url do |f| %>
 
-  <div class="form-group">
-    <%= f.label :name, "Name" %>
-    <%= f.text_field :name, class: "form-control", :required => true %>
+      <div class="form-group col-md-9">
+        <%= f.label :name, "Name" %>
+        <%= f.text_field :name, class: "form-control", :required => true %>
 
-    <%= f.label :image, "Cookbook Image" %>
-    <%= f.file_field :image %>
+        <%= f.label :image, "Cookbook Image" %>
+        <%= f.file_field :image %>
 
-    <%= f.label :description, "Description" %>
-    <%= f.text_field :description %>
+        <%= f.label :description, "Description" %>
+        <%= f.text_field :description, class: "form-control" %>
 
-    <%= f.hidden_field :user_id, :value => params[:user_id] %>
-    <br>
-    <%= f.submit "#{verb} Cookbook", class: "btn btn-default" %>
-  </div>
-<% end %>
+        <%= f.hidden_field :user_id, :value => params[:user_id] %>
+        <br>
+        <%= f.submit "#{verb} Cookbook", class: "btn btn-default" %>
+      </div>
+    <% end %>
+</div>

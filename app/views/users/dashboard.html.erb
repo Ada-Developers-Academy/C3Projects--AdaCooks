@@ -8,8 +8,10 @@
 <% @user.cookbooks.each do |cookbook| %>
   <div class="dashboard-product-block">
     <%= link_to(image_tag(cookbook.image_url(:thumb)), user_cookbook_path(@user.id, cookbook.id)) %>
-    <%= link_to "Edit", edit_user_cookbook_path(@user.id, cookbook.id), class: "btn btn-default dashboard-button" %>
-    <%= link_to "X", user_cookbook_path(@user.id, cookbook.id), method: :delete, class: "btn btn-danger dashboard-button" %>
+    <div class="dashboard-buttons-block">
+      <%= link_to edit_user_cookbook_path(@user.id, cookbook.id), class: "btn btn-default dashboard-button" do %><span class="glyphicon glyphicon-pencil"></span><% end %>
+      <%= link_to user_cookbook_path(@user.id, cookbook.id), method: :delete, class: "btn btn-danger dashboard-button" do %><span class="glyphicon glyphicon-remove"></span><% end %>
+    </div>
     <h5><%= link_to "#{cookbook.name}", user_cookbook_path(@user.id, cookbook.id)  %></h5>
     <h6>Recipe Count: <%= cookbook.recipes.count %></h6>
     <h6>Unique Ingredient(s): <%= cookbook.ingredients.uniq.count %> </h6>
@@ -23,8 +25,10 @@
 <% @recipes.each do |recipe| %>
   <div class="dashboard-product-block">
     <%= link_to(image_tag(recipe.image_url(:thumb)), recipe_path(recipe.id)) %>
-    <%= link_to "Edit", edit_recipe_path(recipe.id), class: "btn btn-default dashboard-button" %>
-    <%= link_to "X", recipe_path(recipe.id), method: :delete, class: "btn btn-danger dashboard-button" %>
+    <div class="dashboard-buttons-block">
+      <%= link_to edit_recipe_path(recipe.id), class: "btn btn-default dashboard-button" do %><span class="glyphicon glyphicon-pencil"></span><% end %>
+      <%= link_to recipe_path(recipe.id), method: :delete, class: "btn btn-danger dashboard-button" do %><span class="glyphicon glyphicon-remove"></span><% end %>
+    </div>
     <h5><%=link_to "#{recipe.name}", recipe_path(recipe.id) %></h5>
   </div>
 <% end %>
@@ -37,8 +41,10 @@
 <% @user.ingredients.each do |ingredient| %>
   <div class="dashboard-product-block">
     <%= link_to(image_tag(ingredient.image_url(:thumb)), ingredient_path(ingredient.id)) %>
-    <%= link_to "Edit", edit_ingredient_path(ingredient.id), class: "btn btn-default dashboard-button" %>
-    <%= link_to "X", ingredient_path(ingredient.id), method: :delete, class: "btn btn-danger dashboard-button" %>
+    <div class="dashboard-buttons-block">
+      <%= link_to edit_ingredient_path(ingredient.id), class: "btn btn-default dashboard-button" do %><span class="glyphicon glyphicon-pencil"></span><% end %>
+      <%= link_to ingredient_path(ingredient.id), method: :delete, class: "btn btn-danger dashboard-button" do %><span class="glyphicon glyphicon-remove"></span><% end %>
+    </div>
     <h5><%= link_to "#{ingredient.name}", ingredient_path(ingredient.id) %></h5>
   </div>
 <% end %>
