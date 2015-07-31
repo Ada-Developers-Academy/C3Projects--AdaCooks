@@ -43,7 +43,6 @@ class RecipesController < ApplicationController
     # @user = User.find(@recipe.user_id).username.capitalize
     @user_recipes = User.find(@recipe.user_id).username.capitalize
     @your_cookbook = User.find(session[:user_id]).cookbooks if session[:user_id]
-
   end
 
   def add
