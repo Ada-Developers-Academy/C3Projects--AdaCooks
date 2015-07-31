@@ -99,7 +99,32 @@ RSpec.describe RecipesController, type: :controller do
     end
   end
 
+  describe "PUT #update" do
+    it "after good update, redirects to :dashboard view" do
+      user = create :user, name: "sue"
+      recipe = create :recipe, user_id: user.id, ingredient_ids: [99]
+      params = {id: recipe.id, user_id: user.id, recipe: {name: "stinky cheese", user_id: user.id, ingredient_ids: [99]}}
+      session[:user_id] = user.id
 
+      put :update, params
+
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to(dashboard_user_path(user))
+    end
+
+    it "after bad update, flashes error and redirect to :dashboard view" do
+      user = create :user, name: "sue"
+      recipe = create :recipe, user_id: user.id, ingredient_ids: [99]
+      params = {id: recipe.id, user_id: user.id, recipe: {name: nil, user_id: user.id, ingredient_ids: [99]}}
+      session[:user_id] = user.id
+
+      put :update, params
+
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to(dashboard_user_path(user))
+      expect(flash[:error]).to eq("Please enter valid stuff")
+    end
+  end
 
 
 end
