@@ -12,8 +12,7 @@ class Cookbook < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
 # Scopes _____________________________________________________________________
-
-scope :user_cookbooks, -> (user) { where(user_id: "#{user.id}") }
+  scope :user_cookbooks, -> (user) { where(user_id: "#{user.id}") }
 
   def unassociate_recipes
     recipes = self.recipes

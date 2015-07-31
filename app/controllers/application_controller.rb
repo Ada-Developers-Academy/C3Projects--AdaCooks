@@ -24,5 +24,4 @@ class ApplicationController < ActionController::Base
   def find_recipes
     @recipes = Recipe.all
   end
-
 end
