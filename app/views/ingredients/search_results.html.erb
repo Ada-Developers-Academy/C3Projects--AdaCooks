@@ -2,7 +2,7 @@
 
     <% @recipes.each do |recipe| %>
       <div class = "col-sm-4">
-        <%= image_tag recipe.image_url, class: "img-board img-center"  %>
-        <%= link_to "#{recipe.name}", recipe_path(recipe.id)  %>
+        <%= image_tag recipe.image_url, class: "img-board"  %>
+        <h5 class= "txt-center"><%= link_to "#{recipe.name}", recipe_path(recipe.id)  %></h5>
       </div>
     <% end %>

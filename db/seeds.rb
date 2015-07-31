@@ -64,9 +64,9 @@ recipes = [
   {name: "Decisive", cookbook_id: 1, description: "A sweet and tart beverage great for a night out or a night in.", prep: "Pour whisky over ice. The End.", image: File.open(File.join('app/assets/images/recipes/basic.jpeg')) }, #5
   {name: "Right to Choose... to Party", cookbook_id: 2, description: "A delicious mix, both sweet and subtle.", prep: "Mix all ingredients, garnish with cherries.", image: File.open(File.join('app/assets/images/recipes/fruitopia.jpeg')) }, #6
   {name: "Rebelious Rum Punch", cookbook_id: 3, description: "Refreshing citrus rum punch.", prep: "Mix all ingredients until combined, serve over ice.", image: File.open(File.join('app/assets/images/recipes/sunset.jpeg')) }, #7
-  {name: "B*tch*s Get Stuff Done", cookbook_id: 4, description: "A strong mix for a strong woman.", prep: "Mix everything together, look at you getting stuff done!", image: File.open(File.join('app/assets/images/recipes/green.jpeg')) }, #8
+  {name: "Girls Just Want to Have FUNdimental Rights", cookbook_id: 4, description: "A strong mix for a strong woman.", prep: "Mix everything together, look at you getting stuff done!", image: File.open(File.join('app/assets/images/recipes/green.jpeg')) }, #8
   {name: "Because I am a Boss aka Bossy", cookbook_id: 1, description: "A classic stiff drink", prep: "Mix together all ingredients and serve over ice.", image: File.open(File.join('app/assets/images/recipes/stiff.jpeg')) }, #9
-  {name: "Smash(ed) the Patriarchy", cookbook_id: 2, description: "Get the party started with this intoxicating mix.", prep: "in a bathtub mix together all ingredients.", image: File.open(File.join('app/assets/images/recipes/midori.jpg')) } #10
+  {name: "Smash(ed) the Patriarchy", cookbook_id: 2, description: "Get the party started with this intoxicating mix.", prep: "in a bathtub mix together all ingredients.", image: File.open(File.join('app/assets/images/recipes/bathtub.png')) } #10
 ]
 
 recipes.each do |recipe|

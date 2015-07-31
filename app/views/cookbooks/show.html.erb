@@ -4,8 +4,8 @@
 <h3>Recipes</h3>
 <% @recipes.each do |recipe| %>
 <div class = "col-sm-4">
-  <%= image_tag recipe.image_url, class: "img-board img-center" %>
-  <h4><%= link_to  "#{recipe.name}", recipe_path(recipe.id) %></h4>
-  <%= button_to "Remove", remove_recipe_from_cookbook_path(@cookbook.id), :method => :remove_recipe, class: "btn btn-danger" %>
+  <%= image_tag recipe.image_url, class: "img-board" %>
+  <h5 class= "txt-center"><%= link_to  "#{recipe.name}", recipe_path(recipe.id) %></h5>
+  <%= button_to "Remove", remove_recipe_from_cookbook_path(@cookbook.id), :method => :remove_recipe, class: "btn btn-danger img-center" %>
 </div>
 <% end %>
