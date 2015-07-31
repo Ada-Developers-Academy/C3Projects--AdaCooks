@@ -18,7 +18,7 @@
 	<h5> by: <%= link_to @recipe.user.username, user_path(@recipe.user.id) %> </h5>
 
 	<br>
-	<%= image_tag(@recipe.image) %>
+	<%= image_tag @recipe.image_url, class: "img-lg" %>
 
 	<br><br>
 	<p>
