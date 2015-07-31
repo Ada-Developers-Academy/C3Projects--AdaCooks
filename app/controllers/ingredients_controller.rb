@@ -19,33 +19,49 @@ end
 
 def show
   @recipes = @ingredient.recipes
+
+
 end
 
 def new
   @ingredient = Ingredient.new
   @user = User.find(session[:user_id])
-  @recipe = Recipe.find(session[:recipe_id])
-  @ingredients = @recipe.ingredients
+  unless session[:recipe_id].nil?
+    @recipe = Recipe.find(session[:recipe_id])
+    @ingredients = @recipe.ingredients
+  end
 end
 
 def create
-  unless Ingredient.search(params[:ingredient][:name])
-    recipe = Recipe.find(session[:recipe_id])
-    user = User.find(session[:user_id])
+  if session[:recipe_id].nil?
     @ingredient = Ingredient.new(ingredient_params)
-    recipe.ingredients << @ingredient
+    user = User.find(session[:user_id])
     @ingredient.user_id = user.id
     if @ingredient.save
-      redirect_to new_user_ingredient_path(session[:user_id])
+      redirect_to ingredients_by_user_path(session[:user_id])
     else
-      flash[:error] = "It did not save"
+      flash[:errors] = error_messages(@ingredient)
       render :new
     end
   else
-    @ingredient = Ingredient.where(name: params[:ingredient][:name])
-    recipe = Recipe.find(session[:recipe_id])
-    recipe.ingredients << @ingredient
-    redirect_to new_user_ingredient_path(session[:user_id])
+    unless Ingredient.search(params[:ingredient][:name])
+      recipe = Recipe.find(session[:recipe_id])
+      user = User.find(session[:user_id])
+      @ingredient = Ingredient.new(ingredient_params)
+      recipe.ingredients << @ingredient
+      @ingredient.user_id = user.id
+      if @ingredient.save
+        redirect_to new_user_ingredient_path(session[:user_id])
+      else
+        flash[:error] = "It did not save"
+        render :new
+      end
+    else
+      @ingredient = Ingredient.where(name: params[:ingredient][:name])
+      recipe = Recipe.find(session[:recipe_id])
+      recipe.ingredients << @ingredient
+      redirect_to new_user_ingredient_path(session[:user_id])
+    end
   end
 end
 
@@ -91,7 +107,7 @@ end
 
 def destroy
   @ingredient.destroy
-  redirect_to new_user_ingredient_path(session[:user_id])
+  redirect_to ingredients_by_user_path(session[:user_id])
 end
 
 private

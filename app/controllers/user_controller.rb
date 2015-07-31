@@ -12,7 +12,12 @@ class UserController < ApplicationController
 
   def show
     @user = User.find(session[:user_id])
-    @recipes = @user.recipes 
+    @recipes = @user.recipes
+
+  end
+
+  def user_profile
+    @user = User.find(params[:id])
   end
 
 private

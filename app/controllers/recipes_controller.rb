@@ -12,6 +12,11 @@ before_action :select_recipe, only: [:edit, :destroy, :update]
 
   def show
     @recipe = Recipe.find(params[:id])
+    @user = @recipe.user
+    unless @user.id == params[:user_id]
+      params[:user_id] = @user.id
+    end
+
     
   end
 
@@ -46,13 +51,14 @@ before_action :select_recipe, only: [:edit, :destroy, :update]
   end
 
   def edit
-    @recipe = Recipe.find(session[:user_id])
+    @recipe = Recipe.find(params[:id])
+    
   end
 
   def update
     unless params[:recipe][:cookbook_ids].empty?
       cookbook = Cookbook.find(params[:recipe][:cookbook_ids])
-      @recipe = Recipe.find(params[:recipe_id])
+      @recipe = Recipe.find(params[:id])
       @recipe.cookbooks << cookbook
     end
     user = User.find(session[:user_id])
@@ -73,6 +79,11 @@ def remove
   recipe = cookbook.recipes.find(params[:recipe_id])
   cookbook.recipes.delete(recipe)
   redirect_to user_cookbook_path(session[:user_id], params[:cookbook_id])
+end
+
+def destroy
+  @recipe.destroy
+  redirect_to user_path(session[:user_id])
 end
 
 
