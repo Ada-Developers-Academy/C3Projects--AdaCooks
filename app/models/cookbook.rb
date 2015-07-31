@@ -7,4 +7,15 @@ class Cookbook < ActiveRecord::Base
   validates :name, presence: :true
 
   #Scopes------------------------------------------------------------------------
+
+  def unique
+    special_ingredients = []
+    recipes.each do |recipe|
+    special_ingredients <<  recipe.ingredients.pluck    
+    end
+    special_ingredients = special_ingredients.uniq
+        raise
+
+    return special_ingredients.count
+  end
 end
