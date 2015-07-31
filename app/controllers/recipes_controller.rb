@@ -1,16 +1,16 @@
 class RecipesController < ApplicationController
   before_action :require_login, except: [:index, :show]
   before_action :find_recipe, only: [:show, :edit, :update, :destroy]
+  include ApplicationHelper
 
   def index
     @recipes = Recipe.alpha
   end
 
   def show
-    @user = @recipe.user
+    @user = current_user
     @ingredients = @recipe.ingredients
     @cookbooks = @user.cookbooks
-    # @recipe.update(new_bookbook)
   end
 
   def new
