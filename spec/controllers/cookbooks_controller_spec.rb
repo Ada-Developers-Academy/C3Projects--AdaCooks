@@ -99,4 +99,20 @@ RSpec.describe CookbooksController, type: :controller do
     end
   end
 
+  describe "DELETE #destroy_recipe_assoc" do
+    it "redirects to user cookbook show view" do
+      user = create :user
+      session[:user_id] = user.id
+      ingredient = create :ingredient
+      recipe = create :recipe, user_id: user.id, ingredient_ids: [ingredient.id]
+      cookbook = create :cookbook, user_id: user.id
+      cookbook.recipes << recipe
+
+      delete :destroy_recipe_assoc, user_id: user.id, cookbook_id: cookbook.id, recipe_id: recipe.id
+
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to(user_cookbook_path(user, cookbook))
+    end
+  end
+
 end
