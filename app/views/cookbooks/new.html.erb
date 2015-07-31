@@ -1,11 +1,5 @@
-<% if @cookbook.errors %>
-<ul>
-  <% @cookbook.errors.full_messages.each do |msg|  %>
-  <li>
-    <%= msg %>
-  </li>
-  <% end %>
-</ul>
+<% unless flash[:errors].nil? %>
+  <%= render partial: "shared/errors", locals: { instance: @cookbook } %>
 <% end %>
 
 <%= render partial: "form", locals: { url: user_cookbooks_path, cookbook: @cookbook,

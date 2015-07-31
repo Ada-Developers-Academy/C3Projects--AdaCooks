@@ -8,4 +8,11 @@ class ApplicationController < ActionController::Base
     redirect_to root_path if !session[:user_id]
   end
 
+  def error_messages(instance)
+    error_array = []
+    instance.errors.messages.each do |key, value|
+      error_array += [[key.to_s.capitalize, value.first]]
+    end
+    error_array
+  end
 end

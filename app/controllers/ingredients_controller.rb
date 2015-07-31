@@ -21,7 +21,7 @@ class IngredientsController < ApplicationController
     if @ingredient.save
       redirect_to ingredient_path(@ingredient.id)
     else
-      flash[:error]
+      flash[:errors] = error_messages(@ingredient)
       redirect_to new_ingredient_path
     end
   end
@@ -35,8 +35,12 @@ class IngredientsController < ApplicationController
     @ingredient_id = params[:id]
     @ingredient = Ingredient.find(@ingredient_id)
     @ingredient.update(ingredient_params[:ingredient])
-
-    redirect_to ingredient_path(@ingredient_id)
+    if @ingredient.save
+      redirect_to ingredients_path(@ingredient_id)
+    elsif 
+      flash[:errors] = error_messages(@ingredient)
+      redirect_to edit_ingredient_path(@ingredient_id)
+    end
   end
 
   def destroy

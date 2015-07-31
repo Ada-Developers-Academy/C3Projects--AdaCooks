@@ -22,7 +22,7 @@ class CookbooksController < ApplicationController
     if @cookbook.save
       redirect_to cookbook_path(@cookbook)
     else
-      flash[:error]
+      flash[:errors] = error_messages(@cookbook)
       render :new
     end
   end
@@ -37,7 +37,12 @@ class CookbooksController < ApplicationController
       @cookbook_id = params[:id]
       @cookbook = Cookbook.find(@cookbook_id)
       @cookbook.update(cookbook_params)
-      redirect_to cookbook_path(@cookbook)
+      if @cookbook.save
+        redirect_to cookbook_path(@cookbook)
+      else
+        flash[:errors] = error_messages(@cookbook)
+        render :edit
+      end
 
     else
       cookbook = Cookbook.find(params[:recipe][:cookbook_id])

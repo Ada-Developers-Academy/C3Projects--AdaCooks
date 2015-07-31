@@ -1,3 +1,7 @@
+<% unless flash[:errors].nil? %>
+  <%= render partial: "shared/errors", locals: {instance: @ingredient} %>
+<% end %>
+
 <%= render partial: "form", locals: { ingredient: @ingredient,
                                       name_desc: "Name",
                                       name_placeholder: "Wild Roots Marionberry Vodka",

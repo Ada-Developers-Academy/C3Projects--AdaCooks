@@ -15,7 +15,6 @@ class Ingredient < ActiveRecord::Base
 
 # -------------RECIPES----------------------
   def self.search(query)
-    where("name LIKE ?", "%#{query}%") #for localhost
-    # where("name ILIKE ?", "%#{query}%") #for heroku
+    where("name LIKE ?", "%#{query}%") #for localhost    # where("name ILIKE ?", "%#{query}%") #for heroku
   end
 end
