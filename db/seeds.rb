@@ -92,6 +92,7 @@ recipes = [
 
 
 recipes.each do |recipe|
+
   image_path = "app/assets/images/" + recipe[:image]
 
   Recipe.create(
@@ -101,6 +102,10 @@ recipes.each do |recipe|
   user_id: recipe[:user_id],
   image: open(image_path)
   )
+
+  x = Recipe.new recipe
+  x.save(validate: false )
+
 end
 
 # Ingredients -------------------------------
@@ -129,7 +134,8 @@ ingredients = [
 ]
 i = {}
 ingredients.each do |ingredient|
-  ar_obj = Ingredient.create ingredient
+  ar_obj = Ingredient.new ingredient
+  ar_obj.save(validate: false)
   i[ar_obj.name] = ar_obj.id
   # key = "honey", value = honey id
 end

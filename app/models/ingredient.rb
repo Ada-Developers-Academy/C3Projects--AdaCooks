@@ -10,5 +10,4 @@ class Ingredient < ActiveRecord::Base
   # Scopes -----------------------------------------
   scope :alphabet, -> { order('lower (name)') }
 
-
 end
