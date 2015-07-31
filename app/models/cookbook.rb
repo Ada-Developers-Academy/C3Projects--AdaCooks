@@ -5,4 +5,6 @@ class Cookbook < ActiveRecord::Base
 
   # Validations ------------------------------------
   validates :name, presence: true
+  # Scope_____________________________________________
+
 end

@@ -1,8 +1,8 @@
 
-<%= form_for @recipe, html: {class: "form-group"}, method: :post do |f|  %>
+<%= form_for @recipe, html: {class: "form-group"} do |f|  %>
   <div class="form-group">
     <fieldset>
-      <legend><h2>Add a Recipe!</h2></legend>
+      <legend><h2>Edit Your Recipe</h2></legend>
       <%= f.label :name, "Recipe Name" %>
       <%= f.text_field :name %>
 
@@ -24,12 +24,6 @@
       <%= f.label :image, 'Photo' %>
       <%= f.file_field :image %>
 <br>
-       <%= f.label :cookbooks, "Associate One of Your Cookbooks" %><br>
-       <%= collection_check_boxes(:recipe, :cookbook_ids, @cookbook, :id, :name) do |b| %>
-            <%= b.label class: "checkbox-inline" do %>
-              <%= b.check_box + b.text.capitalize %>
-            <% end %>
-          <% end %>
     </fieldset>
     <%= f.submit "Submit", class: "btn btn-default"%>
   </div>

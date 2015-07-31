@@ -9,10 +9,11 @@ class Recipe < ActiveRecord::Base
   # Validations ----------------------------------------------------------------
   validates :name, presence: true
   validates :preparation, presence: true
-  # validates_with RecipeValidator, :on => :update
+  validates_with RecipeValidator, :on => [:create, :update]
 
   # Scopes -----------------------------------------
   scope :alphabet, -> { order('lower (name)') }
+  scope :diff, -> { select(:ingredients).distinct.order(:ingredients).pluck(:ingredients) }
 
   # Mounted Objects_____________________________________________________________
   # mount_uploader :image, ImageUploader #instance of class image uploader

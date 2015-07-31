@@ -3,30 +3,49 @@ require 'rails_helper'
 RSpec.describe RecipesController, type: :controller do
 
   describe "GET #index" do
-    let(:recipe2) { create :recipe, name: "Cream" }
+    let(:recipe_params) do
+      {
+        recipe: {
+          name: "Yay",
+          preparation: "Yup",
+          ingredient_ids: 2,
+          user_id: 1
+        }
+      }
+    end
 
     it "renders the index template" do
-      get :index
+      get :index, recipe_params
       expect(response).to render_template("index")
     end
 
-    it "loads all recipes into @recipes" do
-      recipe = build :recipe
-      all_recipes = [recipe, recipe2]
-      get :index
-      expect(all_recipes.count).to eq 2
-    end
+    # it "loads all recipes into @recipes" do
+    #   recipe = build :recipe
+    #   all_recipes = [recipe, recipe2]
+    #   get :index
+    #   expect(all_recipes.count).to eq 2
+    # end
   end
 
   describe "GET #show" do
-  let(:soup) {create :recipe, user: create(:user) } # associated a user with a recipe: there's a user hash, create method has user paramater
+    let(:recipe_params) do
+      {
+        recipe: {
+          name: "Yay",
+          preparation: "Yup",
+          ingredient_ids: 2,
+          user_id: 1
+        }
+      }
+    end
+  # let(:soup) {create :recipe, user: create(:user) } # associated a user with a recipe: there's a user hash, create method has user paramater
     it "renders the :show view" do
-      get :show, :id => soup.id
+      get :show, recipe_params
       expect(response).to render_template("show")
     end
 
     it "returns successfully with HTTP code of 200" do
-      get :show, :id => soup.id
+      get :show, recipe_params
       expect(response).to be_success
     end
   end
@@ -88,71 +107,72 @@ RSpec.describe RecipesController, type: :controller do
       # recipe1 = build(:recipe, ingredients: create(:ingredient), user: create(:user))
 
   describe "GET #new" do
-    it "creates a new recipe" do
-      soup = create(:recipe)
-      soup.ingredients = create(:ingredient)
-      soup.user = create(:user)
-      soup.save
-      post :create, :id => soup.id
-      expect(assigns(:recipe)).to be_a_new(Recipe)
-      expect(response).to render_template(:new)
+    let(:recipe_params) do
+      {
+        recipe: {
+          name: "Yay",
+          preparation: "Yup",
+          ingredient_ids: 2,
+          user_id: 1
+        }
+      }
     end
-  end # new
 
-  # describe "POST #create" do
-  #   # + test case
-  #   context "Valid Ingredient params" do
-  #     let(:ingred_params) do
-  #        {
-  #          ingredient: {
-  #            name: 'Steak',
-  #            image: 'steak.jpg'
-  #          }
-  #        }
-  #     end
-  #
-  #     it "creates a new Ingredient record" do
-  #       post :create, ingred_params
-  #       expect(Ingredient.count).to eq(1)
-  #     end
-  #   end
-  #   # - test case
-  #   context "Invalid Ingredient params" do
-  #     let(:ingred_params) do
-  #        {
-  #          ingredient: {
-  #            image: 'steak.jpg'
-  #          }
-  #        }
-  #     end
-  #
-  #     it "does not persist invalid ingredients" do
-  #      post :create, ingred_params
-  #      expect(Ingredient.count).to eq 0
-  #      end
-  #
-  #    it "renders the :new view (to allow users to fix invalid data)" do
-  #      post :create, ingred_params
-  #      expect(response).to render_template("new")
-  #    end
-  #
-  #   end
-  # end # create
-  #
-  # describe "DELETE #destroy" do
-  #   before(:each) do
-  #     @pine = create :ingredient
-  #     @pop = create :ingredient, name: "PopTarts"
-  #   end
-  #
-  #   it "ingredient count changes by -1" do
-  #     expect{delete :destroy, {id: @pine.id}}.to change(Ingredient, :count).by(-1)
-  #   end
-  #
-  #   it "redirect_to root_path" do
-  #     delete :destroy, id: @pine.id
-  #     expect(response).to redirect_to(root_path)
-  #   end
-   # destroy
+    it "renders the new template" do
+      session[:user_id] = create(:user)
+      get :new, :id => session[:user_id]
+      expect(response).to render_template("new")
+    end
 
-end # describe
+    it "creates a new Recipe object" do
+      session[:user_id] = create(:user)
+      get :new, recipe_params
+      expect(assigns(:recipe)).to be_kind_of(Object)
+    end
+  end
+
+  describe "POST #create" do
+
+    context " Ingredient params" do
+      let(:recipe_params) do
+        {
+          recipe: {
+            name: "Yay",
+            preparation: "Yup",
+            ingredient_ids: 2,
+            user_id: 1
+          }
+        }
+      end
+
+      it "creates a new recipe" do
+        session[:user_id] = create(:user)
+        post :create, recipe_params
+        expect(Recipe.count).to be(1)
+        expect(response).to redirect_to(user_path(session[:user_id]))
+      end
+    end
+  end
+
+
+  describe "DELETE #destroy" do
+    let(:recipe_params) do
+      {
+        recipe: {
+          name: "Yay",
+          preparation: "Yup",
+          ingredient_ids: 2,
+          user_id: 1
+        }
+      }
+    end
+
+    it "ingredient count changes by -1" do
+      session[:user_id] = create(:user)
+      delete :destroy, recipe_params
+      expect(Recipe).to change(Recipe, :count).by(-1)
+    end
+
+  end
+
+end

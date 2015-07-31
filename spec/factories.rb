@@ -4,10 +4,6 @@ FactoryGirl.define do
     # can we do this?
   end
 
-  factory :recipe_params do
-    # can we do this?
-  end
-
   factory :user do
     id 2
     username "myspacerox"
@@ -20,6 +16,7 @@ FactoryGirl.define do
     name "Soup"
     preparation "Stir It"
 
+    uniq-ingredient
   end
 
   factory :ingredient do
