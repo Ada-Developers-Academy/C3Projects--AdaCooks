@@ -1,11 +1,11 @@
 <h2>4 out of 5 dentists recommend this recipe-finding destination!</h2>
 
-<div class="col-sm-6">
-  <h3>Trending recipes:</h3>
-  <%= render partial: 'shared/recipes_list', locals: { recipes: @recipes } %>
+<div class="col-sm-5">
+  <h3>Trending Recipes:</h3>
+  <%= render partial: 'shared/plain_recipes_list', locals: { recipes: @recipes } %>
 </div>
 
-<div class="col-sm-6">
-  <h3>Trending ingredients:</h3>
-  <%= render partial: 'shared/ingredients_list', locals: { ingredients: @ingredients } %>
+<div class="col-sm-5">
+  <h3>Trending Ingredients:</h3>
+  <%= render partial: 'shared/plain_ingredients_list', locals: { ingredients: @ingredients } %>
 </div>
