@@ -67,8 +67,6 @@ RSpec.describe Ingredient, type: :model do
         end
       end
     end
-
-    pending "avatar validations"
   end
 
   describe "scopes" do
@@ -106,7 +104,7 @@ RSpec.describe Ingredient, type: :model do
       end
 
       recipe2.ingredients << best_ingredient
-      
+
       recipe1_ingredients.each do |ingredient|
         expect(Ingredient.trending).to include(ingredient)
       end

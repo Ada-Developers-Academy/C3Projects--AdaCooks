@@ -89,8 +89,6 @@ RSpec.describe Recipe, type: :model do
       expect(invalid_recipe).not_to be_valid
       expect(invalid_recipe.errors.keys).to include(:user_id)
     end
-
-    pending "avatar/image"
   end
 
   describe "model scopes" do
