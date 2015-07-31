@@ -1,7 +1,9 @@
 class RecipesController < ApplicationController
+  before_action :current_user, only: [:show, :add_to_cookbook, :edit, :update]
+
   before_action :set_recipe, except: [:index, :new, :create]
-  before_action :current_user, only: [:show, :add_to_cookbook]
   before_action :setup_show, only: [:show, :add_to_cookbook]
+  
   after_action :last_page
 
   MESSAGES = {
@@ -11,7 +13,8 @@ class RecipesController < ApplicationController
     update_fail: "There was a problem with your update. Please try again.",
     destroy_success: "You have successfully deleted the recipe.",
     destroy_fail: "There was a problem with your recipe deletion. Please try again.",
-    cookbook_fail: "Saving this recipe to that cookbook did not work. Please try again. "
+    cookbook_fail: "Saving this recipe to that cookbook did not work. Please try again. ",
+    not_yo_recipe: "You cannot edit someone else's recipe."
   }
 
   def index
@@ -48,6 +51,10 @@ class RecipesController < ApplicationController
   end
 
   def edit
+    if @recipe.user != @current_user
+      flash[:errors] = MESSAGES[:not_yo_recipe]
+      redirect_to @recipe
+    end
     5.times { @recipe.recipe_ingredients.build }
     @recipe_name = @recipe.name.titlecase
   end

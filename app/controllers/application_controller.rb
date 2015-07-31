@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user
   helper_method :last_page
+  helper_method :require_owner
 
   MESSAGES = { 
     not_signed_in: "Please sign in to access that page." 
