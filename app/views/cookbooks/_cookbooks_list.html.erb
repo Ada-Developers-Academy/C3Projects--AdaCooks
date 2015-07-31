@@ -1,0 +1,17 @@
+<div class="row">
+  <%# TODO: style further? %>
+  <ul>
+    <% cookbooks.each do |cookbook| %>
+      <li><%= link_to cookbook.name, cookbook_path(cookbook) %>
+        <ul>
+          <li>Recipes: <%= cookbook.recipes.count %></li>
+          <li>Ingredients: <%= cookbook.ingredients.count %></li>
+          <li class="list-unstyled">
+            <%= link_to "DELETE", cookbook_path(cookbook), { method: :delete, class: "btn btn-danger pull-right" } %>
+            <%= link_to "EDIT", edit_cookbook_path(cookbook), class: "btn btn-warning pull-right" %>
+          </li>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
+</div>
