@@ -109,18 +109,30 @@ RSpec.describe IngredientsController, type: :controller do
       end
 
       it "changes recipe's name" do
-        patch :update, :id => @yams, :recipe => {name: "sweet potatoez"}
+        patch :update, :id => @yams, :ingredient => {name: "sweet potatoez"}
         @yams.reload
         expect(@yams.name).to eq("sweet potatoez")
       end
 
       it "redirect_to user_path" do
-        patch :update, id: @yams, :recipe => {name: "sweet potatoez"}
+        patch :update, id: @yams, :ingredient => {name: "sweet potatoez"}
         expect(response).to redirect_to(user_path(@yams.user_id))
       end
     end
 
-    
+    context "unsucessful update" do
+      before(:each) do
+        @yams = create :ingredient, user: create(:user)
+        session[:user_id] = @yams.user_id
+      end
+
+      it "renders edit form if unsuccessful update" do
+        patch :update, :id => @yams, :ingredient => {name: nil}
+        @yams.reload
+        expect(@yams).to render_template(:edit)
+      end
+    end
+
   end
 
 
