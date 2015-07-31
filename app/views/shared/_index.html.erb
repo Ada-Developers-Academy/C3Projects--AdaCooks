@@ -4,7 +4,7 @@
   <% collection.each do |separate| %>
     <div class="col-md-4">
       <div class="thumbnail"><%= image_tag(separate.image_url)%></div>
-        <%= link_to separate.name, "/#{link}/#{separate.id}", method: :get %>
+        <h3><%= link_to separate.name, "/#{link}/#{separate.id}", method: :get %></h3>
     </div>
   <% end %>
 </div>

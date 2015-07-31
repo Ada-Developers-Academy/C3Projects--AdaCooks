@@ -7,7 +7,7 @@
 <div class="row">
     <% @recipes.each do |recipe| %>
       <div class="col-md-4">
-        <div class="thumbnail"><%= image_tag(recipe.image) %></div>
+        <div class="thumbnail"><a href="<%= recipe_path(recipe.id)%>"><%= image_tag(recipe.image) %></a></div>
         <%= link_to recipe.name, recipe_path(recipe.id) %>
 
       <p><%= recipe.description %> </p>
