@@ -16,4 +16,22 @@ RSpec.describe Cookbook, type: :model do
       expect(cookbook.errors.keys).to include(:user_id)
     end
   end
+
+  describe "methods" do
+    before :each do
+      @cookbook = create :cookbook
+      ingredient = create :ingredient
+      recipe1 = create :recipe
+      recipe2 = create :recipe, name: "Another Recipe "
+      @cookbook.recipes << [ recipe1, recipe2 ]
+    end
+
+    it "#ingredient_count returns the number of unique ingredients" do
+      expect(@cookbook.ingredient_count).to eq 1
+    end
+
+    it "#recipe_count returns the number of recipes" do
+      expect(@cookbook.recipe_count).to eq 2
+    end
+  end
 end
