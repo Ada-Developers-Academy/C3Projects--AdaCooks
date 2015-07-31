@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   patch '/remove_ingredient/:user_id/:ingredient_id/:recipe_id' => 'ingredients#remove', as: :remove_ingredient
   patch '/remove_recipe/:user_id/:recipe_id/:cookbook_id' => 'recipes#remove', as: :remove_recipe
   patch '/add_recipe/:user_id/:recipe_id' => 'recipes#add_recipe', as: :add_recipe
-
+  get '/ingredients_by_user/:id' => 'ingredients#index_by_user', as: :ingredients_by_user
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

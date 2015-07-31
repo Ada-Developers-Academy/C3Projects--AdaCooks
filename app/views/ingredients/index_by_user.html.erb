@@ -1,0 +1,6 @@
+<% @ingredients.each do |ingredient| %>
+  <%= ingredient.name %>
+  <%= image_tag(ingredient.image) %>
+  <%= link_to "Edit Ingredient", edit_user_ingredient_path(session[:user_id], ingredient.id) %>
+  <%= link_to "Delete Ingredient", user_ingredient_path(session[:user_id], ingredient.id) %>
+<% end %>

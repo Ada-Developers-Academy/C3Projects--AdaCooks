@@ -3,7 +3,7 @@
   <h1><%= @recipe.name %></h1>
 <% end %>
 
-<%= form_for @ingredient, url: url do |f| %>
+<%= form_for @ingredient, url: url, method: method do |f| %>
   <fieldset>
     <legend>Ingredient Details</legend>
       <%= f.label :name %>

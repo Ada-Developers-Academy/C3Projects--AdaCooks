@@ -1,13 +1,1 @@
-<h1>Edit Ingredient</h1>
-
-<%= form_for @ingredient, url: , params[:id]) do |f| %>
-  <fieldset>
-    <legend>Product Details</legend>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-
-      <%= f.label :image %>
-      <%= f.text_field :image %>
-  </fieldset>
-  <%= f.submit %>
-<% end %>
+<%= render partial: 'shared/ingredient_form', locals: { url: user_ingredient_path(params[:user_id], @ingredient.id), method: :patch } %>

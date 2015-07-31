@@ -7,12 +7,13 @@ def select_ingredient
 end
 
 def index
+
   @ingredients = Ingredient.order(:name)
   session[:recipe_id] = nil
 end
 
-def index_by_id
-  @ingredients = Ingredient.where(params[:user_id])
+def index_by_user
+  @ingredients = Ingredient.where(user_id: session[:user_id])
   session[:recipe_id] = nil
 end
 
@@ -42,20 +43,34 @@ def create
 end
 
 def edit
-  redirect_to new_user_ingredient_path(session[:user_id])
+  if session[:recipe_id].nil?
+    @ingredient = Ingredient.find(params[:id])
+  else
+    redirect_to new_user_ingredient_path(session[:user_id])
+  end
 end
 
 def update
-  recipe = Recipe.find(session[:recipe_id])
-  user = User.find(session[:user_id])
-  @ingredient = Ingredient.new(ingredient_params)
-  recipe.ingredients << @ingredient
-  @ingredient.user_id = user.id
-  if @ingredient.save
-    redirect_to new_user_ingredient_path(session[:user_id])
+  if session[:recipe_id].nil?
+    @ingredient = Ingredient.find(params[:id])
+    if @ingredient.update(ingredient_params)
+      redirect_to ingredients_by_user_path(session[:user_id])
+    else
+      render :edit
+    end
   else
-    flash[:error] = "It did not save"
-    render :new
+    redirect_to new_user_ingredient_path(session[:user_id])
+    # recipe = Recipe.find(session[:recipe_id])
+    # user = User.find(session[:user_id])
+    # @ingredient = Ingredient.new(ingredient_params)
+    # recipe.ingredients << @ingredient
+    # @ingredient.user_id = user.id
+    # if @ingredient.save
+    #   redirect_to new_user_ingredient_path(session[:user_id])
+    # else
+    #   flash[:error] = "It did not save"
+    #   render :new
+    # end
   end
 end
 
