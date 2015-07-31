@@ -61,6 +61,7 @@ class RecipesController < ApplicationController
   def destroy
     recipe = Recipe.find(params[:id])
     user = User.find(session[:user_id])
+    recipe.unassociate_ingredients
     recipe.destroy
 
     redirect_to user_path(user)
