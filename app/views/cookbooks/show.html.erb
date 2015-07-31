@@ -9,8 +9,10 @@
         <p class="media-heading"><%= link_to recipe.name, recipe_path(recipe.id) %></p>
         <p>
           <%= recipe.desc %><br>
+          <span class="text-muted"><%= pluralize(recipe.ingredients.count, "ingredient") %></span><br>
           <%= link_to "remove from #{@cookbook.name}", { :controller => "cookbooks", :action => "rm_recipe", :cookbook => @cookbook.id, :recipe => recipe.id }  %>
         </p>
+
       </div>
     </li>
   <% end %>
