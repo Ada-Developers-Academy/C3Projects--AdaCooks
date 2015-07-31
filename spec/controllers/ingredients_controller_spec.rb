@@ -78,4 +78,52 @@ RSpec.describe IngredientsController, type: :controller do
       expect(subject).to redirect_to user_path(id: @unauth_user.id)
     end
   end
+
+  describe "PUT #update" do
+    before :each do
+      @user = create(:user)
+      session[:user_id] = @user.id
+      @ingredient = create(:ingredient)
+    end
+
+    context "no name" do
+      before :each do
+        put :update, id: @ingredient.id, ingredient: attributes_for(:ingredient, name: "")
+      end
+
+      it "does not make the change" do
+        expect(@ingredient.name).to eq "yams"
+      end
+
+      it "renders to the edit form" do
+        expect(subject).to render_template :edit
+      end
+    end
+
+    context "valid edit" do
+      before :each do
+        put :update, id: @ingredient.id, ingredient: attributes_for(:ingredient, name: "sweet potatoes")
+        @ingredient.reload
+      end
+
+      it "saves the updates" do
+        expect(@ingredient.name).to eq "sweet potatoes"
+      end
+
+      it "redirects to the ingredient show page" do
+        expect(subject).to redirect_to ingredient_path(@ingredient)
+      end
+    end
+  end
+
+  describe "DELETE #destroy" do
+    it "deletes the record" do
+      user = create(:user)
+      session[:user_id] = user.id
+      ingredient = create(:ingredient)
+      delete :destroy, id: ingredient.id
+      
+      expect(Ingredient.all.count).to eq 0
+    end
+  end
 end
