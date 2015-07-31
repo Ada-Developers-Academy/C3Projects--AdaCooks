@@ -1,4 +1,5 @@
 class CookbooksController < ApplicationController
+  before_action :require_login, only: [:show]
 
   def new
     @cookbook = Cookbook.new
@@ -17,8 +18,11 @@ class CookbooksController < ApplicationController
 
   def show
     @cookbook = Cookbook.find(params[:id])
-    # @recipes = Recipes.where(user_id: session[:user_id])
+    if session[:user_id] != @cookbook.user_id
+      redirect_to user_path(session[:user_id])
+    end
   end
+
 
   def destroy
     @cookbook = Cookbook.find(params[:id])

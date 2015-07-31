@@ -6,5 +6,5 @@ class Cookbook < ActiveRecord::Base
   # Validations ------------------------------------
   validates :name, presence: true
   # Scope_____________________________________________
-  scope :diff, -> { select(:ingredient).distinct.order(:ingredient).pluck(:ingredient) }
+
 end

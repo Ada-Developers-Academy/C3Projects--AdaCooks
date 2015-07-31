@@ -85,7 +85,8 @@ recipes = [
 ]
 
 recipes.each do |recipe|
-  Recipe.create recipe
+  x = Recipe.new recipe
+  x.save(validate: false )
 end
 
 # Ingredients -------------------------------
@@ -114,7 +115,8 @@ ingredients = [
 ]
 i = {}
 ingredients.each do |ingredient|
-  ar_obj = Ingredient.create ingredient
+  ar_obj = Ingredient.new ingredient
+  ar_obj.save(validate: false)
   i[ar_obj.name] = ar_obj.id
   # key = "honey", value = honey id
 end

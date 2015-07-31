@@ -5,7 +5,7 @@
 
   <table class="table table-bordered">
     <tr>
-        <th>Cookbook Name</th>
+        <th>Your Cookbooks</th>
         <th>Description</th>
         <th>No. Recipes</th>
         <th>No. Unique Ingredients</th>
@@ -18,11 +18,31 @@
         <td><%= cookbook.description %></td>
         <td><%= cookbook.recipes.count %> </td>
         <td><ul>
-          <%= cookbook.recipes.flat_map {|r| r.ingredients.pluck(:name)}.uniq.count %>
+          <%= cookbook.recipes.flat_map {|cookbook_recipes| cookbook_recipes.ingredients.pluck(:name)}.uniq.count %>
           </ul></td>
 
     <td><%= button_to "Delete", cookbook_path(cookbook.id), method: "delete", class: "btn btn-danger" %></td>
 <% end %>
+  </table>
+
+  <table class="table table-bordered">
+    <tr>
+        <th>Your Recipes</th>
+        <th>Delete?</th>
+    </tr>
+
+    <% @recipes.each do |recipe| %>
+    <tr>
+      <td><%= link_to "#{recipe.name}", recipe_path(recipe.id)%></td>
+      <td><%= "delete" %></td>
+    </tr>
+    <% end %>
+
+
+
+
 
   </table>
+
+
 </div>
