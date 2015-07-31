@@ -1,16 +1,16 @@
 <div class="container">
 
-<h1>Welcome to Recipe Picker</h1>
+<h1><center>Welcome to Recipe Picker</center></h1>
 <h2>The home for Recipes</h2>
 
 <h2>Here are a few recipes to check out!</h2>
-<div>
-  <ul>
+<div class="row">
     <% @recipes.each do |recipe| %>
-      <li> <%= image_tag(recipe.image) %> </li>
-      <li> <%= recipe.name %> </li>
+      <div class="col-md-4">
+        <div class="thumbnail"><%= image_tag(recipe.image) %></div>
+        <%= link_to recipe.name, recipe_path(recipe.id) %>
 
-      <li> <%= recipe.description %> </li>
+      <p><%= recipe.description %> </p>
+  </div>
     <% end %>
-  </ul>
 </div>

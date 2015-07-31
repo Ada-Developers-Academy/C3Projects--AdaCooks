@@ -1,6 +1,6 @@
 <h1>recipes</h1>
 <% @recipes.each do |recipe| %>
-  <%= recipe.name %>
+  <%= link_to recipe.name, recipe_path(recipe.id) %>
   <% end %>
 
   <%= form_tag(recipes_path, :method => "get", class: "navbar-form", id: "search-form") do %>

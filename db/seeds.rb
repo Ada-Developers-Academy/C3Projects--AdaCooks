@@ -95,7 +95,7 @@ recipes.each do |recipe|
 
   image_path = "app/assets/images/" + recipe[:image]
 
-  Recipe.create(
+  x = Recipe.new(
   name: recipe[:name],
   description: recipe[:description],
   preparation: recipe[:preparation],
@@ -103,7 +103,6 @@ recipes.each do |recipe|
   image: open(image_path)
   )
 
-  x = Recipe.new recipe
   x.save(validate: false )
 
 end
