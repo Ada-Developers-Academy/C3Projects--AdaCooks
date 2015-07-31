@@ -8,4 +8,10 @@ class Recipe < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
   scope :by_name, -> { order(:name) }
+
+  def self.search_by_ingredient(query)
+    Recipe.includes(:ingredients)
+      .where("ingredients.name like ?", "%#{query}%")
+      .references(:ingredients)
+  end
 end
