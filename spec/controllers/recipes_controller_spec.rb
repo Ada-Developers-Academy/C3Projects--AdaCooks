@@ -22,15 +22,18 @@ RSpec.describe RecipesController, type: :controller do
 
   describe "GET #show" do
 
-    it "renders the :show view" do
-      recipe = create :recipe
-      get :show,  id: recipe.id
-      expect(response).to render_template("show")
+    before(:each) do
+      @soup = create :recipe, ingredients: [create(:ingredient)], user: create(:user)
     end
 
     it "returns successfully with HTTP code of 200" do
-      get :show, recipe_params
+      get :show, id: @soup
       expect(response).to be_success
+    end
+
+    it "renders the :show view" do
+      get :show, id: @soup
+      expect(response).to render_template(:show)
     end
   end
 
@@ -119,12 +122,43 @@ RSpec.describe RecipesController, type: :controller do
     end
   end
 
+  describe "GET #edit" do
+    # + test case
+    context "it's the user's recipe" do
+      before(:each) do
+        @soup = create :recipe, ingredients: [create(:ingredient)], user: create(:user)
+        session[:user_id] = @soup.user_id
+      end
+
+      it "renders the edit page" do
+        get :edit, id: @soup
+        expect(response).to render_template(:edit)
+      end
+    end
+    # - test case
+    context "it's not user's recipe" do
+      before(:each) do
+        @soup = create :recipe, ingredients: [create(:ingredient)], user: create(:user)
+        session[:user_id] != @soup.user_id
+      end
+
+      it "redirect_to recipe_path" do
+        get :edit, id: @soup
+        expect(response).to redirect_to(recipe_path(@soup))
+        # undefined method `user_id' for nil:NilClass??
+      end
+    end
+  end
+
   describe "DELETE #destroy" do
 
+    before(:each) do
+      @soup = create :recipe, ingredients: [create(:ingredient)], user: create(:user)
+      session[:user_id] = @soup.user_id
+    end
+
     it "ingredient count changes by -1" do
-      user = create :user, id: 2
-      recipe = build :recipe, id: 1
-      delete :destroy, :id => 1
+      delete :destroy, id: @soup
       expect(Recipe.count).to eq(0)
     end
 
