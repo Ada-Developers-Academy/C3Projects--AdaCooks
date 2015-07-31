@@ -21,9 +21,17 @@
       <% end %>
     </div>
 
+    <div class="form-control">
+    <%= form_for @recipe, url: @url do |f| %>
+      <%= f.label :cookbook_id %>
+      <%= f.collection_select :cookbook_id, @user.cookbooks, :id, :name, include_blank: "--Select a Cookbook--", class: "form-group col-sm-2" %>
+      <%= f.submit "Save", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+
     <%= f.hidden_field :user_id, value: session[:user_id] %>
 
     <%= f.submit class: "btn btn-primary form-control" %>
-  
+
   <% end %>
 </div>

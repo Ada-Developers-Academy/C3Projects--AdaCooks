@@ -11,7 +11,7 @@ class Recipe < ActiveRecord::Base
 
   def req_ingredients
     unless ingredients.length > 0
-      errors.add(:ingredients, "Need at least one ingrediet in your recipe")
+      errors.add(:ingredients, "Need at least one ingredient in your recipe")
     end
   end
 # SCOPES ----------------------------------------------

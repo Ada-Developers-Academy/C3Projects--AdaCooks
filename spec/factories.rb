@@ -9,7 +9,15 @@ FactoryGirl.define do
   factory :recipe do
     name "Chicken Fingers"
     prep "1. Cut chicken into fingers 2. Bread and Fry"
-    association :ingredients, factory: :ingredient
+    # tried and failed to build the assoc directly into FactoryGirl
+    # factory :recipe_with_ingredients do
+      # transient do
+        # ingredient_count 5
+      # end
+      # after(:create) do |recipe, evaluator|
+        # create_list(:ingredient, evaluator.ingredients_count, recipe: recipe)
+      # end
+    # end
   end
 
   factory :ingredient do

@@ -9,6 +9,8 @@ class RecipesController < ApplicationController
   def show
     @user = @recipe.user
     @ingredients = @recipe.ingredients
+    @cookbooks = @user.cookbooks
+    # @recipe.update(new_bookbook)
   end
 
   def new

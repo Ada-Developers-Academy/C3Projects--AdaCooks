@@ -13,6 +13,17 @@
   <% if session[:user_id] %>
     <%= button_to "Edit", edit_recipe_path(@recipe), method: :get, class: "btn btn-default" %>
     <%= button_to "Delete", recipe_path(@recipe), method: :delete, class: "btn btn-danger" %>
+    <div class="form-control">
+    <%= form_for @recipe, url: @url do |f| %>
+      <%= f.label :cookbook_id %>
+      <%= f.collection_select :cookbook_id, @user.cookbooks, :id, :name, include_blank: "--Select a Cookbook--", class: "form-group col-sm-2" %>
+      <%= f.submit "Save", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+
   <% else %>
     <strong>Submitted by: <%= link_to @recipe.user.name, user_path(@recipe.user), method: :get %></strong>
   <% end %>
+
+  <!-- create a collection_select field by find the user and cookbooks assoc with the user -->
+  <!-- will need an update method in the show method for recipe controller -->

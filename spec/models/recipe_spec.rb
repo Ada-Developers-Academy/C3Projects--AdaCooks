@@ -21,13 +21,17 @@ RSpec.describe Recipe, type: :model do
   end
 
   describe "methods" do
-    let(:recipe2) {create :recipe}
-    let(:recipe1) {create :recipe, name: "Fish Fingers"}
-    let(:recipe3) {create :recipe, name: "Fry Fingers"}
+    before :each do
+      @recipe1 = Recipe.new(name: "hi", prep: "bye")
+      @recipe2 = Recipe.new(name: "bye", prep: "bye")
+      @recipe3 = Recipe.new(name: "say", prep: "hello")
+      [@recipe1, @recipe2, @recipe3].each do |recipe|
+        recipe.save(validate: false)
+      end
+    end
 
     it "sorts all the recipes by alphabetical order" do
-      recipe3
-      correct_order = [recipe2, recipe1, recipe3]
+      correct_order = [@recipe2, @recipe1, @recipe3]
       expect(Recipe.organize).to eq(correct_order)
     end
   end

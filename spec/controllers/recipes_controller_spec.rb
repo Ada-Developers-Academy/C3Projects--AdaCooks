@@ -13,17 +13,21 @@ RSpec.describe RecipesController, type: :controller do
   describe "POST #create" do
 
     context "Valid recipe params" do
-      let(:recipe) { create :recipe }
+      before :each do
+        @recipe1 = Recipe.new(name: "hi", prep: "bye")
+        @recipe1.ingredients << Ingredient.create(name: "sugar")
+        @recipe1.save
+        end
 
       it "creates a recipe" do
-        post :create, recipe.attributes
+        post :create, id: @recipe1
         expect(Recipe.count).to eq(1)
       end
 
       it "redirects to the recipes index page after saving" do
         session[:user_id] = 1
-        post :create, recipe.attributes
-        expect(response).to have_http_status(302)
+        post :create, id: @recipe1
+        expect(response).to redirect_to(recipes_path)
       end
     end
 

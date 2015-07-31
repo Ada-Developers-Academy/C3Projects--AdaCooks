@@ -1,14 +1,7 @@
 <h1> Ingredients </h1>
-<% alphabet = ("A".."Z").to_a %>
+  <ul>
 <% @ingredients.each do |ingredient| %>
-  <% alphabet.each do |letter| %>
-    <% if ingredient.name.first.upcase == letter %>
-    <ul><strong><%= letter %></strong>
-      <li><%= link_to ingredient.name.capitalize!, ingredient_path(ingredient), method: :get %></li>
-    <% else %>
-      <li><strong><%= letter %></strong></li>
-    <% end %>
-  <% end %>
-</ul>
+    <li><%= link_to ingredient.name.capitalize!, ingredient_path(ingredient), method: :get %></li>
 <% end %>
-<%= link_to "Add a New Ingredient", new_ingredient_path, method: :get %>
+</ul>
+<%= button_to "Add a New Ingredient", new_ingredient_path, method: :get, class: "btn btn-primary" %>

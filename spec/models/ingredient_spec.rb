@@ -26,7 +26,7 @@ RSpec.describe Ingredient, type: :model do
     it "sorts all the ingredients by alphabetical order" do
       ingredient2
       correct_order = [ingredient3, ingredient2, ingredient1]
-      expect(Ingredient.all.sort_by {|i| i.name}).to eq(correct_order)
+      expect(Ingredient.organize).to eq(correct_order)
     end
   end
 end

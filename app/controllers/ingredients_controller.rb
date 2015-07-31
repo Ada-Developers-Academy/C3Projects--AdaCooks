@@ -3,7 +3,7 @@ class IngredientsController < ApplicationController
   before_action :find_ingredient, only: [:show, :edit, :update, :destroy]
 
   def index
-    @ingredients = Ingredient.all.sort_by {|i| i.name}
+    @ingredients = Ingredient.organize
   end
 
   def show
