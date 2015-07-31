@@ -46,8 +46,8 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    # TODO: Brandi was going to do this
-    redirect_to user_path(session[:user_id])
+    @recipe.destroy
+    redirect_to user_path(session[:username])
   end
 
   private
