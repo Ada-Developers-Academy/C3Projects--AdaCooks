@@ -1,4 +1,11 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show] # TODO: test this
+
+  def show # TODO: test this
+    @cookbooks = @user.cookbooks.order(:name) # TODO: test this
+    @ingredients = @user.ingredients.order(:name) # TODO: test this
+    @recipes = @user.recipes.order(:name) # TODO: test this
+  end
 
   def new
     # we don't want the user to be logged in when making a new account
@@ -25,9 +32,11 @@ class UsersController < ApplicationController
   end
 
   private
+    def set_user
+      @user = User.find(params[:id])
+    end
 
-  def user_params
-    params.require(:user).permit(:email, :username, :password, :password_confirmation, :bio)
-  end
-
+    def user_params
+      params.require(:user).permit(:email, :username, :password, :password_confirmation, :bio)
+    end
 end
