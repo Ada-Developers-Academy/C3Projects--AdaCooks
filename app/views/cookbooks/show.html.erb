@@ -1,7 +1,6 @@
 <h1><%= @cookbook.name %></h1>
 <p><%= @cookbook.description %></p>
 
-<h3>Recipes</h3>
 <% @recipes.each do |recipe| %>
 <div class = "col-sm-4">
   <%= image_tag recipe.image_url, class: "img-board" %>
