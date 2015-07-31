@@ -29,9 +29,6 @@ class RecipesController < ApplicationController
     end
   end
 
-  def show
-  end
-
   def new
     @recipe = Recipe.new
     5.times { @recipe.recipe_ingredients.build }
