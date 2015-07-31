@@ -12,5 +12,9 @@
         <li><%= link_to recipe.name, recipe %></li>
       <% end %>
     </ul>
+
+    <% if @current_user && @user.id == @current_user.id %>
+      <%= link_to 'Edit your profile', edit_profile_path, class: "btn btn-default", role: "button" %>
+    <% end %>
   </div>
 </div>
