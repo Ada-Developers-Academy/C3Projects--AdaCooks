@@ -1,8 +1,6 @@
-<h1>My Ingredients</h1>
-
 <%= link_to "Add New Ingredient", new_user_ingredient_path(session[:user_id]), class: "btn btn-primary" %>
 
-<%= link_to "Back", :back, class: "btn btn-default" %>
+<h1>My Ingredients</h1>
 
 <table>
   <th>Ingredients</th>
@@ -10,11 +8,13 @@
   <th>Delete?</th>
 <% @ingredients.each do |ingredient| %>
 <tr>
-  <td><%= ingredient.name %></td>
+  <td><h4><%= ingredient.name %></h4></td>
 
-  <td><%= link_to "Edit", edit_user_ingredient_path(session[:user_id], ingredient.id) %></td>
+  <td><%= link_to "Edit", edit_user_ingredient_path(session[:user_id], ingredient.id), class: "btn btn-default "%></td>
 
   <td><%= link_to "Delete Ingredient", user_ingredient_path(session[:user_id], ingredient.id), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-danger" %></td>
   </tr>
   <% end %>
 </table>
+
+<%= link_to "Back", :back, class: "btn btn-default" %>
