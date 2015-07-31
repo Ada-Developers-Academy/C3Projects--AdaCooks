@@ -1,7 +1,7 @@
 <%= form_for @cookbook do |f|  %>
   <div class="form-group">
       <% flash.each do|name, message| %>
-        <%= message %>
+      <div class="error"><%= message %></div>
       <% end %>
 
     <fieldset>

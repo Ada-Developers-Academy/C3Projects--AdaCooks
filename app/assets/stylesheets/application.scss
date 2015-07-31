@@ -18,7 +18,12 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+ $error: #F72B1D; /* red for warining */
 
  .container {
    margin-top: 30px
  }
+
+ .error {
+  color: $error;
+}

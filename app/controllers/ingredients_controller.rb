@@ -20,6 +20,7 @@ class IngredientsController < ApplicationController
     if @ingredient.save
       redirect_to user_path(session[:user_id])
     else
+      flash[:name] = "Please provide your ingredient name."
       render :edit
     end
   end
@@ -38,6 +39,7 @@ class IngredientsController < ApplicationController
     if @ingredient.save
       redirect_to ingredient_path(@ingredient)
     else
+      flash[:name] = "Please provide your ingredient name."
       render :new
     end
   end

@@ -1,15 +1,19 @@
-
-<%= form_for @ingredient, html: {class: "form-group"} do |f|  %>
-  <div class="form-group">
-    <fieldset>
-      <legend><h2>Edit Your Recipe</h2></legend>
-      <%= f.label :name, "Recipe Name" %>
-      <%= f.text_field :name %>
-<br>
-      <%= f.label :image, 'Photo' %>
-      <%= f.file_field :image %>
-<br>
-    </fieldset>
-    <%= f.submit "Submit", class: "btn btn-default"%>
+<div class="container">
+  <%= form_for @ingredient, html: {class: "form-group"} do |f|  %>
+    <div class="form-group">
+      <% flash.each do|name, message| %>
+      <div class="error"><%= message %></div>
+      <% end %>
+      <fieldset>
+        <legend><h2>Edit Your Recipe</h2></legend>
+        <%= f.label :name, "Recipe Name" %>
+        <%= f.text_field :name, class: "form-control" %>
+  <br>
+        <%= f.label :image, 'Photo' %>
+        <%= f.file_field :image, class: "form-control" %>
+  <br>
+      </fieldset>
+      <%= f.submit "Submit", class: "btn btn-default"%>
   </div>
   <% end %>
+</div>
