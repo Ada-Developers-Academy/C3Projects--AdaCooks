@@ -1,6 +1,6 @@
 <div class="container marketing">
-  <% if !session[:user_id] %>
     <h1>All Ingredients</h1>
+
     <hr class="featurette-divider">
 
     <div class="row">
@@ -21,8 +21,8 @@
       <% end %>
     </div>
 
-  <% elsif session[:user_id] %>
-    <h1>Ingredients you added</h1>
+  <% if session[:user_id] %>
+    <h1 class="Ingredients">Ingredients you added</h1>
     <p><%= link_to "Create a New ingredient", new_ingredient_path, class: "btn btn-default" %></p>
     <hr class="featurette-divider">
 
@@ -46,5 +46,4 @@
       <% end %>
     </div>
   <% end %>
-  </div>
 </div>
