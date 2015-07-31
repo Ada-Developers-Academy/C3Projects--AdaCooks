@@ -3,6 +3,8 @@ class RecipesController < ApplicationController
 
 	def index
 		@recipes = Recipe.alphabetize
+		@first_letters = @recipes.map { |r| r.name[0] }
+		@first_letters.uniq
 	end
 
 	def new
