@@ -111,24 +111,24 @@ end
 
 ingredients = [
 
-  {name: "Coconut Milk", image: "coconut_milk.jpg"},
-  {name: "Cocoa Powder", image: "cocoa-powder.jpg"},
-  {name: "Honey"},
-  {name: "Almond Butter"},
-  {name: "Yams", image: "yam.jpg"},
-  {name: "Vanilla Extract"},
-  {name: "Chicken"},
-  {name: "Salsa"},
-  {name: "Peanut Butter"},
-  {name: "Bread"},
-  {name: "Jam"},
-  {name: "Mud"},
-  {name: "Water"},
-  {name: "Grass"},
-  {name: "Chocolate Chip"},
-  {name: "Flour"},
-  {name: "Baking Powder"},
-  {name: "Oil", image: "olive-oil.jpg"}
+  {name: "Coconut Milk", image: "coconut_milk.jpg", user_id: 2},
+  {name: "Cocoa Powder", image: "cocoa-powder.jpg", user_id: 2},
+  {name: "Honey", user_id: 2},
+  {name: "Almond Butter", user_id: 2},
+  {name: "Yams", image: "yam.jpg", user_id: 2},
+  {name: "Vanilla Extract", user_id: 2},
+  {name: "Chicken", user_id: 1},
+  {name: "Salsa", user_id: 1},
+  {name: "Peanut Butter", user_id: 1},
+  {name: "Bread", user_id: 1},
+  {name: "Jam", user_id: 1},
+  {name: "Mud", user_id: 1},
+  {name: "Water", user_id: 1},
+  {name: "Grass", user_id: 1},
+  {name: "Chocolate Chip", user_id: 1},
+  {name: "Flour", user_id: 1},
+  {name: "Baking Powder", user_id: 1},
+  {name: "Oil", image: "olive-oil.jpg", user_id: 1}
 
 ]
 i = {}
