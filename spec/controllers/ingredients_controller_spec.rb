@@ -20,6 +20,7 @@ RSpec.describe IngredientsController, type: :controller do
   describe "GET #show" do
     before :each do
       ingredient = create :ingredient
+      create :user
       get :show, id: ingredient.id
     end
 
@@ -72,6 +73,7 @@ RSpec.describe IngredientsController, type: :controller do
       before :each do
         create :user
         session[:user_id] = 1
+        request.env["HTTP_REFERER"] = "/"
         post :create, ingredient: attributes_for(:ingredient)
       end
 
@@ -79,8 +81,8 @@ RSpec.describe IngredientsController, type: :controller do
         expect(Ingredient.count).to eq 1
       end
 
-      it "redirects to the show page" do
-        expect(subject).to redirect_to ingredient_path(Ingredient.first.id)
+      it "redirects back" do
+        expect(subject).to redirect_to "/"
       end
     end
 
