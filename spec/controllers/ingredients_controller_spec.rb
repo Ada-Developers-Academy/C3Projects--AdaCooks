@@ -79,21 +79,21 @@ RSpec.describe IngredientsController, type: :controller do
     end
   end
 
-  # # EDIT ACTION__________________________________________________________________
-  #
-  # describe "GET #edit" do
-  #   before :each do
-  #     @user = User.create(name: "vikushonok", email: "vika@email.com", password_digest: "VerySmartPassword")
-  #     session[:user_id] = @user.id
-  #   end
-  #
-  #   it "renders the new view" do
-  #     get :new, user_id: @user
-  #
-  #     expect(response).to render_template("new")
-  #   end
-  # end
-  #
+  # EDIT ACTION__________________________________________________________________
+
+  describe "GET #edit" do
+    before :each do
+      @user = User.create(name: "vikushonok", email: "vika@email.com", password_digest: "VerySmartPassword")
+      session[:user_id] = @user.id
+    end
+
+    it "renders the edit view" do
+      get :edit, user_id: @user
+
+      expect(response).to render_template("new")
+    end
+  end
+
   # # UPDATE ACTION__________________________________________________________________
   #
   # describe "PUT #update" do
