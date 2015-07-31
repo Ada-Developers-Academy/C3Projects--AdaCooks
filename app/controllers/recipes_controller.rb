@@ -20,7 +20,7 @@ class RecipesController < ApplicationController
       flash[:success] = "Your recipe has been created! CHECK IT OUTTTTTtttttt now, baby, check it out now."
       redirect_to recipe_path(@recipe)
     else
-      flash[:error] = @recipe.errors.full_messages
+      flash[:error] = @recipe.errors.full_messages.first
       render :new
     end
   end
@@ -32,7 +32,7 @@ class RecipesController < ApplicationController
       flash[:success] = "Your recipe has been updated! CHECK IT OUTTTTTtttttt now, baby, check it out now."
       redirect_to recipe_path(@recipe)
     else
-      flash[:error] = @recipe.errors.full_messages
+      flash[:error] = @recipe.errors.full_messages.first
       render :edit
     end
   end
