@@ -1,5 +1,7 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show]
+  before_action :require_login, only: [:new, :create, :edit, :update, :destroy] # TODO: test that these views require login
+  before_action :set_recipe, only: [:show, :edit, :update]
+  before_action :authenticate_user, only: [:edit, :update, :destroy] # TODO: test this!
 
   def index
     if params[:search]
@@ -10,10 +12,54 @@ class RecipesController < ApplicationController
   end
 
   def show
+    @steps = @recipe.steps.by_number
+  end
+
+  def new
+    @recipe = Recipe.new
+  end
+
+  def create
+    @recipe = Recipe.new(create_params)
+    @recipe.user_id = session[:user_id]
+
+    if @recipe.save
+      flash[:message] = { success: "Created successfully!" } # TODO: standardize flash messages / displays
+      redirect_to recipe_path(@recipe)
+    else
+      flash.now[:error] = @recipe.errors # TODO: standardize flash messages / displays
+      render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @recipe.update(create_params)
+      flash[:message] = { success: "Updated successfully!" }
+      redirect_to recipe_path(@recipe)
+    else
+      flash.now[:error] = @recipe.errors
+      render :edit
+    end
+  end
+
+  def destroy
+    # TODO: Brandi was going to do this
+    redirect_to user_path(session[:user_id])
   end
 
   private
     def set_recipe
       @recipe = Recipe.find(params[:id])
+    end
+
+    def create_params
+      params.require(:recipe).permit(:name, :description, :image)
+    end
+
+    def authenticate_user
+      redirect_to root_path unless @recipe.owner?(session[:user_id])
     end
 end
