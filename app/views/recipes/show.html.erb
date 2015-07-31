@@ -23,9 +23,10 @@
 
       <div class="panel-body">
 
-        <p>Preparation: <%= @recipe.preparation %></p>
+        <h4>Preparation:</h4>
+        <p><%= @recipe.preparation %></p>
 
-        <% if @yourcookbooks && @your_cookbooks.count > 0 %>
+        <% if @your_cookbooks.count > 0 %>
           <p>This recipe is part of your cookbook(s):</p>
           <ul>
             <% @your_cookbooks.each do |cookbook| %>
@@ -43,8 +44,8 @@
 
           <% if @unused_cookbooks.count > 0 %>
             <%= form_tag(controller: "recipes", action: "add_to_cookbook", method: "post", class: "form") do %>
-              <%= collection_select(:cookbook, :cookbook_id, @unused_cookbooks, :id, :name, include_blank: true) %>
-              <%= submit_tag "Save" %>
+              <%= collection_select(:cookbook, :cookbook_id, @unused_cookbooks, :id, :name, include_blank: true, class: "form-control") %>
+              <%= submit_tag "Save", role: "button", class: "btn btn-default" %>
             <% end %>
           <% elsif @current_user.cookbooks.empty? %>
             <em>You have no cookbooks to add this recipe to.</em>
@@ -52,9 +53,9 @@
             <em>This recipe is already part of all of your cookbooks.</em>
           <% end %>
         <% end %>
-  </div>
+      </div>
 
-        <% if appropriate_user(@recipe) %>
+      <% if appropriate_user(@recipe) %>
         <div class="panel-footer">
           <%= link_to "Edit this recipe", edit_recipe_path(@recipe), class: "btn btn-default" %>
           <%= link_to "Delete this recipe", recipe_path(@recipe), method: "delete", data: { confirm: "Are you sure?" }, class: "btn btn-danger pull-right" %>
