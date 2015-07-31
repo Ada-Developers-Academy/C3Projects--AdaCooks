@@ -1,7 +1,7 @@
 class IngredientsController < ApplicationController
-  before_action :require_login, only: [:new, :create, :edit, :update] # TODO: test that these views require login
-  before_action :set_ingredient, only: [:show, :edit, :update]
-  before_action :authenticate_user, only: [:edit, :update] # TODO: test this!
+  before_action :require_login, only: [:new, :create, :edit, :update, :destroy] # TODO: test that these views require login
+  before_action :set_ingredient, only: [:show, :edit, :update, :destroy] # TODO: add tests for edit, update, and destroy.
+  before_action :authenticate_user, only: [:edit, :update, :destroy] # TODO: test this!
 
   def index
     @ingredients = Ingredient.by_name
@@ -38,6 +38,11 @@ class IngredientsController < ApplicationController
       flash.now[:error] = @ingredient.errors # TODO: standardize flash messages / displays
       render :edit
     end
+  end
+
+  def destroy
+    @ingredient.destroy
+    redirect_to ingredients_path
   end
 
   private
