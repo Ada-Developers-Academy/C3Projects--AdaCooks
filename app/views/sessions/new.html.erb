@@ -1,5 +1,6 @@
 <div class="col-sm-4 center-block no-float">
 	<h2>Welcome Back, ya Lush!</h2>
+	<br>
 
 	<%= form_for(:session, url: sessions_path) do |f| %>
 
@@ -15,7 +16,8 @@
 			<%= f.text_field :password, class: 'form-control' %>
 		</div>
 
-		<%= f.submit 'Log In', class: 'btn btn-primary' %>
+		<br>
+		<%= f.submit 'Log In', class: 'btn btn-primary center-block col-sm-4 no-float' %>
 
 	<% end %>
 </div>

@@ -17,21 +17,30 @@
 
 /* UNIVERSAL */
 h1, h2, h3, h4, h5 {
-  font-family: 'Slabo 27px', serif;
+  // font-family: 'Slabo 27px', serif;
+  font-family: 'Playfair Display', dispaly, serif;
+  font-weight: 900;
 }
 
-th {
-  font-family: 'lato';
-  font-size: 1.25em;
-}
-
-a {
-  font-family: 'lato';
-  font-size: 1.25em;
-}
+// th {
+//   font-family: 'lato';
+//   font-size: 1.25em;
+// }
+//
+// a {
+//   font-family: 'lato';
+//   font-size: 1.25em;
+// }
 
 .no-float {
  float: none;
+}
+
+/* FORMS */
+label {
+  // font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
 }
 
  /* NAVBAR */
