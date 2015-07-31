@@ -30,7 +30,7 @@ h1, h2 {
   font-family: 'Unica One', cursive;
 }
 
-h3 {
+h3, h4, h5 {
   font-family: 'Reenie Beanie', cursive;
   font-size: 2.1em;
 }
@@ -77,6 +77,12 @@ h3 {
 
 .search {
   padding-top: 20px;
+}
+
+/* search results ---------------------------------------------- */
+
+.ingredient-search {
+  margin-bottom: 20px;
 }
 
 /* images ----------------------------------------------------- */
