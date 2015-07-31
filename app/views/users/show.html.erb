@@ -28,12 +28,14 @@
   <table class="table table-bordered">
     <tr>
         <th>Your Recipes</th>
+        <th>Edit!</th>
         <th>Delete?</th>
     </tr>
 
     <% @recipes.each do |recipe| %>
     <tr>
       <td><%= link_to "#{recipe.name}", recipe_path(recipe.id)%></td>
+      <td><%= button_to "Edit", edit_recipe_path(recipe.id), method: "get", class: "btn btn-danger" %></td>
       <td><%= button_to "Delete", recipe_path(recipe.id), method: "delete", class: "btn btn-danger" %></td>
     </tr>
     <% end %>

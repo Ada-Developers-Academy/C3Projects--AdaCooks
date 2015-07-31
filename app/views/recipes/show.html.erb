@@ -2,11 +2,16 @@
   <h1> <%= @recipe.name %> Details </h1>
   <h2>By <%= link_to "#{@user}", view_user_path(@recipe.user_id) %> </h2>
 
+<% if @your_cookbook %>
+  <h2><%= button_to "Add it to One of yo Cookbookz!", add_path(@recipe.id), method: "get", class: "btn btn-danger" %></h2>
+<% end %>
+
   <table class="table">
     <tr>
         <td>Picture</td>
         <td>Ingredients</td>
         <td>Description</td>
+        <td>Preparation</td>
     </tr>
     <tr>
       <td> <%= image_tag(@recipe.image_url(:medium))%> </td>
@@ -16,6 +21,7 @@
       </td>
 
       <td> <%= @recipe.description %></td>
+      <td> <%= @recipe.preparation %></td>
     </tr>
   </table>
 </div>

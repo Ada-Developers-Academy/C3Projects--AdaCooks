@@ -12,6 +12,25 @@ class RecipesController < ApplicationController
     end
   end
 
+  def edit
+    @recipe = Recipe.find(params[:id])
+    if session[:user_id] != @recipe.user_id
+      redirect_to recipe_path(@recipe)
+    end
+  end
+
+  def update
+    @recipe = Recipe.find(params[:id])
+    @recipe.update(recipe_params)
+
+    if @recipe.save
+      redirect_to user_path(session[:user_id])
+    else
+      render :edit
+    end
+
+  end
+
   def new
     @user = User.find(session[:user_id])
     @recipe = Recipe.new(user_id: @user.id)
@@ -22,6 +41,15 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
     @user = User.find(@recipe.user_id).username.capitalize
+    @user_recipes = Recipe.where(user_id: session[:user_id] )
+    @your_cookbook = User.find(session[:user_id]).cookbooks if session[:user_id]
+  end
+
+  def add
+    @user = User.find(session[:user_id])
+    @recipe = Recipe.find(params[:id])
+    @cookbook = Cookbook.where(user_id: @user.id)
+    render :add
   end
 
   def create

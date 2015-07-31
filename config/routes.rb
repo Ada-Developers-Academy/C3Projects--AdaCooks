@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :ingredients
   resources :users, except: [:new]
   get "/view_users/:id" => "users#view", as: 'view_user'
+  get "/recipes/:id/add" => "recipes#add", as: 'add'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
