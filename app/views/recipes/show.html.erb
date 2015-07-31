@@ -26,24 +26,17 @@
         <% end %>
       </ul>
       <h5>Prep:</h5>
-      <%= (@recipe.prep).gsub(/\n/, '<br/>').html_safe %><br>
-
-  <% if session[:user_id] %>
-    <%= button_to "Edit", edit_recipe_path(@recipe), method: :get, class: "btn btn-default" %>
-    <%= button_to "Delete", recipe_path(@recipe), method: :delete, class: "btn btn-danger" %>
-    <div class="form-control">
-    <%= form_for @recipe, url: @url do |f| %>
-      <%= f.label :cookbook_id %>
-      <%= f.collection_select :cookbook_id, @user.cookbooks, :id, :name, include_blank: "--Select a Cookbook--", class: "form-group col-sm-2" %>
-      <%= f.submit "Save", class: "btn btn-primary" %>
+      <%= @recipe.prep %>
+      
+      <p class="addto-book">
+      <% if session[:user_id] %>
+        <%= form_for @recipe, url: @url do |f| %>
+          <%= f.label :cookbook_id, "Add to a Cookbook" %>
+          <%= f.collection_select :cookbook_id, @user.cookbooks, :id, :name, include_blank: "--Select a Cookbook--", class: "form-group form-control" %>
+          <%= f.submit "Save", class: "btn btn-xs btn-default" %>
+        <% end %>
       <% end %>
-    </div>
-
-  <% else %>
-    <strong>Submitted by: <%= link_to @recipe.user.name, user_path(@recipe.user), method: :get %></strong>
-  <% end %>
-
-
+      </p>
     </div>
   </div>
 </div>
