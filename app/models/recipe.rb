@@ -19,7 +19,7 @@ class Recipe < ActiveRecord::Base
   # mount_uploader :image, ImageUploader #instance of class image uploader
 
   def self.search(query)
-    Recipe.includes(:ingredients).where(ingredients: {name: "#{query}".downcase } )
+    Recipe.includes(:ingredients).where(ingredients: {name: "#{query}"} )
   end
 
 

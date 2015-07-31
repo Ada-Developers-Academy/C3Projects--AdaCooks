@@ -16,7 +16,7 @@
     <tr>
       <td> <%= image_tag(@recipe.image_url(:medium))%> </td>
       <td> <% @recipe.ingredients.each do |ingred| %>
-        <%= link_to "#{ingred.name}", ingredient_path(ingred.id) %>
+        <p><%= link_to "#{ingred.name}", ingredient_path(ingred.id) %></p>
       <% end %>
       </td>
 
