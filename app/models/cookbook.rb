@@ -8,4 +8,11 @@ class Cookbook < ActiveRecord::Base
   validates :name, presence: true
   validates :user_id, presence: true
 
+  def ingredient_count
+    ingredients.uniq.count
+  end
+
+  def recipe_count
+    recipes.count
+  end
 end

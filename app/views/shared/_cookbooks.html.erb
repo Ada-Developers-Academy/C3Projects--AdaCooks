@@ -5,7 +5,9 @@
         <%= link_to cookbook.name, user_cookbook_path(@user.id, cookbook.id) %>
       </h4>
       <p><%= cookbook.description %></p>
-      <p>Recipes: <span class="badge"><%= cookbook.recipes.count %></span></p>
+      <p>Recipes: <span class="badge"><%= cookbook.recipe_count %></span></p>
+      <p>Ingredients: <small>(Total unique ingredients) </small><span class="badge">
+        <%= cookbook.ingredient_count %></span></p>
       <p>Chef: <%= link_to cookbook.user.username, user_path(cookbook.user_id) %></p>
     </div>
     <% if session[:user_id] == cookbook.user_id %>
