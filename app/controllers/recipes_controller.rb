@@ -4,8 +4,11 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: [:edit, :update]
 
   def index
+    # returns the search results on the index page if a search is performed
+    # the select makes it return the whole list of ingredients, not just the searched one
     if params[:search]
-      @recipes = Recipe.search(params[:search])
+      searched_recipes = Recipe.search(params[:search])
+      @recipes = Recipe.where(id: searched_recipes.select { |r| r.id })
     else
       @recipes = Recipe.alpha_order
     end

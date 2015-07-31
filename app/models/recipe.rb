@@ -16,10 +16,9 @@ class Recipe < ActiveRecord::Base
   scope :alpha_order, -> { order(name: :asc) }
 
   def self.search(search)
-    # the below line works but I couldn't figure out how to get it to play
-    # nicely with the other search query, so I went with the broader one
-    # self.includes(:ingredients).where("ingredients.name" => "#{search}")
-    where('name LIKE ? OR description LIKE ? OR preparation LIKE ?',
-          "%#{search}%", "%#{search}%", "%#{search}%")
+    # the below query works! thanks to class for grumble help
+    self.includes(:ingredients).where("ingredients.name like ? OR recipes.name LIKE ?"
+        "OR recipes.description LIKE ? OR recipes.preparation LIKE ?",
+        "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%").references(:ingredients)
   end
 end
