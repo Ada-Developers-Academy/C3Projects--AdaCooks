@@ -12,4 +12,9 @@ class Ingredient < ActiveRecord::Base
 # Scopes _______________________________________________________________
   scope :alpha_order, -> { order('name ASC') }
   scope :search, ->(search) { where("name like ?", "%#{search}%")}
+
+  def unassociate_user
+    self.user_id = nil
+    self.save
+  end
 end

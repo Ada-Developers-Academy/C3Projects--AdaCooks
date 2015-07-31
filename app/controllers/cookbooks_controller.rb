@@ -21,7 +21,7 @@ class CookbooksController < ApplicationController
     cookbook.user_id = user.id
 
     if cookbook.save
-      redirect_to new_recipe_path
+      redirect_to user_path(user)
     else
       render :new
     end

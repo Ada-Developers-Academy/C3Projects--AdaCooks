@@ -49,6 +49,9 @@ class IngredientsController < ApplicationController
   end
 
   def destroy
+    ingredient = Ingredient.find(params[:id])
+    ingredient.unassociate_user
+    redirect_to ingredients_path
   end
 
   private
