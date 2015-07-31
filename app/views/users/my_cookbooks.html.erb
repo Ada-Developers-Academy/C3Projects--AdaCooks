@@ -1,18 +1,4 @@
-<div class="navbar navbar-default">
-  <div class="container-fluid">
-    <ul class="nav navbar-nav">
-      <li role="presentation">
-        <%= link_to 'Recipes', my_recipes_path %>
-      </li>
-      <li role="presentation" class="active">
-        <%= link_to 'Cookbooks', my_cookbooks_path %>
-      </li>
-      <li role="presentation">
-        <%= link_to 'Ingredients', my_ingredients_path %>
-      </li>
-    </ul>
-  </div>
-</div>
+<%= render 'dashboard_nav' %>
 
 <h3>My Cookbooks</h3>
 
@@ -37,7 +23,7 @@
         <td><%= cookbook.recipes.count %></td>
         <td><%= cookbook.unique_ingredient_count %></td>
         <td><%= link_to 'Edit', edit_cookbook_path(cookbook) %></td>
-        <td><%= link_to 'Delete', cookbook, method: :delete %></td>
+        <td><%= link_to 'Delete', cookbook, method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
   </tbody>
