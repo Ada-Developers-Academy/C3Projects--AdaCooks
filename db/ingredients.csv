@@ -1,22 +1,22 @@
-name,image
-Avocado,avocado.jpg
-Microwave,microwave.jpg
-Popcorn Kernels,kernals.jpg
-Black Beans,black_beans.jpg
-Brisket,brisket.jpg
-Chicken Breasts,chicken_breast.jpg
-Chile Powder,chile_powder.jpg
-Cilantro,cilantro.jpg
-Garlic,garlic.jpg
-Jalapeño,jalapeno.jpg
-Lemon Zest,lemon_zest.jpg
-Lime,lime.jpg
-Paprika,paprika.jpg
-Pasta,pasta.jpg
-Pomegranate Seeds,pomegranate_seeds.jpg
-Queso Fresco,queso_fresco.jpg
-Red Onion,red_onion.jpg
-Salmon,salmon.jpg
-Sour Cream,sour_cream.jpg
-Tomato,tomato.jpg
-Corn Tortillas,corn_tortillas.jpg
+name,image,user_id
+Avocado,avocado.jpg,1
+Microwave,microwave.jpg,2
+Popcorn Kernels,kernals.jpg,3
+Black Beans,black_beans.jpg,2
+Brisket,brisket.jpg,1
+Chicken Breasts,chicken_breast.jpg,4
+Chile Powder,chile_powder.jpg,3
+Cilantro,cilantro.jpg,4
+Garlic,garlic.jpg,2
+Jalapeño,jalapeno.jpg,1
+Lemon Zest,lemon_zest.jpg,3
+Lime,lime.jpg,2
+Paprika,paprika.jpg,1
+Pasta,pasta.jpg,2
+Pomegranate Seeds,pomegranate_seeds.jpg,4
+Queso Fresco,queso_fresco.jpg,3
+Red Onion,red_onion.jpg,2
+Salmon,salmon.jpg,1
+Sour Cream,sour_cream.jpg,3
+Tomato,tomato.jpg,2
+Corn Tortillas,corn_tortillas.jpg,4

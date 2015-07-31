@@ -14,14 +14,21 @@
 
     <div class="form-group">
       <%= f.label :ingredients, "Select All Ingredients: " %>
-      <%= collection_check_boxes(:recipe, :ingredient_ids, Ingredient.all, :id, :name) do |b| %>
+      <%= collection_check_boxes(:recipe, :ingredient_ids, Ingredient.alpha, :id, :name) do |b| %>
         <%= b.label class: "checkbox-inline form-group" do %>
           <%= b.check_box + b.text.titlecase %>
         <% end %>
       <% end %>
     </div>
 
-
+    <div class="form-group">
+      <%= f.label :cookbooks, "Add to Cookbooks: " %>
+      <%= collection_check_boxes(:recipe, :cookbook_ids, @user.cookbooks, :id, :name) do |b| %>
+        <%= b.label class: "checkbox-inline form-group" do %>
+          <%= b.check_box + b.text.titlecase %>
+        <% end %>
+      <% end %>
+    </div>
 
     <%= f.hidden_field :user_id, value: session[:user_id] %>
 
