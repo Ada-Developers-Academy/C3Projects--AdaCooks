@@ -6,7 +6,7 @@ class Recipe < ActiveRecord::Base
   has_and_belongs_to_many :cookbooks
 
   # Validations ----------------------------------------------------------------
-  validates :name, presence: true
+  validates :name, presence: true, length: { maximum: 25 }
   validates :steps, presence: true
   validates :user_id, presence: true, numericality: { only_integer: true, greater_than: 0 }
 
