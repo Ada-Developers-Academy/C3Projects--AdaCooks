@@ -49,17 +49,19 @@
 
       <!-- Mahalo @acmei, for the help on this collection_check_boxes -->
       <% if @current_user && params[:action] == "new" %>
-      <legend>Add to your cookbooks</legend>
-        <% if @cookbooks %>
-        <div class="form-group">
-          <%= collection_check_boxes(:recipe, :cookbook_ids, @cookbooks, :id, :name) do |cookbook| %>
-            <%= cookbook.label class: "checkbox form-group" do %>
-              <%= cookbook.check_box + cookbook.text.titlecase %>
+        <legend>Add to your cookbooks</legend>
+        <div id="new-recipe-checkboxes">
+          <% if @cookbooks %>
+          <div class="form-group">
+            <%= collection_check_boxes(:recipe, :cookbook_ids, @cookbooks, :id, :name) do |cookbook| %>
+              <%= cookbook.label class: "checkbox form-group" do %>
+                <%= cookbook.check_box + cookbook.text.titlecase %>
+              <% end %>
             <% end %>
+          <% else %>
+            <em>You have no cookbooks to add this recipe to.</em>
           <% end %>
-        <% else %>
-          <em>You have no cookbooks to add this recipe to.</em>
-        <% end %>
+          </div>
         </div>
       <% end %>
 
