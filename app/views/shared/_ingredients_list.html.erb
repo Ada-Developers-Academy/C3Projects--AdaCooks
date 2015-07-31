@@ -1,6 +1,9 @@
 <ul class="list-group">
   <% ingredients.each do |ingredient| %>
     <li class="list-group-item">
+      <% if ingredient.avatar %>
+        <%= image_tag ingredient.avatar_url(:thumb) %>
+      <% end %>
       <%= link_to ingredient.proper_name, ingredient_path(ingredient) %>
       <span class="badge"><%= ingredient_recipes_count(ingredient) %></span>
 

@@ -8,35 +8,30 @@
   <% end %>
 </h1>
 
-<% if @ingredient.avatar %>
-  <%= image_tag @ingredient.avatar_url %>
-<% end %>
 
-<p><%= @ingredient.name %> is used in the following recipes:</p>
+<div class="row">
+  <div class="col-sm-6">
+    <% if @ingredient.avatar %>
+      <%= image_tag @ingredient.avatar_url(:display) %>
+    <% end %>
+  </div>
 
-<div class="col-sm-4">
-  <% if @ingredient.recipes.count > 0 %>
-    <%= render partial: 'shared/plain_recipes_list', locals: { recipes: @ingredient.recipes.alphabetized } %>
-  <% else %>
-    <p>
-      This ingredient is going to waste! It's just sitting on the shelf waiting
-      to mold, not being used in even a single recipe. What sad day this is for
-      <%= @ingredient.proper_name %>.
+  <div class="col-sm-6">
+    <h4><%= @ingredient.proper_name %> is used in the following recipes:</h4>
 
-      <% if @authenticated_user %>
-        Would you like to <%= link_to "create a new recipe", new_user_recipe_path(@authenticated_user) %>
-        using this lonely ingredient?
-      <% end %>
-    </p>
-  <% end %>
+    <% if @ingredient.recipes.count > 0 %>
+      <%= render partial: 'shared/plain_recipes_list', locals: { recipes: @ingredient.recipes.alphabetized } %>
+    <% else %>
+      <p>
+        This ingredient is going to waste! It's just sitting on the shelf waiting
+        to mold, not being used in even a single recipe. What sad day this is for
+        <%= @ingredient.proper_name %>.
+
+        <% if @authenticated_user %>
+          Would you like to <%= link_to "create a new recipe", new_user_recipe_path(@authenticated_user) %>
+          using this lonely ingredient?
+        <% end %>
+      </p>
+    <% end %>
+  </div>
 </div>
-
-<ul>
-<% if @ingredient.recipes && @ingredient.recipes.count > 0 %>
-  <% @ingredient.recipes.each do |recipe| %>
-    <li><%= link_to recipe.name, recipe_path(recipe) %></li>
-  <% end %>
-<% else %>
-
-<% end %>
-</ul>

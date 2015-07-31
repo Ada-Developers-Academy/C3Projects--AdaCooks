@@ -4,6 +4,10 @@
 </h1>
 
 <% if @authenticated_user %>
+  <% if @recipe.user_id == @authenticated_user.id %>
+    <%= link_to "Edit", edit_user_recipe_path(@authenticated_user, @recipe), class: "btn btn-info btn-md" %>
+    <%= link_to "Delete", user_recipe_path(@authenticated_user, @recipe), method: "delete", class: "btn btn-warning btn-md" %>
+  <% end %>
   <div class="btn-group">
     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       +Cookbook <span class="caret"></span>
@@ -14,31 +18,27 @@
       <% end %>
     </ul>
   </div>
-
-  <% if @recipe.user_id == @authenticated_user.id %>
-    <%= link_to "Edit", edit_user_recipe_path(@authenticated_user, @recipe), class: "btn btn-info btn-md" %>
-    <%= link_to "Delete", user_recipe_path(@authenticated_user, @recipe), method: "delete", class: "btn btn-warning btn-md" %>
-  <% end %>
-<% end %>
-
-<% if @recipe.avatar %>
-  <%= image_tag @recipe.avatar_url %>
 <% end %>
 
 <h4><%= @recipe.description %></h4>
 
-<div class="col-sm-6">
-  <% if @recipe.ingredients.count > 0 %>
-    <% if @recipe.user_id == @authenticated_user.id %>
-      <%= render partial: 'shared/recipe_ingredients_list', locals: { ingredients: @recipe.ingredients.alphabetized } %>
+<div class="row">
+  <div class="col-sm-4">
+    <% if @recipe.ingredients.count > 0 %>
+      <% if @recipe.user_id == @authenticated_user.id %>
+        <%= render partial: 'shared/recipe_ingredients_list', locals: { ingredients: @recipe.ingredients.alphabetized } %>
+      <% else %>
+        <%= render partial: 'shared/plain_ingredients_list', locals: { ingredients: @recipe.ingredients.alphabetized } %>
+      <% end %>
     <% else %>
-      <%= render partial: 'shared/plain_ingredients_list', locals: { ingredients: @recipe.ingredients.alphabetized } %>
+      <p>You call this a recipe? This "recipe" doesn't even have ingredients!!</p>
     <% end %>
-  <% else %>
-    <p>You call this a recipe? This "recipe" doesn't even have ingredients!!</p>
-  <% end %>
-</div>
+  </div>
 
-<div class="col-sm-6">
-  <p><%= @recipe.steps %></p>
+  <div class="col-sm-8">
+    <% if @recipe.avatar %>
+      <%= image_tag @recipe.avatar_url(:display) %>
+    <% end %>
+    <p><%= @recipe.steps %></p>
+  </div>
 </div>
