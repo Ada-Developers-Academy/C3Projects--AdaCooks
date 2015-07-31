@@ -3,6 +3,10 @@
   <h3><%= link_to @recipe.user.username, user_path(@recipe.user) %></h3>
 <% end %>
 
+<% if @recipe.description # TODO: fix seed data, then change this %>
+  <p><%= @recipe.description %></p>
+<% end %>
+
 <% if @recipe.owner?(session[:user_id]) %>
   <%= link_to "Edit Recipe", edit_recipe_path(@recipe), class: "btn btn-default" %>
   <br>
@@ -11,16 +15,11 @@
 <%= image_tag @recipe.image_url, class: "img-responsive center-block img-rounded" %>
 
 <ol class="list-unstyled">
-  <% @recipe.steps.each do |step| %><%# OPTIMIZE: this might be a good refactor spot %>
-    <li class="preparation_step">
-      <% if step.has_measurements? %>
-        <ul class="list-unstyled text-muted">
-          <% step.measurements.each do |measurement| %>
-            <li class="ingredients_line"><%= measurement.amount %> <%= link_to measurement.ingredient.name, ingredient_path(measurement.ingredient) %></li>
-          <% end %>
-        </ul>
-      <% end %>
-      <%= step.directions %>
-    </li>
+  <% @steps.each do |step| %>
+    <%= render 'steps/display_step_with_ingredients', { recipe: @recipe, step: step } %>
   <% end %>
 </ol>
+
+<% if @recipe.owner?(session[:user_id]) %>
+  <%= button_to "Add Step", new_recipe_step_path(@recipe), method: :get, class: "btn btn-default" %>
+<% end %>

@@ -12,6 +12,7 @@ class RecipesController < ApplicationController
   end
 
   def show
+    @steps = @recipe.steps.by_number
   end
 
   def new
