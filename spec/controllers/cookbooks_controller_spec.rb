@@ -36,13 +36,11 @@ RSpec.describe CookbooksController, type: :controller do
       @recipe = create(:recipe)
       @cookbook.recipes << @recipe
       @cookbook.recipes << create(:recipe)
-    end
+      end
 
     context "between a single recipe & the cookbook" do
       before :each do
         post :remove_recipe, { id: @cookbook, recipe: @recipe }
-        # @recipe = @cookbook.recipes.first
-        # @cookbook.recipes.destroy(@recipe)
       end
 
       it "removes the association" do
@@ -53,11 +51,15 @@ RSpec.describe CookbooksController, type: :controller do
         expect(Recipe.all.count).to eq 2
         expect(Recipe.find(@recipe.id)).to eq(@recipe)
       end
+
+      it "will redirect to the cookbook's show page" do
+        expect(subject).to redirect_to(cookbook_path(@cookbook))
+      end
     end
 
     context "between all recipes & the cookbook" do
       before :each do
-        @cookbook.recipes.destroy_all
+        post :remove_recipe, id: @cookbook
       end
 
       it "removes the associations" do
@@ -67,16 +69,17 @@ RSpec.describe CookbooksController, type: :controller do
       it "doesn't delete the recipes" do
         expect(Recipe.all.count).to eq 2
       end
+
+      it "will redirect to the cookbook's show page" do
+        expect(subject).to redirect_to(cookbook_path(@cookbook))
+      end
     end
 
-    it "will redirect to the cookbook's show page" do
-      post :remove_recipe, { id: @cookbook, recipe: @recipe }
-
-      expect(subject).to redirect_to(cookbook_path(@cookbook))
-    end
   end
+end
 
-  #
+  # STILL WORKING
+
   #   let(:cookbook_a) { create(:cookbook, name: "a") }
   #   let(:recipe_b) { create(:recipe, name: "b") }
   #   let(:recipe_c) { create(:recipe, name: "c") }
@@ -179,4 +182,3 @@ RSpec.describe CookbooksController, type: :controller do
   #     flash.now[:success] = MESSAGES[:recipe]
   #     redirect_to cookbook_path(@cookbook)
   #   end
-end
