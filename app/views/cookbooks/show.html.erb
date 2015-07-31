@@ -1,19 +1,22 @@
 <div class="row">
 
-  <div class="col-md-4">
+  <div class="col-md-4 col-md-offset-4">
     <h2><%= @cookbook.name.titlecase %></h2>
     <h4><%= @cookbook.description %> </h4>
     <h3>Recipes</h3>
       <% @cookbook.recipes.each do |recipe| %>
-      <p><%= link_to recipe.name.titlecase, recipe_path(recipe) %></p>
+      <%= link_to image_tag(recipe.image_url(:thumb), class: "img-rounded"), recipe_path(recipe) %>
+      <h4><%= link_to recipe.name.titlecase, recipe_path(recipe) %></h4>
       <% end %>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-md-3">
-    <h4> <%= link_to "Edit Cookbook", edit_user_cookbook_path(@cookbook.user_id, @cookbook.id) %> </h4>
-    <h4> <%= link_to "Delete Cookbook", user_cookbook_path(@cookbook.user_id, @cookbook.id), method: :delete, data: { confirm: "Are you sure?"} %> </h4>
-    <h4> <%= link_to "Return to Your Cookbooks", user_cookbooks_path(@cookbook.user_id) %> </h4>
+  <div class="col-md-6 col-md-offset-3">
+    <div class="center-link-buttons">
+      <%= link_to "Edit Cookbook", edit_user_cookbook_path(@cookbook.user_id, @cookbook.id), class:"btn btn-default" %>
+      <%= link_to "Delete Cookbook", user_cookbook_path(@cookbook.user_id, @cookbook.id), method: :delete, data: { confirm: "Are you sure?"}, class:"btn btn-danger" %>
+      <%= link_to "Return to Your Cookbooks", user_cookbooks_path(@cookbook.user_id), class:"btn btn-info" %>
+    </div>
   </div>
 </div>
