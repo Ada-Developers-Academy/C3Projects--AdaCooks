@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   patch '/add_recipe/:user_id/:recipe_id' => 'recipes#add_recipe', as: :add_recipe
   get '/ingredients_by_user/:id' => 'ingredients#index_by_user', as: :ingredients_by_user
   get '/user_profile/:id' => 'user#user_profile', as: :user_profile
+
+  get '/query' => 'ingredients#query', as: :query
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

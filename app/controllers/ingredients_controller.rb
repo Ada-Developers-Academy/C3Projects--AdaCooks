@@ -110,6 +110,16 @@ def destroy
   redirect_to ingredients_by_user_path(session[:user_id])
 end
 
+def query
+  if params[:search]
+    @ingredient = Ingredient.query(params[:search])
+
+    redirect_to ingredient_path(@ingredient.first.id)
+  else
+    render :new
+  end
+end
+
 private
 #params ------------------------------------------------------------------------------
 
@@ -119,24 +129,3 @@ end
 
 end
 
-#-----------------------------------------------------------------------------
-
-# def got_ingredient
-#   input = gets.chomp.upcase
-
-#   if input == ingredient.name
-#     #gives user that information instead of creating a new ingredient page
-#   else
-#     #routes user to ingredient#create
-#   end 
-# end
-
-# def ArticlesController < ApplicationController
-#   def index
-#     if params[:search]
-#       @articles = Article.search(params[:search]).order("created_at DESC")
-#     else
-#       @articles = Article.order("created_at DESC")
-#     end
-#   end
-# end
