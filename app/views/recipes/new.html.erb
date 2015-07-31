@@ -36,7 +36,7 @@
 
   <div class="form-group">
     <%= f.label :ingredient_ids, 'Ingredients' %>
-    <%= f.collection_check_boxes :ingredient_ids, @ingredients, :id, :name, class: "form-control" %>
+    <%= f.collection_check_boxes :ingredient_ids, @ingredients, :id, :name, class: "form-control checkbox" %>
     <!-- may want to change this to some sort of search function as well -->
   </div>
 
