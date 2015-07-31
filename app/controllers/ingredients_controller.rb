@@ -19,6 +19,8 @@ end
 
 def show
   @recipes = @ingredient.recipes
+
+
 end
 
 def new

@@ -1,5 +1,5 @@
 <%= link_to "Edit recipe", edit_user_recipe_path(session[:user_id], @recipe.id) %>
-<%= @recipe.image %> 
+<%= image_tag(@recipe.image) %> 
 <%= @recipe.name %>
 <%= @recipe.description %>
 <%= @recipe.instructions %>

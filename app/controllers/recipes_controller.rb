@@ -51,13 +51,14 @@ before_action :select_recipe, only: [:edit, :destroy, :update]
   end
 
   def edit
-    @recipe = Recipe.find(session[:user_id])
+    @recipe = Recipe.find(params[:id])
+    
   end
 
   def update
     unless params[:recipe][:cookbook_ids].empty?
       cookbook = Cookbook.find(params[:recipe][:cookbook_ids])
-      @recipe = Recipe.find(params[:recipe_id])
+      @recipe = Recipe.find(params[:id])
       @recipe.cookbooks << cookbook
     end
     user = User.find(session[:user_id])
