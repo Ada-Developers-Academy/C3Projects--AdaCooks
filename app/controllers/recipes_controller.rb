@@ -23,8 +23,10 @@ class RecipesController < ApplicationController
     @recipe.user_id = @user.id
 
     if @recipe.save
+
       redirect_to user_path(@user.id)
     else
+
       render 'new'
     end
   end
