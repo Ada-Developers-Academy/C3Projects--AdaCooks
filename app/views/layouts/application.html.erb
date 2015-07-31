@@ -1,22 +1,36 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Yummaholic</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<div class="container-fluid">
-  <header>
-    <% if session[:user_id] %>
-      <%= link_to "Sign Out", logout_path, method: :delete, class: "btn btn-default" %>
-    <% else %>
-      <%= link_to "Sign Up", new_user_path, class: "btn btn-default" %>
-      <%= link_to "Login", login_path, class: "btn btn-default" %>
-    <% end %>
-  </header>
-  <body>
-  <%= yield %>
-  </body>
-</div>
+  <head>
+    <title>Yummaholic</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <link href='http://fonts.googleapis.com/css?family=Sacramento|Playfair+Display:400,400italic|PT+Sans+Narrow' rel='stylesheet' type='text/css'>
+  </head>
+
+  <div class="background-image">  
+    <%= image_tag "kitchen.png", class: "welcome_image" %>  
+    
+    <div class="container-fluid">
+      <header class="row">
+        <% if session[:user_id] %>
+          <div class="col-md-3">
+            <h3>Welcome <%= @user.username %></h3>
+          </div>
+        <% end %>
+        <div class="pull-right">
+          <% if session[:user_id] %>
+            <%= link_to "View my Dashboard", user_dashboard_path(session[:user_id]), class: "btn btn-success" %>
+            <%= link_to "Sign Out", logout_path, method: :delete, class: "btn btn-default" %>
+          <% else %>
+            <%= link_to "Sign Up", new_user_path, class: "btn btn-default" %>
+            <%= link_to "Login", login_path, class: "btn btn-default" %>
+          <% end %>
+        </div>
+      </header>
+      <body>
+      <%= yield %>
+      </body>
+    </div>
+  </div>
 </html>

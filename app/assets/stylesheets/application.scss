@@ -12,9 +12,88 @@
  *
  */
 
+/*
+ FONTS:
+font-family: 'Sacramento', cursive;
+font-family: 'Playfair Display', serif; (weight: 400, 400 italic)
+font-family: 'PT Sans Narrow', sans-serif;
+*/
+
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
+header {
+  margin: 5px;
+}
+
+.main-title {
+  font-family: 'Sacramento', cursive;
+  font-size: 80px;
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+.tag-line {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  text-align: center;
+  font-style: italic;
+  margin-top: 0px;
+}
+
+.search-tag-line {
+  text-align: center;
+}
+
+.welcome_image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto;
+  opacity: 0.5;
+}
+
+input[type="text"] {
+  text-align: center;
+}
+
+.navbar-form {
+  text-align: center;
+}
+
+.welcome-search-button {
+  margin: 0 auto;
+  display: block;
+  width: 60%;
+}
+
+.welcome-search-box h4 {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.welcome-search-box {
+  margin-top: 30px;
+  margin-left: 80px;
+  padding: 20px;
+  border: 1px solid;
+  border-radius: .25em;
+  background-color: #BFBBB6;
+}
+
+.search-button {
+  border: 1px solid;
+  background-color: #E6E6E6;
+}
+
+.container-fluid {
+  position: relative;
+  font-family: 'PT Sans Narrow', sans-serif;
+
+}
 
 .recipe_tiles {
   height: 200px;
