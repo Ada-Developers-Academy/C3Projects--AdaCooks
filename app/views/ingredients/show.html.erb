@@ -7,7 +7,7 @@
         <td>Recipes</td>
     </tr>
     <tr>
-      <td class="thumbnails"><%= image_tag(@ingredient.image)%> </td>
+      <td class="thumbnails"><%= image_tag(@ingredient.image_url(:medium))%> </td>
       <td> <%= @ingredient.name %></td>
       <td><% @ingredient.recipes.each do |recipe| %>
         <%= link_to "#{recipe.name}", recipe_path(recipe.id) %>
