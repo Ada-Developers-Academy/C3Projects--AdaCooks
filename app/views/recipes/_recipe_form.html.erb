@@ -2,36 +2,48 @@
   <div class="form-group">
     <fieldset>
       <legend>Recipe details</legend>
-      <%= f.label :name, "Name" %>
-      <%= f.text_field :name, required: true, class: "form-control" %>
-      <p class="field-error"><%= show_errors(@recipe, "name") %></p>
+      <div class="form-group">
+        <%= f.label :name, "Name" %>
+        <%= f.text_field :name, required: true, class: "form-control" %>
+        <p class="field-error"><%= show_errors(@recipe, "name") %></p>
+      </div>
 
-      <%= f.label :description, "Description"  %>
-      <%= f.text_field :description, class: "form-control" %>
+      <div class="form-group">
+        <%= f.label :description, "Description"  %>
+        <%= f.text_field :description, class: "form-control" %>
+      </div>
 
-      <%= f.label :image, "Image" %>
-      <%= f.file_field :image, class: "form-control" %>
+      <div class="form-group">
+        <%= f.label :image, "Image" %>
+        <%= f.file_field :image, class: "form-control" %>
+      </div>
 
-      <%= f.label :preparation, "preparation" %>
-      <%= f.text_area :preparation, required: true, class: "form-control" %>
-      <p class="field-error"><%= show_errors(@recipe, "preparation") %></p>
+      <div class="form-group">
+        <%= f.label :preparation, "Preparation" %>
+        <%= f.text_area :preparation, required: true, class: "form-control", rows: 5 %>
+        <p class="field-error"><%= show_errors(@recipe, "preparation") %></p>
+      </div>
 
       <legend>Ingredients</legend>
       <%= f.fields_for :recipe_ingredients do |ff| %>
-        <div class="form-group">
-          <%= ff.label :quantity %>
-          <%= ff.text_field :quantity %>
+        <div class="form-inline">
+          <div class="form-group">
+            <%= ff.label :quantity %>
+            <%= ff.text_field :quantity, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= ff.label :measurement_id, "Unit" %>
+            <%= ff.collection_select(:measurement_id, Measurement.all, :id, :unit, include_blank: true) %>
+          </div>
+          <div class="form-group">
+            <%= ff.label :ingredient_id %>
+            <%= ff.collection_select(:ingredient_id, Ingredient.all, :id, :name, include_blank: true) %>
 
-          <%= ff.label :measurement_id, "Unit" %>
-          <%= ff.collection_select(:measurement_id, Measurement.all, :id, :unit, include_blank: true) %>
-
-          <%= ff.label :ingredient_id %>
-          <%= ff.collection_select(:ingredient_id, Ingredient.all, :id, :name, include_blank: true) %>
-
-          <% if ff.object.persisted? %>
-            <%= ff.check_box :_destroy %>
-            <%= ff.label :_destroy, "Remove" %>
-          <% end %>
+            <% if ff.object.persisted? %>
+              <%= ff.check_box :_destroy %>
+              <%= ff.label :_destroy, "Remove" %>
+            <% end %>
+          </div>
         </div>
       <% end %>
 
