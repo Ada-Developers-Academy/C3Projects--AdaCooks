@@ -1,5 +1,6 @@
 class IngredientsController < ApplicationController
   before_action :find_ingredient, only: [:show, :destroy]
+  before_action :require_login, only: [:new]
 
   def index
     @ingredients = Ingredient.all.alphabet

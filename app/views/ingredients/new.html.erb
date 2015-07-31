@@ -1,1 +1,15 @@
-<h1>New Ingredient</h1>
+
+<%= form_for @ingredient, html: {class: "form-group"}, method: :post do |f|  %>
+  <div class="form-group">
+    <fieldset>
+      <legend><h2>Add an Ingredient!</h2></legend>
+      <%= f.label :name, "Ingredient Name" %>
+      <%= f.text_field :name %>
+
+      <%= f.label :image, 'Photo' %>
+      <%= f.file_field :image %>
+<br>
+    </fieldset>
+    <%= f.submit "Submit", class: "btn btn-default"%>
+  </div>
+  <% end %>
