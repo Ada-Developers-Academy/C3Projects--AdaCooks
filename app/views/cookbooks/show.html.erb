@@ -7,13 +7,16 @@
 <h4><%= @cookbook.description %></h4>
 
 <h3>Recipes</h3>
-
-<ul class="list-group">
-  <% @recipes.each do |recipe| %>
-    <li class="list-group-item">
-      <%= link_to recipe.name, recipe_path(recipe) %>
-      <%= link_to "Remove recipe", user_cookbook_recipe_path(session[:user_id], @cookbook, recipe), method: "delete",
-      class: "btn btn-warning btn-xs", data: { confirm: "Are you sure you want to remove this from your cookbook?" } %>
-    </li>
-  <% end %>
-</ul>
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    <ul class="list-group">
+      <% @recipes.each do |recipe| %>
+        <li class="list-group-item">
+          <%= link_to recipe.name, recipe_path(recipe) %>
+          <%= link_to "Remove recipe", user_cookbook_recipe_path(session[:user_id], @cookbook, recipe), method: "delete",
+          class: "btn btn-warning btn-xs", data: { confirm: "Are you sure you want to remove this from your cookbook?" } %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

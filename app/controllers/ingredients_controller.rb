@@ -19,7 +19,7 @@ class IngredientsController < ApplicationController
       flash[:success] = "Your ingredient has been created! CHECK IT OUTTTTTtttttt now, baby, check it out now."
       redirect_to ingredient_path(@ingredient)
     else
-      flash[:error] = @ingredient.errors.full_messages
+      flash[:error] = @ingredient.errors.full_messages.first
       render :new
     end
   end
@@ -31,7 +31,7 @@ class IngredientsController < ApplicationController
       flash[:success] = "Your ingredient has been updated! CHECK IT OUTTTTTtttttt now, baby, check it out now."
       redirect_to ingredient_path(@ingredient)
     else
-      flash[:error] = @ingredient.errors.full_messages
+      flash[:error] = @ingredient.errors.full_messages.first
       render :edit
     end
   end

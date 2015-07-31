@@ -16,10 +16,7 @@
         </p>
 
         <!-- navbar -->
-        <ul class="nav nav-pills">
-          <%= render "layouts/navbar" %>
-        </ul>
-      </div>
+        <%= render "layouts/navbar" %>
     </header>
 
     <main class="container">
@@ -31,14 +28,29 @@
         <p class="alert alert-success"><%= flash[:success] %></p>
       <% end %>
 
-      <%= yield %>
+      <div class="row">
+        <div class="col-md-2">
+        	<ul class="nav nav-stacked">
+            <li><%= link_to "Home", root_path %></li>
+            <li><%= link_to "Recipes", recipes_path %></li>
+            <li><%= link_to "Ingredients", ingredients_path %></li>
+            <% if @authenticated_user %>
+              <li><%= link_to "Cookbooks", user_cookbooks_path(@authenticated_user) %></li>
+            <% end %>
+        	</ul>
+        </div>
+
+        <div class="col-md-10">
+          <%= yield %>
+        </div>
+      </div>
     </main>
 
     <footer>
       <nav class="navbar navbar-default">
         <div class="container">
-          <ul class="nav nav-pills">
-            <%= link_to "Jump back to the top", "#top" %>
+          <ul class="nav navbar-nav navbar-left">
+            <li><%= link_to "Jump back to the top", "#top" %></li>
           </ul>
         </div>
       </nav>

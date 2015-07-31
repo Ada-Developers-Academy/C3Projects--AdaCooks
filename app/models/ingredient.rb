@@ -4,7 +4,7 @@ class Ingredient < ActiveRecord::Base
   has_and_belongs_to_many :recipes
 
   # Validations ----------------------------------------------------------------
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: true, length: { maximum: 25 }
   validates :user_id, presence: true, numericality: { only_integer: true, greater_than: 0 }
 
   # Scopes ---------------------------------------------------------------------
