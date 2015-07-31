@@ -13,7 +13,7 @@ class RecipesController < ApplicationController
 
 		# move to model?
 		user = User.find(session[:user_id])
-		@cookbooks_array = user.cookbooks.map { |c| [c.name, c.id] }
+		@user_cookbooks = user.cookbooks
 
 		# move to model?
 		@measurements_array = []
@@ -80,5 +80,8 @@ class RecipesController < ApplicationController
 		params.require(:recipe).permit(:user_id, :name, :description, :image_url, :prep,
 			:cookbook_id, recipe_ingredients_attributes: [:id, :quantity, :measurement,
 			:ingredient_name])
+	end
+
+	def add_ingredient_field
 	end
 end

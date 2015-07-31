@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   resources :recipes, :ingredients
   resources :sessions, :recipe_ingredients, only: [:new, :create, :destroy]
 
+  post '/recipes/new/add_ingredient_field' => 'recipes#add_ingredient_field'
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
