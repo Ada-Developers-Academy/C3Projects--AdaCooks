@@ -1,8 +1,7 @@
 class CookbooksController < ApplicationController
-  before_action :require_login
-  before_action :set_cookbook, only: [
-    :show, :edit, :update, :destroy, :remove_recipe
-  ]
+  before_action :require_login, except: [:index, :show]
+  before_action :set_cookbook, only: [:show, :edit, :update, :destroy, :remove_recipe]
+  before_action :authenticate_user, only: [:edit, :update, :destroy] # TODO: test this!
 
   MESSAGES = {
     name: "Requires a name.",
@@ -74,6 +73,10 @@ class CookbooksController < ApplicationController
 
   def set_cookbook
     @cookbook = Cookbook.find(params[:id])
+  end
+
+  def authenticate_user
+    redirect_to root_path unless @cookbook.owner?(session[:user_id])
   end
 
 end

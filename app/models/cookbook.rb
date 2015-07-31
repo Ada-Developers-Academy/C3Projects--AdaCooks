@@ -8,4 +8,8 @@ class Cookbook < ActiveRecord::Base
 
   # SCOPES ---------------------------------------------------------------------
   scope :by_user, -> (logged_in) { where(user_id: logged_in) }
+
+  def owner?(session_id) # TODO: test this
+    user_id == session_id
+  end
 end
