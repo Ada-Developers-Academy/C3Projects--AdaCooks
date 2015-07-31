@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
   def index
-    @recipes= Recipe.all
+    @recipes
   end
 end

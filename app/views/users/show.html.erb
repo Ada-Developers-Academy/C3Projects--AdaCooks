@@ -6,10 +6,10 @@
         <%= link_to "Add New Recipe", new_recipe_path, class: "btn btn-default"  %>
         <%= link_to "See all your ingredients", ingredients_path %></p>
     <% else %>
-      <h1><%= @user.name %> cookbooks</h1>
+      <h1><%= @user.name %>'s Cookbooks</h1>
     <% end %>
   <% else %>
-    <h1><%= @user.name %> cookbooks</h1>
+    <h1><%= @user.name %>'s Cookbooks</h1>
   <% end %>
 
   <hr class="featurette-divider">
