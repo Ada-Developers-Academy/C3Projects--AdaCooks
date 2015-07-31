@@ -1,9 +1,8 @@
 class Recipe < ActiveRecord::Base
   has_and_belongs_to_many :cookbooks
-  has_many :measurements
-  has_many :reviews
+  has_many :measurements, dependent: :destroy
   has_many :ingredients, through: :measurements
-  has_many :steps
+  has_many :steps, dependent: :destroy
   belongs_to :user
 
   mount_uploader :image, ImageUploader

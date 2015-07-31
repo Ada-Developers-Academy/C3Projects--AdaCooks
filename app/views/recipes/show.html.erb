@@ -22,4 +22,5 @@
 
 <% if @recipe.owner?(session[:user_id]) %>
   <%= button_to "Add Step", new_recipe_step_path(@recipe), method: :get, class: "btn btn-default" %>
+  <%= button_to "Delete Recipe", recipe_path(@recipe), method: :delete, class: "btn btn-danger" %>
 <% end %>

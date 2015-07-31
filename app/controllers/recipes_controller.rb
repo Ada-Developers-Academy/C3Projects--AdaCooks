@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   before_action :require_login, only: [:new, :create, :edit, :update, :destroy] # TODO: test that these views require login
-  before_action :set_recipe, only: [:show, :edit, :update]
+  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user, only: [:edit, :update, :destroy] # TODO: test this!
 
   def index
