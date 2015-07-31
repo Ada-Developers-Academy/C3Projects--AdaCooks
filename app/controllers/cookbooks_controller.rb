@@ -11,10 +11,24 @@ class CookbooksController < ApplicationController
     @cookbook_id = params[:id]
     @cookbook = Cookbook.find(@cookbook_id)
     @recipes = @cookbook.recipes
+    if session[:user_id]
+      if session[:user_id] == @cookbook.user_id
+        render :show
+      else
+        redirect_to root_path
+      end
+    end
   end
 
   def new
     @cookbook = Cookbook.new
+    if session[:user_id]
+      if session[:user_id] == @cookbook.user_id
+        render :new
+      else
+        redirect_to root_path
+      end
+    end
   end
 
   def create
@@ -27,9 +41,16 @@ class CookbooksController < ApplicationController
     end
   end
 
-  def edit
-    @cookbook_id = params[:id]
-    @cookbook = Cookbook.find(@cookbook_id)
+def edit
+  @cookbook_id = params[:id]
+  @cookbook = Cookbook.find(@cookbook_id)
+    if session[:user_id]
+      if session[:user_id] == @cookbook.user_id
+        render :edit
+      else
+        redirect_to root_path
+      end
+    end
   end
 
   def update
