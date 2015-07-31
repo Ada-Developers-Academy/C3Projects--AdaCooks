@@ -7,15 +7,12 @@ class Ingredient < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
 
 # SCOPES -------------------------------------------
+  scope :alpha, -> { order("name ASC") }
 
 # MOUNT UPLOADER --------------------------------------
   mount_uploader :image, ImageUploader
 
 # METHODS ------------------------------------------
-
-  def self.organize
-    self.all.sort_by { |i| i.name.capitalize }
-  end
 
   def self.search(query)
     where("name LIKE ?", "%#{query}%")

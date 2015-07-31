@@ -20,10 +20,4 @@ class Recipe < ActiveRecord::Base
 # MOUNT UPLOADER --------------------------------------
   mount_uploader :image, ImageUploader
 
-# METHODS ---------------------------------------------
-
-  def self.organize
-    self.all.sort_by { |i| i.name.capitalize }
-  end
-
 end
