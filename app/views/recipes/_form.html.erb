@@ -52,7 +52,7 @@
 						<%= ingredient.text_field :quantity, class: 'form-control' %>
 					</td>
 					<td>
-						<%= ingredient.select(:measurement, @measurements_array, { include_blank: true }, { class: 'form-control' }) %>
+						<%= ingredient.select(:measurement, options_for_select(RecipeIngredient::MEASUREMENTS), { include_blank: true }, { class: 'form-control' }) %>
 					</td>
 					<td>
 						<%= ingredient.text_field :ingredient_name, class: 'form-control' %>
