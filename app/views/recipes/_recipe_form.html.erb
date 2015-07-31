@@ -3,7 +3,7 @@
     <fieldset>
       <legend>Recipe details</legend>
       <%= f.label :name, "Name" %>
-      <%= f.text_field :name, :required => true, class: "form-control" %>
+      <%= f.text_field :name, required: true, class: "form-control" %>
       <p class="field-error"><%= show_errors(@recipe, "name") %></p>
 
       <%= f.label :description, "Description"  %>
@@ -13,7 +13,7 @@
       <%= f.file_field :image, class: "form-control" %>
 
       <%= f.label :preparation, "preparation" %>
-      <%= f.text_area :preparation, :required => true, class: "form-control" %>
+      <%= f.text_area :preparation, required: true, class: "form-control" %>
       <p class="field-error"><%= show_errors(@recipe, "preparation") %></p>
 
       <legend>Ingredients</legend>
