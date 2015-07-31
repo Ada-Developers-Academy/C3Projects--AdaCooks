@@ -3,4 +3,8 @@ class User < ActiveRecord::Base
   has_many :cookbooks
   has_many :recipes
   has_many :ingredients
+
+  # VALIDATIONS ----------------------------------------------------------------
+  validates_presence_of :username, :email, :password
+  validates_confirmation_of :password
 end
