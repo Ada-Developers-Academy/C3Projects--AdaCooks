@@ -14,7 +14,8 @@
             <%= link_to "remove from #{@cookbook.name}", { :controller => "cookbooks", 
                                                            :action => "rm_recipe", 
                                                            :cookbook => @cookbook.id, 
-                                                           :recipe => recipe.id }  %>
+                                                           :recipe => recipe.id }, 
+                                                           data: { confirm: "Remove #{recipe.name}?" }  %>
           <% end %>
         </p>
 

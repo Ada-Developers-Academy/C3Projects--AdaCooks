@@ -91,6 +91,11 @@ h3, h4, h5 {
   border: 3px solid #DDE6ED;
 }
 
+.recipe-image {
+  max-width: 70%;
+  border: 2px solid #DDE6ED;
+}
+
 /* user profile ----------------------------------------------- */
 
 .recipe-count {
@@ -113,6 +118,17 @@ h3, h4, h5 {
   margin-top: -2px;
   font-family: 'Reenie Beanie', cursive;
   font-size: 2.9em;
+}
+
+/* recipe show page ------------------------------------------- */
+
+.recipe-name {
+  font-family: 'Unica One', cursive;
+  font-size: 2.5em;
+}
+
+.recipe-desc {
+  margin-top: 15px;
 }
 
 /* footer ----------------------------------------------------- */
