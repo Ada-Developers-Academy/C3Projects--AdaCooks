@@ -4,6 +4,7 @@
       <legend>Recipe details</legend>
       <%= f.label :name, "Name" %>
       <%= f.text_field :name, :required => true, class: "form-control" %>
+      <p class="field-error"><%= show_errors(@recipe, "name") %></p>
 
       <%= f.label :description, "Description"  %>
       <%= f.text_field :description, class: "form-control" %>
@@ -13,6 +14,7 @@
 
       <%= f.label :preparation, "preparation" %>
       <%= f.text_area :preparation, :required => true, class: "form-control" %>
+      <p class="field-error"><%= show_errors(@recipe, "preparation") %></p>
 
       <legend>Ingredients</legend>
       <%= f.fields_for :recipe_ingredients do |ff| %>
