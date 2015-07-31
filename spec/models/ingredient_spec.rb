@@ -67,8 +67,6 @@ RSpec.describe Ingredient, type: :model do
         end
       end
     end
-
-    pending "avatar validations"
   end
 
   describe "scopes" do
@@ -83,6 +81,36 @@ RSpec.describe Ingredient, type: :model do
       expect(Ingredient.alphabetized).to eq(correct_order)
       # OPTIMIZE: is the following line the best way to check this?
       expect(Ingredient.alphabetized.map { |ing| ing.id }).not_to eq(["1", "2", "3", "4", "5"])
+    end
+  end
+
+  describe "class methods" do
+    it "can grab the top 5 ingredients by recipe in #self.trending" do
+      best_ingredient = create :ingredient, name: "apple"
+      ingredient2 = create :ingredient, name: "coffee"
+      ingredient3 = create :ingredient, name: "broccoli"
+      ingredient4 = create :ingredient, name: "banana"
+      ingredient5 = create :ingredient, name: "aardvark"
+      worst_ingredient = create :ingredient, name: "giraffe"
+
+      recipe1 = create :recipe
+      recipe2 = create :recipe
+
+      recipe1_ingredients = [best_ingredient, ingredient2, ingredient3, ingredient4, ingredient5]
+      recipe2_ingredients = [best_ingredient]
+
+      recipe1_ingredients.each do |ingredient|
+        recipe1.ingredients << ingredient
+      end
+
+      recipe2.ingredients << best_ingredient
+
+      recipe1_ingredients.each do |ingredient|
+        expect(Ingredient.trending).to include(ingredient)
+      end
+
+      expect(Ingredient.trending).not_to include(worst_ingredient)
+      expect(Ingredient.trending.first).to eq(best_ingredient)
     end
   end
 end

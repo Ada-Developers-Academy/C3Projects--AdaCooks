@@ -22,7 +22,7 @@ class Cookbook < ActiveRecord::Base
     ingredients.uniq.count
   end
 
-  def proper_name # FIXME: test Cookbook#proper_name
+  def proper_name
     name.titlecase
   end
 end

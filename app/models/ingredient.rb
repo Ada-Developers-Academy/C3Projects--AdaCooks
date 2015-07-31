@@ -14,7 +14,7 @@ class Ingredient < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 
   # Instance Methods -----------------------------------------------------------
-  def proper_name # FIXME: test Ingredient#proper_name
+  def proper_name
     name.titlecase
   end
 

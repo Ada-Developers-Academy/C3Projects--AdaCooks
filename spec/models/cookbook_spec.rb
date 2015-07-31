@@ -57,6 +57,13 @@ RSpec.describe Cookbook, type: :model do
       expect(invalid_cookbook.errors.keys).to include(:name)
     end
 
+    it "does not create a recipe with a name with more than 25 chars" do
+      invalid_cookbook = build :cookbook, name: "thisnameiswaytooooooooooolong"
+
+      expect(invalid_cookbook).not_to be_valid
+      expect(invalid_cookbook.errors.keys).to include(:name)
+    end
+
     it "requires a user_id" do
       cookbook = create :cookbook, user_id: 1
 
@@ -77,7 +84,5 @@ RSpec.describe Cookbook, type: :model do
       expect(invalid_cookbook).not_to be_valid
       expect(invalid_cookbook.errors.keys).to include(:user_id)
     end
-
-    pending "avatar/image"
   end
 end

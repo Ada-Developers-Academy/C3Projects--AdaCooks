@@ -16,7 +16,7 @@ class IngredientsController < ApplicationController
     @ingredient = Ingredient.new(create_params)
 
     if @ingredient.save
-      flash[:success] = "Your ingredient has been created! CHECK IT OUTTTTTtttttt now, baby, check it out now."
+      flash[:success] = "HERE IT IS: Hi, #{ @ingredient.proper_name }!"
       redirect_to ingredient_path(@ingredient)
     else
       flash[:error] = @ingredient.errors.full_messages.first
@@ -28,7 +28,7 @@ class IngredientsController < ApplicationController
 
   def update
     if @ingredient.update(edit_params)
-      flash[:success] = "Your ingredient has been updated! CHECK IT OUTTTTTtttttt now, baby, check it out now."
+      flash[:success] = "HERE IT IS: Hi, new & improved #{ @ingredient.proper_name }!"
       redirect_to ingredient_path(@ingredient)
     else
       flash[:error] = @ingredient.errors.full_messages.first
@@ -56,7 +56,7 @@ class IngredientsController < ApplicationController
 
     def edit_params
       ingredient = params.require(:ingredient).permit(:name, :avatar)
-      ingredient[:name].downcase!
+      ingredient[:name].downcase! if ingredient[:name]
       return ingredient
     end
 end
