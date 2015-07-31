@@ -54,6 +54,12 @@ RSpec.describe IngredientsController, type: :controller do
         expect(response.status).to eq 200
         expect(response).to render_template("new")
       end
+
+      it "post #create persists the ingredient to the db" do
+        post :create, ingredient: attributes_for(:ingredient)
+
+        expect(Ingredient.all.count).to eq 1
+      end
     end
   end
 
