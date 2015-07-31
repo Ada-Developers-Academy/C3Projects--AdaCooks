@@ -21,10 +21,10 @@
           <%= ff.text_field :quantity %>
 
           <%= ff.label :measurement_id, "Unit" %>
-          <%= ff.collection_select(:measurement_id, Measurement.all, :id, :unit, prompt: "Select" ) %>
+          <%= ff.collection_select(:measurement_id, Measurement.all, :id, :unit, include_blank: true) %>
 
           <%= ff.label :ingredient_id %>
-          <%= ff.collection_select(:ingredient_id, Ingredient.all, :id, :name, prompt: "Select" ) %>
+          <%= ff.collection_select(:ingredient_id, Ingredient.all, :id, :name, include_blank: true) %>
 
           <%= ff.hidden_field :recipe_id, value: @new_recipe_id %>
 

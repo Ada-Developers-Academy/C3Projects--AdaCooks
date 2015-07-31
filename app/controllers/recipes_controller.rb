@@ -44,6 +44,10 @@ class RecipesController < ApplicationController
   end
 
   def update
+    @recipe.recipe_ingredients.each do |ri|
+      ri.delete
+    end
+
     @recipe.update(recipe_params)
 
     if @recipe.save
