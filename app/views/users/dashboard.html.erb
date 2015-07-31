@@ -1,11 +1,11 @@
+
+<%= link_to "Add New Recipe", new_user_recipe_path(session[:user_id]), class: "btn btn-primary" %>
+
+<%= link_to "My Ingredients", user_ingredients_path(session[:user_id]), class: "btn btn-default" %>
 <h2>Dashboard</h2>
 <p>
   Hello, <%= @user.name %>
 </p>
-
-<%= link_to "Add New Recipe", new_user_recipe_path(session[:user_id]), class: "btn btn-primary" %>
-
-<%= link_to "My Ingredients", user_ingredients_path(session[:user_id]), class: "btn btn-primary" %>
 
 <table>
   <th>Recipes</th>
@@ -14,15 +14,15 @@
 <% @recipes.each do |recipe| %>
 <tr>
   <td><%= link_to recipe.name, recipe_path(recipe) %></td>
-  <td><%= link_to "Edit", edit_user_recipe_path(session[:user_id], recipe.id) %></td>
-  <td><%= link_to "Delete", user_recipe_path(session[:user_id], recipe.id), method: :delete, data: { confirm: "Are you sure?"} %></td>
+  <td><%= link_to "Edit", edit_user_recipe_path(session[:user_id], recipe.id), class: "btn btn-default" %></td>
+  <td><%= link_to "Delete", user_recipe_path(session[:user_id], recipe.id), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-danger" %></td>
   </tr>
   <% end %>
 </table>
 
 <h3>Cookbooks</h3>
 <p>
-  <%= link_to "Add New Cookbook", new_user_cookbook_path(@user), class: "btn btn-default" %>
+  <%= link_to "Add New Cookbook", new_user_cookbook_path(@user), class: "btn btn-primary" %>
 </p>
 <table class="table table-bordered table-hover">
   <thead>
