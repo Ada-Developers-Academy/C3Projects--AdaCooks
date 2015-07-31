@@ -33,8 +33,8 @@ RSpec.describe Ingredient, type: :model do
   describe "associations" do
     let(:ingredient) {create :ingredient}
 
-    it "should have a 'recipe' method" do
-      expect(:ingredient).to respond_to(:recipe_id)
+    xit "should have a 'recipe' method" do
+      expect(:ingredient).to respond_to(:recipes)
     end
   end
 end

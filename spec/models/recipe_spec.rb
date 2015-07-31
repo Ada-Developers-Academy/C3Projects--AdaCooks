@@ -47,7 +47,7 @@ RSpec.describe Recipe, type: :model do
     end
 
     it "should have a cookbook method" do
-      expect(@recipe1).to respond_to(:cookbook_id)
+      expect(@recipe1).to respond_to(:cookbooks)
     end
   end
 
