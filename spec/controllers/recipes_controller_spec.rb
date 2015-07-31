@@ -150,6 +150,31 @@ RSpec.describe RecipesController, type: :controller do
     end
   end
 
+  describe "PATCH #update" do
+    context "sucessful update" do
+      before(:each) do
+        @soup = create :recipe, ingredients: [create(:ingredient)], user: create(:user)
+        session[:user_id] = @soup.user_id
+      end
+
+      it "changes recipe's name" do
+        patch :update, :id => @soup, :recipe => {name: "EAT MOAR SOUPZ"}
+        @soup.reload
+        expect(@soup.name).to eq("EAT MOAR SOUPZ")
+      end
+
+      it "redirect_to user_path" do
+        patch :update, id: @soup, :recipe => {name: "EAT MOAR SOUPZ"}
+        expect(response).to redirect_to(user_path(@soup.user_id))
+      end
+
+    end
+  end
+
+
+
+
+
   describe "DELETE #destroy" do
 
     before(:each) do
