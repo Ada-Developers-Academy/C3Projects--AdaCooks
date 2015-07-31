@@ -12,7 +12,7 @@
 <h1><%= @cookbook.name %></h1>
 <p><%= @cookbook.description %></p>
 
-<h5>Number of Recipes: <%= @recipe_count %></h5>
+<h5>Recipes: <span class="badge"><%= @recipe_count %></span></h5>
 
 <% @recipes.each do |recipe| %>
   <div class="media list-group">

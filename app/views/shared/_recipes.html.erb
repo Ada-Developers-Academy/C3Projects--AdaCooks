@@ -5,14 +5,14 @@
         <%= image_tag recipe.image_url(:thumb), alt: "#{recipe.name}", class: "media-object" %>
       </a>
     </div>
-    <div class="media-body">
+    <div class="col-sm-9">
       <h4 class="media-heading">
         <%= link_to recipe.name, recipe_path(recipe.id) %>
       </h4>
       <p><%= recipe.description %></p>
       <p>Chef: <%= link_to recipe.user.username, user_path(recipe.user_id) %></p>
     </div>
-      <div class="media-right">
+      <div class="media-right col-sm-2">
         <% if session[:user_id] == recipe.user_id %>
           <%= link_to edit_recipe_path(recipe.id), class: 'btn btn-default' do %>
             <span class="glyphicon glyphicon-pencil" aria-hidden="true"
@@ -24,6 +24,6 @@
           <% end %>
         <% end %>
       </div>
-    <hr>
   </div>
+  <hr>
 <% end %>

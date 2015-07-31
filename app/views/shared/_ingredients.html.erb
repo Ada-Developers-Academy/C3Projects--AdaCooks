@@ -1,0 +1,44 @@
+<% @ingredients.each do |ingredient| %>
+  <div class="media list-group">
+    <div class="media-left col-sm-1">
+      <a href="#">
+        <%= image_tag ingredient.image_url(:thumb), alt: "#{ingredient.name}", class: "media-object" %>
+      </a>
+    </div>
+    <div class="col-sm-2">
+      <h4 class="media-heading">
+        <%= link_to ingredient.name, ingredient_path(ingredient.id) %>
+        <br><small>Chef: <%= link_to ingredient.user.username, user_path(ingredient.user_id) %></small>
+      </h4>
+    </div>
+    <div class="col-sm-7">
+      <div>
+        <div class="button-group" role="group">
+          <h5 href="#">Recipes: <span class="badge"><%= ingredient.recipes.count %></span></h5>
+          <% @recipes.each do |recipe| %>
+
+            <% if recipe.ingredients.include?(ingredient) %>
+              <div class="btn btn-default">
+                <%= link_to recipe.name, recipe_path(recipe.id) %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+
+    <% if session[:user_id] == ingredient.user_id %>
+      <div class="media-right col-sm-2">
+        <%= link_to edit_ingredient_path(ingredient.id), class: 'btn btn-default' do %>
+          <span class="glyphicon glyphicon-pencil" aria-hidden="true" data-toggle="tooltip" title="Edit Me!"></span>
+        <% end %>
+        <%= link_to ingredient_path(ingredient.id), method: :delete, class: "btn btn-default" do %>
+          <span class="glyphicon glyphicon-trash"></span>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <hr>
+
+<% end %>

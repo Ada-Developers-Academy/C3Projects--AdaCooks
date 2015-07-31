@@ -1,7 +1,28 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" id="top">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="/">noshables</a>
+		</div>
+
+		<div class="col-sm-2">
+			<% unless session[:user_id] %>
+				<%= link_to recipes_path, class: "btn" do %>
+					<i class="fa fa-cutlery"></i>
+				<% end %>
+				<%= link_to ingredients_path, class: "btn btn-lg" do %>
+					<i class="fa fa-leaf"></i>
+				<% end %>
+			<% else %>
+				<%= link_to user_cookbooks_path(session[:user_id]), class: "btn" do %>
+					<i class="fa fa-book"></i>
+				<% end %>
+				<%= link_to recipes_path, class: "btn" do %>
+					<i class="fa fa-cutlery"></i>
+				<% end %>
+				<%= link_to ingredients_path, class: "btn btn-lg" do %>
+					<i class="fa fa-leaf"></i>
+				<% end %>
+			<% end %>
 		</div>
 
 		<div class="col-sm-6 float-right">
@@ -22,7 +43,7 @@
 				<% end %>
 
 				<!-- register button -->
-        <%= link_to "Register", new_user_path, class: 'btn btn-primary' %>
+        <%= link_to "Sign up", new_user_path, class: 'btn btn-primary' %>
 
 			<% else %>
 				Hello, <%= link_to @user.username, user_path(session[:user_id]) %>!

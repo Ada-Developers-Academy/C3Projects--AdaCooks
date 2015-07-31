@@ -4,7 +4,7 @@
       <span class="glyphicon glyphicon-pencil" aria-hidden="true" data-toggle="tooltip" title="Edit Me!"></span>
     <% end %>
     <%= link_to recipe_path(@recipe.id), method: :delete, class: "btn btn-default" do %>
-      <span class="glyphicon glyphicon-trash"></span>
+      <span class="glyphicon glyphicon-trash" aria-hidden="true" data-toggle="tooltip" title="Delete Recipe!"></span>
     <% end %>
   </div>
 <% end %>
@@ -24,5 +24,8 @@
   </div>
   <div>
     <h3>Preparation: </h3><p><%= @recipe.preparation %></p>
+  </div>
+  <div>
+    <h3>Chef: </h3><p><%= link_to @user.username, user_path(@user.id) %></p>
   </div>
 </div>

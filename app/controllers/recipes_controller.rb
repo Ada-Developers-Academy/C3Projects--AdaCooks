@@ -10,7 +10,10 @@ class RecipesController < ApplicationController
     @recipes = Recipe.all.alpha_order
   end
 
-  def show; end
+  def show
+    recipe_user_id = @recipe.user_id
+    @user = User.find(recipe_user_id)
+  end
 
   def new
     @recipe = Recipe.new
@@ -21,7 +24,7 @@ class RecipesController < ApplicationController
     @recipe.user_id = session[:user_id]
 
     if @recipe.save
-      redirect_to recipe_path(@recipe.id), notice: "Recipe added!"
+      redirect_to :back, notice: "Recipe added!"
     else
       flash.now[:errors] = ERRORS[:unsuccessful_save]
       render :new
