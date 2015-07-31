@@ -84,7 +84,8 @@ RSpec.describe CookbooksController, type: :controller do
         before :each do
           user = create :user
           session[:user_id]  = user.id
-          request.env["HTTP_REFERER"] = "/"
+          session[:previous_url] = user_path(user.id)
+
           post :create, user_id: user.id, cookbook: attributes_for(:cookbook)
         end
 
@@ -136,9 +137,12 @@ RSpec.describe CookbooksController, type: :controller do
 
   describe "PATCH #update" do
     describe "user not logged in" do
-      it "redirects to home page" do
-        create :user
-        post :create, user_id: 2, cookbook: attributes_for(:cookbook)
+      it "redirects to cookbook show page" do
+        user = create :user
+        cookbook = create :cookbook
+        put :update, user_id: user.id, id: cookbook.id, :cookbook => { name: "New Name"}
+        cookbook.reload
+
         expect(response).to redirect_to(root_path)
       end
     end
@@ -146,19 +150,20 @@ RSpec.describe CookbooksController, type: :controller do
     describe "user logged in" do
       context "valid cookbook params" do
         before :each do
-          user = create :user
+          @user = create :user
           @cookbook = create :cookbook
-          session[:user_id]  = user.id
-          post :create, user_id: user.id, cookbook: attributes_for(:cookbook, name: "Pies")
+          session[:user_id]  = @user.id
+          put :update, user_id: @user.id, id: @cookbook.id, :cookbook => { name: "New Name"}
+          @cookbook.reload
         end
 
         it "updates the cookbook" do
-          expect(Cookbook.last.name).to eq "Pies"
+          expect(Cookbook.all).to include(@cookbook)
         end
 
-        # it "redirects to the cookbook show page" do
-        #   expect(response).to redirect_to(root_path)
-        # end
+        it "redirects to the cookbook show page" do
+          expect(response).to redirect_to(user_cookbook_path(@user.id, @cookbook.id))
+        end
       end
 
       context "invalid cookbook params" do
@@ -198,7 +203,8 @@ RSpec.describe CookbooksController, type: :controller do
       expect(response).to redirect_to user_path(session[:user_id])
     end
 
-    it "does not delete associated recipes" do
+    it "does not delete associated recipes or their ingredients" do
+      ingredient = create :ingredient
       recipe1 = create :recipe
       recipe2 = create :recipe, name: "Another Recipe"
       @cookbook.recipes << [ recipe1, recipe2 ]
@@ -206,12 +212,14 @@ RSpec.describe CookbooksController, type: :controller do
       delete :destroy, user_id: @user.id, id: @cookbook.id
       expect(Recipe.all).to include(recipe1)
       expect(Recipe.all).to include(recipe2)
+      expect(Ingredient.all).to include(ingredient)
     end
   end
 
   describe "PATCH #unassociate" do
     before :each do
       @cookbook = create :cookbook
+      create :ingredient
       recipe = create :recipe
       user = create :user
       session[:user_id] = user.id
@@ -230,6 +238,10 @@ RSpec.describe CookbooksController, type: :controller do
 
     it "does not delete the recipe" do
       expect(Recipe.count).to eq 1
+    end
+
+    it "does not delete ingredients associated wiht the recipe" do
+      expect(Ingredient.count).to eq 1
     end
 
     it "redirects to the cookbook show page" do
