@@ -16,34 +16,73 @@
  @import 'bootstrap';
 
 /* UNIVERSAL */
-h1, h2, h3, h4, h5 {
-  font-family: 'Slabo 27px', serif;
+h1, h2, h3, h4, h5, .brand {
+  // font-family: 'Slabo 27px', serif;
+  font-family: 'Playfair Display', dispaly, serif;
+  font-weight: 900;
 }
 
-th {
-  font-family: 'lato';
-  font-size: 1.25em;
-}
-
-a {
-  font-family: 'lato';
-  font-size: 1.25em;
-}
+// th {
+//   font-family: 'lato';
+//   font-size: 1.25em;
+// }
+//
+// a {
+//   font-family: 'lato';
+//   font-size: 1.25em;
+// }
 
 .no-float {
  float: none;
 }
 
+.float-right {
+  float: right;
+  margin-left: 10px;
+}
+
+.container-padding {
+  margin-bottom: 50px;
+}
+
+/* FORMS */
+label, nav a:first-child {
+  // font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
  /* NAVBAR */
+ .brand {
+   font-size: 28px;
+ }
  .logout, .login {
  	margin-top: 6px;
-  margin-left: 10px;
+  margin-left: 20px;
   margin-right: 10px;
  }
 
 .nav-user-link {
   position: relative;
-  top: 5px;
+  top: 15px;
+}
+
+.nav-search {
+  margin-top: -4px;
+  margin-left: 20px;
+  position: relative;
+  top: 11px;
+}
+
+.btn-nav-search {
+  position: absolute;
+  top: 0;
+  right: -76px;
+}
+
+/* RECIPES */
+.recipes-list {
+  list-style-type: none;
 }
 
 /* OTHER STUFF? */

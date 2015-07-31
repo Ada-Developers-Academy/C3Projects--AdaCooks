@@ -1,5 +1,13 @@
-<ul>
-	<% @recipes.each do |recipe| %>
-	<li> <%= recipe.name %> </li>
+<h2>Recipes</h2>
+<br>
+
+<ul class="recipes-list">
+	<% @first_letters.each do |letter| %>
+	<h4>&mdash; <%= letter %> &mdash;</h4>
+		<% @recipes.each do |recipe| %>
+			<% if recipe.name[0] == letter %>
+			<li> <%= link_to recipe.name, recipe_path(recipe.id) %> </li>
+			<% end %>
+		<% end %>
 	<% end %>
 </ul>

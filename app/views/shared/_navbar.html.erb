@@ -2,11 +2,14 @@
 	<div class="container-fluid">
 		<div class="collapse navbar-collapse">
 
+			<%= link_to 'Lush', root_path, class: 'navbar-brand brand' %>
+
+
 			<!-- recipe search -->
-			<div class = "navbar-left">
+			<div class = "nav-search navbar-left">
 				<%= form_tag({controller:'ingredients', action: 'search'}, method: "get") do %>
-				<%= text_field_tag :search, params[:search], id: 'search_field', placeholder: "Search Recipes" %>
-				<%= submit_tag "Search" %>
+					<%= text_field_tag :search, params[:search], id: 'search_field', class: 'form-control', placeholder: "Search Recipes" %>
+					<%= submit_tag "Search", class: 'btn btn-default btn-nav-search' %>
 				<% end %>
 			</div>
 
@@ -16,7 +19,7 @@
 				<% unless session[:user_id] %>
 					<%= link_to 'Login', new_session_path, class: 'btn btn-primary login' %>
 				<% else %>
-					<%= link_to 'My Cookbooks', user_path(session[:user_id]), class: 'nav-user-link' %>
+				<%= link_to 'My Cookbooks', user_cookbooks_path(session[:user_id]), class: 'nav-user-link navbar-left' %>
 					<%= link_to 'Logout', session_path(session[:user_id]), method: :delete, class: 'btn btn-primary logout' %>
 				<% end %>
 
