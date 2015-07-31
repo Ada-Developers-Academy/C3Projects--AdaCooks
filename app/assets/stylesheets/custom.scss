@@ -149,6 +149,10 @@ body {
 }
 
 label.required:after {
-    content: " *";
-    color: $error;
+  content: " *";
+  color: $error;
+}
+
+.back-link {
+  margin-bottom: 20px;
 }
