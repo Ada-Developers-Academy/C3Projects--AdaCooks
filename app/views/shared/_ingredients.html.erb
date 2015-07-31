@@ -27,7 +27,6 @@
       </div>
     </div>
 
-
     <% if session[:user_id] == ingredient.user_id %>
       <div class="media-right col-sm-2">
         <%= link_to edit_ingredient_path(ingredient.id), class: 'btn btn-default' do %>
