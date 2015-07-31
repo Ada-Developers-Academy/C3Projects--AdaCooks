@@ -34,9 +34,7 @@
     <br>
     <span>Cookbook (optional)</span>
     <br>
-
-<!--     <%= f.collection_select :cookbooks, @cookbooks, :id, :name, include_blank: true %>
- -->    
+    
     <div class="row">
         <%= f.collection_check_boxes(:cookbooks, @cookbooks, :id, :name, checked: @recipe.cookbooks.map(&:id)) do |i|%>
             <div class="col-md-1">
