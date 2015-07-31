@@ -2,6 +2,12 @@
 
   <h1>Sign up for an account</h1>
 
+  <br><% unless @user.errors.values == [] %>
+    <div class="alert alert-danger" role="alert">
+      <%= @user.errors.full_messages.first %>
+    </div>
+  <% end %>
+
   <div class="form-group">
     <fieldset>
       <%=  form_for @user do |f| %>
