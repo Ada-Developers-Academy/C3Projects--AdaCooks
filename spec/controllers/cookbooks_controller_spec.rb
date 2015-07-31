@@ -12,17 +12,23 @@ RSpec.describe CookbooksController, type: :controller do
   end
 
   describe "PATCH #remove_recipe" do
+    before :each do
+      @cookbook = create :cookbook
+      @recipe1 = create :recipe
+      @recipe2 = create :recipe
+
+      @cookbook.recipes << @recipe1
+      @cookbook.recipes << @recipe2
+    end
+
     it "removes a recipe from a cookbook" do
-      cookbook = create :cookbook
-      recipe1 = create :recipe
-      recipe2 = create :recipe
+      patch :remove_recipe, user_id: @cookbook.user_id, cookbook_id: @cookbook.id, recipe_id: @recipe1.id
+      expect(@cookbook.recipes.count).to eq 1
+    end
 
-      cookbook.recipes << recipe1
-      cookbook.recipes << recipe2
-
-      patch :remove_recipe, user_id: cookbook.user_id, cookbook_id: cookbook.id, recipe_id: recipe1.id
-
-      expect(cookbook.recipes.count).to eq 1
+    it "does not delete the recipe record" do
+      patch :remove_recipe, user_id: @cookbook.user_id, cookbook_id: @cookbook.id, recipe_id: @recipe1.id
+      expect(Recipe.count).to eq 2
     end
   end
 
@@ -40,7 +46,7 @@ RSpec.describe CookbooksController, type: :controller do
        get :new, user_id: session[:user_id]
        expect(assigns(:cookbook)).to be_kind_of(Object)
      end
-   end
+  end
 
    describe "DELETE #destroy" do
     before :each do
