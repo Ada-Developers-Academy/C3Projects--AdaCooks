@@ -16,7 +16,7 @@ FactoryGirl.define do
     name "Soup"
     preparation "Stir It"
 
-    uniq-ingredient
+    # uniq-ingredient
   end
 
   factory :ingredient do

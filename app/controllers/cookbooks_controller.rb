@@ -1,5 +1,5 @@
 class CookbooksController < ApplicationController
-  before_action :require_login, only: [:show]
+  before_action :require_login, only: [:show, :edit]
 
   def new
     @cookbook = Cookbook.new
@@ -19,9 +19,14 @@ class CookbooksController < ApplicationController
   def show
     @cookbook = Cookbook.find(params[:id])
     session[:cookbook_id] = @cookbook.id
+    if session[:user_id] != @cookbook.user_id
+      redirect_to user_path(session[:user_id])
+    end
+
   end
 
   def edit
+    @cookbook = Cookbook.find(params[:id])
     if session[:user_id] != @cookbook.user_id
       redirect_to user_path(session[:user_id])
     end
