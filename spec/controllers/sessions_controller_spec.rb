@@ -6,10 +6,6 @@ RSpec.describe SessionsController, type: :controller do
     session[:user_id] = @user.id
   end
 
-  after(:each) do
-    @user.destroy
-  end
-
   describe "POST #create" do
 
     let (:session_params) do
@@ -20,7 +16,7 @@ RSpec.describe SessionsController, type: :controller do
 
     it "creates an authenticated session" do
       post :create, :session => session_params
-      expect(session[:user_id]).to eq(2)
+      expect(session[:user_id]).to eq(1)
       end
   end
 

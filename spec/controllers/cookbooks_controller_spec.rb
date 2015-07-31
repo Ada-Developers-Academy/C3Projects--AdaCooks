@@ -3,32 +3,26 @@ require 'rails_helper'
 RSpec.describe CookbooksController, type: :controller do
 
   describe "GET #show" do
-    let(:book) {create :cookbook}
+    before(:each) do
+      soup = create :recipe, ingredients: [create(:ingredient)]
+      @cookbook = create :cookbook, user: create(:user), recipes: [soup]
+      session[:user_id] = @cookbook.user_id
+    end
 
     it "returns successfully with HTTP code of 200" do
-      session[:cookbook_id] = book.id
-      get :show, id: book
+      get :show, id: @cookbook
       # why is this returning false?
       expect(response).to be_success
     end
 
     it "renders the :show view" do
-      session[:cookbook_id] = book.id
-      get :show, id: book
-      # why is it rendering with <[]> instead of <"show">?
+      get :show, id: @cookbook
       expect(response).to render_template(:show)
     end
 
     it "finds the right cookbook" do
-      get :show, id: book
+      get :show, id: @cookbook
       expect{assigns(book).to eq(Cookbook)}
-    end
-
-    # - test case
-
-    it "does not display someone else's cookbook" do
-      get :show, id: book
-      expect(flash[:error]).to be_present
     end
   end
 
@@ -40,7 +34,7 @@ RSpec.describe CookbooksController, type: :controller do
       expect(assigns(:cookbook)).to be_a_new(Cookbook)
       expect(response).to render_template(:new)
     end
-  end # new
+  end
 
   describe "POST #create" do
     # + test case
