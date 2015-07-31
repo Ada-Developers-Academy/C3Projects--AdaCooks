@@ -16,16 +16,16 @@ We are going to try something new with this project. When you've accomplished al
 We're doing this to make the final project easier to code review. Because the baseline includes all of the Rails setup and boilerplate, issuing (and merging) a PR at the beginning will remove those files from the Pull Request interface for the PR you'll open at the end of the project.
 
 ### The baseline requirements are...
-- a ruby-gemset and ruby-version.
-- a new rails 4.2.2 application.
-- [rspec](https://github.com/rspec/rspec-rails) setup in document format (hint: use a .rspec config file and the `rspec_rails` gem)
-- [factory_girl](https://github.com/thoughtbot/factory_girl_rails) included and set up to work with rspec (hint: use the `factory_girl_rails` gem)
-- code coverage reporting (hint: user simplecov)
+- √ a ruby-gemset and ruby-version.
+- √ a new rails 4.2.2 application.
+- √ [rspec](https://github.com/rspec/rspec-rails) setup in document format (hint: use a .rspec config file and the `rspec_rails` gem)
+- √ [factory_girl](https://github.com/thoughtbot/factory_girl_rails) included and set up to work with rspec (hint: use the `factory_girl_rails` gem)
+- √ code coverage reporting (hint: user simplecov)
 
 ## User Stories
 
 ### As any User, I can...
-- search by the name of an Ingredient and get related Recipes back.
+- √ search by the name of an Ingredient and get related Recipes back.
 - __Recipes__
   - view an alphabetical list of all Recipes
   - view the details of a Recipe, inluding...
@@ -37,24 +37,24 @@ We're doing this to make the final project easier to code review. Because the ba
     - a list of links to Recipes associated with the Ingredient
     
 ### As an anonymous User I can...
-- register a new User account
-- Log In to an existing User account
+- √ register a new User account
+- √ Log In to an existing User account
 
 ### As a Logged In User I can...
-- Log Out
+- √ Log Out
 - __Cookbooks__
-  - See a list of Cookbooks I've already created, including...
-    - The number of Recipes associated with the Cookbook
-    - The number of unique Recipes associated with the Cookbook
-  - See the details of a specific Cookbook, including...
-    - a list of links to the Recipes associated with the Cookbook
-    - a link to remove (unassociate) a Recipe from the Cookbook. This does not destroy the Recipe.
+  - √ See a list of Cookbooks I've already created, including...
+    - √ The number of Recipes associated with the Cookbook
+    - √ The number of unique Recipes associated with the Cookbook
+  - √ See the details of a specific Cookbook, including...
+    - √ a list of links to the Recipes associated with the Cookbook
+    - √ a link to remove (unassociate) a Recipe from the Cookbook. This does not destroy the Recipe.
   - Create a new Cookbook, associated with my User account, with...
-    - a `name` (required)
-    - a `description` (optional)
-  - Destroy an existing Cookbook
-    - Destroying a Cookbook __does not__ destroy the Recipes, just the associations.
-  - Edit an existing Cookbook's `name` and `description` information.
+    - √ a `name` (required)
+    - √ a `description` (optional)
+  - √ Destroy an existing Cookbook
+    - √ Destroying a Cookbook __does not__ destroy the Recipes, just the associations.
+  - √ Edit an existing Cookbook's `name` and `description` information.
 - __Recipes__
   - Create a new Recipe, optionally associated with one of my existing Cookbooks, with...
     - a `name` (required)
