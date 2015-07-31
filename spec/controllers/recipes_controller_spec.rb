@@ -90,10 +90,9 @@ RSpec.describe RecipesController, type: :controller do
         expect(Recipe.count).to eq 0
       end
 
-      # NOT WORKING AND NO ONE KNOWS WHY
-      # it "renders the new view" do
-      #   expect(response).to render_template :new
-      # end
+      it "renders the new view" do
+        expect(response).to render_template(session[:user_id], "new")
+      end
     end
   end
 
