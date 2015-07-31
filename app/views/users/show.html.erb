@@ -13,3 +13,6 @@
 
 <h3><%= @user.username %>'s Ingredients</h3>
 <%= render 'shared/list_of_links_with_images', { objects: @ingredients } %>
+<% if session[:user_id] == @user.id %>
+  <%= link_to "New Ingredient", new_ingredient_path, class: "btn btn-default" %>
+<% end %>
