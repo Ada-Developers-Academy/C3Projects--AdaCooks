@@ -17,6 +17,7 @@ class SessionsController < ApplicationController
       render :new
     elsif @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
+      session[:username] = @user.username
       redirect_to root_path
     else
       flash[:alert] = "Invalid password."
@@ -26,6 +27,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
+    session[:username] = nil
     flash.now[:success] = "You have successfully logged out. Congradulations!"
     redirect_to root_path
   end
