@@ -24,7 +24,7 @@ end
 def create
   @cookbook = Cookbook.create(cookbook_params)
   
-  redirect_to
+  redirect_to user_cookbooks_path(session[:user_id])
 end
 
 def edit
@@ -33,7 +33,7 @@ end
 def update
   @cookbook.update(cookbook_params)
 
-  redirect_to user_cookbook_path(session[:user_id], params[:id])
+  redirect_to user_cookbooks_path(session[:user_id], params[:id])
 end
 
 
@@ -41,7 +41,7 @@ def destroy
   @cookbook = Cookbook.find(params[:id])
   @cookbook.destroy
 
-  redirect_to
+  redirect_to user_cookbooks_path(session[:user_id])
 end
 
 private
