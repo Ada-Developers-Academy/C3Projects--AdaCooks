@@ -54,6 +54,13 @@ class RecipesController < ApplicationController
     redirect_to user_path(session[:user_id]), alert: "Recipe deleted."
   end
 
+  def toggle_cookbooks
+    @recipe = Recipe.find(params[:recipe_id])
+    @recipe.cookbook_ids = params[:recipe][:cookbook_ids]
+
+    redirect_to recipe_path(@recipe)
+  end
+
   private
 
   def create_recipe_params    # note: access to associated objects (e.g., cookbooks) will be through that controller.
