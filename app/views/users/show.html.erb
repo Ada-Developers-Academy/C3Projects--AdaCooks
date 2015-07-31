@@ -1,0 +1,12 @@
+<% content_for :page_title do %>
+  <h2><%= @user.username %>'s Page</h2>
+<% end %>
+
+<h3><%= @user.username %>'s Recipes</h3>
+<%= render 'shared/list_of_links_with_images', { objects: @recipes } %>
+
+<h3><%= @user.username %>'s Cookbooks</h3>
+<%= render 'cookbooks/cookbooks_list', { cookbooks: @cookbooks } %>
+
+<h3><%= @user.username %>'s Ingredients</h3>
+<%= render 'shared/list_of_links_with_images', { objects: @ingredients } %>

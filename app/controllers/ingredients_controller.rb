@@ -1,7 +1,7 @@
 class IngredientsController < ApplicationController
-  before_action :require_login, only: [:new, :create, :edit, :update] # TODO: test that these views require login
-  before_action :set_ingredient, only: [:show, :edit, :update]
-  before_action :authenticate_user, only: [:edit, :update] # TODO: test this!
+  before_action :require_login, only: [:new, :create, :edit, :update, :destroy] # TODO: test that these views require login
+  before_action :set_ingredient, only: [:show, :edit, :update, :destroy] # TODO: add tests for edit, update, and destroy.
+  before_action :authenticate_user, only: [:edit, :update, :destroy] # TODO: test this!
 
   def index
     @ingredients = Ingredient.by_name
@@ -40,6 +40,11 @@ class IngredientsController < ApplicationController
     end
   end
 
+  def destroy
+    @ingredient.destroy
+    redirect_to ingredients_path
+  end
+
   private
     def set_ingredient
       @ingredient = Ingredient.find(params[:id])
@@ -50,6 +55,6 @@ class IngredientsController < ApplicationController
     end
 
     def authenticate_user
-      redirect_to root_path unless @ingredient.user_id == session[:user_id] # OPTIMIZE: consider writing a method for this
+      redirect_to root_path unless @ingredient.owner?(session[:user_id])
     end
 end

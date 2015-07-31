@@ -1,26 +1,12 @@
-<h2>Your Cookbooks</h2>
+<% content_for :page_title do %>
+  <h2>Your Cookbooks</h2>
+<% end %>
+
+<%= link_to "ADD COOKBOOK", new_cookbook_path, class: "btn btn-primary center-block" %>
 
 <% if @cookbooks.nil? %>
   <p>You have no cookbooks. :(</p>
 <% else %>
-  <div class="row">
-    <% # TODO THIS STYLING IS TOTALLY BAD. Need to come back and redo styling. %>
-    <ul>
-      <% @cookbooks.each do |cookbook| %>
-        <li>
-          <div class="col-md-4 col-md-offset-1">
-            <%= link_to cookbook.name, cookbook_path(cookbook) %>
-          </div>
-          <div class="col-md-2">Recipes: <%= cookbook.recipes.count %></div>
-          <div class="col-md-2">Ingredients: <%= cookbook.ingredients.count %></div>
-          <div class="col-md-3">
-          <%= link_to "EDIT", edit_cookbook_path(cookbook), class: "btn btn-warning" %>
-          <%= link_to "DELETE", cookbook_path(cookbook), { method: "delete", class: "btn btn-danger" } %>
-          </div>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+  <%= render 'cookbooks_list', { cookbooks: @cookbooks }
 <% end %>
 
-<%= link_to "ADD", new_cookbook_path, class: "btn btn-primary" %>
