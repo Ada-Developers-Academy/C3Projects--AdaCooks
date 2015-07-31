@@ -15,6 +15,7 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+// pushes down pages to not get hidden under the navbar
 .page {
    margin-top: 60px;
    margin-bottom: 20px;
@@ -35,16 +36,23 @@
 .thumbnail {
   height: 600px;
 }
-
+ // makes the thumbnail class on the show page not huge
 .solo-view {
   height: 410px;
 }
 
+// hammer and sickle styling
 .logo-image {
   height: 55px;
   display: inline-block;
 }
 
+// make the header subtext be under the header, not the image
 .shift-text {
   margin-left: 74px;
+}
+
+ // adding padding to the top of form buttons to not squish against the text fields
+.page input[type="submit"]  {
+  margin-top: 10px;
 }

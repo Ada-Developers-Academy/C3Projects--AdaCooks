@@ -1,5 +1,7 @@
 <div class="row">
-  <%= "There are no recipes containing #{params[:search]}" unless @recipes.present? %>
-
+  <% unless @recipes.present? %>
+    <h3> <center> <%= "There are no recipes containing #{params[:search]}" %> </h3>
+    <center><%= link_to "See All Ingredients", ingredients_path, class:"btn btn-info" %>
+  <% end %>
   <%= render partial: "shared/recipes", locals: { recipes: @recipes }  %>
 </div>
