@@ -10,12 +10,15 @@ class Cookbook < ActiveRecord::Base
 
   def unique
     special_ingredients = []
+    really_special_ingredients = []
     recipes.each do |recipe|
-    special_ingredients <<  recipe.ingredients.pluck    
+      special_ingredients <<  recipe.ingredients.flatten
+      special_ingredients.flatten.each do |ingredient|
+        really_special_ingredients << ingredient
+      end
     end
-    special_ingredients = special_ingredients.uniq
-        raise
-
-    return special_ingredients.count
+    
+    really_special_ingredients = really_special_ingredients.flatten.uniq
+    return really_special_ingredients.count
   end
 end
