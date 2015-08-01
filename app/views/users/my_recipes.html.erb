@@ -1,0 +1,28 @@
+<%= render 'dashboard_nav' %>
+
+<h3>My Recipes</h3>
+
+<p>
+  <%= link_to 'New recipe', new_recipe_path, class: "btn btn-default", role: "button" %>
+</p>
+
+<table class="table table-hover">
+  <tbody>
+    <tr>
+      <th>Recipe</th>
+      <th># of Ingredients</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <% @recipes.each do |recipe| %>
+      <tr>
+        <td>
+          <%= link_to recipe.name, recipe %>
+        </td>
+        <td><%= recipe.ingredients.count %></td>
+        <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
+        <td><%= link_to 'Delete', recipe, method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

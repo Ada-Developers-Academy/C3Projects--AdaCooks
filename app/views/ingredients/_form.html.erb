@@ -1,0 +1,15 @@
+<%= form_for @ingredient, method: method_name, class: "form" do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, required: true, class: "form-control" %>
+    <p class="field-error"><%= show_errors(@ingredient, "name") %></p>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :image %>
+    <%= f.file_field :image, class: "form-control" %>
+    <p class="field-error"><%= show_errors(@ingredient, "image") %></p>
+  </div>
+
+  <%= f.submit class: "btn btn-primary", role: "button" %>
+<% end %>

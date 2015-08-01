@@ -1,0 +1,21 @@
+<%= render 'dashboard_nav' %>
+
+<h3>My Ingredients</h3>
+
+<p>
+  <%= link_to 'New ingredient', new_ingredient_path, class: "btn btn-default", role: "button" %>
+</p>
+
+<table class="table table-hover">
+  <tbody>
+    <% @ingredients.each do |ingredient| %>
+      <tr>
+        <td>
+          <%= link_to ingredient.name, ingredient %>
+        </td>
+        <td><%= link_to 'Edit', edit_ingredient_path(ingredient) %></td>
+        <td><%= link_to 'Delete', ingredient, method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

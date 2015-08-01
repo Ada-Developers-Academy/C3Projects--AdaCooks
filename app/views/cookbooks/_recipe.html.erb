@@ -1,0 +1,8 @@
+<tr>
+  <td><%= link_to recipe.name, recipe_path(recipe) %></td>
+  <td>Updated at: <%= readable_date(recipe.updated_at) %></td>
+  <td>
+    <%= link_to 'Remove', remove_recipe_path(@cookbook, recipe), method: :delete, 
+      data: { confirm: "Are you sure?" } %>
+  </td>
+</tr>

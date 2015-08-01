@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-sm-offset-3 col-sm-6">
+    <div class="panel panel-warning">
+      <div class="panel-heading">
+        <h3 class="panel-title">Edit '<%= @ingredient.name.titlecase %>'</h3>
+      </div>
+
+      <div class="panel-body">
+        <%= render partial: 'form', locals: { method_name: "put" } %>
+      </div>
+    </div>
+  </div>
+</div>

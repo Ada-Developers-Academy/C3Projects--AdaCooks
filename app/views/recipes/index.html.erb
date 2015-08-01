@@ -1,0 +1,12 @@
+<h1>All recipes</h1>
+
+<div class="row">
+  <% @recipes.each do |recipe| %>
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <p><%= link_to recipe.name, recipe_path(recipe) %></p>
+        <p><%= image_tag(recipe.image_url(:thumb)) %></p>
+      </div>
+    </div>
+  <% end %>
+</div>

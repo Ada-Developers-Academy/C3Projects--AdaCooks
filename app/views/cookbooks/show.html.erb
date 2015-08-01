@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-sm-offset-2 col-sm-8">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @cookbook.name.titlecase %></h3>
+      </div>
+
+      <div class="panel-body">
+        <p>Created by: <%= link_to @owner.username, user_path(@owner) %></p>
+
+        <p>"<%= @cookbook.description %>"</p>
+      </div>
+
+      <table class="table table-hover">
+        <tbody>
+          <tr>
+            <th>Recipes:</th>
+            <th></th>
+            <th></th>
+          </tr>
+        <%= render partial: 'recipe', collection: @recipes %>
+        </tbody>
+      </table>
+
+      <div class="panel-footer">
+        <%= link_to 'Edit', edit_cookbook_path(@cookbook), role: "button", class: "btn btn-default" %>
+        <%= link_to 'Delete cookbook', cookbook_path(@cookbook), method: :delete, class: "btn btn-danger pull-right", role: "button" %>
+      </div>
+    </div>
+  </div>
+</div>

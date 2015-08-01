@@ -1,0 +1,71 @@
+<%= form_for @recipe do |f| %>
+  <div class="form-group">
+    <fieldset>
+      <legend>Recipe details</legend>
+      <div class="form-group">
+        <%= f.label :name, "Name" %>
+        <%= f.text_field :name, required: true, class: "form-control" %>
+        <p class="field-error"><%= show_errors(@recipe, "name") %></p>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :description, "Description"  %>
+        <%= f.text_field :description, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :image, "Image" %>
+        <%= f.file_field :image, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :preparation, "Preparation" %>
+        <%= f.text_area :preparation, required: true, class: "form-control", rows: 5 %>
+        <p class="field-error"><%= show_errors(@recipe, "preparation") %></p>
+      </div>
+
+      <legend>Ingredients</legend>
+      <%= f.fields_for :recipe_ingredients do |ff| %>
+        <div class="form-inline">
+          <div class="form-group">
+            <%= ff.label :quantity %>
+            <%= ff.text_field :quantity, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= ff.label :measurement_id, "Unit" %>
+            <%= ff.collection_select(:measurement_id, Measurement.all, :id, :unit, include_blank: true) %>
+          </div>
+          <div class="form-group">
+            <%= ff.label :ingredient_id %>
+            <%= ff.collection_select(:ingredient_id, Ingredient.all, :id, :name, include_blank: true) %>
+
+            <% if ff.object.persisted? %>
+              <%= ff.check_box :_destroy %>
+              <%= ff.label :_destroy, "Remove" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+      <!-- Mahalo @acmei, for the help on this collection_check_boxes -->
+      <% if @current_user && params[:action] == "new" %>
+        <legend>Add to your cookbooks</legend>
+        <div id="new-recipe-checkboxes">
+          <% if @cookbooks %>
+          <div class="form-group">
+            <%= collection_check_boxes(:recipe, :cookbook_ids, @cookbooks, :id, :name) do |cookbook| %>
+              <%= cookbook.label class: "checkbox form-group" do %>
+                <%= cookbook.check_box + cookbook.text.titlecase %>
+              <% end %>
+            <% end %>
+          <% else %>
+            <em>You have no cookbooks to add this recipe to.</em>
+          <% end %>
+          </div>
+        </div>
+      <% end %>
+
+      <%= f.submit "Submit", class: "btn btn-primary" %>
+    </fieldset>
+  </div>
+<% end %>
