@@ -13,9 +13,10 @@ Rails.application.routes.draw do
   end
 
   resources :recipes do # recipes aren't necessarily attached to a cookbook
-    resources :steps, except: [:index, :show] # TODO: check to see if we actually use these anywhere?
+    resources :steps, except: [:index, :show]
     post 'add_recipe', on: :member
   end
+  resources :measurements, only: [:create]
 
   resources :ingredients
 end

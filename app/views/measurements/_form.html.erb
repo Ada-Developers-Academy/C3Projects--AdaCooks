@@ -1,0 +1,15 @@
+<%= form_for measurement do |f| %>
+  <div class="form-group">
+    <%= f.label :amount %>
+    <%= f.text_field :amount, required: true, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= collection_select( :measurement, :ingredient_id, ingredients, :id, :name, { prompt: '< Choose Ingredient >' } ) %>
+  </div>
+
+  <%= hidden_field :measurement, :step_id, { value: params[:id] } %>
+  <%= hidden_field :measurement, :recipe_id, { value: params[:recipe_id] } %>
+
+  <%= f.submit "Add to Step", { class: "btn btn-primary" } %>
+<% end %>
