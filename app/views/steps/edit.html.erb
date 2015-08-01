@@ -1,0 +1,9 @@
+<% content_for :page_title do %>
+  <h2>Edit Step</h2>
+<% end %>
+
+<ul>
+  <%= render 'display_step_with_ingredients', { recipe: @step.recipe, step: @step } %>
+</ul>
+
+<%= render 'form', { recipe: @step.recipe, step: @step } %>

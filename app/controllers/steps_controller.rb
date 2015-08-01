@@ -1,7 +1,8 @@
 class StepsController < ApplicationController
   before_action :require_login # TODO: test this
+  before_action :set_step, only: [:edit, :update] # TODO: test this
   before_action :set_recipe, only: [:new, :create]
-  # TODO: authenticate users!
+  before_action :authenticate_user, only: [:edit, :update]
 
   def new
     @step = Step.new
@@ -19,12 +20,33 @@ class StepsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @step.update(create_params)
+      flash[:message] = { step: "Updated successfully!" }
+      redirect_to recipe_path(params[:recipe_id])
+    else
+      flash.now[:error] = @step.errors
+      render :edit
+    end
+  end
+
   private
+    def set_step
+      @step = Step.find(params[:id])
+    end
+
     def set_recipe
       @recipe = Recipe.find(params[:recipe_id])
     end
 
     def create_params
       params.require(:step).permit(:directions)
+    end
+
+    def authenticate_user
+      redirect_to root_path unless @step.recipe.user_id == (session[:user_id]) # OPTIMIZE: this would be a good refactor point!
     end
 end
