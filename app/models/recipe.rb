@@ -22,4 +22,8 @@ class Recipe < ActiveRecord::Base
   def owner?(session_id) # TODO: test this
     user_id == session_id
   end
+
+  def next_step_number # TODO: test this
+    steps.count > 0 ? steps.maximum(:number) + 1 : 1
+  end
 end
