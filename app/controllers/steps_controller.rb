@@ -1,8 +1,8 @@
 class StepsController < ApplicationController
   before_action :require_login # TODO: test this
-  before_action :set_step, only: [:edit, :update] # TODO: test this
+  before_action :set_step, only: [:edit, :update, :destroy] # TODO: test this
   before_action :set_recipe, only: [:new, :create]
-  before_action :authenticate_user, only: [:edit, :update]
+  before_action :authenticate_user, only: [:edit, :update, :destroy]
 
   def new
     @step = Step.new
@@ -31,6 +31,11 @@ class StepsController < ApplicationController
       flash.now[:error] = @step.errors
       render :edit
     end
+  end
+
+  def destroy
+    @step.destroy
+    redirect_to recipe_path(params[:recipe_id])
   end
 
   private

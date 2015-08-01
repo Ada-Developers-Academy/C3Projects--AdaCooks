@@ -1,6 +1,6 @@
 class Step < ActiveRecord::Base
   belongs_to :recipe
-  has_many :measurements
+  has_many :measurements, dependent: :destroy
 
   scope :by_number, -> { order(:number) }
 
