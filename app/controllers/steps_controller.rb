@@ -21,6 +21,8 @@ class StepsController < ApplicationController
   end
 
   def edit
+    @measurement = Measurement.new
+    @ingredients = Ingredient.by_name
   end
 
   def update
