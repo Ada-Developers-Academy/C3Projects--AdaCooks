@@ -1,0 +1,13 @@
+<h1>Show Ingredient</h1>
+
+  <ul>
+    <li> <%= image_tag(@ingredient.image) %> </li>
+    <li> <%= @ingredient.name %> </li>
+  </ul> 
+
+<% @recipes.each do |recipe| %>
+  <ul>
+    <li> <%= image_tag(recipe.image) %> </li>
+    <li> <%= link_to "#{recipe.name}", user_recipe_path(session[:user_id], "#{recipe.id}") %> </li>  
+  </ul> 
+<% end %> 

@@ -1,0 +1,14 @@
+<% unless flash.nil?%>
+  <%= flash[:login_error]%>
+<% end %>
+
+<%= form_for(:session, url: login_path, method: :post) do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.submit "login" %>
+
+<% end %>

@@ -1,5 +1,17 @@
 Marleigh & Katie
 
+Merging process:
+
+1) After checking out to your feature branch, pull from mar+kja/master (git pull origin mar+kja/master)
+
+2) If there are merge commits, fix them locally.
+
+3) Push your branch to github (git push origin <your feature branch name>)
+
+4) On github, make a PR. Make sure the base is repository: ktrops/C3Projects/adacooks branch: mar+kja/master and the compare is repository: ktrops/C3Projects/adacooks branch: <your feature branch name>. 
+
+5) Merge PR.
+
 # Ada Cooks!
 The goal of this project is to build an online cookbook application where users can manage Recipes and Ingredients, create Cookbook collections of different Recipes, and keep track of their Ingredients.
 

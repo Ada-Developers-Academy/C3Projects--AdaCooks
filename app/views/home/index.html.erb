@@ -1,0 +1,19 @@
+<h1> Welcome to Smooth! </h1>
+
+<% unless flash[:error].nil? %>
+  <p class="alert alert-danger">
+    <%= flash[:error]%>
+  </p>
+<% end %>
+
+<% unless @recipes.nil? %>
+<% @recipes.each do |recipe| %>
+<ul>
+  <li> <%= recipe.name %> </li>
+  <li> <%= image_tag(recipe.image) %> </li>
+</ul>
+<% end %>
+<% end %>
+
+<br>
+
