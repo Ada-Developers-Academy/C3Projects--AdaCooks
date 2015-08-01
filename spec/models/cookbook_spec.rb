@@ -16,4 +16,9 @@ RSpec.describe Cookbook, type: :model do
       expect(cookbook.errors.keys).to_not include(:name)
     end
   end
+ 
+ # describe "" do
+  #inside if block, build a cookbook, result = cookbook.unique
+ # end
+
 end

@@ -9,7 +9,7 @@ RSpec.describe Ingredient, type: :model do
       expect(ingredient.errors.keys).to include(:name)
     end
 
-    it "requires name to be uniqe" do
+    it "requires name to be unique" do
       ingredient1 = create :ingredient
       
       # expect(create(:ingredient)).to_not be_valid
