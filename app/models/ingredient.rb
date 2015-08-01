@@ -17,6 +17,7 @@ class Ingredient < ActiveRecord::Base
   end
 
   def self.query(query)
+    query = query.downcase
     # where(:name, query) -> This would return an exact match of the query
     where("name = ?", "#{query}") 
   end

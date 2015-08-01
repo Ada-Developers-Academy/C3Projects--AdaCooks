@@ -113,8 +113,12 @@ end
 def query
   if params[:search]
     @ingredient = Ingredient.query(params[:search])
-
-    redirect_to ingredient_path(@ingredient.first.id)
+    if @ingredient.empty?
+      flash[:error] = "That ingredient doesn't exist"
+      redirect_to :back
+    else
+      redirect_to ingredient_path(@ingredient.first.id)
+    end
   else
     render :new
   end

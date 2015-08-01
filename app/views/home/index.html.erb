@@ -1,21 +1,19 @@
 <h1> Welcome to Smooth! </h1>
-<%= link_to "Login", login_path %>
-<br>
-<%= link_to "new user", new_user_path %>
-<br>
-<% unless session[:user_id].nil? %>
-<%= link_to "new recipe", new_user_recipe_path(session[:user_id])%>
+
+<% unless flash[:error].nil? %>
+  <p class="alert alert-danger">
+    <%= flash[:error]%>
+  </p>
 <% end %>
 
 <% unless @recipes.nil? %>
 <% @recipes.each do |recipe| %>
 <ul>
   <li> <%= recipe.name %> </li>
-  <li> <%= recipe.image %> </li>
+  <li> <%= image_tag(recipe.image) %> </li>
 </ul>
 <% end %>
 <% end %>
 
 <br>
-<%= link_to "See All Ingredients", ingredients_path, class: "btn btn-default"%>
 
