@@ -1,14 +1,59 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>C3ProjectsAdacooks</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Yummaholic</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <link href='http://fonts.googleapis.com/css?family=Sacramento|Playfair+Display:400,400italic|PT+Sans+Narrow' rel='stylesheet' type='text/css'>
+  </head>
 
-<%= yield %>
+  <div class="background-image">  
+    <%= image_tag "kitchen.png", class: "welcome_image" %>  
+    
+    <div class="container-fluid">
+      <header class="row">
+      <% unless current_page? root_path %>
+        <div class="col-md-5">
+          <h2 class="header-logo"><a href="/">Yummaholics</a></h2>
+        </div>
+      <% end %>
 
-</body>
+        <% if session[:user_id] %>
+          <div class="col-md-3 header-welcome-text">
+            <h3>Welcome <%= User.find(session[:user_id]).username %></h3>
+          </div>
+        <% end %>
+
+        <div class="pull-right">
+          <% if session[:user_id] %>
+            <%= link_to "Dashboard", user_dashboard_path(session[:user_id]), class: "btn btn-default dashboard-btn" %>
+            <%= link_to "Sign Out", logout_path, method: :delete, class: "btn btn-default" %>
+          <% else %>
+            <%= link_to "Sign Up", new_user_path, class: "btn btn-default" %>
+            <%= link_to "Login", login_path, class: "btn btn-default" %>
+          <% end %>
+
+        </div>
+      </header>
+      <body>
+
+       <% if flash[:error] %>
+        <div class="alert alert-danger" role="alert">
+          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+          <%= flash[:error] %>
+        </div>
+      <% end %>
+      
+      <%= yield :welcome_page %>
+      
+      <% unless current_page? root_path %>
+        <div class="solid-background">
+         <%= yield %>
+        </div>
+      <% end %>
+      
+      </body>
+    </div>
+  </div>
 </html>

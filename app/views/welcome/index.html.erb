@@ -1,0 +1,43 @@
+<% content_for :welcome_page do %>
+  <h1 class="main-title">Yummaholics</h1>
+  <h4 class="tag-line">Feed your food addiction...</h4>
+
+  <br>
+
+  <h2 class="search-tag-line">Find Your Perfect Recipe:</h2>
+
+  <div class="row">
+    <div class="col-md-3 welcome-search-box">
+      <h4>By Recipe...</h4>
+      <%= form_tag(recipes_path, :method => 'get', class: "navbar-form center-search-bar", id: "search-form") do %>
+        <div class="input-append">
+          <%= text_field_tag :search, params[:search], class: "span2 center-search", placeholder: "Search Recipes" %>
+          <button class="btn search-button" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+        </div>
+      <% end %>
+      <%= link_to "Browse All Recipes", recipes_path, class: "btn btn-default welcome-search-button" %>
+    </div>
+
+    <div class="col-md-3 welcome-search-box">
+      <h4>By Ingredient...</h4>
+      <%= form_tag(ingredients_path, :method => 'get', class: "navbar-form center-search-bar", id: "search-form") do %>
+        <div class="input-append">
+          <%= text_field_tag :search, params[:search], class: "span2 center-search", placeholder: "Search Ingredients" %>
+          <button class="btn search-button" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+        </div>
+      <% end %>
+      <%= link_to "Browse All Ingredients", ingredients_path, class: "btn btn-default welcome-search-button"%>
+    </div>
+
+    <div class="col-md-3 welcome-search-box">
+      <h4>By Chef...</h4>
+      <%= form_tag(users_path, :method => 'get', class: "navbar-form center-search-bar", id: "search-form") do %>
+        <div class="input-append">
+          <%= text_field_tag :search, params[:search], class: "span2 center-search", placeholder: "Search Chefs" %>
+          <button class="btn search-button" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+        </div>
+      <% end %>
+      <%= link_to "Browse All Chefs", users_path, class: "btn btn-default welcome-search-button"%>
+    </div>
+  </div>
+<% end %>

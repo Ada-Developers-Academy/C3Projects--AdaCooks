@@ -1,0 +1,5 @@
+<h3>Edit Your <%= @cookbook.name %> Cookbook</h3>
+
+<%= render  :partial => 'form',
+            :locals => {  :url   => user_cookbook_path(params[:user_id], @cookbook.id),
+                          :verb => "Update" } %>

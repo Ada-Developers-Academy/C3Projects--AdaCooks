@@ -1,0 +1,54 @@
+<h3>Edit <%= @recipe.name %></h3>
+
+<%= form_for @recipe do |f| %>
+
+  <div class="form-group">
+    <%= f.label :name, "Name" %>
+    <%= f.text_field :name, class: "form-control", :required => true %>
+
+    <%= f.label :description, "Description" %>
+    <%= f.text_field :description, class: "form-control" %>
+
+    <span>Ingredients:</span>
+    <br>
+    <div class="row">
+        <%= f.collection_check_boxes(:ingredients, @ingredients, :id, :name, checked: @recipe.ingredients.map(&:id), :required => true) do |i|%>
+            <div class="col-md-1">
+                <%= i.check_box %>
+            </div>
+
+            <div class="col-md-2">
+                <%= i.object.name %>
+            </div>
+        <% end %>
+    </div>
+    <br>
+    <%= f.label :preparation, "Preparation" %>
+    <%= f.text_area :preparation, class: "form-control", :required => true %>
+
+    <%= f.label :image, "Recipe Image" %>
+    <%= f.file_field :image%>
+
+    <%= f.hidden_field :user_id, :value => session[:user_id] %>
+
+    <br>
+    <span>Cookbook (optional)</span>
+    <br>
+    
+    <div class="row">
+        <%= f.collection_check_boxes(:cookbooks, @cookbooks, :id, :name, checked: @recipe.cookbooks.map(&:id)) do |i|%>
+            <div class="col-md-1">
+                <%= i.check_box %>
+            </div>
+
+            <div class="col-md-2">
+                <%= i.object.name %>
+            </div>
+        <% end %>
+    </div>
+    <br>
+    <%= f.submit "Update Recipe", class: "btn btn-default" %>
+  </div>
+<% end %>
+
+

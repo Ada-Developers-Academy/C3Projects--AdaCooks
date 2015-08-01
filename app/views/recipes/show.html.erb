@@ -1,0 +1,19 @@
+<h1>Recipe | <%= @recipe.name %></h1>
+<h4>Created by: <%= link_to "#{@recipe.user.username}", user_path(@recipe.user.id) %></h4>
+<%= image_tag @recipe.image_url, class: "display-img" %>
+
+<h4><%= @recipe.description %></h4>
+
+<h2>Ingredients:</h2>
+
+<div class="row">
+  <% @recipe.ingredients.each do |ingredient| %>
+    <div class="col-md-3 search_result_tiles">
+      <%= link_to(image_tag(ingredient.image_url(:thumb)), ingredient_path(ingredient.id)) %>
+      <h5><%= link_to "#{ingredient.name}", ingredient_path(ingredient.id) %></h5>
+    </div>
+  <% end %>
+</div>
+
+<h2>Preparation:</h2>
+<p><%= @recipe.preparation %></p>

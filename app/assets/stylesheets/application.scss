@@ -1,0 +1,176 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ */
+
+/*
+ FONTS:
+font-family: 'Sacramento', cursive;
+font-family: 'Playfair Display', serif; (weight: 400, 400 italic)
+font-family: 'PT Sans Narrow', sans-serif;
+*/
+
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+header {
+  margin: 5px;
+}
+
+.main-title {
+  font-family: 'Sacramento', cursive;
+  font-size: 80px;
+  text-align: center;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.header-logo {
+  font-family: 'Sacramento', cursive;
+}
+
+.header-logo a {
+  text-decoration: none;
+  color: black;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.display-img {
+  max-width: 900px;
+}
+
+.dashboard-btn {
+  background-color: #000;
+  color: #fff;
+}
+
+.thumb-icon {
+  height: 200px;
+  width: 200px;
+}
+
+.tag-line {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  text-align: center;
+  font-style: italic;
+  margin-top: 0px;
+}
+
+.solid-background {
+  background-color: #E6E6E6;
+  padding: 20px;
+  border-radius: .25em;
+  margin: 50px 70px 30px 70px;
+}
+
+.search-tag-line {
+  text-align: center;
+  margin-top: 70px;
+}
+
+.welcome_image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto;
+  opacity: 0.5;
+}
+
+.center-search {
+  text-align: center;
+}
+
+.center-search-bar {
+  text-align: center;
+}
+
+.welcome-search-button {
+  margin: 0 auto;
+  display: block;
+  width: 60%;
+}
+
+.welcome-search-box h4 {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.welcome-search-box {
+  margin-top: 130px;
+  margin-left: 80px;
+  padding: 20px;
+  border: 1px solid;
+  border-radius: .25em;
+  background-color: #BFBBB6;
+}
+
+.search-button {
+  border: 1px solid;
+  background-color: #E6E6E6;
+}
+
+.container-fluid {
+  position: relative;
+  font-family: 'PT Sans Narrow', sans-serif;
+
+}
+
+.search_result_tiles {
+  height: 200px;
+  width: 200px;
+  overflow: hidden;
+  padding: 20px;
+  text-align: center;
+}
+
+.recipe_tiles h4 {
+  text-align: center;
+}
+
+.recipe_tiles img {
+  display: block;
+  margin: 0 auto;
+}
+
+.dashboard-button {
+  display: block;
+  vertical-align: top;
+}
+
+.dashboard-product-block {
+  display: inline-block;
+  padding: 30px;
+}
+
+.dashboard-buttons-block {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.dashboard h3 {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 20px;
+}
+
+.header-welcome-text {
+  font-family: 'Playfair Display', serif;
+
+}

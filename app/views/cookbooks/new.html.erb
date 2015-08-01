@@ -1,0 +1,5 @@
+<h3>Create a New Cookbook</h3>
+
+<%= render  :partial => 'form',
+            :locals => {  :url   => user_cookbooks_path(params[:user_id]),
+                          :verb => "Create" } %>
