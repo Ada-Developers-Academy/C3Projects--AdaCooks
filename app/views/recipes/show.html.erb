@@ -22,4 +22,13 @@
 
 <% if @recipe.owner?(session[:user_id]) %>
   <%= button_to "Add Step", new_recipe_step_path(@recipe), method: :get, class: "btn btn-default" %>
+  <%= button_to "Delete Recipe", recipe_path(@recipe), method: :delete, class: "btn btn-danger" %>
+<% end %>
+
+<% if session[:user_id] %>
+  Add to My Cookbook:
+  <%= form_for :recipe, url: add_recipe_recipe_path(@recipe) do |f| %>
+    <%= collection_select :cookbook, :cookbook_id, @cookbooks, :id, :name %>
+    <%= f.submit %>
+  <% end %>
 <% end %>
