@@ -14,12 +14,14 @@
         <h4>Ingredients:</h4>
       </div>
       <ul class="list-group">
-        <% if @ingredient_lines %>
-          <% @ingredient_lines.each do |line| %>
-            <li class="list-group-item">
+        <% @ingredient_lines.each do |line| %>
+          <li class="list-group-item">
+            <% unless line.ingredient == nil %>
               <%= "#{pluralize(line.quantity, line.measurement.unit)}" %> <%= link_to line.ingredient.name, ingredient_path(line.ingredient_id) %>
-            </li>
-          <% end %>
+            <% else %>
+            <p class="field-error">Looks like someone deleted that ingredient!</p>
+            <% end %>
+          </li>
         <% end %>
       </ul>
 
