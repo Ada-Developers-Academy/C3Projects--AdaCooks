@@ -48,7 +48,7 @@
               <div class="btn btn-default">
                 <%= check_box_tag "recipe[cookbook_ids][]", cookbook.id, checked = true %>
                 <!-- change below to user_cookbook_path -->
-                <%= link_to cookbook.name, user_cookbook_path(session[:user_id], cookbook.id) %>
+                <%= link_to cookbook.name, user_cookbook_path(@user.id, cookbook.id) %>
               </div>
             <% end %>
           <% end %>
