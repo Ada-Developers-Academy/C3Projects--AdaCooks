@@ -47,7 +47,7 @@
 					<td>
 						<%= ingredient.label :ingredient_name, "Ingredient" %>
 					</td>
-					<% unless params[:action] = "edit" %>
+					<% if params[:action] = "edit" %>
 						<td>
 							<label>Remove</label>
 						</td>
@@ -64,7 +64,7 @@
 						<%= ingredient.text_field :ingredient_name, class: 'form-control' %>
 					</td>
 					<td>
-						<% unless params[:action] = "edit" %>
+						<% if params[:action] = "edit" %>
 							<%= link_to 'Remove', { controller: :recipes, action: :destroy_ingredient, recipe_id: @recipe.id, id: ingredient.object.id }, { class: 'btn btn-default', method: :delete } %>
 						<% end %>
 					</td>
