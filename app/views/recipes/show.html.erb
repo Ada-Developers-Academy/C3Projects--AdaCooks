@@ -1,0 +1,53 @@
+<div class="col-sm-8 center-block no-float">
+
+	<% if flash[:notice] %>
+		<div class="alert alert-success">
+			<%= flash[:notice] %>
+		</div>
+	<% end %>
+
+	<% if session[:user_id] == @recipe.user.id %>
+		<%= button_to 'Edit', edit_recipe_path(@recipe), method: :get, class: 'btn btn-default float-right' %>
+		<%= button_to 'Delete', recipe_path(@recipe), method: :delete, class: 'btn btn-danger float-right' %>
+	<% end %>
+
+	<h2> <%= @recipe.name %> </h2>
+	<% unless @recipe.cookbook_id.nil? %>
+		<h4> in <%= link_to @recipe.cookbook.name, cookbook_path(@recipe.cookbook.id) %> </h4>
+	<% end %>
+	<h5> by: <%= link_to @recipe.user.username, user_path(@recipe.user.id) %> </h5>
+
+	<br>
+	<%= image_tag @recipe.image_url, class: "img-lg" %>
+
+	<br><br>
+	<p>
+		<%= @recipe.description %>
+	</p>
+
+	<br>
+	<h4>Ingredients</h4>
+	<ul>
+		<% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
+		<li>
+			<%= recipe_ingredient.quantity %>
+			<%= recipe_ingredient.measurement %>
+			<%= link_to recipe_ingredient.ingredient.name, ingredient_path(recipe_ingredient.ingredient) %>
+		</li>
+		<% end %>
+	</ul>
+
+	<h4>Directions</h4>
+	<p>
+		<%= @recipe.prep %>
+	</p>
+
+	<% if session[:user_id] %>
+		<br>
+		<%= form_for(@recipe, url: { controller: :cookbooks, action: :update }, method: :put) do |f| %>
+			<%= f.select(:cookbook_id, options_for_select(@cookbooks_array), {}, { class: 'form-control' }) %>
+			<br>
+			<%= f.submit 'Add to Cookbook', class:'btn btn-default float-right' %>
+		<% end %>
+	<% end %>
+</div>

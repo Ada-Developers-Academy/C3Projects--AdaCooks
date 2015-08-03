@@ -1,0 +1,12 @@
+<% unless flash[:errors].nil? %>
+  <%= render partial: "shared/errors", locals: { instance: @cookbook } %>
+<% end %>
+
+<%= render partial: "form", locals: { cookbook: @cookbook,
+  url: cookbook_path(@cookbook),
+                                      name_desc: "Name",
+                                      name_placeholder: "It's Five O'Clock Somewhere",
+                                      description_desc: "Description",
+                                      description_placeholder: "A collection of cocktail recipes from around the world.",
+                                      submit_button: "Edit" }
+%>

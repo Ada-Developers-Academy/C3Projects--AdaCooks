@@ -8,7 +8,11 @@
 </head>
 <body>
 
-<%= yield %>
+  <%= render partial: 'shared/navbar' %>
+
+  <div class="container container-padding">
+    <%= yield %>
+  </div>
 
 </body>
 </html>

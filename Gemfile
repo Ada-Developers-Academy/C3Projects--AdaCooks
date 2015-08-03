@@ -13,7 +13,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-
+gem 'google-webfonts', '~> 0.2.0'
 gem 'bootstrap-sass', '~> 3.3.5'
 
 # Use jquery as the JavaScript library
@@ -28,6 +28,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'mini_magick', '~> 4.2.7'
 gem 'carrierwave', '~> 0.10.0'
 
 # Use Unicorn as the app server

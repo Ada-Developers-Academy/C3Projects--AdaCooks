@@ -2,6 +2,27 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+  root 'users#index'
+
+  resources :users do
+    resources :cookbooks, only: [:index, :new, :create]
+  end
+
+  get "/recipes/search_results" => "ingredients#search"
+
+  resources :cookbooks, except: [:new, :create, :index]
+  get "cookbooks/:id/remove_recipe" => "cookbooks#remove_recipe", as: :remove_recipe_from_cookbook
+  resources :recipes, :ingredients
+  resources :sessions, :recipe_ingredients, only: [:new, :create, :destroy]
+
+  post 'recipes/new/add_ingredient_field' => 'recipes#add_ingredient_field', as: 'add_ingredient_field'
+  delete 'recipes/new/remove_ingredient_field/:id' => 'recipes#destroy_ingredient', as: 'delete_recipe_ingredient'
+
+  post 'recipes/:id/edit/add_ingredient_field' => 'recipes#add_ingredient_field'
+  delete 'recipes/:recipe_id/edit/remove_ingredient_field/:id' => 'recipes#destroy_ingredient'
+
+
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

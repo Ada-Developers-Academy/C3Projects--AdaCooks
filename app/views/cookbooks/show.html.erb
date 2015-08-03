@@ -1,0 +1,13 @@
+<h1><%= @cookbook.name %></h1>
+<p><%= @cookbook.description %></p>
+
+<% @recipes.each do |recipe| %>
+<div class = "col-sm-4">
+  <%= image_tag recipe.image_url, class: "img-board" %>
+  <h5 class= "txt-center"><%= link_to  "#{recipe.name}", recipe_path(recipe.id) %></h5>
+
+  <div class = "txt-center">
+    <%= link_to 'Remove from Cookbook', { :controller => :cookbooks, :action => :remove_recipe, :recipe => recipe }, class:'btn btn-danger btn-xs' %>
+  </div>
+</div>
+<% end %>

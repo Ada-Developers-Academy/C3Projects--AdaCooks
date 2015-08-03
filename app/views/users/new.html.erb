@@ -1,0 +1,60 @@
+<div class="col-sm-4 center-block no-float">
+
+	<h2>Register</h2>
+	<br>
+
+	<% if flash[:notice] %>
+		<p class="alert alert-danger">
+			<span class="glyphicon glyphicon-exclamation-sign"></span> <%= flash[:notice] %>
+		</p>
+	<% end %>
+
+	<%= form_for @user do |f| %>
+
+		<!-- style these errors and reformat phrase  -->
+		<p class="text-danger form-errors">
+			<%= error_check(:username) %>
+		</p>
+
+		<div class="form-group">
+			<%= f.label :username %>
+			<%= f.text_field :username, class: 'form-control' %>
+		</div>
+
+		<p class="text-danger form-errors">
+			<%= error_check(:email) %>
+		</p>
+
+		<div class="form-group">
+			<%= f.label :email %>
+			<%= f.text_field :email, class: 'form-control' %>
+		</div>
+
+		<p class="text-danger form-errors">
+			<%= error_check(:password) %>
+		</p>
+
+		<div class="form-group">
+			<%= f.label :password %>
+			<%= f.text_field :password, class: 'form-control' %>
+		</div>
+
+		<p class="text-danger form-errors">
+			<%= error_check(:password_confirmation) %>
+		</p>
+
+		<div class="form-group">
+			<%= f.label :password_confirmation, 'Password Confirmation' %>
+			<%= f.text_field :password_confirmation, class: 'form-control' %>
+		</div>
+
+		<br>
+
+		<% unless session[:user_id] %>
+			<%= f.submit 'Register', class: 'btn btn-primary center-block no-float' %>
+		<% else %>
+			<%= f.submit 'Register', { class: 'btn btn-primary center-block no-float', disabled: 'disabled' } %>
+		<% end %>
+
+	<% end %>
+</div>

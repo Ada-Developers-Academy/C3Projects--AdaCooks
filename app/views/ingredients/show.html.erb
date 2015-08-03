@@ -1,0 +1,23 @@
+<div class="col-sm-8 center-block no-float">
+
+<% if session[:user_id] %>
+  <% if session[:user_id] == @ingredient.user_id %>
+    <%= link_to "Edit", edit_ingredient_path(@ingredient.id), class: "btn btn-default float-right" %>
+    <%= link_to "Delete", ingredient_path(@ingredient.id), class: "btn btn-danger float-right", :method => :delete %>
+  <% end %>
+<% end %>
+
+<h2 class ="txt-center"><%= @ingredient.name %></h2>
+<%= image_tag @ingredient.image_url, class: "img-circle img-md img-center" %>
+
+<h4 class = "txt-center"><%= link_to "Return to Ingredients Index", ingredients_path, class: "btn btn-default" %></h4>
+
+<br>
+
+<% @recipes.each do |recipe| %>
+<div class = "col-sm-4">
+  <%= image_tag recipe.image_url, class: "img-board" %>
+  <h5 class= "txt-center"><%= link_to  "#{recipe.name}", recipe_path(recipe.id) %></h5>
+</div>
+<% end %>
+</div>

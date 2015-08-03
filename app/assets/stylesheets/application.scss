@@ -13,4 +13,116 @@
 
  */
  @import 'bootstrap-sprockets';
- @import 'bootstrap'
+ @import 'bootstrap';
+
+/* UNIVERSAL */
+h1, h2, h3, h4, h5, .brand {
+  // font-family: 'Slabo 27px', serif;
+  font-family: 'Playfair Display', dispaly, serif;
+  font-weight: 900;
+}
+
+.no-float {
+ float: none;
+}
+
+.float-right {
+  float: right;
+  margin-left: 10px;
+}
+
+.container-padding {
+  margin-bottom: 50px;
+}
+
+/* FORMS */
+label {
+  // font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+}
+
+ /* NAVBAR */
+ .brand {
+   font-size: 28px;
+ }
+ .logout, .login {
+ 	margin-top: 6px;
+  margin-left: 10px;
+  margin-right: 5px;
+ }
+
+.nav-user-link {
+  position: relative;
+  top: 15px;
+}
+
+.nav-search {
+  margin-top: -4px;
+  margin-left: 20px;
+  position: relative;
+  top: 11px;
+}
+
+.btn-nav-search {
+  position: absolute;
+  top: 0;
+  right: -76px;
+}
+
+/* RECIPES */
+.recipes-list {
+  list-style-type: none;
+}
+
+/* OTHER STUFF? */
+
+.img-sm {
+  width: 75px;
+  height: 75px;
+}
+
+.img-md {
+  width: 175px;
+  height: 175px;
+}
+
+.img-lg {
+  width: 150px;
+}
+
+.txt-center {
+  text-align: center;
+}
+
+.img-center {
+  display: block;
+  margin: auto;
+}
+
+.center-btn {
+  margin: auto;
+  display: block;
+}
+
+.img-board {
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+  display: block;
+  margin: auto;
+}
+
+.col-sm-4{
+  margin-bottom: 20px;
+  background-color: #fff;
+}
+
+.frontpage {
+  color: #555;
+}
+
+.tiny {
+  width: 25px;
+  height: 25px;
+  margin: 0 5px 0 5px;
+}

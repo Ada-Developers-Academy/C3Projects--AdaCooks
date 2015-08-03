@@ -1,0 +1,90 @@
+<div class="col-sm-6 center-block no-float">
+
+	<% if flash[:error] %>
+		<p class="alert alert-danger">
+			<%= flash[:error] %>
+		</p>
+	<% end %>
+
+	<% if params[:action] == "edit" %>
+		<h2>Edit "<%= @recipe.name %>" </h2>
+	<% else %>
+		<h2>Create A Recipe</h2>
+	<% end %>
+	<br>
+
+	<%= form_for @recipe do |f| %>
+
+		<%= f.hidden_field :user_id %>
+
+		<div class="form-group">
+			<%= f.label :name, 'Recipe Name' %>
+			<%= f.text_field :name, class: 'form-control' %>
+		</div>
+
+		<div class="form-group">
+			<%= f.label :description %>
+			<%= f.text_area :description, class: 'form-control' %>
+		</div>
+
+		<div class="form-group">
+			<%= f.label :image_url, 'Recipe Image' %>
+			<%= f.file_field :image_url %>
+		</div>
+
+		<br>
+		<!-- ingredients -->
+		<!-- how to add many ingredients? -->
+		<%= f.fields_for :recipe_ingredients do |ingredient| %>
+			<table class="table">
+				<tr>
+					<td>
+						<%= ingredient.label :quantity %>
+					</td>
+					<td>
+						<%= ingredient.label :measurement %>
+					</td>
+					<td>
+						<%= ingredient.label :ingredient_name, "Ingredient" %>
+					</td>
+					<% if params[:action] = "edit" %>
+						<td>
+							<label>Remove</label>
+						</td>
+					<% end %>
+				</tr>
+				<tr>
+					<td>
+						<%= ingredient.text_field :quantity, class: 'form-control' %>
+					</td>
+					<td>
+						<%= ingredient.select(:measurement, options_for_select(RecipeIngredient::MEASUREMENTS), { include_blank: true }, { class: 'form-control' }) %>
+					</td>
+					<td>
+						<%= ingredient.text_field :ingredient_name, class: 'form-control' %>
+					</td>
+					<td>
+						<% if params[:action] = "edit" %>
+							<%= link_to 'Remove', { controller: :recipes, action: :destroy_ingredient, recipe_id: @recipe.id, id: ingredient.object.id }, { class: 'btn btn-default', method: :delete } %>
+						<% end %>
+					</td>
+				</tr>
+			</table>
+		<% end %>
+		<%= link_to '+ Another Ingredient', { action: :add_ingredient_field, id: @recipe.id }, { class: 'btn btn-default float-right', method: :post} %>
+		<br><br>
+
+		<div class="form-group">
+			<%= f.label :prep %>
+			<%= f.text_area :prep, class: 'form-control', rows: '4' %>
+		</div>
+
+		<div class="form-group">
+			<%= f.label :cookbook_id, 'Cook Book' %>
+			<%= f.collection_select(:cookbook_id, @user_cookbooks, :id, :name, { include_blank: "None" } , { class: 'form-control' }) %>
+		</div>
+
+		<br>
+		<%= f.submit "Save Recipe", class: 'btn btn-primary center-block no-float' %>
+	<% end %>
+</div>
