@@ -36,10 +36,9 @@ h1, h2, h3, h4, h5, .brand {
 }
 
 /* FORMS */
-label, nav a:first-child {
+label {
   // font-family: 'Oswald', sans-serif;
   font-weight: 300;
-  text-transform: uppercase;
 }
 
  /* NAVBAR */
@@ -48,8 +47,8 @@ label, nav a:first-child {
  }
  .logout, .login {
  	margin-top: 6px;
-  margin-left: 20px;
-  margin-right: 10px;
+  margin-left: 10px;
+  margin-right: 5px;
  }
 
 .nav-user-link {

@@ -16,7 +16,8 @@
 			<!-- login/logout -->
 			<div class="navbar-right">
 				<% unless session[:user_id] %>
-					<%= link_to 'Login', new_session_path, class: 'btn btn-primary login' %>
+					<%= link_to 'Register', new_user_path, class: 'btn btn-primary login' %>
+					<%= link_to 'Login', new_session_path, class: 'btn btn-default login' %>
 				<% else %>
 				<%= link_to 'My Account', user_path(session[:user_id]), class: 'nav-user-link navbar-left' %>
 					<%= link_to 'Logout', session_path(session[:user_id]), method: :delete, class: 'btn btn-default logout' %>
