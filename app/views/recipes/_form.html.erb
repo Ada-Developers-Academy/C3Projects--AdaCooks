@@ -1,5 +1,11 @@
 <div class="col-sm-6 center-block no-float">
 
+	<% if flash[:error] %>
+		<p class="alert alert-danger">
+			<%= flash[:error] %>
+		</p>
+	<% end %>
+
 	<% if params[:action] == "edit" %>
 		<h2>Edit "<%= @recipe.name %>" </h2>
 	<% else %>
