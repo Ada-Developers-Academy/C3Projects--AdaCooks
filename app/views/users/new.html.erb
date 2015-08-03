@@ -3,9 +3,11 @@
 	<h2>Register</h2>
 	<br>
 
-	<p class="alert alert-danger">
-		<span class="glyphicon glyphicon-exclamation-sign"></span> <%= flash[:notice] %>
-	</p>
+	<% if flash[:notice] %>
+		<p class="alert alert-danger">
+			<span class="glyphicon glyphicon-exclamation-sign"></span> <%= flash[:notice] %>
+		</p>
+	<% end %>
 
 	<%= form_for @user do |f| %>
 
@@ -49,9 +51,9 @@
 		<br>
 
 		<% unless session[:user_id] %>
-			<%= f.submit 'Register', class: 'btn btn-primary center-block col-sm-4 no-float' %>
+			<%= f.submit 'Register', class: 'btn btn-primary center-block no-float' %>
 		<% else %>
-			<%= f.submit 'Register', { class: 'btn btn-primary center-block col-sm-4 no-float', disabled: 'disabled' } %>
+			<%= f.submit 'Register', { class: 'btn btn-primary center-block no-float', disabled: 'disabled' } %>
 		<% end %>
 
 	<% end %>
