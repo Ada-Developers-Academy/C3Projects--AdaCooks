@@ -22,17 +22,19 @@ class CookbooksController < ApplicationController
 
   def new
     @cookbook = Cookbook.new
-    if session[:user_id]
-      if session[:user_id] == @cookbook.user_id
-        render :new
-      else
-        redirect_to root_path
-      end
-    end
+
+    # if session[:user_id] == @cookbook.user_id
+    #   render :new
+    # else
+    #   redirect_to root_path
+    # end
+    render :new
   end
 
   def create
     @cookbook = Cookbook.new(cookbook_params)
+    # for some reason this saves
+    # but redirects to the roote page…
     if @cookbook.save
       redirect_to cookbook_path(@cookbook)
     else
