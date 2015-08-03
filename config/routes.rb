@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   get "/recipes/search_results" => "ingredients#search"
 
-  resources :cookbooks
+  resources :cookbooks, except: [:new, :create, :index]
   get "cookbooks/:id/remove_recipe" => "cookbooks#remove_recipe", as: :remove_recipe_from_cookbook
   resources :recipes, :ingredients
   resources :sessions, :recipe_ingredients, only: [:new, :create, :destroy]
