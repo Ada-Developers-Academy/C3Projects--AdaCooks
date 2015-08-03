@@ -5,16 +5,33 @@
 	<br>
 	<h3> <%= @user.username %>'s Cookbooks &mdash;</h3>
 
-	<div class="row">
-		<ul>
-			<% @user.cookbooks.each do |cookbook| %>
-				<li>
+	<table class="table">
+		<tr>
+			<th>
+				Cookbook
+			</th>
+			<th class="text-center">
+				Recipes
+			</th>
+			<th class="text-center">
+				Ingredients
+			</th>
+		</tr>
+		<% @user.cookbooks.each do |cookbook| %>
+			<tr>
+				<td>
 					<%= link_to cookbook.name, cookbook_path(cookbook) %>
-				</li>
-			<% end %>
-		</ul>
-	</div>
-	<%= button_to "Make a Cookbook", new_user_cookbook_path(@user), class: 'btn btn-primary float-right' %>
+				</td>
+				<td class="text-center">
+					<span class='badge'> <%= cookbook.recipes.count %> </span>
+				</td>
+				<td class="text-center">
+					<span class="badge"> <%= cookbook.ingredients.uniq!.count %> </span>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+	<%= button_to "Make a Cookbook", new_user_cookbook_path(@user), method: :get, class: 'btn btn-primary float-right' %>
 
 
 	<br><br>
