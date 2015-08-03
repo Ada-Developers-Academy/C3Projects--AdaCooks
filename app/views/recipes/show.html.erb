@@ -42,10 +42,12 @@
 		<%= @recipe.prep %>
 	</p>
 
-	<br>
-	<%= form_for(@recipe, url: { controller: :cookbooks, action: :update }, method: :put) do |f| %>
-		<%= f.select(:cookbook_id, options_for_select(@cookbooks_array), {}, { class: 'form-control' }) %>
+	<% if session[:user_id] %>
 		<br>
-		<%= f.submit 'Add to Cookbook', class:'btn btn-default float-right' %>
+		<%= form_for(@recipe, url: { controller: :cookbooks, action: :update }, method: :put) do |f| %>
+			<%= f.select(:cookbook_id, options_for_select(@cookbooks_array), {}, { class: 'form-control' }) %>
+			<br>
+			<%= f.submit 'Add to Cookbook', class:'btn btn-default float-right' %>
+		<% end %>
 	<% end %>
 </div>

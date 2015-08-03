@@ -39,9 +39,11 @@ class RecipesController < ApplicationController
 		@recipe = Recipe.find(params[:id])
 
 		# move to model?
-		user = User.find(session[:user_id])
-		user_cookbooks = user.cookbooks.map { |c| [c.name, c.id] }
-		@cookbooks_array = user_cookbooks.unshift(["None", nil])
+		if session[:user_id]
+			user = User.find(session[:user_id])
+			user_cookbooks = user.cookbooks.map { |c| [c.name, c.id] }
+			@cookbooks_array = user_cookbooks.unshift(["None", nil])
+		end
 	end
 
 	def edit
