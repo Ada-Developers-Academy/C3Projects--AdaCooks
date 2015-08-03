@@ -24,6 +24,7 @@ class RecipesController < ApplicationController
 	end
 
 	def create
+		params[:recipe][:user_id] = session[:user_id]
 		recipe = Recipe.new(create_params)
 
 		if recipe.valid?
