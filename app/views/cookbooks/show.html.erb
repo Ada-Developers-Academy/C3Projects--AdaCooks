@@ -1,0 +1,25 @@
+<h1 class="cookbook-header"><%= @cookbook.name %></h1>
+<ul class="media-list">
+  <% @cookbook.recipes.alpha.each do |recipe| %>
+    <li class="media">
+      <div class="media-left media-middle">
+        <%= link_to image_tag(recipe.image_url(:thumb), class: "media-object"), recipe_path(recipe.id) %>
+      </div>
+      <div class="media-body">
+        <p class="media-heading"><%= link_to recipe.name, recipe_path(recipe.id) %></p>
+        <p>
+          <%= recipe.desc %><br>
+          <span class="text-muted"><%= pluralize(recipe.ingredients.count, "ingredient") %></span><br>
+          <% if current_user?(@user) %>
+            <%= link_to "remove from #{@cookbook.name}", { :controller => "cookbooks", 
+                                                           :action => "rm_recipe", 
+                                                           :cookbook => @cookbook.id, 
+                                                           :recipe => recipe.id }, 
+                                                           data: { confirm: "Remove #{recipe.name}?" }  %>
+          <% end %>
+        </p>
+
+      </div>
+    </li>
+  <% end %>
+</ul>

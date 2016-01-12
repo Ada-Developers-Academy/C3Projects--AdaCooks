@@ -1,2 +1,182 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url(//fonts.googleapis.com/css?family=Reenie+Beanie|Unica+One);
+
+/* colors ---------------------------------------------------- */
+
+$error: #F00;
+$gray-medium-light: #EAEAEA;
+
+/* universal */
+
+.content {
+  padding-top: 35px;
+}
+
+.center {
+  text-align: center;
+  h1 {
+    margin-bottom: 10px;
+  }
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* typography ------------------------------------------------- */
+
+h1, h2 {
+  font-family: 'Unica One', cursive;
+}
+
+h3, h4, h5 {
+  font-family: 'Reenie Beanie', cursive;
+  font-size: 2.1em;
+}
+
+.text-small {
+  font-size: 0.8em;
+}
+
+/* navigation ------------------------------------------------- */
+
+.navbar-brand { 
+  font-family: 'Unica One', cursive;
+  font-size: 2em;
+}
+
+.navbar-right {
+ margin-right: 15px;
+}
+
+.btn-info {
+  margin-right: 10px;
+}
+
+/* homepage --------------------------------------------------- */
+
+.jumbotron {
+  width: 100%;
+  height: 500px;
+  margin-top: -48px;
+  background: image-url("jumbo.jpg") no-repeat center left;
+  background-size: cover;
+  border-bottom: 3px solid $gray-light;
+}
+
+.jumbotron h1 {
+  color: #FFF;
+  font-family: 'Unica One', cursive;
+  font-size: 10em;
+  font-weight: bold;
+  text-shadow: 3px 3px 2px #000;
+}
+
+.jumbotron p {
+  color: #FFF;
+  font-family: 'Reenie Beanie', cursive;
+  font-size: 2.8em;
+}
+
+.search {
+  padding-top: 20px;
+}
+
+/* search results ---------------------------------------------- */
+
+.ingredient-search {
+  margin-bottom: 20px;
+}
+
+/* images ----------------------------------------------------- */
+
+.img-circle {
+  border: 3px solid #DDE6ED;
+}
+
+.recipe-image {
+  max-width: 70%;
+  border: 2px solid #DDE6ED;
+}
+
+/* user profile ----------------------------------------------- */
+
+.recipe-count {
+  font-style: italic;
+}
+
+.glyphicon-pencil {
+  margin-right: 5px;
+}
+
+.profile-buttons {
+  padding-top: 8px;
+}
+
+.recipes {
+  margin-left: 10px;
+}
+
+.cookbook-header {
+  margin-top: -2px;
+  font-family: 'Reenie Beanie', cursive;
+  font-size: 2.9em;
+}
+
+/* recipe/ingredient show page --------------------------------- */
+
+.recipe-name {
+  font-family: 'Unica One', cursive;
+  font-size: 2.5em;
+}
+
+.recipe-desc {
+  margin-top: 15px;
+}
+
+.ingredient-recipes {
+  margin-top: 35px;
+}
+
+/* footer ----------------------------------------------------- */
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin top by nav height */
+  margin-top: 63px;
+
+  /* Margin bottom by footer height */
+  margin-bottom: 70px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 50px;
+}
+
+.container .text-muted {
+  font-size: 0.85em;
+  margin: 16px 0;
+  text-align: center;
+}
+
+/* forms ------------------------------------------------------ */
+
+.errors {
+  color: $error;
+}
+
+label.required:after {
+  content: " *";
+  color: $error;
+}
+
+.back-link {
+  margin-bottom: 20px;
+}

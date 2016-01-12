@@ -1,0 +1,27 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 text-right">
+    <% if session[:user_id] == @ingredient.user_id %>
+      <%= link_to edit_ingredient_path(@ingredient) do %>
+          <i class="glyphicon glyphicon-pencil"></i>
+      <% end %>
+      <%= link_to ingredient_path(@ingredient), method: :delete, data: { confirm: "Delete #{@ingredient.name}?" } do %>
+          <i class="glyphicon glyphicon-remove"></i>
+      <% end %>
+    <% end %>
+      <span class="recipe-name"><%= @ingredient.name %></span><br>
+      <%= image_tag(@ingredient.image, class: "img-thumbnail recipe-image") %><br>
+      <span class="back-link"><%= link_to "Return to Previous Page", :back %></span>
+    </div>
+
+    <div class="col-md-6 ingredient-recipes">
+      <h5>Recipes using <%= @ingredient.name %></h5>
+      <ul>
+        <% @ingredient.recipes.alpha.each do |recipe| %>
+          <li><%= link_to "#{recipe.name}", recipe_path(recipe) %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

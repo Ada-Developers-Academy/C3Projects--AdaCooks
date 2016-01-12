@@ -1,0 +1,16 @@
+<div class="container">
+  <h1> 
+    Ingredients
+    <% if logged_in? %>
+      <%= link_to "Add an Ingredient", new_ingredient_path, class: "btn btn-primary" %>
+    <% end %>
+  </h1><br>
+  <% @ingredients.each do |ingredient| %>
+    <div class="col-md-3 center">
+      <div class="well">
+        <%= link_to image_tag(ingredient.image, class: "img-circle", size: "200x150"), ingredient_path(ingredient.id) %>
+        <h3><%= link_to ingredient.name, ingredient_path(ingredient.id), method: :get %></h3>
+      </div>
+    </div>
+  <% end %>    
+</div>

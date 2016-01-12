@@ -1,0 +1,15 @@
+<div class="form">
+  <%= form_for @ingredient, url: @url, method: @method do |f| %>
+
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control form-group" %>
+
+    <%= f.label :image %>
+    <%= f.file_field :image, class: "form-control form-group" %>
+
+    <%= f.hidden_field :request, value: request.referer %>
+    <%= f.hidden_field :user_id, value: session[:user_id] %>
+
+    <%= f.submit "Save", id: session[:user_id], class: "btn btn-primary col-sm-2" %>
+  <% end %>
+</div>

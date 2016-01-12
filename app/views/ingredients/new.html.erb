@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <span class="back-link"><%= link_to "Return to Previous Page", :back %></span>
+      <h1>Add an Ingredient</h1>
+      <%= render partial: 'shared/error_messages', locals: { any_errors: @ingredient.errors.any?,
+                                                             count_errors: @ingredient.errors.count,
+                                                             messages: @ingredient.errors.full_messages } %>
+                                                             
+      <%= render partial: "shared/ingredient_form", locals: { ingredient: @ingredient, 
+                                                              url: @url, method: @method} %>
+  </div>
+</div>

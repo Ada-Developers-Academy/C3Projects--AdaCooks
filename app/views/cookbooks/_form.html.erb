@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <span class="back-link"><%= link_to "Return to Previous Page", :back %></span>
+    <h1><%= title %></h1>
+
+    <%= form_for item, html: {class: "form-group"}  do |f| %>
+    <%= render partial: 'shared/error_messages', locals: { any_errors: @cookbook.errors.any?,
+                                                           count_errors: @cookbook.errors.count,
+                                                           messages: @cookbook.errors.full_messages } 
+    %>
+      
+      <%= f.label :name, class: 'required' %>
+      <%= f.text_field :name, class: 'form-control form-group' %>
+
+      <%= f.label :desc, "Description" %>
+      <%= f.text_field :desc, class: 'form-control form-group' %>
+
+      <%= f.hidden_field :user_id, value: session[:user_id] %>
+
+      <%= f.submit class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
