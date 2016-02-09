@@ -1,0 +1,34 @@
+<% @cookbooks.each do |cookbook| %>
+  <div class="media list-group">
+    <div class="col-sm-3">
+      <h4 class="media-heading">
+        <%= link_to cookbook.name, user_cookbook_path(@user.id, cookbook.id) %>
+      </h4>
+      <p><%= cookbook.description %></p>
+
+      <p>Chef: <%= link_to cookbook.user.username, user_path(cookbook.user_id) %></p>
+    </div>
+
+    <div class="col-sm-7">
+      <div>
+        <div class="button-group" role="group">
+          <h5>Recipes: <span class="badge"><%= cookbook.recipe_count %></span></h5>
+          <h5>Ingredients: <small>(Total unique ingredients) </small><span class="badge">
+            <%= cookbook.ingredient_count %></span></h5>
+        </div>
+      </div>
+    </div>
+
+    <% if session[:user_id] == cookbook.user_id %>
+      <div class="media-right col-sm-2">
+        <%= link_to edit_user_cookbook_path(@user.id, cookbook.id), class: 'btn btn-default' do %>
+          <span class="glyphicon glyphicon-pencil" aria-hidden="true" data-toggle="tooltip" title="Edit Me!"></span>
+        <% end %>
+          <%= link_to user_cookbook_path(session[:user_id], cookbook.id), method: :delete, class: 'btn btn-default' do %>
+            <span class="glyphicon glyphicon-trash" aria-hidden="true" data-toggle="tooltip" title="Delete Cookbook!"></span>
+          <% end %>
+      </div>
+    <% end %>
+  </div>
+  <hr>
+<% end %>

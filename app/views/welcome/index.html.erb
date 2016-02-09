@@ -1,0 +1,112 @@
+<div class="welcome-page text-center"><h1 class="big-font">noshables</h1></div>
+<%= render partial: "shared/search" %>
+
+<% unless session[:user_id] %>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="text-center">
+        <%= link_to recipes_path, class: "btn" do %>
+          <i class="fa fa-cutlery fa-3x"></i>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="text-center">
+        <%= link_to ingredients_path, class: "btn btn-lg" do %>
+          <i class="fa fa-leaf fa-3x"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="text-center index-text">
+        <%= link_to recipes_path, class: "btn" do %>
+          <h3>Recipes</h3>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="text-center index-text">
+        <%= link_to ingredients_path, class: "btn btn-lg" do %>
+          <h3>Ingredients</h3>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="text-center">
+        <%= link_to user_cookbooks_path(session[:user_id]), class: "btn" do %>
+          <i class="fa fa-book fa-3x"></i>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="text-center">
+        <%= link_to recipes_path, class: "btn" do %>
+          <i class="fa fa-cutlery fa-3x"></i>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="text-center">
+        <%= link_to ingredients_path, class: "btn btn-lg" do %>
+          <i class="fa fa-leaf fa-3x"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="text-center index-text">
+        <%= link_to user_cookbooks_path(session[:user_id]), class: "btn" do %>
+          <h3>Cookbooks</h3>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="text-center index-text">
+        <%= link_to recipes_path, class: "btn" do %>
+          <h3>Recipes</h3>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="text-center index-text">
+        <%= link_to ingredients_path, class: "btn btn-lg" do %>
+          <h3>Ingredients</h3>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div class="welcome-sub text-center"><h1 class="sub-font">recipes</h1></div>
+  <div class="index-buttons text-center">
+    <% @recipes.each do |recipe| %>
+      <%= link_to recipe.name, recipe_path(recipe.id), class: "btn btn-default" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="welcome-sub text-center"><h1 class="sub-font">ingredients</h1></div>
+  <div class="index-buttons text-center">
+    <% @ingredients.each do |ingredient| %>
+      <%= link_to ingredient.name, ingredient_path(ingredient.id), class: "btn btn-default" %>
+    <% end %>
+  </div>
+</div>
+
+<% if session[:user_id] %>
+  <div class="welcome-sub text-center"><h1 class="sub-font">cookbooks</h1></div>
+    <div class="index-buttons text-center">
+      <% @cookbooks.each do |cookbook| %>
+        <%= link_to cookbook.name, user_cookbook_path(session[:user_id], cookbook.id), class: "btn btn-default" %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

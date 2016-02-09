@@ -1,0 +1,93 @@
+<%= form_for @recipe do |f| %>
+  <div class="form-group">
+    <%= f.label :name, for: "recipeName" %>
+    <%= f.text_field :name, type: "name", class: "form-control", placeholder: "Name your recipe", required: :true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description, for: "recipeDescription" %>
+    <%= f.text_area :description, type: "description", class: "form-control", placeholder: "Description" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :preparation, for: "recipePreparation" %>
+    <%= f.text_area :preparation, type: "preparation", class: "form-control", placeholder: "Preparation Instructions", required: :true  %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :image, 'Recipe Photo' %>
+    <%= f.file_field :image, class: "form-control" %>
+  </div>
+
+  <hr>
+
+  <div class="form-group">
+    <div class="col-sm-4">
+      <h4><i class="fa fa-leaf"></i> Add Ingredients
+        <small><%= link_to new_ingredient_path(@user.id) do %>
+            <span class="glyphicon glyphicon-plus" aria-hidden="true" data-toggle="tooltip" title="Create an Ingredient!"></span>
+          <% end %>
+        </small>
+        <small>(Required)</small>
+      </h4>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="button-group" role="group">
+          <% @ingredients.each do |ingredient| %>
+            <% unless @recipe.ingredients.include?(ingredient) %>
+              <div class="btn btn-default">
+                <%= check_box_tag "recipe[ingredient_ids][]", ingredient.id %>
+                <%= link_to ingredient.name, ingredient_path(ingredient.id) %>
+              </div>
+            <% else %>
+              <div class="btn btn-default">
+                <%= check_box_tag "recipe[ingredient_ids][]", ingredient.id, checked = true %>
+                <%= link_to ingredient.name, ingredient_path(ingredient.id) %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="form-group">
+    <div class="col-sm-4">
+      <h4><i class="fa fa-book"></i> Add To A Cookbook
+        <small><%= link_to new_user_cookbook_path(@user.id) do %>
+            <span class="glyphicon glyphicon-plus" aria-hidden="true" data-toggle="tooltip" title="Create a Cookbook!"></span>
+          <% end %>
+        </small>
+      </h4>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="button-group" role="group">
+          <% @cookbooks.each do |cookbook| %>
+            <% unless @recipe.cookbooks.include?(cookbook) %>
+              <div class="btn btn-default">
+                <%= check_box_tag "recipe[cookbook_ids][]", cookbook.id %>
+                <!-- change below to user_cookbook_path -->
+                <%= link_to cookbook.name, user_cookbook_path(session[:user_id], cookbook.id) %>
+              </div>
+            <% else %>
+              <div class="btn btn-default">
+                <%= check_box_tag "recipe[cookbook_ids][]", cookbook.id, checked = true %>
+                <!-- change below to user_cookbook_path -->
+                <%= link_to cookbook.name, user_cookbook_path(session[:user_id], cookbook.id) %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= f.submit class: "btn btn-success" %>
+
+<% end %>
+<hr>

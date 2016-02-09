@@ -1,0 +1,63 @@
+<% if session[:user_id] %>
+  <div class="text-right">
+    <%= link_to edit_recipe_path(@recipe.id), class: "btn btn-default" do %>
+      <span class="glyphicon glyphicon-pencil" aria-hidden="true" data-toggle="tooltip" title="Edit Me!"></span>
+    <% end %>
+    <%= link_to recipe_path(@recipe.id), method: :delete, class: "btn btn-default" do %>
+      <span class="glyphicon glyphicon-trash" aria-hidden="true" data-toggle="tooltip" title="Delete Recipe!"></span>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="col-sm-3">
+  <%= image_tag @recipe.image_url(:medium), alt: "#{@recipe.name}", class: "img-responsive" %>
+</div>
+
+<div class="col-sm-9">
+  <h1><%= @recipe.name %></h1>
+  <p><%= @recipe.description %></p>
+  <div class="btn-group" role="group" aria-label="ingredient-buttons">
+    <h3>Ingredients:</h3>
+    <% @recipe.ingredients.each do |ingredient| %>
+      <%= link_to ingredient.name, ingredient_path(ingredient.id), class: "btn btn-default" %>
+    <% end %>
+  </div>
+
+  <div>
+    <h3>Preparation: </h3><p><%= @recipe.preparation %></p>
+  </div>
+  <div>
+    <h3>Chef: </h3><p><%= link_to @user.username, user_path(@user.id) %></p>
+  </div>
+
+
+  <div class="form-group">
+    <h3>Cookbooks:</h3>
+  <%= form_for @recipe, url: toggle_cookbooks_path(@recipe.id) do |f| %>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="button-group" role="group">
+          <% @user.cookbooks.each do |cookbook| %>
+            <% unless @recipe.cookbooks.include?(cookbook) %>
+              <div class="btn btn-default">
+                <%= check_box_tag "recipe[cookbook_ids][]", cookbook.id %>
+                <!-- change below to user_cookbook_path -->
+                <%= link_to cookbook.name, user_cookbook_path(session[:user_id], cookbook.id) %>
+              </div>
+            <% else %>
+              <div class="btn btn-default">
+                <%= check_box_tag "recipe[cookbook_ids][]", cookbook.id, checked = true %>
+                <!-- change below to user_cookbook_path -->
+                <%= link_to cookbook.name, user_cookbook_path(@user.id, cookbook.id) %>
+              </div>
+            <% end %>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+    <%= f.submit "Update Recipe's Cookbooks", class: "btn btn-success" %>
+
+  </div>
+  <% end %>
+</div>

@@ -1,0 +1,46 @@
+<%= form_for [@user, @cookbook] do |f| %>
+  <div class="form-group">
+    <%= f.label :name, for: "cookbookName" %>
+    <%= f.text_field :name, type: "name", class: "form-control", placeholder: "Name your cookbook", required: :true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description, for: "cookbookDescription" %>
+    <%= f.text_area :description, type: "description", class: "form-control", placeholder: "Description" %>
+  </div>
+
+  <hr>
+
+  <div class="form-group">
+    <div class="col-sm-4">
+      <h4><i class="fa fa-cutlery"></i> Add Recipes
+        <small><%= link_to new_recipe_path(@user.id) do %>
+            <span class="glyphicon glyphicon-plus" aria-hidden="true" data-toggle="tooltip" title="Create a Recipe!"></span>
+          <% end %>
+        </small>
+      </h4>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="button-group" role="group">
+          <% @recipes.each do |recipe| %>
+            <% unless @cookbook.recipes.include?(recipe) %>
+              <div class="btn btn-default">
+                <%= check_box_tag "cookbook[recipe_ids][]", recipe.id %>
+                <%= link_to recipe.name, recipe_path(recipe.id) %>
+              </div>
+            <% else %>
+              <div class="btn btn-default">
+                <%= check_box_tag "cookbook[recipe_ids][]", recipe.id, checked = true %>
+                <%= link_to recipe.name, recipe_path(recipe.id) %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= f.submit class: "btn btn-success" %>
+<% end %>
+<hr>

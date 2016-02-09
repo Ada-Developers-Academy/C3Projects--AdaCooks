@@ -1,14 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>C3ProjectsAdacooks</title>
+  <title>noshables</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 <body>
+  <header>
+    <%= render partial: "shared/login_bar" %>
+  </header>
+  <div class="container-fluid">
+    <% if flash[:messages] %>
+      <h5 class="alert alert-success"><%= flash[:messages] %></h5>
+    <% end %>
 
-<%= yield %>
+    <% if flash[:errors] %>
+      <h5 class="alert alert-warning"><%= flash[:errors] %></h5>
+    <% end %>
 
+    <% if flash[:alert] %>
+      <h5 class="alert alert-warning"><%= flash[:alert] %></h5>
+    <% end %>
+
+    <% if flash[:notice] %>
+      <h5 class="alert alert-success"><%= flash[:notice] %></h5>
+    <% end %>
+    <%= yield %>
+  </div>
 </body>
 </html>
