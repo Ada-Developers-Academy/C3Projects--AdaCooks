@@ -34,6 +34,10 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'bootstrap-sass', '~> 3.3.5'
 
+# Used for uploading files.
+gem 'mini_magick'
+gem 'carrierwave'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -49,4 +53,5 @@ group :development, :test do
   gem 'simplecov'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'pry'
 end

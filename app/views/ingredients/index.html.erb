@@ -1,0 +1,5 @@
+<% content_for :page_title do %>
+  <h2>All Ingredients</h2>
+<% end %>
+
+<%= render 'shared/list_of_links_with_images', { objects: @ingredients } %>

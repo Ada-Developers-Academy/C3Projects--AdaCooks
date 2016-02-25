@@ -1,0 +1,16 @@
+<% content_for :page_title do %>
+  <h2><%= @ingredient.name %></h2>
+  <h3><%= link_to @ingredient.user.username, user_path(@ingredient.user) %></h3>
+<% end %>
+
+<%= image_tag @ingredient.image_url, class: "img-responsive center-block img-rounded" %>
+
+<h4>Recipes Containing <%= @ingredient.name %></h4>
+<%= render 'shared/list_of_links_with_images', { objects: @ingredient.recipes } %>
+
+<% if @ingredient.owner?(session[:user_id]) %><%# TODO: style this more %>
+  <%= link_to "Edit #{@ingredient.name}", edit_ingredient_path(@ingredient), class: "btn btn-default" %>
+  <%= button_to "Delete #{@ingredient.name}", ingredient_path(@ingredient),
+    method: :delete, data: { confirm: "Are you 100% sure you want to delete this ingredient for everyone? It will be removed from all recipes!" },
+    class: "btn btn-danger" %>
+<% end %>

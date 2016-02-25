@@ -1,0 +1,17 @@
+<% content_for :page_title do %>
+  <h2><%= @cookbook.name %><h2>
+<% end %>
+
+<p><%= @cookbook.description %></p>
+
+<h4>Recipes</h4>
+<ul class="list-unstyled">
+  <% @recipes.each do |recipe| %>
+    <li>
+      <%= image_tag recipe.image_url(:thumb), class: "img-rounded" %>
+      <%= link_to recipe.name, recipe_path(recipe) %>
+      <%= link_to "REMOVE", remove_recipe_cookbook_path(@cookbook, { recipe: recipe }), { method: "post", class: "btn btn-danger" } %>
+    </li>
+  <% end %>
+</ul>
+<%= link_to "REMOVE ALL", remove_recipe_cookbook_path(@cookbook), { method: "post", class: "btn btn-danger" } %>

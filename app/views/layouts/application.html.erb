@@ -8,7 +8,25 @@
 </head>
 <body>
 
-<%= yield %>
+  <%= render partial: "shared/header" %>
+
+  <div class="jumbotron text-center">
+    <%= yield :page_title %>
+  </div>
+
+  <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, class: "#{name} alert #{flash_check(name)}" %>
+  <% end %>
+
+  <main class="container-fluid">
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
+
+        <%= yield %>
+
+      </div>
+    </div>
+  </main>
 
 </body>
 </html>

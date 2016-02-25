@@ -10,6 +10,36 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
  */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+  font-family: Papyrus, Herculanum, Party LET, Curlz MT, Harrington, fantasy;
+  font-weight: 900;
+  font-size: 1.5em;
+  line-height: 1.8em;
+}
+
+.preparation_step {
+  margin-left: 2em;
+  margin-bottom: 1em;
+}
+
+.ingredients_line {
+  margin-left: -2em;
+  font-weight: lighten;
+}
+
+.container-fluid {
+  padding: 0em 4em;
+}
+
+.jumbotron {
+  padding-top: 6em;
+  padding-bottom: 1em;
+  margin-left: -4em;
+  margin-right: -4em;
+  margin-bottom: 1em;
+}

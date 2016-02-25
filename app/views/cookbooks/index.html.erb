@@ -1,0 +1,12 @@
+<% content_for :page_title do %>
+  <h2>Your Cookbooks</h2>
+<% end %>
+
+<%= link_to "ADD COOKBOOK", new_cookbook_path, class: "btn btn-primary center-block" %>
+
+<% if @cookbooks.nil? %>
+  <p>You have no cookbooks. :(</p>
+<% else %>
+  <%= render 'cookbooks_list', { cookbooks: @cookbooks } %>
+<% end %>
+
