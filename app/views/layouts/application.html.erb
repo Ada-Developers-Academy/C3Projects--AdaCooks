@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>C3ProjectsAdacooks</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>RabbitHoleSalads</title>
+    <%= favicon_link_tag 'favicon.ico' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <span class="glyphicons glyphicons-dining-set"></span>
 
-<%= yield %>
+  </head>
+  <body>
+    <div class="container">
 
-</body>
+      <%= render "shared/nav" %>
+
+      <div class="container marketing">
+        <% if flash[:error] %>
+          <h3><span class="label label-warning"><%= flash[:error] %></span></h3>
+        <% end %>
+
+        <%= yield %>
+        <hr class="featurette-divider">
+
+        <%= render "shared/footer" %>
+      </div>
+    </div>
+  </body>
 </html>

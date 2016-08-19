@@ -1,0 +1,26 @@
+<div class="container marketing">
+
+  <% unless @ingredient.errors.values == [] %>
+    <div class="alert alert-danger" role="alert">
+      <%=  @ingredient.errors.full_messages.first %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <fieldset>
+      <%= form_for @ingredient do |f| %>
+
+        <%= f.label "#{name}" %>
+        <%= f.text_field :name, required: true, class: "form-control" %>
+
+        <%= f.label :photo_url %>
+        <%= f.text_field :photo_url, class: "form-control" %><br>
+
+        <%= f.label :image %>
+        <%= f.file_field :image %><br>
+
+        <%= f.submit "#{button}", class: "btn btn-primary" %>
+      <% end %>
+    </fieldset>
+  </div>
+</div>

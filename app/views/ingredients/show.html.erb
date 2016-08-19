@@ -1,0 +1,35 @@
+<div class="container marketing">
+  <h1><%= @ingredient.name.capitalize %></h1>
+  <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 col-md-push-5">
+        <h2 class="featurette-heading"></h2>
+      </div>
+      <div class="col-md-5 col-md-pull-7">
+        <% if @ingredient.image_url %>
+          <%= image_tag @ingredient.image_url, class:"img-circle", size: "300x300" %>
+        <% elsif @ingredient.photo_url %>
+          <%= image_tag @ingredient.photo_url, class:"img-circle", size: "300x300" %>
+        <% else %>
+          <%= image_tag "no_image.png", class:"img-circle", size: "300x300" %>
+        <% end %>
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <% if @ingredient.recipes.count != 0 %>
+      <p class="lead">See recipes with <%= @ingredient.name %>: </p>
+      <% @ingredient.recipes.each do |recipe| %>
+
+        <div class="row featurette">
+          <div class="col-md-12">
+            <p class="lead"><%= link_to recipe.name, recipe_path(recipe) %></p>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="lead">Unfortunately, there are no recipes with <%=@ingredient.name %></p>
+    <% end %>
+</div>

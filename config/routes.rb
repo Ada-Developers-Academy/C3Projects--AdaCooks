@@ -1,4 +1,22 @@
 Rails.application.routes.draw do
+
+  root 'welcome#index'
+
+  resources :users, only: [:new, :create, :show]
+
+  resources :recipes
+  resources :ingredients
+  resources :cookbooks, except: [:index]
+
+  get "/login" => "sessions#new", as: 'login'
+  post "/login" => "sessions#create"
+  delete "/logout" => "sessions#destroy", as: 'logout'
+
+  get "ingredient/:id/recipes" => "recipes#index", as: "ingredient_recipes"
+  get '/search' => 'ingredients#search'
+
+  post 'cookbooks/:id' => "recipes#remove_recipes", as: "remove_recipes"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

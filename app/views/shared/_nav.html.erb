@@ -1,0 +1,37 @@
+<div class="navbar-wrapper">
+  <div class="container">
+
+    <nav class="navbar navbar-inverse navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <%= link_to "All Recipes", recipes_path,  class: "navbar-brand" %> </a>
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><%= link_to "Home", root_path %></li>
+            <li><%= link_to "Ingredients", ingredients_path %></li>
+            <li>
+              <p>
+                <%= form_tag({ controller: "ingredients", action: "search"}, method: "get", class: "search") do %>
+                  <%= text_field_tag :search, params[:search], id: 'search_field', placeholder: 'Search Ingredients' %>
+                    <%= submit_tag "Search" %>
+                <% end %>
+              </p>
+            </li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <% if session[:user_id].nil?  %>
+              <li><%= link_to "Login", login_path, method: :get %></li>
+              <li><%= link_to "Sign up", new_user_path, method: :get %></li>
+            <% else %>
+              <li><%= link_to "Logout", logout_path, method: :delete %></li>
+              <li><%= link_to "Your account", user_path(session[:user_id]) %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>

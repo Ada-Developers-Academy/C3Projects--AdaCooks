@@ -1,0 +1,30 @@
+<div class="container marketing">
+
+  <h1>Sign up for an account</h1>
+
+  <br><% unless @user.errors.values == [] %>
+    <div class="alert alert-danger" role="alert">
+      <%= @user.errors.full_messages.first %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <fieldset>
+      <%=  form_for @user do |f| %>
+        <%= f.label :name %>
+        <%= f.text_field :name, required: true, class: "form-control" %>
+
+        <%= f.label :email %>
+        <%= f.text_field :email, required: true, class: "form-control" %>
+
+        <%= f.label :password %>
+        <%= f.password_field :password, required: true, class: "form-control" %>
+
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, required: true, class: "form-control" %><br>
+
+        <%= f.submit "Create Account", class: "btn btn-default" %>
+      <% end %>
+    </fieldset>
+  </div>
+</div>

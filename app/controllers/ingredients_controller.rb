@@ -1,0 +1,72 @@
+class IngredientsController < ApplicationController
+  before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
+  before_action :ingredient_exist?, only: [:show]
+
+  def index
+    @ingredients = Ingredient.alpha_order
+  end
+
+  def show
+    @ingredient = Ingredient.find(params[:id])
+  end
+
+  def search
+    @ingredients = Ingredient.search(params[:search])
+    search_result = Ingredient.where(name: params[:search])
+    if !search_result.any?
+      flash[:error] = "Unfortunately we don't have #{params[:search].to_s}"
+      redirect_to :back rescue redirect_to root_path
+    else
+      render :search
+    end
+  end
+
+  def new
+    @ingredient = Ingredient.new
+    @user = User.find(session[:user_id])
+  end
+
+  def create
+    @ingredient = Ingredient.create(create_params)
+    @user = User.find(session[:user_id])
+    @ingredient.user_id = @user.id
+
+    if @ingredient.save
+      redirect_to new_recipe_path
+    else
+      render 'new'
+    end
+  end
+
+  def edit
+    @ingredient = Ingredient.find(params[:id])
+  end
+
+  def update
+    user = User.find(session[:user_id])
+    ingredient = Ingredient.find(params[:id])
+    ingredient.update(create_params)
+    redirect_to ingredients_path
+  end
+
+  def destroy
+    ingredient = Ingredient.find(params[:id])
+    ingredient.unassociate_user
+    redirect_to ingredients_path
+  end
+
+  private
+
+  def create_params
+    params.require(:ingredient).permit(:name, :image, :photo_url)
+  end
+
+  def ingredient_exist?
+    if Ingredient.where(id: params[:id].to_s).any?
+      show
+    else
+      flash[:error] = "This ingredient does not exist"
+      redirect_to root_path
+    end
+  end
+end

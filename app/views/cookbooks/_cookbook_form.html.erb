@@ -1,0 +1,22 @@
+<div class="container marketing">
+
+<h1><%= "#{heading}" %></h1>
+
+  <div class="form-group">
+    <fieldset>
+      <%= form_for @cookbook do |f| %>
+
+        <%= f.label :name %>
+        <%= f.text_field :name, required: true, class: "form-control" %>
+
+        <%= f.label :description %>
+        <%= f.text_area :description, class: "form-control"%>
+
+        <%= f.label :image %>
+        <%= f.file_field :image %><br><br>
+
+        <%= f.submit "#{action}", class: "btn btn-default" %>
+      <% end %>
+    </fieldset>
+  </div>
+</div>

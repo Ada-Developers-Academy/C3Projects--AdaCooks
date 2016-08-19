@@ -42,7 +42,7 @@ We're doing this to make the final project easier to code review. Because the ba
 - __Cookbooks__
   - See a list of Cookbooks I've already created, including...
     - The number of Recipes associated with the Cookbook
-    - The number of unique Recipes associated with the Cookbook
+    - The number of unique Ingedients associated with the Cookbook
   - See the details of a specific Cookbook, including...
     - a list of links to the Recipes associated with the Cookbook
     - a link to remove (unassociate) a Recipe from the Cookbook. This does not destroy the Recipe.
@@ -74,3 +74,13 @@ We're doing this to make the final project easier to code review. Because the ba
 
 ### Other Requirements
 - A minimum 80% test coverage for all Models and Controllers.
+Here is an example of interface:
+
+Here is how the application looks:
+![Image](https://github.com/vikshab/Images/blob/master/cookbook1.png?raw=true)
+
+![Image](https://github.com/vikshab/Images/blob/master/cookbook2.png?raw=true)
+
+![Image](https://github.com/vikshab/Images/blob/master/cookbook3.png?raw=true)
+
+![Image](https://github.com/vikshab/Images/blob/master/cookbook4.png?raw=true)
